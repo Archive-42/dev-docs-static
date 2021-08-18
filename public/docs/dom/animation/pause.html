@@ -1,0 +1,92 @@
+<h1>Animation.pause()</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <code><strong>pause()</strong></code> method of the <a href="../web_animations_api">Web Animations API</a>'s <a href="../animation"><code>Animation</code></a> interface suspends playback of the animation.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">animation<span class="token punctuation">.</span><span class="token function">pause</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<p>None.</p>
+<h3 id="return_value">Return value</h3>
+<p>None.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt>InvalidStateError</dt> <dd>The animation's <a href="currenttime"><code>currentTime</code></a> is <code>unresolved</code> (for example, if it's never been played or isn't currently playing) and the end time of the animation is positive infinity.</dd> </dl> <p>Throws an <code>InvalidStateError</code> if the animation's <a href="currenttime"><code>currentTime</code></a> is <code>unresolved</code> (perhaps it hasn't started playing yet) and the end time of the animation is positive infinity.</p>
+<h2 id="example">Example</h2>
+<p><code>Animation.pause()</code> is used many times in the Alice in Web Animations API Land <a href="https://codepen.io/rachelnabors/pen/PNYGZQ?editors=0010" rel=" noopener">Growing/Shrinking Alice Game</a>, largely because animations created with the <a href="../element/animate"><code>Element.animate()</code></a> method immediately start playing and must be paused manually if you want to avoid that:</p> <pre data-language="js"><span class="token comment">// animation of the cupcake slowly getting eaten up</span>
+<span class="token keyword">var</span> nommingCake <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'eat-me_sprite'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span>
+<span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> transform<span class="token operator">:</span> <span class="token string">'translateY(0)'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> transform<span class="token operator">:</span> <span class="token string">'translateY(-80%)'</span> <span class="token punctuation">}</span>
+<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  fill<span class="token operator">:</span> <span class="token string">'forwards'</span><span class="token punctuation">,</span>
+  easing<span class="token operator">:</span> <span class="token string">'steps(4, end)'</span><span class="token punctuation">,</span>
+  duration<span class="token operator">:</span> aliceChange<span class="token punctuation">.</span>effect<span class="token punctuation">.</span>timing<span class="token punctuation">.</span>duration <span class="token operator">/</span> <span class="token number">2</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// doesn't actually need to be eaten until a click event, so pause it initially:</span>
+nommingCake<span class="token punctuation">.</span><span class="token function">pause</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>Additionally, when resetting :</p> <pre data-language="js"><span class="token comment">// An all-purpose function to pause the animations on Alice, the cupcake, and the bottle that reads "drink me."</span>
+<span class="token keyword">var</span> <span class="token function-variable function">stopPlayingAlice</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  aliceChange<span class="token punctuation">.</span><span class="token function">pause</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  nommingCake<span class="token punctuation">.</span><span class="token function">pause</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  drinking<span class="token punctuation">.</span><span class="token function">pause</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// When the user releases the cupcake or the bottle, pause the animations.</span>
+cake<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"mouseup"</span><span class="token punctuation">,</span> stopPlayingAlice<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+bottle<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"mouseup"</span><span class="token punctuation">,</span> stopPlayingAlice<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th>Specification</th> <th>Status</th> <th>Comment</th> </tr> <tr> <td><a href="https://drafts.csswg.org/web-animations-1/#dom-animation-pause" hreflang="en" rel=" noopener">Web Animations<br><small>The definition of 'play()' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>pause</code></th>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>13.1</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>13.4</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../web_animations_api">Web Animations API</a></li> <li>
+<a href="../animation"><code>Animation</code></a> for other methods and properties you can use to control web page animation.</li> <li>
+<a href="pause"><code>Animation.pause()</code></a> to pause an animation.</li> <li>
+<a href="reverse"><code>Animation.reverse()</code></a> to play an animation backwards.</li> <li>
+<a href="finish"><code>Animation.finish()</code></a> to finish an animation.</li> <li>
+<a href="cancel"><code>Animation.cancel()</code></a> to cancel an animation.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Animation/pause" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Animation/pause</a>
+  </p>
+</div>

@@ -1,0 +1,83 @@
+<h1>WebAssembly.Table() constructor</h1> <p>The <code><strong>WebAssembly.Table()</strong></code> constructor creates a new <code>Table</code> object of the given size and element type.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">new</span> <span class="token class-name">WebAssembly<span class="token punctuation">.</span>Table</span><span class="token punctuation">(</span>tableDescriptor<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><em>tableDescriptor</em></dt> <dd>An object that can contain the following members: <dl> <dt><em>element</em></dt> <dd>A string representing the type of value to be stored in the table. At the moment this can only have a value of <code>"anyfunc"</code> (functions).</dd> <dt><em>initial</em></dt> <dd>The initial number of elements of the WebAssembly Table.</dd> <dt><em>maximum <span class="badge inline optional">Optional</span></em></dt> <dd>The maximum number of elements the WebAssembly Table is allowed to grow to.</dd> </dl> </dd> </dl>
+<h3 id="exceptions">Exceptions</h3>
+<ul> <li>If <code>tableDescriptor</code> is not of type object, a <a href="../../typeerror"><code>TypeError</code></a> is thrown.</li> <li>If <code>maximum</code> is specified and is smaller than <code>initial</code>, a <a href="../../rangeerror"><code>RangeError</code></a> is thrown.</li> </ul>
+<h2 id="examples">Examples</h2>
+<h3 id="creating_a_new_webassembly_table_instance">Creating a new WebAssembly Table instance</h3>
+<p>The following example (see table2.html <a href="https://github.com/mdn/webassembly-examples/blob/master/js-api-examples/table2.html" rel=" noopener">source code</a> and <a href="https://mdn.github.io/webassembly-examples/js-api-examples/table2.html" rel=" noopener">live version</a>) creates a new WebAssembly Table instance with an initial size of 2 elements. We then print out the table length and contents of the two indexes (retrieved via <a href="get"><code>Table.prototype.get()</code></a> to show that the length is two and both elements are <a href="../../null"><code>null</code></a>.</p> <pre data-language="js"><span class="token keyword">var</span> tbl <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WebAssembly<span class="token punctuation">.</span>Table</span><span class="token punctuation">(</span><span class="token punctuation">{</span>initial<span class="token operator">:</span><span class="token number">2</span><span class="token punctuation">,</span> element<span class="token operator">:</span><span class="token string">"anyfunc"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>tbl<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// "2"</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>tbl<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// "null"</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>tbl<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// "null"</span></pre> <p>We then create an import object that contains the table:</p> <pre data-language="js"><span class="token keyword">var</span> importObj <span class="token operator">=</span> <span class="token punctuation">{</span>
+  js<span class="token operator">:</span> <span class="token punctuation">{</span>
+    tbl<span class="token operator">:</span>tbl
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre> <p>Finally, we load and instantiate a wasm module (table2.wasm) using the <a href="../instantiatestreaming"><code>WebAssembly.instantiateStreaming()</code></a> method. The table2.wasm module contains two functions (one that returns 42 and another that returns 83) and stores both into elements 0 and 1 of the imported table (see <a href="https://github.com/mdn/webassembly-examples/blob/master/js-api-examples/table2.wat" rel=" noopener">text representation</a>). So after instantiation, the table still has length 2, but the elements now contain callable <a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Exported_functions">Exported WebAssembly Functions</a> which we can call from JS.</p> <pre data-language="js">WebAssembly<span class="token punctuation">.</span><span class="token function">instantiateStreaming</span><span class="token punctuation">(</span><span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'table2.wasm'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> importObject<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">obj</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>tbl<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>tbl<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>tbl<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Note how you've got to include a second function invocation operator at the end of the accessor to actually invoke the referenced function and log the value stored inside it (e.g. <code>get(0)()</code> rather than <code>get(0)</code>) .</p> <p>This example shows that we're creating and accessing the table from JavaScript, but the same table is visible and callable inside the wasm instance too.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://webassembly.github.io/spec/js-api/#dom-table-table">WebAssembly JavaScript Interface (WebAssembly JavaScript Interface)<br> <small>#dom-table-table</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>Table</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="https://developer.mozilla.org/en-US/docs/WebAssembly">WebAssembly</a> overview page</li> <li><a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Concepts">WebAssembly concepts</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Using_the_JavaScript_API">Using the WebAssembly JavaScript API</a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Table/Table" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Table/Table</a>
+  </p>
+</div>

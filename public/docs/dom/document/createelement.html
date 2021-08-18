@@ -1,0 +1,148 @@
+<h1>Document.createElement()</h1> <p>In an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML</a> document, the <code>document.createElement()</code> method creates the HTML element specified by <var>tagName</var>, or an <a href="../htmlunknownelement"><code>HTMLUnknownElement</code></a> if <var>tagName</var> isn't recognized.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">let</span> element <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span>tagName<span class="token punctuation">[</span><span class="token punctuation">,</span> options<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><var>tagName</var></dt> <dd>A string that specifies the type of element to be created. The <a href="../node/nodename"><code>nodeName</code></a> of the created element is initialized with the value of <var>tagName</var>. Don't use qualified names (like "html:a") with this method. When called on an HTML document, <code>createElement()</code> converts <var>tagName</var> to lower case before creating the element. In Firefox, Opera, and Chrome, <code>createElement(null)</code> works like <code>createElement("null")</code>.</dd> <dt>
+<var>options </var><span class="badge inline optional">Optional</span>
+</dt> <dd>An optional <code>ElementCreationOptions</code> object, containing a single property named <code>is</code>, whose value is the tag name of a custom element previously defined via <code>customElements.define()</code>. See <a href="#web_component_example">Web component example</a> for more details.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The new <a href="../element"><code>Element</code></a>.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="basic_example">Basic example</h3>
+<p>This creates a new <code>&lt;div&gt;</code> and inserts it before the element with the ID "<code>div1</code>".</p> <h4 id="html">HTML</h4> <pre data-language="html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>||Working with elements||<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>div1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>The text above has been created dynamically.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</pre> <h4 id="javascript">JavaScript</h4> <pre data-language="js">document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>onload <span class="token operator">=</span> addElement<span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">addElement</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// create a new div element</span>
+  <span class="token keyword">const</span> newDiv <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"div"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// and give it some content</span>
+  <span class="token keyword">const</span> newContent <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createTextNode</span><span class="token punctuation">(</span><span class="token string">"Hi there and greetings!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// add the text node to the newly created div</span>
+  newDiv<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>newContent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// add the newly created element and its content into the DOM</span>
+  <span class="token keyword">const</span> currentDiv <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"div1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">insertBefore</span><span class="token punctuation">(</span>newDiv<span class="token punctuation">,</span> currentDiv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p><iframe class="sample-code-frame" id="frame_Basic_example" width="500" height="60" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Document/createElement/_samples_/Basic_example" loading="lazy"></iframe></p>
+<h3 id="web_component_example">Web component example</h3>
+<p>The following example snippet is taken from our expanding-list-web-component example (see it live also). In this case, our custom element extends the <a href="../htmlulistelement"><code>HTMLUListElement</code></a>, which represents the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul"><code>&lt;ul&gt;</code></a> element.</p> <pre data-language="js"><span class="token comment">// Create a class for the element</span>
+<span class="token keyword">class</span> <span class="token class-name">ExpandingList</span> <span class="token keyword">extends</span> <span class="token class-name">HTMLUListElement</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Always call super first in constructor</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// constructor definition left out for brevity</span>
+    <span class="token operator">...</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Define the new element</span>
+customElements<span class="token punctuation">.</span><span class="token function">define</span><span class="token punctuation">(</span><span class="token string">'expanding-list'</span><span class="token punctuation">,</span> ExpandingList<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token keyword">extends</span><span class="token operator">:</span> <span class="token string">"ul"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>If we wanted to create an instance of this element programmatically, we'd use a call along the following lines:</p> <pre data-language="js"><span class="token keyword">let</span> expandingList <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'ul'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> is <span class="token operator">:</span> <span class="token string">'expanding-list'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span></pre> <p>The new element will be given an <code><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is">is</a></code> attribute whose value is the custom element's tag name.</p> <div class="note notecard"> <p><strong>Note</strong>: For backwards compatibility with previous versions of the <a href="https://www.w3.org/TR/custom-elements/" rel=" noopener">Custom Elements specification</a>, some browsers will allow you to pass a string here instead of an object, where the string's value is the custom element's tag name.</p> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://dom.spec.whatwg.org/#dom-document-createelement" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'Document.createElement' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>createElement</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Doesn't conform to the DOM spec for XUL and XHTML documents: <code>localName</code> and <code>namespaceURI</code> are not set to null on the created element.</div>
+</td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>options</code></th>
+<td class="bc-supports-yes">
+<div>56</div>
+<div>For backwards compatibility, the <code>options</code> argument can be an object or a string with the custom element tag name, although the string version is deprecated.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>For backwards compatibility, the <code>options</code> argument can be an object or a string with the custom element tag name, although the string version is deprecated.</div>
+</td>
+<td class="bc-supports-yes">
+<div>50</div>
+<div>Firefox accepts a string instead of an object here, but only from version 51 onwards. In version 50, options must be an object.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>For backwards compatibility, the <code>options</code> argument can be an object or a string with the custom element tag name, although the string version is deprecated.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>56</div>
+<div>For backwards compatibility, the <code>options</code> argument can be an object or a string with the custom element tag name, although the string version is deprecated.</div>
+</td>
+<td class="bc-supports-yes">
+<div>56</div>
+<div>For backwards compatibility, the <code>options</code> argument can be an object or a string with the custom element tag name, although the string version is deprecated.</div>
+</td>
+<td class="bc-supports-yes">
+<div>50</div>
+<div>Firefox accepts a string instead of an object here, but only from version 51 onwards. In version 50, options must be an object.</div>
+</td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>For backwards compatibility, the <code>options</code> argument can be an object or a string with the custom element tag name, although the string version is deprecated.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>For backwards compatibility, the <code>options</code> argument can be an object or a string with the custom element tag name, although the string version is deprecated.</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../node/removechild"><code>Node.removeChild()</code></a></li> <li><a href="../node/replacechild"><code>Node.replaceChild()</code></a></li> <li><a href="../node/appendchild"><code>Node.appendChild()</code></a></li> <li><a href="../node/insertbefore"><code>Node.insertBefore()</code></a></li> <li><a href="../node/haschildnodes"><code>Node.hasChildNodes()</code></a></li> <li>
+<a href="createelementns"><code>document.createElementNS()</code></a> — to explicitly specify the namespace URI for the element.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement</a>
+  </p>
+</div>

@@ -1,0 +1,400 @@
+<h1>KeyboardEvent</h1> <p><code>KeyboardEvent</code> objects describe a user interaction with the keyboard; each event describes a single interaction between the user and a key (or combination of a key with modifier keys) on the keyboard. The event type (<code><a href="document/keydown_event">keydown</a></code>, <code><a href="document/keypress_event">keypress</a></code>, or <code><a href="document/keyup_event">keyup</a></code>) identifies what kind of keyboard activity occurred.</p> <div class="note notecard">
+<strong>Note:</strong> <code>KeyboardEvent</code> events just indicate what interaction the user had with a key on the keyboard at a low level, providing no contextual meaning to that interaction. When you need to handle text input, use the <code><a href="htmlelement/input_event">input</a></code> event instead. Keyboard events may not be fired if the user is using an alternate means of entering text, such as a handwriting system on a tablet or graphics tablet.</div>  <iframe class="inheritance-diagram-frame" id="frame_inheritance_diagram" width="600" height="70" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/KeyboardEvent/_samples_/inheritance_diagram" loading="lazy"></iframe>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="keyboardevent/keyboardevent"><code>KeyboardEvent()</code></a></dt> <dd>Creates a new <code>KeyboardEvent</code> object.</dd> </dl>
+<h2 id="constants">Constants</h2>
+<p>The <code>KeyboardEvent</code> interface defines the following constants.</p>
+<h3 id="keyboard_locations">Keyboard locations</h3>
+<p>The following constants identify which part of the keyboard the key event originates from. They are accessed as <code>KeyboardEvent.DOM_KEY_LOCATION_STANDARD</code> and so forth.</p> <div class="_table"><table class="standard-table"> <caption>Keyboard location identifiers</caption> <thead> <tr> <th scope="col">Constant</th> <th scope="col">Value</th> <th scope="col">Description</th> </tr> </thead> <tbody> <tr> <td><code>DOM_KEY_LOCATION_STANDARD</code></td> <td>0x00</td> <td> <p>The key described by the event is not identified as being located in a particular area of the keyboard; it is not located on the numeric keypad (unless it's the NumLock key), and for keys that are duplicated on the left and right sides of the keyboard, the key is, for whatever reason, not to be associated with that location.</p> <p>Examples include alphanumeric keys on the standard PC 101 US keyboard, the NumLock key, and the space bar.</p> </td> </tr> <tr> <td><code>DOM_KEY_LOCATION_LEFT</code></td> <td>0x01</td> <td> <p>The key is one which may exist in multiple locations on the keyboard and, in this instance, is on the left side of the keyboard.</p> <p>Examples include the left Control key, the left Command key on a Macintosh keyboard, or the left Shift key.</p> </td> </tr> <tr> <td><code>DOM_KEY_LOCATION_RIGHT</code></td> <td>0x02</td> <td> <p>The key is one which may exist in multiple positions on the keyboard and, in this case, is located on the right side of the keyboard.</p> <p>Examples include the right Shift key and the right Alt key (Option on a Mac keyboard).</p> </td> </tr> <tr> <td><code>DOM_KEY_LOCATION_NUMPAD</code></td> <td>0x03</td> <td> <p>The key is located on the numeric keypad, or is a virtual key associated with the numeric keypad if there's more than one place the key could originate from. The NumLock key does not fall into this group and is always encoded with the location <code>DOM_KEY_LOCATION_STANDARD</code>.</p> <p>Examples include the digits on the numeric keypad, the keypad's Enter key, and the decimal point on the keypad.</p> </td> </tr> </tbody> </table></div>
+<h2 id="properties">Properties</h2>
+<p><em>This interface also inherits properties of its parents, <a href="uievent"><code>UIEvent</code></a> and <a href="event"><code>Event</code></a>.</em></p> <dl> <dt>
+<a href="keyboardevent/altkey"><code>KeyboardEvent.altKey</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> that is <code>true</code> if the <kbd>Alt</kbd> ( <kbd>Option</kbd> or <kbd>⌥</kbd> on OS X) key was active when the key event was generated.</dd> <dt>
+<a href="keyboardevent/code"><code>KeyboardEvent.code</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="domstring"><code>DOMString</code></a> with the code value of the physical key represented by the event. <div class="warning notecard">
+<strong>Warning:</strong> This ignores the user's keyboard layout, so that if the user presses the key at the "Y" position in a QWERTY keyboard layout (near the middle of the row above the home row), this will always return "KeyY", even if the user has a QWERTZ keyboard (which would mean the user expects a "Z" and all the other properties would indicate a "Z") or a Dvorak keyboard layout (where the user would expect an "F").</div> </dd> <dt>
+<a href="keyboardevent/ctrlkey"><code>KeyboardEvent.ctrlKey</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> that is <code>true</code> if the <kbd>Ctrl</kbd> key was active when the key event was generated.</dd> <dt>
+<a href="keyboardevent/iscomposing"><code>KeyboardEvent.isComposing</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> that is <code>true</code> if the event is fired between after <code>compositionstart</code> and before <code>compositionend</code>.</dd> <dt>
+<a href="keyboardevent/key"><code>KeyboardEvent.key</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="domstring"><code>DOMString</code></a> representing the key value of the key represented by the event.</dd> <dt>
+<a class="page-not-created"><code>KeyboardEvent.locale</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="domstring"><code>DOMString</code></a> representing a locale string indicating the locale the keyboard is configured for. This may be the empty string if the browser or device doesn't know the keyboard's locale. <div class="note notecard">
+<strong>Note:</strong> This does not describe the locale of the data being entered. A user may be using one keyboard layout while typing text in a different language.</div> </dd> <dt>
+<a href="keyboardevent/location"><code>KeyboardEvent.location</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number"><code>Number</code></a> representing the location of the key on the keyboard or other input device. A list of the constants identifying the locations is shown above in <a href="#keyboard_locations">Keyboard locations</a>.</dd> <dt>
+<a href="keyboardevent/metakey"><code>KeyboardEvent.metaKey</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> that is <code>true</code> if the <kbd>Meta</kbd> key (on Mac keyboards, the <kbd>⌘ Command</kbd> key; on Windows keyboards, the Windows key (<kbd>⊞</kbd>)) was active when the key event was generated.</dd> <dt>
+<a href="keyboardevent/repeat"><code>KeyboardEvent.repeat</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> that is <code>true</code> if the key is being held down such that it is automatically repeating.</dd> <dt>
+<a href="keyboardevent/shiftkey"><code>KeyboardEvent.shiftKey</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> that is <code>true</code> if the <kbd>Shift</kbd> key was active when the key event was generated.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<p><em>This interface also inherits methods of its parents, <a href="uievent"><code>UIEvent</code></a> and <a href="event"><code>Event</code></a>.</em></p> <dl> <dt><a href="keyboardevent/getmodifierstate"><code>KeyboardEvent.getModifierState()</code></a></dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> indicating if a modifier key such as <kbd>Alt</kbd>, <kbd>Shift</kbd>, <kbd>Ctrl</kbd>, or <kbd>Meta</kbd>, was pressed when the event was created.</dd> </dl>
+<h2 id="obsolete_methods">Obsolete methods</h2>
+<dl> <dt>
+<a href="keyboardevent/initkeyevent"><code>KeyboardEvent.initKeyEvent()</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>Initializes a <code>KeyboardEvent</code> object. This was implemented only by Firefox, and is no longer supported even there; instead, you should use the <a href="keyboardevent/keyboardevent"><code>KeyboardEvent()</code></a> constructor.</dd> <dt>
+<a href="keyboardevent/initkeyboardevent"><code>KeyboardEvent.initKeyboardEvent()</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>Initializes a <code>KeyboardEvent</code> object. This is now deprecated. You should instead use the <a href="keyboardevent/keyboardevent"><code>KeyboardEvent()</code></a> constructor.</dd> </dl>
+<h2 id="obsolete_properties">Obsolete properties</h2>
+<dl> <dt>
+<a class="page-not-created"><code>KeyboardEvent.char</code></a> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized.   </span><span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span><span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="domstring"><code>DOMString</code></a> representing the character value of the key. If the key corresponds to a printable character, this value is a non-empty Unicode string containing that character. If the key doesn't have a printable representation, this is an empty string. <div class="note notecard">
+<strong>Note:</strong> If the key is used as a macro that inserts multiple characters, this attribute's value is the entire string, not just the first character.</div> </dd> <dt>
+<a href="keyboardevent/charcode"><code>KeyboardEvent.charCode</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span><span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number"><code>Number</code></a> representing the Unicode reference number of the key; this attribute is used only by the <code>keypress</code> event. For keys whose <code>char</code> attribute contains multiple characters, this is the Unicode value of the first character in that attribute. In Firefox 26 this returns codes for printable characters. <div class="warning notecard">
+<strong>Warning:</strong> This attribute is deprecated; you should use <a href="keyboardevent/key"><code>KeyboardEvent.key</code></a> instead, if available.</div> </dd> <dt>
+<a href="keyboardevent/keycode"><code>KeyboardEvent.keyCode</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span><span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number"><code>Number</code></a> representing a system and implementation dependent numerical code identifying the unmodified value of the pressed key. <div class="warning notecard">
+<strong>Warning:</strong> This attribute is deprecated; you should use <a href="keyboardevent/key"><code>KeyboardEvent.key</code></a> instead, if available.</div> </dd> <dt>
+<a href="keyboardevent/keyidentifier"><code>KeyboardEvent.keyIdentifier</code></a> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized.   </span><span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span><span class="badge inline readonly">Read only </span>
+</dt> <dd>This property is non-standard and has been deprecated in favor of <a href="keyboardevent/key"><code>KeyboardEvent.key</code></a>. It was part of an old version of DOM Level 3 Events.</dd> <dt>
+<a class="page-not-created"><code>KeyboardEvent.keyLocation</code></a> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized.   </span><span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span><span class="badge inline readonly">Read only </span>
+</dt> <dd>This is a non-standard deprecated alias for <a href="keyboardevent/location"><code>KeyboardEvent.location</code></a>. It was part of an old version of DOM Level 3 Events.</dd> <dt>
+<a href="keyboardevent/which"><code>KeyboardEvent.which</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number"><code>Number</code></a> representing a system and implementation dependent numeric code identifying the unmodified value of the pressed key; this is usually the same as <code>keyCode</code>. <div class="warning notecard">
+<strong>Warning:</strong> This attribute is deprecated; you should use <a href="keyboardevent/key"><code>KeyboardEvent.key</code></a> instead, if available.</div> </dd> </dl>
+<h2 id="events">Events</h2>
+<p>The following events are based on the <code>KeyboardEvent</code> type. They can be delivered to any object which implements <a href="globaleventhandlers"><code>GlobalEventHandlers</code></a>, including <a href="element"><code>Element</code></a>, <a href="document"><code>Document</code></a>, and <a href="window"><code>Window</code></a>. In the list below, each event links to the documentation for the <code>Document</code> handler for the event, which applies generally to all of the recipients.</p> <dl> <dt><a href="document/keydown_event"><code>keydown</code></a></dt> <dd>A key has been pressed.</dd> <dt><a href="document/keyup_event"><code>keyup</code></a></dt> <dd>A key has been released.</dd> </dl>
+<h3 id="obsolete_events">Obsolete events</h3>
+<dl> <dt>
+<a href="document/keypress_event"><code>keypress</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>A key that normally produces a character value has been pressed. This event was highly device-dependent and is obsolete. You should not use it.</dd> </dl>
+<h2 id="usage_notes">Usage notes</h2>
+<p>There are three types of keyboard events: <code><a href="document/keydown_event">keydown</a></code>, <code><a href="document/keypress_event">keypress</a></code>, and <code><a href="document/keyup_event">keyup</a></code>. For most keys, Gecko dispatches a sequence of key events like this:</p> <ol> <li>When the key is first pressed, the <code>keydown</code> event is sent.</li> <li>If the key is not a modifier key, the <code>keypress</code> event is sent.</li> <li>When the user releases the key, the <code>keyup</code> event is sent.</li> </ol>
+<h3 id="special_cases">Special cases</h3>
+<p>Some keys toggle the state of an indicator light; these include keys such as Caps Lock, Num Lock, and Scroll Lock. On Windows and Linux, these keys dispatch only the <code>keydown</code> and <code>keyup</code> events.</p> <div class="note notecard"> <p>On Linux, Firefox 12 and earlier also dispatched the <code>keypress</code> event for these keys.</p> </div> <p>However, a limitation of the macOS event model causes Caps Lock to dispatch only the <code>keydown</code> event. Num Lock was supported on some older laptop models (2007 models and older), but since then, macOS hasn't supported Num Lock even on external keyboards. On older MacBooks with a Num Lock key, that key doesn't generate any key events. Gecko does support the Scroll Lock key if an external keyboard which has an F14 key is connected. In certain older versions of Firefox, this key generated a <code>keypress</code> event; this inconsistent behavior was <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=602812" rel=" noopener">bug 602812</a>.</p>
+<h3 id="auto-repeat_handling">Auto-repeat handling</h3>
+<p>When a key is pressed and held down, it begins to auto-repeat. This results in a sequence of events similar to the following being dispatched:</p> <ol> <li><code>keydown</code></li> <li><code>keypress</code></li> <li><code>keydown</code></li> <li><code>keypress</code></li> <li>&lt;&lt;repeating until the user releases the key&gt;&gt;</li> <li><code>keyup</code></li> </ol> <p>This is what the DOM Level 3 specification says should happen. There are some caveats, however, as described below.</p> <h4 id="auto-repeat_on_some_gtk_environments_such_as_ubuntu_9.4">Auto-repeat on some GTK environments such as Ubuntu 9.4</h4> <p>In some GTK-based environments, auto-repeat dispatches a native key-up event automatically during auto-repeat, and there's no way for Gecko to know the difference between a repeated series of keypresses and an auto-repeat. On those platforms, then, an auto-repeat key will generate the following sequence of events:</p> <ol> <li><code>keydown</code></li> <li><code>keypress</code></li> <li><code>keyup</code></li> <li><code>keydown</code></li> <li><code>keypress</code></li> <li><code>keyup</code></li> <li>&lt;&lt;repeating until the user releases the key&gt;&gt;</li> <li><code>keyup</code></li> </ol> <p>In these environments, unfortunately, there's no way for web content to tell the difference between auto-repeating keys and keys that are just being pressed repeatedly.</p> <h4 id="auto-repeat_handling_prior_to_gecko_5.0">Auto-repeat handling prior to Gecko 5.0</h4> <p>Before Gecko 5.0 (Firefox 5.0 / Thunderbird 5.0 / SeaMonkey 2.2), keyboard handling was less consistent across platforms.</p> <dl> <dt>Windows</dt> <dd>Auto-repeat behavior is the same as in Gecko 4.0 and later.</dd> <dt>Mac</dt> <dd>After the initial keydown event, only keypress events are sent until the keyup event occurs; the inter-spaced keydown events are not sent.</dd> <dt>Linux</dt> <dd>The event behavior depends on the specific platform. It will either behave like Windows or Mac depending on what the native event model does.</dd> </dl> <p class="note"><strong>Note:</strong> Manually firing an event does <em>not</em> generate the default action associated with that event. For example, manually firing a key event does not cause that letter to appear in a focused text input. In the case of UI events, this is important for security reasons, as it prevents scripts from simulating user actions that interact with the browser itself.</p>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token constant">DOCTYPE</span> html<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>html<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>head<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>script<span class="token operator">&gt;</span>
+<span class="token string">'use strict'</span><span class="token punctuation">;</span>
+
+document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'keydown'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> keyName <span class="token operator">=</span> event<span class="token punctuation">.</span>key<span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>keyName <span class="token operator">===</span> <span class="token string">'Control'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// do not alert when only Control key is pressed.</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>ctrlKey<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Even though event.key is not 'Control' (e.g., 'a' is pressed),</span>
+    <span class="token comment">// event.ctrlKey may be true if Ctrl key is pressed at the same time.</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Combination of ctrlKey + </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>keyName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Key pressed </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>keyName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'keyup'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> keyName <span class="token operator">=</span> event<span class="token punctuation">.</span>key<span class="token punctuation">;</span>
+
+  <span class="token comment">// As the user releases the Ctrl key, the key is no longer active,</span>
+  <span class="token comment">// so event.ctrlKey is false.</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>keyName <span class="token operator">===</span> <span class="token string">'Control'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'Control key was released'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token operator">&lt;</span><span class="token operator">/</span>script<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>head<span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span>body<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>body<span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>html<span class="token operator">&gt;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/uievents/#interface-keyboardevent" hreflang="en" rel=" noopener">UI Events<br><small>The definition of 'KeyboardEvent' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div> <p>The <code>KeyboardEvent</code> interface specification went through numerous draft versions, first under DOM Events Level 2 where it was dropped as no consensus arose, then under DOM Events Level 3. This led to the implementation of non-standard initialization methods, the early DOM Events Level 2 version, <a href="keyboardevent/initkeyevent"><code>KeyboardEvent.initKeyEvent()</code></a> by Gecko browsers and the early DOM Events Level 3 version, <a href="keyboardevent/initkeyboardevent"><code>KeyboardEvent.initKeyboardEvent()</code></a> by others. Both have been superseded by the modern usage of a constructor: <a href="keyboardevent/keyboardevent"><code>KeyboardEvent()</code></a>.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>KeyboardEvent</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>3.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>KeyboardEvent</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>altKey</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>charCode</code></th>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>code</code></th>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>ctrlKey</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>getModifierState</code></th>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>4.4.3</div></td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+</tr>
+<tr>
+<th><code>isComposing</code></th>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>key</code></th>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes">
+<div>9</div>
+<div>IE's implementation does not completely match the current spec because it is based on an older version of the spec.</div>
+</td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>keyCode</code></th>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>keyIdentifier</code></th>
+<td class="bc-supports-no"><div>26-54</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-41</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-no"><div>≤37-54</div></td>
+<td class="bc-supports-no"><div>26-54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>Yes-41</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-no"><div>1.5-6.0</div></td>
+</tr>
+<tr>
+<th><code>location</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>6.1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>metaKey</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>repeat</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>shiftKey</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>which</code></th>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>2</div>
+<div>Firefox also implements this property on the <code>UIEvent</code> interface.</div>
+</td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Firefox also implements this property on the <code>UIEvent</code> interface.</div>
+</td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h3 id="compatibility_notes">Compatibility notes</h3>
+<ul> <li>As of Firefox 65, the <code>keypress</code> event is no longer fired for <a href="keyboardevent/keycode#non-printable_keys_(function_keys)">non-printable keys</a> (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=968056" rel=" noopener">bug 968056</a>), except for the <kbd>Enter</kbd> key, and the <kbd>Shift</kbd> + <kbd>Enter</kbd> and <kbd>Ctrl</kbd> + <kbd>Enter</kbd> key combinations (these were kept for cross-browser compatibility purposes).</li> </ul>
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="keyboardevent/code"><code>KeyboardEvent.code</code></a>.</li> <li>
+<a href="keyboardevent/key"><code>KeyboardEvent.key</code></a>.</li> <li><a href="keyboardevent/getmodifierstate"><code>KeyboardEvent.getModifierState()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent</a>
+  </p>
+</div>

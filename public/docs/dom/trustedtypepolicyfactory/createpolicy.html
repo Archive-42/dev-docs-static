@@ -1,0 +1,72 @@
+<h1>TrustedTypePolicyFactory.createPolicy()</h1> <p class="summary">The <code>createPolicy()</code> method of the <a href="../trustedtypepolicyfactory"><code>TrustedTypePolicyFactory</code></a> interface creates a <a href="../trustedtypepolicy"><code>TrustedTypePolicy</code></a> object that implements the rules passed as <code>policyOptions</code>.</p>
+<h3 id="default_policy">The default policy</h3>
+<p>In Chrome a policy with a name of "default" creates a special policy that will be used if a string (rather than a Trusted Type object) is passed to an injection sink. This can be used in a transitional phase while moving from an application that inserted strings into injection sinks.</p> <div class="notecard note"> <strong id="note">Note</strong> <p>The above behavior is not yet settled in the specification and may change in future.</p> </div> <div class="notecard warning"> <strong id="note_2">Note</strong> <p>A lax default policy could defeat the purpose of using Trusted Types, and therefore should be defined with strict rules to ensure it cannot be used to run dangerous code.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre class="syntaxbox notranslate">var <var>policy</var> = <var>TrustedTypePolicyFactory</var>.createPolicy(<var>policyName</var>,<var>policyOptions</var>);</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>policyName</code></dt> <dd>A <a href="../domstring"><code>DOMString</code></a> with the name of the policy.</dd> <dt>
+<code>policyOptions</code><span class="badge inline optional">Optional</span>
+</dt> <dd>User-defined functions for converting strings into trusted values. <dl> <dt><code>CreateHTML(<var>input</var>[,<var>args</var>])</code></dt> <dd>A callback function in the form of a <a href="../domstring"><code>string</code></a> that contains code to run when creating a <a href="../trustedhtml"><code>TrustedHTML</code></a> object.</dd> <dt><code>CreateScript(<var>input</var>[,<var>args</var>])</code></dt> <dd>A callback function in the form of a <a href="../domstring"><code>string</code></a> that contains code to run when creating a <a href="../trustedscript"><code>TrustedScript</code></a> object.</dd> <dt><code>CreateScriptURL(<var>input</var>[,<var>args</var>])</code></dt> <dd>A callback function in the form of a <a href="../domstring"><code>string</code></a> that contains code to run when creating a <a href="../trustedscripturl"><code>TrustedScriptURL</code></a> object.</dd> </dl> </dd> </dl>
+<h3 id="returns">Return value</h3>
+<p>A <a href="../trustedtypepolicy"><code>TrustedTypePolicy</code></a> object.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError"><code>TypeError</code></a></dt> <dd>Thrown if policy names are restricted by the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/trusted-types">Content Security Policy <code>trusted-types</code> directive</a> and this name is not on the allowlist.</dd> <dt><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError"><code>TypeError</code></a></dt> <dd>Thrown if the name is a duplicate and the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/trusted-types">Content Security Policy trusted-types directive</a> is not using <code>allow-duplicates</code>.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>The below code creates a policy with the name <code>"myEscapePolicy"</code> with a function defined for <code>createHTML()</code> which sanitizes HTML.</p> <pre data-language="js"><span class="token keyword">const</span> escapeHTMLPolicy <span class="token operator">=</span> trustedTypes<span class="token punctuation">.</span><span class="token function">createPolicy</span><span class="token punctuation">(</span><span class="token string">"myEscapePolicy"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">createHTML</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">string</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> string<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\&gt;</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">"&lt;"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="creating_a_default_policy">Creating a default policy</h3>
+<p>On a site where Trusted Types are enforced via a Content Security Policy with the <code><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/require-trusted-types-for">require-trusted-types-for</a></code> directive set to <code>script</code>, any injection script that accepts a script expects a Trusted Type object. In the case that a string is inserted instead, the following default policy will be used.</p> <p>The policy logs a message to the console to remind the developer to refactor this part of the application to use a Trusted Type object. It also appends details of the use of the default policy, type, and injection sink to the returned value.</p> <pre data-language="js">trustedTypes<span class="token punctuation">.</span><span class="token function">createPolicy</span><span class="token punctuation">(</span><span class="token string">'default'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">createScriptURL</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">s<span class="token punctuation">,</span> type<span class="token punctuation">,</span> sink</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Please refactor."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> s <span class="token operator">+</span> <span class="token string">'?default-policy-used&amp;type='</span> <span class="token operator">+</span> <span class="token function">encodeURIComponent</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span> <span class="token operator">+</span>
+          <span class="token string">'&amp;sink='</span> <span class="token operator">+</span> <span class="token function">encodeURIComponent</span><span class="token punctuation">(</span>sink<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webappsec-trusted-types/dist/spec/#dom-trustedtypepolicyfactory-createpolicy" hreflang="en" rel=" noopener">Trusted Types<br><small>The definition of 'TrustedTypePolicyFactory.createPolicy()' in that specification.</small></a></td> <td><span class="spec-ed">Editor's Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>createPolicy</code></th>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/TrustedTypePolicyFactory/createPolicy" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/TrustedTypePolicyFactory/createPolicy</a>
+  </p>
+</div>

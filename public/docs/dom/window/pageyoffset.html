@@ -1,0 +1,80 @@
+<h1>Window.pageYOffset</h1> <p>The read-only <a href="../window"><code>Window</code></a> property <code>pageYOffset</code> is an alias for <a href="scrolly"><code>scrollY</code></a>; as such, it returns the number of pixels the document is currently scrolled along the vertical axis (that is, up or down) with a value of 0.0, indicating that the top edge of the <a href="../document"><code>Document</code></a> is currently aligned with the top edge of the window's content area.</p> <p>There is slightly better support for <code>pageYOffset</code> than for <code>scrollY</code> in older browsers, but if you're not concerned about browsers more than a handful of years old, you can use either one.</p> <p>The corresponding <a href="pagexoffset"><code>pageXOffset</code></a> property, which returns the number of pixels scrolled along the horizontal axis (left and right), is an alias for <a href="scrollx"><code>scrollX</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">yOffset <span class="token operator">=</span> window<span class="token punctuation">.</span>pageYOffset<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>A floating-point number specifying the number of pixels the <a href="../document"><code>Document</code></a> is scrolled vertically within its containing <a href="../window"><code>Window</code></a>. This number is subpixel precise, so it may not be an integer. A value of 0.0 indicates that the window is not scrolled vertically, and that the top of the document is located at the top edge of the window's content area.</p> <p>Since this property is an alias for <a href="scrolly"><code>Window.scrollY</code></a>, see that article for additional details on this value and its use.</p>
+<h2 id="example">Example</h2>
+<p>In this example, an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a> is created and filled with content, then a specific element within the document is scrolled into view in the frame. Once that's done, the vertical scroll position is checked by looking at the value of <code>pageYOffset</code> in the frame's <a href="../htmliframeelement/contentwindow"><code>contentWindow</code></a>.</p>
+<h3 id="html">HTML</h3>
+<p>The HTML is extremely simple and has just two elements: an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a> that contains the document we're going to scroll, and a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a> into which we'll output the value of <code>pageYOffset</code> when we've finished the scroll. </p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>frame<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>info<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></pre>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js"><span class="token keyword">var</span> frame <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"frame"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> frameDoc <span class="token operator">=</span> frame<span class="token punctuation">.</span>contentDocument<span class="token punctuation">;</span>
+<span class="token keyword">var</span> info <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"info"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> target <span class="token operator">=</span> frameDoc<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"overview"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+frameDoc<span class="token punctuation">.</span>scrollingElement<span class="token punctuation">.</span>scrollTop <span class="token operator">=</span> target<span class="token punctuation">.</span>offsetTop<span class="token punctuation">;</span>
+
+info<span class="token punctuation">.</span>innerText <span class="token operator">=</span> <span class="token string">"Y offset after scrolling: "</span> <span class="token operator">+</span>
+                 frame<span class="token punctuation">.</span>contentWindow<span class="token punctuation">.</span>pageYOffset <span class="token operator">+</span> <span class="token string">" pixels"</span><span class="token punctuation">;</span></pre> <p>The JavaScript code begins by getting into <code>frame</code> and <code>info</code> the <code>&lt;iframe&gt;</code> element that contains our content as well as the <code>&lt;div&gt;</code> element into which we'll output the result of our scroll position check. It then gets a reference to the element we want to scroll into view calling <a href="../document/getelementbyid"><code>getElementById()</code></a> on the frame's <a href="../htmliframeelement/contentdocument"><code>HTMLIFrameElement.contentDocument</code></a>.</p> <p>With the target element in hand, we set the <a href="../element/scrolltop"><code>scrollTop</code></a> of the frame's <a href="../document/scrollingelement"><code>scrollingElement</code></a> to the <a class="page-not-created"><code>offsetTop</code></a> of the target element. By doing so, we set the vertical scrolling position of the frame's document so that it's the same as the top edge of the target element.</p> <p>This will automatically set the scrolling position to the maximum possible value if the attempted scroll would exceed the maximum. This prevents us from falling off the edge of the document. Nobody wants to know what's out there. There might be dragons.</p>
+<h3 id="result">Result</h3>
+<p>The result follows. Note that the frame's contents have been scrolled to show the section named "Overview", and that the value of the <code>pageYOffset</code> property is shown with the corresponding value.</p> <p><iframe class="sample-code-frame" id="frame_Example" width="650" height="500" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Window/pageYOffset/_samples_/Example" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td>
+<a href="https://drafts.csswg.org/cssom-view/#dom-window-pageyoffset" hreflang="en" rel=" noopener">CSS Object Model (CSSOM) View Module<br><small>The definition of 'window.pageYOffset' in that specification.</small></a> </td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>pageYOffset</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="pagexoffset"><code>pageXOffset</code></a></li> <li>
+<a href="scrolly"><code>scrollY</code></a> and <a href="scrollx"><code>scrollX</code></a>
+</li> <li>
+<a href="scroll"><code>scroll()</code></a>, <a href="scrollby"><code>scrollBy()</code></a>, and <a href="scrollto"><code>scrollTo()</code></a>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/pageYOffset" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Window/pageYOffset</a>
+  </p>
+</div>

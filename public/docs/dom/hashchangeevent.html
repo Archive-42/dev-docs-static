@@ -1,0 +1,135 @@
+<h1>HashChangeEvent</h1> <p>The <code><strong>HashChangeEvent</strong></code> interface represents events that fire when the fragment identifier of the URL has changed.</p> <p>The fragment identifier is the part of the URL that follows (and includes) the <code>#</code> symbol.</p>  <iframe class="inheritance-diagram-frame" id="frame_inheritance_diagram" width="600" height="70" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/HashChangeEvent/_samples_/inheritance_diagram" loading="lazy"></iframe>
+<h2 id="properties">Properties</h2>
+<p><em>This interface also inherits the properties of its parent, <a href="event"><code>Event</code></a>.</em></p> <dl> <dt>
+<a href="hashchangeevent/newurl"><code>HashChangeEvent.newURL</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>The new URL to which the window is navigating.</dd> <dt>
+<a href="hashchangeevent/oldurl"><code>HashChangeEvent.oldURL</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>The previous URL from which the window was navigated.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<p><em>This interface has no methods of its own, but inherits the methods of its parent, <a href="event"><code>Event</code></a>.</em></p>
+<h2 id="examples">Examples</h2>
+<h3 id="syntax_options_for_a_hash_change">Syntax options for a hash change</h3>
+<p>You can listen for the <code><a href="window/hashchange_event">hashchange</a></code> event using any of the following options:</p> <pre data-language="js">window<span class="token punctuation">.</span>onhashchange <span class="token operator">=</span> funcRef<span class="token punctuation">;</span>
+</pre> <p><strong>or</strong></p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span> <span class="token attr-name">onhashchange</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>funcRef();<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+</pre> <p><strong>or</strong></p> <pre data-language="js">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"hashchange"</span><span class="token punctuation">,</span> funcRef<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="basic_example">Basic example</h3>
+<pre data-language="js"><span class="token keyword">function</span> <span class="token function">locationHashChanged</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>location<span class="token punctuation">.</span>hash <span class="token operator">===</span> <span class="token string">'#somecoolfeature'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">somecoolfeature</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'hashchange'</span><span class="token punctuation">,</span> locationHashChanged<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="polyfill">Polyfill</h2>
+<p>There are several fallback scripts listed on the <a href="https://github.com/Modernizr/Modernizr/wiki/HTML5-Cross-Browser-Polyfills" rel=" noopener">Modernizr GitHub page</a>. Basically, those scripts check the <code>hash</code> property of <a href="window/location"><code>Window.location</code></a> at a regular interval. Here is a version that allows only one handler to be bound to the <a href="windoweventhandlers/onhashchange"><code>onhashchange</code></a> property:</p> <pre data-language="js"><span class="token punctuation">;</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">window</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token comment">// Exit if the browser implements that event</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token string">"onhashchange"</span> <span class="token keyword">in</span> window<span class="token punctuation">.</span>document<span class="token punctuation">.</span>body <span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+  <span class="token keyword">var</span> location <span class="token operator">=</span> window<span class="token punctuation">.</span>location<span class="token punctuation">,</span>
+      oldURL <span class="token operator">=</span> location<span class="token punctuation">.</span>href<span class="token punctuation">,</span>
+      oldHash <span class="token operator">=</span> location<span class="token punctuation">.</span>hash<span class="token punctuation">;</span>
+
+  <span class="token comment">// Check the location hash on a 100ms interval</span>
+  <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> newURL <span class="token operator">=</span> location<span class="token punctuation">.</span>href<span class="token punctuation">,</span>
+        newHash <span class="token operator">=</span> location<span class="token punctuation">.</span>hash<span class="token punctuation">;</span>
+
+    <span class="token comment">// If the hash has changed and a handler has been bound...</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span> newHash <span class="token operator">!=</span> oldHash <span class="token operator">&amp;&amp;</span> <span class="token keyword">typeof</span> window<span class="token punctuation">.</span>onhashchange <span class="token operator">===</span> <span class="token string">"function"</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Execute the handler</span>
+      window<span class="token punctuation">.</span><span class="token function">onhashchange</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        type<span class="token operator">:</span> <span class="token string">"hashchange"</span><span class="token punctuation">,</span>
+        oldURL<span class="token operator">:</span> oldURL<span class="token punctuation">,</span>
+        newURL<span class="token operator">:</span> newURL
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      oldURL <span class="token operator">=</span> newURL<span class="token punctuation">;</span>
+      oldHash <span class="token operator">=</span> newHash<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span>window<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#the-hashchangeevent-interface" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'HashChangeEvent' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>HashChangeEvent</code></th>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.6</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>10.6</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>newURL</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>oldURL</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="related_events">Related events</h2>
+<ul> <li><code><a href="window/hashchange_event">hashchange</a></code></li> <li><code><a href="window/popstate_event">popstate</a></code></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/HashChangeEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HashChangeEvent</a>
+  </p>
+</div>

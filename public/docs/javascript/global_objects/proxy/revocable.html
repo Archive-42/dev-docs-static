@@ -1,0 +1,81 @@
+<h1>Proxy.revocable()</h1> <p>The <code><strong>Proxy.revocable()</strong></code> method is used to create a revocable <a href="../proxy"><code>Proxy</code></a> object.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">Proxy<span class="token punctuation">.</span><span class="token function">revocable</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> handler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>target</var></code></dt> <dd>A target object to wrap with <code>Proxy</code>. It can be any sort of object, including a native array, a function, or even another proxy.</dd> <dt><code><var>handler</var></code></dt> <dd>An object whose properties are functions define the behavior of proxy <code><var>p</var></code> when an operation is performed on it.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A newly created revocable <code>Proxy</code> object is returned.</p>
+<h2 id="description">Description</h2>
+<p>A revocable <code>Proxy</code> is an object with following two properties <code>{proxy: proxy, revoke: revoke}</code>.</p> <dl> <dt><code>proxy</code></dt> <dd>A Proxy object created with <code>new Proxy(target, handler)</code> call.</dd> <dt><code>revoke</code></dt> <dd>A function with no argument to invalidate (switch off) the <code>proxy</code>.</dd> </dl> <p>If the <code>revoke()</code> function gets called, the proxy becomes unusable: Any trap to a handler will throw a <a href="../typeerror"><code>TypeError</code></a>. Once a proxy is revoked, it will remain revoked and can be garbage collected. Calling <code>revoke()</code> again has no effect.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_proxy.revocable">Using Proxy.revocable</h3>
+<pre data-language="js"><span class="token keyword">var</span> revocable <span class="token operator">=</span> Proxy<span class="token punctuation">.</span><span class="token function">revocable</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">get</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">target<span class="token punctuation">,</span> name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">"[["</span> <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token string">"]]"</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> proxy <span class="token operator">=</span> revocable<span class="token punctuation">.</span>proxy<span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>proxy<span class="token punctuation">.</span>foo<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// "[[foo]]"</span>
+
+revocable<span class="token punctuation">.</span><span class="token function">revoke</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>proxy<span class="token punctuation">.</span>foo<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// TypeError is thrown</span>
+proxy<span class="token punctuation">.</span>foo <span class="token operator">=</span> <span class="token number">1</span>           <span class="token comment">// TypeError again</span>
+<span class="token keyword">delete</span> proxy<span class="token punctuation">.</span>foo<span class="token punctuation">;</span>       <span class="token comment">// still TypeError</span>
+<span class="token keyword">typeof</span> proxy            <span class="token comment">// "object", typeof doesn't trigger any trap</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-proxy.revocable">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-proxy.revocable</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>revocable</code></th>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../proxy"><code>Proxy</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/revocable" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/revocable</a>
+  </p>
+</div>

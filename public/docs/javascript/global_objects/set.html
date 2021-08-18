@@ -1,0 +1,474 @@
+<h1>Set</h1> <p>The <code>Set</code> object lets you store unique values of any type, whether <a href="https://developer.mozilla.org/en-US/docs/Glossary/Primitive">primitive values</a> or object references.</p>
+<h2 id="description">Description</h2>
+<p><code>Set</code> objects are collections of values. You can iterate through the elements of a set in insertion order. A value in the <code>Set</code> <strong>may only occur once</strong>; it is unique in the <code>Set</code>'s collection.</p>
+<h3 id="value_equality">Value equality</h3>
+<p>Because each value in the <code>Set</code> has to be unique, the value equality will be checked. In an earlier version of ECMAScript specification, this was not based on the same algorithm as the one used in the <code>===</code> operator. Specifically, for <code>Set</code>s, <code>+0</code> (which is strictly equal to <code>-0</code>) and <code>-0</code> were different values. However, this was changed in the ECMAScript 2015 specification. See <em>"Key equality for -0 and 0"</em> in the <a href="#browser_compatibility">browser compatibility</a> table for details.</p> <p><a href="nan"><code>NaN</code></a> and <a href="undefined"><code>undefined</code></a> can also be stored in a Set. All <code>NaN</code> values are equated (i.e. <code>NaN</code> is considered the same as <code>NaN</code>, even though <code>NaN !== NaN</code>).</p>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="set/set"><code>Set()</code></a></dt> <dd>Creates a new <code>Set</code> object.</dd> </dl>
+<h2 id="static_properties">Static properties</h2>
+<dl> <dt><a href="set/@@species"><code>get Set[@@species]</code></a></dt> <dd>The constructor function that is used to create derived objects.</dd> </dl>
+<h2 id="instance_properties">Instance properties</h2>
+<dl> <dt><a href="set/size"><code>Set.prototype.size</code></a></dt> <dd>Returns the number of values in the <code>Set</code> object.</dd> </dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl> <dt><a href="set/add"><code>Set.prototype.add(<var>value</var>)</code></a></dt> <dd>Appends <code><var>value</var></code> to the <code>Set</code> object. Returns the <code>Set</code> object with added value.</dd> <dt><a href="set/clear"><code>Set.prototype.clear()</code></a></dt> <dd>Removes all elements from the <code>Set</code> object.</dd> <dt><a href="set/delete"><code>Set.prototype.delete(<var>value</var>)</code></a></dt> <dd>Removes the element associated to the <code><var>value</var></code> and returns a boolean asserting whether an element was successfully removed or not. <code>Set.prototype.has(<var>value</var>)</code> will return <code>false</code> afterwards.</dd> <dt><a href="set/has"><code>Set.prototype.has(<var>value</var>)</code></a></dt> <dd>Returns a boolean asserting whether an element is present with the given value in the <code>Set</code> object or not.</dd> </dl>
+<h3 id="iteration_methods">Iteration methods</h3>
+<dl> <dt><a href="set/@@iterator"><code>Set.prototype[@@iterator]()</code></a></dt> <dd>Returns a new iterator object that yields the <strong>values</strong> for each element in the <code>Set</code> object in insertion order.</dd> <dt><a href="set/values"><code>Set.prototype.keys()</code></a></dt> <dd>Returns a new iterator object that yields the values for each element in the <code>Set</code> object in insertion order. (For Sets, this is the same as the <code>values()</code> method.)</dd> <dt><a href="set/values"><code>Set.prototype.values()</code></a></dt> <dd>Returns a new iterator object that yields the <strong>values</strong> for each element in the <code>Set</code> object in insertion order. (For Sets, this is the same as the <code>keys()</code> method.)</dd> <dt><a href="set/entries"><code>Set.prototype.entries()</code></a></dt> <dd> <p>Returns a new iterator object that contains <code>[<var>value</var>, <var>value</var>]</code> for each element in the <code>Set</code> object, in insertion order.</p> <p>This is similar to the <a href="map"><code>Map</code></a> object, so that each entry's <em>key</em> is the same as its <em>value</em> for a <code>Set</code>.</p> </dd> <dt><a href="set/foreach"><code>Set.prototype.forEach(<var>callbackFn</var>[, <var>thisArg</var>])</code></a></dt> <dd>Calls <code><var>callbackFn</var></code> once for each value present in the <code>Set</code> object, in insertion order. If a <code><var>thisArg</var></code> parameter is provided, it will be used as the <code>this</code> value for each invocation of <code><var>callbackFn</var></code>.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="using_the_set_object">Using the Set object</h3>
+<pre data-language="js"><span class="token keyword">const</span> mySet1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+mySet1<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>           <span class="token comment">// Set [ 1 ]</span>
+mySet1<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>           <span class="token comment">// Set [ 1, 5 ]</span>
+mySet1<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>           <span class="token comment">// Set [ 1, 5 ]</span>
+mySet1<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">'some text'</span><span class="token punctuation">)</span> <span class="token comment">// Set [ 1, 5, 'some text' ]</span>
+<span class="token keyword">const</span> o <span class="token operator">=</span> <span class="token punctuation">{</span>a<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> b<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">}</span>
+mySet1<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>o<span class="token punctuation">)</span>
+
+mySet1<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">{</span>a<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> b<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">)</span>   <span class="token comment">// o is referencing a different object, so this is okay</span>
+
+mySet1<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>              <span class="token comment">// true</span>
+mySet1<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>              <span class="token comment">// false, since 3 has not been added to the set</span>
+mySet1<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>              <span class="token comment">// true</span>
+mySet1<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment">// true</span>
+mySet1<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span><span class="token string">'Some Text'</span><span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// true</span>
+mySet1<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>o<span class="token punctuation">)</span>       <span class="token comment">// true</span>
+
+mySet1<span class="token punctuation">.</span>size         <span class="token comment">// 5</span>
+
+mySet1<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>    <span class="token comment">// removes 5 from the set</span>
+mySet1<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>       <span class="token comment">// false, 5 has been removed</span>
+
+mySet1<span class="token punctuation">.</span>size         <span class="token comment">// 4, since we just removed one value</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>mySet1<span class="token punctuation">)</span>
+<span class="token comment">// logs Set(4) [ 1, "some text", {…}, {…} ] in Firefox</span>
+<span class="token comment">// logs Set(4) { 1, "some text", {…}, {…} } in Chrome</span>
+</pre>
+<h3 id="iterating_sets">Iterating Sets</h3>
+<pre data-language="js"><span class="token comment">// iterate over items in set</span>
+<span class="token comment">// logs the items in the order: 1, "some text", {"a": 1, "b": 2}, {"a": 1, "b": 2}</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> item <span class="token keyword">of</span> mySet1<span class="token punctuation">)</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span>
+
+<span class="token comment">// logs the items in the order: 1, "some text", {"a": 1, "b": 2}, {"a": 1, "b": 2}</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> item <span class="token keyword">of</span> mySet1<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span>
+
+<span class="token comment">// logs the items in the order: 1, "some text", {"a": 1, "b": 2}, {"a": 1, "b": 2}</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> item <span class="token keyword">of</span> mySet1<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>item<span class="token punctuation">)</span>
+
+<span class="token comment">// logs the items in the order: 1, "some text", {"a": 1, "b": 2}, {"a": 1, "b": 2}</span>
+<span class="token comment">// (key and value are the same here)</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> <span class="token punctuation">[</span>key<span class="token punctuation">,</span> value<span class="token punctuation">]</span> <span class="token keyword">of</span> mySet1<span class="token punctuation">.</span><span class="token function">entries</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span>
+
+<span class="token comment">// convert Set object to an Array object, with Array.from</span>
+<span class="token keyword">const</span> myArr <span class="token operator">=</span> Array<span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span>mySet1<span class="token punctuation">)</span> <span class="token comment">// [1, "some text", {"a": 1, "b": 2}, {"a": 1, "b": 2}]</span>
+
+<span class="token comment">// the following will also work if run in an HTML document</span>
+mySet1<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span>body<span class="token punctuation">)</span>
+mySet1<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'body'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// true</span>
+
+<span class="token comment">// converting between Set and Array</span>
+<span class="token keyword">const</span> mySet2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+mySet2<span class="token punctuation">.</span>size                    <span class="token comment">// 4</span>
+<span class="token punctuation">[</span><span class="token operator">...</span>mySet2<span class="token punctuation">]</span>                    <span class="token comment">// [1, 2, 3, 4]</span>
+
+<span class="token comment">// intersect can be simulated via</span>
+<span class="token keyword">const</span> intersection <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">...</span>mySet1<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token parameter">x</span> <span class="token operator">=&gt;</span> mySet2<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment">// difference can be simulated via</span>
+<span class="token keyword">const</span> difference <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">...</span>mySet1<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token parameter">x</span> <span class="token operator">=&gt;</span> <span class="token operator">!</span>mySet2<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment">// Iterate set entries with forEach()</span>
+mySet1<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// 1</span>
+<span class="token comment">// 2</span>
+<span class="token comment">// 3</span>
+<span class="token comment">// 4</span></pre>
+<h3 id="implementing_basic_set_operations">Implementing basic set operations</h3>
+<pre data-language="js"><span class="token keyword">function</span> <span class="token function">isSuperset</span><span class="token punctuation">(</span><span class="token parameter">set<span class="token punctuation">,</span> subset</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> elem <span class="token keyword">of</span> subset<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>set<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>elem<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token boolean">false</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">union</span><span class="token punctuation">(</span><span class="token parameter">setA<span class="token punctuation">,</span> setB</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> _union <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span>setA<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> elem <span class="token keyword">of</span> setB<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        _union<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>elem<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> _union
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">intersection</span><span class="token punctuation">(</span><span class="token parameter">setA<span class="token punctuation">,</span> setB</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> _intersection <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> elem <span class="token keyword">of</span> setB<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>setA<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>elem<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            _intersection<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>elem<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> _intersection
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">symmetricDifference</span><span class="token punctuation">(</span><span class="token parameter">setA<span class="token punctuation">,</span> setB</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> _difference <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span>setA<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> elem <span class="token keyword">of</span> setB<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>_difference<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>elem<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            _difference<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span>elem<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            _difference<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>elem<span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> _difference
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">difference</span><span class="token punctuation">(</span><span class="token parameter">setA<span class="token punctuation">,</span> setB</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> _difference <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span>setA<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> elem <span class="token keyword">of</span> setB<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        _difference<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span>elem<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> _difference
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Examples</span>
+<span class="token keyword">const</span> setA <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> setB <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> setC <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token function">isSuperset</span><span class="token punctuation">(</span>setA<span class="token punctuation">,</span> setB<span class="token punctuation">)</span>          <span class="token comment">// returns true</span>
+<span class="token function">union</span><span class="token punctuation">(</span>setA<span class="token punctuation">,</span> setC<span class="token punctuation">)</span>               <span class="token comment">// returns Set {1, 2, 3, 4, 5, 6}</span>
+<span class="token function">intersection</span><span class="token punctuation">(</span>setA<span class="token punctuation">,</span> setC<span class="token punctuation">)</span>        <span class="token comment">// returns Set {3, 4}</span>
+<span class="token function">symmetricDifference</span><span class="token punctuation">(</span>setA<span class="token punctuation">,</span> setC<span class="token punctuation">)</span> <span class="token comment">// returns Set {1, 2, 5, 6}</span>
+<span class="token function">difference</span><span class="token punctuation">(</span>setA<span class="token punctuation">,</span> setC<span class="token punctuation">)</span>          <span class="token comment">// returns Set {1, 2}</span>
+
+</pre>
+<h3 id="relation_with_array_objects">Relation with Array objects</h3>
+<pre data-language="js"><span class="token keyword">let</span> myArray <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'value1'</span><span class="token punctuation">,</span> <span class="token string">'value2'</span><span class="token punctuation">,</span> <span class="token string">'value3'</span><span class="token punctuation">]</span>
+
+<span class="token comment">// Use the regular Set constructor to transform an Array into a Set</span>
+<span class="token keyword">let</span> mySet <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span>myArray<span class="token punctuation">)</span>
+
+mySet<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span><span class="token string">'value1'</span><span class="token punctuation">)</span>     <span class="token comment">// returns true</span>
+
+<span class="token comment">// Use the spread operator to transform a set into an Array.</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">...</span>mySet<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token comment">// Will show you exactly the same Array as myArray</span>
+</pre>
+<h3 id="remove_duplicate_elements_from_the_array">Remove duplicate elements from the array</h3>
+<pre data-language="js"><span class="token comment">// Use to remove duplicate elements from the array</span>
+
+<span class="token keyword">const</span> numbers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">,</span><span class="token number">7</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">,</span><span class="token number">32</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">]</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">...</span><span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span>numbers<span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token comment">// [2, 3, 4, 5, 6, 7, 32]</span></pre>
+<h3 id="relation_with_strings">Relation with Strings</h3>
+<pre data-language="js"><span class="token keyword">let</span> text <span class="token operator">=</span> <span class="token string">'India'</span>
+
+<span class="token keyword">const</span> mySet <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span>  <span class="token comment">// Set(5) {'I', 'n', 'd', 'i', 'a'}</span>
+mySet<span class="token punctuation">.</span>size  <span class="token comment">// 5</span>
+
+<span class="token comment">//case sensitive &amp; duplicate ommision</span>
+<span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span><span class="token string">"Firefox"</span><span class="token punctuation">)</span>  <span class="token comment">// Set(7) { "F", "i", "r", "e", "f", "o", "x" }</span>
+<span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span><span class="token string">"firefox"</span><span class="token punctuation">)</span>  <span class="token comment">// Set(6) { "f", "i", "r", "e", "o", "x" }</span>
+</pre>
+<h3 id="use_set_to_ensure_the_uniqueness_of_a_list_of_values">Use Set to ensure the uniqueness of a list of values</h3>
+<pre dir="ltr" data-language="js"><span class="token keyword">const</span> array <span class="token operator">=</span> Array
+  <span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">'[id]'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> e<span class="token punctuation">.</span>id
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> set <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Set</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">assert</span><span class="token punctuation">(</span>set<span class="token punctuation">.</span>size <span class="token operator">==</span> array<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-set-objects">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-set-objects</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>Set</code></th>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>Set</code></th>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>add</code></th>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>Returns 'undefined' instead of the 'Set' object.</div>
+</td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>clear</code></th>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>19</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>19</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>delete</code></th>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>entries</code></th>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>forEach</code></th>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>has</code></th>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>key_equality_for_zeros</code></th>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>size</code></th>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>19</div>
+<div>From Firefox 13 to Firefox 18, the <code>size</code> property was implemented as a <code>Set.prototype.size()</code> method, this has been changed to a property in later versions conform to the ECMAScript 2015 specification.</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes">
+<div>19</div>
+<div>From Firefox 13 to Firefox 18, the <code>size</code> property was implemented as a <code>Set.prototype.size()</code> method, this has been changed to a property in later versions conform to the ECMAScript 2015 specification.</div>
+</td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>values</code></th>
+<td class="bc-supports-yes">
+<div>38</div>
+<div>38</div>
+</td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>12</div>
+</td>
+<td class="bc-supports-yes">
+<div>24</div>
+<div>24</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>25</div>
+<div>25</div>
+</td>
+<td class="bc-supports-yes">
+<div>8</div>
+<div>8</div>
+</td>
+<td class="bc-supports-yes">
+<div>38</div>
+<div>38</div>
+</td>
+<td class="bc-supports-yes">
+<div>38</div>
+<div>38</div>
+</td>
+<td class="bc-supports-yes">
+<div>24</div>
+<div>24</div>
+</td>
+<td class="bc-supports-yes">
+<div>25</div>
+<div>25</div>
+</td>
+<td class="bc-supports-yes">
+<div>8</div>
+<div>8</div>
+</td>
+<td class="bc-supports-yes">
+<div>3.0</div>
+<div>3.0</div>
+</td>
+</tr>
+<tr>
+<th><code>@@iterator</code></th>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>36</div>
+<div>27-36</div>
+<div>A placeholder property named <code>@@iterator</code> is used.</div>
+<div>17-27</div>
+<div>A placeholder property named <code>iterator</code> is used.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes">
+<div>36</div>
+<div>27-36</div>
+<div>A placeholder property named <code>@@iterator</code> is used.</div>
+<div>17-27</div>
+<div>A placeholder property named <code>iterator</code> is used.</div>
+</td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>@@species</code></th>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="map"><code>Map</code></a></li> <li><a href="weakmap"><code>WeakMap</code></a></li> <li><a href="weakset"><code>WeakSet</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set</a>
+  </p>
+</div>

@@ -1,0 +1,60 @@
+<h1>HTMLSlotElement: slotchange event</h1> <p>The <code><strong>slotchange</strong></code> event is fired on an <a href="../htmlslotelement"><code>HTMLSlotElement</code></a> instance (<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot"><code>&lt;slot&gt;</code></a> element) when the node(s) contained in that slot change.</p> <div class="note notecard"> <p><strong>Note:</strong> the <code>slotchange</code> event doesn't fire if the children of a slotted node change — only if you change (e.g. add or delete) the actual nodes themselves.</p> </div> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>Yes</td> </tr> <tr> <th scope="row">Cancelable</th> <td>No</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../event"><code>Event</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td>None</td> </tr> </tbody> </table></div> <p>In order to trigger a <strong>slotchange</strong> event, one has to set or remove the <code>slot </code>attribute.</p>
+<h2 id="examples">Examples</h2>
+<pre data-language="js">element<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'slot'</span><span class="token punctuation">,</span> slotName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// element.assignedSlot = $slot</span>
+element<span class="token punctuation">.</span><span class="token function">removeAttribute</span><span class="token punctuation">(</span><span class="token string">'slot'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// element.assignedSlot = null</span>
+</pre> <p>The following snippet is taken from our <a href="https://github.com/mdn/web-components-examples/tree/master/slotchange" rel=" noopener">slotchange example</a> (<a href="https://mdn.github.io/web-components-examples/slotchange/" rel=" noopener">see it live also</a>).</p> <pre data-language="js"><span class="token keyword">let</span> slots <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>shadowRoot<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">'slot'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+slots<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'slotchange'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> nodes <span class="token operator">=</span> slots<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">assignedNodes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Element in Slot "'</span> <span class="token operator">+</span> slots<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">'" changed to "'</span> <span class="token operator">+</span> nodes<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>outerHTML <span class="token operator">+</span> <span class="token string">'".'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Here we grab references to all the <code>&lt;slot&gt;</code>s, then add a <code>slotchange</code> event listener to the template's second slot — which is the one which has its contents changed in the example.</p> <p>Every time the element inserted in the slot changes, we log a report to the console saying which slot has changed, and what the new node inside the slot is.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://dom.spec.whatwg.org/#mutation-observers" hreflang="en" rel=" noopener">DOM<br><small>The definition of '"Mutation observers" and slotchange event' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>slotchange_event</code></th>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<p><a href="../htmlslotelement"><code>HTMLSlotElement</code></a></p>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/slotchange_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLSlotElement/slotchange_event</a>
+  </p>
+</div>

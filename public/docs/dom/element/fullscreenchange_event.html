@@ -1,0 +1,92 @@
+<h1>Element: fullscreenchange event</h1> <p>The <code>fullscreenchange</code> event is fired immediately after an <a href="../element"><code>Element</code></a> switches into or out of full-screen mode.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>Yes</td> </tr> <tr> <th scope="row">Cancelable</th> <td>No</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../event"><code>Event</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td><a href="onfullscreenchange"><code>onfullscreenchange</code></a></td> </tr> </tbody> </table></div> <p>This event is sent to the <code>Element</code> which is transitioning into or out of full-screen mode.</p>
+<h2 id="examples">Examples</h2>
+<p>In this example, a handler for the <code>fullscreenchange</code> event is added to the element whose ID is <code>fullscreen-div</code>.</p> <p>If the user clicks on the "Toggle Fullscreen Mode" button, the <code>click</code> handler will toggle full-screen mode for the <code>div</code>. If <code>document.fullscreenElement</code> has a value it will exit full-screen mode. If not, the div will be placed into full-screen mode.</p> <p>Remember that by the time the <code>fullscreenchange</code> event is handled, the status of the element has already changed. So if the change is to full-screen mode, <code>document.fullscreenElement</code> will point to the element that is now in full-screen mode. On the other hand, if <code>document.fullscreenElement</code> is null, full-screen mode has been canceled.</p> <p>What that means to the example code is that, if an element is currently in full-screen mode, the <code>fullscreenchange</code> handler logs the <code>id</code> of the full-screen element to the console. If <code>document.fullscreenElement</code> is null, the code logs a message that the change is to leave full-screen mode.</p>
+<h3 id="html">HTML</h3>
+<pre data-language="html"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>fullscreenchange event example<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>fullscreen-div<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>toggle-fullscreen<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Toggle Fullscreen Mode<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></pre>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js">document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'fullscreen-div'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'fullscreenchange'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// document.fullscreenElement will point to the element that</span>
+  <span class="token comment">// is in fullscreen mode if there is one. If not, the value</span>
+  <span class="token comment">// of the property is null.</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>document<span class="token punctuation">.</span>fullscreenElement<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Element: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>document<span class="token punctuation">.</span>fullscreenElement<span class="token punctuation">.</span>id<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> entered fullscreen mode.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Leaving full-screen mode.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'toggle-fullscreen'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>document<span class="token punctuation">.</span>fullscreenElement<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// exitFullscreen is only available on the Document object.</span>
+    document<span class="token punctuation">.</span><span class="token function">exitFullscreen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'fullscreen-div'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">requestFullscreen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> </tr> </thead> <tbody> <tr> <td><a href="https://fullscreen.spec.whatwg.org/" rel="noopener">Fullscreen API</a></td> <td><span class="spec-Living">Living Standard</span></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>fullscreenchange_event</code></th>
+<td class="bc-supports-yes">
+<div>71</div>
+<div>57</div>
+</td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>64</div>
+<div>10</div>
+</td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>71</div>
+<div>57</div>
+</td>
+<td class="bc-supports-yes">
+<div>71</div>
+<div>57</div>
+</td>
+<td class="bc-supports-yes">
+<div>64</div>
+<div>10</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../document/fullscreenchange_event">Document: fullscreenchange event</a></li> <li><a href="fullscreenerror_event">Element: fullscreenerror event</a></li> <li><a href="../fullscreen_api">Fullscreen API</a></li> <li><a href="../fullscreen_api/guide">Guide to the Fullscreen API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/fullscreenchange_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/fullscreenchange_event</a>
+  </p>
+</div>

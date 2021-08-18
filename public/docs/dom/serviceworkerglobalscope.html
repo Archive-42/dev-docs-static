@@ -1,0 +1,664 @@
+<h1>ServiceWorkerGlobalScope</h1> <p>The <code>ServiceWorkerGlobalScope</code> interface of the <a href="service_worker_api">Service Worker API</a> represents the global execution context of a service worker.</p> <p>Developers should keep in mind that the ServiceWorker state is not persisted across the termination/restart cycle, so each event handler should assume it's being invoked with a bare, default global state.</p> <p>Once successfully registered, a service worker can and will be terminated when idle to conserve memory and processor power. An active service worker is automatically restarted to respond to events, such as <a href="serviceworkerglobalscope/onfetch"><code>ServiceWorkerGlobalScope.onfetch</code></a> or <a href="serviceworkerglobalscope/onmessage"><code>ServiceWorkerGlobalScope.onmessage</code></a>.</p> <p>Additionally, synchronous requests are not allowed from within a service worker — only asynchronous requests, like those initiated via the <a href="windoworworkerglobalscope/fetch"><code>fetch()</code></a> method, can be used.</p> <p>This interface inherits from the <a href="workerglobalscope"><code>WorkerGlobalScope</code></a> interface, and its parent <a href="eventtarget"><code>EventTarget</code></a>, and therefore implements properties from <a href="windoworworkerglobalscope"><code>WindowTimers</code></a>, <a href="windoworworkerglobalscope"><code>WindowBase64</code></a>, and <a href="windoweventhandlers"><code>WindowEventHandlers</code></a>.</p>  <iframe class="inheritance-diagram-frame" id="frame_inheritance_diagram" width="700" height="85" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/ServiceWorkerGlobalScope/_samples_/inheritance_diagram" loading="lazy"></iframe>
+<h2 id="properties">Properties</h2>
+<dl> <dt>
+<a href="serviceworkerglobalscope/caches"><code>ServiceWorkerGlobalScope.caches</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Contains the <a href="cachestorage"><code>CacheStorage</code></a> object associated with the service worker.</dd> <dt>
+<a href="serviceworkerglobalscope/clients"><code>ServiceWorkerGlobalScope.clients</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Contains the <a href="clients"><code>Clients</code></a> object associated with the service worker.</dd> <dt>
+<a href="serviceworkerglobalscope/registration"><code>ServiceWorkerGlobalScope.registration</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Contains the <a href="serviceworkerregistration"><code>ServiceWorkerRegistration</code></a> object that represents the service worker's registration.</dd> </dl>
+<h2 id="events">Events</h2>
+<dl> <dt><a href="serviceworkerglobalscope/activate_event"><code>activate</code></a></dt> <dd>Occurs when a <a href="serviceworkerregistration"><code>ServiceWorkerRegistration</code></a> acquires a new <a href="serviceworkerregistration/active"><code>ServiceWorkerRegistration.active</code></a> worker.<br> Also available via the <a href="serviceworkerglobalscope/onactivate"><code>ServiceWorkerGlobalScope.onactivate</code></a> property.</dd> <dt><a href="serviceworkerglobalscope/contentdelete_event"><code>contentdelete</code></a></dt> <dd>Occurs when an item is removed from the <a href="contentindex"><code>Content Index</code></a>.<br> Also available via the <a href="serviceworkerglobalscope/oncontentdelete"><code>ServiceWorkerGlobalScope.oncontentdelete</code></a> property.</dd> <dt><code>fetch</code></dt> <dd>Occurs when a <a href="windoworworkerglobalscope/fetch"><code>fetch()</code></a> is called.<br> Also available via the <a href="serviceworkerglobalscope/onfetch"><code>ServiceWorkerGlobalScope.onfetch</code></a> property.</dd> <dt><a href="serviceworkerglobalscope/install_event"><code>install</code></a></dt> <dd>Occurs when a <a href="serviceworkerregistration"><code>ServiceWorkerRegistration</code></a> acquires a new <a href="serviceworkerregistration/installing"><code>ServiceWorkerRegistration.installing</code></a> worker.<br> Also available via the <a href="serviceworkerglobalscope/oninstall"><code>ServiceWorkerGlobalScope.oninstall</code></a> property.</dd> <dt><a href="serviceworkerglobalscope/message_event"><code>message</code></a></dt> <dd>Occurs when incoming messages are received. Controlled pages can use the <a href="messageport/postmessage"><code>MessagePort.postMessage()</code></a> method to send messages to service workers. The service worker can optionally send a response back via the <a href="messageport"><code>MessagePort</code></a> exposed in <a href="https://html.spec.whatwg.org/multipage/comms.html#messageport" rel=" noopener"><code>event.data.port</code></a>, corresponding to the controlled page.<br> Also available via the <a href="serviceworkerglobalscope/onmessage"><code>ServiceWorkerGlobalScope.onmessage</code></a> property.</dd> <dt><a href="serviceworkerglobalscope/notificationclick_event"><code>notificationclick</code></a></dt> <dd>Occurs when a user clicks on a displayed notification.<br> Also available via the <a href="serviceworkerglobalscope/onnotificationclick"><code>ServiceWorkerGlobalScope.onnotificationclick</code></a> property.</dd> <dt><code>notificationclose</code></dt> <dd>Occurs — when a user closes a displayed notification.<br> Also available via the <a href="serviceworkerglobalscope/onnotificationclose"><code>ServiceWorkerGlobalScope.onnotificationclose</code></a> property.</dd> <dt><a href="serviceworkerglobalscope/periodicsync_event"><code>periodicsync</code></a></dt> <dd>Occurs at periodic intervals, which were specified when registering a <a href="periodicsyncmanager"><code>PeriodicSyncManager</code></a>.<br> Also available via the <a href="serviceworkerglobalscope/onperiodicsync"><code>ServiceWorkerGlobalScope.onperiodicsync</code></a> property.</dd> <dt><a href="serviceworkerglobalscope/push_event"><code>push</code></a></dt> <dd>Occurs when a server push notification is received.<br> Also available via the <a href="serviceworkerglobalscope/onpush"><code>ServiceWorkerGlobalScope.onpush</code></a> property.</dd> <dt><a href="serviceworkerglobalscope/pushsubscriptionchange_event"><code>pushsubscriptionchange</code></a></dt> <dd>Occurs when a push subscription has been invalidated, or is about to be invalidated (e.g. when a push service sets an expiration time).<br> Also available via the <a href="serviceworkerglobalscope/onpushsubscriptionchange"><code>ServiceWorkerGlobalScope.onpushsubscriptionchange</code></a> property.</dd> <dt><code>sync</code></dt> <dd>Triggered when a call to <a href="syncmanager/register"><code>SyncManager.register</code></a> is made from a service worker client page. The attempt to sync is made either immediately if the network is available or as soon as the network becomes available.<br> Also available via the <a href="serviceworkerglobalscope/onsync"><code>ServiceWorkerGlobalScope.onsync</code></a> property.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="serviceworkerglobalscope/skipwaiting"><code>ServiceWorkerGlobalScope.skipWaiting()</code></a></dt> <dd>Allows the current service worker registration to progress from waiting to active state while service worker clients are using it.</dd> </dl> <p><code>ServiceWorkerGlobalScope</code> implements <a href="workerglobalscope"><code>WorkerGlobalScope</code></a> — which implements <a href="windoworworkerglobalscope"><code>WindowOrWorkerGlobalScope</code></a>. Therefore it also has the following property available to it:</p> <dl> <dt><a href="windoworworkerglobalscope/fetch"><code>GlobalFetch.fetch()</code></a></dt> <dd>Starts the process of fetching a resource. This returns a promise that resolves to the <a href="response"><code>Response</code></a> object representing the response to your request. This algorithm is the entry point for the fetch handling handed to the service worker context.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>This code snippet is from the <a href="https://github.com/GoogleChrome/samples/blob/gh-pages/service-worker/prefetch/service-worker.js" rel=" noopener">service worker prefetch sample</a> (see <a href="https://googlechrome.github.io/samples/service-worker/prefetch/" rel=" noopener">prefetch example live</a>.) The <a href="serviceworkerglobalscope/onfetch"><code>ServiceWorkerGlobalScope.onfetch</code></a> event handler listens for the <code>fetch</code> event. When fired, the code returns a promise that resolves to the first matching request in the <a href="cache"><code>Cache</code></a> object. If no match is found, the code fetches a response from the network.</p> <p>The code also handles exceptions thrown from the <a href="windoworworkerglobalscope/fetch"><code>fetch()</code></a> operation. Note that an HTTP error response (e.g., 404) will not trigger an exception. It will return a normal response object that has the appropriate error code set.</p> <pre data-language="js">self<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'fetch'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Handling fetch event for'</span><span class="token punctuation">,</span> event<span class="token punctuation">.</span>request<span class="token punctuation">.</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  event<span class="token punctuation">.</span><span class="token function">respondWith</span><span class="token punctuation">(</span>
+    caches<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>request<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>response<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Found response in cache:'</span><span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> response<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'No response found in cache. About to fetch from network...'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">return</span> <span class="token function">fetch</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>request<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Response from network is:'</span><span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> response<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'Fetching failed:'</span><span class="token punctuation">,</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">throw</span> error<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/ServiceWorker/#serviceworkerglobalscope-interface" hreflang="en" rel=" noopener">Service Workers<br><small>The definition of 'ServiceWorkerGlobalScope' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>ServiceWorkerGlobalScope</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>activate_event</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>caches</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>clients</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>cookieStore</code></th>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>install_event</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>message_event</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>notificationclick_event</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>27</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>onabortpayment</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>onactivate</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>onbackgroundfetchabort</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>onbackgroundfetchclick</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>onbackgroundfetchfail</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>onbackgroundfetchsuccess</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>oncanmakepayment</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>oncontentdelete</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>oncookiechange</code></th>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>onfetch</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>oninstall</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>onmessage</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>onmessageerror</code></th>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+</tr>
+<tr>
+<th><code>onnotificationclick</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>onnotificationclose</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>onpaymentrequest</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>onperiodicsync</code></th>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr>
+<tr>
+<th><code>onpush</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>onpushsubscriptionchange</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>onsync</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>periodicsync_event</code></th>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr>
+<tr>
+<th><code>push_event</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>pushsubscriptionchange_event</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>registration</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>serviceWorker</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr>
+<tr>
+<th><code>skipWaiting</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="service_worker_api/using_service_workers">Using Service Workers</a></li> <li><a href="https://github.com/mdn/sw-test" rel=" noopener">Service workers basic code example</a></li> <li><a href="https://jakearchibald.github.io/isserviceworkerready/" rel=" noopener">Is ServiceWorker ready?</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope</a>
+  </p>
+</div>

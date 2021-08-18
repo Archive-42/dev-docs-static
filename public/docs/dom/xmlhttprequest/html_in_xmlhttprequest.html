@@ -1,0 +1,648 @@
+<h1>HTML in XMLHttpRequest</h1> <p>The W3C <a href="../xmlhttprequest"><code>XMLHttpRequest</code></a> specification adds <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML</a> parsing support to <a href="../xmlhttprequest"><code>XMLHttpRequest</code></a>, which originally supported only <a href="https://developer.mozilla.org/en-US/docs/Glossary/XML">XML</a> parsing. This feature allows Web apps to obtain an HTML resource as a parsed <a href="https://developer.mozilla.org/en-US/docs/Glossary/DOM">DOM</a> using <code>XMLHttpRequest</code>.</p> <p>To get an overview of how to use <code>XMLHttpRequest</code> in general, see <a href="using_xmlhttprequest">Using XMLHttpRequest</a>.</p>
+<h2 id="limitations">Limitations</h2>
+<p>To discourage the synchronous use of <code>XMLHttpRequest</code>, HTML support is not available in the synchronous mode. Also, HTML support is only available if the <a href="responsetype"><code>responseType</code></a> property has been set to <code>"document"</code>. This limitation avoids wasting time parsing HTML uselessly when legacy code uses <code>XMLHttpRequest</code> in the default mode to retrieve <a href="responsetext"><code>responseText</code></a> for <code>text/html</code> resources. Also, this limitation avoids problems with legacy code that assumes that <a href="responsexml"><code>responseXML</code></a> is <code>null</code> for HTTP error pages (which often have a <code>text/html</code> response body).</p>
+<h2 id="usage">Usage</h2>
+<p>Retrieving an HTML resource as a DOM using <a href="../xmlhttprequest"><code>XMLHttpRequest</code></a> works just like retrieving an XML resource as a DOM using <code>XMLHttpRequest</code>, except you can't use the synchronous mode and you have to explicitly request a document by assigning the string <code>"document"</code> to the <a href="responsetype"><code>responseType</code></a> property of the <code>XMLHttpRequest</code> object after calling <a href="open"><code>open()</code></a> but before calling <a href="send"><code>send()</code></a>.</p> <pre data-language="js"><span class="token keyword">var</span> xhr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xhr<span class="token punctuation">.</span><span class="token function-variable function">onload</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>responseXML<span class="token punctuation">.</span>title<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+xhr<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"GET"</span><span class="token punctuation">,</span> <span class="token string">"file.html"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xhr<span class="token punctuation">.</span>responseType <span class="token operator">=</span> <span class="token string">"document"</span><span class="token punctuation">;</span>
+xhr<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="feature_detection">Feature detection</h2>
+<h3 id="method_1">Method 1</h3>
+<p>This method relies on the "force async" nature of the feature. When you try to set <code>responseType</code> of an <code>XMLHttpRequest</code> object after it is opened as "sync". This throws an error in the browsers that implement the feature and works on others.</p> <div class="line" id="LC13"> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">HTMLinXHR</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>window<span class="token punctuation">.</span>XMLHttpRequest<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> req <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">window<span class="token punctuation">.</span>XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  req<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'GET'</span><span class="token punctuation">,</span> window<span class="token punctuation">.</span>location<span class="token punctuation">.</span>href<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    req<span class="token punctuation">.</span>responseType <span class="token operator">=</span> <span class="token string">'document'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> </div> <p><a href="https://jsfiddle.net/HTcKP/1/" rel=" noopener">View on JSFiddle</a></p> <p>This method is synchronous, does not rely on external assets though it may not be as reliable as method 2 described below since it does not check the actual feature but an indication of that feature.</p>
+<h3 id="method_2">Method 2</h3>
+<p>There are two challenges to detecting exactly if a browser supports HTML parsing in <a href="../xmlhttprequest"><code>XMLHttpRequest</code></a>. First, the detection result is obtained asynchronously, because HTML support is only available in the asynchronous mode. Second, you have to actually fetch a test document over HTTP, because testing with a <code>data:</code> URL would end up testing <code>data:</code> URL support at the same time.</p> <p>Thus, to detect HTML support, a test HTML file is needed on the server. This test file is small and is not well-formed XML:</p> <pre data-language="js"><span class="token operator">&lt;</span>title<span class="token operator">&gt;</span><span class="token operator">&amp;</span>amp<span class="token punctuation">;</span><span class="token operator">&amp;</span><span class="token operator">&lt;&lt;</span><span class="token operator">/</span>title<span class="token operator">&gt;</span></pre> <p>If the file is named <code>detect.html</code>, the following function can be used for detecting HTML parsing support:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">detectHtmlInXhr</span><span class="token punctuation">(</span><span class="token parameter">callback</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>window<span class="token punctuation">.</span>XMLHttpRequest<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    window<span class="token punctuation">.</span><span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token function">callback</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">var</span> done <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> xhr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">window<span class="token punctuation">.</span>XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  xhr<span class="token punctuation">.</span><span class="token function-variable function">onreadystatechange</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>readyState <span class="token operator">==</span> <span class="token number">4</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>done<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      done <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+      <span class="token function">callback</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token operator">!</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>responseXML <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>responseXML<span class="token punctuation">.</span>title <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>responseXML<span class="token punctuation">.</span>title <span class="token operator">==</span> <span class="token string">"&amp;&amp;&lt;"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  xhr<span class="token punctuation">.</span>onabort <span class="token operator">=</span> xhr<span class="token punctuation">.</span><span class="token function-variable function">onerror</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>done<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      done <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+      <span class="token function">callback</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    xhr<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"GET"</span><span class="token punctuation">,</span> <span class="token string">"detect.html"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    xhr<span class="token punctuation">.</span>responseType <span class="token operator">=</span> <span class="token string">"document"</span><span class="token punctuation">;</span>
+    xhr<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    window<span class="token punctuation">.</span><span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>done<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        done <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token function">callback</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre> <p>The argument <code>callback</code> is a function that will be called asynchronously with <code>true</code> as the only argument if HTML parsing is supported and <code>false</code> as the only argument if HTML parsing is not supported.</p> <p><a href="https://jsfiddle.net/xfvXR/1/" rel=" noopener">View on JSFiddle</a></p>
+<h2 id="character_encoding">Character encoding</h2>
+<p>If the character encoding is declared in the HTTP <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type"><code>Content-Type</code></a> header, that character encoding is used. Failing that, if there is a byte order mark, the encoding indicated by the byte order mark is used. Failing that, if there is a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta"><code>&lt;meta&gt;</code></a> element that declares the encoding within the first 1024 bytes of the file, that encoding is used. Otherwise, the file is decoded as UTF-8.</p>
+<h2 id="handling_html_on_older_browsers">Handling HTML on older browsers</h2>
+<p><code>XMLHttpRequest</code> originally supported only XML parsing. HTML parsing support is a recent addition. For older browsers, you can even use the <a href="responsetext"><code>XMLHttpRequest.responseText</code></a> property in association with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expressions</a> in order to get, for example, the source code of an HTML element given its ID:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">getHTML</span> <span class="token punctuation">(</span><span class="token parameter">oXHR<span class="token punctuation">,</span> sTargetId</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span>  rOpen <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RegExp</span><span class="token punctuation">(</span><span class="token string">"&lt;(?!\!)\\s*([^\\s&gt;]+)[^&gt;]*\\s+id\\=[\"\']"</span> <span class="token operator">+</span> sTargetId <span class="token operator">+</span> <span class="token string">"[\"\'][^&gt;]*&gt;"</span> <span class="token punctuation">,</span><span class="token string">"i"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+       sSrc <span class="token operator">=</span> oXHR<span class="token punctuation">.</span>responseText<span class="token punctuation">,</span> aExec <span class="token operator">=</span> rOpen<span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span>sSrc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> aExec <span class="token operator">?</span> <span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">RegExp</span><span class="token punctuation">(</span><span class="token string">"(?:(?:.(?!&lt;\\s*"</span> <span class="token operator">+</span> aExec<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"[^&gt;]*[&gt;]))*.?&lt;\\s*"</span> <span class="token operator">+</span> aExec<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"[^&gt;]*[&gt;](?:.(?!&lt;\\s*\/\\s*"</span> <span class="token operator">+</span> aExec<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"\\s*&gt;))*.?&lt;\\s*\/\\s*"</span> <span class="token operator">+</span> aExec<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"\\s*&gt;)*(?:.(?!&lt;\\s*\/\\s*"</span> <span class="token operator">+</span> aExec<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"\\s*&gt;))*.?"</span><span class="token punctuation">,</span> <span class="token string">"i"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">exec</span><span class="token punctuation">(</span>sSrc<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>sSrc<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>aExec<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">+</span> aExec<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token string">""</span> <span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> oReq <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+oReq<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"GET"</span><span class="token punctuation">,</span> <span class="token string">"yourPage.html"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+oReq<span class="token punctuation">.</span><span class="token function-variable function">onload</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">getHTML</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token string">"intro"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+oReq<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <div class="note notecard">
+<strong>Note:</strong> This solution is very expensive for the interpreter. <strong>Use it only when it is really necessary</strong>.</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://xhr.spec.whatwg.org/" hreflang="en" rel=" noopener">XMLHttpRequest</a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>HTML_in_XMLHttpRequest</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>7</div>
+<div>5</div>
+<div>Implemented via <code>ActiveXObject('Microsoft.XMLHTTP')</code>
+</div>
+</td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>XMLHttpRequest</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>abort</code></th>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>abort_event</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>error_event</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>getAllResponseHeaders</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Starting from Firefox 49, empty headers are returned as empty strings in case the preference <code>network.http.keep_empty_response_headers_as_empty_string</code> is set to <code>true</code>, defaulting to <code>false</code>. Before Firefox 49 empty headers had been ignored. Since Firefox 50 the preference defaults to <code>true</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Starting from Firefox 49, empty headers are returned as empty strings in case the preference <code>network.http.keep_empty_response_headers_as_empty_string</code> is set to <code>true</code>, defaulting to <code>false</code>. Before Firefox 49 empty headers had been ignored. Since Firefox 50 the preference defaults to <code>true</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>getResponseHeader</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Starting from Firefox 49, empty headers are returned as empty strings in case the preference <code>network.http.keep_empty_response_headers_as_empty_string</code> is set to <code>true</code>, defaulting to <code>false</code>. Before Firefox 49 empty headers had been ignored. Since Firefox 50 the preference defaults to <code>true</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Starting from Firefox 49, empty headers are returned as empty strings in case the preference <code>network.http.keep_empty_response_headers_as_empty_string</code> is set to <code>true</code>, defaulting to <code>false</code>. Before Firefox 49 empty headers had been ignored. Since Firefox 50 the preference defaults to <code>true</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>load_event</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>loadend_event</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>loadstart_event</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>onreadystatechange</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>open</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Starting in Firefox 30, synchronous requests on the main thread have been deprecated due to their negative impact on performance and the user experience. Therefore, the <code>async</code> parameter may not be <code>false</code> except in a <code>Worker</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Starting in Firefox 30, synchronous requests on the main thread have been deprecated due to their negative impact on performance and the user experience. Therefore, the <code>async</code> parameter may not be <code>false</code> except in a <code>Worker</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>overrideMimeType</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>5</div>
+<div>Implemented via <code>ActiveXObject</code>
+</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>progress_event</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>readyState</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>response</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>11.6</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>responseText</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>5</div>
+<div>Before Internet Explorer 10, the value of <code>XMLHttpRequest.responseText</code> could be read only once the request was complete.</div>
+</td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>responseType</code></th>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-no">
+<div>12-15</div>
+<div>18</div>
+</td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>responseURL</code></th>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>32</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>32</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>responseXML</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Prior to Firefox 51, an error parsing the received data added a <code>&lt;parsererror&gt;</code> node to the top of the <code>Document</code> and then returned the <code>Document</code> in whatever state it happens to be in. This was inconsistent with the specification. Starting with Firefox 51, this scenario now correctly returns <code>null</code> as per the spec.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Prior to Firefox 51, an error parsing the received data added a <code>&lt;parsererror&gt;</code> node to the top of the <code>Document</code> and then returned the <code>Document</code> in whatever state it happens to be in. This was inconsistent with the specification. Starting with Firefox 51, this scenario now correctly returns <code>null</code> as per the spec.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>send</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>setRequestHeader</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>status</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>7</div>
+<div>Internet Explorer version 5 and 6 supported ajax calls using <code>ActiveXObject()</code>
+</div>
+</td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>statusText</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>7</div>
+<div>Internet Explorer version 5 and 6 supported ajax calls using <code>ActiveXObject()</code>
+</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>timeout</code></th>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes">
+<div>17</div>
+<div>12-16</div>
+</td>
+<td class="bc-supports-yes"><div>6.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>12-16</div>
+</td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+</tr>
+<tr>
+<th><code>timeout_event</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>upload</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>withCredentials</code></th>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>3.5</div>
+<div>Starting with Firefox 11, it's no longer supported to use the <code>withCredentials</code> attribute when performing synchronous requests. Attempting to do so throws an <code>NS_ERROR_DOM_INVALID_ACCESS_ERR</code> exception.</div>
+</td>
+<td class="bc-supports-yes">
+<div>10</div>
+<div>Internet Explorer versions 8 and 9 supported cross-domain requests (CORS) using <a href="https://developer.mozilla.org/docs/Web/API/XDomainRequest"><code>XDomainRequest</code></a>.</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Starting with Firefox 11, it's no longer supported to use the <code>withCredentials</code> attribute when performing synchronous requests. Attempting to do so throws an <code>NS_ERROR_DOM_INVALID_ACCESS_ERR</code> exception.</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>worker_support</code></th>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>3.5</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>10</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>10.6</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>5.1</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>1.0</div>
+<div>Not supported in service workers.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>BCD tables only load in the browser</p>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../xmlhttprequest"><code>XMLHttpRequest</code></a></li> <li><a href="using_xmlhttprequest">Using XMLHttpRequest</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/HTML_in_XMLHttpRequest" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/HTML_in_XMLHttpRequest</a>
+  </p>
+</div>

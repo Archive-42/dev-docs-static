@@ -1,0 +1,98 @@
+<h1>MediaRecorder.onerror</h1> <p>The <a href="../mediarecorder"><code>MediaRecorder</code></a> interface's <code>onerror</code> event handler is called by the <a href="../mediastream_recording_api">MediaStream Recording API</a> when an error occurs. You can provide an event handler to deal with errors that occur while creating or using a media recorder. The error object is of type <a href="../mediarecordererrorevent"><code>MediaRecorderErrorEvent</code></a>, and its <a href="../mediarecordererrorevent/error"><code>error</code></a> property contains a <a href="../domexception"><code>DOMException</code></a> object that describes the error that occurred.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">MediaRecorder<span class="token punctuation">.</span>onerror <span class="token operator">=</span> errorHandlerFunction<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>A function to be called whenever an error occurs during the recorder's lifetime. In addition to other general errors that might occur, the following errors are specifically possible when using the MediaStream Recording API; to determine which occurred, check the value of <a href="../domexception/name"><code>MediaRecorderErrorEvent.error.name</code></a>.</p> <dl> <dt><code>InvalidStateError</code></dt> <dd>An attempt was made to stop or pause or an inactive recorder, start or resume an active recorder, or otherwise manipulate the <code>MediaRecorder</code> while in the wrong state. This exception can also occur when a request is made on a source that has been deleted or removed.</dd> <dt><code>SecurityError</code></dt> <dd>The <a href="../mediastream"><code>MediaStream</code></a> is configured to disallow recording. This may be the case, for example, with sources obtained using <a href="../mediadevices/getusermedia"><code>getUserMedia()</code></a> when the user denies permission to use an input device. This also happens when a <a href="../mediastreamtrack"><code>MediaStreamTrack</code></a> within the stream is marked as <a class="page-not-created"><code>isolated</code></a> due to the <a class="page-not-created"><code>peerIdentity</code></a> constraint on the source stream.</dd> <dt><code>NotSupportedError</code></dt> <dd>An attempt was made to instantiate a <code>MediaRecorder</code> using a MIME type that isn't supported on the user's device; one or more of the requested container, codecs, or profiles as well as other information may be invalid.</dd> <dt><code>InvalidModificationError</code></dt> <dd>The number of tracks on the stream being recorded has changed. You can't add or remove tracks while recording media.</dd> <dt><code>UnknownError</code></dt> <dd>An non-security related error occurred that cannot otherwise be categorized. Recording stops, the <code>MediaRecorder</code>'s <a href="state"><code>state</code></a> becomes <code>inactive</code>, one last <code><a href="https://developer.mozilla.org/en-US/docs/Web/Events/dataavailable">dataavailable</a></code> event is sent to the <code>MediaRecorder</code> with the remaining received data, and finally a <code><a href="https://developer.mozilla.org/en-US/docs/Web/Events/stop">stop</a></code> event is sent.</dd> </dl> <p>These errors may occur either directly because of a call to a <code>MediaRecorder</code> method, or indirectly due to a problem arising during the recording process.</p>
+<h2 id="example">Example</h2>
+<p>This example creates a new <a href="../mediarecorder"><code>MediaRecorder</code></a> instance and starts recording using the <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent's</a> default media format. It returns either the <code>MediaRecorder</code> or the name of the error that occurred if any exceptions are thrown during the setup process.</p> <div class="codecopy codecopy-lg"> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">recordStream</span><span class="token punctuation">(</span><span class="token parameter">stream</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> recorder <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> bufferList <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    recorder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MediaRecorder</span><span class="token punctuation">(</span>stream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> err<span class="token punctuation">.</span>name<span class="token punctuation">;</span>     <span class="token comment">/* return the error name */</span>
+  <span class="token punctuation">}</span>
+
+  recorder<span class="token punctuation">.</span><span class="token function-variable function">ondataavailable</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    bufferList<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  recorder<span class="token punctuation">.</span><span class="token function-variable function">onerror</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> error <span class="token operator">=</span> event<span class="token punctuation">.</span>error<span class="token punctuation">;</span>
+
+    <span class="token keyword">switch</span><span class="token punctuation">(</span>error<span class="token punctuation">.</span>name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">case</span> InvalidStateError<span class="token operator">:</span>
+        <span class="token function">showNotification</span><span class="token punctuation">(</span><span class="token string">"You can't record the video right "</span> <span class="token operator">+</span>
+                         <span class="token string">"now. Try again later."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token keyword">case</span> SecurityError<span class="token operator">:</span>
+        <span class="token function">showNotification</span><span class="token punctuation">(</span><span class="token string">"Recording the specified source "</span> <span class="token operator">+</span>
+                         <span class="token string">"is not allowed due to security "</span> <span class="token operator">+</span>
+                         <span class="token string">"restrictions."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token keyword">default</span><span class="token operator">:</span>
+        <span class="token function">showNotification</span><span class="token punctuation">(</span><span class="token string">"A problem occurred while trying "</span> <span class="token operator">+</span>
+                         <span class="token string">"to record the video."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token comment">/* this would be a good place to create a Worker to handle
+     writing the buffers to disk periodically */</span>
+
+  recorder<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">/* 100ms time slices per buffer */</span>
+  <span class="token keyword">return</span> recorder<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/mediacapture-record/#dom-mediarecorder-onerror" hreflang="en" rel=" noopener">MediaStream Recording<br><small>The definition of 'MediaRecorder.onerror' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onerror</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../mediastream_recording_api/using_the_mediastream_recording_api">Using the MediaRecorder API</a></li> <li>
+<a href="https://mdn.github.io/web-dictaphone/" rel=" noopener">Web Dictaphone</a>: MediaRecorder + getUserMedia + Web Audio API visualization demo, by <a href="https://twitter.com/chrisdavidmills" rel=" noopener">Chris Mills</a> (<a href="https://github.com/mdn/web-dictaphone/" rel=" noopener">source on Github</a>.)</li> <li>
+<a href="https://simpl.info/mediarecorder/" rel=" noopener">simpl.info MediaStream Recording demo</a>, by <a href="https://twitter.com/sw12" rel=" noopener">Sam Dutton</a>.</li> <li><a href="../navigator/getusermedia"><code>Navigator.getUserMedia</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/onerror" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/onerror</a>
+  </p>
+</div>

@@ -1,0 +1,83 @@
+<h1>Object.getOwnPropertyDescriptors()</h1> <p>The <code><strong>Object.getOwnPropertyDescriptors()</strong></code> method returns all own property descriptors of a given object.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/object-getownpropertydescriptors.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js">Object<span class="token punctuation">.</span><span class="token function">getOwnPropertyDescriptors</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>obj</code></dt> <dd>The object for which to get all own property descriptors.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>An object containing all own property descriptors of an object. Might be an empty object, if there are no properties.</p>
+<h2 id="description">Description</h2>
+<p>This method permits examination of the precise description of all own properties of an object. A <dfn>property</dfn> in JavaScript consists of either a string-valued name or a <a href="../symbol"><code>Symbol</code></a> and a property descriptor. Further information about property descriptor types and their attributes can be found in <a href="defineproperty"><code>Object.defineProperty()</code></a>.</p> <p>A <dfn>property descriptor</dfn> is a record with some of the following attributes:</p> <dl> <dt><code>value</code></dt> <dd>The value associated with the property (data descriptors only).</dd> <dt><code>writable</code></dt> <dd>
+<code>true</code> if and only if the value associated with the property may be changed (data descriptors only).</dd> <dt><code>get</code></dt> <dd>A function which serves as a getter for the property, or <a href="../undefined"><code>undefined</code></a> if there is no getter (accessor descriptors only).</dd> <dt><code>set</code></dt> <dd>A function which serves as a setter for the property, or <a href="../undefined"><code>undefined</code></a> if there is no setter (accessor descriptors only).</dd> <dt><code>configurable</code></dt> <dd>
+<code>true</code> if and only if the type of this property descriptor may be changed and if the property may be deleted from the corresponding object.</dd> <dt><code>enumerable</code></dt> <dd>
+<code>true</code> if and only if this property shows up during enumeration of the properties on the corresponding object.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="creating_a_shallow_clone">Creating a shallow clone</h3>
+<p>Whereas the <a href="assign"><code>Object.assign()</code></a> method will only copy enumerable and own properties from a source object to a target object, you are able to use this method and <a href="create"><code>Object.create()</code></a> for a shallow copy between two unknown objects:</p> <pre data-language="js">Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>
+  Object<span class="token punctuation">.</span><span class="token function">getPrototypeOf</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  Object<span class="token punctuation">.</span><span class="token function">getOwnPropertyDescriptors</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="creating_a_subclass">Creating a subclass</h3>
+<p>A typical way of creating a subclass is to define the subclass, set its prototype to an instance of the superclass, and then define properties on that instance. This can get awkward especially for getters and setters. Instead, you can use this code to set the prototype:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">superclass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+superclass<span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Define your methods and properties here</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">subclass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+subclass<span class="token punctuation">.</span>prototype <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>
+  superclass<span class="token punctuation">.</span>prototype<span class="token punctuation">,</span>
+  <span class="token punctuation">{</span>
+    <span class="token comment">// Define your methods and properties here</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> </tr> </thead> <tbody> <tr> <td><a href="https://tc39.es/ecma262/#sec-object.getownpropertydescriptors" hreflang="en" rel=" noopener">ECMAScript (ECMA-262)<br><small>The definition of 'Object.getOwnPropertyDescriptors' in that specification.</small></a></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getOwnPropertyDescriptors</code></th>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="getownpropertydescriptor"><code>Object.getOwnPropertyDescriptor()</code></a></li> <li><a href="defineproperty"><code>Object.defineProperty()</code></a></li> <li>
+<a href="https://github.com/tc39/proposal-object-getownpropertydescriptors" rel=" noopener">Polyfill</a> </li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptors" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptors</a>
+  </p>
+</div>

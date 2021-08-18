@@ -1,0 +1,446 @@
+<h1>Using Pointer Events</h1>
+
+ <p>This guide demonstrates how to use <a href="../pointer_events">pointer events</a> and the HTML <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas"><code>&lt;canvas&gt;</code></a> element to build a multi-touch enabled drawing application. This example is based on the one in the <a href="../touch_events">touch events overview</a>, except it uses the <a href="../pointerevent">pointer events</a> input event model. Another difference is that because pointer events are pointer device agnostic, the application accepts coordinate-based inputs from a mouse, a pen, or a fingertip using the same code.</p> <p class="note">This application will only work on a browser that supports pointer events.</p> <p>A live version of this application is available on <a href="https://mdn.github.io/dom-examples/pointerevents/Using_Pointer_Events.html" rel=" noopener">GitHub</a>. The <a href="https://github.com/mdn/dom-examples/blob/master/pointerevents/Using_Pointer_Events.html" rel=" noopener">source code is available on Github</a> and pull requests and bug reports are welcome.</p>
+<h2 id="definitions">Definitions</h2>
+<dl> <dt>Surface</dt> <dd>A touch-sensitive surface. This may be a trackpad, a touch screen, or even a virtual mapping of a user's desk surface (or mousepad) with the physical screen.</dd> <dt>Touch point</dt> <dd>A point of contact with the surface. This may be a finger (or elbow, ear, nose, whatever, but typically a finger), stylus, mouse, or any other method for specifying a single point on the surface.</dd> </dl>
+<h2 id="example">Example</h2>
+<div class="note notecard">The text below uses the term "finger" when describing the contact with the surface, but it could, of course, also be a stylus, mouse, or other method of pointing at a location.</div>
+<h3 id="create_a_canvas">Create a canvas</h3>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action"><code>touch-action</code></a> property is set to <code>none</code> to prevent the browser from applying its default touch behavior to the application.</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>canvas<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>600<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>600<span class="token punctuation">"</span></span> <span class="token style-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token style language-css"><span class="token property">border</span><span class="token punctuation">:</span>solid black 1px<span class="token punctuation">;</span> <span class="token property">touch-action</span><span class="token punctuation">:</span>none</span><span class="token punctuation">"</span></span></span><span class="token punctuation">&gt;</span></span>
+  Your browser does not support canvas element.
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>startup()<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Initialize<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span>
+Log: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>pre</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>log<span class="token punctuation">"</span></span> <span class="token style-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token style language-css"><span class="token property">border</span><span class="token punctuation">:</span> 1px solid #ccc<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>pre</span><span class="token punctuation">&gt;</span></span>
+</pre>
+<h3 id="setting_up_the_event_handlers">Setting up the event handlers</h3>
+<p>When the page loads, the <code>startup()</code> function shown below should be called by our <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body"><code>&lt;body&gt;</code></a> element's <code>onload</code> attribute (but in the example we use a button to trigger it, due to limitations of the MDN live example system).</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">startup</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> el <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">"canvas"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  el<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"pointerdown"</span><span class="token punctuation">,</span> handleStart<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  el<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"pointerup"</span><span class="token punctuation">,</span> handleEnd<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  el<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"pointercancel"</span><span class="token punctuation">,</span> handleCancel<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  el<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"pointermove"</span><span class="token punctuation">,</span> handleMove<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"initialized."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>This sets up all the event listeners for our <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas"><code>&lt;canvas&gt;</code></a> element so we can handle the touch events as they occur.</p> <h4 id="tracking_new_touches">Tracking new touches</h4> <p>We'll keep track of the touches in-progress.</p> <pre data-language="js"><span class="token keyword">var</span> ongoingTouches <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>When a <code><a href="../htmlelement/pointerdown_event">pointerdown</a></code> event occurs, indicating that a new touch on the surface has occurred, the <code>handleStart()</code> function below is called.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">handleStart</span><span class="token punctuation">(</span><span class="token parameter">evt</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"pointerdown."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> el <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">"canvas"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> ctx <span class="token operator">=</span> el<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">"2d"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"pointerdown: id = "</span> <span class="token operator">+</span> evt<span class="token punctuation">.</span>pointerId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  ongoingTouches<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token function">copyTouch</span><span class="token punctuation">(</span>evt<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> color <span class="token operator">=</span> <span class="token function">colorForTouch</span><span class="token punctuation">(</span>evt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span><span class="token function">beginPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span><span class="token function">arc</span><span class="token punctuation">(</span>touches<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>pageX<span class="token punctuation">,</span> touches<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>pageY<span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token constant">PI</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// a circle at the start</span>
+  ctx<span class="token punctuation">.</span><span class="token function">arc</span><span class="token punctuation">(</span>evt<span class="token punctuation">.</span>clientX<span class="token punctuation">,</span> evt<span class="token punctuation">.</span>clientY<span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token constant">PI</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// a circle at the start</span>
+  ctx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> color<span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>After storing some of the event's processing in the <code>ongoingTouches</code> for later processing, the start point is drawn as a small circle. We're using a 4-pixel wide line, so a 4 pixel radius circle will show up neatly.</p> <h4 id="drawing_as_the_pointers_move">Drawing as the pointers move</h4> <p>Each time one or more pointers moves, a <code><a href="../htmlelement/pointermove_event">pointermove</a></code> event is delivered, resulting in our <code>handleMove()</code> function being called. Its responsibility in this example is to update the cached touch information and to draw a line from the previous position to the current position of each touch.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">handleMove</span><span class="token punctuation">(</span><span class="token parameter">evt</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> el <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">"canvas"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> ctx <span class="token operator">=</span> el<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">"2d"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> color <span class="token operator">=</span> <span class="token function">colorForTouch</span><span class="token punctuation">(</span>evt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> idx <span class="token operator">=</span> <span class="token function">ongoingTouchIndexById</span><span class="token punctuation">(</span>evt<span class="token punctuation">.</span>pointerId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"continuing touch: idx =  "</span> <span class="token operator">+</span> idx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>idx <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ctx<span class="token punctuation">.</span><span class="token function">beginPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"ctx.moveTo("</span> <span class="token operator">+</span> ongoingTouches<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">.</span>pageX <span class="token operator">+</span> <span class="token string">", "</span> <span class="token operator">+</span> ongoingTouches<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">.</span>pageY <span class="token operator">+</span> <span class="token string">");"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ctx<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>ongoingTouches<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">.</span>pageX<span class="token punctuation">,</span> ongoingTouches<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">.</span>pageY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"ctx.lineTo("</span> <span class="token operator">+</span> evt<span class="token punctuation">.</span>clientX <span class="token operator">+</span> <span class="token string">", "</span> <span class="token operator">+</span> evt<span class="token punctuation">.</span>clientY <span class="token operator">+</span> <span class="token string">");"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ctx<span class="token punctuation">.</span><span class="token function">lineTo</span><span class="token punctuation">(</span>evt<span class="token punctuation">.</span>clientX<span class="token punctuation">,</span> evt<span class="token punctuation">.</span>clientY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ctx<span class="token punctuation">.</span>lineWidth <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+    ctx<span class="token punctuation">.</span>strokeStyle <span class="token operator">=</span> color<span class="token punctuation">;</span>
+    ctx<span class="token punctuation">.</span><span class="token function">stroke</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    ongoingTouches<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>idx<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token function">copyTouch</span><span class="token punctuation">(</span>evt<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// swap in the new touch record</span>
+    <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"can't figure out which touch to continue: idx = "</span> <span class="token operator">+</span> idx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre> <p>This function looks in our cached touch information array for the previous information about each touch to determine the starting point for each touch's new line segment to be drawn. This is done by looking at each touch's <a href="../pointerevent/pointerid"><code>PointerEvent.pointerId</code></a> property. This property is a unique integer for each pointer event, and remains consistent for each event during the duration of each finger's contact with the surface.</p> <p>This lets us get the coordinates of the previous position of each touch and use the appropriate context methods to draw a line segment joining the two positions together.</p> <p>After drawing the line, we call <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice"><code>Array.splice()</code></a> to replace the previous information about the touch point with the current information in the <code>ongoingTouches</code> array.</p> <h4 id="handling_the_end_of_a_touch">Handling the end of a touch</h4> <p>When the user lifts a finger off the surface, a <code><a href="../htmlelement/pointerup_event">pointerup</a></code> event is sent. We handle this event by calling the <code>handleEnd()</code> function below. Its job is to draw the last line segment for the touch that ended and remove the touch point from the ongoing touch list.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">handleEnd</span><span class="token punctuation">(</span><span class="token parameter">evt</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"pointerup"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> el <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">"canvas"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> ctx <span class="token operator">=</span> el<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">"2d"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> color <span class="token operator">=</span> <span class="token function">colorForTouch</span><span class="token punctuation">(</span>evt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> idx <span class="token operator">=</span> <span class="token function">ongoingTouchIndexById</span><span class="token punctuation">(</span>evt<span class="token punctuation">.</span>pointerId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>idx <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ctx<span class="token punctuation">.</span>lineWidth <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+    ctx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> color<span class="token punctuation">;</span>
+    ctx<span class="token punctuation">.</span><span class="token function">beginPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ctx<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>ongoingTouches<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">.</span>pageX<span class="token punctuation">,</span> ongoingTouches<span class="token punctuation">[</span>idx<span class="token punctuation">]</span><span class="token punctuation">.</span>pageY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ctx<span class="token punctuation">.</span><span class="token function">lineTo</span><span class="token punctuation">(</span>evt<span class="token punctuation">.</span>clientX<span class="token punctuation">,</span> evt<span class="token punctuation">.</span>clientY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ctx<span class="token punctuation">.</span><span class="token function">fillRect</span><span class="token punctuation">(</span>evt<span class="token punctuation">.</span>clientX <span class="token operator">-</span> <span class="token number">4</span><span class="token punctuation">,</span> evt<span class="token punctuation">.</span>clientY <span class="token operator">-</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// and a square at the end</span>
+    ongoingTouches<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>idx<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// remove it; we're done</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"can't figure out which touch to end"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre> <p>This is very similar to the previous function; the only real differences are that we draw a small square to mark the end and that when we call <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice"><code>Array.splice()</code></a>, we remove the old entry from the ongoing touch list, without adding in the updated information. The result is that we stop tracking that touch point.</p> <h4 id="handling_canceled_touches">Handling canceled touches</h4> <p>If the user's finger wanders into browser UI, or the touch otherwise needs to be canceled, the <code><a href="../htmlelement/pointercancel_event">pointercancel</a></code> event is sent, and we call the <code>handleCancel()</code> function below.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">handleCancel</span><span class="token punctuation">(</span><span class="token parameter">evt</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"pointercancel: id = "</span> <span class="token operator">+</span> evt<span class="token punctuation">.</span>pointerId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> idx <span class="token operator">=</span> <span class="token function">ongoingTouchIndexById</span><span class="token punctuation">(</span>evt<span class="token punctuation">.</span>pointerId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  ongoingTouches<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>idx<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// remove it; we're done</span>
+<span class="token punctuation">}</span>
+</pre> <p>Since the idea is to immediately abort the touch, we remove it from the ongoing touch list without drawing a final line segment.</p>
+<h3 id="convenience_functions">Convenience functions</h3>
+<p>This example uses two convenience functions that should be looked at briefly to help make the rest of the code more clear.</p> <h4 id="selecting_a_color_for_each_touch">Selecting a color for each touch</h4> <p>In order to make each touch's drawing look different, the <code>colorForTouch()</code> function is used to pick a color based on the touch's unique identifier. This identifier is an opaque number, but we can at least rely on it differing between the currently-active touches.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">colorForTouch</span><span class="token punctuation">(</span><span class="token parameter">touch</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> r <span class="token operator">=</span> touch<span class="token punctuation">.</span>pointerId <span class="token operator">%</span> <span class="token number">16</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> g <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>touch<span class="token punctuation">.</span>pointerId <span class="token operator">/</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">16</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> b <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>touch<span class="token punctuation">.</span>pointerId <span class="token operator">/</span> <span class="token number">7</span><span class="token punctuation">)</span> <span class="token operator">%</span> <span class="token number">16</span><span class="token punctuation">;</span>
+  r <span class="token operator">=</span> r<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// make it a hex digit</span>
+  g <span class="token operator">=</span> g<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// make it a hex digit</span>
+  b <span class="token operator">=</span> b<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// make it a hex digit</span>
+  <span class="token keyword">var</span> color <span class="token operator">=</span> <span class="token string">"#"</span> <span class="token operator">+</span> r <span class="token operator">+</span> g <span class="token operator">+</span> b<span class="token punctuation">;</span>
+  <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"color for touch with identifier "</span> <span class="token operator">+</span> touch<span class="token punctuation">.</span>pointerId <span class="token operator">+</span> <span class="token string">" = "</span> <span class="token operator">+</span> color<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> color<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>The result from this function is a string that can be used when calling <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas"><code>&lt;canvas&gt;</code></a> functions to set drawing colors. For example, for a <a href="../pointerevent/pointerid"><code>PointerEvent.pointerId</code></a> value of 10, the resulting string is "#aaa".</p> <h4 id="copying_a_touch_object">Copying a touch object</h4> <p>Some browsers may re-use touch objects between events, so it's best to copy the bits you care about, rather than referencing the entire object.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">copyTouch</span><span class="token punctuation">(</span><span class="token parameter">touch</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span> identifier<span class="token operator">:</span> touch<span class="token punctuation">.</span>pointerId<span class="token punctuation">,</span> pageX<span class="token operator">:</span> touch<span class="token punctuation">.</span>clientX<span class="token punctuation">,</span> pageY<span class="token operator">:</span> touch<span class="token punctuation">.</span>clientY <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <h4 id="finding_an_ongoing_touch">Finding an ongoing touch</h4> <p>The <code>ongoingTouchIndexById()</code> function below scans through the <code>ongoingTouches</code> array to find the touch matching the given identifier, then returns that touch's index into the array.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">ongoingTouchIndexById</span><span class="token punctuation">(</span><span class="token parameter">idToFind</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> ongoingTouches<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> id <span class="token operator">=</span> ongoingTouches<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>identifier<span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>id <span class="token operator">==</span> idToFind<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> i<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>    <span class="token comment">// not found</span>
+<span class="token punctuation">}</span>
+</pre> <h4 id="showing_whats_going_on">Showing what's going on</h4> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">log</span><span class="token punctuation">(</span><span class="token parameter">msg</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> p <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'log'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  p<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> msg <span class="token operator">+</span> <span class="token string">"\n"</span> <span class="token operator">+</span> p<span class="token punctuation">.</span>innerHTML<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.w3.org/TR/pointerevents2/#pointerevent-interface" hreflang="en" rel=" noopener">Pointer Events – Level 2<br><small>The definition of 'PointerEvent' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/pointerevents1/#pointerevent-interface" hreflang="en" rel=" noopener">Pointer Events<br><small>The definition of 'PointerEvent' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>Using_Pointer_Events</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>10</div>
+<div>See <a href="https://msdn.microsoft.com/library/dn304886">MSDN Pointer events updates</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>PointerEvent</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>10</div>
+<div>See <a href="https://msdn.microsoft.com/library/dn304886">MSDN Pointer events updates</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>getCoalescedEvents</code></th>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>59</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>height</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>10</div>
+<div>Returns values in screen pixels instead of CSS document pixels.</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>isPrimary</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>pointerId</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>pointerType</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>10</div>
+<div>Returns an integer enumeration instead of a string.</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>pressure</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>10</div>
+<div>Returns 0 instead of 0.5 on hardware that doesn't support pressure.</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>tangentialPressure</code></th>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>54</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>54</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>tiltX</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>tiltY</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>twist</code></th>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>54</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>54</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>width</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>10</div>
+<div>Returns values in screen pixels instead of CSS document pixels.</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+</tbody>
+</table>
+<p>BCD tables only load in the browser</p> 
+ <h2 id="see_also">See also</h2>
+<ul> <li><a href="../pointer_events">Pointer events</a></li> <li><a href="../touch_events">Touch events</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events/Using_Pointer_Events" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events/Using_Pointer_Events</a>
+  </p>
+</div>

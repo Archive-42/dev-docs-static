@@ -1,0 +1,204 @@
+<h1>MediaSession</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <code>MediaSession</code> interface of the <a href="media_session_api">Media Session API</a> allows a web page to provide custom behaviors for standard media playback interactions, and to report metadata that can be sent by the user agent to the device or operating system for presentation in standardized user interface elements.</p> <p>For example, a smartphone might have a standard panel in its lock screen that provides controls for media playback and information display. A browser on the device can use <code>MediaSession</code> to make browser playback controllable from that standard/global user interface.</p>
+<h2 id="properties">Properties</h2>
+<dl> <dt><a href="mediasession/metadata"><code>metadata</code></a></dt> <dd>Returns an instance of <a href="mediametadata"><code>MediaMetadata</code></a>, which contains rich media metadata for display in a platform UI.</dd> <dt><a href="mediasession/playbackstate"><code>playbackState</code></a></dt> <dd>Indicates whether the current media session is playing. Valid values are <code>none</code>, <code>paused</code>, or <code>playing</code>.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="mediasession/setactionhandler"><code>setActionHandler()</code></a></dt> <dd>Sets an action handler for a <a href="mediasessionaction">media session action</a>, such as play or pause.</dd> <dt><a href="mediasession/setpositionstate"><code>setPositionState()</code></a></dt> <dd>Sets the current playback position and speed of the media currently being presented.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>The following example creates a new media session and assigns action handlers to it:</p> <pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">'mediaSession'</span> <span class="token keyword">in</span> navigator<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  navigator<span class="token punctuation">.</span>mediaSession<span class="token punctuation">.</span>metadata <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MediaMetadata</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    title<span class="token operator">:</span> <span class="token string">'Unforgettable'</span><span class="token punctuation">,</span>
+    artist<span class="token operator">:</span> <span class="token string">'Nat King Cole'</span><span class="token punctuation">,</span>
+    album<span class="token operator">:</span> <span class="token string">'The Ultimate Collection (Remastered)'</span><span class="token punctuation">,</span>
+    artwork<span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span> src<span class="token operator">:</span> <span class="token string">'https://dummyimage.com/96x96'</span><span class="token punctuation">,</span>   sizes<span class="token operator">:</span> <span class="token string">'96x96'</span><span class="token punctuation">,</span>   type<span class="token operator">:</span> <span class="token string">'image/png'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> src<span class="token operator">:</span> <span class="token string">'https://dummyimage.com/128x128'</span><span class="token punctuation">,</span> sizes<span class="token operator">:</span> <span class="token string">'128x128'</span><span class="token punctuation">,</span> type<span class="token operator">:</span> <span class="token string">'image/png'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> src<span class="token operator">:</span> <span class="token string">'https://dummyimage.com/192x192'</span><span class="token punctuation">,</span> sizes<span class="token operator">:</span> <span class="token string">'192x192'</span><span class="token punctuation">,</span> type<span class="token operator">:</span> <span class="token string">'image/png'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> src<span class="token operator">:</span> <span class="token string">'https://dummyimage.com/256x256'</span><span class="token punctuation">,</span> sizes<span class="token operator">:</span> <span class="token string">'256x256'</span><span class="token punctuation">,</span> type<span class="token operator">:</span> <span class="token string">'image/png'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> src<span class="token operator">:</span> <span class="token string">'https://dummyimage.com/384x384'</span><span class="token punctuation">,</span> sizes<span class="token operator">:</span> <span class="token string">'384x384'</span><span class="token punctuation">,</span> type<span class="token operator">:</span> <span class="token string">'image/png'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span> src<span class="token operator">:</span> <span class="token string">'https://dummyimage.com/512x512'</span><span class="token punctuation">,</span> sizes<span class="token operator">:</span> <span class="token string">'512x512'</span><span class="token punctuation">,</span> type<span class="token operator">:</span> <span class="token string">'image/png'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  navigator<span class="token punctuation">.</span>mediaSession<span class="token punctuation">.</span><span class="token function">setActionHandler</span><span class="token punctuation">(</span><span class="token string">'play'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/* Code excerpted. */</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  navigator<span class="token punctuation">.</span>mediaSession<span class="token punctuation">.</span><span class="token function">setActionHandler</span><span class="token punctuation">(</span><span class="token string">'pause'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/* Code excerpted. */</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  navigator<span class="token punctuation">.</span>mediaSession<span class="token punctuation">.</span><span class="token function">setActionHandler</span><span class="token punctuation">(</span><span class="token string">'stop'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/* Code excerpted. */</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  navigator<span class="token punctuation">.</span>mediaSession<span class="token punctuation">.</span><span class="token function">setActionHandler</span><span class="token punctuation">(</span><span class="token string">'seekbackward'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/* Code excerpted. */</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  navigator<span class="token punctuation">.</span>mediaSession<span class="token punctuation">.</span><span class="token function">setActionHandler</span><span class="token punctuation">(</span><span class="token string">'seekforward'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/* Code excerpted. */</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  navigator<span class="token punctuation">.</span>mediaSession<span class="token punctuation">.</span><span class="token function">setActionHandler</span><span class="token punctuation">(</span><span class="token string">'seekto'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/* Code excerpted. */</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  navigator<span class="token punctuation">.</span>mediaSession<span class="token punctuation">.</span><span class="token function">setActionHandler</span><span class="token punctuation">(</span><span class="token string">'previoustrack'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/* Code excerpted. */</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  navigator<span class="token punctuation">.</span>mediaSession<span class="token punctuation">.</span><span class="token function">setActionHandler</span><span class="token punctuation">(</span><span class="token string">'nexttrack'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/* Code excerpted. */</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  navigator<span class="token punctuation">.</span>mediaSession<span class="token punctuation">.</span><span class="token function">setActionHandler</span><span class="token punctuation">(</span><span class="token string">'skipad'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/* Code excerpted. */</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>The following example sets up two functions for playing and pausing, then uses them as callbacks with the relevant action handlers.</p> <pre data-language="js"><span class="token keyword">const</span> actionHandlers <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token comment">// play</span>
+  <span class="token punctuation">[</span>
+    <span class="token string">'play'</span><span class="token punctuation">,</span>
+    <span class="token keyword">async</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// play our audio</span>
+      <span class="token keyword">await</span> audioEl<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// set playback state</span>
+      navigator<span class="token punctuation">.</span>mediaSession<span class="token punctuation">.</span>playbackState <span class="token operator">=</span> <span class="token string">"playing"</span><span class="token punctuation">;</span>
+      <span class="token comment">// update our status element</span>
+      <span class="token function">updateStatus</span><span class="token punctuation">(</span>allMeta<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'Action: play  |  Track is playing...'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span>
+    <span class="token string">'pause'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">// pause out audio</span>
+      audioEl<span class="token punctuation">.</span><span class="token function">pause</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// set playback state</span>
+      navigator<span class="token punctuation">.</span>mediaSession<span class="token punctuation">.</span>playbackState <span class="token operator">=</span> <span class="token string">"paused"</span><span class="token punctuation">;</span>
+      <span class="token comment">// update our status element</span>
+      <span class="token function">updateStatus</span><span class="token punctuation">(</span>allMeta<span class="token punctuation">[</span>index<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'Action: pause  |  Track has been paused...'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> <span class="token punctuation">[</span>action<span class="token punctuation">,</span> handler<span class="token punctuation">]</span> <span class="token keyword">of</span> actionHandlers<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    navigator<span class="token punctuation">.</span>mediaSession<span class="token punctuation">.</span><span class="token function">setActionHandler</span><span class="token punctuation">(</span>action<span class="token punctuation">,</span> handler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">The media session action "</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>action<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">" is not supported yet.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/mediasession/#the-mediasession-interface" hreflang="en" rel=" noopener">Media Session Standard<br><small>The definition of 'MediaSession' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>MediaSession</code></th>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>82</div>
+<div>71</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>82</div>
+<div>Firefox exposes the API, but does not provide a corresponding user-facing media control interface.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>metadata</code></th>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>82</div>
+<div>71</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>82</div>
+<div>Firefox exposes the API, but does not provide a corresponding user-facing media control interface.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>playbackState</code></th>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>82</div>
+<div>71</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>82</div>
+<div>Firefox exposes the API, but does not provide a corresponding user-facing media control interface.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>setActionHandler</code></th>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>82</div>
+<div>71</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>82</div>
+<div>Firefox exposes the API, but does not provide a corresponding user-facing media control interface.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>setPositionState</code></th>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>82</div>
+<div>71</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>82</div>
+<div>Firefox exposes the API, but does not provide a corresponding user-facing media control interface.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+</tbody>
+</table> 
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaSession" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaSession</a>
+  </p>
+</div>

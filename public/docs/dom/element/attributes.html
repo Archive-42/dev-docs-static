@@ -1,0 +1,104 @@
+<h1>Element.attributes</h1>
+
+ <p>The <code>Element.attributes</code> property returns a live collection of all attribute nodes registered to the specified node. It is a <a href="../namednodemap"><code>NamedNodeMap</code></a>, not an <code>Array</code>, so it has no <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> methods and the <a href="../attr"><code>Attr</code></a> nodes' indexes may differ among browsers. To be more specific, <code>attributes</code> is a key/value pair of strings that represents any information regarding that attribute.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> attr <span class="token operator">=</span> element<span class="token punctuation">.</span>attributes<span class="token punctuation">;</span>
+</pre>
+<h2 id="example">Example</h2>
+<h3 id="basic_examples">Basic examples</h3>
+<pre data-language="js"><span class="token comment">// Get the first &lt;p&gt; element in the document</span>
+<span class="token keyword">var</span> para <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> atts <span class="token operator">=</span> para<span class="token punctuation">.</span>attributes<span class="token punctuation">;</span></pre>
+<h3 id="enumerating_elements_attributes">Enumerating elements attributes</h3>
+<p>Numerical indexing is useful for going through all of an element's attributes.<br> The following example runs through the attribute nodes for the element in the document with id "paragraph", and prints each attribute's value.</p> <pre data-language="html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Attributes example<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+   <span class="token keyword">function</span> <span class="token function">listAttributes</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token keyword">var</span> paragraph <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"paragraph"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">var</span> result <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"result"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+     <span class="token comment">// First, let's verify that the paragraph has some attributes</span>
+     <span class="token keyword">if</span> <span class="token punctuation">(</span>paragraph<span class="token punctuation">.</span><span class="token function">hasAttributes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token keyword">var</span> attrs <span class="token operator">=</span> paragraph<span class="token punctuation">.</span>attributes<span class="token punctuation">;</span>
+       <span class="token keyword">var</span> output <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+       <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> attrs<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">--</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         output <span class="token operator">+=</span> attrs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">"-&gt;"</span> <span class="token operator">+</span> attrs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+       <span class="token punctuation">}</span>
+       result<span class="token punctuation">.</span>value <span class="token operator">=</span> output<span class="token punctuation">;</span>
+     <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+       result<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">"No attributes to show"</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span>
+  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>paragraph<span class="token punctuation">"</span></span> <span class="token style-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token style language-css"><span class="token property">color</span><span class="token punctuation">:</span> green<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">&gt;</span></span>Sample Paragraph<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Show first attribute name and value<span class="token punctuation">"</span></span>
+      <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>listAttributes();<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>result<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://dom.spec.whatwg.org/#dom-element-attributes" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'Element.attributes' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>From <a href="https://www.w3.org/TR/DOM-Level-3-Core/" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 3 Core Specification</a>, moved from <a href="../node"><code>Node</code></a> to <a href="../element"><code>Element</code></a>
+</td> </tr> <tr> <td><a href="https://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-84CF096" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 3 Core Specification<br><small>The definition of 'Element.attributes' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>No change from <a href="https://www.w3.org/TR/DOM-Level-2-Core/" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 2 Core Specification</a>
+</td> </tr> <tr> <td><a href="https://www.w3.org/TR/DOM-Level-2-Core/core.html#ID-84CF096" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 2 Core Specification<br><small>The definition of 'Element.attributes' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>No change from <a href="https://www.w3.org/TR/REC-DOM-Level-1/" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 1 Specification</a>
+</td> </tr> <tr> <td>
+<a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-84CF096" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 1 Specification<br><small>The definition of 'Element.attributes' in that specification.</small></a> </td> <td><span class="spec-obsolete">Obsolete</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>attributes</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5.5</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../namednodemap"><code>NamedNodeMap</code></a>, the interface of the returned object</li> <li>Cross-browser compatibility considerations: on <a href="https://www.quirksmode.org/dom/w3c_core.html#attributes" rel=" noopener">quirksmode</a>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/attributes" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/attributes</a>
+  </p>
+</div>

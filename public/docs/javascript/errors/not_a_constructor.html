@@ -1,0 +1,53 @@
+<h1>TypeError: "x" is not a constructor</h1> <p>The JavaScript exception "is not a constructor" occurs when there was an attempt to use an object or a variable as a constructor, but that object or variable is not a constructor.</p>
+<h2 id="message">Message</h2>
+<pre data-language="js">TypeError<span class="token operator">:</span> Object doesn't support <span class="token keyword">this</span> <span class="token function">action</span> <span class="token punctuation">(</span>Edge<span class="token punctuation">)</span>
+TypeError<span class="token operator">:</span> <span class="token string">"x"</span> is not a constructor
+
+TypeError<span class="token operator">:</span> Math is not a constructor
+TypeError<span class="token operator">:</span> <span class="token constant">JSON</span> is not a constructor
+TypeError<span class="token operator">:</span> Symbol is not a constructor
+TypeError<span class="token operator">:</span> Reflect is not a constructor
+TypeError<span class="token operator">:</span> Intl is not a constructor
+TypeError<span class="token operator">:</span> Atomics is not a constructor
+</pre>
+<h2 id="error_type">Error type</h2>
+<p><a href="../global_objects/typeerror"><code>TypeError</code></a></p>
+<h2 id="what_went_wrong">What went wrong?</h2>
+<p>There was an attempt to use an object or a variable as a constructor, but that object or variable is not a constructor. See <a href="https://developer.mozilla.org/en-US/docs/Glossary/Constructor">constructor</a> or the <a href="../operators/new"><code>new</code> operator</a> for more information on what a constructor is.</p> <p>There are many global objects, like <a href="../global_objects/string"><code>String</code></a> or <a href="../global_objects/array"><code>Array</code></a>, which are constructable using <code>new</code>. However, some global objects are not and their properties and methods are static. The following JavaScript standard built-in objects are not a constructor: <a href="../global_objects/math"><code>Math</code></a>, <a href="../global_objects/json"><code>JSON</code></a>, <a href="../global_objects/symbol"><code>Symbol</code></a>, <a href="../global_objects/reflect"><code>Reflect</code></a>, <a href="../global_objects/intl"><code>Intl</code></a>, <a href="../global_objects/atomics"><code>Atomics</code></a>.</p> <p><a href="../statements/function*">Generator functions</a> cannot be used as constructors either.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="invalid_cases">Invalid cases</h3>
+<pre data-language="js"><span class="token keyword">var</span> Car <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">new</span> <span class="token class-name">Car</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// TypeError: Car is not a constructor</span>
+
+<span class="token keyword">new</span> <span class="token class-name">Math</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// TypeError: Math is not a constructor</span>
+
+<span class="token keyword">new</span> <span class="token class-name">Symbol</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// TypeError: Symbol is not a constructor</span>
+
+<span class="token keyword">function</span><span class="token operator">*</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">f</span><span class="token punctuation">;</span>
+<span class="token comment">// TypeError: f is not a constructor</span>
+</pre>
+<h3 id="a_car_constructor">A car constructor</h3>
+<p>Suppose you want to create an object type for cars. You want this type of object to be called <code>car</code>, and you want it to have properties for make, model, and year. To do this, you would write the following function:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">Car</span><span class="token punctuation">(</span><span class="token parameter">make<span class="token punctuation">,</span> model<span class="token punctuation">,</span> year</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>make <span class="token operator">=</span> make<span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>model <span class="token operator">=</span> model<span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>year <span class="token operator">=</span> year<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>Now you can create an object called <code>mycar</code> as follows:</p> <pre data-language="js"><span class="token keyword">var</span> mycar <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Car</span><span class="token punctuation">(</span><span class="token string">'Eagle'</span><span class="token punctuation">,</span> <span class="token string">'Talon TSi'</span><span class="token punctuation">,</span> <span class="token number">1993</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="in_promises">In Promises</h3>
+<p>When returning an immediately-resolved or immediately-rejected Promise, you do not need to create a <em>new Promise(...)</em> and act on it.</p> <p>This is not legal (the <a href="https://developer.mozilla.org/en-US/docs/Mozilla/JavaScript_code_modules/Promise.jsm/Promise#Constructor">Promise constructor</a> is not being called correctly) and will throw a <code>TypeError: this is not a constructor</code> exception:</p> <pre data-language="js"><span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise<span class="token punctuation">.</span>resolve</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>Instead, use the<a href="../global_objects/promise/resolve"> Promise.resolve()</a> or <a href="../global_objects/promise/reject">Promise.reject()</a> <a href="https://en.wikipedia.org/wiki/Method_(computer_programming)#Static_methods" rel=" noopener">static methods</a>:</p> <pre data-language="js"><span class="token comment">// This is legal, but unnecessarily long:</span>
+<span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// Instead, return the static method:</span>
+<span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">return</span> Promise<span class="token punctuation">.</span><span class="token function">reject</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Constructor">constructor</a></li> <li><a href="../operators/new"><code>new</code> operator</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Not_a_constructor" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Not_a_constructor</a>
+  </p>
+</div>

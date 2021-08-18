@@ -1,0 +1,99 @@
+<h1>XRPermissionDescriptor.mode</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <code><strong>mode</strong></code> property of the <a href="../xrpermissiondescriptor"><code>XRPermissionDescriptor</code></a> dictionary is a string taken from the <a href="../xrsessionmode"><code>XRSessionMode</code></a> enumerated type, specifying which Web XR session mode (<code>inline</code>, <code>immersive-vr</code>, or <code>immersive-ar</code>) the described permissions will be used for.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">xrPermissionDescriptor <span class="token operator">=</span> <span class="token punctuation">{</span>
+  mode<span class="token operator">:</span> xrSessionMode<span class="token punctuation">,</span>
+  requiredFeatures<span class="token operator">:</span> reqFeatureList<span class="token punctuation">,</span>
+  optionalFeatures<span class="token operator">:</span> optFeatureList
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+xrPermissionDescriptor<span class="token punctuation">.</span>mode <span class="token operator">=</span> xrSessionMode<span class="token punctuation">;</span>
+xrMode <span class="token operator">=</span> xrPermissionDescriptor<span class="token punctuation">.</span>mode<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../domstring"><code>DOMString</code></a> whose value is one of the strings found in the <a href="../xrsessionmode"><code>XRSessionMode</code></a> enumerated type:</p> 
+<dl> <dt id="immersive-ar">
+<code>immersive-ar</code> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt> <dd> <p>The session's output will be given exclusive access to the immersive device, but the rendered content will be blended with the real-world environment. The session's <a href="../xrsession/environmentblendmode"><code>environmentBlendMode</code></a> indicates the method to be used to blend the content together.</p> <div class="notecard warning"> <p><strong>Important:</strong> The <code>immersive-ar</code> mode is defined by the WebXR Augmented Reality Module, which is not yet stable and should not be used other than for testing and experimentation.</p> </div> </dd> <dt id="immersive-vr"><code>immersive-vr</code></dt> <dd>Indicates that the rendered session will be displayed using an immersive XR device in VR mode; it is not intended to be overlaid or integrated into the surrounding environment. The <a href="../xrsession/environmentblendmode"><code>environmentBlendMode</code></a> is expected to be <code>opaque</code> if possible, but might be <code>additive</code> if the hardware requires it.</dd> <dt id="inline"><code>inline</code></dt> <dd>The output is presented inline within the context of an element in a standard HTML document, rather than occupying the full visual space. Inline sessions can be presented in either mono or stereo mode, and may or may not have viewer tracking available. Inline sessions don't require special hardware and should be avalable on any <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent</a> offering WebXR API support.</dd> </dl>
+
+<h2 id="usage_notes">Usage notes</h2>
+<h2 id="examples">Examples</h2>
+<p>The example below checks to ensure that permission has been granted to allow the user to use WebXR for an immersive virtual reality experience. No specific features are specified during this query; see <a href="requiredfeatures"><code>requiredFeatures</code></a> and <a href="optionalfeatures"><code>optionalFeatures</code></a> for more information on specifying features during a WebXR permission check.</p> <pre data-language="js"><span class="token keyword">let</span> xrPermissionDesc <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">"xr"</span><span class="token punctuation">,</span>
+  mode<span class="token operator">:</span> <span class="token string">"immersive-vr"</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>navigator<span class="token punctuation">.</span>permissions<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  navigator<span class="token punctuation">.</span>permissions<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span>xrPermissionDesc<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span>state<span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">switch</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">case</span> <span class="token string">"granted"</span><span class="token operator">:</span>
+        <span class="token function">setupXR</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token keyword">case</span> <span class="token string">"prompt"</span><span class="token operator">:</span>
+        <span class="token function">promptAndSetupXR</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token keyword">default</span><span class="token operator">:</span>
+        <span class="token comment">/* do nothing otherwise */</span>
+       <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  <span class="token function">setupXR</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td> <a href="https://immersive-web.github.io/webxr/#dom-xrpermissiondescriptor-mode" hreflang="en" rel=" noopener">WebXR Device API<br><small>The definition of 'XRPermissionDescriptor.mode' in that specification.</small></a> </td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>mode</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webxr_device_api/permissions_and_security">Permissions and security for WebXR</a></li> <li><a href="../xrpermissionstatus"><code>XRPermissionStatus</code></a></li> <li>
+<a href="../navigator/permissions"><code>navigator.permissions</code></a> and <a href="../workernavigator/permissions"><code>WorkerNavigator.permissions</code></a> </li> <li><a href="../permissions"><code>Permissions</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XRPermissionDescriptor/mode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XRPermissionDescriptor/mode</a>
+  </p>
+</div>

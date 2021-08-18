@@ -1,0 +1,132 @@
+<h1>PaymentResponse.onpayerdetailchange</h1>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div> <p>The <a href="../paymentresponse"><code>PaymentResponse</code></a> object's <code><strong>onpayerdetailchange</strong></code> property is an event handler which is called to handle the <code><a href="payerdetailchange_event">payerdetailchange</a></code> event, which is sent to the <code>PaymentResponse</code> when the user makes changes to their personal information while filling out a payment request form.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">paymentResponse<span class="token punctuation">.</span>onpayerdetailchange <span class="token operator">=</span> eventHandlerFunction<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>An event handler function which is called to handle the <code><a href="payerdetailchange_event">payerdetailchange</a></code> event when the user makes changes to their personal information while editing a payment request form.</p>
+<h2 id="examples">Examples</h2>
+<p>In the example below, <code>onpayerdetailchange</code> is used to set up a listener for the <code><a href="payerdetailchange_event">payerdetailchange</a></code> event in order to validate the information entered by the user, requesting that any mistakes be corrected</p> <pre data-language="JS"><span class="token comment">// Options for PaymentRequest(), indicating that shipping address,</span>
+<span class="token comment">// payer email address, name, and phone number all be collected.</span>
+
+<span class="token keyword">const</span> options <span class="token operator">=</span> <span class="token punctuation">{</span>
+  requestShipping<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  requestPayerEmail<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  requestPayerName<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  requestPayerPhone<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PaymentRequest</span><span class="token punctuation">(</span>methods<span class="token punctuation">,</span> details<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> response <span class="token operator">=</span> request<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Get the data from the response</span>
+
+<span class="token keyword">let</span> <span class="token punctuation">{</span>
+  payerName<span class="token operator">:</span> oldPayerName<span class="token punctuation">,</span>
+  payerEmail<span class="token operator">:</span> oldPayerEmail<span class="token punctuation">,</span>
+  payerPhone<span class="token operator">:</span> oldPayerPhone<span class="token punctuation">,</span>
+<span class="token punctuation">}</span> <span class="token operator">=</span> response<span class="token punctuation">;</span>
+
+<span class="token comment">// Set up a handler for payerdetailchange events, to</span>
+<span class="token comment">// request corrections as needed.</span>
+
+response<span class="token punctuation">.</span><span class="token function-variable function">onpayerdetailchange</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token parameter">ev</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> promisesToValidate <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> payerName<span class="token punctuation">,</span> payerEmail<span class="token punctuation">,</span> payerPhone <span class="token punctuation">}</span> <span class="token operator">=</span> response<span class="token punctuation">;</span>
+
+  <span class="token comment">// Validate each value which changed by calling a function</span>
+  <span class="token comment">// that validates each type of data, returning a promise which</span>
+  <span class="token comment">// resolves if the data is valid.</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>oldPayerName <span class="token operator">!==</span> payerName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    promisesToValidate<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token function">validateName</span><span class="token punctuation">(</span>payerName<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    oldPayerName <span class="token operator">=</span> payerName<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>oldPayerEmail <span class="token operator">!==</span> payerEmail<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    promisesToValidate<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token function">validateEmail</span><span class="token punctuation">(</span>payerEmail<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    oldPayerEmail <span class="token operator">=</span> payerEmail<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>oldPayerPhone <span class="token operator">!==</span> payerPhone<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    promisesToValidate<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token function">validatePhone</span><span class="token punctuation">(</span>payerPhone<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    oldPayerPhone <span class="token operator">=</span> payerPhone<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// As each validation promise resolves, add the results of the</span>
+  <span class="token comment">// validation to the errors list</span>
+
+  <span class="token keyword">const</span> errors <span class="token operator">=</span> <span class="token keyword">await</span> Promise<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span>promisesToValidate<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">results</span> <span class="token operator">=&gt;</span>
+    results<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span>errors<span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">,</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>errors<span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// If we found any errors, wait for them to be corrected</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token function">getOwnPropertyNames</span><span class="token punctuation">(</span>errors<span class="token punctuation">)</span><span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">await</span> response<span class="token punctuation">.</span><span class="token function">retry</span><span class="token punctuation">(</span>errors<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">// We have a good payment; send the data to the server</span>
+    <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">"/pay-for-things/"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> method<span class="token operator">:</span> <span class="token string">"POST"</span><span class="token punctuation">,</span> body<span class="token operator">:</span> response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    response<span class="token punctuation">.</span><span class="token function">complete</span><span class="token punctuation">(</span><span class="token string">"success"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">await</span> response<span class="token punctuation">.</span><span class="token function">retry</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  payer<span class="token operator">:</span> <span class="token punctuation">{</span>
+    email<span class="token operator">:</span> <span class="token string">"invalid domain."</span><span class="token punctuation">,</span>
+    phone<span class="token operator">:</span> <span class="token string">"invalid number."</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/payment-request/#dom-paymentresponse-onpayerdetailchange" hreflang="en" rel=" noopener">Payment Request API<br><small>The definition of 'onpayerdetailchange' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onpayerdetailchange</code></th>
+<td class="bc-supports-yes"><div>78</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaymentResponse/onpayerdetailchange" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaymentResponse/onpayerdetailchange</a>
+  </p>
+</div>

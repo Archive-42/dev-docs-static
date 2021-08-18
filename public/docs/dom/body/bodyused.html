@@ -1,0 +1,70 @@
+<h1>Body.bodyUsed</h1> <p>The <code>bodyUsed</code> read-only property of the <a href="../body"><code>Body</code></a> mixin contains a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> that indicates whether the body has been read yet.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> myBodyUsed <span class="token operator">=</span> response<span class="token punctuation">.</span>bodyUsed<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a>.</p>
+<h2 id="example">Example</h2>
+<p>In our <a href="https://github.com/mdn/fetch-examples/tree/master/fetch-request" rel=" noopener">fetch request example</a> (run <a href="https://mdn.github.io/fetch-examples/fetch-request/" rel=" noopener">fetch request live</a>), we create a new request using the <a href="../request/request"><code>Request()</code></a> constructor, then use it to fetch a JPG. When the fetch is successful, we read a <a href="../blob"><code>Blob</code></a> out of the response using <code>blob()</code>, put it into an object URL using <a href="../url/createobjecturl"><code>URL.createObjectURL</code></a>, and then set that URL as the source of an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img"><code>&lt;img&gt;</code></a> element to display the image.</p> <p>Notice that we log <code>response.bodyUsed</code> to the console once before the <code>response.blob()</code> call and once after. This returns <code>false</code> before and <code>true</code> afterwards, as at that point the body has been read.</p>
+<h3 id="html_content">HTML Content</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>my-image<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://wikipedia.org/static/images/project-logos/frwiki-1.5x.png<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+</pre>
+<h3 id="js_content">JS Content</h3>
+<pre data-language="js"><span class="token keyword">var</span> myImage <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.my-image'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'https://upload.wikimedia.org/wikipedia/commons/7/77/Delete_key1.jpg'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>bodyUsed<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> res <span class="token operator">=</span> response<span class="token punctuation">.</span><span class="token function">blob</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>bodyUsed<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> res<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> objectURL <span class="token operator">=</span> <span class="token constant">URL</span><span class="token punctuation">.</span><span class="token function">createObjectURL</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    myImage<span class="token punctuation">.</span>src <span class="token operator">=</span> objectURL<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p><iframe class="sample-code-frame" id="frame_Example" width="100%" height="250px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Body/bodyUsed/_samples_/Example" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://fetch.spec.whatwg.org/#dom-body-bodyused" hreflang="en" rel=" noopener">Fetch<br><small>The definition of 'bodyUsed' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>bodyUsed</code></th>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../service_worker_api">ServiceWorker API</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">HTTP access control (CORS)</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP">HTTP</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Body/bodyUsed" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Body/bodyUsed</a>
+  </p>
+</div>

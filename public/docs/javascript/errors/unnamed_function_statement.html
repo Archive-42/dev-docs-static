@@ -1,0 +1,63 @@
+<h1>SyntaxError: function statement requires a name</h1> <p>The JavaScript exception "function statement requires a name" occurs when there is a <a href="../statements/function">function statement</a> in the code that requires a name.</p>
+<h2 id="message">Message</h2>
+<pre data-language="js">Syntax Error<span class="token operator">:</span> Expected <span class="token function">identifier</span> <span class="token punctuation">(</span>Edge<span class="token punctuation">)</span>
+<span class="token function-variable function">SyntaxError</span><span class="token operator">:</span> <span class="token keyword">function</span> statement requires a name <span class="token punctuation">[</span>Firefox<span class="token punctuation">]</span>
+SyntaxError<span class="token operator">:</span> Unexpected <span class="token function">token</span> <span class="token punctuation">(</span> <span class="token punctuation">[</span>Chrome<span class="token punctuation">]</span>
+</pre>
+<h2 id="error_type">Error type</h2>
+<p><a href="../global_objects/syntaxerror"><code>SyntaxError</code></a></p>
+<h2 id="what_went_wrong">What went wrong?</h2>
+<p>There is a <a href="../statements/function">function statement</a> in the code that requires a name. You'll need to check how functions are defined and if you need to provide a name for it, or if the function in question needs to be a function expression, an <a href="https://developer.mozilla.org/en-US/docs/Glossary/IIFE">IIFE</a>, or if the function code is placed correctly in this context at all.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="statements_vs_expressions">Statements vs expressions</h3>
+<p>A <em><a href="../statements/function">function statement</a></em> (or <em>function declaration</em>) requires a name, this won't work:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token string">'Hello world'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// SyntaxError: function statement requires a name</span>
+</pre> <p>You can use a <a href="../operators/function">function expression</a> (assignment) instead:</p> <pre data-language="js"><span class="token keyword">var</span> <span class="token function-variable function">greet</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token string">'Hello world'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre> <p>Or, you function is maybe intended to be an <a href="https://en.wikipedia.org/wiki/Immediately-invoked_function_expression" rel=" noopener">IIFE</a> (Immediately Invoked Function Expression), which is a function that runs as soon as it is defined. You will need a few more braces in this case:</p> <pre data-language="js"><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="labeled_functions">Labeled functions</h3>
+<p>If you are using function <a href="../statements/label">labels</a>, you will still need to provide a function name after the <code>function</code> keyword. This doesn't work:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">Greeter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">german</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">"Moin"</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// SyntaxError: function statement requires a name</span>
+</pre> <p>This would work, for example:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">Greeter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">german</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token function">g</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">"Moin"</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre>
+<h3 id="object_methods">Object methods</h3>
+<p>If you intended to create a method of an object, you will need to create an object. The following syntax without a name after the <code>function</code> keyword is valid then. </p> <pre data-language="js"><span class="token keyword">var</span> greeter <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">german</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">"Moin"</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h3 id="callback_syntax">Callback syntax</h3>
+<p>Also, check your syntax when using callbacks. Brackets and commas can get difficult easily.</p> <pre data-language="js">promise<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>
+  <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"success"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"error"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// SyntaxError: function statement requires a name</span>
+</pre> <p>Correct would be:</p> <pre data-language="json">promise.then(
+  function() <span class="token punctuation">{</span>
+    console.log(<span class="token string">"success"</span>);
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  function() <span class="token punctuation">{</span>
+    console.log(<span class="token string">"error"</span>);
+  <span class="token punctuation">}</span>
+);
+</pre>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions">Functions in the JavaScript Guide</a></li> <li><a href="../statements/function">function statement</a></li> <li><a href="../operators/function">function expression</a></li> <li>
+<a href="https://en.wikipedia.org/wiki/Immediately-invoked_function_expression" rel=" noopener">IIFE</a> </li> <li><a href="../statements/label">label</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Unnamed_function_statement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Unnamed_function_statement</a>
+  </p>
+</div>

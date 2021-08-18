@@ -1,0 +1,86 @@
+<h1>PaymentCurrencyAmount.value</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <a href="../paymentcurrencyamount"><code>PaymentCurrencyAmount</code></a> property <code>value</code> is a string containing the decimal numeric value of the payment, specified in the currency units indicated by the <a href="currency"><code>currency</code></a> property. The contents of this string must be a valid decimal number; that is, some number of digits between 0 and 9 with up to one optional decimal point. An optional leading minus sign ("-") can be included to indicate a negative value, such as to represent a refund or discount.</p> <div class="notecard note"> <p><strong>Important note:</strong> The number given in this string is always specified using the period (".") as the decimal point, rather than the comma (","), even if the user's locale normally uses the comma. You must convert the entered text to this form or it will not be valid.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">value <span class="token operator">=</span> paymentCurrencyAmount<span class="token punctuation">.</span>value<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../domstring"><code>DOMString</code></a> indicating the numeric value of the payment. This must be a valid decimal number, with an optional leading minus sign ("-"), then one or more decimal digits 0 through 9, optionally with a decimal point (".") with at least one digit following it to represent fractional units. There must not be any leading or trailing whitespace in the string.</p> <p>For uniformity and consistency, the value is always given using the period (".") as the decimal character, regardless of the user's locale. You need to convert the value to this format before submitting the payment.</p> <p>See the example <a href="#verifying_a_properly_formatted_price">Verifying a properly formatted price</a> below for a simple regular expression that can be used to validate the <code>value</code> string prior to submission.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="representing_prices">Representing prices</h3>
+<p>This example represents the price of $42.95 in US dollars:</p> <pre data-language="js"><span class="token keyword">let</span> itemPrice <span class="token operator">=</span> <span class="token punctuation">{</span>
+  currency<span class="token operator">:</span> <span class="token string">"USD"</span><span class="token punctuation">,</span>
+  value<span class="token operator">:</span> <span class="token string">"42.95"</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre> <p>This example specifies a price of £7.77:</p> <pre data-language="js"><span class="token keyword">let</span> shippingCost <span class="token operator">=</span> <span class="token punctuation">{</span>
+  currency<span class="token operator">:</span> <span class="token string">"GBP"</span><span class="token punctuation">,</span>
+  value<span class="token operator">:</span> <span class="token string">"7.77"</span>
+<span class="token punctuation">}</span>
+</pre> <p>This example specifies a price of 1000¥:</p> <pre data-language="js"><span class="token keyword">let</span> price <span class="token operator">=</span> <span class="token punctuation">{</span>
+  currency<span class="token operator">:</span> <span class="token string">"JPY"</span><span class="token punctuation">,</span>
+  value<span class="token operator">:</span> <span class="token string">"1000"</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="verifying_a_properly_formatted_price">Verifying a properly formatted price</h3>
+<p>You can ensure that the value entered as a price is formatted correctly prior to submission by matching it against a simple <a href="https://developer.mozilla.org/en-US/docs/Glossary/Regular_expression">regular expression</a>:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">checkPriceFormat</span><span class="token punctuation">(</span><span class="token parameter">price</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> validRegex <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^-?[0-9]+(\.[0-9]+)?$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> validRegex<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>price<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>This function, <code>checkPriceFormat()</code>, will return <code>true</code> if the specified price string is formatted properly, or <code>false</code> if it's not.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td> <a href="https://w3c.github.io/payment-request/#dom-paymentcurrencyamount-value" hreflang="en" rel=" noopener">Payment Request API<br><small>The definition of 'PaymentCurrencyAmount.value' in that specification.</small></a> </td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>value</code></th>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>63</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes">
+<div>63</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../payment_request_api">Payment Request API</a></li> <li><a href="../payment_request_api/using_the_payment_request_api">Using the Payment Request API</a></li> <li><a href="../payment_request_api/concepts">Payment processing concepts</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaymentCurrencyAmount/value" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaymentCurrencyAmount/value</a>
+  </p>
+</div>

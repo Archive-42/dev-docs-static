@@ -1,0 +1,490 @@
+<h1>BluetoothRemoteGATTCharacteristic</h1>
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div> <p>The <code>BluetoothRemoteGattCharacteristic</code> interface of the <a href="web_bluetooth_api">Web Bluetooth API</a> represents a GATT Characteristic, which is a basic data element that provides further information about a peripheral’s service.</p>
+<h2 id="interface">Interface</h2>
+<pre class="notranslate">interface BluetoothRemoteGATTCharacteristic {
+  readonly attribute BluetoothRemoteGATTService service;
+  readonly attribute UUID uuid;
+  readonly attribute BluetoothCharacteristicProperties properties;
+  readonly attribute DataView? value;
+  Promise&lt;BluetoothRemoteGATTDescriptor&gt; getDescriptor(BluetoothDescriptorUUID <dfn>descriptor</dfn>);
+  Promise&lt;sequence&lt;BluetoothRemoteGATTDescriptor&gt;&gt;
+    getDescriptors(optional BluetoothDescriptorUUID <dfn>descriptor</dfn>);
+  Promise&lt;DataView&gt; readValue();
+  Promise&lt;void&gt; writeValue(BufferSource <dfn>value</dfn>);
+  Promise&lt;void&gt; startNotifications();
+  Promise&lt;void&gt; stopNotifications();
+};
+BluetoothRemoteGATTCharacteristic implements EventTarget;
+BluetoothRemoteGATTCharacteristic implements CharacteristicEventHandlers;</pre>
+<h2 id="properties">Properties</h2>
+<dl> <dt>
+<a href="bluetoothremotegattcharacteristic/service"><code>BluetoothRemoteGATTCharacteristic.service</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the <a href="bluetoothremotegattservice"><code>BluetoothRemoteGATTService</code></a> this characteristic belongs to.</dd> <dt>
+<a href="bluetoothremotegattcharacteristic/uuid"><code>BluetoothRemoteGATTCharacteristic.uuid</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="domstring"><code>DOMString</code></a> containing the UUID of the characteristic, for example <code>'00002a37-0000-1000-8000-00805f9b34fb'</code> for the Heart Rate Measurement characteristic.</dd> <dt>
+<a href="bluetoothremotegattcharacteristic/properties"><code>BluetoothRemoteGATTCharacteristic.properties</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the properties of this characteristic.</dd> <dt>
+<a href="bluetoothremotegattcharacteristic/value"><code>BluetoothRemoteGATTCharacteristic.value</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>The currently cached characteristic value. This value gets updated when the value of the characteristic is read or updated via a notification or indication.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="bluetoothremotegattcharacteristic/getdescriptor"><code>BluetoothRemoteGATTCharacteristic.getDescriptor()</code></a></dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to the first <a href="bluetoothremotegattdescriptor"><code>BluetoothRemoteGATTDescriptor</code></a> for a given descriptor UUID.</dd> <dt><a href="bluetoothremotegattcharacteristic/getdescriptors"><code>BluetoothRemoteGATTCharacteristic.getDescriptors()</code></a></dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of all <a href="bluetoothremotegattdescriptor"><code>BluetoothRemoteGATTDescriptor</code></a> objects for a given descriptor UUID.</dd> <dt><a href="bluetoothremotegattcharacteristic/readvalue"><code>BluetoothRemoteGATTCharacteristic.readValue()</code></a></dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> holding a duplicate of the <code>value</code> property if it is available and supported. Otherwise it throws an error.</dd> <dt><a href="bluetoothremotegattcharacteristic/writevalue"><code>BluetoothRemoteGATTCharacteristic.writeValue()</code></a></dt> <dd>Sets the value property to the bytes contained in an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> and returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>.</dd> <dt><a href="bluetoothremotegattcharacteristic/startnotifications"><code>BluetoothRemoteGATTCharacteristic.startNotifications()</code></a></dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> when <code>navigator.bluetooth</code> is added to the active notification context.</dd> <dt><a href="bluetoothremotegattcharacteristic/stopnotifications"><code>BluetoothRemoteGATTCharacteristic.stopNotifications()</code></a></dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> when <code>navigator.bluetooth</code> is removed from the active notification context.</dd> </dl>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://webbluetoothcg.github.io/web-bluetooth/#bluetoothremotegattcharacteristic" hreflang="en" rel=" noopener">Web Bluetooth<br><small>The definition of 'BluetoothRemoteGATTCharacteristic' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>BluetoothRemoteGATTCharacteristic</code></th>
+<td class="bc-supports-yes">
+<div>56</div>
+<div>macOS only.</div>
+<div>56</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>70</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>macOS only.</div>
+<div>79</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>79</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>macOS only.</div>
+<div>43</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>57</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>85</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>getDescriptor</code></th>
+<td class="bc-supports-yes">
+<div>56</div>
+<div>macOS only.</div>
+<div>56</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>70</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>macOS only.</div>
+<div>79</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>79</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>macOS only.</div>
+<div>43</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>57</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>getDescriptors</code></th>
+<td class="bc-supports-yes">
+<div>56</div>
+<div>macOS only.</div>
+<div>56</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>70</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>macOS only.</div>
+<div>79</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>79</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>macOS only.</div>
+<div>43</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>57</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>properties</code></th>
+<td class="bc-supports-yes">
+<div>56</div>
+<div>macOS only.</div>
+<div>56</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>70</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>macOS only.</div>
+<div>79</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>79</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>macOS only.</div>
+<div>43</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>57</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>readValue</code></th>
+<td class="bc-supports-yes">
+<div>56</div>
+<div>macOS only.</div>
+<div>56</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>70</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>macOS only.</div>
+<div>79</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>79</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>macOS only.</div>
+<div>43</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>57</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>service</code></th>
+<td class="bc-supports-yes">
+<div>56</div>
+<div>macOS only.</div>
+<div>56</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>70</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>macOS only.</div>
+<div>79</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>79</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>macOS only.</div>
+<div>43</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>57</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>startNotifications</code></th>
+<td class="bc-supports-yes">
+<div>56</div>
+<div>macOS only.</div>
+<div>56</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>70</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>macOS only.</div>
+<div>79</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>79</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>macOS only.</div>
+<div>43</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>57</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>stopNotifications</code></th>
+<td class="bc-supports-yes">
+<div>56</div>
+<div>macOS only.</div>
+<div>56</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>70</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>macOS only.</div>
+<div>79</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>79</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>macOS only.</div>
+<div>43</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>57</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>uuid</code></th>
+<td class="bc-supports-yes">
+<div>56</div>
+<div>macOS only.</div>
+<div>56</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>70</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>macOS only.</div>
+<div>79</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>79</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>macOS only.</div>
+<div>43</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>57</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>value</code></th>
+<td class="bc-supports-yes">
+<div>56</div>
+<div>macOS only.</div>
+<div>56</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>70</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>macOS only.</div>
+<div>79</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>79</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>macOS only.</div>
+<div>43</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>57</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>writeValue</code></th>
+<td class="bc-supports-yes">
+<div>56</div>
+<div>macOS only.</div>
+<div>56</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>70</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>macOS only.</div>
+<div>79</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>79</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>macOS only.</div>
+<div>43</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>57</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>writeValueWithoutResponse</code></th>
+<td class="bc-supports-yes"><div>85</div></td>
+<td class="bc-supports-yes"><div>85</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>71</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>85</div></td>
+<td class="bc-supports-yes"><div>85</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>writeValueWithResponse</code></th>
+<td class="bc-supports-yes"><div>85</div></td>
+<td class="bc-supports-yes"><div>85</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>71</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>85</div></td>
+<td class="bc-supports-yes"><div>85</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/BluetoothRemoteGATTCharacteristic</a>
+  </p>
+</div>

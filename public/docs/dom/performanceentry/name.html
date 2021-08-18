@@ -1,0 +1,104 @@
+<h1>PerformanceEntry.name</h1> <p>The <code>name</code> property of the <a href="../performanceentry"><code>PerformanceEntry</code></a> interface returns a value that further specifies the value returned by the <a href="entrytype"><code>PerformanceEntry.entryType</code></a> property. This property is read only.</p> 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="../web_workers_api">Web Workers</a>.</p> </div>
+
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> name <span class="token operator">=</span> entry<span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+</pre>
+<h3 id="return_value">Return value</h3>
+<p>The return value depends on the subtype of the <code>PerformanceEntry</code> object and the value of <a href="entrytype"><code>PerformanceEntry.entryType</code></a>, as shown by the table below.</p> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Value</th> <th scope="col">Subtype</th> <th scope="col">entryType values</th> <th scope="col">Description</th> </tr> </thead> <tbody> <tr> <td><a href="../url"><code>URL</code></a></td> <td>
+<a href="../performanceframetiming"><code>PerformanceFrameTiming</code></a>, <a href="../performancenavigationtiming"><code>PerformanceNavigationTiming</code></a>
+</td> <td>
+<code>frame</code>, <code>navigation</code>
+</td> <td>The document's address.</td> </tr> <tr> <td><a href="../url"><code>URL</code></a></td> <td><a href="../performanceresourcetiming"><code>PerformanceResourceTiming</code></a></td> <td><code>resource</code></td> <td>The resolved URL of the requested resource. This value doesn't change even if the request is redirected.</td> </tr> <tr> <td><a href="../domstring"><code>DOMString</code></a></td> <td><a href="../performancemark"><code>PerformanceMark</code></a></td> <td><code>mark</code></td> <td>The name used when the mark was created by calling <a href="../performance/mark"><code>performance.mark()</code></a>.</td> </tr> <tr> <td><a href="../domstring"><code>DOMString</code></a></td> <td><a href="../performancemeasure"><code>PerformanceMeasure</code></a></td> <td><code>measure</code></td> <td>name used when the measure was created by calling <a href="../performance/measure"><code>performance.measure()</code></a>.</td> </tr> <tr> <td><a href="../domstring"><code>DOMString</code></a></td> <td><a href="../performancepainttiming"><code>PerformancePaintTiming</code></a></td> <td><code>paint</code></td> <td>Either <code>'first-paint'</code> or <code>'first-contentful-paint'</code>.</td> </tr> </tbody> </table></div>
+<h2 id="example">Example</h2>
+<p>The following example shows the use of the <code>name</code> property.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">run_PerformanceEntry</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"PerformanceEntry support ..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>performance<span class="token punctuation">.</span>mark <span class="token operator">===</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"... performance.mark Not supported"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Create some performance entries via the mark() method</span>
+  performance<span class="token punctuation">.</span><span class="token function">mark</span><span class="token punctuation">(</span><span class="token string">"Begin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">do_work</span><span class="token punctuation">(</span><span class="token number">50000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  performance<span class="token punctuation">.</span><span class="token function">mark</span><span class="token punctuation">(</span><span class="token string">"End"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Use getEntries() to iterate through the each entry</span>
+  <span class="token keyword">var</span> p <span class="token operator">=</span> performance<span class="token punctuation">.</span><span class="token function">getEntries</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> p<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Entry["</span> <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token string">"]"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">check_PerformanceEntry</span><span class="token punctuation">(</span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">check_PerformanceEntry</span><span class="token punctuation">(</span><span class="token parameter">obj</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> properties <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"name"</span><span class="token punctuation">,</span> <span class="token string">"entryType"</span><span class="token punctuation">,</span> <span class="token string">"startTime"</span><span class="token punctuation">,</span> <span class="token string">"duration"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> methods <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"toJSON"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> properties<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// check each property</span>
+    <span class="token keyword">var</span> supported <span class="token operator">=</span> properties<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token keyword">in</span> obj<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>supported<span class="token punctuation">)</span>
+      <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"..."</span> <span class="token operator">+</span> properties<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">" = "</span> <span class="token operator">+</span> obj<span class="token punctuation">[</span>properties<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span>
+      <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"..."</span> <span class="token operator">+</span> properties<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">" = Not supported"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> methods<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// check each method</span>
+    <span class="token keyword">var</span> supported <span class="token operator">=</span> <span class="token keyword">typeof</span> obj<span class="token punctuation">[</span>methods<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token string">"function"</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>supported<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> js <span class="token operator">=</span> obj<span class="token punctuation">[</span>methods<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"..."</span> <span class="token operator">+</span> methods<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"() = "</span> <span class="token operator">+</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>js<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"..."</span> <span class="token operator">+</span> methods<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">" = Not supported"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/performance-timeline/#dom-performanceentry-name" hreflang="en" rel=" noopener">Performance Timeline Level 2<br><small>The definition of 'name' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/performance-timeline/#dom-performanceentry-name" hreflang="en" rel=" noopener">Performance Timeline<br><small>The definition of 'name' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>name</code></th>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry/name" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry/name</a>
+  </p>
+</div>

@@ -1,0 +1,73 @@
+<h1>RTCPeerConnection.onicecandidate</h1>
+
+ <p>The <code>RTCPeerConnection</code> property <strong><a href="onicecandidate"><code>onicecandidate</code></a></strong> property is an <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a> which specifies a function to be called when the <code><a href="icecandidate_event">icecandidate</a></code> event occurs on an <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> instance. This happens whenever the local <a href="https://developer.mozilla.org/en-US/docs/Glossary/ICE">ICE</a> agent needs to deliver a message to the other peer through the signaling server. This lets the ICE agent perform negotiation with the remote peer without the browser itself needing to know any specifics about the technology being used for signaling; implement this method to use whatever messaging technology you choose to send the ICE candidate to the remote peer. </p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">rtcPeerConnection<span class="token punctuation">.</span>onicecandidate <span class="token operator">=</span> eventHandler<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>This should be set to a function which you provide that accepts as input an <a href="../rtcpeerconnectioniceevent"><code>RTCPeerConnectionIceEvent</code></a> object representing the <code><a href="icecandidate_event">icecandidate</a></code> event. The function should deliver the ICE candidate, whose <a href="https://developer.mozilla.org/en-US/docs/Glossary/SDP">SDP</a> can be found in the event's <a href="../rtcpeerconnectioniceevent/candidate"><code>candidate</code></a> property, to the remote peer through the signaling server.</p> <p>If the event's <code>candidate</code> property is <code>null</code>, ICE gathering has finished. This message should not be sent to the remote peer. When this happens, the connection's <a href="icegatheringstate"><code>iceGatheringState</code></a> has also changed to <code>complete</code>. You don't need to watch for this explicitly; instead, if you need to sense the end of signaling, you should watch for a <a href="icegatheringstatechange_event"><code>icegatheringstatechange</code></a> event indicating that the ICE negotiation has transitioned to the <code>complete</code> state.</p>
+<h2 id="example">Example</h2>
+<p>The example below, which is based on the code from the article <a href="../webrtc_api/signaling_and_video_calling">Signaling and video calling</a>, sets up a handler for <code><a href="icecandidate_event">icecandidate</a></code> events to send the candidates to the remote peer.</p> <pre data-language="js">pc<span class="token punctuation">.</span><span class="token function-variable function">onicecandidate</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>candidate<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Send the candidate to the remote peer</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">// All ICE candidates have been sent</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre> <p>Notice that the end of negotiation is detected here when the event's <a href="../rtcpeerconnectioniceevent/candidate"><code>candidate</code></a> property is <code>null</code>.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcpeerconnection-onicecandidate" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCPeerConnection.onicecandidate' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onicecandidate</code></th>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The <code><a href="icecandidate_event">icecandidate</a></code> event and its type, <a href="../rtcpeerconnectioniceevent"><code>RTCPeerConnectionIceEvent</code></a>.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/onicecandidate" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/onicecandidate</a>
+  </p>
+</div>

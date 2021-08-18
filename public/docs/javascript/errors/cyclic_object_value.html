@@ -1,0 +1,38 @@
+<h1>TypeError: cyclic object value</h1> <p>The JavaScript exception "cyclic object value" occurs when object references were found in <a href="https://www.json.org/" rel=" noopener">JSON</a>. <a href="../global_objects/json/stringify"><code>JSON.stringify()</code></a> doesn't try to solve them and fails accordingly.</p>
+<h2 id="message">Message</h2>
+<pre data-language="js">TypeError<span class="token operator">:</span> cyclic object <span class="token function">value</span> <span class="token punctuation">(</span>Firefox<span class="token punctuation">)</span>
+TypeError<span class="token operator">:</span> Converting circular structure to <span class="token constant">JSON</span> <span class="token punctuation">(</span>Chrome and Opera<span class="token punctuation">)</span>
+TypeError<span class="token operator">:</span> Circular reference <span class="token keyword">in</span> value argument not <span class="token function">supported</span> <span class="token punctuation">(</span>Edge<span class="token punctuation">)</span>
+</pre>
+<h2 id="error_type">Error type</h2>
+<p><a href="../global_objects/typeerror"><code>TypeError</code></a></p>
+<h2 id="what_went_wrong">What went wrong?</h2>
+<p>The <a href="https://www.json.org/" rel=" noopener">JSON format</a> per se doesn't support object references (although an <a href="https://datatracker.ietf.org/doc/html/draft-pbryan-zyp-json-ref-03" rel=" noopener">IETF draft exists</a>), hence <a href="../global_objects/json/stringify"><code>JSON.stringify()</code></a> doesn't try to solve them and fails accordingly.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="circular_references">Circular references</h3>
+<p>In a circular structure like the following</p> <pre data-language="js"><span class="token keyword">var</span> circularReference <span class="token operator">=</span> <span class="token punctuation">{</span>otherData<span class="token operator">:</span> <span class="token number">123</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+circularReference<span class="token punctuation">.</span>myself <span class="token operator">=</span> circularReference<span class="token punctuation">;</span>
+</pre> <p><a href="../global_objects/json/stringify"><code>JSON.stringify()</code></a> will fail</p> <pre data-language="js"><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>circularReference<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// TypeError: cyclic object value</span>
+</pre> <p>To serialize circular references you can use a library that supports them (e.g. <a href="https://github.com/douglascrockford/JSON-js/blob/master/cycle.js" rel=" noopener">cycle.js</a>) or implement a solution by yourself, which will require finding and replacing (or removing) the cyclic references by serializable values.</p> <p>The snippet below illustrates how to find and filter (thus causing data loss) a cyclic reference by using the <code>replacer</code> parameter of <a href="../global_objects/json/stringify"><code>JSON.stringify()</code></a>:</p> <pre data-language="js"><span class="token keyword">const</span> <span class="token function-variable function">getCircularReplacer</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> seen <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WeakSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> value <span class="token operator">===</span> <span class="token string">"object"</span> <span class="token operator">&amp;&amp;</span> value <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>seen<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      seen<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> value<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>circularReference<span class="token punctuation">,</span> <span class="token function">getCircularReplacer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// {"otherData":123}</span>
+</pre>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../global_objects/json/stringify"><code>JSON.stringify</code></a></li> <li>
+<a href="https://github.com/douglascrockford/JSON-js/blob/master/cycle.js" rel=" noopener">cycle.js</a> – Introduces two functions, <code>JSON.decycle</code> and <code>JSON.retrocycle</code>, which makes it possible to encode and decode cyclical structures and dags into an extended and retrocompatible JSON format.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Cyclic_object_value" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Cyclic_object_value</a>
+  </p>
+</div>

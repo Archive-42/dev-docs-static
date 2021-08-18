@@ -1,0 +1,88 @@
+<h1>Response.clone()</h1> <p>The <code>clone()</code> method of the <a href="../response"><code>Response</code></a> interface creates a clone of a response object, identical in every way, but stored in a different variable.</p> <p><code>clone()</code> throws a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError"><code>TypeError</code></a> if the response <a href="../body"><code>Body</code></a> has already been used. In fact, the main reason <code>clone()</code> exists is to allow multiple uses of <a href="../body"><code>Body</code></a> objects (when they are one-use only.)</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> response2 <span class="token operator">=</span> response1<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<p>None.</p>
+<h3 id="value">Value</h3>
+<p>A <a href="../response"><code>Response</code></a> object.</p>
+<h2 id="example">Example</h2>
+<p>In our <a href="https://github.com/mdn/fetch-examples/tree/gh-pages/fetch-response-clone" rel=" noopener">Fetch Response clone example</a> (see <a href="https://mdn.github.io/fetch-examples/fetch-response-clone/" rel=" noopener">Fetch Response clone live</a>) we create a new <a href="../request"><code>Request</code></a> object using the <a href="../request/request"><code>Request()</code></a> constructor, passing it a JPG path. We then fetch this request using <a href="../windoworworkerglobalscope/fetch"><code>fetch()</code></a>. When the fetch resolves successfully, we clone it, extract a blob from both responses using two <a href="../body/blob"><code>Body.blob</code></a> calls, create object URLs out of the blobs using <a href="../url/createobjecturl"><code>URL.createObjectURL</code></a>, and display them in two separate <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img"><code>&lt;img&gt;</code></a> elements.</p> <pre data-language="js"><span class="token keyword">var</span> image1 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.img1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> image2 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.img2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> myRequest <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Request</span><span class="token punctuation">(</span><span class="token string">'flowers.jpg'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">fetch</span><span class="token punctuation">(</span>myRequest<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> response2 <span class="token operator">=</span> response<span class="token punctuation">.</span><span class="token function">clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  response<span class="token punctuation">.</span><span class="token function">blob</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">myBlob</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> objectURL <span class="token operator">=</span> <span class="token constant">URL</span><span class="token punctuation">.</span><span class="token function">createObjectURL</span><span class="token punctuation">(</span>myBlob<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    image1<span class="token punctuation">.</span>src <span class="token operator">=</span> objectURL<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  response2<span class="token punctuation">.</span><span class="token function">blob</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">myBlob</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> objectURL <span class="token operator">=</span> <span class="token constant">URL</span><span class="token punctuation">.</span><span class="token function">createObjectURL</span><span class="token punctuation">(</span>myBlob<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    image2<span class="token punctuation">.</span>src <span class="token operator">=</span> objectURL<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://fetch.spec.whatwg.org/#dom-response-clone" hreflang="en" rel=" noopener">Fetch<br><small>The definition of 'clone()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>clone</code></th>
+<td class="bc-supports-yes">
+<div>42</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes">
+<div>39</div>
+<div>34</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>28</div>
+</td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>28</div>
+</td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../service_worker_api">ServiceWorker API</a></li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">HTTP access control (CORS)</a> </li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP">HTTP</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Response/clone" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Response/clone</a>
+  </p>
+</div>

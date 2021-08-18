@@ -1,0 +1,88 @@
+<h1>Document.elementFromPoint()</h1> <p>The <code>elementFromPoint()</code> method, available on the <a href="../document"><code>Document</code></a> object, returns the topmost <a href="../element"><code>Element</code></a> at the specified coordinates (relative to the viewport).</p> <p>If the element at the specified point belongs to another document (for example, the document of an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a>), that document's parent element is returned (the <code>&lt;iframe&gt;</code> itself). If the element at the given point is anonymous or XBL generated content, such as a textbox's scroll bars, then the first non-anonymous ancestor element (for example, the textbox) is returned.</p> <p>Elements with <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/pointer-events"><code>pointer-events</code></a> set to <code>none</code> will be ignored, and the element below it will be returned.</p> <p>If the method is run on another document (like an <code>&lt;iframe&gt;</code>'s subdocument), the coordinates are relative to the document where the method is being called.</p> <p>If the specified point is outside the visible bounds of the document or either coordinate is negative, the result is <code>null</code>.</p> <p>If you need to find the specific position inside the element, use <a href="caretpositionfrompoint"><code>Document.caretPositionFromPoint()</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">elementFromPoint</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>x</var></code></dt> <dd>The horizontal coordinate of a point, relative to the left edge of the current <a href="https://developer.mozilla.org/en-US/docs/Glossary/Viewport">viewport</a>.</dd> <dt><code><var>y</var></code></dt> <dd>The vertical coordinate of a point, relative to the top edge of the current viewport.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The topmost <a href="../element"><code>Element</code></a> object located at the specified coordinates.</p>
+<h2 id="example">Example</h2>
+<p>This example creates two buttons which let you set the current color of the paragraph element located under the coordinates <code>(2, 2)</code>.</p>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js"><span class="token keyword">function</span> <span class="token function">changeColor</span><span class="token punctuation">(</span><span class="token parameter">newColor</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  elem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">elementFromPoint</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  elem<span class="token punctuation">.</span>style<span class="token punctuation">.</span>color <span class="token operator">=</span> newColor<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>The <code>changeColor()</code> method obtains the element located at the specified point, then sets that element's current foreground <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color"><code>color</code></a> property to the color specified by the <code>newColor</code> parameter.</p>
+<h3 id="html">HTML</h3>
+<pre id="ExampleCode" data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>para1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Some text here<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>changeColor(<span class="token punctuation">'</span>blue<span class="token punctuation">'</span>);<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Blue<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>changeColor(<span class="token punctuation">'</span>red<span class="token punctuation">'</span>);<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Red<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+</pre> <p>The HTML provides the paragraph whose color will be affected, as well as two buttons: one to change the color to blue, and another to change the color to red.</p>
+<h3 id="result">Result</h3>
+<p><iframe class="sample-code-frame" id="frame_Example" width="400" height="100" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Document/elementFromPoint/_samples_/Example" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/cssom-view/#dom-document-elementfrompoint" hreflang="en" rel=" noopener">CSS Object Model (CSSOM) View Module<br><small>The definition of 'elementFromPoint()' in that specification.</small></a></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>elementFromPoint</code></th>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Before Chrome 66, this method returned <code>null</code> when the element was a child of a host node. See <a href="https://crbug.com/759947">issue 759947</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>≤12.1</div>
+<div>Before Opera 53, this method returned <code>null</code> when the element was a child of a host node. See <a href="https://crbug.com/759947">issue 759947</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Before WebView 66, this method returned <code>null</code> when the element was a child of a host node. See <a href="https://crbug.com/759947">issue 759947</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>Before Chrome 66, this method returned <code>null</code> when the element was a child of a host node. See <a href="https://crbug.com/759947">issue 759947</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>≤12.1</div>
+<div>Before Opera Android 47, this method returned <code>null</code> when the element was a child of a host node. See <a href="https://crbug.com/759947">issue 759947</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes">
+<div>1.0</div>
+<div>Before Samsung Internet 9.0, this method returned <code>null</code> when the element was a child of a host node. See <a href="https://crbug.com/759947">issue 759947</a>.</div>
+</td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="elementsfrompoint"><code>Document.elementsFromPoint()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/elementFromPoint" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Document/elementFromPoint</a>
+  </p>
+</div>

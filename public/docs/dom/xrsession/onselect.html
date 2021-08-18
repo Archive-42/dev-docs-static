@@ -1,0 +1,74 @@
+<h1>XRSession.onselect</h1>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div> <p>The <code><strong>onselect</strong></code> property of the <a href="../xrsession"><code>XRSession</code></a> object is the event handler for the <a href="select_event"><code>select</code></a> event, which is dispatched when a <a href="en-us/docs/web/api/webxr_device_api/inputs#Primary_actions">primary action</a> is completed successfully by the user. This typically represents the pressing of a button or trigger, a hand gesture, or a spoken command.</p> <p>The <a href="select_event"><code>select</code></a> event is sent after tracking of the primary action begins, as announced by the <a href="selectstart_event"><code>selectstart</code></a> event, and immediately before the tracking of the primary action ends, which is announced by the <a href="selectend_event"><code>selectend</code></a> event. </p> <p>To learn more about how WebXR actions work, see <a href="../webxr_device_api/inputs">Inputs and input sources</a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">xrSession<span class="token punctuation">.</span>onselect <span class="token operator">=</span> selectHandlerFunction<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>An event handler function to be invoked when the <a href="../xrsession"><code>XRSession</code></a> receives a <a href="select_event"><code>select</code></a> event.</p>
+<h2 id="example">Example</h2>
+<p>This example handles <code>select</code> event which occur on the user's main hand (as given by a <code>user</code> object's <code>handedness</code> property); if that value matches the value of the <a href="../xrinputsource"><code>XRInputSource</code></a> property <a href="../xrinputsource/handedness"><code>handedness</code></a>, we know that the device is held in the user's main hand.</p> <pre data-language="js">xrSession<span class="token punctuation">.</span><span class="token function-variable function">onselect</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> source <span class="token operator">=</span> event<span class="token punctuation">.</span>inputSource<span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>source<span class="token punctuation">.</span>handedness <span class="token operator">==</span> user<span class="token punctuation">.</span>handedness<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>source<span class="token punctuation">.</span>targetRayMode <span class="token operator">==</span> <span class="token string">"tracked-pointer"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> targetRayPose <span class="token operator">=</span> event<span class="token punctuation">.</span>frame<span class="token punctuation">.</span><span class="token function">getPose</span><span class="token punctuation">(</span>source<span class="token punctuation">.</span>targetRaySpace<span class="token punctuation">,</span> myRefSpace<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>targetRayPose<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">myHandleSelectWithRay</span><span class="token punctuation">(</span>targetRayPose<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://immersive-web.github.io/webxr/#dom-xrsession-onselect" hreflang="en" rel=" noopener">WebXR Device API<br><small>The definition of 'XRSession.onselect' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onselect</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../webxr_device_api/inputs">Inputs and input sources</a> </li> <li><a href="onselectstart"><code>XRSession.onselectstart</code></a></li> <li><a href="onselectend"><code>XRSession.onselectend</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XRSession/onselect" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XRSession/onselect</a>
+  </p>
+</div>

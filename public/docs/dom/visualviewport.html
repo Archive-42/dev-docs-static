@@ -1,0 +1,382 @@
+<h1>VisualViewport</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <code>VisualViewport</code> interface of the <a href="visual_viewport_api">Visual Viewport API</a> represents the visual viewport for a given window. For a page containing iframes, each iframe, as well as the containing page, will have a unique window object. Each window on a page will have a unique <code>VisualViewport</code> representing the properties associated with that window.</p> <p>You can get a window's visual viewport using <a href="window/visualviewport"><code>Window.visualViewport</code></a>.</p> <div class="note notecard"> <p><strong>Note</strong>: Only the top-level window has a visual viewport that's distinct from the layout viewport. Therefore, it's generally only the <code>VisualViewport</code> object of the top-level window that's useful. For an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a>, visual viewport metrics like <a href="visualviewport/width"><code>VisualViewport.width</code></a> always correspond to layout viewport metrics like <a href="element/clientwidth"><code>document.documentElement.clientWidth</code></a>.</p> </div>
+<h2 id="properties">Properties</h2>
+<p><em><code>VisualViewport</code> also inherits properties from its parent, <a href="eventtarget"><code>EventTarget</code></a>.</em></p> <dl> <dt>
+<a href="visualviewport/offsetleft"><code>VisualViewport.offsetLeft</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the offset of the left edge of the visual viewport from the left edge of the layout viewport in CSS pixels.</dd> <dt>
+<a href="visualviewport/offsettop"><code>VisualViewport.offsetTop</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the offset of the top edge of the visual viewport from the top edge of the layout viewport in CSS pixels.</dd> <dt>
+<a href="visualviewport/pageleft"><code>VisualViewport.pageLeft</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the x coordinate of the visual viewport relative to the initial containing block origin of the top edge in CSS pixels.</dd> <dt>
+<a href="visualviewport/pagetop"><code>VisualViewport.pageTop</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the y coordinate of the visual viewport relative to the initial containing block origin of the top edge in CSS pixels.</dd> <dt>
+<a href="visualviewport/width"><code>VisualViewport.width</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the width of the visual viewport in CSS pixels.</dd> <dt>
+<a href="visualviewport/height"><code>VisualViewport.height</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the height of the visual viewport in CSS pixels.</dd> <dt>
+<a href="visualviewport/scale"><code>VisualViewport.scale</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the pinch-zoom scaling factor applied to the visual viewport.</dd> </dl>
+<h2 id="events">Events</h2>
+<p>Listen to these events using <code><a href="eventtarget/addeventlistener">addEventListener()</a></code> or by assigning an event listener to the relevant <code>on<em>eventname</em></code> property of this interface.</p> <dl> <dt><code><a href="visualviewport/resize_event">resize</a></code></dt> <dd>Fired when the visual viewport is resized.<br> Also available via the <a href="visualviewport/onresize"><code>VisualViewport.onresize</code></a> property.</dd> <dt><code><a href="visualviewport/scroll_event">scroll</a></code></dt> <dd>Fired when the visual viewport is scrolled.<br> Also available via the <a href="visualviewport/onscroll"><code>VisualViewport.onscroll</code></a> property.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="hiding_an_overlaid_box_on_zoom">Hiding an overlaid box on zoom</h3>
+<p>This example, taken from the <a href="https://github.com/WICG/visual-viewport" rel=" noopener">Visual Viewport README</a>, shows how to write a simple bit of code that will hide an overlaid box (which might contain an advert, say) when the user zooms in. This is a nice way to improve the user experience when zooming in on pages. A <a href="https://wicg.github.io/visual-viewport/examples/hide-on-zoom.html" rel=" noopener">live sample</a> is also available.</p> <pre data-language="js"><span class="token keyword">var</span> bottomBar <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'bottombar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> viewport <span class="token operator">=</span> window<span class="token punctuation">.</span>visualViewport<span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">resizeHandler</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">if</span> <span class="token punctuation">(</span>viewport<span class="token punctuation">.</span>scale <span class="token operator">&gt;</span> <span class="token number">1.3</span><span class="token punctuation">)</span>
+     bottomBar<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">"none"</span><span class="token punctuation">;</span>
+   <span class="token keyword">else</span>
+     bottomBar<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">"block"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+window<span class="token punctuation">.</span>visualViewport<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'resize'</span><span class="token punctuation">,</span> resizeHandler<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="simulating_position_device-fixed">Simulating position: device-fixed</h3>
+<p>This example, also taken from the <a href="https://github.com/WICG/visual-viewport" rel=" noopener">Visual Viewport README</a>, shows how to use this API to simulate <code>position: device-fixed</code>, which fixes elements to the visual viewport. A <a href="https://wicg.github.io/visual-viewport/examples/fixed-to-viewport.html" rel=" noopener">live sample</a> is also available.</p> <pre data-language="js"><span class="token keyword">var</span> bottomBar <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'bottombar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> viewport <span class="token operator">=</span> window<span class="token punctuation">.</span>visualViewport<span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">viewportHandler</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> layoutViewport <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'layoutViewport'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Since the bar is position: fixed we need to offset it by the visual</span>
+  <span class="token comment">// viewport's offset from the layout viewport origin.</span>
+  <span class="token keyword">var</span> offsetLeft <span class="token operator">=</span> viewport<span class="token punctuation">.</span>offsetLeft<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> offsetTop <span class="token operator">=</span> viewport<span class="token punctuation">.</span>height
+              <span class="token operator">-</span> layoutViewport<span class="token punctuation">.</span><span class="token function">getBoundingClientRect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>height
+              <span class="token operator">+</span> viewport<span class="token punctuation">.</span>offsetTop<span class="token punctuation">;</span>
+
+  <span class="token comment">// You could also do this by setting style.left and style.top if you</span>
+  <span class="token comment">// use width: 100% instead.</span>
+  bottomBar<span class="token punctuation">.</span>style<span class="token punctuation">.</span>transform <span class="token operator">=</span> <span class="token string">'translate('</span> <span class="token operator">+</span>
+                              offsetLeft <span class="token operator">+</span> <span class="token string">'px,'</span> <span class="token operator">+</span>
+                              offsetTop <span class="token operator">+</span> <span class="token string">'px) '</span> <span class="token operator">+</span>
+                              <span class="token string">'scale('</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token operator">/</span>viewport<span class="token punctuation">.</span>scale <span class="token operator">+</span> <span class="token string">')'</span>
+<span class="token punctuation">}</span>
+window<span class="token punctuation">.</span>visualViewport<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'scroll'</span><span class="token punctuation">,</span> viewportHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+window<span class="token punctuation">.</span>visualViewport<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'resize'</span><span class="token punctuation">,</span> viewportHandler<span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <div class="notecard note"> <p><strong>Note</strong>: This technique should be used with care; emulating <code>position: device-fixed</code> in this way can result in the fixed element flickering during scrolling.</p> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://wicg.github.io/visual-viewport/#the-visualviewport-interface" hreflang="en" rel=" noopener">Visual Viewport API<br><small>The definition of 'VisualViewport' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>VisualViewport</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>63</div>
+</td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>height</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>63</div>
+</td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>offsetLeft</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>63</div>
+</td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>offsetTop</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>63</div>
+</td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>onresize</code></th>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>61</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>48</div>
+</td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>61</div>
+</td>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>61</div>
+</td>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>66</div>
+</td>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>45</div>
+</td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes">
+<div>8.0</div>
+<div>8.0</div>
+</td>
+</tr>
+<tr>
+<th><code>onscroll</code></th>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>61</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>48</div>
+</td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>61</div>
+</td>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>61</div>
+</td>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>66</div>
+</td>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>45</div>
+</td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes">
+<div>8.0</div>
+<div>8.0</div>
+</td>
+</tr>
+<tr>
+<th><code>pageLeft</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>63</div>
+</td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>pageTop</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>63</div>
+</td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>resize_event</code></th>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>61</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>48</div>
+</td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>61</div>
+</td>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>61</div>
+</td>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>66</div>
+</td>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>45</div>
+</td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes">
+<div>8.0</div>
+<div>8.0</div>
+</td>
+</tr>
+<tr>
+<th><code>scale</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>63</div>
+</td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>scroll_event</code></th>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>61</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>48</div>
+</td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>61</div>
+</td>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>61</div>
+</td>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>66</div>
+</td>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>45</div>
+</td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes">
+<div>8.0</div>
+<div>8.0</div>
+</td>
+</tr>
+<tr>
+<th><code>width</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>63</div>
+</td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="https://github.com/bokand/bokand.github.io/blob/master/web_viewports_explainer.md" rel=" noopener">Web Viewports Explainer</a> — useful explanation of web viewports concepts, including the difference between visual viewport and layout viewport.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/VisualViewport" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/VisualViewport</a>
+  </p>
+</div>

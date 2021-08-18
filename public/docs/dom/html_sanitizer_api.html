@@ -1,0 +1,116 @@
+<h1>HTML Sanitizer API</h1>
+<div class="notecard draft"> <strong id="draft">Draft</strong> <p>This page is not complete.</p> </div>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div> <p class="summary">The HTML Sanitizer API allow developers to take untrusted strings of HTML, and sanitize them for safe insertion into a document’s DOM.</p>
+<h2 id="sanitizer_api_concepts_and_usage">Sanitizer API Concepts and Usage</h2>
+<p>Web applications often need to work with strings of HTML on the client side, perhaps as part of a client-side templating solution, perhaps as part of rendering user generated content. It is difficult to do so in a safe way. The Sanitizer API allows for rendering HTML in a safe manner.</p> <p>To access the API you would use the constructor, which creates a <a href="sanitizer/sanitizer"><code>Sanitizer.Sanitizer</code></a> instance and allows for a configurable list of allowed or dis-allowed elements and attributes.</p> <p>The most common use-case - preventing XSS - is handled by the built-in default lists, so that creating a <a href="sanitizer/sanitizer"><code>Sanitizer.Sanitizer</code></a> with a custom config is necessary only to handle additional, application-specific use cases.</p> <p>The API has two methods to sanitize strings. One returns a string and the other returns a document fragment. See the <a href="#examples">examples section below</a> for more.</p>
+<h2 id="sanitizer_api_interfaces">Sanitizer API Interfaces</h2>
+<dl> <dt><a href="sanitizer"><code>Sanitizer</code></a></dt> <dd>The <code>Sanitizer</code> interface of the <a href="html_sanitizer_api"><code>HTML Sanitizer API</code></a> provides the functionality to take untrusted strings of HTML, and sanitize them for safe insertion into a document’s DOM.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>This example shows the result of sanitizing a string using the <a href="sanitizer/sanitizetostring"><code>Sanitizer.sanitizeToString()</code></a> method. A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a> is returned with disallowed <code>script</code> and <code>blink</code> elements removed.</p> <pre data-language="js"><span class="token comment">// our input string to clean</span>
+<span class="token keyword">const</span> stringToClean <span class="token operator">=</span> <span class="token string">'Some text &lt;b&gt;&lt;i&gt;with&lt;/i&gt;&lt;/b&gt; &lt;blink&gt;tags&lt;/blink&gt;, including a rogue script &lt;script&gt;alert(1)&lt;/script&gt; def.'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Sanitizer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sanitizeToString</span><span class="token punctuation">(</span>stringToClean<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Logs: "Some text &lt;b&gt;&lt;i&gt;with&lt;/i&gt;&lt;/b&gt; &lt;blink&gt;tags&lt;/blink&gt;, including a rogue script def."</span>
+</pre> <p>The other method available is the <a href="sanitizer/sanitize"><code>Sanitizer.sanitize()</code></a> method. Which is very similar to above, however returns a <a href="documentfragment"><code>DocumentFragment</code></a> with disallowed <code>script</code> and <code>blink</code> elements removed.</p> <pre data-language="js"><span class="token comment">// our input string to clean</span>
+<span class="token keyword">const</span> stringToClean <span class="token operator">=</span> <span class="token string">'Some text &lt;b&gt;&lt;i&gt;with&lt;/i&gt;&lt;/b&gt; &lt;blink&gt;tags&lt;/blink&gt;, including a rogue script &lt;script&gt;alert(1)&lt;/script&gt; def.'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Sanitizer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sanitize</span><span class="token punctuation">(</span>stringToClean<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Result: A DocumentFragment containing text nodes and a &lt;b&gt; element, with a &lt;i&gt; child element</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://wicg.github.io/sanitizer-api/#sanitizer-api" hreflang="en" rel=" noopener">HTML Sanitizer API<br><small>The definition of 'sanitizeToString' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>HTML_Sanitizer_API</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>Sanitizer</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>sanitize</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>sanitizeToString</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTML_Sanitizer_API</a>
+  </p>
+</div>

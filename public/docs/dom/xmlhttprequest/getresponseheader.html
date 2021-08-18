@@ -1,0 +1,74 @@
+<h1>XMLHttpRequest.getResponseHeader()</h1> <p>The <a href="../xmlhttprequest"><code>XMLHttpRequest</code></a> method <code>getResponseHeader()</code> returns the string containing the text of a particular header's value. If there are multiple response headers with the same name, then their values are returned as a single concatenated string, where each value is separated from the previous one by a pair of comma and space. The <code>getResponseHeader()</code> method returns the value as a UTF byte sequence.</p> <div class="note notecard"> <p><strong>Note:</strong> The search for the header name is case-insensitive.</p> </div> <p>If you need to get the raw string of all of the headers, use the <a href="getallresponseheaders"><code>getAllResponseHeaders()</code></a> method, which returns the entire raw header string.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> myHeader <span class="token operator">=</span> XMLHttpRequest<span class="token punctuation">.</span><span class="token function">getResponseHeader</span><span class="token punctuation">(</span>headerName<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><var>headerName</var></dt> <dd>A <a href="../bytestring"><code>ByteString</code></a> indicating the name of the header you want to return the text value of.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="../bytestring"><code>ByteString</code></a> representing the header's text value, or <code>null</code> if either the response has not yet been received or the header doesn't exist in the response.</p>
+<h2 id="example">Example</h2>
+<p>In this example, a request is created and sent, and a <code><a href="../document/readystatechange_event">readystatechange</a></code> handler is established to look for the <a href="readystate"><code>readyState</code></a> to indicate that the headers have been received; when that is the case, the value of the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type"><code>Content-Type</code></a> header is fetched. If the <code>Content-Type</code> isn't the desired value, the <a href="../xmlhttprequest"><code>XMLHttpRequest</code></a> is canceled by calling <a href="abort"><code>abort()</code></a>.</p> <pre data-language="js"><span class="token keyword">var</span> client <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+client<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"GET"</span><span class="token punctuation">,</span> <span class="token string">"unicorns-are-teh-awesome.txt"</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+client<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+client<span class="token punctuation">.</span><span class="token function-variable function">onreadystatechange</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>readyState <span class="token operator">==</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token constant">HEADERS_RECEIVED</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> contentType <span class="token operator">=</span> client<span class="token punctuation">.</span><span class="token function">getResponseHeader</span><span class="token punctuation">(</span><span class="token string">"Content-Type"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>contentType <span class="token operator">!=</span> my_expected_type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      client<span class="token punctuation">.</span><span class="token function">abort</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://xhr.spec.whatwg.org/#dom-xmlhttprequest-getresponseheader" hreflang="en" rel=" noopener">XMLHttpRequest<br><small>The definition of 'getResponseHeader()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>WHATWG living standard</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getResponseHeader</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Starting from Firefox 49, empty headers are returned as empty strings in case the preference <code>network.http.keep_empty_response_headers_as_empty_string</code> is set to <code>true</code>, defaulting to <code>false</code>. Before Firefox 49 empty headers had been ignored. Since Firefox 50 the preference defaults to <code>true</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Starting from Firefox 49, empty headers are returned as empty strings in case the preference <code>network.http.keep_empty_response_headers_as_empty_string</code> is set to <code>true</code>, defaulting to <code>false</code>. Before Firefox 49 empty headers had been ignored. Since Firefox 50 the preference defaults to <code>true</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="using_xmlhttprequest">Using XMLHttpRequest</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers">HTTP headers</a></li> <li><a href="getallresponseheaders"><code>getAllResponseHeaders()</code></a></li> <li><a href="response"><code>response</code></a></li> <li>Setting request headers: <a href="setrequestheader"><code>setRequestHeader()</code></a>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/getResponseHeader" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/getResponseHeader</a>
+  </p>
+</div>

@@ -1,0 +1,85 @@
+<h1>Object.fromEntries()</h1>
+
+ <p>The <code><strong>Object.fromEntries()</strong></code> method transforms a list of key-value pairs into an object.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/object-fromentries.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js">Object<span class="token punctuation">.</span><span class="token function">fromEntries</span><span class="token punctuation">(</span>iterable<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>iterable</var></code></dt> <dd>An iterable such as <a href="../array"><code>Array</code></a> or <a href="../map"><code>Map</code></a> or other objects implementing the <a href="../../iteration_protocols#the_iterable_protocol">iterable protocol</a>.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A new object whose properties are given by the entries of the iterable.</p>
+<h2 id="description">Description</h2>
+<p>The <code>Object.fromEntries()</code> method takes a list of key-value pairs and returns a new object whose properties are given by those entries. The <var>iterable</var> argument is expected to be an object that implements an <code>@@iterator</code> method, that returns an iterator object, that produces a two element array-like object, whose first element is a value that will be used as a property key, and whose second element is the value to associate with that property key. </p> <p><code>Object.fromEntries()</code> performs the reverse of <a href="entries"><code>Object.entries()</code></a>.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="converting_a_map_to_an_object">Converting a Map to an Object</h3>
+<p>With <code>Object.fromEntries</code>, you can convert from <a href="../map"><code>Map</code></a> to <a href="../object"><code>Object</code></a>:</p> <pre data-language="js"><span class="token keyword">const</span> map <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Map</span><span class="token punctuation">(</span><span class="token punctuation">[</span> <span class="token punctuation">[</span><span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token string">'bar'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'baz'</span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">]</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> obj <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">fromEntries</span><span class="token punctuation">(</span>map<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// { foo: "bar", baz: 42 }</span>
+</pre>
+<h3 id="converting_an_array_to_an_object">Converting an Array to an Object</h3>
+<p>With <code>Object.fromEntries</code>, you can convert from <a href="../array"><code>Array</code></a> to <a href="../object"><code>Object</code></a>:</p> <pre data-language="js"><span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token punctuation">[</span><span class="token string">'0'</span><span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'1'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'2'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">]</span> <span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> obj <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">fromEntries</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// { 0: "a", 1: "b", 2: "c" }</span>
+</pre>
+<h3 id="object_transformations">Object transformations</h3>
+<p>With <code>Object.fromEntries</code>, its reverse method <a href="entries"><code>Object.entries()</code></a>, and <a href="../array#methods_2">array manipulation methods</a>, you are able to transform objects like this:</p> <pre data-language="js"><span class="token keyword">const</span> object1 <span class="token operator">=</span> <span class="token punctuation">{</span> a<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> b<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span> c<span class="token operator">:</span> <span class="token number">3</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> object2 <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">fromEntries</span><span class="token punctuation">(</span>
+  Object<span class="token punctuation">.</span><span class="token function">entries</span><span class="token punctuation">(</span>object1<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">[</span> key<span class="token punctuation">,</span> val <span class="token punctuation">]</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">[</span> key<span class="token punctuation">,</span> val <span class="token operator">*</span> <span class="token number">2</span> <span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>object2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// { a: 2, b: 4, c: 6 }</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-object.fromentries">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-object.fromentries</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>fromEntries</code></th>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>12.2</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="entries"><code>Object.entries()</code></a></li> <li><a href="keys"><code>Object.keys()</code></a></li> <li><a href="values"><code>Object.values()</code></a></li> <li><a href="../map/entries"><code>Map.prototype.entries()</code></a></li> <li><a href="../map/keys"><code>Map.prototype.keys()</code></a></li> <li><a href="../map/values"><code>Map.prototype.values()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/fromEntries</a>
+  </p>
+</div>

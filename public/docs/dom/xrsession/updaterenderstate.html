@@ -1,0 +1,81 @@
+<h1>XRSession.updateRenderState()</h1>
+<div class="notecard draft"> <strong id="draft">Draft</strong> <p>This page is not complete.</p> </div>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div> <p>The <code>updateRenderState()</code> method of the <a href="../xrsession"><code>XRSession</code></a> interface of <a href="../webxr_device_api">WebXR API</a> schedules changes to be applied to the active render state prior to rendering of the next frame.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">xrSession<span class="token punctuation">.</span><span class="token function">updateRenderState</span><span class="token punctuation">(</span>newState<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>newState</code></dt> <dd>An object conforming to the <a href="../xrrenderstateinit"><code>XRRenderStateInit</code></a> dictionary specifying the properties of the session's <a href="renderstate"><code>renderState</code></a> to update before rendering the next frame.</dd> </dl> <p>The specified object may have any combination of the following fields.</p> 
+<dl> <dt>
+<code>baseLayer</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An <a href="../xrwebgllayer"><code>XRWebGLLayer</code></a> object from which the WebXR compositor will obtain imagery. This is <code>null</code> by default.</dd> <dt>
+<code>depthFar</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A floating-point value specifying the distance in meters from the viewer to the <strong>far clip plane</strong>, which is a plane parallel to the display surface beyond which no further rendering will occur. All rendering will take place between the distances specified by <code>depthNear</code> and <code>depthFar</code>. This is 1000 meters (1 kilometer) by default.</dd> <dt>
+<code>depthNear</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A floating-point value indicating the distance in meters from the viewer to a plane parallel to the display surface to be the <strong>near clip plane</strong>. No part of the scene on the viewer's side of this plane will be rendered. This is 0.1 meters (10 centimeters) by default.</dd> <dt>
+<code>inlineVerticalFieldOfView</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A floating-point value indicating the default field of view, in radians, to be used when computing the projection matrix for an <code>inline</code> <a href="../xrsession"><code>XRSession</code></a>. The projection matrix calculation also takes into account the output canvas's aspect ratio. This property <em>must not</em> be specified for immersive sessions, so the value is <code>null</code> by default for immersive sessions. The default value is otherwise π * 0.5 (half of the value of pi).</dd> </dl>
+
+<h3 id="return_value">Return value</h3>
+<p>None.</p>
+<h3 id="exceptions">Exceptions</h3>
+<p>This method may throw any of the following exceptions. These are true exceptions, since this method does not return a promise.</p> <dl> <dt><code>InvalidStateError</code></dt> <dd> <p>This may occur for one of the following reasons:</p> <ul> <li>The <a href="../xrsession"><code>XRSession</code></a> has already ended, so you cannot change its render state.</li> <li>The <a class="page-not-created"><code>baseLayer</code></a> specified in <code>newState</code> was created by an <code>XRSession</code> other than the one on which <code>updateRenderState()</code> was called.</li> <li>The <a class="page-not-created"><code>inlineVerticalFieldOfView</code></a> property was set, but the session is immersive and therefore does not allow this property to be used.</li> </ul> </dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>This example creates a WebGL context that is compatible with an immersive XR device and then uses it to create an <a href="../xrwebgllayer"><code>XRWebGLLayer</code></a>. <code>updateRenderState()</code> is then called to associate the new <code>XRWebGLLayer</code>.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">onXRSessionStarted</span><span class="token punctuation">(</span><span class="token parameter">xrSession</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> glCanvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"canvas"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> gl <span class="token operator">=</span> glCanvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">"webgl"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> xrCompatible<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token function">loadWebGLResources</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  xrSession<span class="token punctuation">.</span><span class="token function">updateRenderState</span><span class="token punctuation">(</span><span class="token punctuation">{</span> baseLayer<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">XRWebGLLayer</span><span class="token punctuation">(</span>xrSession<span class="token punctuation">,</span> gl<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td> <a href="https://immersive-web.github.io/webxr/#dom-xrsession-updaterenderstate" hreflang="en" rel=" noopener">WebXR Device API<br><small>The definition of 'XRSession.updateRenderState()' in that specification.</small></a> </td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>updateRenderState</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webxr_device_api">WebXR Device API</a></li> <li><a href="../xrrenderstate"><code>XRRenderState</code></a></li> <li>
+<a href="renderstate"><code>XRSession.renderState</code></a> </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XRSession/updateRenderState" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XRSession/updateRenderState</a>
+  </p>
+</div>

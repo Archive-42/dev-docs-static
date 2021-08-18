@@ -1,0 +1,117 @@
+<h1>RTCPeerConnection.createDataChannel()</h1>
+
+ <p>The <code>createDataChannel()</code> method on the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> interface creates a new channel linked with the remote peer, over which any kind of data may be transmitted. This can be useful for back-channel content such as images, file transfer, text chat, game update packets, and so forth.</p> <p>If the new data channel is the first one added to the connection, renegotiation is started by delivering a <code><a href="negotiationneeded_event">negotiationneeded</a></code> event.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">dataChannel <span class="token operator">=</span> RTCPeerConnection<span class="token punctuation">.</span><span class="token function">createDataChannel</span><span class="token punctuation">(</span>label<span class="token punctuation">[</span><span class="token punctuation">,</span> options<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>label</code></dt> <dd>A human-readable name for the channel. This string may not be longer than 65,535 <em>bytes</em>.</dd> <dt>
+<code>options</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An <a href="#rtcdatachannelinit_dictionary"><code>RTCDataChannelInit</code> dictionary</a> providing configuration options for the data channel</dd> </dl>
+<h3 id="rtcdatachannelinit_dictionary">RTCDataChannelInit dictionary</h3>
+<p>The <code>RTCDataChannelInit</code> dictionary provides the following fields, any of which may be included in the object passed as the options parameter in order to configure the data channel to suit your needs:</p> <dl> <dt>
+<code>ordered</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>Indicates whether or not messages sent on the <a href="../rtcdatachannel"><code>RTCDataChannel</code></a> are required to arrive at their destination in the same order in which they were sent (<code>true</code>), or if they're allowed to arrive out-of-order (<code>false</code>). <code>true</code>
+</dd> <dt><strong><code>maxPacketLifeTime</code> <span class="badge inline optional">Optional</span></strong></dt> <dd>The maximum number of milliseconds that attempts to transfer a message may take in unreliable mode. While this value is a 16-bit unsigned number, each user agent may clamp it to whatever maximum it deems appropriate. <code>null</code>
+</dd> <dt>
+<code>maxRetransmits</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>The maximum number of times the user agent should attempt to retransmit a message which fails the first time in unreliable mode. While this value is a16-bit unsigned number, each user agent may clamp it to whatever maximum it deems appropriate. <code>null</code>
+</dd> <dt>
+<code>protocol</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>The name of the sub-protocol being used on the <a href="../rtcdatachannel"><code>RTCDataChannel</code></a>, if any; otherwise, the empty string (""). <code>""</code> This string may not be longer than 65,535 <em>bytes</em>. </dd> <dt>
+<code>negotiated</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>By default (<code>false</code>), data channels are negotiated in-band, where one side calls <code>createDataChannel</code>, and the other side listens to the <a href="../rtcdatachannelevent"><code>RTCDataChannelEvent</code></a> event using the <code>ondatachannel</code> <code>EventHandler</code> . Alternatively (<code>true</code>), they can be negotiated out of-band, where both sides call <code>createDataChannel </code>with an agreed-upon id. <code>false</code>
+</dd> <dt>
+<code>id</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An 16-bit numeric ID for the channel; permitted values are 0-65534. If you don't include this option, the user agent will select an ID for you.</dd> </dl> <div class="note notecard"> <p>The options which can be configured using the <code>RTCDataChannelInit</code> dictionary represent the script-settable subset of the properties on the <a href="../rtcdatachannel"><code>RTCDataChannel</code></a> interface.</p> </div>
+<h3 id="return_value">Return value</h3>
+<p>A new <a href="../rtcdatachannel"><code>RTCDataChannel</code></a> object with the specified <code>label</code>, configured using the options specified by <code>options</code> if that parameter is included; otherwise, the defaults listed above are established.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>InvalidStateError</code></dt> <dd>The <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> is closed.</dd> <dt><code>TypeError</code></dt> <dd>This can happen in a couple of situations: <ul> <li>The label and/or protocol string is too long; these cannot be longer than 65,535 bytes (bytes, rather than characters).</li> <li>The <code>id</code> is 65535. While this is a valid unsigned 16-bit value, it's not a permitted value for <code>id</code>.</li> </ul> </dd> <dt><code>SyntaxError</code></dt> <dd>Values were specified for both the <code>maxPacketLifeTime</code> and <code>maxRetransmits</code> options. You may only specify a non-<code>null</code> value for one of these.</dd> <dt><code>ResourceInUse</code></dt> <dd>An <code>id</code> was specified, but another <a href="../rtcdatachannel"><code>RTCDataChannel</code></a> is already using the same value.</dd> <dt><code>OperationError</code></dt> <dd>Either the specified <code>id</code> is already in use or, if no <code>id</code> was specified, the WebRTC layer was unable to automatically generate an ID because all IDs are in use.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>This example shows how to create a data channel and set up handlers for the <code><a href="../rtcdatachannel/open_event">open</a></code> and <code><a href="../broadcastchannel/message_event">message</a></code> events to send and receive messages on it (For brievity, the example assumes onnegotiationneeded is set up).</p> <pre data-language="js"><span class="token comment">// Offerer side</span>
+
+<span class="token keyword">var</span> pc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RTCPeerConnection</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> channel <span class="token operator">=</span> pc<span class="token punctuation">.</span><span class="token function">createDataChannel</span><span class="token punctuation">(</span><span class="token string">"chat"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+channel<span class="token punctuation">.</span><span class="token function-variable function">onopen</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  channel<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">'Hi you!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+channel<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <pre data-language="js"><span class="token comment">// Answerer side</span>
+
+<span class="token keyword">var</span> pc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RTCPeerConnection</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+pc<span class="token punctuation">.</span><span class="token function-variable function">ondatachannel</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> channel <span class="token operator">=</span> event<span class="token punctuation">.</span>channel<span class="token punctuation">;</span>
+    channel<span class="token punctuation">.</span><span class="token function-variable function">onopen</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    channel<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">'Hi back!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  channel<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre> <p>Alternatively, more symmetrical out-of-band negotiation can be used, using an agreed-upon id (0 here):</p> <pre data-language="js"><span class="token comment">// Both sides</span>
+
+<span class="token keyword">var</span> pc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RTCPeerConnection</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> channel <span class="token operator">=</span> pc<span class="token punctuation">.</span><span class="token function">createDataChannel</span><span class="token punctuation">(</span><span class="token string">"chat"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>negotiated<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> id<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+channel<span class="token punctuation">.</span><span class="token function-variable function">onopen</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  channel<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">'Hi!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+channel<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>For a more thorough example showing how the connection and channel are established, see <a href="../webrtc_api/simple_rtcdatachannel_sample">A simple RTCDataChannel sample</a>.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-peerconnection-createdatachannel" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'createDataChannel()' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>createDataChannel</code></th>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../rtcdatachannel"><code>RTCDataChannel</code></a></li> <li><a href="../webrtc_api/simple_rtcdatachannel_sample">A simple RTCDataChannel sample</a></li> <li><a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/createDataChannel" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/createDataChannel</a>
+  </p>
+</div>

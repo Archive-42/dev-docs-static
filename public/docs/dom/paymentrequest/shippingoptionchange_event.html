@@ -1,0 +1,33 @@
+<h1>PaymentRequest: shippingoptionchange event</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>For payment requests that request shipping information, and for which shipping options are offered, the <code><strong>shippingoptionchange</strong></code> event is sent to the <a href="../paymentrequest"><code>PaymentRequest</code></a> whenever the user chooses a shipping option from the list of available options. The string identifying the currently-selected shipping option can be found in the <a href="shippingoption"><code>shippingOption</code></a> property.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>No</td> </tr> <tr> <th scope="row">Cancelable</th> <td>No</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../paymentrequestupdateevent"><code>PaymentRequestUpdateEvent</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td><a href="onshippingoptionchange"><code>onshippingoptionchange</code></a></td> </tr> </tbody> </table></div>
+<h2 id="examples">Examples</h2>
+<p>This code snippet sets up a handler for the <code>shippingoptionchange</code> event. The code recalculates the total charge for the payment based on the selected shipping option. For example, if there are three options (such as "Free ground shipping", "2-day air", and "Next day"), each time the user chooses one of those options, this event handler is called to recalculate the total based on the changed shipping option.</p> <pre data-language="js">paymentRequest<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"shippingoptionchange"</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> value <span class="token operator">=</span> <span class="token function">calculateNewTotal</span><span class="token punctuation">(</span>paymentRequest<span class="token punctuation">.</span>shippingOption<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> total <span class="token operator">=</span> <span class="token punctuation">{</span>
+    currency<span class="token operator">:</span> <span class="token string">"EUR"</span><span class="token punctuation">,</span>
+    label<span class="token operator">:</span> <span class="token string">"Total due"</span><span class="token punctuation">,</span>
+    value<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  event<span class="token punctuation">.</span><span class="token function">updateWith</span><span class="token punctuation">(</span><span class="token punctuation">{</span> total <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>After caling a custom function, <code>calculateNewTotal()</code>, to compute the updated total based on the newly-selected shipping option as specified by the <a href="shippingoption"><code>shippingOption</code></a>. The revised total is submitted back to the payment request by calling the event's <a href="../paymentrequestupdateevent/updatewith"><code>updateWith()</code></a> method.</p> <p>You can also create an event handler for <code>shippingoptionchange</code> using its corresponding event handler property, <a class="page-not-created"><code>onshippingoptionchange</code></a>:</p> <pre data-language="js">paymentRequest<span class="token punctuation">.</span><span class="token function-variable function">onshippingoptionchange</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> value <span class="token operator">=</span> <span class="token function">calculateNewTotal</span><span class="token punctuation">(</span>paymentRequest<span class="token punctuation">.</span>shippingOption<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> total <span class="token operator">=</span> <span class="token punctuation">{</span>
+    currency<span class="token operator">:</span> <span class="token string">"EUR"</span><span class="token punctuation">,</span>
+    label<span class="token operator">:</span> <span class="token string">"Total due"</span><span class="token punctuation">,</span>
+    value<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  event<span class="token punctuation">.</span><span class="token function">updateWith</span><span class="token punctuation">(</span><span class="token punctuation">{</span> total <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/payment-request/#dfn-shippingoptionchange" hreflang="en" rel=" noopener">Payment Request API<br><small>The definition of 'shippingoptionchange' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<p>BCD tables only load in the browser</p> 
+ <ul> <li>
+<a href="onshippingoptionchange"><code>onshippingoptionchange</code></a> event handler property</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/shippingoptionchange_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/shippingoptionchange_event</a>
+  </p>
+</div>

@@ -1,0 +1,119 @@
+<h1>KeyframeEffect.setKeyframes()</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <code><strong>setKeyframes()</strong></code> method of the <a href="../keyframeeffect"><code>KeyframeEffect</code></a> interface replaces the keyframes that make up the affected <code>KeyframeEffect</code> with a new set of keyframes.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">existingKeyframeEffect<span class="token punctuation">.</span><span class="token function">setKeyframes</span><span class="token punctuation">(</span>keyframes<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="attributes">Attributes</h2>
+<h3 id="Parameters">Parameters</h3> <dl> <dt>keyframes</dt> <dd>
+<span style="line-height: 1.5;">A keyframe object or </span><code style="font-style: normal; font-weight: normal; line-height: 1.5;">null</code><span style="line-height: 1.5;">. If set to <code>null</code>, the keyframes are replaced with a sequence of empty keyframes.</span><br> <br>  <p>There are two different ways to format keyframes:</p> <ol> <li> <p>An <code>array</code> of objects (keyframes) consisting of properties and values to iterate over. This is the canonical format returned by the <a href="getkeyframes"><code>getKeyframes()</code></a> method.</p> <pre data-language="js">element<span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> <span class="token comment">// from</span>
+    opacity<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    color<span class="token operator">:</span> <span class="token string">"#fff"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> <span class="token comment">// to</span>
+    opacity<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+    color<span class="token operator">:</span> <span class="token string">"#000"</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Offsets for each keyframe can be specified by providing an <code>offset</code> value.</p> <pre data-language="js">element<span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span><span class="token punctuation">[</span> <span class="token punctuation">{</span> opacity<span class="token operator">:</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                  <span class="token punctuation">{</span> opacity<span class="token operator">:</span> <span class="token number">0.1</span><span class="token punctuation">,</span> offset<span class="token operator">:</span> <span class="token number">0.7</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                  <span class="token punctuation">{</span> opacity<span class="token operator">:</span> <span class="token number">0</span> <span class="token punctuation">}</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <div class="note notecard"> <p><strong>Note</strong>: <code>offset</code> values, if provided, must be between 0.0 and 1.0 (inclusive) and arranged in ascending order.</p> </div> <p>It is not necessary to specify an offset for every keyframe. Keyframes without a specified offset will be evenly spaced between adjacent keyframes.</p> <p>The easing to apply between keyframes can be specified by providing an <code>easing</code> value as illustrated below.</p> <pre data-language="js">element<span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span><span class="token punctuation">[</span> <span class="token punctuation">{</span> opacity<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> easing<span class="token operator">:</span> <span class="token string">'ease-out'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                  <span class="token punctuation">{</span> opacity<span class="token operator">:</span> <span class="token number">0.1</span><span class="token punctuation">,</span> easing<span class="token operator">:</span> <span class="token string">'ease-in'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+                  <span class="token punctuation">{</span> opacity<span class="token operator">:</span> <span class="token number">0</span> <span class="token punctuation">}</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                <span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>In this example, the specified easing only applies from the keyframe where it is specified until the next keyframe. Any <code>easing</code> value specified on the <code>options</code> argument, however, applies across a single iteration of the animation — for the entire duration.</p> </li> <li> <p>An <code>object</code> containing key-value pairs consisting of the property to animate and an <code>array</code> of values to iterate over.</p> <pre data-language="js">element<span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  opacity<span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>          <span class="token comment">// [ from, to ]</span>
+  color<span class="token operator">:</span>   <span class="token punctuation">[</span> <span class="token string">"#fff"</span><span class="token punctuation">,</span> <span class="token string">"#000"</span> <span class="token punctuation">]</span> <span class="token comment">// [ from, to ]</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>Using this format, the number of elements in each array does not need to be equal. The provided values will be spaced out independently.</p> <pre data-language="js">element<span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  opacity<span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span> <span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">// offset: 0, 1</span>
+  backgroundColor<span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">"red"</span><span class="token punctuation">,</span> <span class="token string">"yellow"</span><span class="token punctuation">,</span> <span class="token string">"green"</span> <span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">// offset: 0, 0.5, 1</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>The special keys <code>offset</code>, <code>easing</code>, and <code>composite</code> (described below) may be specified alongside the property values.</p> <pre data-language="js">element<span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  opacity<span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0.9</span><span class="token punctuation">,</span> <span class="token number">1</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  offset<span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0.8</span> <span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token comment">// Shorthand for [ 0, 0.8, 1 ]</span>
+  easing<span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">'ease-in'</span><span class="token punctuation">,</span> <span class="token string">'ease-out'</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">2000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>After generating a suitable set of keyframes from the property value lists, each supplied offset is applied to the corresponding keyframe. If there are insufficient values, or if the list contains <code>null</code> values, the keyframes without specified offsets will be evenly spaced as with the array format described above.</p> <p>If there are too few <code>easing</code> or <code>composite</code> values, the corresponding list will be repeated as needed.</p> </li> </ol> <h3 id="Implicit_tofrom_keyframes">Implicit to/from keyframes</h3> <p>In newer browser versions, you are able to set a beginning or end state for an animation only (i.e. a single keyframe), and the browser will infer the other end of the animation if it is able to. For example, consider <a href="https://mdn.github.io/dom-examples/web-animations-api/implicit-keyframes.html" rel=" noopener">this simple animation</a> — the Keyframe object looks like so:</p> <pre data-language="js"><span class="token keyword">let</span> rotate360 <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> transform<span class="token operator">:</span> <span class="token string">'rotate(360deg)'</span> <span class="token punctuation">}</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span></pre> <p>We have only specified the end state of the animation, and the beginning state is implied.</p> <p>Keyframes may specify property-value pairs for any of the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties"><code>animatable css properties</code></a>. The property names are specified using camel-case so for example <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color"><code>background-color</code></a> becomes <code>backgroundColor</code> and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-position-x"><code>background-position-x</code></a> becomes <code>backgroundPositionX</code>. Shorthand values such as <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/margin"><code>margin</code></a> are also permitted.</p> <p>Two exceptional CSS properties are:</p> <ul> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/float"><code>float</code></a>, which must be written as <code>cssFloat</code> since "float" is a reserved word in JavaScript. It's just for reference here, this will have no effect on animation since "float" is not an animatable CSS property.</li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/offset"><code>offset</code></a>, which must be written as <code>cssOffset</code> since "offset" represents the keyframe offset as described below.</li> </ul> <p>The following special attributes may also be specified:</p> <dl> <dt>offset</dt> <dd> <p>The offset of the keyframe specified as a number between <code>0.0</code> and <code>1.0</code> inclusive or <code>null</code>. This is equivalent to specifying start and end states in percentages in CSS stylesheets using <code>@keyframes</code>. If this value is <code>null</code> or missing, the keyframe will be evenly spaced between adjacent keyframes.</p> </dd> <dt>easing</dt> <dd> <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/easing-function">timing function</a> used from this keyframe until the next keyframe in the series.</p> </dd> <dt>composite</dt> <dd> <p>The <a href="composite"><code>KeyframeEffect.composite</code></a> operation used to combine the values specified in this keyframe with the underlying value. This will be <code>auto</code> if the composite operation specified on the effect is being used.</p> </dd> </dl> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>Void.</p>
+<h3 id="exceptions">Exceptions</h3>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Exception</th> <th scope="col">Explanation</th> </tr> </thead> <tbody> <tr> <td><code>TypeError</code></td> <td>One or more of the frames were not of the correct type of object, the keyframes were not <a href="https://w3c.github.io/web-animations/#loosely-sorted-by-offset" rel=" noopener">loosely sorted by offset</a>, or a keyframe existed with an offset of less than 0 or more than 1.</td> </tr> </tbody> </table></div> <div class="note notecard"> <p><strong>Note</strong>: If the keyframes cannot be processed or are malformed, the <code>KeyframeEffect</code>'s keyframes are not modified.</p> </div>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token comment">// passing an array of keyframe objects</span>
+existingKeyframeEffect<span class="token punctuation">.</span><span class="token function">setKeyframes</span><span class="token punctuation">(</span>
+<span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> color<span class="token operator">:</span> <span class="token string">'blue'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> color<span class="token operator">:</span> <span class="token string">'green'</span><span class="token punctuation">,</span> left<span class="token operator">:</span> <span class="token string">'10px'</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// passing an object with arrays for values</span>
+existingKeyframeEffect<span class="token punctuation">.</span><span class="token function">setKeyframes</span><span class="token punctuation">(</span>
+  <span class="token punctuation">{</span>
+    color<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'blue'</span><span class="token punctuation">,</span> <span class="token string">'green'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    left<span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">'0'</span><span class="token punctuation">,</span> <span class="token string">'10px'</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// passing a single-member object</span>
+existingKeyframeEffect<span class="token punctuation">.</span><span class="token function">setKeyframes</span><span class="token punctuation">(</span>
+  <span class="token punctuation">{</span>
+    color<span class="token operator">:</span> <span class="token string">'blue'</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://drafts.csswg.org/web-animations-1/#dom-keyframeeffect-setkeyframes" hreflang="en" rel=" noopener">Web Animations<br><small>The definition of 'KeyframeEffect.setKeyframes()' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Editor's draft.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>setKeyframes</code></th>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>71</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../keyframeeffect">KeyframeEffect Interface</a></li> <li><a href="../web_animations_api">Web Animations API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect/setKeyframes" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect/setKeyframes</a>
+  </p>
+</div>

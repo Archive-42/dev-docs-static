@@ -1,0 +1,98 @@
+<h1>XRSession.cancelAnimationFrame()</h1>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div> <p>The <code>cancelAnimationFrame()</code> method of the <a href="../xrsession"><code>XRSession</code></a> interface cancels an animation frame which was previously requested by calling <a href="requestanimationframe"><code>requestAnimationFrame</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">xrSession<span class="token punctuation">.</span><span class="token function">cancelAnimationFrame</span><span class="token punctuation">(</span>handle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>handle</code></dt> <dd>The unique value returned by the call to <a href="requestanimationframe"><code>requestAnimationFrame()</code></a> that previously scheduled the animation callback.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>None.</p>
+<h2 id="usage_notes">Usage notes</h2>
+<p>This function has no effect if the specified <code>handle</code> cannot be found.</p>
+<h2 id="example">Example</h2>
+<p>In the example below we see code which starts up a WebXR session if immersive VR mode is supported. Once started, the session schedules its first frame to be rendered by calling <a href="requestanimationframe"><code>requestAnimationFrame()</code></a>.</p> <p>The <code>pauseXR()</code> function shown at the bottom can be called to suspend the WebVR session, in essence, by canceling any pending animation frame callback. Since each frame callback schedules the next one, removing the callback terminates updating of the WebXR scene.</p> <pre data-language="js"><span class="token keyword">const</span> <span class="token constant">XR</span> <span class="token operator">=</span> navigator<span class="token punctuation">.</span>xr<span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> requestHandle <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> xrSession <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token constant">XR</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token constant">XR</span><span class="token punctuation">.</span><span class="token function">isSessionSupported</span><span class="token punctuation">(</span><span class="token string">'immersive-vr'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">isSupported</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>isSupported<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">startXR</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">frameCallback</span><span class="token punctuation">(</span><span class="token parameter">time<span class="token punctuation">,</span> xrFrame</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  xrSession<span class="token punctuation">.</span><span class="token function">requestAnimationFrame</span><span class="token punctuation">(</span>frameCallback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Update and render the frame</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">startXR</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  xrSession <span class="token operator">=</span> <span class="token constant">XR</span><span class="token punctuation">.</span><span class="token function">requestSession</span><span class="token punctuation">(</span><span class="token string">"immersive-vr"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>xrSession<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    stopButton<span class="token punctuation">.</span>onclick <span class="token operator">=</span> stopXR<span class="token punctuation">;</span>
+    requestHandle <span class="token operator">=</span> xrSession<span class="token punctuation">.</span><span class="token function">requestAnimationFrame</span><span class="token punctuation">(</span>frameCallback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">pauseXR</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>xrSession <span class="token operator">&amp;&amp;</span> requestHandle<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    xrSession<span class="token punctuation">.</span><span class="token function">cancelAnimationFrame</span><span class="token punctuation">(</span>requestHandle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    requestHandle <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td> <a href="https://immersive-web.github.io/webxr/#dom-xrsession-cancelanimationframe" hreflang="en" rel=" noopener">WebXR Device API<br><small>The definition of 'XRSession.cancelAnimationFrame' in that specification.</small></a> </td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>cancelAnimationFrame</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../window/cancelanimationframe"><code>Window.cancelAnimationFrame</code></a></li> <li><a href="requestanimationframe"><code>XRSession.requestAnimationFrame</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XRSession/cancelAnimationFrame" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XRSession/cancelAnimationFrame</a>
+  </p>
+</div>

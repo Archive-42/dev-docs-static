@@ -1,0 +1,112 @@
+<h1>GlobalEventHandlers.ontransitionend</h1> <p>The <code>ontransitionend</code> property of the <a href="../globaleventhandlers"><code>GlobalEventHandlers</code></a> mixin is an <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a> that processes <code><a href="../htmlelement/transitionend_event">transitionend</a></code> events.</p> <p>The <code>transitionend</code> event is sent to when a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions">CSS transition</a> completes.</p> <div class="note notecard"> <p>If the transition is removed from its target node before the transition completes execution, the <code><a href="../htmlelement/transitionend_event">transitionend</a></code> event won't be generated. One way this can happen is by changing the value of the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-property"><code>transition-property</code></a> attribute which applies to the target. Another is if the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display"><code>display</code></a> attribute is set to <code>none</code>.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> transitionEndHandler <span class="token operator">=</span> target<span class="token punctuation">.</span>ontransitionend<span class="token punctuation">;</span>
+
+target<span class="token punctuation">.</span>ontransitionend <span class="token operator">=</span> Function
+</pre>
+<h3 id="value">Value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function"><code>Function</code></a> to be called when a <code><a href="../htmlelement/transitionend_event">transitionend</a></code> event occurs indicating that a CSS transition has completed on the <code><var>target</var></code>, where the target object is an HTML element (<a href="../htmlelement"><code>HTMLElement</code></a>), document (<a href="../document"><code>Document</code></a>), or window (<a href="../window"><code>Window</code></a>). The function receives as input a single parameter: a <a href="../transitionevent"><code>TransitionEvent</code></a> object describing the event which occurred; the event's <a href="../transitionevent/elapsedtime"><code>TransitionEvent.elapsedTime</code></a> property's value should be the same as the value of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration"><code>transition-duration</code></a>.</p> <div class="note notecard"> <p><code>elapsedTime</code> does not include time prior to the transition effect beginning; that means that the value of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-delay"><code>transition-delay</code></a> doesn't affect the value of <code>elapsedTime</code>, which is zero until the delay period ends and the animation begins.</p> </div>
+<h2 id="example">Example</h2>
+<p>In this example, we use the <code><a href="../htmlelement/transitionrun_event">transitionrun</a></code> and <code><a href="../htmlelement/transitionend_event">transitionend</a></code> events to detect when the transition begins and ends, to cause a text update to occur during the transition. This could also be used to trigger animations or other effects, to allow chaining of reactions.</p>
+<h3 id="html">HTML</h3>
+<p>This creates a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a> which we'll style with CSS below to make into a box that resizes and changes color and such.</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>box<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</pre>
+<h3 id="css">CSS</h3>
+<p>The CSS below styles the box and applies a transition effect which makes the box's color and size change, and causes the box to rotate, while the mouse cursor hovers over it.</p> <pre data-language="css"><span class="token selector">.box</span> <span class="token punctuation">{</span>
+  <span class="token property">margin-left</span><span class="token punctuation">:</span> 70px<span class="token punctuation">;</span>
+  <span class="token property">margin-top</span><span class="token punctuation">:</span> 30px<span class="token punctuation">;</span>
+  <span class="token property">border-style</span><span class="token punctuation">:</span> solid<span class="token punctuation">;</span>
+  <span class="token property">border-width</span><span class="token punctuation">:</span> 1px<span class="token punctuation">;</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 100px<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #0000FF<span class="token punctuation">;</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> #FFFFFF<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
+  <span class="token property">font</span><span class="token punctuation">:</span> bold 1.6em <span class="token string">"Helvetica"</span><span class="token punctuation">,</span> <span class="token string">"Arial"</span><span class="token punctuation">,</span> sans-serif<span class="token punctuation">;</span>
+  <span class="token property">transition</span><span class="token punctuation">:</span> width 2s<span class="token punctuation">,</span> height 2s<span class="token punctuation">,</span> background-color 2s<span class="token punctuation">,</span> transform 2s<span class="token punctuation">,</span> color 2s<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.box:hover</span> <span class="token punctuation">{</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> #FFCCCC<span class="token punctuation">;</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> #000000<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+  <span class="token property">transform</span><span class="token punctuation">:</span> <span class="token function">rotate</span><span class="token punctuation">(</span>180deg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="javascript">JavaScript</h3>
+<p>Next, we need to establish our event handlers to change the text content of the box when the transition begins and ends.</p> <pre data-language="js"><span class="token keyword">let</span> box <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">".box"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+box<span class="token punctuation">.</span><span class="token function-variable function">ontransitionrun</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  box<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"Zooming..."</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+box<span class="token punctuation">.</span><span class="token function-variable function">ontransitionend</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  box<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"Done!"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="result">Result</h3>
+<p>The resulting content looks like this:</p> <p><iframe class="sample-code-frame" id="frame_Example" width="600" height="280" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/GlobalEventHandlers/ontransitionend/_samples_/Example" loading="lazy"></iframe></p> <p>Notice what happens when you hover your mouse cursor over the box, then move it away. </p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/css-transitions/#dom-globaleventhandlers-ontransitionend" hreflang="en" rel=" noopener">CSS Transitions<br><small>The definition of 'ontransitionend' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>ontransitionend</code></th>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>Yes</div>
+</td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>≤79</div>
+</td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>Yes</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>Yes</div>
+</td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>11.0</div>
+<div>Yes</div>
+</td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The <code><a href="../htmlelement/transitionend_event">transitionend</a></code> event this event handler is triggered by</li> <li><a href="../transitionevent"><code>TransitionEvent</code></a></li> <li>The <code><a href="../htmlelement/transitionrun_event">transitionrun</a></code> event, which occurs when the transition begins</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ontransitionend" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/ontransitionend</a>
+  </p>
+</div>

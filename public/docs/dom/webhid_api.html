@@ -1,0 +1,147 @@
+<h1>WebHID API</h1>
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div> <p>A Human Interface Device (HID) is a type of device that takes input from or provides output to humans. It also refers to the HID protocol, a standard for bi-directional communication between a host and a device that is designed to simplify the installation procedure. The HID protocol was originally developed for USB devices but has since been implemented over many other protocols, including Bluetooth.</p>
+<h2 id="interfaces">Interfaces</h2>
+<dl> <dt><a href="hid"><code>HID</code></a></dt> <dd>Provides methods for connecting to HID devices, listing attached HID devices and event handlers for connected HID devices.</dd> </dl> <dl> <dt><a class="page-not-created"><code>HIDDevice</code></a></dt> <dd>Represents an HID device. It's possible for a single physical device to be represented by multiple `HIDDevice` obects.</dd> </dl> <dl> <dt><a class="page-not-created"><code>HIDInputReportEvent</code></a></dt> <dd>Passed to <a class="page-not-created"><code>HIDDevice.oninputreport</code></a> when an input report is received from any associated HID device.</dd> </dl> <dl> <dt><a class="page-not-created"><code>HIDConnectionEvent</code></a></dt> <dd>Passed to <a class="page-not-created"><code>HID.onconnect</code></a> and <a class="page-not-created"><code>HID.ondisconnect</code></a> when a device is connected or disconnected.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>You can connect to a device with <a class="page-not-created"><code>HID.requestDevices</code></a>. In this case, we select from all the available devices.</p> <pre data-language="js"><span class="token keyword">const</span> device <span class="token operator">=</span> <span class="token keyword">await</span> navigator<span class="token punctuation">.</span>hid<span class="token punctuation">.</span><span class="token function">requestDevice</span><span class="token punctuation">(</span><span class="token punctuation">{</span>filters<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment">// A popup titled `... wants to connect to a HID Device` with `Cancel` and `Connect` buttons will show up with a device list to select from.</span>
+<span class="token comment">// Select one and click on `Connect` button. Then the device will be an array with the selected device in it.</span>
+</pre> <p>We can retrieve all the connected devices and log the device names to the console.</p> <pre data-language="js"><span class="token keyword">let</span> devices <span class="token operator">=</span> <span class="token keyword">await</span> navigator<span class="token punctuation">.</span>hid<span class="token punctuation">.</span><span class="token function">getDevices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+devices<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">device</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">HID: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>device<span class="token punctuation">.</span>productName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>We can register event listeners for disconnection of any HID devices.</p> <pre data-language="js">navigator<span class="token punctuation">.</span>hid<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'disconnect'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">HID disconnected: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>event<span class="token punctuation">.</span>device<span class="token punctuation">.</span>productName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">dir</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// For example, when my connected keyboard gets disconnected, the log in the console will show:</span>
+<span class="token comment">// HID disconnected: USB USB Keyboard</span>
+<span class="token comment">// {</span>
+<span class="token comment">//    bubbles: false</span>
+<span class="token comment">//    cancelBubble: false</span>
+<span class="token comment">//    cancelable: false</span>
+<span class="token comment">//    composed: false</span>
+<span class="token comment">//    currentTarget: HID {onconnect: null, ondisconnect: null}</span>
+<span class="token comment">//    defaultPrevented: false</span>
+<span class="token comment">//    device: HIDDevice {oninputreport: null, opened: false, vendorId: 6700, productId: 11555, productName: "USB USB Keyboard", …}</span>
+<span class="token comment">//    eventPhase: 0</span>
+<span class="token comment">//    isTrusted: true</span>
+<span class="token comment">//    path: []</span>
+<span class="token comment">//    returnValue: true</span>
+<span class="token comment">//    srcElement: HID {onconnect: null, ondisconnect: null}</span>
+<span class="token comment">//    target: HID {onconnect: null, ondisconnect: null}</span>
+<span class="token comment">//    timeStamp: 18176.600000023842</span>
+<span class="token comment">//    type: "disconnect"</span>
+<span class="token comment">// }</span>
+
+<span class="token comment">// The event above is an instance of the HIDConnectionEvent interface.</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://wicg.github.io/webhid/" hreflang="en" rel=" noopener">WebHID API</a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>WebHID_API</code></th>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>getDevices</code></th>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>onconnect</code></th>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>ondisconnect</code></th>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>requestDevice</code></th>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebHID_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/WebHID_API</a>
+  </p>
+</div>

@@ -1,0 +1,101 @@
+<h1>PositionSensorVRDevice.getImmediateState()</h1>
+
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div>
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <code>getImmediateState()</code> method of the <a href="../vrdisplay"><code>VRDisplay</code></a> interface returns the current instantaneous position sensor state. This is intended to only be used rarely, for certain special uses, for example sampling the immediate position of a hand orientation sensor — or at least it will be, in the future.</p> <p>For most standard uses, you'll probably want to use <a href="getstate"><code>PositionSensorVRDevice.getState</code></a> instead.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> myPositionstate <span class="token operator">=</span> PositionSensorVRDevice<span class="token punctuation">.</span><span class="token function">getImmediateState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<p>None.</p>
+<h3 id="returns">Returns</h3>
+<p>A <a href="../vrpose"><code>VRPose</code></a> object.</p>
+<h2 id="examples">Examples</h2>
+<p>Our <a href="https://mdn.github.io/webvr-tests/positionsensorvrdevice/" rel=" noopener">positionsensorvrdevice</a> demo uses the WebVR API to update the view of a simple <a href="../canvasrenderingcontext2d"><code>2D canvas</code></a> scene on each frame of a <a href="../window/requestanimationframe"><code>requestAnimationFrame</code></a> loop. The main function that updates the view data is as follows:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">setView</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> posState <span class="token operator">=</span> gPositionSensor<span class="token punctuation">.</span><span class="token function">getImmediateState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>posState<span class="token punctuation">.</span>hasPosition<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    posPara<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'Position: x'</span> <span class="token operator">+</span> <span class="token function">roundToTwo</span><span class="token punctuation">(</span>posState<span class="token punctuation">.</span>position<span class="token punctuation">.</span>x<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" y"</span>
+                                <span class="token operator">+</span> <span class="token function">roundToTwo</span><span class="token punctuation">(</span>posState<span class="token punctuation">.</span>position<span class="token punctuation">.</span>y<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" z"</span>
+                                <span class="token operator">+</span> <span class="token function">roundToTwo</span><span class="token punctuation">(</span>posState<span class="token punctuation">.</span>position<span class="token punctuation">.</span>z<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    xPos <span class="token operator">=</span> <span class="token operator">-</span>posState<span class="token punctuation">.</span>position<span class="token punctuation">.</span>x <span class="token operator">*</span> <span class="token constant">WIDTH</span> <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    yPos <span class="token operator">=</span> posState<span class="token punctuation">.</span>position<span class="token punctuation">.</span>y <span class="token operator">*</span> <span class="token constant">HEIGHT</span> <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">-</span>posState<span class="token punctuation">.</span>position<span class="token punctuation">.</span>z <span class="token operator">&gt;</span> <span class="token number">0.01</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      zPos <span class="token operator">=</span> <span class="token operator">-</span>posState<span class="token punctuation">.</span>position<span class="token punctuation">.</span>z<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      zPos <span class="token operator">=</span> <span class="token number">0.01</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">if</span><span class="token punctuation">(</span>posState<span class="token punctuation">.</span>hasOrientation<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    orientPara<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'Orientation: x'</span> <span class="token operator">+</span> <span class="token function">roundToTwo</span><span class="token punctuation">(</span>posState<span class="token punctuation">.</span>orientation<span class="token punctuation">.</span>x<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" y"</span>
+                                <span class="token operator">+</span> <span class="token function">roundToTwo</span><span class="token punctuation">(</span>posState<span class="token punctuation">.</span>orientation<span class="token punctuation">.</span>y<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" z"</span>
+                                <span class="token operator">+</span> <span class="token function">roundToTwo</span><span class="token punctuation">(</span>posState<span class="token punctuation">.</span>orientation<span class="token punctuation">.</span>z<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    xOrient <span class="token operator">=</span> posState<span class="token punctuation">.</span>orientation<span class="token punctuation">.</span>x <span class="token operator">*</span> <span class="token constant">WIDTH</span><span class="token punctuation">;</span>
+    yOrient <span class="token operator">=</span> <span class="token operator">-</span>posState<span class="token punctuation">.</span>orientation<span class="token punctuation">.</span>y <span class="token operator">*</span> <span class="token constant">HEIGHT</span> <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    zOrient <span class="token operator">=</span> posState<span class="token punctuation">.</span>orientation<span class="token punctuation">.</span>z <span class="token operator">*</span> <span class="token number">180</span><span class="token punctuation">;</span>
+
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre> <p>Here we are grabbing a <a href="../vrpose"><code>VRPose</code></a> object using <code>getImmediateState()</code> and storing it in <code>posState</code> (the actual live demo uses <code>getState()</code>, but both seem to do the same thing currently.) We then check to make sure that position and orientation info is present in the current frame using <a href="../vrpose/hasposition"><code>VRPose.hasPosition</code></a> and <a href="../vrpose/hasorientation"><code>VRPose.hasOrientation</code></a> (these return <code>null</code> if, for example the head mounted display is turned off or not pointing at the position sensor, which would cause an error.)</p> <p>We then output the x, y and z position and orientation values for informational purposes, and use those values to update the <code>xPos</code>, <code>yPos</code>, <code>zPos, </code><code>xOrient</code>, <code>yOrient</code>, and <code>zOrient</code> variables, which are used to update the scene rendering on each frame.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getImmediateState</code></th>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>The support in Chrome is currently experimental. To find information on Chrome's WebVR implementation status including supporting builds, check out <a href="http://blog.tojicode.com/2014/07/bringing-vr-to-chrome.html">Bringing VR to Chrome</a> by Brandon Jones.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>The support in Edge is currently experimental. To find information on Edge's WebVR implementation status including supporting builds, check out <a href="http://blog.tojicode.com/2014/07/bringing-vr-to-chrome.html">Bringing VR to Edge</a> by Brandon Jones.</div>
+</td>
+<td class="bc-supports-yes">
+<div>39</div>
+<div>The support for this feature is currently disabled by default in Firefox. To enable WebVR support in Firefox Nightly/Developer Edition, you can go to <code>about:config</code> and enable the <code>dom.vr*</code> prefs. A better option however is to install the <a href="http://www.mozvr.com/downloads/webvr-addon-0.1.0.xpi">WebVR Enabler Add-on</a>, which does this for you and sets up other necessary parts of the <a href="https://developer.mozilla.org/docs/Web/API/WebVR_API/WebVR_environment_setup">environment</a>
+</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>39</div>
+<div>The support for this feature is currently disabled by default in Firefox. To enable WebVR support in Firefox Nightly/Developer Edition, you can go to <code>about:config</code> and enable the <code>dom.vr*</code> prefs. A better option however is to install the <a href="http://www.mozvr.com/downloads/webvr-addon-0.1.0.xpi">WebVR Enabler Add-on</a>, which does this for you and sets up other necessary parts of the <a href="https://developer.mozilla.org/docs/Web/API/WebVR_API/WebVR_environment_setup">environment</a>.</div>
+<div>44</div>
+<div>The <code>dom.vr*</code> prefs are enabled by default at this point, in Nightly/Aurora editions.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../webvr_api">WebVR API homepage</a>.</li> <li>
+<a href="https://mixedreality.mozilla.org/" rel=" noopener">https://mixedreality.mozilla.org/</a> — demos, downloads, and other resources from the Mozilla VR team.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PositionSensorVRDevice/getImmediateState" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PositionSensorVRDevice/getImmediateState</a>
+  </p>
+</div>

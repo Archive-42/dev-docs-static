@@ -1,0 +1,124 @@
+<h1>HTMLCollection</h1>
+
+ <p>The <code>HTMLCollection</code> interface represents a generic collection (array-like object similar to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments"><code>arguments</code></a>) of elements (in document order) and offers methods and properties for selecting from the list.</p> <div class="note notecard">
+<strong>Note:</strong> This interface is called <code>HTMLCollection</code> for historical reasons (before the modern DOM, collections implementing this interface could only have HTML elements as their items).</div> <p>An <code>HTMLCollection</code> in the HTML DOM is live; it is automatically updated when the underlying document is changed.</p>
+<h2 id="properties">Properties</h2>
+<dl> <dt>
+<a href="htmlcollection/length"><code>HTMLCollection.length</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the number of items in the collection.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="htmlcollection/item"><code>HTMLCollection.item()</code></a></dt> <dd>Returns the specific node at the given zero-based <code>index</code> into the list. Returns <code>null</code> if the <code>index</code> is out of range.</dd> <dd>An alternative to accessing <code>collection[<var>i</var>]</code> (which instead returns <code>undefined</code> when <code><var>i</var></code> is out-of-bounds). This is mostly useful for non-JavaScript DOM implementations.</dd> <dt><a class="page-not-created"><code>HTMLCollection.namedItem()</code></a></dt> <dd>Returns the specific node whose ID or, as a fallback, name matches the string specified by <code>name</code>. Matching by name is only done as a last resort, only in HTML, and only if the referenced element supports the <code>name</code> attribute. Returns <code>null</code> if no node exists by the given name.</dd> <dd>An alternative to accessing <code>collection[<var>name</var>]</code> (which instead returns <code>undefined</code> when <code><var>name</var></code> does not exist). This is mostly useful for non-JavaScript DOM implementations.</dd> </dl>
+<h2 id="usage_in_javascript">Usage in JavaScript</h2>
+<p><code>HTMLCollection</code> also exposes its members directly as properties by both name and index. HTML IDs may contain <code>:</code> and <code>.</code> as valid characters, which would necessitate using bracket notation for property access. Currently <code>HTMLCollections</code> does not recognize purely numeric IDs, which would cause conflict with the array-style access, though HTML5 does permit these.</p> <p>For example, assuming there is one <code>&lt;form&gt;</code> element in the document and its <code>id</code> is <code>myForm</code>:</p> <pre data-language="js"><span class="token keyword">var</span> elem1<span class="token punctuation">,</span> elem2<span class="token punctuation">;</span>
+
+<span class="token comment">// document.forms is an HTMLCollection</span>
+
+elem1 <span class="token operator">=</span> document<span class="token punctuation">.</span>forms<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+elem2 <span class="token operator">=</span> document<span class="token punctuation">.</span>forms<span class="token punctuation">.</span><span class="token function">item</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span>elem1 <span class="token operator">===</span> elem2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// shows: "true"</span>
+
+elem1 <span class="token operator">=</span> document<span class="token punctuation">.</span>forms<span class="token punctuation">.</span>myForm<span class="token punctuation">;</span>
+elem2 <span class="token operator">=</span> document<span class="token punctuation">.</span>forms<span class="token punctuation">.</span><span class="token function">namedItem</span><span class="token punctuation">(</span><span class="token string">"myForm"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span>elem1 <span class="token operator">===</span> elem2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// shows: "true"</span>
+
+elem1 <span class="token operator">=</span> document<span class="token punctuation">.</span>forms<span class="token punctuation">[</span><span class="token string">"named.item.with.periods"</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://dom.spec.whatwg.org/#htmlcollection" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'HTMLCollection' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>HTMLCollection</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>item</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>length</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>namedItem</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="nodelist"><code>NodeList</code></a></li> <li>
+<a href="htmlformcontrolscollection"><code>HTMLFormControlsCollection</code></a>, <a href="htmloptionscollection"><code>HTMLOptionsCollection</code></a>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection</a>
+  </p>
+</div>

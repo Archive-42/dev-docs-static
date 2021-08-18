@@ -1,0 +1,99 @@
+<h1>PaymentResponse.shippingOption</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <code>shippingOption</code> read-only property of the <code>PaymentRequest</code> interface returns the ID attribute of the shipping option selected by the user. This option is only present when the <code>requestShipping</code> option is set to <code>true</code> in the <a class="page-not-created"><code>PaymentOptions</code></a> object passed to the <a href="../paymentrequest/paymentrequest"><code>PaymentRequest</code></a> constructor.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> shippingOption <span class="token operator">=</span> PaymentRequest<span class="token punctuation">.</span>shippingOption<span class="token punctuation">;</span></pre>
+<h2 id="example">Example</h2>
+<p>In the example below, the <a class="page-not-created"><code>PaymentRequest.onshippingaoptionchange</code></a> event is called. It calls <code>updateDetails()</code> to toggle the shipping method between "standard" and "express".</p> <pre class="notranslate">// Initialization of PaymentRequest arguments are excerpted for brevity.
+var payment = new PaymentRequest(supportedInstruments, details, options);
+
+request.addEventListener('shippingoptionchange', function(evt) {
+  evt.updateWith(new Promise(function(resolve, reject) {
+    updateDetails(details, request.shippingOption, resolve, reject);
+  }));
+});
+
+payment.show().then(function(paymentResponse) {
+  // Processing of paymentResponse exerpted for the same of brevity.
+}).catch(function(err) {
+  console.error("Uh oh, something bad happened", err.message);
+});
+
+function updateDetails(details, shippingOption, resolve, reject) {
+  var selectedShippingOption;
+  var otherShippingOption;
+  if (shippingOption === 'standard') {
+    selectedShippingOption = details.shippingOptions[0];
+    otherShippingOption = details.shippingOptions[1];
+    details.total.amount.value = '55.00';
+  } else if (shippingOption === 'express') {
+    selectedShippingOption = details.shippingOptions[1];
+    otherShippingOption = details.shippingOptions[0];
+    details.total.amount.value = '67.00';
+  } else {
+    reject('Unknown shipping option \'' + shippingOption + '\'');
+    return;
+  }
+  selectedShippingOption.selected = true;
+  otherShippingOption.selected = false;
+  details.displayItems.splice(2, 1, selectedShippingOption);
+  resolve(details);
+}
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/payment-request/" hreflang="en" rel=" noopener">Payment Request API</a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>shippingOption</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaymentResponse/shippingOption" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaymentResponse/shippingOption</a>
+  </p>
+</div>

@@ -1,0 +1,80 @@
+<h1>Intl.DateTimeFormat.prototype.formatRangeToParts()</h1> <p>The <code>Intl.DateTimeFormat.prototype.formatRangeToParts()</code> method allows locale-specific tokens representing each part of the formatted date range produced by <a href="../datetimeformat"><code>Intl.DateTimeFormat</code></a> formatters.</p>  <iframe class="interactive" width="100%" height="692" src="https://interactive-examples.mdn.mozilla.net/pages/js/intl-datetimeformat-prototype-formatrangetoparts.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">formatRangeToParts</span><span class="token punctuation">(</span>startDate<span class="token punctuation">,</span> endDate<span class="token punctuation">)</span></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="basic_formatrangetoparts_usage">Basic formatRangeToParts usage</h3>
+<p>This method receives two <a href="../../date"><code>Date</code></a>s and returns an <a href="../../array"><code>Array</code></a> of objects containing the locale-specific tokens representing each part of the formatted date range.</p> <pre data-language="js"><span class="token keyword">let</span> date1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>Date<span class="token punctuation">.</span><span class="token constant">UTC</span><span class="token punctuation">(</span><span class="token number">2007</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> date2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>Date<span class="token punctuation">.</span><span class="token constant">UTC</span><span class="token punctuation">(</span><span class="token number">2007</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// &gt; 'Wed, 10 Jan 2007 10:00:00 GMT'</span>
+<span class="token comment">// &gt; 'Wed, 10 Jan 2007 11:00:00 GMT'</span>
+
+<span class="token keyword">let</span> fmt <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>DateTimeFormat</span><span class="token punctuation">(</span><span class="token string">"en"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    hour<span class="token operator">:</span> <span class="token string">'numeric'</span><span class="token punctuation">,</span>
+    minute<span class="token operator">:</span> <span class="token string">'numeric'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>fmt<span class="token punctuation">.</span><span class="token function">formatRange</span><span class="token punctuation">(</span>date1<span class="token punctuation">,</span> date2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// &gt; '10:00 – 11:00 AM'</span>
+
+fmt<span class="token punctuation">.</span><span class="token function">formatRangeToParts</span><span class="token punctuation">(</span>date1<span class="token punctuation">,</span> date2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// return value:</span>
+<span class="token comment">// [</span>
+<span class="token comment">//   { type: 'hour',      value: '10',  source: "startRange" },</span>
+<span class="token comment">//   { type: 'literal',   value: ':',   source: "startRange" },</span>
+<span class="token comment">//   { type: 'minute',    value: '00',  source: "startRange" },</span>
+<span class="token comment">//   { type: 'literal',   value: ' – ', source: "shared"     },</span>
+<span class="token comment">//   { type: 'hour',      value: '11',  source: "endRange"   },</span>
+<span class="token comment">//   { type: 'literal',   value: ':',   source: "endRange"   },</span>
+<span class="token comment">//   { type: 'minute',    value: '00',  source: "endRange"   },</span>
+<span class="token comment">//   { type: 'literal',   value: ' ',   source: "shared"     },</span>
+<span class="token comment">//   { type: 'dayPeriod', value: 'AM',  source: "shared"     }</span>
+<span class="token comment">// ]</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma402/#sec-Intl.DateTimeFormat.prototype.formatRangeToParts">ECMAScript Internationalization API Specification (ECMAScript Internationalization API)<br> <small>#sec-Intl.DateTimeFormat.prototype.formatRangeToParts</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>formatRangeToParts</code></th>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<ul> <li><a class="page-not-created"><code>Intl.DateTimeFormat.prototype.formatRange()</code></a></li> <li><a href="../datetimeformat"><code>Intl.DateTimeFormat</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatRangeToParts" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatRangeToParts</a>
+  </p>
+</div>

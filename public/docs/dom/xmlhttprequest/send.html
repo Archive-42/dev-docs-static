@@ -1,0 +1,167 @@
+<h1>XMLHttpRequest.send()</h1> <p>The <a href="../xmlhttprequest"><code>XMLHttpRequest</code></a> method <code><strong>send()</strong></code> sends the request to the server. If the request is asynchronous (which is the default), this method returns as soon as the request is sent and the result is delivered using events. If the request is synchronous, this method doesn't return until the response has arrived.</p> <p><code>send()</code> accepts an optional parameter which lets you specify the request's body; this is primarily used for requests such as <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/PUT"><code>PUT</code></a>. If the request method is <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET"><code>GET</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD"><code>HEAD</code></a>, the <code>body</code> parameter is ignored and the request body is set to <code>null</code>.</p> <p>If no <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept"><code>Accept</code></a> header has been set using the <a href="setrequestheader"><code>setRequestHeader()</code></a>, an <code>Accept</code> header with the type <code>"*/*"</code> (any type) is sent.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">XMLHttpRequest<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>body<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code>body</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A body of data to be sent in the XHR request. This can be: <ul> <li>A <a href="../document"><code>Document</code></a>, in which case it is serialized before being sent. </li> <li>An <code>XMLHttpRequestBodyInit</code>, which <a href="https://fetch.spec.whatwg.org/#typedefdef-xmlhttprequestbodyinit" rel=" noopener">per the Fetch spec</a> can be a <a href="../blob"><code>Blob</code></a>, <a href="../buffersource"><code>BufferSource</code></a>, <a href="../formdata"><code>FormData</code></a>, <a href="../urlsearchparams"><code>URLSearchParams</code></a>, or <a href="../usvstring"><code>USVString</code></a> object.</li> <li><code>null</code></li> </ul> If no value is specified for the body, a default value of <code>null</code> is used. </dd> </dl> <p>The best way to send binary content (e.g. in file uploads) is by using an <a href="../arraybufferview"><code>ArrayBufferView</code></a> or <a href="../blob"><code>Blob</code></a> in conjunction with the <code>send()</code> method.</p>
+<h3 id="return_value">Return value</h3>
+<p><code>undefined</code>.</p>
+<h3 id="exceptions">Exceptions</h3>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Exception</th> <th scope="col">Description</th> </tr> </thead> <tbody> <tr> <td><code>InvalidStateError</code></td> <td>
+<code>send()</code> has already been invoked for the request, and/or the request is complete.</td> </tr> <tr> <td><code>NetworkError</code></td> <td>The resource type to be fetched is a Blob, and the method is not <code>GET</code>.</td> </tr> </tbody> </table></div>
+<h2 id="example_get">Example: GET</h2>
+<pre data-language="js"><span class="token keyword">var</span> xhr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xhr<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'GET'</span><span class="token punctuation">,</span> <span class="token string">'/server'</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+xhr<span class="token punctuation">.</span><span class="token function-variable function">onload</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Request finished. Do processing here.</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+xhr<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// xhr.send('string');</span>
+<span class="token comment">// xhr.send(new Blob());</span>
+<span class="token comment">// xhr.send(new Int8Array());</span>
+<span class="token comment">// xhr.send(document);</span>
+</pre>
+<h2 id="example_post">Example: POST</h2>
+<pre data-language="js"><span class="token keyword">var</span> xhr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+xhr<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"POST"</span><span class="token punctuation">,</span> <span class="token string">'/server'</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//Send the proper header information along with the request</span>
+xhr<span class="token punctuation">.</span><span class="token function">setRequestHeader</span><span class="token punctuation">(</span><span class="token string">"Content-Type"</span><span class="token punctuation">,</span> <span class="token string">"application/x-www-form-urlencoded"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+xhr<span class="token punctuation">.</span><span class="token function-variable function">onreadystatechange</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// Call a function when the state changes.</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>readyState <span class="token operator">===</span> XMLHttpRequest<span class="token punctuation">.</span><span class="token constant">DONE</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">===</span> <span class="token number">200</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Request finished. Do processing here.</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+xhr<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">"foo=bar&amp;lorem=ipsum"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// xhr.send(new Int8Array());</span>
+<span class="token comment">// xhr.send(document);</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://xhr.spec.whatwg.org/#the-send()-method" hreflang="en" rel=" noopener">XMLHttpRequest<br><small>The definition of 'send()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>WHATWG living standard</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>send</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>ArrayBuffer</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>11.6</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>ArrayBufferView</code></th>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>20</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>20</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>Blob</code></th>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>FormData</code></th>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>URLSearchParams</code></th>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+</tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="using_xmlhttprequest">Using XMLHttpRequest</a></li> <li><a href="html_in_xmlhttprequest">HTML in XMLHttpRequest</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send</a>
+  </p>
+</div>

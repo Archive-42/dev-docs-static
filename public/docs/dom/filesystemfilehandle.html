@@ -1,0 +1,110 @@
+<h1>FileSystemFileHandle</h1>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div> <p class="summary">The <code>FileSystemFileHandle</code> interface of the <a href="file_system_access_api"><code>File System Access API</code></a> represents a handle to a file system entry. The interface is accessed thought the <a href="window/showopenfilepicker"><code>window.showOpenFilePicker()</code></a> method.</p> <p>Note that read and write operations depend on file-access permissions that do not persist after a page refresh if no other tabs for that origin remain open. The <a href="filesystemhandle/querypermission"><code>queryPermission</code></a> method of the <a href="filesystemhandle"><code>FileSystemHandle</code></a> interface can be used to verify permission state before accessing a file.</p>
+<h2 id="properties">Properties</h2>
+<p><em>Inherits properties from its parent, <a href="filesystemhandle"><code>FileSystemHandle</code></a>.</em></p>
+<h2 id="methods">Methods</h2>
+<p><em>Inherits methods from its parent, <a href="filesystemhandle"><code>FileSystemHandle</code></a>.</em></p> <dl> <dt><a href="filesystemfilehandle/getfile"><code>getFile()</code></a></dt> <dd>Returns a <a href="file"><code>file object</code></a> representing the state on disk of the entry represented by the handle.</dd> <dt><a href="filesystemfilehandle/createwritable"><code>createWritable()</code></a></dt> <dd>Creates a <a href="filesystemwritablefilestream"><code>FileSystemWritableFileStream</code></a> that can be used to write to a file.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="reading_a_file">Reading a File</h3>
+<p>The following asynchronous function presents a file picker and once a file is chosen, uses the <code>getFile()</code> method to retrieve the contents.</p> <pre data-language="js"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">getTheFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// open file picker</span>
+  <span class="token punctuation">[</span>fileHandle<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">await</span> window<span class="token punctuation">.</span><span class="token function">showOpenFilePicker</span><span class="token punctuation">(</span>pickerOpts<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// get file contents</span>
+  <span class="token keyword">const</span> fileData <span class="token operator">=</span> <span class="token keyword">await</span> fileHandle<span class="token punctuation">.</span><span class="token function">getFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h3 id="writing_a_file">Writing a File</h3>
+<p>The following asynchronous function writes the given contents to the file handle, and thus to disk.</p> <pre data-language="js"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">writeFile</span><span class="token punctuation">(</span><span class="token parameter">fileHandle<span class="token punctuation">,</span> contents</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Create a FileSystemWritableFileStream to write to.</span>
+  <span class="token keyword">const</span> writable <span class="token operator">=</span> <span class="token keyword">await</span> fileHandle<span class="token punctuation">.</span><span class="token function">createWritable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Write the contents of the file to the stream.</span>
+  <span class="token keyword">await</span> writable<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>contents<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Close the file and write the contents to disk.</span>
+  <span class="token keyword">await</span> writable<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://wicg.github.io/file-system-access/#api-filesystemfilehandle" hreflang="en" rel=" noopener">File System Access API<br><small>The definition of 'FileSystemFileHandle' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>FileSystemFileHandle</code></th>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>createWritable</code></th>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>getFile</code></th>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="file_system_access_api">File System Access API</a></li> <li><a href="https://web.dev/file-system-access/" rel=" noopener">The File System Access API: simplifying access to local files</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileHandle" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileHandle</a>
+  </p>
+</div>

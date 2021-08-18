@@ -1,0 +1,91 @@
+<h1>PayerErrors.name</h1>
+<div class="notecard draft"> <strong id="draft">Draft</strong> <p>This page is not complete.</p> </div> <p>The <code>name</code> property is included in a <a href="../payererrors"><code>PayerErrors</code></a> object if the <a href="../paymentresponse/payername"><code>payerName</code></a> returned in the response couldn't be validated. The value is a string explaining the problem. If the payer's name validated successfully, the <code>name</code> property is omitted from the <code>PayerErrors</code> object.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">payerName <span class="token operator">=</span> payerErrors<span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>If this property is present in the <a href="../payererrors"><code>PayerErrors</code></a> object, the payer's name couldn't be successfully validated, and the <code>name</code> property's value is a <a href="../domstring"><code>DOMString</code></a> explaining the error. This string will be displayed to the user by the <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent's</a> payment handling user interface.</p> <p>If the payer's name is valid, this property is left out of the <a href="../payererrors"><code>PayerErrors</code></a> object.</p>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token keyword">function</span> <span class="token function">validatePayment</span><span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> correctionPromises
+  <span class="token keyword">let</span> paymentErrors <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> payerErrors <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Check payer details</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">validEmail</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>payerEmail<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    payerErrors<span class="token punctuation">.</span>email <span class="token operator">=</span> <span class="token string">"Please make sure you enter a valid email address."</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">validName</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>payerName<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    payerErrors<span class="token punctuation">.</span>email <span class="token operator">=</span> <span class="token string">"Please enter a valid name, using only &lt;appropriate characters&gt;."</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">validPhone</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>payerPhone<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    payerErrors<span class="token punctuation">.</span>phone <span class="token operator">=</span> <span class="token string">"Please enter a valid phone number in the form ###-###-####."</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Check everything else too...</span>
+
+  <span class="token comment">//</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/payment-request/#dom-payererrors-name" hreflang="en" rel=" noopener">Payment Request API<br><small>The definition of 'PayerErrors.name' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>name</code></th>
+<td class="bc-supports-yes">
+<div>71</div>
+<div>69-71</div>
+</td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>64</div>
+<div>Enabled by default in nightly US English builds of Firefox 64 and later, and on other localizations when geolocation indicates the user is in the United States or Canada.</div>
+<div>56</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>71</div>
+<div>69-71</div>
+</td>
+<td class="bc-supports-yes">
+<div>64</div>
+<div>Enabled by default in nightly US English builds of Firefox 64 and later, and on other localizations when geolocation indicates the user is in the United States or Canada.</div>
+<div>56</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PayerErrors/name" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PayerErrors/name</a>
+  </p>
+</div>

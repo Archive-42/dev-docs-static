@@ -1,0 +1,82 @@
+<h1>Reflect.getOwnPropertyDescriptor()</h1> <p>The static <code>Reflect.getOwnPropertyDescriptor()</code> method is similar to <a href="../object/getownpropertydescriptor"><code>Object.getOwnPropertyDescriptor()</code></a>. It returns a property descriptor of the given property if it exists on the object, <a href="../undefined"><code>undefined</code></a> otherwise.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/reflect-getownpropertydescriptor.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js">Reflect<span class="token punctuation">.</span><span class="token function">getOwnPropertyDescriptor</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> propertyKey<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>target</var></code></dt> <dd>The target object in which to look for the property.</dd> <dt><code><var>propertyKey</var></code></dt> <dd>The name of the property to get an own property descriptor for.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A property descriptor object if the property exists in <code><var>target</var></code> object; otherwise, <a href="../undefined"><code>undefined</code></a>.</p>
+<h3 id="exceptions">Exceptions</h3>
+<p>A <a href="../typeerror"><code>TypeError</code></a>, if <code><var>target</var></code> is not an <a href="../object"><code>Object</code></a>.</p>
+<h2 id="description">Description</h2>
+<p>The <code>Reflect.getOwnPropertyDescriptor</code> method returns a property descriptor of the given property if it exists in the <code><var>target</var></code> object, <a href="../undefined"><code>undefined</code></a> otherwise. The only difference to <a href="../object/getownpropertydescriptor"><code>Object.getOwnPropertyDescriptor()</code></a> is how non-object targets are handled. </p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_reflect.getownpropertydescriptor">Using Reflect.getOwnPropertyDescriptor() </h3>
+<pre data-language="js">Reflect<span class="token punctuation">.</span><span class="token function">getOwnPropertyDescriptor</span><span class="token punctuation">(</span><span class="token punctuation">{</span>x<span class="token operator">:</span> <span class="token string">'hello'</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'x'</span><span class="token punctuation">)</span>
+<span class="token comment">// {value: "hello", writable: true, enumerable: true, configurable: true}</span>
+
+Reflect<span class="token punctuation">.</span><span class="token function">getOwnPropertyDescriptor</span><span class="token punctuation">(</span><span class="token punctuation">{</span>x<span class="token operator">:</span> <span class="token string">'hello'</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'y'</span><span class="token punctuation">)</span>
+<span class="token comment">// undefined</span>
+
+Reflect<span class="token punctuation">.</span><span class="token function">getOwnPropertyDescriptor</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'length'</span><span class="token punctuation">)</span>
+<span class="token comment">// {value: 0, writable: true, enumerable: false, configurable: false}</span>
+</pre>
+<h3 id="difference_to_object.getownpropertydescriptor">Difference to Object.getOwnPropertyDescriptor()</h3>
+<p>If the <code><var>target</var></code> argument to this method is not an object (a primitive), then it will cause a <a href="../typeerror"><code>TypeError</code></a>. With <a href="../object/getownpropertydescriptor"><code>Object.getOwnPropertyDescriptor</code></a>, a non-object first argument will be coerced to an object at first.</p> <pre data-language="js">Reflect<span class="token punctuation">.</span><span class="token function">getOwnPropertyDescriptor</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token comment">// TypeError: "foo" is not non-null object</span>
+
+Object<span class="token punctuation">.</span><span class="token function">getOwnPropertyDescriptor</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token comment">// { value: "f", writable: false, enumerable: true, configurable: false }</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-reflect.getownpropertydescriptor">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-reflect.getownpropertydescriptor</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getOwnPropertyDescriptor</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../reflect"><code>Reflect</code></a></li> <li><a href="../object/getownpropertydescriptor"><code>Object.getOwnPropertyDescriptor()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/getOwnPropertyDescriptor" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect/getOwnPropertyDescriptor</a>
+  </p>
+</div>

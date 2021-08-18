@@ -1,0 +1,470 @@
+<h1>&lt;img&gt;: The Image Embed element</h1> <p>The <code>&lt;img&gt;</code> embeds an image into the document.</p> <iframe class="interactive" width="100%" height="445" src="https://interactive-examples.mdn.mozilla.net/pages/tabbed/img.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <p>The above example shows usage of the <code>&lt;img&gt;</code> element:</p> <ul> <li>The <code>src</code> attribute is <strong>required</strong>, and contains the path to the image you want to embed.</li> <li>The <code>alt</code> attribute holds a text description of the image, which isn't mandatory but is <strong>incredibly useful</strong> for accessibility — screen readers read this description out to their users so they know what the image means. Alt text is also displayed on the page if the image can't be loaded for some reason: for example, network errors, content blocking, or linkrot.</li> </ul> <p>There are many other attributes to achieve various purposes:</p> <ul> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy">Referrer</a>/<a href="https://developer.mozilla.org/en-US/docs/Glossary/CORS">CORS</a> control for security and privacy: see <a href="#attr-crossorigin"><code>crossorigin</code></a> and <a href="#attr-referrerpolicy"><code>referrerpolicy</code></a>.</li> <li>Use both <a href="#attr-width"><code>width</code></a> and <a href="#attr-height"><code>height</code></a> to set the intrinsic size of the image, allowing it to take up space before it loads, to mitigate content layout shifts.</li> <li>Responsive image hints with <a href="#attr-sizes"><code>sizes</code></a> and <a href="#attr-srcset"><code>srcset</code></a> (see also the <a href="picture"><code>&lt;picture&gt;</code></a> element and our <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images">Responsive images</a> tutorial).</li> </ul>
+<h2 id="supported_image_formats">Supported image formats</h2>
+<p>The HTML standard doesn't list what image formats to support, so each <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent</a> supports different formats.</p> 
+<p>The image file formats that are most commonly used on the web are listed below.</p> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="row">Abbreviation</th> <th scope="row">File format</th> <th scope="col">MIME type</th> <th scope="col">File extension(s)</th> <th scope="col">Summary</th> </tr> </thead> <tbody> <tr> <th scope="row"><a href="#apng">APNG</a></th> <th scope="row">Animated Portable Network Graphics</th> <td><code>image/apng</code></td> <td><code>.apng</code></td> <td>Good choice for lossless animation sequences (GIF is less performant). <a href="#avif">AVIF</a> and <a href="#webp">WebP</a> have better performance but less broad browser support.<br> <strong>Supported</strong>: Chrome, Edge, Firefox, Opera, Safari.</td> </tr> <tr> <th scope="row"><a href="#avif">AVIF</a></th> <th scope="row">AV1 Image File Format</th> <td><code>image/avif</code></td> <td><code>.avif</code></td> <td> <p>Good choice for both images and animated images due to high performance and royalty free image format. It offers much better compression than <a href="#png">PNG</a> or <a href="#jpeg">JPEG</a> with support for higher color depths, animated frames, transparency etc. Note that when using AVIF, you should include fallbacks to formats with better browser support (i.e. using the <code><a href="picture">&lt;picture&gt;</a></code> element). <br> <strong>Supported:</strong> Chrome, Opera, Firefox (behind a <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Experimental_features#avif_av1_image_file_format_support">preference</a>. Basic support only; advanced features like animated images and colorspace support yet to the implemented).</p> </td> </tr> <tr> <th scope="row"><a href="#gif">GIF</a></th> <th scope="row">Graphics Interchange Format</th> <td><code>image/gif</code></td> <td><code>.gif</code></td> <td>Good choice for simple images and animations. Prefer <a href="#png">PNG</a> for lossless <em>and</em> indexed still images, and consider <a href="#webp">WebP</a>, <a href="#avif">AVIF</a> or <a href="#apng">APNG</a> for animation sequences.<br> <strong>Supported:</strong> Chrome, Edge, Firefox, IE, Opera, Safari.</td> </tr> <tr> <th scope="row"><a href="#jpeg">JPEG</a></th> <th scope="row">Joint Photographic Expert Group image</th> <td><code>image/jpeg</code></td> <td>
+<code>.jpg</code>, <code>.jpeg</code>, <code>.jfif</code>, <code>.pjpeg</code>, <code>.pjp</code>
+</td> <td> <p>Good choice for lossy compression of still images (currently the most popular). Prefer <a href="#png">PNG</a> when more precise reproduction of the image is required, or <a href="#webp">WebP</a>/<a href="#avif">AVIF</a> if both better reproduction and higher compression are required.<br> <strong>Support:</strong> Chrome, Edge, Firefox, IE, Opera, Safari.</p> </td> </tr> <tr> <th scope="row"><a href="#png">PNG</a></th> <th scope="row">Portable Network Graphics</th> <td><code>image/png</code></td> <td><code>.png</code></td> <td> <p>PNG is preferred over JPEG for more precise reproduction of source images, or when transparency is needed. <a href="#webp">WebP</a>/<a href="#avif">AVIF</a> provide even better compression and reproduction, but browser support is more limited.<br> <strong>Support:</strong> Chrome, Edge, Firefox, IE, Opera, Safari.</p> </td> </tr> <tr> <th scope="row"><a href="#svg">SVG</a></th> <th scope="row">Scalable Vector Graphics</th> <td><code>image/svg+xml</code></td> <td><code>.svg</code></td> <td>Vector image format; ideal for user interface elements, icons, diagrams, etc., that must be drawn accurately at different sizes.<br> <strong>Support:</strong> Chrome, Edge, Firefox, IE, Opera, Safari.</td> </tr> <tr> <th scope="row"><a href="#webp">WebP</a></th> <th scope="row">Web Picture format</th> <td><code>image/webp</code></td> <td><code>.webp</code></td> <td>Excellent choice for both images and animated images. WebP offers much better compression than <a href="#png">PNG</a> or <a href="#jpeg">JPEG</a> with support for higher color depths, animated frames, transparency etc. <a href="#avif">AVIF</a> offers slightly better compression, but is not quite as well-supported in browsers and does not support progressive rendering.<br> <strong>Support:</strong> Chrome, Edge, Firefox, Opera, Safari</td> </tr> </tbody> </table></div> <div class="notecard note"> <strong id="note">Note</strong> <p>The older formats like PNG, JPEG, GIF have poor performance compared to newer formats like WebP and AVIF, but enjoy broader "historical" browser support. The newer image formats are seeing increasing popularity as browsers without support become increasingly irrelevant (i.e. have virtually zero market share).</p> </div>
+<p>The following list includes image formats that appear on the web, but which should be avoided for web content (generally this is because either they do not have wide browser support, or because there are better alternatives).</p> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="row">Abbreviation</th> <th scope="row">File format</th> <th scope="col">MIME type</th> <th scope="col">File extension(s)</th> <th scope="col">Description</th> </tr> </thead> <tbody> <tr> <th scope="row"><a href="#bmp">BMP</a></th> <th scope="row">Bitmap file</th> <td><code>image/bmp</code></td> <td><code>.bmp</code></td> <td>Chrome, Edge, Firefox, IE, Opera, Safari</td> </tr> <tr> <th scope="row"><a href="#ico">ICO</a></th> <th scope="row">Microsoft Icon</th> <td><code>image/x-icon</code></td> <td>
+<code>.ico</code>, <code>.cur</code>
+</td> <td>Chrome, Edge, Firefox, IE, Opera, Safari</td> </tr> <tr> <th scope="row"><a href="#tiff">TIFF</a></th> <th scope="row">Tagged Image File Format</th> <td><code>image/tiff</code></td> <td>
+<code>.tif</code>, <code>.tiff</code>
+</td> <td>Safari</td> </tr> </tbody> </table></div> <div class="notecard note"> <strong id="note_2">Note</strong> <p>The abbreviation for each image format links to a longer description of the format, its capabilities, and detailed browser compatibility information (including which versions introduced support and specific special features that may have been introduced later).</p> </div>
+ <div class="notecard note"> <strong id="tip">Tip</strong> <p>See <a href="https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types">Image file type and format guide</a> for more comprehensive information about image formats supported by web browsers. This includes image formats that are supported but not recommended for web content (e.g. ICO, BMP, etc.)</p> </div>
+<h2 id="image_loading_errors">Image loading errors</h2>
+<p>If an error occurs while loading or rendering an image, and an <a href="../global_attributes#attr-onerror"><code>onerror</code></a> event handler has been set on the <code><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/error_event">error</a></code> event, that event handler will get called. This can happen in a number of situations, including:</p> <ul> <li>The <code>src</code> attribute is empty (<code>""</code>) or <code>null</code>.</li> <li>The <code>src</code> <a href="https://developer.mozilla.org/en-US/docs/Glossary/URL">URL</a> is the same as the URL of the page the user is currently on.</li> <li>The image is corrupted in some way that prevents it from being loaded.</li> <li>The image's metadata is corrupted in such a way that it's impossible to retrieve its dimensions, and no dimensions were specified in the <code>&lt;img&gt;</code> element's attributes.</li> <li>The image is in a format not supported by the <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent</a>.</li> </ul>
+<h2 id="attributes">Attributes</h2>
+<p>This element includes the <a href="../global_attributes">global attributes</a>.</p> <dl> <dt><code>alt</code></dt> <dd>Defines an alternative text description of the image. <div class="notecard note"> <strong id="note_3">Note</strong> <p>Browsers do not always display images. There are a number of situations in which a browser might not display images, such as:</p> <ul> <li>Non-visual browsers (such as those used by people with visual impairments)</li> <li>The user chooses not to display images (saving bandwidth, privacy reasons)</li> <li>The image is invalid or an <a href="#supported_image_formats">unsupported type</a>
+</li> </ul> <p>In these cases, the browser may replace the image with the text in the element's <code>alt</code> attribute. For these reasons and others, provide a useful value for <code>alt</code> whenever possible.</p> </div> <p>Omitting <code>alt</code> altogether indicates that the image is a key part of the content and no textual equivalent is available. Setting this attribute to an empty string (<code>alt=""</code>) indicates that this image is <em>not</em> a key part of the content (it’s decoration or a tracking pixel), and that non-visual browsers may omit it from <a href="https://developer.mozilla.org/en-US/docs/Glossary/Rendering_engine">rendering</a>. Visual browsers will also hide the broken image icon if the <code>alt</code> is empty and the image failed to display.</p> <p>This attribute is also used when copying and pasting the image to text, or saving a linked image to a bookmark.</p> </dd> <dt><code>crossorigin</code></dt> <dd> <p>Indicates if the fetching of the image must be done using a <a href="https://developer.mozilla.org/en-US/docs/Glossary/CORS">CORS</a> request. Image data from a <a href="../cors_enabled_image">CORS-enabled image</a> returned from a CORS request can be reused in the <a href="canvas"><code>&lt;canvas&gt;</code></a> element without being marked "<a href="../cors_enabled_image#what_is_a_tainted_canvas">tainted</a>".</p> <p>If the <code>crossorigin</code> attribute is <em>not</em> specified, then a non-CORS request is sent (without the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin"><code>Origin</code></a> request header), and the browser marks the image as tainted and restricts access to its image data, preventing its usage in <a href="canvas"><code>&lt;canvas&gt;</code></a> elements.</p> <p>If the <code>crossorigin</code> attribute <em>is</em> specified, then a CORS request is sent (with the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin"><code>Origin</code></a> request header); but if the server does not opt into allowing cross-origin access to the image data by the origin site (by not sending any <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin"><code>Access-Control-Allow-Origin</code></a> response header, or by not including the site's origin in any <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin"><code>Access-Control-Allow-Origin</code></a> response header it does send), then the browser marks the image as tainted and restricts access to its image data, preventing its usage in <a href="canvas"><code>&lt;canvas&gt;</code></a> elements.</p> <p>Allowed values:</p> <dl> <dt><code>anonymous</code></dt> <dd>A CORS request is sent with credentials omitted (that is, no <a href="https://developer.mozilla.org/en-US/docs/Glossary/Cookie">cookies</a>, <a href="https://datatracker.ietf.org/doc/html/rfc5280" rel=" noopener">X.509 certificates</a>, or <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization"><code>Authorization</code></a> request header).</dd> <dt><code>use-credentials</code></dt> <dd>The CORS request is sent with any credentials included (that is, cookies, X.509 certificates, and the <code>Authorization</code> request header). If the server does not opt into sharing credentials with the origin site (by sending back the <code>Access-Control-Allow-Credentials: true</code> response header), then the browser marks the image as tainted and restricts access to its image data.</dd> </dl> <p>If the attribute has an invalid value, browsers handle it as if the <code>anonymous</code> value was used. See <a href="../attributes/crossorigin">CORS settings attributes</a> for additional information.</p> </dd> <dt><code>decoding</code></dt> <dd> <p>Provides an image decoding hint to the browser. Allowed values:</p> </dd> <dd> <dl> <dt><code>sync</code></dt> <dd>Decode the image synchronously, for atomic presentation with other content.</dd> <dt><code>async</code></dt> <dd>Decode the image asynchronously, to reduce delay in presenting other content.</dd> <dt><code>auto</code></dt> <dd>Default: no preference for the decoding mode. The browser decides what is best for the user.</dd> </dl> </dd> <dt><code>height</code></dt> <dd>The intrinsic height of the image, in pixels. Must be an integer without a unit.</dd> <dt>
+<code>intrinsicsize</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>This attribute tells the browser to ignore the actual <a href="https://developer.mozilla.org/en-US/docs/Glossary/Intrinsic_Size">intrinsic size</a> of the image and pretend it’s the size specified in the attribute. Specifically, the image would raster at these dimensions and <code>naturalWidth</code>/<code>naturalHeight</code> on images would return the values specified in this attribute. <a href="https://github.com/ojanvafai/intrinsicsize-attribute" rel=" noopener">Explainer</a>, <a href="https://googlechrome.github.io/samples/intrinsic-size/index.html" rel=" noopener">examples</a>
+</dd> <dt><code>ismap</code></dt> <dd>This Boolean attribute indicates that the image is part of a <a href="https://en.wikipedia.org/wiki/Image_map#Server-side" rel=" noopener">server-side map</a>. If so, the coordinates where the user clicked on the image are sent to the server. <div class="notecard note"> <strong id="note_4">Note</strong> <p><strong>Note:</strong> This attribute is allowed only if the <code>&lt;img&gt;</code> element is a descendant of an <a href="a"><code>&lt;a&gt;</code></a> element with a valid <a href="a#attr-href"><code>href</code></a> attribute. This gives users without pointing devices a fallback destination.</p> </div> </dd> <dt>
+<code>loading</code> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt> <dd>Indicates how the browser should load the image: <ul> <li>
+<code>eager</code>: Loads the image immediately, regardless of whether or not the image is currently within the visible viewport (this is the default value).</li> <li>
+<code>lazy</code>: Defers loading the image until it reaches a calculated distance from the viewport, as defined by the browser. The intent is to avoid the network and storage bandwidth needed to handle the image until it's reasonably certain that it will be needed. This generally improves the performance of the content in most typical use cases. <div class="notecard note"> <strong id="note_5">Note</strong> <p>Loading is only deferred when JavaScript is enabled. This is an anti-tracking measure, because if a user agent supported lazy loading when scripting is disabled, it would still be possible for a site to track a user's approximate scroll position throughout a session, by strategically placing images in a page's markup such that a server can track how many images are requested and when.</p> </div> </li> </ul> </dd> <dt>
+<code>referrerpolicy</code> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt> <dd>A string indicating which referrer to use when fetching the resource: <ul> <li>
+<code>no-referrer</code>: The <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referer"><code>Referer</code></a> header will not be sent.</li> <li>
+<code>no-referrer-when-downgrade</code>: No <code>Referer</code> header is sent when navigating to an origin without <a href="https://developer.mozilla.org/en-US/docs/Glossary/https">HTTPS</a>. This is the default if no policy is otherwise specified.</li> <li>
+<code>origin</code>: The <code>Referer</code> header will include the page's origin (<a class="page-not-created">scheme</a>, <a href="https://developer.mozilla.org/en-US/docs/Glossary/Host">host</a>, and <a href="https://developer.mozilla.org/en-US/docs/Glossary/Port">port</a>).</li> <li>
+<code>origin-when-cross-origin</code>: Navigating to other origins will limit the included referral data to the scheme, host, and port, while navigating from the same origin will include the full path and query string.</li> <li>
+<code>unsafe-url</code>: The <code>Referer</code> header will always include the origin, path and query string, but not the fragment, password, or username. <strong>This is unsafe</strong> because it can leak information from TLS-protected resources to insecure origins.</li> </ul> </dd> <dt><code>sizes</code></dt> <dd>One or more strings separated by commas, indicating a set of source sizes. Each source size consists of: <ol> <li>A <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries#syntax">media condition</a>. This must be omitted for the last item in the list.</li> <li>A source size value.</li> </ol> <p>Media Conditions describe properties of the <em>viewport</em>, not of the <em>image</em>. For example, <code>(max-height: 500px) 1000px</code> proposes to use a source of 1000px width, if the <em>viewport</em> is not higher than 500px.</p> <p>Source size values specify the intended display size of the image. <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">User agents</a> use the current source size to select one of the sources supplied by the <code>srcset</code> attribute, when those sources are described using width (<code>w</code>) descriptors. The selected source size affects the <a href="https://developer.mozilla.org/en-US/docs/Glossary/Intrinsic_Size">intrinsic size</a> of the image (the image’s display size if no <a href="https://developer.mozilla.org/en-US/docs/Glossary/CSS">CSS</a> styling is applied). If the <code>srcset</code> attribute is absent, or contains no values with a width descriptor, then the <code>sizes</code> attribute has no effect.</p> </dd> <dt><code>src</code></dt> <dd>The image <a href="https://developer.mozilla.org/en-US/docs/Glossary/URL">URL</a>. Mandatory for the <code>&lt;img&gt;</code> element. On <a href="https://developer.mozilla.org/en-US/docs/Glossary/Browser">browsers</a> supporting <code>srcset</code>, <code>src</code> is treated like a candidate image with a pixel density descriptor <code>1x</code>, unless an image with this pixel density descriptor is already defined in <code>srcset</code>, or unless <code>srcset</code> contains <code>w</code> descriptors.</dd> <dt><code>srcset</code></dt> <dd>One or more strings separated by commas, indicating possible image sources for the <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent</a> to use. Each string is composed of: <ol> <li>A <a href="https://developer.mozilla.org/en-US/docs/Glossary/URL">URL</a> to an image</li> <li>Optionally, whitespace followed by one of: <ul> <li>A width descriptor (a positive integer directly followed by <code>w</code>). The width descriptor is divided by the source size given in the <code>sizes</code> attribute to calculate the effective pixel density.</li> <li>A pixel density descriptor (a positive floating point number directly followed by <code>x</code>).</li> </ul> </li> </ol> <p>If no descriptor is specified, the source is assigned the default descriptor of <code>1x</code>.</p> <p>It is incorrect to mix width descriptors and pixel density descriptors in the same <code>srcset</code> attribute. Duplicate descriptors (for instance, two sources in the same <code>srcset</code> which are both described with <code>2x</code>) are also invalid.</p> <p>The user agent selects any of the available sources at its discretion. This provides them with significant leeway to tailor their selection based on things like user preferences or <a href="https://developer.mozilla.org/en-US/docs/Glossary/Bandwidth">bandwidth</a> conditions. See our <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images">Responsive images</a> tutorial for an example.</p> </dd> <dt><code>width</code></dt> <dd>The intrinsic width of the image in pixels. Must be an integer without a unit.</dd> <dt><code>usemap</code></dt> <dd>The partial <a href="https://developer.mozilla.org/en-US/docs/Glossary/URL">URL</a> (starting with <code>#</code>) of an <a href="map">image map</a> associated with the element. <div class="notecard note"> <strong id="note_6">Note</strong> <p>You cannot use this attribute if the <code>&lt;img&gt;</code> element is inside an <a href="a"><code>&lt;a&gt;</code></a> or <a href="button"><code>&lt;button&gt;</code></a> element.</p> </div> </dd> </dl>
+<h3 id="deprecated_attributes">Deprecated attributes</h3>
+<dl> <dt>
+<code>align</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>Aligns the image with its surrounding context. Use the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/float"><code>float</code></a> and/or <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align"><code>vertical-align</code></a> <a href="https://developer.mozilla.org/en-US/docs/Glossary/CSS">CSS</a> properties instead of this attribute. Allowed values:</dd> <dd> <dl> <dt><code>top</code></dt> <dd>Equivalent to <code style="white-space: nowrap;">vertical-align: top</code> or <code style="white-space: nowrap;">vertical-align: text-top</code>
+</dd> <dt><code>middle</code></dt> <dd>Equivalent to <code style="white-space: nowrap;">vertical-align: -moz-middle-with-baseline</code>
+</dd> <dt><code>bottom</code></dt> <dd>The default, equivalent to <code style="white-space: nowrap;">vertical-align: unset</code> or <code style="white-space: nowrap;">vertical-align: initial</code>
+</dd> <dt><code>left</code></dt> <dd>Equivalent to <code style="white-space: nowrap;">float: left</code>
+</dd> <dt><code>right</code></dt> <dd>Equivalent to <code style="white-space: nowrap;">float: right</code>
+</dd> </dl> </dd> <dt>
+<code>border</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>The width of a border around the image. Use the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border"><code>border</code></a> <a href="https://developer.mozilla.org/en-US/docs/Glossary/CSS">CSS</a> property instead.</dd> <dt>
+<code>hspace</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>The number of pixels of white space on the left and right of the image. Use the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/margin"><code>margin</code></a> CSS property instead.</dd> <dt>
+<code>longdesc</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>A link to a more detailed description of the image. Possible values are a <a href="https://developer.mozilla.org/en-US/docs/Glossary/URL">URL</a> or an element <a href="../global_attributes#attr-id"><code>id</code></a>. <div class="notecard note"> <strong id="note_7">Note</strong> <p>This attribute is mentioned in the latest <a href="https://developer.mozilla.org/en-US/docs/Glossary/W3C">W3C</a> version, <a href="https://www.w3.org/TR/html52/obsolete.html#element-attrdef-img-longdesc" rel=" noopener">HTML 5.2</a>, but has been removed from the <a href="https://developer.mozilla.org/en-US/docs/Glossary/WHATWG">WHATWG</a>’s <a href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element" rel=" noopener">HTML Living Standard</a>. It has an uncertain future; authors should use a <a href="https://developer.mozilla.org/en-US/docs/Glossary/WAI">WAI</a>-<a href="https://developer.mozilla.org/en-US/docs/Glossary/ARIA">ARIA</a> alternative such as <a href="https://www.w3.org/TR/wai-aria-1.1/#aria-describedby" rel=" noopener"><code>aria-describedby</code></a> or <a href="https://www.w3.org/TR/wai-aria-1.1/#aria-details" rel=" noopener"><code>aria-details</code></a>.</p> </div> </dd> <dt>
+<code>name</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>A name for the element. Use the <a href="../global_attributes#attr-id"><code>id</code></a> attribute instead.</dd> <dt>
+<code>vspace</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>The number of pixels of white space above and below the image. Use the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/margin"><code>margin</code></a> CSS property instead.</dd> </dl>
+<h2 id="styling_with_css">Styling with CSS</h2>
+<p><code>&lt;img&gt;</code> is a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element">replaced element</a>; it has a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display"><code>display</code></a> value of <code>inline</code> by default, but its default dimensions are defined by the embedded image's intrinsic values, like it were <code>inline-block</code>. You can set properties like <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border"><code>border</code></a>/<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius"><code>border-radius</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding"><code>padding</code></a>/<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/margin"><code>margin</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/width"><code>width</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/height"><code>height</code></a>, etc. on an image.</p> <p><code>&lt;img&gt;</code> has no baseline, so when images are used in an inline formatting context with <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/vertical-align"><code>vertical-align</code></a><code>: baseline</code>, the bottom of the image will be placed on the text baseline.</p> <p>You can use the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-position"><code>object-position</code></a> property to position the image within the element's box, and the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit"><code>object-fit</code></a> property to adjust the sizing of the image within the box (for example, whether the image should fit the box or fill it even if clipping is required).</p> <p>Depending on its type, an image may have an intrinsic width and height. For some image types, however, intrinsic dimensions are unnecessary. <a href="https://developer.mozilla.org/en-US/docs/Glossary/SVG">SVG</a> images, for instance, have no intrinsic dimensions if their root <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg"><code>&lt;svg&gt;</code></a> element doesn't have a <code>width</code> or <code>height</code> set on it.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="alternative_text">Alternative text</h3>
+<p>The following example embeds an image into the page and includes alternative text for accessibility.</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://developer.mozilla.org/static/img/favicon144.png<span class="token punctuation">"</span></span>
+     <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>MDN logo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+</pre> <p><iframe class="sample-code-frame" id="frame_Alternative_text" width="100%" height="160" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/HTML/Element/img/_samples_/Alternative_text" loading="lazy"></iframe></p>
+<h3 id="image_link">Image link</h3>
+<p>This example builds upon the previous one, showing how to turn the image into a link. To do so, nest the <code>&lt;img&gt;</code> tag inside the <a href="a"><code>&lt;a&gt;</code></a>. You should made the alternative text describe the resource the link is pointing to, as if you were using a text link instead.</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://developer.mozilla.org<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://developer.mozilla.org/static/img/favicon144.png<span class="token punctuation">"</span></span>
+       <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Visit the MDN site<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span></pre> <p><iframe class="sample-code-frame" id="frame_Image_link" width="100%" height="160" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/HTML/Element/img/_samples_/Image_link" loading="lazy"></iframe></p>
+<h3 id="using_the_srcset_attribute">Using the srcset attribute</h3>
+<p>In this example we include a <code>srcset</code> attribute with a reference to a high-resolution version of the logo; this will be loaded instead of the <code>src</code> image on high-resolution devices. The image referenced in the <code>src</code> attribute is counted as a <code>1x</code> candidate in <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agents</a> that support <code>srcset</code>.</p> <pre data-language="html"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://developer.mozilla.org/static/img/favicon72.png<span class="token punctuation">"</span></span>
+      <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>MDN logo<span class="token punctuation">"</span></span>
+      <span class="token attr-name">srcset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://developer.mozilla.org/static/img/favicon144.png 2x<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span></pre> <p><iframe class="sample-code-frame" id="frame_Using_the_srcset_attribute" width="100%" height="160" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/HTML/Element/img/_samples_/Using_the_srcset_attribute" loading="lazy"></iframe></p>
+<h3 id="using_the_srcset_and_sizes_attributes">Using the srcset and sizes attributes</h3>
+<p>The <code>src</code> attribute is ignored in <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agents</a> that support <code>srcset</code> when <code>w</code> descriptors are included. When the <code>(max-width: 600px)</code> media condition matches, the 200 pixel-wide image will load (it is the one that matches <code>200px</code> most closely), otherwise the other image will load.</p> <pre data-language="html"> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/files/16864/clock-demo-200px.png<span class="token punctuation">"</span></span>
+      <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Clock<span class="token punctuation">"</span></span>
+      <span class="token attr-name">srcset</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/files/16864/clock-demo-200px.png 200w,
+          /files/16797/clock-demo-400px.png 400w<span class="token punctuation">"</span></span>
+      <span class="token attr-name">sizes</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>(max-width: 600px) 200px, 50vw<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span></pre> <p><iframe class="sample-code-frame" id="frame_Using_the_srcset_and_sizes_attributes" width="100%" height="350" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/HTML/Element/img/_samples_/Using_the_srcset_and_sizes_attributes" loading="lazy"></iframe></p> <div class="notecard note"> <strong id="note_8">Note</strong> <p>To see the resizing in action, <a href="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/HTML/Element/img/_samples_/Using_the_srcset_and_sizes_attributes" rel=" noopener">view the example on a separate page</a>, so you can actually resize the content area.</p> </div>
+<h2 id="security_and_privacy_concerns">Security and privacy concerns</h2>
+<p>Although <code>&lt;img&gt;</code> elements have innocent uses, they can have undesirable consequences for user security and privacy. See <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Referer_header:_privacy_and_security_concerns">Referer header: privacy and security concerns</a> for more information and mitigations.</p>
+<h2 id="accessibility_concerns">Accessibility concerns</h2>
+<h3 id="authoring_meaningful_alternate_descriptions">Authoring meaningful alternate descriptions</h3>
+<p>An <code>alt</code> attribute's value should clearly and concisely describe the image's content. It should not describe the presence of the image itself or the file name of the image. If the <code>alt</code> attribute is purposefully left off because the image has no textual equivalent, consider alternate methods to present what the image is trying to communicate.</p> <h4 id="dont">Don't</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>image<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>penguin.jpg<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+</pre> <h4 id="do">Do</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>A Rockhopper Penguin standing on a beach.<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>penguin.jpg<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+</pre> <p>When an <code>alt</code> attribute is not present on an image, some screen readers may announce the image's file name instead. This can be a confusing experience if the file name isn't representative of the image's contents.</p> <ul> <li><a href="https://www.w3.org/WAI/tutorials/images/decision-tree/" rel=" noopener">An alt Decision Tree • Images • WAI Web Accessibility Tutorials</a></li> <li><a href="https://axesslab.com/alt-texts/" rel=" noopener">Alt-texts: The Ultimate Guide — Axess Lab</a></li> <li><a href="https://www.deque.com/blog/great-alt-text-introduction/" rel=" noopener">How to Design Great Alt Text: An Introduction | Deque</a></li> <li><a href="#">MDN Understanding WCAG, Guideline 1.1 explanations</a></li> <li><a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/text-equiv-all.html" rel=" noopener">Understanding Success Criterion 1.1.1 | W3C Understanding WCAG 2.0</a></li> </ul>
+<h3 id="the_title_attribute">The title attribute</h3>
+<p>The <a href="../global_attributes#attr-title"><code>title</code></a> attribute is not an acceptable substitute for the <code>alt</code> attribute. Additionally, avoid duplicating the <code>alt</code> attribute's value in a <code>title</code> attribute declared on the same image. Doing so may cause some screen readers to announce the description twice, creating a confusing experience.</p> <p>The <code>title</code> attribute should also not be used as supplemental captioning information to accompany an image's <code>alt</code> description. If an image needs a caption, use the <code><a href="figure">figure</a></code> and <code><a href="figcaption">figcaption</a></code> elements.</p> <p>The value of the <code>title</code> attribute is usually presented to the user as a tooltip, which appears shortly after the cursor stops moving over the image. While this <em>can</em> provide additional information to the user, you should not assume that the user will ever see it: the user may only have keyboard or touchscreen. If you have information that's particularly important or valuable for the user, present it inline using one of the methods mentioned above instead of using <code>title</code>.</p> <ul> <li><a href="https://developer.paciellogroup.com/blog/2013/01/using-the-html-title-attribute-updated/" rel=" noopener">Using the HTML title attribute – updated | The Paciello Group</a></li> </ul>
+<h2 id="technical_summary">Technical summary</h2>
+<div class="_table"><table class="properties"> <tbody> <tr> <th scope="row"><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories">Content categories</a></th> <td>
+<a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#flow_content">Flow content</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#phrasing_content">phrasing content</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#embedded_content">embedded content</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#palpable_content">palpable content</a>. If the element has a <code>usemap</code> attribute, it also is a part of the interactive content category.</td> </tr> <tr> <th scope="row">Permitted content</th> <td>None, it is an <a href="https://developer.mozilla.org/en-US/docs/Glossary/Empty_element">empty element</a>.</td> </tr> <tr> <th scope="row">Tag omission</th> <td>Must have a start tag and must not have an end tag.</td> </tr> <tr> <th scope="row">Permitted parents</th> <td>Any element that accepts embedded content.</td> </tr> <tr> <th scope="row">Implicit ARIA role</th> <td> <ul> <li>with non-empty <code>alt</code> attribute or no <code>alt</code> attribute: <code><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Role_Img">img</a></code>
+</li> <li>with empty <code>alt</code> attribute: <a href="https://www.w3.org/TR/html-aria/#dfn-no-corresponding-role" rel=" noopener">no corresponding role</a>
+</li> </ul> </td> </tr> <tr> <th scope="row">Permitted ARIA roles</th> <td> <ul> <li>with non-empty <code>alt</code> attribute: <ul> <li><code><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/button_role">button</a></code></li> <li><code><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/checkbox_role">checkbox</a></code></li> <li><code><a href="https://w3c.github.io/aria/#link" rel=" noopener">link</a></code></li> <li><code><a href="https://w3c.github.io/aria/#menuitem" rel=" noopener">menuitem</a></code></li> <li><code><a href="https://w3c.github.io/aria/#menuitemcheckbox" rel=" noopener">menuitemcheckbox</a></code></li> <li><code><a href="https://w3c.github.io/aria/#menuitemradio" rel=" noopener">menuitemradio</a></code></li> <li><code><a href="https://w3c.github.io/aria/#option" rel=" noopener">option</a></code></li> <li><code><a href="https://w3c.github.io/aria/#progressbar" rel=" noopener">progressbar</a></code></li> <li><code><a href="https://w3c.github.io/aria/#scrollbar" rel=" noopener">scrollbar</a></code></li> <li><code><a href="https://w3c.github.io/aria/#separator" rel=" noopener">separator</a></code></li> <li><code><a href="https://w3c.github.io/aria/#slider" rel=" noopener">slider</a></code></li> <li><code><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Switch_role">switch</a></code></li> <li><code><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/Tab_Role">tab</a></code></li> <li><code><a href="https://w3c.github.io/aria/#treeitem" rel=" noopener">treeitem</a></code></li> </ul> </li> <li>with empty <code>alt</code> attribute, <code><a href="https://w3c.github.io/aria/#none" rel=" noopener">none</a></code> or <code><a href="https://w3c.github.io/aria/#presentation" rel=" noopener">presentation</a></code>
+</li> <li>with no <code>alt</code> attribute, no <code>role</code> permitted</li> </ul> </td> </tr> <tr> <th scope="row">DOM interface</th> <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement"><code>HTMLImageElement</code></a></td> </tr> </tbody> </table></div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-delivery-referrer-attribute" hreflang="en" rel=" noopener">Referrer Policy<br><small>The definition of 'referrer attribute' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Added the <code>referrerpolicy</code> attribute.</td> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/embedded-content.html#the-img-element" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of '&lt;img&gt;' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element" hreflang="en" rel=" noopener">HTML5<br><small>The definition of '&lt;img&gt;' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/html401/struct/objects.html#h-13.2" hreflang="en" rel=" noopener">HTML 4.01 Specification<br><small>The definition of '&lt;img&gt;' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>img</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>align</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>alt</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>aspect_ratio_computed_from_attributes</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>71</div>
+<div>69-71</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr>
+<tr>
+<th><code>border</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>crossorigin</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>decoding</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>height</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>hspace</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>intrinsicsize</code></th>
+<td class="bc-supports-no"><div>71-78</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>58-65</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>71-78</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>50-56</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>ismap</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>loading</code></th>
+<td class="bc-supports-yes"><div>77</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://webkit.org/b/196698">bug 196698</a>
+</div>
+</td>
+<td class="bc-supports-yes"><div>77</div></td>
+<td class="bc-supports-yes"><div>77</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1542784">bug 1542784</a>
+</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://webkit.org/b/196698">bug 196698</a>
+</div>
+</td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr>
+<tr>
+<th><code>longdesc</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>name</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>onerror</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>referrerpolicy</code></th>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7.2</div></td>
+</tr>
+<tr>
+<th><code>sizes</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>src</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>srcset</code></th>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>21</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>21</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+</tr>
+<tr>
+<th><code>usemap</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>vspace</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>width</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Images_in_HTML">Images in HTML</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types">Image file type and format guide</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images">Responsive images</a></li> <li>
+<a href="picture"><code>&lt;picture&gt;</code></a>, <a href="object"><code>&lt;object&gt;</code></a> and <a href="embed"><code>&lt;embed&gt;</code></a> elements</li> <li>Other image-related CSS properties: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit"><code>object-fit</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-position"><code>object-position</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/image-orientation"><code>image-orientation</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/image-rendering"><code>image-rendering</code></a>, and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/image-resolution"><code>image-resolution</code></a>.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img</a>
+  </p>
+</div>

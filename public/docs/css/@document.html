@@ -1,0 +1,115 @@
+<h1>@document</h1>
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div> <p>The <code>@document</code> <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> <a href="at-rule">at-rule</a> restricts the style rules contained within it based on the URL of the document. It is designed primarily for user-defined style sheets, though it can be used on author-defined style sheets, too.</p> <pre data-language="css"><span class="token atrule"><span class="token rule">@document</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">"https://www.example.com/"</span><span class="token punctuation">)</span></span></span> <span class="token punctuation">{</span>
+  <span class="token selector">h1</span> <span class="token punctuation">{</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> green<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="syntax">Syntax</h2>
+<p>An <code>@document</code> rule can specify one or more matching functions. If any of the functions apply to a given URL, the rule will take effect on that URL. The functions available are:</p> <ul> <li>
+<code>url()</code>, which matches an exact URL.</li> <li>
+<code>url-prefix()</code>, which matches if the document URL starts with the value provided.</li> <li>
+<code>domain()</code>, which matches if the document URL is on the domain provided (or a subdomain of it).</li> <li>
+<code>media-document()</code>, with the parameter of video, image, plugin or all.</li> <li>
+<code>regexp()</code>, which matches if the document URL is matched by the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a> provided. The expression must match the entire URL.</li> </ul> <p>The values provided to the <code>url()</code>, <code>url-prefix()</code>, <code>domain()</code>, and <code>media-document()</code> functions can be optionally enclosed by single or double quotes. The values provided to the <code>regexp()</code> function <em>must</em> be enclosed in quotes.</p> <p>Escaped values provided to the <code>regexp()</code> function must additionally be escaped from the CSS. For example, a <code>.</code> (period) matches any character in regular expressions. To match a literal period, you would first need to escape it using regular expression rules (to <code>\.</code>), then escape that string using CSS rules (to <code>\\.</code>).</p> <p><code>@document</code> is currently only supported in Firefox; if you wanted to replicate using such functionality in your own non-Firefox browser, you could try using <a href="https://github.com/An-Error94/Handy-Scripts/tree/master/@document-polyfill" rel=" noopener">this polyfill</a> by @An-Error94, which uses a combination of a user script, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*">data-* attributes</a>, and <a href="attribute_selectors">attribute selectors</a>.</p> <div class="note notecard"> <p><strong>Note</strong>: There is a -moz-prefixed version of this property — <code>@-moz-document</code>. This has been limited to use only in user and UA sheets in Firefox 59 in Nightly and Beta — an experiment designed to mitigate potential CSS injection attacks (See <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1035091" rel=" noopener">bug 1035091</a>).</p> </div>
+<h2 id="formal_syntax">Formal syntax</h2>
+<pre class="notranslate">@document <a href="value_definition_syntax#brackets">[</a> <a href="url()">&lt;url&gt;</a> <a href="value_definition_syntax#single_bar">|</a> url-prefix(<a href="string">&lt;string&gt;</a>) <a href="value_definition_syntax#single_bar">|</a> domain(<a href="string">&lt;string&gt;</a>) <a href="value_definition_syntax#single_bar">|</a> media-document(<a href="string">&lt;string&gt;</a>) <a href="value_definition_syntax#single_bar">|</a> regexp(<a href="string">&lt;string&gt;</a>) <a href="value_definition_syntax#brackets">]</a><a href="value_definition_syntax#hash_mark_()">#</a> {
+  &lt;group-rule-body&gt;
+}</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="specifying_document_for_css_rule">Specifying document for CSS rule</h3>
+<pre data-language="css"><span class="token atrule"><span class="token rule">@document</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">"http://www.w3.org/"</span><span class="token punctuation">)</span></span><span class="token punctuation">,</span>
+          <span class="token function">url-prefix</span><span class="token punctuation">(</span><span class="token string">"http://www.w3.org/Style/"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token function">domain</span><span class="token punctuation">(</span><span class="token string">"mozilla.org"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token function">media-document</span><span class="token punctuation">(</span><span class="token string">"video"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          <span class="token function">regexp</span><span class="token punctuation">(</span><span class="token string">"https:.*"</span><span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+  <span class="token comment">/* CSS rules here apply to:
+     - The page "http://www.w3.org/"
+     - Any page whose URL begins with "http://www.w3.org/Style/"
+     - Any page whose URL's host is "mozilla.org"
+       or ends with ".mozilla.org"
+     - Any standalone video
+     - Any page whose URL starts with "https:" */</span>
+
+  <span class="token comment">/* Make the above-mentioned pages really ugly */</span>
+  <span class="token selector">body</span> <span class="token punctuation">{</span>
+    <span class="token property">color</span><span class="token punctuation">:</span> purple<span class="token punctuation">;</span>
+    <span class="token property">background</span><span class="token punctuation">:</span> yellow<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<p><a href="https://www.w3.org/TR/2012/WD-css3-conditional-20120911/#at-document" rel=" noopener">Initially</a> in <a href="https://drafts.csswg.org/css-conditional-3/" hreflang="en" rel=" noopener">CSS Conditional Rules Module Level 3</a>, <code>@document</code> has been <a href="https://www.w3.org/TR/2012/WD-css3-conditional-20121213/#changes" rel=" noopener">postponed</a> to Level 4 then removed.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>@document</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>61</div>
+<div>Disabled by default in web pages, except for an empty <code>url-prefix()</code> value, which is supported due to its <a href="https://css-tricks.com/snippets/css/css-hacks-targeting-firefox/">use in Firefox browser detection</a>. Still supported in user stylesheets.</div>
+<div>1.5-61</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>61</div>
+<div>Disabled by default in web pages, except for an empty <code>url-prefix()</code> value, which is supported due to its <a href="https://css-tricks.com/snippets/css/css-hacks-targeting-firefox/">use in Firefox browser detection</a>. Still supported in user stylesheets.</div>
+<div>4-61</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>regexp</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="https://lists.w3.org/Archives/Public/www-style/2004Aug/0135" rel=" noopener">Per-site user style sheet rules</a> on the www-style mailing list.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@document" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/@document</a>
+  </p>
+</div>

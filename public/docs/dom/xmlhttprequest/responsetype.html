@@ -1,0 +1,169 @@
+<h1>XMLHttpRequest.responseType</h1> <p>The <a href="../xmlhttprequest"><code>XMLHttpRequest</code></a> property <code>responseType</code> is an enumerated string value specifying the type of data contained in the response. It also lets the author change the response type. If an empty string is set as the value of <code>responseType</code>, the default value of <code>text</code> is used.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> type <span class="token operator">=</span> XMLHttpRequest<span class="token punctuation">.</span>responseType<span class="token punctuation">;</span>
+
+XMLHttpRequest<span class="token punctuation">.</span>responseType <span class="token operator">=</span> type<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>A string taken from the <a href="../xmlhttprequestresponsetype"><code>XMLHttpRequestResponseType</code></a> enum which specifies what type of data the response contains.</p> <div class="note notecard"> <p>When setting <code>responseType</code> to a particular value, the author should make sure that the server is actually sending a response compatible with that format. If the server returns data that is not compatible with the <code>responseType</code> that was set, the value of <a href="response"><code>response</code></a> will be <code>null</code>.</p> </div> <p>The values supported by <code>responseType</code> are the following:</p> 
+<dl> <dt><code>""</code></dt> <dd>An empty <code>responseType</code> string is treated the same as <code>"text"</code>, the default type.</dd> <dt><code>arraybuffer</code></dt> <dd>The <a href="response"><code>response</code></a> is a JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> containing binary data.</dd> <dt><code>blob</code></dt> <dd>The <code>response</code> is a <a href="../blob"><code>Blob</code></a> object containing the binary data.</dd> <dt><code>document</code></dt> <dd>The <code>response</code> is an <a href="https://developer.mozilla.org/en-US/docs/Glossary/HTML">HTML</a> <a href="../document"><code>Document</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Glossary/XML">XML</a> <a href="../xmldocument"><code>XMLDocument</code></a>, as appropriate based on the MIME type of the received data. See <a href="html_in_xmlhttprequest">HTML in XMLHttpRequest</a> to learn more about using XHR to fetch HTML content.</dd> <dt><code>json</code></dt> <dd>The <code>response</code> is a JavaScript object created by parsing the contents of received data as <a href="https://developer.mozilla.org/en-US/docs/Glossary/JSON">JSON</a>.</dd> <dt><code>text</code></dt> <dd>The <code>response</code> is a text in a <a href="../domstring"><code>DOMString</code></a> object.</dd> <dt>
+<code>ms-stream</code> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized.   </span>
+</dt> <dd>The <code>response</code> is part of a streaming download; this response type is only allowed for download requests, and is only supported by Internet Explorer.</dd> </dl>
+
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>InvalidAccessError</code></dt> <dd>An attempt was made to change the value of <code>responseType</code> on an<code>XMLHttpRequest</code> which is in synchronous mode but not in a <a href="../worker"><code>Worker</code></a>. For additional details, see <a href="#synchronous_xhr%0A____restrictions">Synchronous XHR restrictions</a> below.</dd> </dl>
+<h2 id="usage_notes">Usage notes</h2>
+<h3 id="synchronous_xhr_restrictions">Synchronous XHR restrictions</h3>
+<p>You cannot change the value of <code>responseType</code> in a synchronous <code>XMLHttpRequest</code> except when the request belongs to a <a href="../worker"><code>Worker</code></a>. This restriction is designed in part to help ensure that synchronous operations aren't used for large transactions that block the browser's main thread, thereby bogging down the user experience.</p> <p><code>XMLHttpRequest</code>s are asynchronous by default; they are only placed in synchronous mode by passing <code>false</code> as the value of the optional <code>async</code> parameter when calling <a href="open"><code>open()</code></a>. </p>
+<h3 id="restrictions_in_workers">Restrictions in Workers</h3>
+<p>Attempts to set the value of <code>responseType</code> to <code>document</code> are ignored in a <a href="../worker"><code>Worker</code></a>.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://xhr.spec.whatwg.org/#the-responsetype-attribute" hreflang="en" rel=" noopener">XMLHttpRequest</a></td> <td><span class="spec-living">Living Standard</span></td> <td>WHATWG living standard</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>responseType</code></th>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-no">
+<div>12-15</div>
+<div>18</div>
+</td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>arraybuffer</code></th>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-no">
+<div>12-15</div>
+<div>18</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>blob</code></th>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>document</code></th>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>json</code></th>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>12-15</div>
+<div>18</div>
+</td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>moz-blob</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>12-58</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>moz-chunked-arraybuffer</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>14-68</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>50-68</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="using_xmlhttprequest">Using XMLHttpRequest</a></li> <li><a href="html_in_xmlhttprequest">HTML in XMLHttpRequest</a></li> <li>The response data: <a href="response"><code>response</code></a>, <a href="responsetext"><code>responseText</code></a>, and <a href="responsexml"><code>responseXML</code></a>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/responseType" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/responseType</a>
+  </p>
+</div>

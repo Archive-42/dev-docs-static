@@ -1,0 +1,30 @@
+<h1>msPlayToSource</h1>
+ 
+<div class="notecard warning"> <strong id="non-standard">Non-standard</strong> <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p> </div>
+ <p><code><strong>msPlayToSource</strong></code> is a read-only property which gets the source associated with the media element for use by the <a href="https://docs.microsoft.com/en-us/uwp/api/windows.media.playto.playtomanager" rel=" noopener"><code>PlayToManager</code></a>. </p> <p>This proprietary property is specific to Internet Explorer and Microsoft Edge.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">ptr <span class="token operator">=</span> object<span class="token punctuation">.</span>msPlayToSource<span class="token punctuation">;</span>
+
+</pre>
+<h2 id="value">Value</h2>
+<p><em>PlayTo</em> is a means through which an app can connect local playback/display for audio, video, and img elements to a remote device. For more information, see the <a href="https://docs.microsoft.com/en-us/uwp/api/windows.media.playto" rel=" noopener">Windows.Media.PlayTo</a> APIs.</p> <p><code><strong>msPlayToSource</strong></code> is used in the <code>sourceRequested</code> handler -- get the <code>PlayToSource</code> object from an audio, video, or img element using the <code>msPlayToSource</code> property and pass it to <code>e.setSource</code>, then set the <code>PlayToSource.next</code> property to the <code>msPlayToSource</code> of another element for continual playing.</p> <p>The property value for <code>msPlayToSource</code> is the source associated with the media element.</p>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token operator">&lt;</span>video id<span class="token operator">=</span><span class="token string">"videoplayer"</span> src<span class="token operator">=</span><span class="token string">"http://www.contoso.com/clip.mp4"</span> controls autoplay <span class="token operator">/</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>script type<span class="token operator">=</span><span class="token string">"text/javascript"</span><span class="token operator">&gt;</span>
+
+  <span class="token comment">// Step 1: Obtain PlayToManager object for app’s current view.</span>
+    <span class="token keyword">var</span> ptm <span class="token operator">=</span> Windows<span class="token punctuation">.</span>Media<span class="token punctuation">.</span>PlayTo<span class="token punctuation">.</span>PlayToManager<span class="token punctuation">.</span><span class="token function">getForCurrentView</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Step 2: Register for the sourcerequested event (user swipes Devices charm).</span>
+    ptm<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"sourcerequested"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token comment">// Step 3: Specify the media to be streamed (to filter devices).</span>
+        e<span class="token punctuation">.</span>sourceRequest<span class="token punctuation">.</span><span class="token function">setSource</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"videoplayer"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>msPlayToSource<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// The media will then be streamed to the device chosen by the user in the UI.</span>
+
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MsPlayToSource" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MsPlayToSource</a>
+  </p>
+</div>

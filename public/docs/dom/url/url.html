@@ -1,0 +1,89 @@
+<h1>URL()</h1> <p>The <code><strong>URL()</strong></code> constructor returns a newly created <a href="../url"><code>URL</code></a> object representing the URL defined by the parameters.</p> <p>If the given base URL or the resulting URL are not valid URLs, the JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError"><code>TypeError</code></a> exception is thrown.</p> 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="../web_workers_api">Web Workers</a>.</p> </div>
+
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">const</span> url <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span>url <span class="token punctuation">[</span><span class="token punctuation">,</span> base<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>url</var></code></dt> <dd>A <a href="../usvstring"><code>USVString</code></a> or any other object with a <a href="https://developer.mozilla.org/en-US/docs/MDN/Contribute/Howto/Write_an_API_reference/Information_contained_in_a_WebIDL_file#stringifiers">stringifier</a> — including, for example, an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a"><code>&lt;a&gt;</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area"><code>&lt;area&gt;</code></a> element — that represents an absolute or relative URL. If <code><var>url</var></code> is a relative URL, <code><var>base</var></code> is required, and will be used as the base URL. If <code><var>url</var></code> is an absolute URL, a given <code><var>base</var></code> will be ignored.</dd> <dt>
+<code><var>base</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A <a href="../usvstring"><code>USVString</code></a> representing the base URL to use in cases where <code><var>url</var></code> is a relative URL. If not specified, it defaults to <code>undefined</code>.</dd> </dl> <div class="note notecard"> <p><strong>Note</strong>: The <code>url</code> and <code>base</code> arguments will each be stringified from whatever value you pass, just like with other Web APIs that accept <a href="../usvstring"><code>USVString</code></a>. In particular, you can use an existing <a href="../url"><code>URL</code></a> object for either argument, and it will stringify to the object's <a href="href"><code>href</code></a> property.</p> </div>
+<h3 id="exceptions">Exceptions</h3>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Exception</th> <th scope="col">Explanation</th> </tr> </thead> <tbody> <tr> <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError"><code>TypeError</code></a></td> <td>
+<code><var>url</var></code> (in the case of absolute URLs) or <code><var>base</var></code> + <code><var>url</var></code> (in the case of relative URLs) is not a valid URL.</td> </tr> </tbody> </table></div>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token comment">// Base urls</span>
+<span class="token keyword">let</span> m <span class="token operator">=</span> <span class="token string">'https://developer.mozilla.org'</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span><span class="token string">"/"</span><span class="token punctuation">,</span> m<span class="token punctuation">)</span><span class="token punctuation">;</span>                                <span class="token comment">// =&gt; 'https://developer.mozilla.org/'</span>
+<span class="token keyword">let</span> b <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span>m<span class="token punctuation">)</span><span class="token punctuation">;</span>                                     <span class="token comment">// =&gt; 'https://developer.mozilla.org/'</span>
+
+        <span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span><span class="token string">'en-US/docs'</span><span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>                      <span class="token comment">// =&gt; 'https://developer.mozilla.org/en-US/docs'</span>
+<span class="token keyword">let</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span><span class="token string">'/en-US/docs'</span><span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token comment">// =&gt; 'https://developer.mozilla.org/en-US/docs'</span>
+        <span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span><span class="token string">'/en-US/docs'</span><span class="token punctuation">,</span> d<span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token comment">// =&gt; 'https://developer.mozilla.org/en-US/docs'</span>
+        <span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span><span class="token string">'/en-US/docs'</span><span class="token punctuation">,</span> a<span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token comment">// =&gt; 'https://developer.mozilla.org/en-US/docs'</span>
+
+        <span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span><span class="token string">'/en-US/docs'</span><span class="token punctuation">,</span> <span class="token string">"https://developer.mozilla.org/fr-FR/toto"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                                                       <span class="token comment">// =&gt; 'https://developer.mozilla.org/en-US/docs'</span>
+
+        <span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span><span class="token string">'/en-US/docs'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                    <span class="token comment">// Raises a TypeError exception as '' is not a valid URL</span>
+        <span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span><span class="token string">'/en-US/docs'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                        <span class="token comment">// Raises a TypeError exception as '/en-US/docs' is not a valid URL</span>
+        <span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span><span class="token string">'http://www.example.com'</span><span class="token punctuation">,</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// =&gt; 'http://www.example.com/'</span>
+        <span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span><span class="token string">'http://www.example.com'</span><span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// =&gt; 'http://www.example.com/'</span>
+
+        <span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span><span class="token string">"//foo.com"</span><span class="token punctuation">,</span> <span class="token string">"https://example.com"</span><span class="token punctuation">)</span>    <span class="token comment">// =&gt; 'https://foo.com' (see relative URLs)</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://url.spec.whatwg.org/#constructors" hreflang="en" rel=" noopener">URL<br><small>The definition of 'URL.URL()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>URL</code></th>
+<td class="bc-supports-yes"><div>19</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes">
+<div>6</div>
+<div>In Safari 14 and earlier, calling the <code>URL</code> constructor with a base URL whose value is <code>undefined</code> causes Safari to throw a <code>TypeError</code>; see <a href="https://webkit.org/b/216841">WebKit bug 216841</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes">
+<div>6</div>
+<div>In Safari 14 and earlier, calling the <code>URL</code> constructor with a base URL whose value is <code>undefined</code> causes Safari to throw a <code>TypeError</code>; see <a href="https://webkit.org/b/216841">WebKit bug 216841</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The interface it belongs to: <a href="../url"><code>URL</code></a>.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/URL/URL" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/URL/URL</a>
+  </p>
+</div>

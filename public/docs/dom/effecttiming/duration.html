@@ -1,0 +1,82 @@
+<h1>EffectTiming.duration</h1>
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div> <p>The <code>duration</code> property of the dictionary <a href="../effecttiming"><code>EffectTiming</code></a> in the <a href="../web_animations_api">Web Animations API</a> specifies the duration in milliseconds that a single iteration (from beginning to end) the animation should take to complete.</p> <div class="note notecard"> <p><a href="../element/animate"><code>Element.animate()</code></a>, <a href="../keyframeeffect/keyframeeffect"><code>KeyframeEffectReadOnly()</code></a>, and <a href="../keyframeeffect/keyframeeffect"><code>KeyframeEffect()</code></a> all accept an object of timing properties including <code>duration</code>. The value of <code>duration</code> corresponds directly to <a class="page-not-created"><code>AnimationEffectTimingReadOnly.duration</code></a> in <a href="../animationeffect/gettiming"><code>timing</code></a> objects returned by <a href="../animationeffect"><code>AnimationEffectReadOnly</code></a>, <a href="../keyframeeffect"><code>KeyframeEffectReadOnly</code></a>, and <a href="../keyframeeffect"><code>KeyframeEffect</code></a>.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> timingProperties <span class="token operator">=</span> <span class="token punctuation">{</span>
+  duration<span class="token operator">:</span> durationInMilliseconds <span class="token operator">|</span> <span class="token string">"auto"</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+timingProperties<span class="token punctuation">.</span>duration <span class="token operator">=</span> durationInMilliseconds <span class="token operator">|</span> <span class="token string">"auto"</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>The number of milliseconds long a single beginning-to-end iteration of the animation should take. The default is <code>"auto"</code>. This value must not be negative; otherwise, it can have any value (including positive infinity).</p> <div class="note notecard"> <p>Currently, a value of <code>"auto"</code> is the same as specifying 0.0. This is a forwards-compatibility measure since in the future, "auto" will be expanded to take into account the duration of any child effects. Consider using <code>"auto"</code> rather than 0 if that makes sense.</p> </div>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>TypeError</code></dt> <dd>The specified value is either a string other than <code>"auto"</code>, a number less than zero, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN"><code>NaN</code></a>, or some other type of object entirely.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>In the <a href="https://codepen.io/rachelnabors/pen/EPJdJx?editors=0010" rel=" noopener">Pool of Tears</a> example, each tear is passed a random <code>duration</code> via its timing object:</p> <pre data-language="js"><span class="token comment">// Randomizer function</span>
+<span class="token keyword">var</span> <span class="token function-variable function">getRandomMsRange</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">min<span class="token punctuation">,</span> max</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token punctuation">(</span>max <span class="token operator">-</span> min<span class="token punctuation">)</span> <span class="token operator">+</span> min<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Loop through each tear</span>
+tears<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">el</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token comment">// Animate each tear</span>
+  el<span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span>
+    tearsFalling<span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+       delay<span class="token operator">:</span> <span class="token function">getRandomMsRange</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1000</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">// randomized for each tear</span>
+       duration<span class="token operator">:</span> <span class="token function">getRandomMsRange</span><span class="token punctuation">(</span><span class="token number">2000</span><span class="token punctuation">,</span> <span class="token number">6000</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">// randomized for each tear</span>
+       iterations<span class="token operator">:</span> <span class="token number">Infinity</span><span class="token punctuation">,</span>
+       easing<span class="token operator">:</span> <span class="token string">"cubic-bezier(0.6, 0.04, 0.98, 0.335)"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://drafts.csswg.org/web-animations-1/#iteration-duration" hreflang="en" rel=" noopener">Web Animations<br><small>The definition of 'duration' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Editor's draft.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>duration</code></th>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../web_animations_api">Web Animations API</a></li> <li>
+<a href="../element/animate"><code>Element.animate()</code></a>, <a href="../keyframeeffect/keyframeeffect"><code>KeyframeEffectReadOnly()</code></a>, and <a href="../keyframeeffect/keyframeeffect"><code>KeyframeEffect()</code></a> all accept an object of timing properties including this one. </li> <li>The value of this property corresponds to property of the same name in <a href="../animationeffect/gettiming"><code>AnimationEffectReadOnly.timing</code></a>, <a class="page-not-created"><code>KeyframeEffectReadOnly.timing</code></a>, and <a class="page-not-created"><code>KeyframeEffect.timing</code></a>).</li> <li>CSS's <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-duration"><code>transition-duration</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/animation-duration"><code>animation-duration</code></a> properties</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/EffectTiming/duration" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/EffectTiming/duration</a>
+  </p>
+</div>

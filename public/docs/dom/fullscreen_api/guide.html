@@ -1,0 +1,191 @@
+<h1>Guide to the Fullscreen API</h1> <p>This article demonstrates how to use the <a href="../fullscreen_api">Fullscreen API</a> to place a given element into full-screen mode, as well as how to detect when the browser enters or exits full-screen mode.</p>
+<h2 id="activating_full-screen_mode">Activating full-screen mode</h2>
+<p>Given an element that you'd like to present in full-screen mode (such as a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"><code>&lt;video&gt;</code></a>, for example), you can present it in full-screen mode by calling its <a href="../element/requestfullscreen"><code>requestFullscreen()</code></a> method.</p> <p>Let's consider this <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"><code>&lt;video&gt;</code></a> element:</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>video</span> <span class="token attr-name">controls</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>myvideo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>source</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>somevideo.webm<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>source</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>source</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>somevideo.mp4<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>source</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>video</span><span class="token punctuation">&gt;</span></span>
+</pre> <p>We can put that video into full-screen mode as follows:</p> <pre data-language="js"><span class="token keyword">var</span> elem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"myvideo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>elem<span class="token punctuation">.</span>requestFullscreen<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  elem<span class="token punctuation">.</span><span class="token function">requestFullscreen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>This code checks for the existence of the <code>requestFullscreen()</code> method before calling it.</p>
+<h3 id="presentation_differences">Presentation differences</h3>
+<p>It's worth noting a key difference here between the Gecko and WebKit implementations at this time: Gecko automatically adds CSS rules to the element to stretch it to fill the screen: "<code>width: 100%; height: 100%</code>". WebKit doesn't do this; instead, it centers the fullscreen element at the same size in a screen that's otherwise black. To get the same fullscreen behavior in WebKit, you need to add your own "<code>width: 100%; height: 100%;</code>" CSS rules to the element yourself:</p> <pre data-language="css"><span class="token selector">#myvideo:-webkit-full-screen</span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>On the other hand, if you're trying to emulate WebKit's behavior on Gecko, you need to place the element you want to present inside another element, which you'll make fullscreen instead, and use CSS rules to adjust the inner element to match the appearance you want.</p>
+<h3 id="notification">Notification</h3>
+<p>When fullscreen mode is successfully engaged, the document which contains the element receives a <code><a href="../document/fullscreenchange_event">fullscreenchange</a></code> event. When fullscreen mode is exited, the document again receives a <code><a href="../document/fullscreenchange_event">fullscreenchange</a></code> event. Note that the <code><a href="../document/fullscreenchange_event">fullscreenchange</a></code> event doesn't provide any information itself as to whether the document is entering or exiting fullscreen mode, but if the document has a non null <a href="../document/fullscreenelement"><code>fullscreenElement</code></a>, you know you're in fullscreen mode.</p>
+<h3 id="when_a_fullscreen_request_fails">When a fullscreen request fails</h3>
+<p>It's not guaranteed that you'll be able to switch into fullscreen mode. For example, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a> elements have the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-allowfullscreen"><code>allowfullscreen</code></a> attribute in order to opt-in to allowing their content to be displayed in fullscreen mode. In addition, certain kinds of content, such as windowed plug-ins, cannot be presented in fullscreen mode. Attempting to put an element which can't be displayed in fullscreen mode (or the parent or descendant of such an element) won't work. Instead, the element which requested fullscreen will receive a <code>mozfullscreenerror</code> event. When a fullscreen request fails, Firefox will log an error message to the Web Console explaining why the request failed. In Chrome and newer versions of Opera however, no such warning is generated.</p> <div class="notecard note"> <p><strong>Note:</strong> Fullscreen requests need to be called from within an event handler or otherwise they will be denied. </p> </div>
+<h2 id="getting_out_of_full_screen_mode">Getting out of full screen mode</h2>
+<p>The user always has the ability to exit fullscreen mode of their own accord; see <a href="#things_your_users_want_to_know">Things your users want to know</a>. You can also do so programmatically by calling the <a href="../document/exitfullscreen"><code>Document.exitFullscreen()</code></a> method.</p>
+<h2 id="other_information">Other information</h2>
+<p>The <a href="../document"><code>Document</code></a> provides some additional information that can be useful when developing fullscreen web applications:</p> <dl> <dt>
+<a href="../document/fullscreenelement"><code>Document.fullscreenElement</code></a> / <a href="../shadowroot/fullscreenelement"><code>ShadowRoot.fullscreenElement</code></a>
+</dt> <dd>The <code>fullscreenElement</code> property tells you the <a href="../element"><code>Element</code></a> that's currently being displayed fullscreen. If this is non-null, the document (or shadow DOM) is in fullscreen mode. If this is null, the document (or shadow DOM) is not in fullscreen mode.</dd> <dt><a href="../document/fullscreenenabled"><code>Document.fullscreenEnabled</code></a></dt> <dd>The <code>fullscreenEnabled</code> property tells you whether or not the document is currently in a state that would allow fullscreen mode to be requested.</dd> </dl>
+<h2 id="things_your_users_want_to_know">Things your users want to know</h2>
+<p>You'll want to be sure to let your users know that they can press the <kbd>Esc</kbd> key (or <kbd>F11</kbd>) to exit fullscreen mode.</p> <p>In addition, navigating to another page, changing tabs, or switching to another application (using, for example, <kbd>Alt</kbd>-<kbd>Tab</kbd>) while in fullscreen mode exits fullscreen mode as well.</p>
+<h2 id="example">Example</h2>
+<p>In this example, a video is presented in a web page. Pressing the <kbd>Return</kbd> or <kbd>Enter</kbd> key lets the user toggle between windowed and fullscreen presentation of the video.</p> <p><a href="https://media.prod.mdn.mozit.cloud/samples/domref/fullscreen.html" rel=" noopener">View Live Examples</a></p>
+<h3 id="watching_for_the_enter_key">Watching for the Enter key</h3>
+<p>When the page is loaded, this code is run to set up an event listener to watch for the <kbd>Enter</kbd> key.</p> <pre data-language="js">document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"keydown"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>keyCode <span class="token operator">==</span> <span class="token number">13</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">toggleFullScreen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="toggling_fullscreen_mode">Toggling fullscreen mode</h3>
+<p>This code is called when the user hits the <kbd>Enter</kbd> key, as seen above.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">toggleFullScreen</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>document<span class="token punctuation">.</span>fullscreenElement<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span><span class="token function">requestFullscreen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>document<span class="token punctuation">.</span>exitFullscreen<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      document<span class="token punctuation">.</span><span class="token function">exitFullscreen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre> <p>This starts by looking at the value of the <code>fullscreenElement</code> attribute on the <a href="../document"><code>document</code></a> (checking it prefixed with both <code>moz</code>, <code>ms</code>, or <code>webkit</code>). If it's <code>null</code>, the document is currently in windowed mode, so we need to switch to fullscreen mode. Switching to fullscreen mode is done by calling <a href="../element/requestfullscreen"><code>element.requestFullscreen()</code></a>.</p> <p>If fullscreen mode is already active (<code>fullscreenElement</code> is non-<code>null</code>), we call <a href="../document/exitfullscreen"><code>document.exitFullscreen()</code></a>.</p>
+<h2 id="prefixing">Prefixing</h2>
+<div class="geckoVersionNote notecard"> <p><strong>Note:</strong> Currently, only Firefox 64 and Chrome 71 supports this unprefixed.</p> </div> <p>For the moment not all browsers are implementing the unprefixed version of the API (for vendor agnostic access to the Fullscreen API you can use <a href="https://github.com/rafrex/fscreen" rel=" noopener">Fscreen</a>). Here is the table summarizing the prefixes and name differences between them:</p> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="row">Standard</th> <th scope="col">WebKit (Safari) / Blink (Chrome &amp; Opera) / Edge</th> <th scope="col">Gecko (Firefox)</th> <th scope="col">Internet Explorer</th> </tr> </thead> <tbody> <tr> <th scope="row">
+<a href="../document/fullscreen"><code>Document.fullscreen</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</th> <td><code>webkitIsFullScreen</code></td> <td><code>mozFullScreen</code></td> <td>-</td> </tr> <tr> <th scope="row"><a href="../document/fullscreenenabled"><code>Document.fullscreenEnabled</code></a></th> <td><code>webkitFullscreenEnabled</code></td> <td><code>mozFullScreenEnabled</code></td> <td><code>msFullscreenEnabled</code></td> </tr> <tr> <th scope="row"><a href="../document/fullscreenelement"><code>Document.fullscreenElement</code></a></th> <td><code>webkitFullscreenElement</code></td> <td><code>mozFullScreenElement</code></td> <td><code>msFullscreenElement</code></td> </tr> <tr> <th scope="row"><a href="../document/onfullscreenchange"><code>Document.onfullscreenchange</code></a></th> <td><code>onwebkitfullscreenchange</code></td> <td><code>onmozfullscreenchange</code></td> <td><code>onmsfullscreenchange</code></td> </tr> <tr> <th scope="row"><a href="../document/onfullscreenerror"><code>Document.onfullscreenerror</code></a></th> <td><code>onwebkitfullscreenerror</code></td> <td><code>onmozfullscreenerror</code></td> <td><code>onmsfullscreenerror</code></td> </tr> <tr> <th scope="row"><a href="../document/exitfullscreen"><code>Document.exitFullscreen()</code></a></th> <td><code>webkitExitFullscreen()</code></td> <td><code>mozCancelFullScreen()</code></td> <td><code>msExitFullscreen()</code></td> </tr> <tr> <th scope="row"><a href="../element/requestfullscreen"><code>Element.requestFullscreen()</code></a></th> <td><code>webkitRequestFullscreen()</code></td> <td><code>mozRequestFullScreen()</code></td> <td><code>msRequestFullscreen()</code></td> </tr> </tbody> </table></div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://fullscreen.spec.whatwg.org/" hreflang="en" rel=" noopener">Fullscreen API</a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial version.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>Guide</code></th>
+<td class="bc-supports-yes">
+<div>71</div>
+<div>Yes</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>64</div>
+<div>10</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes">
+<div>71</div>
+<div>Yes</div>
+</td>
+<td class="bc-supports-yes">
+<div>71</div>
+<div>Yes</div>
+</td>
+<td class="bc-supports-yes">
+<div>64</div>
+<div>10</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes">
+<div>10.0</div>
+<div>Yes</div>
+</td>
+</tr></tbody>
+</table>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>Guide</code></th>
+<td class="bc-supports-yes">
+<div>71</div>
+<div>15</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>≤79</div>
+</td>
+<td class="bc-supports-yes">
+<div>64</div>
+<div>9</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>58</div>
+<div>15</div>
+</td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes">
+<div>71</div>
+<div>≤37</div>
+</td>
+<td class="bc-supports-yes">
+<div>71</div>
+<div>18</div>
+</td>
+<td class="bc-supports-yes">
+<div>64</div>
+<div>9</div>
+</td>
+<td class="bc-supports-yes">
+<div>50</div>
+<div>14</div>
+</td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes">
+<div>10.0</div>
+<div>1.0</div>
+</td>
+</tr></tbody>
+</table>
+<p>BCD tables only load in the browser</p>
+
+
+<h3 id="document.fullscreenenabled">Document.fullscreenEnabled</h3>
+<p>BCD tables only load in the browser</p>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../fullscreen_api">Using fullscreen mode</a></li> <li><a href="../element/requestfullscreen"><code>Element.requestFullscreen()</code></a></li> <li><a href="../document/exitfullscreen"><code>Document.exitFullscreen()</code></a></li> <li><a href="../document/fullscreen"><code>Document.fullscreen</code></a></li> <li><a href="../document/fullscreenelement"><code>Document.fullscreenElement</code></a></li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:fullscreen"><code>:fullscreen</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/::backdrop"><code>::backdrop</code></a>
+</li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-allowfullscreen"><code>allowfullscreen</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API/Guide" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Fullscreen_API/Guide</a>
+  </p>
+</div>

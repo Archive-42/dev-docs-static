@@ -1,0 +1,70 @@
+<h1>RTCRtpReceiver.getCapabilities() static function</h1>
+
+ <p>The <em>static function</em> <code>RTCRtpReceiver.getCapabilities()</code> returns an <a href="../rtcrtpcapabilities"><code>RTCRtpCapabilities</code></a> object describing the codecs and capabilities supported by <a href="../rtcrtpreceiver"><code>RTCRtpReceiver</code></a>s on the current device.</p> <p>You can, similarly, obtain the capabilities of <a href="../rtcrtpsender"><code>RTCRtpSender</code></a>s by calling the static function <a href="../rtcrtpsender/getcapabilities"><code>RTCRtpSender.getCapabilities()</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">let</span> rtpCapabilities <span class="token operator">=</span> RTCRtpReceiver<span class="token punctuation">.</span><span class="token function">getCapabilities</span><span class="token punctuation">(</span>kind<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>kind</code></dt> <dd>A <a href="../domstring"><code>DOMString</code></a> indicating the type of media for which you wish to get the device's capability to receive. All browsers support the primary media kinds: <code>audio</code> and <code>video</code>.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>An <a href="../rtcrtpcapabilities"><code>RTCRtpCapabilities</code></a> object stating what capabilities the browser has for receiving the specified media kind over an <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a>. If the browser doesn't have any support for the given media kind, the returned value is <code>null</code>.</p>
+<h2 id="description">Description</h2>
+<p>As a static function, this is always called using the form:</p> <pre data-language="js">capabilities <span class="token operator">=</span> RTCRtpReceiver<span class="token punctuation">.</span><span class="token function">getCapabilities</span><span class="token punctuation">(</span><span class="token string">"audio"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>The returned set of capabilities is the most optimistic possible list. It is entirely possible that certain combinations of options may fail to work when you actually try to use them.</p> <p>Calling <code>RTCRtpReceiver.getCapabilities()</code> doesn't prime the browser in any way to handle media. Nothing is loaded, fetched, or otherwise prepared. It's a means of determining what might be usable before starting to try to access media.</p> <p>Because the set of capabilities available tend to be stable for a length of time (people don't install and uninstall codecs and the like very often), the media capabilities can in whole or in part provide a cross-origin method for identifying a user. For that reason, in privacy-sensitive contexts, the browser may choose to obscure the capabilities; this might be done, for example, by leaving out rarely-used codec configurations.</p>
+<h2 id="example">Example</h2>
+<p>The function below returns a Boolean indicating whether or not the device supports receiving H.264 video on a WebRTC connection.</p> <div class="notecard note"> <p>Since <code>RTCRtpReceiver.getCapabilities()</code> actually only indicates <em>probable</em> support, attempting to receive H.264 video might still fail even after getting a positive response from this function.</p> </div> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">canReceiveH264</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> capabilities <span class="token operator">=</span> RTCRtpReceiver<span class="token punctuation">.</span><span class="token function">getCapabilities</span><span class="token punctuation">(</span><span class="token string">"video"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  capabilities<span class="token punctuation">.</span>codecs<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">codec</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>codec<span class="token punctuation">.</span>mimeType <span class="token operator">===</span> <span class="token string">"video/H264"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcrtpreceiver-getcapabilities" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCRtpReceiver.getCapabilities()' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getCapabilities</code></th>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>12.2</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpReceiver/getCapabilities" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpReceiver/getCapabilities</a>
+  </p>
+</div>

@@ -1,0 +1,77 @@
+<h1>PerformanceNavigationTiming.domInteractive</h1>
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div> <p>The <code>domInteractive</code> read-only property returns a <a href="../domhighrestimestamp"><code>timestamp</code></a> representing the time value equal to the time immediately before the user agent sets the current document readiness of the current document to <a href="https://html.spec.whatwg.org/multipage/syntax.html#the-end" rel=" noopener">interactive</a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">perfEntry<span class="token punctuation">.</span>domInteractive<span class="token punctuation">;</span>
+</pre>
+<h3 id="return_value">Return Value</h3>
+<p>A <a href="../domhighrestimestamp"><code>timestamp</code></a> representing the time value equal to the time immediately before the user agent sets the current document readiness of the current document to <a href="https://html.spec.whatwg.org/multipage/syntax.html#the-end" rel=" noopener">interactive</a>.</p>
+<h2 id="example">Example</h2>
+<p>The following example illustrates this property's usage.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">print_nav_timing_data</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Use getEntriesByType() to just get the "navigation" events</span>
+  <span class="token keyword">var</span> perfEntries <span class="token operator">=</span> performance<span class="token punctuation">.</span><span class="token function">getEntriesByType</span><span class="token punctuation">(</span><span class="token string">"navigation"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> perfEntries<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"= Navigation entry["</span> <span class="token operator">+</span> i <span class="token operator">+</span> <span class="token string">"]"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> p <span class="token operator">=</span> perfEntries<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token comment">// dom Properties</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"DOM content loaded = "</span> <span class="token operator">+</span> <span class="token punctuation">(</span>p<span class="token punctuation">.</span>domContentLoadedEventEnd <span class="token operator">-</span> p<span class="token punctuation">.</span>domContentLoadedEventStart<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"DOM complete = "</span> <span class="token operator">+</span> p<span class="token punctuation">.</span>domComplete<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"DOM interactive = "</span> <span class="token operator">+</span> p<span class="token punctuation">.</span>domInteractive<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// document load and unload time</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"document load = "</span> <span class="token operator">+</span> <span class="token punctuation">(</span>p<span class="token punctuation">.</span>loadEventEnd <span class="token operator">-</span> p<span class="token punctuation">.</span>loadEventStart<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"document unload = "</span> <span class="token operator">+</span> <span class="token punctuation">(</span>p<span class="token punctuation">.</span>unloadEventEnd <span class="token operator">-</span> p<span class="token punctuation">.</span>unloadEventStart<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// other properties</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"type = "</span> <span class="token operator">+</span> p<span class="token punctuation">.</span>type<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"redirectCount = "</span> <span class="token operator">+</span> p<span class="token punctuation">.</span>redirectCount<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/navigation-timing/#dom-performancenavigationtiming-dominteractive" hreflang="en" rel=" noopener">Navigation Timing Level 2<br><small>The definition of 'domInteractive' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>domInteractive</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming/domInteractive" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PerformanceNavigationTiming/domInteractive</a>
+  </p>
+</div>

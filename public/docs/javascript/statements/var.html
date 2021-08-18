@@ -1,0 +1,172 @@
+<h1>var</h1> <p>The <code>var</code> declares a function-scoped or globally-scoped variable, optionally initializing it to a value.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/statement-var.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> varname1 <span class="token punctuation">[</span><span class="token operator">=</span> value1<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token punctuation">,</span> varname2 <span class="token punctuation">[</span><span class="token operator">=</span> value2<span class="token punctuation">]</span> <span class="token operator">...</span> <span class="token punctuation">[</span><span class="token punctuation">,</span> varnameN <span class="token punctuation">[</span><span class="token operator">=</span> valueN<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span></pre> <dl> <dt><code><var>varname<strong>N</strong></var></code></dt> <dd>Variable name. It can be any legal identifier.</dd> <dt>
+<code><var>value<strong>N</strong></var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>Initial value of the variable. It can be any legal expression. Default value is <code>undefined</code>. </dd> </dl> <p>Alternatively, the <a href="../operators/destructuring_assignment">Destructuring Assignment </a>syntax can also be used to declare variables.</p> <pre data-language="js"><span class="token keyword">var</span> <span class="token punctuation">{</span> bar <span class="token punctuation">}</span> <span class="token operator">=</span> foo<span class="token punctuation">;</span> <span class="token comment">// where foo = { bar:10, baz:12 };</span>
+<span class="token comment">/* This creates a variable with the name 'bar', which has a value of 10 */</span></pre>
+<h2 id="description">Description</h2>
+<p><code>var</code> declarations, wherever they occur, are processed before any code is executed. This is called <dfn>hoisting</dfn>, and is discussed further below.</p> <p>The scope of a variable declared with <code>var</code> is its current <em>execution context and closures thereof</em>, which is either the enclosing function and functions declared within it, or, for variables declared outside any function, global. Duplicate variable declarations using <code>var</code> will not trigger an error, even in strict mode, and the variable will not lose its value, unless another assignment is performed.</p> <pre data-language="js"><span class="token string">'use strict'</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token keyword">function</span> <span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> y <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1 (function `bar` closes over `x`)</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 2 (`y` is in scope)</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1 (`x` is in scope)</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ReferenceError in strict mode, `y` is scoped to `bar`</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>Variables declared using <code>var</code> are created before any code is executed in a process known as hoisting. Their initial value is <code>undefined</code>.</p> <pre data-language="js"><span class="token string">'use strict'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment">// undefined (note: not ReferenceError)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'still going...'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// still going...</span>
+<span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment">// 1</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'still going...'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// still going...</span></pre> <p>In the global context, a variable declared using <code>var</code> is added as a non-configurable property of the global object. This means its property descriptor cannot be changed and it cannot be deleted using <a href="../operators/delete"><code>delete</code></a>. The corresponding name is also added to a list on the internal <code>[[VarNames]]</code> slot on the <a href="https://www.ecma-international.org/ecma-262/10.0/index.html#sec-global-environment-records" rel=" noopener">global environment record</a> (which forms part of the global lexical environment). The list of names in <code>[[VarNames]]</code> enables the runtime to distinguish between global variables and straightforward properties on the global object.</p> <p>The property created on the global object for global variables, is set to be non-configurable because the identifier is to be treated as a variable, rather than a straightforward property of the global object. JavaScript has automatic memory management, and it would make no sense to be able to use the <code>delete</code> operator on a global variable.</p> <pre data-language="js"><span class="token string">'use strict'</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+globalThis<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span><span class="token string">'x'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+<span class="token keyword">delete</span> globalThis<span class="token punctuation">.</span>x<span class="token punctuation">;</span> <span class="token comment">// TypeError in strict mode. Fails silently otherwise.</span>
+<span class="token keyword">delete</span> x<span class="token punctuation">;</span>  <span class="token comment">// SyntaxError in strict mode. Fails silently otherwise.</span>
+</pre> <p>Note that in both NodeJS <a href="http://www.commonjs.org/" rel=" noopener">CommonJS</a> modules and native <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules">ECMAScript modules</a>, top-level variable declarations are scoped to the module, and are not, therefore added as properties to the global object.</p>
+<h3 id="unqualified_identifier_assignments">Unqualified identifier assignments</h3>
+<p>The global object sits at the top of the scope chain. When attempting to resolve a name to a value, the scope chain is searched. This means that properties on the global object are conveniently visible from every scope, without having to qualify the names with <code>globalThis.</code> or <code>window.</code> or <code>global.</code>.</p> <p>So you can just type:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">String</span><span class="token punctuation">(</span><span class="token string">'s'</span><span class="token punctuation">)</span> <span class="token comment">// Note the function `String` is implicitly visible</span>
+<span class="token punctuation">}</span></pre> <p>...because</p> <pre data-language="js">globalThis<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span><span class="token string">'String'</span><span class="token punctuation">)</span> <span class="token comment">// true</span></pre> <p>So the global object will ultimately be searched for unqualified identifiers. You don't have to type <code>globalThis.String</code>, you can just type the unqualified <code>String</code>. The corollary, in non-strict mode, is that assignment to unqualified identifiers will, if there is no variable of the same name declared in the scope chain, assume you want to create a property with that name on the global object. </p> <pre data-language="js">foo <span class="token operator">=</span> <span class="token string">'f'</span> <span class="token comment">// In non-strict mode, assumes you want to create a property named `foo` on the global object</span>
+globalThis<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span> <span class="token comment">// true</span>
+</pre> <p>In ECMAScript 5, this behavior was changed for <a href="../strict_mode">strict mode</a>. Assignment to an unqualified identifier in strict mode will result in a <code>ReferenceError</code>, to avoid the accidental creation of properties on the global object.</p> <p>Note that the implication of the above, is that, contrary to popular misinformation, JavaScript does not have implicit or undeclared variables, it merely has a syntax that looks like it does.</p>
+<h3 id="var_hoisting">var hoisting</h3>
+<p>Because variable declarations (and declarations in general) are processed before any code is executed, declaring a variable anywhere in the code is equivalent to declaring it at the top. This also means that a variable can appear to be used before it's declared. This behavior is called "<dfn>hoisting</dfn>", as it appears that the variable declaration is moved to the top of the function or global code.</p> <pre data-language="js">bla <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> bla<span class="token punctuation">;</span>
+
+<span class="token comment">// ...is implicitly understood as:</span>
+
+<span class="token keyword">var</span> bla<span class="token punctuation">;</span>
+bla <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+</pre> <p>For that reason, it is recommended to always declare variables at the top of their scope (the top of global code and the top of function code) so it's clear which variables are function scoped (local) and which are resolved on the scope chain.</p> <p>It's important to point out that the hoisting will affect the variable declaration, but not its value's initialization. The value will be indeed assigned when the assignment statement is reached:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">do_something</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>bar<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// undefined</span>
+  <span class="token keyword">var</span> bar <span class="token operator">=</span> <span class="token number">111</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>bar<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 111</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// ...is implicitly understood as:</span>
+
+<span class="token keyword">function</span> <span class="token function">do_something</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> bar<span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>bar<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// undefined</span>
+  bar <span class="token operator">=</span> <span class="token number">111</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>bar<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 111</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="declaring_and_initializing_two_variables">Declaring and initializing two variables </h3>
+<pre data-language="js"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="assigning_two_variables_with_single_string_value">Assigning two variables with single string value</h3>
+<pre data-language="js"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token string">'A'</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> b <span class="token operator">=</span> a<span class="token punctuation">;</span>
+
+<span class="token comment">// ...is equivalent to:</span>
+
+<span class="token keyword">var</span> a<span class="token punctuation">,</span> b <span class="token operator">=</span> a <span class="token operator">=</span> <span class="token string">'A'</span><span class="token punctuation">;</span>
+</pre> <p>Be mindful of the order:</p> <pre data-language="js"><span class="token keyword">var</span> x <span class="token operator">=</span> y<span class="token punctuation">,</span> y <span class="token operator">=</span> <span class="token string">'A'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x <span class="token operator">+</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// undefinedA</span>
+</pre> <p>Here, <code>x</code> and <code>y</code> are declared before any code is executed, but the assignments occur later. At the time "<code>x = y</code>" is evaluated, <code>y</code> exists so no <code>ReferenceError</code> is thrown and its value is <code>undefined</code>. So, <code>x</code> is assigned the undefined value. Then, <code>y</code> is assigned the value <code>'A'</code>. Consequently, after the first line, <code>x === undefined &amp;&amp; y === 'A'</code>, hence the result.</p>
+<h3 id="initialization_of_several_variables">Initialization of several variables</h3>
+<pre data-language="js"><span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> x <span class="token operator">=</span> y <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// Declares x locally; declares y globally.</span>
+<span class="token punctuation">}</span>
+<span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 0 1</span>
+
+<span class="token comment">// In non-strict mode:</span>
+<span class="token comment">// x is the global one as expected;</span>
+<span class="token comment">// y is leaked outside of the function, though!</span></pre> <p>The same example as above but with a strict mode:</p> <pre data-language="js"><span class="token string">'use strict'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> x <span class="token operator">=</span> y <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// Throws a ReferenceError in strict mode.</span>
+<span class="token punctuation">}</span>
+<span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="implicit_globals_and_outer_function_scope">Implicit globals and outer function scope</h3>
+<p>Variables that appear to be implicit globals may be references to variables in an outer function scope:</p> <pre data-language="js"><span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// Declares x within file scope, then assigns it a value of 0.</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> z<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// "undefined", since z doesn't exist yet</span>
+
+<span class="token keyword">function</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> y <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token comment">// Declares y within scope of function a, then assigns it a value of 2.</span>
+
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 0 2</span>
+
+  <span class="token keyword">function</span> <span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    x <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span> <span class="token comment">// Assigns 3 to existing file scoped x.</span>
+    y <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span> <span class="token comment">// Assigns 4 to existing outer y.</span>
+    z <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span> <span class="token comment">// Creates a new global variable z, and assigns it a value of 5.</span>
+           <span class="token comment">// (Throws a ReferenceError in strict mode.)</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Creates z as a global variable.</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> z<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 3 4 5</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Also calls b.</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> z<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// 3 5</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// "undefined", as y is local to function a</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-variable-statement">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-variable-statement</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>var</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="let"><code>let</code></a></li> <li><a href="const"><code>const</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var</a>
+  </p>
+</div>

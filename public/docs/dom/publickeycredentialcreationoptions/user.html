@@ -1,0 +1,94 @@
+<h1>PublicKeyCredentialCreationOptions.user</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <code>user</code> property of the <a href="../publickeycredentialcreationoptions"><code>PublicKeyCredentialCreationOptions</code></a> dictionary is an object describing the user account for which the credentials are generated (via <a href="../credentialscontainer/create"><code>navigator.credentials.create()</code></a>).</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">userAccount <span class="token operator">=</span> publicKeyCredentialCreationOptions<span class="token punctuation">.</span>user</pre>
+<h2 id="properties">Properties</h2>
+<dl> <dt><code>displayName</code></dt> <dd>A <a href="../domstring"><code>DOMString</code></a> which is human readable and intended for display. It may be the full name of the user (e.g. <code>"John Doe"</code>). This is not intended to store the login of the user (see <code>name</code> below).</dd> <dt>
+<code>icon</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An URL as a <a href="../usvstring"><code>USVString</code></a> value which points to an image resource which can be the avatar image for the user.</dd> <dt><code>id</code></dt> <dd>A <a href="../buffersource"><code>BufferSource</code></a> uniquely identifying a given user. This an opaque identifier which can be used by the authenticator to link the user account with its corresponding credentials. This value will later be used when fetching the credentials in <a href="../authenticatorassertionresponse/userhandle"><code>AuthenticatorAssertionResponse.userHandle</code></a>.</dd> <dt><code>name</code></dt> <dd>A <a href="../domstring"><code>DOMString</code></a> giving a human-readable name for the user's identifier (e.g. <code>"jdoe@example.com"</code>).This property is intended for display and may be use to distinguish different account with the same <code>displayName</code>.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token keyword">var</span> publicKey <span class="token operator">=</span> <span class="token punctuation">{</span>
+  challenge<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token number">26</span><span class="token punctuation">)</span> <span class="token comment">/* this actually is given from the server */</span><span class="token punctuation">,</span>
+  rp<span class="token operator">:</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">"Example CORP"</span><span class="token punctuation">,</span>
+    id  <span class="token operator">:</span> <span class="token string">"login.example.com"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  user<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token comment">// To be changed for each user</span>
+    id<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array<span class="token punctuation">.</span>from</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span><span class="token function">atob</span><span class="token punctuation">(</span><span class="token string">"LAEGMLKJNRLKGNAMLAFALFKA="</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token parameter">c</span><span class="token operator">=&gt;</span>c<span class="token punctuation">.</span><span class="token function">charCodeAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    name<span class="token operator">:</span> <span class="token string">"jdoe@example.com"</span><span class="token punctuation">,</span>
+    displayName<span class="token operator">:</span> <span class="token string">"John Doe"</span><span class="token punctuation">,</span>
+    icon<span class="token operator">:</span> <span class="token string">"https://gravatar.com/avatar/jdoe.png"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  pubKeyCredParams<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      type<span class="token operator">:</span> <span class="token string">"public-key"</span><span class="token punctuation">,</span>
+      alg<span class="token operator">:</span> <span class="token operator">-</span><span class="token number">7</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+navigator<span class="token punctuation">.</span>credentials<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span> publicKey <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">newCredentialInfo</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// send attestation response and client extensions</span>
+    <span class="token comment">// to the server to proceed with the registration</span>
+    <span class="token comment">// of the credential</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td>
+<a href="https://w3c.github.io/webauthn/#dom-publickeycredentialcreationoptions-user" hreflang="en" rel=" noopener">Web Authentication: An API for accessing Public Key Credentials Level 1<br><small>The definition of 'user' in that specification.</small></a> </td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>user</code></th>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../authenticatorassertionresponse/userhandle"><code>AuthenticatorAssertionResponse.userHandle</code></a> which should match the <code>id</code> property of <code>user</code> for the same user/credential.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialCreationOptions/user" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialCreationOptions/user</a>
+  </p>
+</div>

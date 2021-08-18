@@ -1,0 +1,95 @@
+<h1>DOMImplementation.createHTMLDocument()</h1>
+
+ <p>The <code>DOMImplementation.createHTMLDocument()</code> method creates a new HTML <a href="../document"><code>Document</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">const</span> newDoc <span class="token operator">=</span> document<span class="token punctuation">.</span>implementation<span class="token punctuation">.</span><span class="token function">createHTMLDocument</span><span class="token punctuation">(</span>title<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code><var>title</var></code> <span class="badge inline optional">Optional</span> (except in IE)</dt> <dd>A <a href="../domstring"><code>DOMString</code></a> containing the title to give the new HTML document.</dd> </dl>
+<h2 id="example">Example</h2>
+<p>This example creates a new HTML document and inserts it into an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a> in the current document.</p> <p>Here's the HTML for this example:</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Click <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>javascript:makeDocument()<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>here<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span> to create a new document and insert it below.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>theFrame<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>about:blank<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+</pre> <p>The JavaScript implementation of <code>makeDocument()</code> follows:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">makeDocument</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> frame <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"theFrame"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">let</span> doc <span class="token operator">=</span> document<span class="token punctuation">.</span>implementation<span class="token punctuation">.</span><span class="token function">createHTMLDocument</span><span class="token punctuation">(</span><span class="token string">"New Document"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> p <span class="token operator">=</span> doc<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  p<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"This is a new paragraph."</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    doc<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Copy the new HTML document into the frame</span>
+
+  <span class="token keyword">let</span> destDocument <span class="token operator">=</span> frame<span class="token punctuation">.</span>contentDocument<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> srcNode <span class="token operator">=</span> doc<span class="token punctuation">.</span>documentElement<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> newNode <span class="token operator">=</span> destDocument<span class="token punctuation">.</span><span class="token function">importNode</span><span class="token punctuation">(</span>srcNode<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  destDocument<span class="token punctuation">.</span><span class="token function">replaceChild</span><span class="token punctuation">(</span>newNode<span class="token punctuation">,</span> destDocument<span class="token punctuation">.</span>documentElement<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>The code in lines 4–12 handle creating the new HTML document and inserting some content into it. Line 4 uses <code>createHTMLDocument()</code> to construct a new HTML document whose <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title"><code>&lt;title&gt;</code></a> is <code>"New Document"</code>. Lines 5 and 6 create a new paragraph element with some simple content, and then lines 8–12 handle inserting the new paragraph into the new document.</p> <p>Line 16 pulls the <code>contentDocument</code> of the frame; this is the document into which we'll be injecting the new content. The next two lines handle importing the contents of our new document into the new document's context. Finally, line 20 actually replaces the contents of the frame with the new document's contents.</p> <p><a href="https://media.prod.mdn.mozit.cloud/samples/domref/createHTMLDocument.html" rel=" noopener">View Live Examples</a></p> <p>The returned document is pre-constructed with the following HTML:</p> <pre data-language="html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token name">doctype</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>title<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://dom.spec.whatwg.org/#dom-domimplementation-createhtmldocument" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'DOMImplementation.createHTMLDocument' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>createHTMLDocument</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>9</div>
+<div>The <code>title</code> parameter is required, but can be empty string.</div>
+</td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The <a href="../domimplementation"><code>DOMImplementation</code></a> interface it belongs to.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMImplementation/createHTMLDocument" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/DOMImplementation/createHTMLDocument</a>
+  </p>
+</div>

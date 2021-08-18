@@ -1,0 +1,82 @@
+<h1>MediaDevices.ondevicechange</h1>
+
+ <p>The <code>MediaDevices.ondevicechange</code> property is an <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a> which specifies a function to be called when the <code><a href="devicechange_event">devicechange</a></code> event occurs on a <a href="../mediadevices"><code>MediaDevices</code></a> instance. This happens whenever the set of media devices available to the <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent</a> and, by extension, to the web site or app has changed. You can at any time use <a href="enumeratedevices"><code>enumerateDevices()</code></a> to get the updated list of available devices.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">MediaDevices<span class="token punctuation">.</span>ondevicechange <span class="token operator">=</span> eventHandler<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>A function you provide which accepts as input a <a href="../event"><code>Event</code></a> object describing the <code><a href="devicechange_event">devicechange</a></code> event that occurred. There is no information about the change included in the event object; to get the updated list of devices, you'll have to use <a href="enumeratedevices"><code>enumerateDevices()</code></a>.</p>
+<h2 id="example">Example</h2>
+<p>In this example, we create a function called <code>updateDeviceList()</code>, which is called once when <a href="getusermedia"><code>MediaDevices.getUserMedia()</code></a> successfully obtains a stream, and then is called any time the device list changes. It displays in the browser window two lists: one of audio devices and one of video devices, with both the device's label (name) and whether it's an input or an output device. Because the example provides a handler for the <code><a href="devicechange_event">devicechange</a></code> event, the list is refreshed any time a media device is attached to or removed from the device running the sample.</p> <p>We set up global variables that contain references to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul"><code>&lt;ul&gt;</code></a> elements that are used to list the audio and video devices:</p> <pre data-language="js"><span class="token keyword">let</span> audioList <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"audioList"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> videoList <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"videoList"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <h4 id="getting_and_drawing_the_device_list">Getting and drawing the device list</h4> <p>Now let's take a look at <code>updateDeviceList()</code> itself. This method is called any time we want to fetch the current list of media devices and then update the displayed lists of audio and video devices using that information.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">updateDeviceList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  navigator<span class="token punctuation">.</span>mediaDevices<span class="token punctuation">.</span><span class="token function">enumerateDevices</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">devices</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    audioList<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    videoList<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+
+    devices<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">device</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> elem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"li"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">let</span> <span class="token punctuation">[</span>kind<span class="token punctuation">,</span> type<span class="token punctuation">,</span> direction<span class="token punctuation">]</span> <span class="token operator">=</span> device<span class="token punctuation">.</span>kind<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">(\w+)(input|output)</span><span class="token regex-delimiter">/</span><span class="token regex-flags">i</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      elem<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">"&lt;strong&gt;"</span> <span class="token operator">+</span> device<span class="token punctuation">.</span>label <span class="token operator">+</span> <span class="token string">"&lt;/strong&gt; ("</span> <span class="token operator">+</span> direction <span class="token operator">+</span> <span class="token string">")"</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">===</span> <span class="token string">"audio"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        audioList<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>elem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>type <span class="token operator">===</span> <span class="token string">"video"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        videoList<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>elem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p><code>updateDeviceList()</code> consists entirely of a call to the function <a href="enumeratedevices"><code>enumerateDevices()</code></a> on the <a href="../mediadevices"><code>MediaDevices</code></a> object referenced in the <a href="../navigator/mediadevices"><code>navigator.mediaDevices</code></a> property, as well as the code that's run when the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>promise</code></a> returned by <code>enumerateDevices()</code> is fulfilled. The fulfillment handler is called when the device list is ready. The list is passed into the fulfillment handler as an array of <a href="../mediadeviceinfo"><code>MediaDeviceInfo</code></a> objects, each describing one media input or output device.</p> <p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach"><code>forEach()</code></a> loop is used to scan through all the devices. For each device, we create a new <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li"><code>&lt;li&gt;</code></a> object to be used to display it to the user.</p> <p>The line <code>let [kind, type, direction] = device.kind.match(/(\w+)(input|output)/i);</code> deserves special notice. This uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">destructuring assignment</a> (a new feature of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/New_in_JavaScript/ECMAScript_6_support_in_Mozilla">ECMAScript 6</a>) to assign the values of the first three items in the array returned by <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match"><code>String.match()</code></a> to the variables <code>kind</code>, <code>type</code>, and <code>direction</code>. We do this because the value of <a href="../mediadeviceinfo/kind"><code>MediaDeviceInfo.kind</code></a> is a single string that includes both the media type and the direction the media flows, such as "audioinput" or "videooutput". This line, then, pulls out the type ("audio" or "video") and direction ("input" or "output") so they can be used to construct the string displayed in the list.</p> <p>Once the string is assembled, containing the device's name in bold and the direction in parentheses, it's appended to the appropriate list by calling <a href="../node/appendchild"><code>appendChild()</code></a> on either <code>audioList</code> or <code>videoList</code>, as appropriate based on the device type.</p> <h4 id="handling_device_list_changes">Handling device list changes</h4> <p>We call <code>updateDeviceList()</code> in two places. The first is in the <a href="getusermedia"><code>getUserMedia()</code></a> promise's fulfillment handler, to initially fill out the list when the stream is opened. The second is in the event handler for <code><a href="devicechange_event">devicechange</a></code>:</p> <pre data-language="js">navigator<span class="token punctuation">.</span>mediaDevices<span class="token punctuation">.</span><span class="token function-variable function">ondevicechange</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">updateDeviceList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>With this code in place, each time the user plugs in a camera, microphone, or other media device, or turns one on or off, we call <code>updateDeviceList()</code> to redraw the list of connected devices.</p>
+<h3 id="result">Result</h3>
+<p><iframe class="sample-code-frame" id="frame_Example" width="600" height="460" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/MediaDevices/ondevicechange/_samples_/Example" allow="camera;microphone" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/mediacapture-main/#dom-mediadevices-ondevicechange" hreflang="en" rel=" noopener">Media Capture and Streams<br><small>The definition of 'ondevicechange' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>ondevicechange</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The <code><a href="devicechange_event">devicechange</a></code> event and its type, <a href="../event"><code>Event</code></a>.</li> <li><a href="enumeratedevices"><code>MediaDevices.enumerateDevices()</code></a></li> <li><a href="../mediadeviceinfo"><code>MediaDeviceInfo</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/ondevicechange" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/ondevicechange</a>
+  </p>
+</div>

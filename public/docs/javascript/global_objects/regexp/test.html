@@ -1,0 +1,98 @@
+<h1>RegExp.prototype.test()</h1> <p>The <code>test()</code> method executes a search for a match between a regular expression and a specified string. Returns <code>true</code> or <code>false</code>.</p> <iframe class="interactive" width="100%" height="692" src="https://interactive-examples.mdn.mozilla.net/pages/js/regexp-prototype-test.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">test</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>str</var></code></dt> <dd>The string against which to match the regular expression.</dd> </dl>
+<h3 id="returns">Returns</h3>
+<p><code>true</code> if there is a match between the regular expression and the string <code><var>str</var></code>. Otherwise, <code>false</code>.</p>
+<h2 id="description">Description</h2>
+<p>Use <code>test()</code> whenever you want to know whether a pattern is found in a string. <code>test()</code> returns a boolean, unlike the <a href="../string/search"><code>String.prototype.search()</code></a> method (which returns the index of a match, or <code>-1</code> if not found).</p> <p>To get more information (but with slower execution), use the <a href="exec"><code>exec()</code></a> method. (This is similar to the <a href="../string/match"><code>String.prototype.match()</code></a> method.)</p> <p>As with <code>exec()</code> (or in combination with it), <code>test()</code> called multiple times on the same global regular expression instance will advance past the previous match.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_test">Using test()</h3>
+<p>Simple example that tests if "<code>hello</code>" is contained at the very beginning of a string, returning a boolean result.</p> <pre data-language="js"><span class="token keyword">const</span> str <span class="token operator">=</span> <span class="token string">'hello world!'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^hello</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+</pre> <p>The following example logs a message which depends on the success of the test:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">testInput</span><span class="token punctuation">(</span><span class="token parameter">re<span class="token punctuation">,</span> str</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> midstring<span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>re<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    midstring <span class="token operator">=</span> <span class="token string">'contains'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    midstring <span class="token operator">=</span> <span class="token string">'does not contain'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>str<span class="token interpolation-punctuation punctuation">}</span></span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>midstring<span class="token interpolation-punctuation punctuation">}</span></span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>re<span class="token punctuation">.</span>source<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="using_test_on_a_regex_with_the_global_flag">Using test() on a regex with the "global" flag</h3>
+<p>When a regex has the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#advanced_searching_with_flags_2">global flag</a> set, <code>test()</code> will advance the <a href="lastindex"><code>lastIndex</code></a> of the regex. (<a href="exec"><code>RegExp.prototype.exec()</code></a> also advances the <code>lastIndex</code> property.)</p> <p>Further calls to <code>test(<var>str</var>)</code> will resume searching <code><var>str</var></code> starting from <code>lastIndex</code>. The <code>lastIndex</code> property will continue to increase each time <code>test()</code> returns <code>true</code>.</p> <div class="notecard note"> <p><strong>Note:</strong> As long as <code>test()</code> returns <code>true</code>, <code>lastIndex</code> will <em>not</em> reset—even when testing a different string! </p> </div> <p>When <code>test()</code> returns <code>false</code>, the calling regex's <code>lastIndex</code> property will reset to <code>0</code>.</p> <p>The following example demonstrates this behavior:</p> <pre data-language="js"><span class="token keyword">const</span> regex <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">foo</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">;</span> <span class="token comment">// the "global" flag is set</span>
+
+<span class="token comment">// regex.lastIndex is at 0</span>
+regex<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span>     <span class="token comment">// true</span>
+
+<span class="token comment">// regex.lastIndex is now at 3</span>
+regex<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span>     <span class="token comment">// false</span>
+
+<span class="token comment">// regex.lastIndex is at 0</span>
+regex<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'barfoo'</span><span class="token punctuation">)</span>  <span class="token comment">// true</span>
+
+<span class="token comment">// regex.lastIndex is at 6</span>
+regex<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span><span class="token string">'foobar'</span><span class="token punctuation">)</span>  <span class="token comment">//false</span>
+
+<span class="token comment">// regex.lastIndex is at 0</span>
+<span class="token comment">// (...and so on)</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-regexp.prototype.test">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-regexp.prototype.test</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>test</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular Expressions</a> chapter in the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide">JavaScript Guide</a>
+</li> <li><a href="../regexp"><code>RegExp</code></a></li> <li><a href="../regexp"><code>RegExp.prototype</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test</a>
+  </p>
+</div>

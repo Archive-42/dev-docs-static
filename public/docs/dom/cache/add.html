@@ -1,0 +1,99 @@
+<h1>Cache.add()</h1>
+
+ <p>The <code>add()</code> method of the <a href="../cache"><code>Cache</code></a> interface takes a URL, retrieves it, and adds the resulting response object to the given cache. The <code>add()</code> method is functionally equivalent to the following:</p> <pre data-language="js"><span class="token function">fetch</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>response<span class="token punctuation">.</span>ok<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">TypeError</span><span class="token punctuation">(</span><span class="token string">'bad response status'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> cache<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>url<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></pre> <p>For more complex operations, you'll need to use <a href="put"><code>Cache.put()</code></a> directly.</p> <div class="note notecard"> <p><strong>Note</strong>: <code>add()</code> will overwrite any key/value pair previously stored in the cache that matches the request.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre class="sytaxbox notranslate"><em>cache</em>.add(<em>request</em>).then(function() {
+  // request has been added to the cache
+});
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>request</dt> <dd>The request you want to add to the cache. This can be a <a href="../request"><code>Request</code></a> object or a URL.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves with <code>undefined</code>.</p>
+<h3 id="exceptions">Exceptions</h3>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col"><strong>Exception</strong></th> <th scope="col"><strong>Happens when</strong></th> </tr> </thead> <tbody> <tr> <td><code>TypeError</code></td> <td> <p>The URL scheme is not <code>http</code> or <code>https</code>.</p> <p>The Response status is not in the 200 range (i.e., not a successful response.) This occurs if the request does not return successfully, but also if the request is a <em>cross-origin no-cors</em> request (in which case the reported status is always 0.)</p> </td> </tr> </tbody> </table></div>
+<h2 id="examples">Examples</h2>
+<p>This code block waits for an <a href="../installevent"><code>InstallEvent</code></a> to fire, then calls <a href="../extendableevent/waituntil"><code>waitUntil()</code></a> to handle the install process for the app. This consists of calling <a href="../cachestorage/open"><code>CacheStorage.open</code></a> to create a new cache, then using <a href="add"><code>Cache.add</code></a> to add an asset to it.</p> <pre data-language="js"><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'install'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  event<span class="token punctuation">.</span><span class="token function">waitUntil</span><span class="token punctuation">(</span>
+    caches<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'v1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">cache</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> cache<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">'/sw-test/index.html'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/ServiceWorker/#cache-add" hreflang="en" rel=" noopener">Service Workers<br><small>The definition of 'Cache: add' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>add</code></th>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>Requires HTTPS from version 46.</div>
+</td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>39</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>31</div>
+<div>Requires HTTPS from version 33.</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>Requires HTTPS from version 46.</div>
+</td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>Requires HTTPS from version 46.</div>
+</td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-yes">
+<div>32</div>
+<div>Requires HTTPS from version 33.</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>4.0</div>
+<div>Requires HTTPS from Samsung Internet 5.0.</div>
+</td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../service_worker_api/using_service_workers">Using Service Workers</a></li> <li><a href="../cache"><code>Cache</code></a></li> <li><a href="../windoworworkerglobalscope/caches"><code>WorkerGlobalScope.caches</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Cache/add" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Cache/add</a>
+  </p>
+</div>

@@ -1,0 +1,69 @@
+<h1>HTMLVideoElement.videoHeight</h1>
+
+ <p>The <a href="../htmlvideoelement"><code>HTMLVideoElement</code></a> interface's read-only <code><strong>videoHeight</strong></code> property indicates the <strong>intrinsic height</strong> of the video, expressed in CSS pixels. In simple terms, this is the height of the media in its natural size. See <a href="#about_intrinsic_width_and%0A__height">About intrinsic width and height</a> for more details.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">height <span class="token operator">=</span> htmlVideoElement<span class="token punctuation">.</span>videoHeight<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>An integer value specifying the intrinsic height of the video in CSS pixels. If the element's <a href="../htmlmediaelement/readystate"><code>readyState</code></a> is <code>HTMLMediaElement.HAVE_NOTHING</code>, then the value of this property is 0, because neither video nor poster frame size information is yet available.</p>
+<h3 id="about_intrinsic_width_and_height">About intrinsic width and height</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent</a> calculates the intrinsic width and height of the element's media by starting with the media's raw pixel width and height, then taking into account factors including:</p> <ul> <li>The media's aspect ratio.</li> <li>The media's clean aperture (the sub-rectangle centered within the media that matches the target aspect ratio).</li> <li>The target device's resolution.</li> <li>Any other factors required by the media format.</li> </ul> <p>If the element is currently displaying the poster frame rather than rendered video, the poster frame's intrinsic size is considered to be the size of the <code>&lt;video&gt;</code> element.</p> <p>If at any time the intrinsic size of the media changes and the element's <a href="../htmlmediaelement/readystate"><code>readyState</code></a> isn't <code>HAVE_NOTHING</code>, a <a class="page-not-created"><code>resize</code></a> event will be sent to the <code>&lt;video&gt;</code> element. This can happen when the element switches from displaying the poster frame to displaying video content, or when the displayed video track changes.</p>
+<h2 id="example">Example</h2>
+<p>This example creates a handler for the <a class="page-not-created"><code>resize</code></a> event that resizes the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"><code>&lt;video&gt;</code></a> element to match the intrinsic size of its contents.</p> <pre data-language="js"><span class="token keyword">let</span> v <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"myVideo"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+v<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"resize"</span><span class="token punctuation">,</span> <span class="token parameter">ev</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> w <span class="token operator">=</span> v<span class="token punctuation">.</span>videoWidth<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> h <span class="token operator">=</span> v<span class="token punctuation">.</span>videoHeight<span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>w <span class="token operator">&amp;&amp;</span> h<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    v<span class="token punctuation">.</span>style<span class="token punctuation">.</span>width <span class="token operator">=</span> w<span class="token punctuation">;</span>
+    v<span class="token punctuation">.</span>style<span class="token punctuation">.</span>height <span class="token operator">=</span> h<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>Note that this only applies the change if both the <code>videoWidth</code> and the <code>videoHeight</code> are non-zero. This avoids applying invalid changes when there's no true information available yet for dimensions.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#dom-video-videoheight" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'HTMLVideoElement.videoHeight' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/html52/semantics-embedded-content.html#dom-htmlvideoelement-videoheight" hreflang="en" rel=" noopener">HTML5<br><small>The definition of 'HTMLVideoElement.videoHeight' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>videoHeight</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>10.5</div></td>
+<td class="bc-supports-yes"><div>3.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement/videoHeight" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLVideoElement/videoHeight</a>
+  </p>
+</div>

@@ -1,0 +1,144 @@
+<h1>RTCPeerConnection.getStats()</h1> <p>The <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> method <code><strong>getStats()</strong></code> returns a promise which resolves with data providing statistics about either the overall connection or about the specified <a href="../mediastreamtrack"><code>MediaStreamTrack</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">promise <span class="token operator">=</span> rtcPeerConnection<span class="token punctuation">.</span><span class="token function">getStats</span><span class="token punctuation">(</span>selector<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code>selector</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A <a href="../mediastreamtrack"><code>MediaStreamTrack</code></a> for which to gather statistics. If this is <code>null</code> (the default value), statistics will be gathered for the entire <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a>.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which resolves with an <a href="../rtcstatsreport"><code>RTCStatsReport</code></a> object providing connection statistics. The contents of the report depend on the <code>selector</code> as well as other details of the connection.</p>
+<h3 id="exceptions">Exceptions</h3>
+<p>This method does not throw exceptions; instead, it rejects the returned promise with one of the following errors:</p> <dl> <dt><code>InvalidAccessError</code></dt> <dd>There is no <a href="../rtcrtpsender"><code>RTCRtpSender</code></a> or <a href="../rtcrtpreceiver"><code>RTCRtpReceiver</code></a> whose <code>track</code> matches the specified <code>selector</code>, or <code>selector</code> matches more than one sender or receiver.</dd> </dl>
+<h3 id="obsolete_syntax">Obsolete syntax</h3>
+<p>Previously, <code>getStats()</code> used success and failure callbacks to report the results to you, instead of using a promise. </p> <p>This version of <code>getStats()</code> is obsolete; in addition, the data it returns is entirely different from the current specification, and the form of that data was never documented. This form of <code>getStats()</code> has been or will soon be removed from most browsers; you <em>should not use it, and should update existing code to use the new promise-based version</em>. Check the <a href="#browser_compatibility">Browser compatibility</a> table to verify the state of this method.</p> <pre data-language="js">promise <span class="token operator">=</span> rtcPeerConnection<span class="token punctuation">.</span><span class="token function">getStats</span><span class="token punctuation">(</span>selector<span class="token punctuation">,</span> successCallback<span class="token punctuation">,</span> failureCallback<span class="token punctuation">)</span> 
+    This deprecated <span class="token constant">API</span> should no longer be used<span class="token punctuation">,</span> but will probably still work<span class="token punctuation">.</span>
+    
+</pre> <h4 id="parameters_2">Parameters</h4> <dl> <dt>
+<code>selector</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A <a href="../mediastreamtrack"><code>MediaStreamTrack</code></a> for which to gather statistics. If this is <code>null</code> (the default value), statistics will be gathered for the entire <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a>.</dd> <dt><code>successCallback</code></dt> <dd>A callback function to call when the stats have been retrieved. The function receives as input a single parameter: an <a href="../rtcstatsreport"><code>RTCStatsReport</code></a> with the collected statistics. No output is expected from the function.</dd> <dt><code>failureCallback</code></dt> <dd>A function to call when an error occurs while attempting to collect statistics. The callback receives as input the exception (a <a href="../domexception"><code>DOMException</code></a> object describing the error which occurred. No return value is expected from the callback. </dd> </dl>
+<h2 id="example">Example</h2>
+<p>This example creates a periodic function using <a href="../windoworworkerglobalscope/setinterval"><code>setInterval()</code></a> that collects statistics for an <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> every second, generating an HTML-formatted report and inserting it into a specific element in the DOM.</p> <pre data-language="js">window<span class="token punctuation">.</span><span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  myPeerConnection<span class="token punctuation">.</span><span class="token function">getStats</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">stats</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> statsOutput <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+
+    stats<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">report</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      statsOutput <span class="token operator">+=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">&lt;h2&gt;Report: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>report<span class="token punctuation">.</span>type<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;/h2&gt;\n&lt;strong&gt;ID:&lt;/strong&gt; </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>report<span class="token punctuation">.</span>id<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;br&gt;\n</span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span>
+                     <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">&lt;strong&gt;Timestamp:&lt;/strong&gt; </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>report<span class="token punctuation">.</span>timestamp<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;br&gt;\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+
+      <span class="token comment">// Now the statistics for this report; we intentially drop the ones we</span>
+      <span class="token comment">// sorted to the top above</span>
+
+      Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>report<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">statName</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>statName <span class="token operator">!==</span> <span class="token string">"id"</span> <span class="token operator">&amp;&amp;</span> statName <span class="token operator">!==</span> <span class="token string">"timestamp"</span> <span class="token operator">&amp;&amp;</span> statName <span class="token operator">!==</span> <span class="token string">"type"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          statsOutput <span class="token operator">+=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">&lt;strong&gt;</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>statName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">:&lt;/strong&gt; </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>report<span class="token punctuation">[</span>statName<span class="token punctuation">]</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;br&gt;\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">".stats-box"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> statsOutput<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>This works by calling <code>getStats()</code>, then, when the promise is resolved, iterates over the <a href="../rtcstats"><code>RTCStats</code></a> objects on the returned <a href="../rtcstatsreport"><code>RTCStatsReport</code></a>. A section is created for each report with a header and all of the statistics below, with the type, ID, and timestamp handled specially to place them at the top of the list.</p> <p>Once the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML">HTML</a> for the report is generated, it is injected into the element whose class is <code>"stats-box"</code> by setting its <a href="../element/innerhtml"><code>innerHTML</code></a> property.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#widl-RTCPeerConnection-getStats-Promise-RTCStatsReport--MediaStreamTrack-selector" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCPeerConnection.getStats()' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>getStats</code></th>
+<td class="bc-supports-yes">
+<div>58</div>
+<div>Promise resolves with <code>RTCStatsReport</code>.</div>
+<div>54</div>
+<div>Promise-based version.</div>
+<div>24</div>
+</td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>58</div>
+<div>Promise resolves with <code>RTCStatsReport</code>.</div>
+<div>54</div>
+<div>Promise-based version.</div>
+<div>Yes</div>
+</td>
+<td class="bc-supports-yes">
+<div>58</div>
+<div>Promise resolves with <code>RTCStatsReport</code>.</div>
+<div>54</div>
+<div>Promise-based version.</div>
+<div>Yes</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>7.0</div>
+<div>Promise resolves with <code>RTCStatsReport</code>.</div>
+<div>6.0</div>
+<div>Promise-based version.</div>
+<div>Yes</div>
+</td>
+</tr>
+<tr>
+<th><code>MediaStreamTrack_argument</code></th>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+<tr>
+<th><code>with_callbacks</code></th>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no"><div>27-66</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/getStats" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/getStats</a>
+  </p>
+</div>

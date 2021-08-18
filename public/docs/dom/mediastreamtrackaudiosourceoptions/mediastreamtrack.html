@@ -1,0 +1,80 @@
+<h1>MediaStreamTrackAudioSourceOptions.mediaStreamTrack</h1> <p>The <a href="../mediastreamtrackaudiosourceoptions"><code>MediaStreamTrackAudioSourceOptions</code></a> dictionary's <code><strong>mediaStreamTrack</strong></code> property must contain a reference to the <a href="../mediastreamtrack"><code>MediaStreamTrack</code></a> from which the <code>MediaStreamTrackAudioSourceNode</code> being created using the <a href="../mediastreamtrackaudiosourcenode/mediastreamtrackaudiosourcenode"><code>MediaStreamTrackAudioSourceNode()</code></a> constructor.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">mediaStreamTrackAudioSourceOptions <span class="token operator">=</span> <span class="token punctuation">{</span>
+  mediaStreamTrack<span class="token operator">:</span> audioSourceTrack<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+mediaStreamTrackAudioSourceOptions<span class="token punctuation">.</span>mediaStreamTrack <span class="token operator">=</span> audioSourceTrack<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../mediastreamtrack"><code>MediaStreamTrack</code></a> from which the audio output of the new <code>MediaStreamTrackAudioSourceNode</code> will be taken.</p>
+<h2 id="example">Example</h2>
+
+<p>This example uses <a href="../mediadevices/getusermedia"><code>getUserMedia()</code></a> to obtain access to the user's camera, then creates a new <a href="../mediastreamaudiosourcenode"><code>MediaStreamAudioSourceNode</code></a> from the first audio track provided by the device.</p>
+<pre data-language="js"><span class="token keyword">let</span> audioCtx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>AudioContext <span class="token operator">||</span> window<span class="token punctuation">.</span>webkitAudioContext<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>navigator<span class="token punctuation">.</span>mediaDevices<span class="token punctuation">.</span>getUserMedia<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  navigator<span class="token punctuation">.</span>mediaDevices<span class="token punctuation">.</span><span class="token function">getUserMedia</span> <span class="token punctuation">(</span>
+    <span class="token punctuation">{</span>
+      audio<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+      video<span class="token operator">:</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">stream</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> options <span class="token operator">=</span> <span class="token punctuation">{</span>
+        mediaStreamTrack<span class="token operator">:</span> stream<span class="token punctuation">.</span><span class="token function">getAudioTracks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">let</span> source <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MediaStreamTrackAudioSourceNode</span><span class="token punctuation">(</span>audioCtx<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      source<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>audioCtx<span class="token punctuation">.</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'The following gUM error occurred: '</span> <span class="token operator">+</span> err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'new getUserMedia not supported on your browser!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td>
+<a href="https://webaudio.github.io/web-audio-api/#dom-mediastreamtrackaudiosourceoptions-mediastreamtrack" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'MediaStreamTrackAudioSourceOptions.mediaStream' in that specification.</small></a> </td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>mediaStreamTrack</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+ 
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrackAudioSourceOptions/mediaStreamTrack" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrackAudioSourceOptions/mediaStreamTrack</a>
+  </p>
+</div>

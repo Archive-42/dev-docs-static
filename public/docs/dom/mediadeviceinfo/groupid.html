@@ -1,0 +1,90 @@
+<h1>MediaDeviceInfo.groupId</h1>
+
+ <p>The <code>groupId</code> readonly property of the <a href="../mediadeviceinfo"><code>MediaDeviceInfo</code></a> interface returns a <a href="../domstring"><code>DOMString</code></a> that is a group identifier. Two devices have the same group identifier if they belong to the same physical device; for example, a monitor with both a built-in camera and microphone.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> groupID <span class="token operator">=</span> mediaDeviceInfo<span class="token punctuation">.</span>groupId<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../domstring"><code>DOMString</code></a> which uniquely identifies the group of related devices to which this device belongs.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/mediacapture-main/#dom-mediadeviceinfo-groupid" hreflang="en" rel=" noopener">Media Capture and Streams<br><small>The definition of 'groupId' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="examples">Examples</h2>
+<p>In this example, we assemble a list of the devices which are part of the same group as a given device. This might be used to produce a user interface that gathers associated devices together for presentation purposes, or to make it easy for the user to choose to use the built-in camera and microphone on the same display at the same time.</p> <pre data-language="js"><span class="token keyword">const</span> <span class="token function-variable function">getDeviceGroup</span> <span class="token operator">=</span> <span class="token parameter">mainDevInfo</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> devList <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  navigator<span class="token punctuation">.</span>mediaDevices<span class="token punctuation">.</span><span class="token function">enumerateDevices</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">devices</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    devices<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">device</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>device<span class="token punctuation">.</span>groupId <span class="token operator">===</span> mainDevInfo<span class="token punctuation">.</span>groupId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        devList<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>device<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> devList<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre> <p>The <code>getDeviceGroup()</code> function takes as input the <code>MediaDeviceInfo</code> object describing the device for which a group list is to be built. The function starts by initializing the result array, <code>devList</code>, to be an empty array.</p> <p>Then <a href="../mediadevices/enumeratedevices"><code>navigator.mediaDevices.enumerateDevices()</code></a> is called to get the list of all media devices. Once the promise resolves, we walk the list using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach"><code>forEach()</code></a>. For each device, if its <a href="groupid"><code>groupId</code></a> matches the main device's <code>groupId</code>, we push the <a href="../mediadeviceinfo"><code>MediaDeviceInfo</code></a> object onto the list.</p> <p>Finally, the list, which now contains a <code>MediaDeviceInfo</code> object for each device in the same group, is returned to the caller.</p> <p>This could be altered easily to either leave out the passed-in device from the returned list, or to place it at the top of the list, by comparing the two objects' <a href="deviceid"><code>deviceId</code></a> values, only pushing the device onto the result list if it doesn't match.</p> <p>This version of the example puts the passed-in device at the top of the result list, then adds any other members of the group that are found:</p> <pre data-language="js"><span class="token keyword">const</span> <span class="token function-variable function">getDeviceGroup</span> <span class="token operator">=</span> <span class="token parameter">mainDevInfo</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> devList <span class="token operator">=</span> <span class="token punctuation">[</span>mainDevInfo<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  navigator<span class="token punctuation">.</span>mediaDevices<span class="token punctuation">.</span><span class="token function">enumerateDevices</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">devices</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    devices<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">device</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>device<span class="token punctuation">.</span>groupId <span class="token operator">===</span> mainDevInfo<span class="token punctuation">.</span>groupId<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span>
+          <span class="token punctuation">(</span>device<span class="token punctuation">.</span>deviceId <span class="token operator">!==</span> mainDevInfo<span class="token punctuation">.</span>deviceId<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        devList<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>device<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> devList<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>groupId</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>39</div>
+<div>Prior to Firefox 67, related devices are not actually grouped together by <code>groupId</code>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>39</div>
+<div>Prior to Firefox 67, related devices are not actually grouped together by <code>groupId</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDeviceInfo/groupId" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaDeviceInfo/groupId</a>
+  </p>
+</div>

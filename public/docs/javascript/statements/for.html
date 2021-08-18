@@ -1,0 +1,109 @@
+<h1>for</h1> <p>The <strong>for statement</strong> creates a loop that consists of three optional expressions, enclosed in parentheses and separated by semicolons, followed by a statement (usually a <a href="block">block statement</a>) to be executed in the loop.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/statement-for.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token punctuation">[</span>initialization<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token punctuation">[</span>condition<span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token punctuation">[</span>final<span class="token operator">-</span>expression<span class="token punctuation">]</span><span class="token punctuation">)</span>
+   statement</pre> <dl> <dt><code><var>initialization</var></code></dt> <dd> <p>An expression (including assignment expressions) or variable declaration evaluated once before the loop begins. Typically used to initialize a counter variable. This expression may optionally declare new variables with <code>var</code> or <code>let</code> keywords. Variables declared with <code>var</code> are not local to the loop, i.e. they are in the same scope the <code>for</code> loop is in. Variables declared with <code>let</code> are local to the statement.</p> <p>The result of this expression is discarded.</p> </dd> <dt><code><var>condition</var></code></dt> <dd>An expression to be evaluated before each loop iteration. If this expression evaluates to true, <code><var>statement</var></code> is executed. This conditional test is optional. If omitted, the condition always evaluates to true. If the expression evaluates to false, execution skips to the first expression following the <code>for</code> construct.</dd> <dt><code><var>final-expression</var></code></dt> <dd>An expression to be evaluated at the end of each loop iteration. This occurs before the next evaluation of <code><var>condition</var></code>. Generally used to update or increment the counter variable.</dd> <dt><code><var>statement</var></code></dt> <dd>A statement that is executed as long as the condition evaluates to true. To execute multiple statements within the loop, use a <a href="block">block</a> statement (<code>{ ... }</code>) to group those statements. To execute no statement within the loop, use an <a href="empty">empty</a> statement (<code>;</code>).</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="using_for">Using for</h3>
+<p>The following <code>for</code> statement starts by declaring the variable <code>i</code> and initializing it to <code>0</code>. It checks that <code>i</code> is less than nine, performs the two succeeding statements, and increments <code>i</code> by 1 after each pass through the loop.</p> <pre data-language="js"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">9</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token comment">// more statements</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="optional_for_expressions">Optional for expressions</h3>
+<p>All three expressions in the head of the <code>for</code> loop are optional.</p> <p>For example, in the <code><var>initialization</var></code> block it is not required to initialize variables:</p> <pre data-language="js"><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">9</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// more statements</span>
+<span class="token punctuation">}</span>
+</pre> <p>Like the <code><var>initialization</var></code> block, the <code><var>condition</var></code> block is also optional. If you are omitting this expression, you must make sure to break the loop in the body in order to not create an infinite loop.</p> <pre data-language="js"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+   <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">&gt;</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+   <span class="token comment">// more statements</span>
+<span class="token punctuation">}</span></pre> <p>You can also omit all three blocks. Again, make sure to use a <a href="break"><code>break</code></a> statement to end the loop and also modify (increase) a variable, so that the condition for the break statement is true at some point.</p> <pre data-language="js"><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token punctuation">;</span><span class="token punctuation">;</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">&gt;</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  i<span class="token operator">++</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="using_for_without_a_statement">Using for without a statement</h3>
+<p>The following <code>for</code> cycle calculates the offset position of a node in the <code><var>final-expression</var></code> section, and therefore it does not require the use of a <code><var>statement</var></code> section, a semicolon is used instead.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">showOffsetPos</span><span class="token punctuation">(</span><span class="token parameter">sId</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">var</span> nLeft <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> nTop <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">for</span> <span class="token punctuation">(</span>
+
+    <span class="token keyword">var</span> oItNode <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span>sId<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* initialization */</span>
+
+    oItNode<span class="token punctuation">;</span> <span class="token comment">/* condition */</span>
+
+    nLeft <span class="token operator">+=</span> oItNode<span class="token punctuation">.</span>offsetLeft<span class="token punctuation">,</span> nTop <span class="token operator">+=</span> oItNode<span class="token punctuation">.</span>offsetTop<span class="token punctuation">,</span> oItNode <span class="token operator">=</span> oItNode<span class="token punctuation">.</span>offsetParent <span class="token comment">/* final-expression */</span>
+
+  <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* semicolon */</span>
+
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Offset position of \''</span> <span class="token operator">+</span> sId <span class="token operator">+</span> <span class="token string">'\' element:\n left: '</span> <span class="token operator">+</span> nLeft <span class="token operator">+</span> <span class="token string">'px;\n top: '</span> <span class="token operator">+</span> nTop <span class="token operator">+</span> <span class="token string">'px;'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Example call: */</span>
+
+<span class="token function">showOffsetPos</span><span class="token punctuation">(</span><span class="token string">'content'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Output:</span>
+<span class="token comment">// "Offset position of "content" element:</span>
+<span class="token comment">// left: 0px;</span>
+<span class="token comment">// top: 153px;"</span></pre> <div class="note notecard"><p><strong>Note:</strong> This is one of the few cases in JavaScript where <strong>the semicolon is mandatory</strong>. Indeed, without the semicolon the line that follows the cycle declaration will be considered a statement.</p></div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-for-statement">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-for-statement</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>for</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="empty">empty statement</a></li> <li><a href="break"><code>break</code></a></li> <li><a href="continue"><code>continue</code></a></li> <li><a href="while"><code>while</code></a></li> <li><a href="do...while"><code>do...while</code></a></li> <li><a href="for...in"><code>for...in</code></a></li> <li><a href="for...of"><code>for...of</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for</a>
+  </p>
+</div>

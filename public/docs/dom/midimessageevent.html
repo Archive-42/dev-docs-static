@@ -1,0 +1,94 @@
+<h1>MIDIMessageEvent</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <code>MIDIMessageEvent</code> interface of the <a href="web_midi_api">Web MIDI API</a> represents the event passed to the <a class="page-not-created"><code>onmidimessage</code></a> event handler of the <a href="midiinput"><code>MIDIInput</code></a> interface. A <code>midimessage</code> event is fired every time a MIDI message is sent from a device represented by a <a href="midiinput"><code>MIDIInput</code></a>, for example when a MIDI keyboard key is pressed, a knob is tweaked, or a slider is moved. </p>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a class="page-not-created"><code>MIDIMessageEvent.MIDIMessageEvent</code></a></dt> <dd>Creates a new <code>MIDIMessageEvent</code> object instance.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<dl> <dt><a class="page-not-created"><code>MIDIConnectionEvent.data</code></a></dt> <dd>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array"><code>Uint8Array</code></a> containing the data bytes of a single MIDI message. See the <a href="https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message" rel=" noopener">MIDI specification</a> for more information on its form.</dd> </dl> <div class="note notecard"> <p><strong>Note</strong>: Even though the <a href="https://www.w3.org/TR/webmidi/#midimessageevent-interface" rel=" noopener">Web MIDI API</a> specifies a <code>receivedTime</code> property that returns a <a href="domhighrestimestamp"><code>DOMHighResTimeStamp</code></a>, Chrome (the only implementation at the time of writing) does not support that property since the basic <a href="event/timestamp"><code>Event.timeStamp</code></a> property already returns a <a href="domhighrestimestamp"><code>DOMHighResTimeStamp</code></a> in Chrome.</p> </div>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token comment">// Printing all messages to console</span>
+navigator<span class="token punctuation">.</span><span class="token function">requestMIDIAccess</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">midiAccess</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  Array<span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span>midiAccess<span class="token punctuation">.</span>inputs<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">input</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    input<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function-variable function">onmidimessage</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">msg</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://webaudio.github.io/web-midi-api/#midimessageevent-interface" hreflang="en" rel=" noopener">Web MIDI API<br><small>The definition of 'MIDIMessageEvent' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>MIDIMessageEvent</code></th>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>MIDIMessageEvent</code></th>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>data</code></th>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MIDIMessageEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MIDIMessageEvent</a>
+  </p>
+</div>

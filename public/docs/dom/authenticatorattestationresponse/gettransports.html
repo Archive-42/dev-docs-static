@@ -1,0 +1,92 @@
+<h1>AuthenticatorAttestationResponse.getTransports()</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p><code>getTransports()</code> is a method of the <a href="../authenticatorattestationresponse"><code>AuthenticatorAttestationResponse</code></a> interface that returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> containing strings describing the different transports which may be used by the authenticator.</p> <p>Such transports may be USB, NFC, BLE or internal (applicable when the authenticator is not removable from the device).</p> <div class="notecard note"> <p><strong>Note:</strong> An <code>AuthenticatorAttestationResponse</code> instance is available on <a href="../publickeycredential/response"><code>PublicKeyCredential.response</code></a> after calling <a href="../credentialscontainer/create"><code>navigator.credentials.create()</code></a>.</p> </div> <div class="note notecard"> <p><strong>Note:</strong> This method may only be used in top-level contexts and will not be available in an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a> for example.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">arrTransports <span class="token operator">=</span> authenticatorAttestationResponse<span class="token punctuation">.</span><span class="token function">getTransports</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<p>None.</p>
+<h3 id="return_value">Return value</h3>
+<p>An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> containing the different transports supported by the authenticator or nothing if this information is not available.of the processing of the different extensions by the client. The elements of this array are supposed to be in lexicographical order. Their values may be :</p> <ul> <li>
+<code>"usb"</code>: the authenticator can be contacted via a removable USB link</li> <li>
+<code>"nfc"</code>: the authenticator may be used over <a href="https://en.wikipedia.org/wiki/Near-field_communication" rel=" noopener">NFC (Near Field Communication)</a>
+</li> <li>
+<code>"ble"</code>: the authenticator may be used over <a href="https://en.wikipedia.org/wiki/Bluetooth_Low_Energy" rel=" noopener">BLE (Bluetooth Low Energy)</a>
+</li> <li>
+<code>"internal"</code>: the authenticator is specifically bound to the client device (cannot be removed).</li> </ul>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token keyword">var</span> publicKey <span class="token operator">=</span> <span class="token punctuation">{</span>
+  challenge<span class="token operator">:</span> <span class="token comment">/* from the server */</span><span class="token punctuation">,</span>
+  rp<span class="token operator">:</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">"Example CORP"</span><span class="token punctuation">,</span>
+    id  <span class="token operator">:</span> <span class="token string">"login.example.com"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  user<span class="token operator">:</span> <span class="token punctuation">{</span>
+    id<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">"jdoe@example.com"</span><span class="token punctuation">,</span>
+    displayName<span class="token operator">:</span> <span class="token string">"John Doe"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  pubKeyCredParams<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      type<span class="token operator">:</span> <span class="token string">"public-key"</span><span class="token punctuation">,</span>
+      alg<span class="token operator">:</span> <span class="token operator">-</span><span class="token number">7</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+navigator<span class="token punctuation">.</span>credentials<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span> publicKey <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">newCredentialInfo</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> transports <span class="token operator">=</span> newCredentialInfo<span class="token punctuation">.</span>response<span class="token punctuation">.</span><span class="token function">getTransports</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">table</span><span class="token punctuation">(</span>transports<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// may be something like ["internal", "nfc", "usb"]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td> <a href="https://w3c.github.io/webauthn/#dom-authenticatorattestationresponse-gettransports" hreflang="en" rel=" noopener">Web Authentication: An API for accessing Public Key Credentials Level 1<br><small>The definition of 'getTransports()' in that specification.</small></a> </td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getTransports</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/AuthenticatorAttestationResponse/getTransports" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/AuthenticatorAttestationResponse/getTransports</a>
+  </p>
+</div>

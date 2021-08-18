@@ -1,0 +1,201 @@
+<h1>Intl.NumberFormat</h1> <p>The <code>Intl.NumberFormat</code> object enables language-sensitive number formatting.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/intl-numberformat.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="numberformat/numberformat"><code>Intl.NumberFormat()</code></a></dt> <dd>Creates a new <code>NumberFormat</code> object.</dd> </dl>
+<h2 id="static_methods">Static methods</h2>
+<dl> <dt><a href="numberformat/supportedlocalesof"><code>Intl.NumberFormat.supportedLocalesOf()</code></a></dt> <dd>Returns an array containing those of the provided locales that are supported without having to fall back to the runtime's default locale.</dd> </dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl> <dt><a href="numberformat/format"><code>Intl.NumberFormat.prototype.format()</code></a></dt> <dd>Getter function that formats a number according to the locale and formatting options of this <a href="numberformat"><code>Intl/NumberFormat</code></a> object.</dd> <dt><a href="numberformat/formattoparts"><code>Intl.NumberFormat.prototype.formatToParts()</code></a></dt> <dd>Returns an <a href="../array"><code>Array</code></a> of objects representing the number string in parts that can be used for custom locale-aware formatting.</dd> <dt><a href="numberformat/resolvedoptions"><code>Intl.NumberFormat.prototype.resolvedOptions()</code></a></dt> <dd>Returns a new object with properties reflecting the locale and collation options computed during initialization of the object.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="basic_usage">Basic usage</h3>
+<p>In basic use without specifying a locale, a formatted string in the default locale and with default options is returned.</p> <pre data-language="js"><span class="token keyword">var</span> number <span class="token operator">=</span> <span class="token number">3500</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>NumberFormat</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → '3,500' if in US English locale</span>
+</pre>
+<h3 id="using_locales">Using locales</h3>
+<p>This example shows some of the variations in localized number formats. In order to get the format of the language used in the user interface of your application, make sure to specify that language (and possibly some fallback languages) using the <code>locales</code> argument:</p> <pre data-language="js"><span class="token keyword">var</span> number <span class="token operator">=</span> <span class="token number">123456.789</span><span class="token punctuation">;</span>
+
+<span class="token comment">// German uses comma as decimal separator and period for thousands</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>NumberFormat</span><span class="token punctuation">(</span><span class="token string">'de-DE'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → 123.456,789</span>
+
+<span class="token comment">// Arabic in most Arabic speaking countries uses real Arabic digits</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>NumberFormat</span><span class="token punctuation">(</span><span class="token string">'ar-EG'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → ١٢٣٤٥٦٫٧٨٩</span>
+
+<span class="token comment">// India uses thousands/lakh/crore separators</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>NumberFormat</span><span class="token punctuation">(</span><span class="token string">'en-IN'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → 1,23,456.789</span>
+
+<span class="token comment">// the nu extension key requests a numbering system, e.g. Chinese decimal</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>NumberFormat</span><span class="token punctuation">(</span><span class="token string">'zh-Hans-CN-u-nu-hanidec'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → 一二三,四五六.七八九</span>
+
+<span class="token comment">// when requesting a language that may not be supported, such as</span>
+<span class="token comment">// Balinese, include a fallback language, in this case Indonesian</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>NumberFormat</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'ban'</span><span class="token punctuation">,</span> <span class="token string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → 123.456,789</span>
+</pre>
+<h3 id="using_options">Using options</h3>
+<p>The results can be customized using the <code>options</code> argument:</p> <pre data-language="js"><span class="token keyword">var</span> number <span class="token operator">=</span> <span class="token number">123456.789</span><span class="token punctuation">;</span>
+
+<span class="token comment">// request a currency format</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>NumberFormat</span><span class="token punctuation">(</span><span class="token string">'de-DE'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> style<span class="token operator">:</span> <span class="token string">'currency'</span><span class="token punctuation">,</span> currency<span class="token operator">:</span> <span class="token string">'EUR'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → 123.456,79 €</span>
+
+<span class="token comment">// the Japanese yen doesn't use a minor unit</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>NumberFormat</span><span class="token punctuation">(</span><span class="token string">'ja-JP'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> style<span class="token operator">:</span> <span class="token string">'currency'</span><span class="token punctuation">,</span> currency<span class="token operator">:</span> <span class="token string">'JPY'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → ￥123,457</span>
+
+<span class="token comment">// limit to three significant digits</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>NumberFormat</span><span class="token punctuation">(</span><span class="token string">'en-IN'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> maximumSignificantDigits<span class="token operator">:</span> <span class="token number">3</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → 1,23,000</span>
+</pre>
+<h3 id="using_style_and_unit">Using style and unit</h3>
+<pre data-language="js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>NumberFormat</span><span class="token punctuation">(</span><span class="token string">'pt-PT'</span><span class="token punctuation">,</span>  <span class="token punctuation">{</span>
+    style<span class="token operator">:</span> <span class="token string">'unit'</span><span class="token punctuation">,</span>
+    unit<span class="token operator">:</span> <span class="token string">'kilometer-per-hour'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → 50 km/h</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toLocaleString</span><span class="token punctuation">(</span><span class="token string">'en-GB'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    style<span class="token operator">:</span> <span class="token string">'unit'</span><span class="token punctuation">,</span>
+    unit<span class="token operator">:</span> <span class="token string">'liter'</span><span class="token punctuation">,</span>
+    unitDisplay<span class="token operator">:</span> <span class="token string">'long'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → 16 litres</span>
+</pre>
+<h2 id="polyfill">Polyfill</h2>
+<p><a href="https://formatjs.io/docs/polyfills/intl-numberformat" rel=" noopener">formatjs Intl.NumberFormat polyfill</a></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma402/#numberformat-objects">ECMAScript Internationalization API Specification (ECMAScript Internationalization API)<br> <small>#numberformat-objects</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>NumberFormat</code></th>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>NumberFormat</code></th>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>format</code></th>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>Before Edge 18, numbers are rounded to 15 decimal digits. For example, <code>new Intl.NumberFormat('en-US').format(1000000000000005)</code> returns <code>"1,000,000,000,000,010"</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>In Internet Explorer 11, numbers are rounded to 15 decimal digits. For example, <code>new Intl.NumberFormat('en-US').format(1000000000000005)</code> returns <code>"1,000,000,000,000,010"</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>formatToParts</code></th>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+<tr>
+<th><code>resolvedOptions</code></th>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>supportedLocalesOf</code></th>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+</tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../intl"><code>Intl</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat</a>
+  </p>
+</div>

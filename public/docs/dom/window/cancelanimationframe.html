@@ -1,0 +1,87 @@
+<h1>window.cancelAnimationFrame()</h1> <p>The <code><strong>window.cancelAnimationFrame()</strong></code> method cancels an animation frame request previously scheduled through a call to <a href="../window/requestanimationframe"><code>window.requestAnimationFrame()</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">window<span class="token punctuation">.</span><span class="token function">cancelAnimationFrame</span><span class="token punctuation">(</span>requestID<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>requestID</code></dt> <dd>The ID value returned by the call to <a href="../window/requestanimationframe"><code>window.requestAnimationFrame()</code></a> that requested the callback.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token keyword">var</span> requestAnimationFrame <span class="token operator">=</span> window<span class="token punctuation">.</span>requestAnimationFrame <span class="token operator">||</span> window<span class="token punctuation">.</span>mozRequestAnimationFrame <span class="token operator">||</span>
+                            window<span class="token punctuation">.</span>webkitRequestAnimationFrame <span class="token operator">||</span> window<span class="token punctuation">.</span>msRequestAnimationFrame<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> cancelAnimationFrame <span class="token operator">=</span> window<span class="token punctuation">.</span>cancelAnimationFrame <span class="token operator">||</span> window<span class="token punctuation">.</span>mozCancelAnimationFrame<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> start <span class="token operator">=</span> window<span class="token punctuation">.</span>mozAnimationStartTime<span class="token punctuation">;</span>  <span class="token comment">// Only supported in FF. Other browsers can use something like Date.now().</span>
+
+<span class="token keyword">var</span> myReq<span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">step</span><span class="token punctuation">(</span><span class="token parameter">timestamp</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> progress <span class="token operator">=</span> timestamp <span class="token operator">-</span> start<span class="token punctuation">;</span>
+  d<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>progress <span class="token operator">/</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>progress <span class="token operator">&lt;</span> <span class="token number">2000</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// it's important to update the requestId each time you're calling requestAnimationFrame</span>
+    myReq <span class="token operator">=</span> <span class="token function">requestAnimationFrame</span><span class="token punctuation">(</span>step<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+myReq <span class="token operator">=</span> <span class="token function">requestAnimationFrame</span><span class="token punctuation">(</span>step<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// the cancelation uses the last requestId</span>
+<span class="token function">cancelAnimationFrame</span><span class="token punctuation">(</span>myReq<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td>
+<a href="https://html.spec.whatwg.org/multipage/#animationframeprovider-cancelanimationframe" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'cancelAnimationFrame()' in that specification.</small></a> </td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>cancelAnimationFrame</code></th>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>23</div>
+<div>11-23</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes">
+<div>6.1</div>
+<div>6-6.1</div>
+</td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes">
+<div>23</div>
+<div>14-23</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="mozanimationstarttime"><code>window.mozAnimationStartTime</code></a></li> <li><a href="../window/requestanimationframe"><code>window.requestAnimationFrame()</code></a></li> <li><a href="https://github.com/behnammodi/polyfill/blob/master/window.polyfill.js" rel=" noopener">A polyfill</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/cancelAnimationFrame" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Window/cancelAnimationFrame</a>
+  </p>
+</div>

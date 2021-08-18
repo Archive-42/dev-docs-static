@@ -1,0 +1,76 @@
+<h1>RTCIceCandidate.relatedAddress</h1> <p>The <strong><a href="../rtcicecandidate"><code>RTCIceCandidate</code></a></strong> interface's read-only <code>relatedAddress</code> property is a string indicating the <strong>related address</strong> of a relay or reflexive candidate. If the candidate is a host candidate (that is, its <a href="address"><code>ip</code></a> is in fact the real IP address of the remote peer), <code>relatedAddress</code> is <code>null</code>.</p> <p>The <code>relatedAddress</code> field's value is set when the <a href="rtcicecandidate"><code>RTCIceCandidate()</code></a> constructor is used. You can't specify the value of <code>relatedAddress</code> in the options object, but the address is automatically extracted from the <a href="../rtcicecandidateinit/candidate"><code>candidate</code></a> a-line, if it's formatted properly, being taken from its <code>rel-address</code> field.</p> <p>The related address and port (<a href="relatedport"><code>relatedPort</code></a>) are not used at all by <a href="https://developer.mozilla.org/en-US/docs/Glossary/ICE">ICE</a> itself; they are provided for analysis and diagnostic purposes only, and their inclusion may be blocked by security systems, so do not rely on them having non-<code>null</code> values.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> relAddress <span class="token operator">=</span> RTCIceCandidate<span class="token punctuation">.</span>relatedAddress<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../domstring"><code>DOMString</code></a> which contains the candidate's related address. For both peer and server reflexive candidates, the related address (and related port) are the base for that server or peer reflexive candidate. For relay candidates, the related address and port are set to the mapped address selected by the TURN server.</p> <p>For host candidates, <code>relatedAddress</code> is <code>null</code>, meaning the field is not included in the candidate's a-line.</p>
+<h2 id="usage_notes">Usage notes</h2>
+<p>The related address is included in ICE candidates despite not being used by ICE itself. <code>relatedAddress</code> can be used for diagnostic purposes; by observing the relationships between the various types of candidates and their addresses and related addresses. <code>relatedAddress</code> can also be used by Quality-of-Service (QoS) mechanisms.</p> <p>Here's an <a href="https://developer.mozilla.org/en-US/docs/Glossary/SDP">SDP</a> attribute line (a-line) describing an ICE candidate discovered by the STUN server:</p> <pre class="notranslate">a=candidate:4234997325 1 udp 2043278322 192.168.0.56 6502 typ srflx raddr 192.168.2.77 rport 32768 generation 0</pre> <p>The remote address, <code>relatedAddress</code>, is the dotted quad (for IPv4) or colon-delineated 64-bit address (for IPv6) immediately following the text <code>"raddr"</code>, or <code>"192.168.2.77"</code>.</p>
+<h2 id="example">Example</h2>
+<p>In this example, the candidate's <a href="type"><code>type</code></a> is checked, and then debugging output is presented, based on the candidate type, including the candidate's <a href="address"><code>ip</code></a> and <code>relatedAddress</code>. </p> <pre data-language="js"><span class="token keyword">switch</span><span class="token punctuation">(</span>candidate<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">case</span> <span class="token string">"host"</span><span class="token operator">:</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Host candidate's IP address is "</span> <span class="token operator">+</span> candidate<span class="token punctuation">.</span>ip<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token keyword">case</span> <span class="token string">"srflx"</span><span class="token operator">:</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Server reflexive candidate's base address is "</span> <span class="token operator">+</span>
+        candidate<span class="token punctuation">.</span>relatedAddress <span class="token operator">+</span> <span class="token string">"; reachable at "</span> <span class="token operator">+</span> candidate<span class="token punctuation">.</span>ip<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token keyword">case</span> <span class="token string">"prflx"</span><span class="token operator">:</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Peer reflexive candidate's base address is "</span> <span class="token operator">+</span>
+        candidate<span class="token punctuation">.</span>relatedAddress <span class="token operator">+</span> <span class="token string">"; reachable at "</span> <span class="token operator">+</span> candidate<span class="token punctuation">.</span>ip<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token keyword">case</span> <span class="token string">"relay"</span><span class="token operator">:</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Relay candidate's address assigned by the TURN server is "</span> <span class="token operator">+</span>
+        candidate<span class="token punctuation">.</span>relatedAddress <span class="token operator">+</span> <span class="token string">"; reachable at "</span> <span class="token operator">+</span> candidate<span class="token punctuation">.</span>ip<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">break</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcicecandidate-relatedaddress" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCIceCandidate.relatedAddress' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>relatedAddress</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webrtc_api">WebRTC API</a></li> <li><a href="../webrtc_api/protocols">Introduction to WebRTC protocols</a></li> <li><a href="../webrtc_api/connectivity">WebRTC connectivity</a></li> <li><a href="../webrtc_api/session_lifetime">Lifetime of a WebRTC session</a></li> <li><a class="page-not-created"><code>RTCIceCanddiate.relatedPort</code></a></li> <li>
+<a href="address"><code>RTCIceCandidate.address</code></a> and <a href="port"><code>RTCIceCandidate.port</code></a>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCIceCandidate/relatedAddress" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCIceCandidate/relatedAddress</a>
+  </p>
+</div>

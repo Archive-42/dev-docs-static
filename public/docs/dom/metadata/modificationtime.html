@@ -1,0 +1,67 @@
+<h1>Metadata.modificationTime</h1>
+
+<div class="notecard warning"> <strong id="non-standard">Non-standard</strong> <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p> </div>
+ <p>The read-only <code>modificationTime</code> property of the <a href="../metadata"><code>Metadata</code></a> interface is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date"><code>Date</code></a> object which specifies the date and time the file system entry (or the data referenced by the entry) was last modified.A file system entry is considered to have been modified if the metadata or the contents of the referenced file (or directory, or whatever other kind of file system entry might exist on the platform in use) has changed.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> modificationTime <span class="token operator">=</span> Metadata<span class="token punctuation">.</span>modificationTime<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date"><code>Date</code></a> timestamp indicating when the file system entry was last changed. </p>
+<h2 id="example">Example</h2>
+<p>This example tries to get a particular working file at <code>tmp/workfile.json</code>. Once that file has been found, its metadata is obtained and the file's modification timestamp year is compared to the current year. If it was last modified in a year at least five prior to the current year, the file is removed and a new one is created.</p> <pre data-language="js">workingDirectory<span class="token punctuation">.</span><span class="token function">getFile</span><span class="token punctuation">(</span><span class="token string">"tmp/workfile.json"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> create<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">fileEntry</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  fileEntry<span class="token punctuation">.</span><span class="token function">getMetadata</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">metadata</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getFullYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> metadata<span class="token punctuation">.</span>modificationTime<span class="token punctuation">.</span><span class="token function">getFullYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">&gt;=</span> <span class="token number">5</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      fileEntry<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        workingDirectory<span class="token punctuation">.</span><span class="token function">getFile</span><span class="token punctuation">(</span><span class="token string">"tmp/workfile.json"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> create<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">newEntry</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          fileEntry <span class="token operator">=</span> newEntry<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> handleError<span class="token punctuation">)</span><span class="token punctuation">;</span> </pre> <p>This API has no official W3C or WHATWG specification.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>modificationTime</code></th>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../file_and_directory_entries_api">File and Directory Entries API</a></li> <li><a href="../file_and_directory_entries_api/introduction">Introduction to the File System API</a></li> <li><a href="../metadata"><code>Metadata</code></a></li> <li><a href="../filesystementry/getmetadata"><code>FileSystemEntry.getMetadata()</code></a></li> <li><a href="../filesystemfileentry"><code>FileSystemFileEntry</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Metadata/modificationTime" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Metadata/modificationTime</a>
+  </p>
+</div>

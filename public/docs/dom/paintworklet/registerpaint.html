@@ -1,0 +1,86 @@
+<h1>PaintWorkletGlobalScope.registerPaint</h1>
+<div class="notecard draft"> <strong id="draft">Draft</strong> <p>This page is not complete.</p> </div> <p class="summary">The <code>PaintWorkletGlobalScope.registerPaint()</code> method of the <a href="../paintworklet"><code>PaintWorklet</code></a> interface registers a class programmatically generate an image where a CSS property expects a file.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">registerPaint</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> <span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>name</dt> <dd>The name of the worklet class to register.</dd> <dt>class</dt> <dd>A reference to the class that implements the worklet.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"><code>undefined</code></a></p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt>TypeError</dt> <dd>Thrown when one of the arguments is invalid or missing.</dd> <dt>InvalidModificationError</dt> <dd>Thrown when the a worklet already exists with the specified name.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>The following shows registering an example worklet module. This should be in a separate js file. Note that <code>registerPaint()</code> is called without a reference to <code>PaintWorkletGlobalScope</code>. The file itself is loaded through <code>CSS.paintWorklet.addModule()</code> (documented here on the parent class of PaintWorklet, at <a href="../worklet/addmodule"><code>Worklet.addModule()</code></a>.</p> <pre data-language="js"><span class="token comment">/* checkboardWorklet.js */</span>
+
+<span class="token keyword">class</span> <span class="token class-name">CheckerboardPainter</span> <span class="token punctuation">{</span>
+  <span class="token function">paint</span><span class="token punctuation">(</span><span class="token parameter">ctx<span class="token punctuation">,</span> geom<span class="token punctuation">,</span> properties</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Use `ctx` as if it was a normal canvas</span>
+    <span class="token keyword">const</span> colors <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'red'</span><span class="token punctuation">,</span> <span class="token string">'green'</span><span class="token punctuation">,</span> <span class="token string">'blue'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> size <span class="token operator">=</span> <span class="token number">32</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> y <span class="token operator">&lt;</span> geom<span class="token punctuation">.</span>height<span class="token operator">/</span>size<span class="token punctuation">;</span> y<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> x <span class="token operator">&lt;</span> geom<span class="token punctuation">.</span>width<span class="token operator">/</span>size<span class="token punctuation">;</span> x<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> color <span class="token operator">=</span> colors<span class="token punctuation">[</span><span class="token punctuation">(</span>x <span class="token operator">+</span> y<span class="token punctuation">)</span> <span class="token operator">%</span> colors<span class="token punctuation">.</span>length<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        ctx<span class="token punctuation">.</span><span class="token function">beginPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ctx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> color<span class="token punctuation">;</span>
+        ctx<span class="token punctuation">.</span><span class="token function">rect</span><span class="token punctuation">(</span>x <span class="token operator">*</span> size<span class="token punctuation">,</span> y <span class="token operator">*</span> size<span class="token punctuation">,</span> size<span class="token punctuation">,</span> size<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ctx<span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Register our class under a specific name</span>
+<span class="token function">registerPaint</span><span class="token punctuation">(</span><span class="token string">'checkerboard'</span><span class="token punctuation">,</span> CheckerboardPainter<span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>The first step in using a paintworket is defining the paint worklet using the <code>registerPaint()</code> function, as done above. To use it, you register it with the <code>CSS.paintWorklet.addModule()</code> method:</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+   <span class="token constant">CSS</span><span class="token punctuation">.</span>paintWorklet<span class="token punctuation">.</span><span class="token function">addModule</span><span class="token punctuation">(</span><span class="token string">'checkboardWorklet.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></pre> <p>You can then use the <code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/paint()"><code>paint()</code></a></code> CSS function in your CSS anywhere an <code><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/image"><code>&lt;image&gt;</code></a></code> value is valid.</p> <pre data-language="css"><span class="token selector">li</span> <span class="token punctuation">{</span>
+   <span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token function">paint</span><span class="token punctuation">(</span>checkerboard<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td>
+<a href="https://drafts.css-houdini.org/css-paint-api-1/#dom-paintworkletglobalscope-registerpaint" hreflang="en" rel=" noopener">CSS Painting API Level 1<br><small>The definition of 'PaintWorkletGlobalScope.registerPaint' in that specification.</small></a> </td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>registerPaint</code></th>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../css_painting_api">CSS Painting API</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/Houdini">Houdini APIs</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/Houdini/learn">Houdini overview</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaintWorklet/registerPaint" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaintWorklet/registerPaint</a>
+  </p>
+</div>

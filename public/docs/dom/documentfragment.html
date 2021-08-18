@@ -1,0 +1,249 @@
+<h1>DocumentFragment</h1> <p>The <code>DocumentFragment</code> interface represents a minimal document object that has no parent. It is used as a lightweight version of <a href="document"><code>Document</code></a> that stores a segment of a document structure comprised of nodes just like a standard document. The key difference is due to the fact that the document fragment isn't part of the active document tree structure. Changes made to the fragment don't affect the document (even on <a href="https://developer.mozilla.org/en-US/docs/Glossary/Reflow">reflow</a>) or incur any performance impact when changes are made.</p> <iframe class="inheritance-diagram-frame" id="frame_inheritance_diagram" width="600" height="70" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/DocumentFragment/_samples_/inheritance_diagram" loading="lazy"></iframe>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="documentfragment/documentfragment"><code>DocumentFragment()</code></a></dt> <dd>Creates and returns a new <code>DocumentFragment</code> object.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<p><em>This interface has no specific properties, but inherits those of its parent, <a href="node"><code>Node</code></a>, and implements those of the <a href="parentnode"><code>ParentNode</code></a> interface.</em></p> <dl> <dt>
+<a href="documentfragment/childelementcount"><code>DocumentFragment.childElementCount</code></a> <span class="badge inline readonly">Read only </span> </dt> <dd>Returns the amount of child <a href="element"><code>elements</code></a> the <code>DocumentFragment</code> has.</dd> <dt>
+<a href="documentfragment/children"><code>DocumentFragment.children</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a live <a href="htmlcollection"><code>HTMLCollection</code></a> containing all objects of type <a href="element"><code>Element</code></a> that are children of the <code>DocumentFragment</code> object.</dd> <dt>
+<a href="documentfragment/firstelementchild"><code>DocumentFragment.firstElementChild</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the <a href="element"><code>Element</code></a> that is the first child of the <code>DocumentFragment</code> object, or <code>null</code> if there is none.</dd> <dt>
+<a href="documentfragment/lastelementchild"><code>DocumentFragment.lastElementChild</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the <a href="element"><code>Element</code></a> that is the last child of the <code>DocumentFragment</code> object, or <code>null</code> if there is none.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<p><em>This interface inherits the methods of its parent, <a href="node"><code>Node</code></a>, and implements those of the <a href="parentnode"><code>ParentNode</code></a> interface.</em></p> <dl> <dt><a href="documentfragment/append"><code>DocumentFragment.append()</code></a></dt> <dd>Inserts a set of <a href="node"><code>Node</code></a> objects or <a href="domstring"><code>DOMString</code></a> objects after the last child of the document fragment.</dd> <dt><a href="documentfragment/prepend"><code>DocumentFragment.prepend()</code></a></dt> <dd>Inserts a set of <a href="node"><code>Node</code></a> objects or <a href="domstring"><code>DOMString</code></a> objects before the first child of the document fragment.</dd> <dt><a href="documentfragment/queryselector"><code>DocumentFragment.querySelector()</code></a></dt> <dd>Returns the first <a href="element"><code>Element</code></a> node within the <code>DocumentFragment</code>, in document order, that matches the specified selectors.</dd> <dt><a href="documentfragment/queryselectorall"><code>DocumentFragment.querySelectorAll()</code></a></dt> <dd>Returns a <a href="nodelist"><code>NodeList</code></a> of all the <a href="element"><code>Element</code></a> nodes within the <code>DocumentFragment</code> that match the specified selectors.</dd> <dt><a href="documentfragment/replacechildren"><code>DocumentFragment.replaceChildren()</code></a></dt> <dd>Replaces the existing children of a <code>DocumentFragment</code> with a specified new set of children.</dd> <dt><a class="page-not-created"><code>DocumentFragment.getElementById()</code></a></dt> <dd>Returns the first <a href="element"><code>Element</code></a> node within the <code style="font-size: 14px;">DocumentFragment</code>, in document order, that matches the specified ID. Functionally equivalent to <a href="document/getelementbyid"><code>Document.getElementById()</code></a>.</dd> </dl>
+<h2 id="usage_notes">Usage notes</h2>
+<p>A common use for <code>DocumentFragment</code> is to create one, assemble a DOM subtree within it, then append or insert the fragment into the DOM using <a href="node"><code>Node</code></a> interface methods such as <a href="node/appendchild"><code>appendChild()</code></a> or <a href="node/insertbefore"><code>insertBefore()</code></a>. Doing this moves the fragment's nodes into the DOM, leaving behind an empty <code>DocumentFragment</code>. Because all of the nodes are inserted into the document at once, only one reflow and render is triggered instead of potentially one for each node inserted if they were inserted separately.</p> <p>This interface is also of great use with Web components: <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template"><code>&lt;template&gt;</code></a> elements contain a <code>DocumentFragment</code> in their <a href="htmltemplateelement/content"><code>HTMLTemplateElement.content</code></a> property.</p> <p>An empty <code>DocumentFragment</code> can be created using the <a href="document/createdocumentfragment"><code>document.createDocumentFragment()</code></a> method or the constructor.</p>
+<h2 id="example">Example</h2>
+<h3 id="html">HTML</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>list<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+</pre>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js"><span class="token keyword">var</span> list <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#list'</span><span class="token punctuation">)</span>
+<span class="token keyword">var</span> fruits <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Apple'</span><span class="token punctuation">,</span> <span class="token string">'Orange'</span><span class="token punctuation">,</span> <span class="token string">'Banana'</span><span class="token punctuation">,</span> <span class="token string">'Melon'</span><span class="token punctuation">]</span>
+
+<span class="token keyword">var</span> fragment <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DocumentFragment</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+fruits<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">fruit</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> li <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span>
+  li<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> fruit
+  fragment<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>li<span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+list<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>fragment<span class="token punctuation">)</span>
+</pre>
+<h3 id="result">Result</h3>
+<p><iframe class="sample-code-frame" id="frame_Example" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/DocumentFragment/_samples_/Example" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://dom.spec.whatwg.org/#interface-documentfragment" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'DocumentFragment' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Added the constructor and the implementation of <a href="parentnode"><code>ParentNode</code></a>.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/selectors-api/#the-apis" hreflang="en" rel=" noopener">Selectors API Level 1<br><small>The definition of 'DocumentFragment' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>Added the <code>querySelector()</code> and <code>querySelectorAll()</code> methods.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-B63ED1A3" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 3 Core Specification<br><small>The definition of 'DocumentFragment' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>No change from <a href="https://www.w3.org/TR/DOM-Level-2-Core/" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 2 Core Specification</a>
+</td> </tr> <tr> <td><a href="https://www.w3.org/TR/DOM-Level-2-Core/core.html#ID-B63ED1A3" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 2 Core Specification<br><small>The definition of 'DocumentFragment' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>No change from <a href="https://www.w3.org/TR/REC-DOM-Level-1/" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 1 Specification</a>
+</td> </tr> <tr> <td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-B63ED1A3" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 1 Specification<br><small>The definition of 'DocumentFragment' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>DocumentFragment</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>DocumentFragment</code></th>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+</tr>
+<tr>
+<th><code>append</code></th>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>childElementCount</code></th>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+</tr>
+<tr>
+<th><code>children</code></th>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+</tr>
+<tr>
+<th><code>firstElementChild</code></th>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+</tr>
+<tr>
+<th><code>lastElementChild</code></th>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+</tr>
+<tr>
+<th><code>prepend</code></th>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>querySelector</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes">
+<div>9</div>
+<div>8</div>
+<div>
+<code>querySelectorAll()</code> is supported, but only for CSS 2.1 selectors.</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>querySelectorAll</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes">
+<div>9</div>
+<div>8</div>
+<div>
+<code>querySelectorAll()</code> is supported, but only for CSS 2.1 selectors.</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>replaceChildren</code></th>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-yes"><div>78</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="document_object_model">The DOM interfaces index.</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment</a>
+  </p>
+</div>

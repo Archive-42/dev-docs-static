@@ -1,0 +1,73 @@
+<h1>USBDevice.clearHalt()</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <code>clearHalt()</code> method of the <a href="../usbdevice"><code>USBDevice</code></a> interface returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>promise</code></a> that resolves when a halt condition is cleared. A halt condition is when a data tranfer to or from the device has a status of <code>'stall'</code>, which requires the web page (the <em>host</em> system, in USB terminology) to clear that condition. See the for details.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> promise <span class="token operator">=</span> USBDevice<span class="token punctuation">.</span><span class="token function">clearHalt</span><span class="token punctuation">(</span>direction<span class="token punctuation">,</span> endpointNumber<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>direction</dt> <dd>Indicates whether the devices input or output should be cleared. Valid values are <code>'in'</code> or <code>'out'</code>.</dd> <dt>endpointNumber</dt> <dd>Indicates the number of the endpoint to clear. The promise will reject if an invalid endpoint is supplied.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>promise</code></a>.</p>
+<h2 id="example">Example</h2>
+<p>The following example shows how to test for and clear a <code>'stall'</code> condition in the result of a data transfer. </p> <div class="note notecard"> <p>What data can be passed to a USB device and how it is passed is particular and unique to each device. </p> </div> <pre data-language="js"><span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> result <span class="token operator">=</span> <span class="token keyword">await</span> data<span class="token punctuation">.</span><span class="token function">transferIn</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>result<span class="token punctuation">.</span>data <span class="token operator">&amp;&amp;</span> result<span class="token punctuation">.</span>data<span class="token punctuation">.</span>byteLength <span class="token operator">===</span> <span class="token number">6</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Channel 1: '</span> <span class="token operator">+</span> result<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">getUint16</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Channel 2: '</span> <span class="token operator">+</span> result<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">getUint16</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Channel 5: '</span> <span class="token operator">+</span> result<span class="token punctuation">.</span>data<span class="token punctuation">.</span><span class="token function">getUint16</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>result<span class="token punctuation">.</span>status <span class="token operator">===</span> <span class="token string">'stall'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span><span class="token string">'Endpoint stalled. Clearing.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">await</span> device<span class="token punctuation">.</span><span class="token function">clearHalt</span><span class="token punctuation">(</span><span class="token string">'in'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://wicg.github.io/webusb/#dom-usbdevice-clearhalt" hreflang="en" rel=" noopener">WebUSB<br><small>The definition of 'clearHalt()' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>clearHalt</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/USBDevice/clearHalt" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/USBDevice/clearHalt</a>
+  </p>
+</div>

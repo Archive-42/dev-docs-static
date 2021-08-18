@@ -1,0 +1,96 @@
+<h1>XRPermissionDescriptor.requiredFeatures</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <a href="../xrpermissiondescriptor"><code>XRPermissionDescriptor</code></a> dictionary's <code><strong>requiredFeatures</strong></code> property should be set prior to calling <a href="../permissions/query"><code>navigator.permissions.query()</code></a> to a list of WebXR features which must be supported for the app to work. This ensures that permissions are checked as applicable to ensure that those features are available upon request.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">xrPermissionDescriptor <span class="token operator">=</span> <span class="token punctuation">{</span>
+   mode<span class="token operator">:</span> xrSessionMode<span class="token punctuation">,</span>
+   requiredFeatures<span class="token operator">:</span> reqFeatureList<span class="token punctuation">,</span>
+   optionalFeatures<span class="token operator">:</span> optFeatureList
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+xrPermissionDescriptor<span class="token punctuation">.</span>requiredFeatures <span class="token operator">=</span> reqFeatureList<span class="token punctuation">;</span>
+reqFeatureList <span class="token operator">=</span> xrPermissionDescriptor<span class="token punctuation">.</span>requiredFeatures<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>An array of strings indicating the WebXR features which <em>must</em> be available for use by the app or site. The permissions check will be performed in such a manner as to verify that all features in the list are available for use with the user's permission. </p> <p>Currently, all features are members of the <a href="../xrreferencespacetype"><code>XRReferenceSpaceType</code></a> enumerated type, indicating the reference space types that your app would like permission to use, but can operate without. Future editions of WebXR may add more recognized features.</p> <p>The permitted values are:</p> 
+<p>The types of reference space are listed in the table below, with brief information about their use cases and which interface is used to implement them.</p> <div class="_table"><table class="standard-table" id="value-list"> <thead> <tr> <th scope="col">XRReferenceSpaceType</th> <th scope="col">Description</th> <th scope="col">Interface</th> </tr> </thead> <tbody> <tr> <td><a id="bounded-floor"><code>bounded-floor</code></a></td> <td>Similar to the <code>local</code> type, except the user is not expected to move outside a predetermined boundary, given by the <a href="../xrboundedreferencespace/boundsgeometry"><code>boundsGeometry</code></a> in the returned object.</td> <td><a href="../xrboundedreferencespace"><code>XRBoundedReferenceSpace</code></a></td> </tr> <tr> <td><a id="local"><code>local</code></a></td> <td> <p>A tracking space whose native origin is located near the viewer's position at the time the session was created. The exact position depends on the underlying platform and implementation. The user isn't expected to move much if at all beyond their starting position, and tracking is optimized for this use case.</p> <p>For devices with six degrees of freedom (6DoF) tracking, the <code>local</code> reference space tries to keep the origin stable relative to the environment.</p> </td> <td><a href="../xrreferencespace"><code>XRReferenceSpace</code></a></td> </tr> <tr> <td><a id="local-floor"><code>local-floor</code></a></td> <td>Similar to the <code>local</code> type, except the starting position is placed in a safe location for the viewer to stand, where the value of the y axis is 0 at floor level. If that floor level isn't known, the <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent</a> will estimate the floor level. If the estimated floor level is non-zero, the browser is expected to round it such a way as to avoid fingerprinting (likely to the nearest centimeter).</td> <td><a href="../xrreferencespace"><code>XRReferenceSpace</code></a></td> </tr> <tr> <td><a id="unbounded"><code>unbounded</code></a></td> <td>A tracking space which allows the user total freedom of movement, possibly over extremely long distances from their origin point. The viewer isn't tracked at all; tracking is optimized for stability around the user's current position, so the native origin may drift as needed to accommodate that need.</td> <td><a href="../xrreferencespace"><code>XRReferenceSpace</code></a></td> </tr> <tr> <td><a id="viewer"><code>viewer</code></a></td> <td>A tracking space whose native origin tracks the viewer's position and orientation. This is used for environments in which the user can physically move around, and is supported by all instances of <a href="../xrsession"><code>XRSession</code></a>, both immersive and inline, though it's most useful for inline sessions. It's particularly useful when determining the distance between the viewer and an input, or when working with offset spaces. Otherwise, typically, one of the other reference space types will be used more often.</td> <td><a href="../xrreferencespace"><code>XRReferenceSpace</code></a></td> </tr> </tbody> </table></div> 
+<h2 id="usage_notes">Usage notes</h2>
+<h2 id="examples">Examples</h2>
+<p>In this example, permissions are checked to ensure that the user has granted permission for the site or app to use immersive augmented reality mode with the <code>local-floor</code> reference space (presumably since the user is unlikely to start to fly).</p> <pre data-language="js"><span class="token keyword">let</span> xrPermissionDesc <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">"xr"</span><span class="token punctuation">,</span>
+  mode<span class="token operator">:</span> <span class="token string">"immersive-ar"</span><span class="token punctuation">,</span>
+  requiredFeatures<span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">"local-floor"</span> <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>navigator<span class="token punctuation">.</span>permissions<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  navigator<span class="token punctuation">.</span>permissions<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span>xrPermissionDesc<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span>state<span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">switch</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">case</span> <span class="token string">"granted"</span><span class="token operator">:</span>
+        <span class="token function">setupXR</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token keyword">case</span> <span class="token string">"prompt"</span><span class="token operator">:</span>
+        <span class="token function">promptAndSetupXR</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token keyword">default</span><span class="token operator">:</span>
+        <span class="token comment">/* do nothing otherwise */</span>
+       <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  <span class="token function">setupXR</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td> <a href="https://immersive-web.github.io/webxr/#dom-xrpermissiondescriptor-requiredfeatures" hreflang="en" rel=" noopener">WebXR Device API<br><small>The definition of 'XRPermissionDescriptor.requiredFeatures' in that specification.</small></a> </td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>requiredFeatures</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webxr_device_api/permissions_and_security">Permissions and security for WebXR</a></li> <li><a href="../xrpermissionstatus"><code>XRPermissionStatus</code></a></li> <li>
+<a href="../navigator/permissions"><code>navigator.permissions</code></a> and <a href="../workernavigator/permissions"><code>WorkerNavigator.permissions</code></a> </li> <li><a href="../permissions"><code>Permissions</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XRPermissionDescriptor/requiredFeatures" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XRPermissionDescriptor/requiredFeatures</a>
+  </p>
+</div>

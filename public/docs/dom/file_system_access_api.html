@@ -1,0 +1,111 @@
+<h1>File System Access API</h1>
+<div class="notecard draft"> <strong id="draft">Draft</strong> <p>This page is not complete.</p> </div>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div> <p class="summary">The File System Access API allows read, write and file management capabilities.</p>
+<h2 id="concepts_and_usage">Concepts and Usage</h2>
+<p>This API allows interaction with files on a user's local device, or on a user-accessible network file system. Core functionality of this API includes reading files, writing or saving files, and access to directory structure.</p> <p>Most of the interaction with files and directories is accomplished through handles. A parent <a href="filesystemhandle"><code>FileSystemHandle</code></a> class helps define two child classes: <a href="filesystemfilehandle"><code>FileSystemFileHandle</code></a> and <a href="filesystemdirectoryhandle"><code>FileSystemDirectoryHandle</code></a>, for files and directories respectively.</p> <p>These handles represent the file or directory on the user's system. You must first gain access to them by showing the user a file or directory picker. The methods which allow this are <a href="window/showopenfilepicker"><code>window.showOpenFilePicker</code></a> and <a href="window/showdirectorypicker"><code>window.showDirectoryPicker</code></a>. Once these are called, the file picker presents itself and the user selects either a file or directory. Once this happens successfully, a handle is returned. You can also gain access to file handles via the <a href="datatransferitem/getasfilesystemhandle"><code>DataTransferItem.getAsFileSystemHandle()</code></a> method of the <a href="html_drag_and_drop_api"><code>HTML Drag and Drop API</code></a>.</p> <p>The handle provides its own functionality and there are a few differences depending on whether a file or directory was selected (see the <a href="#interfaces">interfaces</a> section for specific details). You then can access file data, or information (including children) of the directory selected.</p> <p>There is also “save” functionality, using the <a href="filesystemwritablefilestream"><code>FilesystemWritableFileStream</code></a> interface. Once the data you'd like to save is in a format of <a href="blob"><code>Blob</code></a>, <a href="usvstring"><code>USVString</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>buffer</code></a>, you can open a stream and save the data to a file. This can be the existing file or a new file.</p> <p>This API opens up potential functionality the web has been lacking. Still, security has been of utmost concern when designing the API, and access to file/directory data is disallowed unless the user specifically permits it.</p>
+<h2 id="interfaces">Interfaces</h2>
+<dl> <dt><a href="filesystemhandle"><code>FileSystemHandle</code></a></dt> <dd>The <code>FileSystemHandle</code> interface is an object which represents an entry. Multiple handles can represent the same entry. For the most part you do not work with <code>FileSystemEntry</code> directly but rather it's child interfaces <a href="filesystemfileentry"><code>FileSystemFileEntry</code></a> and <a href="filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a>.</dd> <dt><a href="filesystemfilehandle"><code>FileSystemFileHandle</code></a></dt> <dd>Provides a handle to a file system entry.</dd> <dt><a href="filesystemdirectoryhandle"><code>FileSystemDirectoryHandle</code></a></dt> <dd>provides a handle to a file system directory.</dd> <dt><a href="filesystemwritablefilestream"><code>FileSystemWritableFileStream</code></a></dt> <dd>is a <a href="writablestream"><code>WritableStream</code></a> object with additional convenience methods, which operates on a single file on disk.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="accessing_files">Accessing files</h3>
+<p>The below code allows the user to choose a file from the file picker and then tests to see whether the handle returned is a file or directory</p> <pre data-language="js"><span class="token comment">// store a reference to our file handle</span>
+<span class="token keyword">let</span> fileHandle<span class="token punctuation">;</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">getFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// open file picker</span>
+  <span class="token punctuation">[</span>fileHandle<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">await</span> window<span class="token punctuation">.</span><span class="token function">showOpenFilePicker</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>fileHandle<span class="token punctuation">.</span>kind <span class="token operator">===</span> <span class="token string">'file'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// run file code</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>fileHandle<span class="token punctuation">.</span>kind <span class="token operator">===</span> <span class="token string">'directory'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// run directory code</span>
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</pre> <p>The following asynchronous function presents a file picker and once a file is chosen, uses the <code>getFile()</code> method to retrieve the contents.</p> <pre data-language="js"><span class="token keyword">const</span> pickerOpts <span class="token operator">=</span> <span class="token punctuation">{</span>
+  types<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      description<span class="token operator">:</span> <span class="token string">'Images'</span><span class="token punctuation">,</span>
+      accept<span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token string">'image/*'</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'.png'</span><span class="token punctuation">,</span> <span class="token string">'.gif'</span><span class="token punctuation">,</span> <span class="token string">'.jpeg'</span><span class="token punctuation">,</span> <span class="token string">'.jpg'</span><span class="token punctuation">]</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  excludeAcceptAllOption<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  multiple<span class="token operator">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">getTheFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// open file picker</span>
+  <span class="token punctuation">[</span>fileHandle<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">await</span> window<span class="token punctuation">.</span><span class="token function">showOpenFilePicker</span><span class="token punctuation">(</span>pickerOpts<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// get file contents</span>
+  <span class="token keyword">const</span> fileData <span class="token operator">=</span> <span class="token keyword">await</span> fileHandle<span class="token punctuation">.</span><span class="token function">getFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h3 id="accessing_directories">Accessing directories</h3>
+<p>The following example returns a directory handle with the specified name. If the directory does not exist, it is created.</p> <pre data-language="js"><span class="token keyword">const</span> dirName <span class="token operator">=</span> <span class="token string">'directoryToGetName'</span><span class="token punctuation">;</span>
+
+<span class="token comment">// assuming we have a directory handle: 'currentDirHandle'</span>
+<span class="token keyword">const</span> subDir <span class="token operator">=</span> currentDirHandle<span class="token punctuation">.</span><span class="token function">getDirectoryHandle</span><span class="token punctuation">(</span>dirName<span class="token punctuation">,</span> <span class="token punctuation">{</span>create<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>The following asynchronous function uses <code>resolve()</code> to find the path to a chosen file, relative to a specified directory handle.</p> <pre data-language="js"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">returnPathDirectories</span><span class="token punctuation">(</span><span class="token parameter">directoryHandle</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token comment">// Get a file handle by showing a file picker:</span>
+  <span class="token keyword">const</span> handle <span class="token operator">=</span> <span class="token keyword">await</span> self<span class="token punctuation">.</span><span class="token function">showOpenFilePicker</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>handle<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// User cancelled, or otherwise failed to open a file.</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Check if handle exists inside directory our directory handle</span>
+  <span class="token keyword">const</span> relativePaths <span class="token operator">=</span> <span class="token keyword">await</span> directoryHandle<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>handle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>relativePath <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Not inside directory handle</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">// relativePath is an array of names, giving the relative path</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> name <span class="token keyword">of</span> relativePaths<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// log each entry</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="writing_to_files">Writing to files</h3>
+<p>The following asynchronous function opens the save file picker, which returns a <a href="filesystemfilehandle"><code>FileSystemFileHandle</code></a> once a file is selected. A writable stream is then created using the <a href="filesystemfilehandle/createwritable"><code>FileSystemFileHandle.createWritable()</code></a> method.</p> <p>A user defined <a href="blob"><code>Blob</code></a> is then written to the stream which is subsequently closed.</p> <pre data-language="js"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">saveFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token comment">// create a new handle</span>
+  <span class="token keyword">const</span> newHandle <span class="token operator">=</span> <span class="token keyword">await</span> window<span class="token punctuation">.</span><span class="token function">showSaveFilePicker</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// create a FileSystemWritableFileStream to write to</span>
+  <span class="token keyword">const</span> writableStream <span class="token operator">=</span> <span class="token keyword">await</span> newHandle<span class="token punctuation">.</span><span class="token function">createWritable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// write our file</span>
+  <span class="token keyword">await</span> writableStream<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>imgBlob<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// close the file and write the contents to disk.</span>
+  <span class="token keyword">await</span> writableStream<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>The following show different examples of options that can be passed into the <code>write()</code> method.</p> <pre data-language="js"><span class="token comment">// just pass in the data (no options)</span>
+writableStream<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span>
+
+<span class="token comment">// writes the data to the stream from the determined position</span>
+writableStream<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">"write"</span><span class="token punctuation">,</span> position<span class="token operator">:</span> position<span class="token punctuation">,</span> data<span class="token operator">:</span> data <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// updates the current file cursor offset to the position specified</span>
+writableStream<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">"seek"</span><span class="token punctuation">,</span> position<span class="token operator">:</span> position <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token comment">// resizes the file to be size bytes long</span>
+writableStream<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">"truncate"</span><span class="token punctuation">,</span> size<span class="token operator">:</span> size <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://wicg.github.io/file-system-access/" hreflang="en" rel=" noopener">File System Access API</a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<div class="notecard warning"><p>No compatibility data found for <code>api.FileSystemAccess</code>.<br><a href="#on-github">Check for problems with this page</a> or contribute missing data to <a href="https://github.com/mdn/browser-compat-data">mdn/browser-compat-data</a>.</p></div>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://web.dev/file-system-access/" rel=" noopener">The File System Access API: simplifying access to local files</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/File_System_Access_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/File_System_Access_API</a>
+  </p>
+</div>

@@ -1,0 +1,83 @@
+<h1>WindowOrWorkerGlobalScope.clearTimeout()</h1> <p>The <code>clearTimeout()</code> method of the <a href="../windoworworkerglobalscope"><code>WindowOrWorkerGlobalScope</code></a> mixin cancels a timeout previously established by calling <a href="settimeout"><code>setTimeout()</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">scope<span class="token punctuation">.</span><span class="token function">clearTimeout</span><span class="token punctuation">(</span>timeoutID<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><em>timeoutID</em></code></dt> <dd>The identifier of the timeout you want to cancel. This ID was returned by the corresponding call to <code>setTimeout()</code>.</dd> </dl> <p>It's worth noting that the pool of IDs used by <a href="settimeout"><code>setTimeout()</code></a> and <a href="setinterval"><code>setInterval()</code></a> are shared, which means you can technically use <code>clearTimeout()</code> and <a href="clearinterval"><code>clearInterval()</code></a> interchangeably. However, for clarity, you should avoid doing so.</p>
+<h2 id="example">Example</h2>
+<p>Run the script below in the context of a web page and click on the page once. You'll see a message popping up in a second. If you click the page multiple times in one second, the alert only appears once.</p> <pre data-language="js"><span class="token keyword">var</span> alarm <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">remind</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">aMessage</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span>aMessage<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>timeoutID <span class="token operator">=</span> <span class="token keyword">undefined</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token function-variable function">setup</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> <span class="token keyword">this</span><span class="token punctuation">.</span>timeoutID <span class="token operator">===</span> <span class="token string">'number'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">cancel</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">this</span><span class="token punctuation">.</span>timeoutID <span class="token operator">=</span> window<span class="token punctuation">.</span><span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">msg</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">remind</span><span class="token punctuation">(</span>msg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">,</span> <span class="token string">'Wake up!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+  <span class="token function-variable function">cancel</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    window<span class="token punctuation">.</span><span class="token function">clearTimeout</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>timeoutID<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+window<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> alarm<span class="token punctuation">.</span><span class="token function">setup</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="notes">Notes</h2>
+<p>Passing an invalid ID to <code>clearTimeout()</code> silently does nothing; no exception is thrown.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#dom-cleartimeout" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'WindowOrWorkerGlobalScope.clearTimeout()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Method moved to the <code>WindowOrWorkerGlobalScope</code> mixin in the latest spec.</td> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#dom-cleartimeout" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'clearTimeout()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>clearTimeout</code></th>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>From Internet Explorer 4 through 8, <code>clearTimeout</code> is an Object rather than a Function. This behavior was fixed in Internet Explorer 9.</div>
+</td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="settimeout"><code>WindowOrWorkerGlobalScope.setTimeout()</code></a></li> <li><a href="setinterval"><code>WindowOrWorkerGlobalScope.setInterval()</code></a></li> <li><a href="clearinterval"><code>WindowOrWorkerGlobalScope.clearInterval()</code></a></li> <li><a href="../window/requestanimationframe"><code>Window.requestAnimationFrame()</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/JavaScript/Timers/Daemons"><em>Daemons</em> management</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearTimeout" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/clearTimeout</a>
+  </p>
+</div>

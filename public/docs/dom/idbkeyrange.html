@@ -1,0 +1,279 @@
+<h1>IDBKeyRange</h1>
+
+  <p>The <code>IDBKeyRange</code> interface of the <a href="indexeddb_api">IndexedDB API</a> represents a continuous interval over some data type that is used for keys. Records can be retrieved from <a href="idbobjectstore"><code>IDBObjectStore</code></a> and <a href="idbindex"><code>IDBIndex</code></a> objects using keys or a range of keys. You can limit the range using lower and upper bounds. For example, you can iterate over all values of a key in the value range A–Z.</p>  <p>A key range can be a single value or a range with upper and lower bounds or endpoints. If the key range has both upper and lower bounds, then it is <em>bounded</em>; if it has no bounds, it is <em>unbounded</em>. A bounded key range can either be open (the endpoints are excluded) or closed (the endpoints are included). To retrieve all keys within a certain range, you can use the following code constructs:</p> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Range</th> <th scope="col">Code</th> </tr> <tr> <td>All keys ≥ <strong>x</strong>
+</td> <td>
+<a href="idbkeyrange/lowerbound"><code>IDBKeyRange.lowerBound</code></a><code>(<strong>x</strong>)</code>
+</td> </tr> <tr> <td>All keys &gt; <strong>x</strong>
+</td> <td>
+<a href="idbkeyrange/lowerbound"><code>IDBKeyRange.lowerBound</code></a><code>(<strong>x</strong>, true) </code>
+</td> </tr> <tr> <td>All keys ≤<strong> y</strong>
+</td> <td>
+<a href="idbkeyrange/upperbound"><code>IDBKeyRange.upperBound</code></a><code>(<strong>y</strong>)</code>
+</td> </tr> <tr> <td>All keys &lt;<strong> y</strong>
+</td> <td>
+<a href="idbkeyrange/upperbound"><code>IDBKeyRange.upperBound</code></a><code>(<strong>y</strong>, true)</code>
+</td> </tr> <tr> <td>All keys ≥ <strong>x</strong> &amp;&amp; ≤ <strong>y</strong>
+</td> <td>
+<a href="idbkeyrange/bound"><code>IDBKeyRange.bound</code></a><code>(<strong>x</strong>, <strong>y</strong>)</code>
+</td> </tr> <tr> <td>All keys &gt; <strong>x</strong> &amp;&amp;&lt; <strong>y</strong>
+</td> <td>
+<a href="idbkeyrange/bound"><code>IDBKeyRange.bound</code></a><code>(<strong>x</strong>, <strong>y</strong>, true, true)</code>
+</td> </tr> <tr> <td>All keys &gt; <strong>x</strong> &amp;&amp; ≤ <strong>y</strong>
+</td> <td>
+<a href="idbkeyrange/bound"><code>IDBKeyRange.bound</code></a><code>(<strong>x</strong>, <strong>y</strong>, true, false)</code>
+</td> </tr> <tr> <td>All keys ≥ <strong>x</strong> &amp;&amp;&lt; <strong>y</strong>
+</td> <td>
+<a href="idbkeyrange/bound"><code>IDBKeyRange.bound</code></a><code>(<strong>x</strong>, <strong>y</strong>, false, true)</code>
+</td> </tr> <tr> <td>The key = <strong>z</strong>
+</td> <td>
+<a href="idbkeyrange/only"><code>IDBKeyRange.only</code></a><code>(<strong>z</strong>)</code>
+</td> </tr> </thead> </table></div> <p>A key is in a key range if the following conditions are true:</p> <ul> <li>The lower value of the key range is one of the following: <ul> <li><code>undefined</code></li> <li>Less than key value</li> <li>Equal to key value if <code>lowerOpen</code> is <code>false</code>.</li> </ul> </li> <li>The upper value of the key range is one of the following: <ul> <li><code>undefined</code></li> <li>Greater than key value</li> <li>Equal to key value if <code>upperOpen</code> is <code>false</code>.</li> </ul> </li> </ul> 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="web_workers_api">Web Workers</a>.</p> </div>
+
+<h2 id="properties">Properties</h2>
+<dl> <dt>
+<a href="idbkeyrange/lower"><code>IDBKeyRange.lower</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Lower bound of the key range.</dd> <dt>
+<a href="idbkeyrange/upper"><code>IDBKeyRange.upper</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Upper bound of the key range.</dd> <dt>
+<a href="idbkeyrange/loweropen"><code>IDBKeyRange.lowerOpen</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns false if the lower-bound value is included in the key range.</dd> <dt>
+<a href="idbkeyrange/upperopen"><code>IDBKeyRange.upperOpen</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns false if the upper-bound value is included in the key range.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<h3 id="static_methods">Static methods</h3>
+<dl> <dt><a href="idbkeyrange/bound"><code>IDBKeyRange.bound()</code></a></dt> <dd>Creates a new key range with upper and lower bounds.</dd> <dt><a href="idbkeyrange/only"><code>IDBKeyRange.only()</code></a></dt> <dd>Creates a new key range containing a single value.</dd> <dt><a href="idbkeyrange/lowerbound"><code>IDBKeyRange.lowerBound()</code></a></dt> <dd>Creates a new key range with only a lower bound.</dd> <dt><a href="idbkeyrange/upperbound"><code>IDBKeyRange.upperBound()</code></a></dt> <dd>Creates a new upper-bound key range.</dd> </dl>
+<h3 id="instance_methods">Instance methods</h3>
+<dl> <dt><a href="idbkeyrange/includes"><code>IDBKeyRange.includes()</code></a></dt> <dd>Returns a boolean indicating whether a specified key is inside the key range.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>The following example illustrates how you'd use a key range. Here we declare a <code>keyRangeValue</code> as a range between values of "A" and "F". We open a transaction (using <a href="idbtransaction"><code>IDBTransaction</code></a>) and an object store, and open a Cursor with <a href="idbobjectstore/opencursor"><code>IDBObjectStore.openCursor</code></a>, declaring <code>keyRangeValue</code> as its optional key range value. This means that the cursor will only retrieve records with keys inside that range. This range includes the values "A" and "F", as we haven't declared that they should be open bounds. If we used IDBKeyRange.bound("A", "F", true, true);, then the range would not include "A" and "F", only the values between them.</p> <div class="note notecard"> <p><strong>Note</strong>: For a more complete example allowing you to experiment with key range, have a look at our <a href="https://github.com/mdn/indexeddb-examples/tree/master/idbkeyrange" rel=" noopener">IDBKeyRange-example</a> repo (<a href="https://mdn.github.io/indexeddb-examples/idbkeyrange/" rel=" noopener">view the example live too</a>.)</p> </div> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">displayData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> keyRangeValue <span class="token operator">=</span> IDBKeyRange<span class="token punctuation">.</span><span class="token function">bound</span><span class="token punctuation">(</span><span class="token string">"A"</span><span class="token punctuation">,</span> <span class="token string">"F"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">var</span> transaction <span class="token operator">=</span> db<span class="token punctuation">.</span><span class="token function">transaction</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'fThings'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'readonly'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> objectStore <span class="token operator">=</span> transaction<span class="token punctuation">.</span><span class="token function">objectStore</span><span class="token punctuation">(</span><span class="token string">'fThings'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  objectStore<span class="token punctuation">.</span><span class="token function">openCursor</span><span class="token punctuation">(</span>keyRangeValue<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function-variable function">onsuccess</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> cursor <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>result<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>cursor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> listItem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      listItem<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'&lt;strong&gt;'</span> <span class="token operator">+</span> cursor<span class="token punctuation">.</span>value<span class="token punctuation">.</span>fThing <span class="token operator">+</span> <span class="token string">'&lt;/strong&gt;, '</span> <span class="token operator">+</span> cursor<span class="token punctuation">.</span>value<span class="token punctuation">.</span>fRating<span class="token punctuation">;</span>
+      list<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>listItem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      cursor<span class="token punctuation">.</span><span class="token function">continue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Entries all displayed.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.w3.org/TR/IndexedDB/#idbkeyrange" hreflang="en" rel=" noopener">Indexed Database API 2.0<br><small>The definition of 'IDBKeyRange' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/IndexedDB/#keyrange" hreflang="en" rel=" noopener">Indexed Database API 2.0<br><small>The definition of 'IDBKeyRange' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Adds <code>includes()</code>.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>IDBKeyRange</code></th>
+<td class="bc-supports-yes">
+<div>24</div>
+<div>23-57</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>10-16</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>bound</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>includes</code></th>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>lower</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>lowerBound</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>lowerOpen</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>only</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>upper</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>upperBound</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>upperOpen</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>worker_support</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="indexeddb_api/using_indexeddb">Using IndexedDB</a></li> <li>Starting transactions: <a href="idbdatabase"><code>IDBDatabase</code></a>
+</li> <li>Using transactions: <a href="idbtransaction"><code>IDBTransaction</code></a>
+</li> <li>Setting a range of keys: <a href="idbkeyrange"><code>IDBKeyRange</code></a>
+</li> <li>Retrieving and making changes to your data: <a href="idbobjectstore"><code>IDBObjectStore</code></a>
+</li> <li>Using cursors: <a href="idbcursor"><code>IDBCursor</code></a>
+</li> <li>Reference example: <a href="https://github.com/mdn/to-do-notifications/tree/gh-pages" rel=" noopener">To-do Notifications</a> (<a href="https://mdn.github.io/to-do-notifications/" rel=" noopener">view example live</a>.)</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBKeyRange" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBKeyRange</a>
+  </p>
+</div>

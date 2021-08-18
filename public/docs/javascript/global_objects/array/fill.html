@@ -1,0 +1,137 @@
+<h1>Array.prototype.fill()</h1> <p>The <code><strong>fill()</strong></code> method changes all elements in an array to a static value, from a start index (default <code>0</code>) to an end index (default <code>array.length</code>). It returns the modified array.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/array-fill.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">fill</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+<span class="token function">fill</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> start<span class="token punctuation">)</span>
+<span class="token function">fill</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> start<span class="token punctuation">,</span> end<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>value</var></code></dt> <dd>Value to fill the array with. (Note all elements in the array will be this exact value.)</dd> <dt>
+<code><var>start</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>Start index, default <code>0</code>.</dd> <dt>
+<code><var>end</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>End index, default <code>arr.length</code>.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The modified array, filled with <code><var>value</var></code>.</p>
+<h2 id="description">Description</h2>
+<ul> <li>If <code><var>start</var></code> is negative, it is treated as <code>array.length + <var>start</var></code>.</li> <li>If <code><var>end</var></code> is negative, it is treated as <code>array.length + <var>end</var></code>.</li> <li>
+<code>fill</code> is intentionally generic: it does not require that its <code>this</code> value be an <code>Array</code> object.</li> <li>
+<code>fill</code> is a mutator method: it will change the array itself and return it, not a copy of it.</li> <li>If the first parameter is an object, each slot in the array will reference that object.</li> </ul>
+<h2 id="polyfill">Polyfill</h2>
+<pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>fill<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span><span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">,</span> <span class="token string">'fill'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">value</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+      <span class="token comment">// Steps 1-2.</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span> <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">TypeError</span><span class="token punctuation">(</span><span class="token string">'this is null or not defined'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">var</span> <span class="token constant">O</span> <span class="token operator">=</span> <span class="token function">Object</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// Steps 3-5.</span>
+      <span class="token keyword">var</span> len <span class="token operator">=</span> <span class="token constant">O</span><span class="token punctuation">.</span>length <span class="token operator">&gt;&gt;&gt;</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// Steps 6-7.</span>
+      <span class="token keyword">var</span> start <span class="token operator">=</span> arguments<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> relativeStart <span class="token operator">=</span> start <span class="token operator">&gt;&gt;</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// Step 8.</span>
+      <span class="token keyword">var</span> k <span class="token operator">=</span> relativeStart <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">?</span>
+        Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>len <span class="token operator">+</span> relativeStart<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">:</span>
+        Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>relativeStart<span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// Steps 9-10.</span>
+      <span class="token keyword">var</span> end <span class="token operator">=</span> arguments<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> relativeEnd <span class="token operator">=</span> end <span class="token operator">===</span> <span class="token keyword">undefined</span> <span class="token operator">?</span>
+        len <span class="token operator">:</span> end <span class="token operator">&gt;&gt;</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// Step 11.</span>
+      <span class="token keyword">var</span> finalValue <span class="token operator">=</span> relativeEnd <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">?</span>
+        Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>len <span class="token operator">+</span> relativeEnd<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">:</span>
+        Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>relativeEnd<span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// Step 12.</span>
+      <span class="token keyword">while</span> <span class="token punctuation">(</span>k <span class="token operator">&lt;</span> finalValue<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token constant">O</span><span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> value<span class="token punctuation">;</span>
+        k<span class="token operator">++</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token comment">// Step 13.</span>
+      <span class="token keyword">return</span> <span class="token constant">O</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>If you need to support truly obsolete JavaScript engines that don't support <a href="../object/defineproperty"><code>Object.defineProperty</code></a>, it's best not to polyfill <code>Array.prototype</code> methods at all, as you can't make them non-enumerable.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_fill">Using fill</h3>
+<pre data-language="js"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>                <span class="token comment">// [4, 4, 4]</span>
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>             <span class="token comment">// [1, 4, 4]</span>
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>          <span class="token comment">// [1, 4, 3]</span>
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>          <span class="token comment">// [1, 2, 3]</span>
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>          <span class="token comment">// [1, 2, 3]</span>
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span>        <span class="token comment">// [4, 2, 3]</span>
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">NaN</span><span class="token punctuation">,</span> <span class="token number">NaN</span><span class="token punctuation">)</span>      <span class="token comment">// [1, 2, 3]</span>
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>          <span class="token comment">// [1, 2, 3]</span>
+<span class="token function">Array</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>                 <span class="token comment">// [4, 4, 4]</span>
+<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">{</span> length<span class="token operator">:</span> <span class="token number">3</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span>   <span class="token comment">// {0: 4, 1: 4, 2: 4, length: 3}</span>
+
+<span class="token comment">// A single object, referenced by each slot of the array:</span>
+<span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token function">Array</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token comment">// [{}, {}, {}]</span>
+arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>hi <span class="token operator">=</span> <span class="token string">"hi"</span>            <span class="token comment">// [{ hi: "hi" }, { hi: "hi" }, { hi: "hi" }]</span>
+</pre>
+<h3 id="using_fill_to_create_a_matrix_of_all_1">Using fill() to create a matrix of all 1</h3>
+<p>This example shows how to create a matrix of all 1, like the <em>ones()</em> function of Octave or MATLAB.</p> <pre data-language="js"><span class="token keyword">const</span> arr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  arr<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Creating an array of size 4 and filled of 1</span>
+<span class="token punctuation">}</span>
+arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 10</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> </tr> </thead> <tbody> <tr> <td><a href="https://tc39.es/ecma262/#sec-array.prototype.fill" hreflang="en" rel=" noopener">ECMAScript (ECMA-262)<br><small>The definition of 'Array.prototype.fill' in that specification.</small></a></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>fill</code></th>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>32</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>32</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../array"><code>Array</code></a></li> <li><a href="../typedarray/fill"><code>TypedArray.prototype.fill()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/fill</a>
+  </p>
+</div>

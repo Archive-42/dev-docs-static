@@ -1,0 +1,354 @@
+<h1>RTCIceTransport</h1> <p>The <code><strong>RTCIceTransport</strong></code> interface provides access to information about the <a href="https://developer.mozilla.org/en-US/docs/Glossary/ICE">ICE</a> transport layer over which the data is being sent and received. This is particularly useful if you need to access state information about the connection.</p>
+<h2 id="properties">Properties</h2>
+<p><em>The <code>RTCIceTransport</code> interface inherits properties from its parent, <a href="eventtarget"><code>EventTarget</code></a>. It also offers the following properties:</em></p> <dl> <dt>
+<a href="rtcicetransport/component"><code>component</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>The ICE component being used by the transport. The value is one of the strings from the <a href="rtcicetransport"><code>RTCIceTransport</code></a> enumerated type: <code><a href="https://developer.mozilla.org/en-US/docs/Glossary/RTP">"RTP"</a></code> or <code>"RTSP"</code>.</dd> <dt>
+<a href="rtcicetransport/gatheringstate"><code>gatheringState</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="domstring"><code>DOMString</code></a> indicating which gathering state the ICE agent is currently in. The value is one of those included in the <a href="rtcicegathererstate"><code>RTCIceGathererState</code></a> enumerated type: <code>"new"</code>, <code>"gathering"</code>, or <code>"complete"</code>.</dd> <dt>
+<a href="rtcicetransport/role"><code>role</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="domstring"><code>DOMString</code></a> whose value is one of the members of the <a href="rtcicerole"><code>RTCIceRole</code></a> enumerated type: <code>"controlling"</code> or <code>"controlled"</code>; this indicates whether the ICE agent is the one that makes the final decision as to the candidate pair to use or not.</dd> <dt>
+<a href="rtcicetransport/state"><code>state</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="domstring"><code>DOMString</code></a> indicating what the current state of the ICE agent is. The value of <code>state</code> can be used to determine whether the ICE agent has made an initial connection using a viable candidate pair (<code>"connected"</code>), made its final selection of candidate pairs (<code>"completed"</code>), or in an error state (<code>"failed"</code>), among other states. See the <a href="rtcicetransportstate"><code>RTCIceTransportState</code></a> enumerated type for a complete list of states.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<p><em>Also includes methods from <a href="eventtarget"><code>EventTarget</code></a>, the parent interface.</em></p> <dl> <dt><a href="rtcicetransport/getlocalcandidates"><code>getLocalCandidates()</code></a></dt> <dd>Returns an array of <a href="rtcicecandidate"><code>RTCIceCandidate</code></a> objects, each describing one of the ICE candidates that have been gathered so far for the local device. These are the same candidates which have already been sent to the remote peer by sending an <code><a href="rtcpeerconnection/icecandidate_event">icecandidate</a></code> event to the <a href="rtcpeerconnection"><code>RTCPeerConnection</code></a> for transmission.</dd> <dt><a href="rtcicetransport/getlocalparameters"><code>getLocalParameters()</code></a></dt> <dd>Returns a <a href="rtciceparameters"><code>RTCIceParameters</code></a> object describing the ICE parameters established by a call to the <a href="rtcpeerconnection/setlocaldescription"><code>RTCPeerConnection.setLocalDescription()</code></a> method. Returns <code>null</code> if parameters have not yet been received.</dd> <dt><a href="rtcicetransport/getremotecandidates"><code>getRemoteCandidates()</code></a></dt> <dd>Returns an array of <a href="rtcicecandidate"><code>RTCIceCandidate</code></a> objects, one for each of the remote device's ICE candidates that have been received by the local end of the <a href="rtcpeerconnection"><code>RTCPeerConnection</code></a> and delivered to ICE by calling <a href="rtcpeerconnection/addicecandidate"><code>addIceCandidate()</code></a>.</dd> <dt><a href="rtcicetransport/getremoteparameters"><code>getRemoteParameters()</code></a></dt> <dd>Returns a <a href="rtciceparameters"><code>RTCIceParameters</code></a> object containing the ICE parameters for the remote device, as set by a call to <a href="rtcpeerconnection/setremotedescription"><code>RTCPeerConnection.setRemoteDescription()</code></a>. If <code>setRemoteDescription()</code> hasn't been called yet, the return value is <code>null</code>.</dd> <dt><a href="rtcicetransport/getselectedcandidatepair"><code>getSelectedCandidatePair()</code></a></dt> <dd>Returns a <a href="rtcicecandidatepair"><code>RTCIceCandidatePair</code></a> object that identifies the two candidates—one for each end of the connection—that have been selected so far. It's possible that a better pair will be found and selected later; if you need to keep up with this, watch for the <code><a href="rtcicetransport/selectedcandidatepairchange_event">selectedcandidatepairchange</a></code> event. If no candidate pair has been selected yet, the return value is <code>null</code>.</dd> </dl>
+<h2 id="events">Events</h2>
+<p>Listen to these events using <a href="eventtarget/addeventlistener"><code>addEventListener()</code></a> or by assigning an event listener to the <code>on<em>eventname</em></code> property of this interface.</p> <dl> <dt><a href="rtcicetransport/gatheringstatechange_event"><code>gatheringstatechange</code></a></dt> <dd>Sent to the <a href="rtcicetransport"><code>RTCIceTransport</code></a> object to indicate that the value of the <a href="rtcicetransport/gatheringstate"><code>gatheringState</code></a> property has changed, indicating a change in this transport's ICE candidate negotiation process.<br> Also available through the <a href="rtcicetransport/ongatheringstatechange"><code>ongatheringstatechange</code></a> event handler property.</dd> <dt><a href="rtcicetransport/selectedcandidatepairchange_event"><code>selectedcandidatepairchange</code></a></dt> <dd>Sent to the <code>RTCIceTransport</code> when a new, better pair of candidates has been selected to describe the connectivity between the two peers. This occurs during negotiation or renegotiation, including after an ICE restart, which reuses the existing <code>RTCIceTransport</code> objects. The current candidate pair can be obtained using <a href="rtcicetransport/getselectedcandidatepair"><code>getSelectedCandidatePair()</code></a>.<br> Also available using the <a href="rtcicetransport/onselectedcandidatepairchange"><code>onselectedcandidatepairchange</code></a> event handler property.</dd> <dt><a href="rtcicetransport/statechange_event"><code>statechange</code></a></dt> <dd>Sent to the <code>RTCIceTransport</code> instance when the value of the <a href="rtcicetransport/state"><code>state</code></a> property has changed, indicating that the ICE gathering process has changed state.<br> Also available through the <a href="rtcicetransport/onstatechange"><code>onstatechange</code></a> event handler property.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>tbd</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcicetransport" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCIceTransport' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>RTCIceTransport</code></th>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>RTCIceTransport</code></th>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>addRemoteCandidate</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>13-79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>component</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>13-79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>gatheringState</code></th>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>gatheringstatechange_event</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>getLocalCandidates</code></th>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>getLocalParameters</code></th>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>getRemoteCandidates</code></th>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>getRemoteParameters</code></th>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>getSelectedCandidatePair</code></th>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>13-79</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>ongatheringstatechange</code></th>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>onselectedcandidatepairchange</code></th>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>onstatechange</code></th>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>role</code></th>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>selectedcandidatepairchange_event</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>start</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>13-79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>state</code></th>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>statechange_event</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>stop</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>13-79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCIceTransport" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCIceTransport</a>
+  </p>
+</div>

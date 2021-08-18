@@ -1,0 +1,172 @@
+<h1>WindowOrWorkerGlobalScope.fetch()</h1>
+
+ <p>The <code><strong>fetch()</strong></code> method of the <a href="../windoworworkerglobalscope"><code>WindowOrWorkerGlobalScope</code></a> mixin starts the process of fetching a resource from the network, returning a promise which is fulfilled once the response is available. The promise resolves to the <a href="../response"><code>Response</code></a> object representing the response to your request. The promise <em>does not</em> reject on HTTP errors — it only rejects on network errors. You must use <code>then</code> handlers to check for HTTP errors.</p> <p><code>WindowOrWorkerGlobalScope</code> is implemented by both <a href="../window"><code>Window</code></a> and <a href="../workerglobalscope"><code>WorkerGlobalScope</code></a>, which means that the <code>fetch()</code> method is available in pretty much any context in which you might want to fetch resources.</p> <p>A <a href="fetch"><code>fetch()</code></a> promise only rejects when a network error is encountered (which is usually when there’s a permissions issue or similar). A <a href="fetch"><code>fetch()</code></a> promise <em>does not</em> reject on HTTP errors (<code>404</code>, etc.). Instead, a <code>then()</code> handler must check the <a href="../response/ok"><code>Response.ok</code></a> and/or <a href="../response/status"><code>Response.status</code></a> properties.</p> <p>The <code>fetch()</code> method is controlled by the <code>connect-src</code> directive of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy">Content Security Policy</a> rather than the directive of the resources it's retrieving.</p> <div class="note notecard"> <p><strong>Note</strong>: The <code>fetch()</code> method's parameters are identical to those of the <a href="../request/request"><code>Request()</code></a> constructor.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">const</span> fetchResponsePromise <span class="token operator">=</span> <span class="token function">fetch</span><span class="token punctuation">(</span>resource <span class="token punctuation">[</span><span class="token punctuation">,</span> init<span class="token punctuation">]</span><span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>resource</var></code></dt> <dd>This defines the resource that you wish to fetch. This can either be: <ul> <li>A string or any other object with a <a href="https://developer.mozilla.org/en-US/docs/MDN/Contribute/Howto/Write_an_API_reference/Information_contained_in_a_WebIDL_file#stringifiers">stringifier</a> — including a <a href="../url"><code>URL</code></a> object — that provides the URL of the resource you want to fetch.</li> <li>A <a href="../request"><code>Request</code></a> object.</li> </ul> </dd> <dt>
+<code><var>init</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>An object containing any custom settings that you want to apply to the request. The possible options are:</p> <dl> <dt><code>method</code></dt> <dd>The request method, e.g., <code>GET</code>, <code>POST</code>. Note that the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Origin"><code>Origin</code></a> header is not set on Fetch requests with a method of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD"><code>HEAD</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET"><code>GET</code></a>.<br> (This behavior was corrected in Firefox 65 — see <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1508661" rel=" noopener">bug 1508661</a>).</dd> <dt><code>headers</code></dt> <dd>Any headers you want to add to your request, contained within a <a href="../headers"><code>Headers</code></a> object or an object literal with <a href="../bytestring"><code>ByteString</code></a> values. Note that <a href="https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name">some names are forbidden</a>.</dd> <dt><code>body</code></dt> <dd>Any body that you want to add to your request: this can be a <a href="../blob"><code>Blob</code></a>, <a href="../buffersource"><code>BufferSource</code></a>, <a href="../formdata"><code>FormData</code></a>, <a href="../urlsearchparams"><code>URLSearchParams</code></a>, <a href="../usvstring"><code>USVString</code></a>, or <a href="../readablestream"><code>ReadableStream</code></a> object. Note that a request using the <code>GET</code> or <code>HEAD</code> method cannot have a body.</dd> <dt><code>mode</code></dt> <dd>The mode you want to use for the request, e.g., <code>cors</code>, <code>no-cors</code>, or <code>same-origin</code>.</dd> <dt><code>credentials</code></dt> <dd> <p>Controls what browsers do with credentials (<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies">cookies</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Authentication">HTTP authentication</a> entries, and TLS client certificates). Must be one of the following strings:</p> <dl> <dt><code>omit</code></dt> <dd>Tells browsers to exclude credentials from the request, and ignore any credentials sent back in the response (e.g., any <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie"><code>Set-Cookie</code></a> header).</dd> <dt><code>same-origin</code></dt> <dd>Tells browsers to include credentials with requests to same-origin URLs, and use any credentials sent back in responses from same-origin URLs.</dd> <dt><code>include</code></dt> <dd>Tells browsers to include credentials in both same- and cross-origin requests, and always use any credentials sent back in responses. <div class="notecard note"> <strong id="note">Note</strong> <p>Credentials may be included in simple and "final" cross-origin requests, but should not be included in <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#preflight_requests_and_credentials">CORS preflight requests</a>.</p> </div> </dd> </dl> </dd> <dt><code>cache</code></dt> <dd>A string indicating how the request will interact with the browser’s <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching">HTTP cache</a>. The possible values, <code>default</code>, <code>no-store</code>, <code>reload</code>, <code>no-cache</code>, <code>force-cache</code>, and <code>only-if-cached</code>, are documented in the article for the <a href="../request/cache"><code>cache</code></a> property of the <a href="../request"><code>Request</code></a> object.</dd> <dt><code>redirect</code></dt> <dd>How to handle a <code>redirect</code> response: <ul> <li>
+<code>follow</code>: Automatically follow redirects. Unless otherwise stated the redirect mode is set to <code>follow</code>
+</li> <li>
+<code>error</code>: Abort with an error if a redirect occurs.</li> <li>
+<code>manual</code>: Caller intends to process the response in another context.<br>See <a href="https://fetch.spec.whatwg.org/#requests" rel=" noopener">WHATWG fetch standard</a> for more information.</li> </ul> </dd>
+<dt><code>referrer</code></dt> <dd>A <a href="../usvstring"><code>USVString</code></a> specifying the referrer of the request. This can be a same-origin URL, <code>about:client</code>, or an empty string.</dd> <dt><code>referrerPolicy</code></dt> <dd>Specifies the <a href="https://w3c.github.io/webappsec-referrer-policy/#referrer-policies" rel=" noopener">referrer policy</a> to use for the request. May be one of <code>no-referrer</code>, <code>no-referrer-when-downgrade</code>, <code>same-origin</code>, <code>origin</code>, <code>strict-origin</code>, <code>origin-when-cross-origin</code>, <code>strict-origin-when-cross-origin</code>, or <code>unsafe-url</code>.</dd> <dt><code>integrity</code></dt> <dd>Contains the <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">subresource integrity</a> value of the request (e.g., <code>sha256-BpfBw7ivV8q2jLiT13fxDYAe2tJllusRSZ273h2nFSE=</code>).</dd> <dt><code>keepalive</code></dt> <dd>The <code>keepalive</code> option can be used to allow the request to outlive the page. Fetch with the <code>keepalive</code> flag is a replacement for the <a href="../navigator/sendbeacon"><code>Navigator.sendBeacon()</code></a> API.</dd> <dt><code>signal</code></dt> <dd>An <a href="../abortsignal"><code>AbortSignal</code></a> object instance; allows you to communicate with a fetch request and abort it if desired via an <a href="../abortcontroller"><code>AbortController</code></a>.</dd> </dl> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to a <a href="../response"><code>Response</code></a> object.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>AbortError</code></dt> <dd>The request was aborted due to a call to the <a href="../abortcontroller"><code>AbortController</code></a> method <a href="../abortcontroller/abort"><code>abort()</code></a> method.</dd> <dt><code>TypeError</code></dt> <dd>The specified URL string includes user credentials. This information should instead be provided using an <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization"><code>Authorization</code></a> header.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>In our <a href="https://github.com/mdn/fetch-examples/tree/master/fetch-request" rel=" noopener">Fetch Request example</a> (see <a href="https://mdn.github.io/fetch-examples/fetch-request/" rel=" noopener">Fetch Request live</a>) we create a new <a href="../request"><code>Request</code></a> object using the relevant constructor, then fetch it using a <code>fetch()</code> call. Since we are fetching an image, we run <a href="../body/blob"><code>Body.blob()</code></a> on the response to give it the proper MIME type so it will be handled properly, then create an Object URL of it and display it in an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img"><code>&lt;img&gt;</code></a> element.</p> <pre data-language="js"><span class="token keyword">const</span> myImage <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> myRequest <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Request</span><span class="token punctuation">(</span><span class="token string">'flowers.jpg'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">fetch</span><span class="token punctuation">(</span>myRequest<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>response<span class="token punctuation">.</span>ok<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">HTTP error! status: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>response<span class="token punctuation">.</span>status<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> response<span class="token punctuation">.</span><span class="token function">blob</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> objectURL <span class="token operator">=</span> <span class="token constant">URL</span><span class="token punctuation">.</span><span class="token function">createObjectURL</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  myImage<span class="token punctuation">.</span>src <span class="token operator">=</span> objectURL<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>In the <a href="https://github.com/mdn/fetch-examples/blob/master/fetch-with-init-then-request/index.html" rel=" noopener">Fetch with init then Request example</a> (see <a href="https://mdn.github.io/fetch-examples/fetch-with-init-then-request/" rel=" noopener">Fetch Request init live</a>), we do the same thing except that we pass in an <code><var>init</var></code> object when we invoke <code>fetch()</code>:</p> <pre data-language="js"><span class="token keyword">const</span> myImage <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> myHeaders <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Headers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+myHeaders<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'Accept'</span><span class="token punctuation">,</span> <span class="token string">'image/jpeg'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> myInit <span class="token operator">=</span> <span class="token punctuation">{</span>
+  method<span class="token operator">:</span> <span class="token string">'GET'</span><span class="token punctuation">,</span>
+  headers<span class="token operator">:</span> myHeaders<span class="token punctuation">,</span>
+  mode<span class="token operator">:</span> <span class="token string">'cors'</span><span class="token punctuation">,</span>
+  cache<span class="token operator">:</span> <span class="token string">'default'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> myRequest <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Request</span><span class="token punctuation">(</span><span class="token string">'flowers.jpg'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">fetch</span><span class="token punctuation">(</span>myRequest<span class="token punctuation">,</span> myInit<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>You could also pass the <code><var>init</var></code> object in with the <code>Request</code> constructor to get the same effect:</p> <pre data-language="js"><span class="token keyword">let</span> myRequest <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Request</span><span class="token punctuation">(</span><span class="token string">'flowers.jpg'</span><span class="token punctuation">,</span> myInit<span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>You can also use an object literal as <code>headers</code> in <code><var>init</var></code>.</p> <pre data-language="js"><span class="token keyword">const</span> myInit <span class="token operator">=</span> <span class="token punctuation">{</span>
+  method<span class="token operator">:</span> <span class="token string">'GET'</span><span class="token punctuation">,</span>
+  headers<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">'Accept'</span><span class="token operator">:</span> <span class="token string">'image/jpeg'</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  mode<span class="token operator">:</span> <span class="token string">'cors'</span><span class="token punctuation">,</span>
+  cache<span class="token operator">:</span> <span class="token string">'default'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> myRequest <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Request</span><span class="token punctuation">(</span><span class="token string">'flowers.jpg'</span><span class="token punctuation">,</span> myInit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://fetch.spec.whatwg.org/#fetch-method" hreflang="en" rel=" noopener">Fetch<br><small>The definition of 'fetch()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Defined in a <code>WindowOrWorkerGlobalScope</code> partial in the newest spec. </td> </tr> <tr> <td><a href="https://fetch.spec.whatwg.org/#dom-global-fetch" hreflang="en" rel=" noopener">Fetch<br><small>The definition of 'fetch()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition</td> </tr> <tr> <td><a href="https://w3c.github.io/webappsec-credential-management/" hreflang="en" rel=" noopener">Credential Management Level 1</a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Adds <a href="../federatedcredential"><code>FederatedCredential</code></a> or <a href="../passwordcredential"><code>PasswordCredential</code></a> instance as a possible value for <code>init.credentials</code>.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>fetch</code></th>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>blob_data_support</code></th>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>referrerpolicy</code></th>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>signal</code></th>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+<tr>
+<th><code>streaming_response_body</code></th>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../fetch_api">Fetch API</a></li> <li><a href="../service_worker_api">ServiceWorker API</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">HTTP access control (CORS)</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP">HTTP</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch</a>
+  </p>
+</div>

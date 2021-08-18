@@ -1,0 +1,152 @@
+<h1>font-feature-settings</h1> <p>The <code>font-feature-settings</code> CSS property controls advanced typographic features in OpenType fonts.</p> <iframe class="interactive" width="100%" height="390" src="https://interactive-examples.mdn.mozilla.net/pages/css/font-feature-settings.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="css"><span class="token comment">/* Use the default settings */</span>
+<span class="token property">font-feature-settings</span><span class="token punctuation">:</span> normal<span class="token punctuation">;</span>
+
+<span class="token comment">/* Set values for OpenType feature tags */</span>
+<span class="token property">font-feature-settings</span><span class="token punctuation">:</span> <span class="token string">"smcp"</span><span class="token punctuation">;</span>
+<span class="token property">font-feature-settings</span><span class="token punctuation">:</span> <span class="token string">"smcp"</span> on<span class="token punctuation">;</span>
+<span class="token property">font-feature-settings</span><span class="token punctuation">:</span> <span class="token string">"swsh"</span> 2<span class="token punctuation">;</span>
+<span class="token property">font-feature-settings</span><span class="token punctuation">:</span> <span class="token string">"smcp"</span><span class="token punctuation">,</span> <span class="token string">"swsh"</span> 2<span class="token punctuation">;</span>
+
+<span class="token comment">/* Global values */</span>
+<span class="token property">font-feature-settings</span><span class="token punctuation">:</span> inherit<span class="token punctuation">;</span>
+<span class="token property">font-feature-settings</span><span class="token punctuation">:</span> initial<span class="token punctuation">;</span>
+<span class="token property">font-feature-settings</span><span class="token punctuation">:</span> unset<span class="token punctuation">;</span></pre> Whenever possible, Web authors should instead use the <a href="font-variant"><code>font-variant</code></a> shorthand property or an associated longhand property such as <a href="font-variant-ligatures"><code>font-variant-ligatures</code></a>, <a href="font-variant-caps"><code>font-variant-caps</code></a>, <a href="font-variant-east-asian"><code>font-variant-east-asian</code></a>, <a href="font-variant-alternates"><code>font-variant-alternates</code></a>, <a href="font-variant-numeric"><code>font-variant-numeric</code></a> or <a href="font-variant-position"><code>font-variant-position</code></a>.<br> <br> These lead to more effective, predictable, understandable results than <code>font-feature-settings</code>, which is a low-level feature designed to handle special cases where no other way exists to enable or access an OpenType font feature. In particular, <code>font-feature-settings</code> shouldn't be used to enable small caps.<h3 id="values">Values</h3>
+<dl> <dt><code>normal</code></dt> <dd>Text is laid out using default settings.</dd> <dt><code>&lt;feature-tag-value&gt;</code></dt> <dd>When rendering text, the list of OpenType feature tag value is passed to the text layout engine to enable or disable font features. The tag is always a <a href="string"><code>&lt;string&gt;</code></a> of 4 ASCII characters. If it has more or less characters, or if it contains characters outside the <code>U+20</code> – <code>U+7E</code> codepoint range, the whole property is invalid.<br> The value is a positive integer. The two keywords <code>on</code> and <code>off</code> are synonyms for <code>1</code> and <code>0</code> respectively. If no value is set, the default is <code>1</code>. For non-Boolean OpenType features (e.g. <a href="https://www.microsoft.com/typography/otspec/features_pt.htm#salt" rel=" noopener">stylistic alternates</a>), the value implies a particular glyph to be selected; for Boolean values, it is a switch.</dd> </dl>
+<h2 id="formal_definition">Formal definition</h2>
+
+<div class="_table"><table class="properties"><tbody>
+<tr>
+<th scope="row"><a href="initial_value">Initial value</a></th>
+<td><code>normal</code></td>
+</tr>
+<tr>
+<th scope="row">Applies to</th>
+<td>all elements. It also applies to <a href="::first-letter"><code>::first-letter</code></a> and <a href="::first-line"><code>::first-line</code></a>.</td>
+</tr>
+<tr>
+<th scope="row"><a href="inheritance">Inherited</a></th>
+<td>yes</td>
+</tr>
+<tr>
+<th scope="row"><a href="computed_value">Computed value</a></th>
+<td>as specified</td>
+</tr>
+<tr>
+<th scope="row">Animation type</th>
+<td>discrete</td>
+</tr>
+</tbody></table></div>
+
+<h2 id="formal_syntax">Formal syntax</h2>
+<pre class="notranslate">normal <a href="value_definition_syntax#single_bar">|</a> <a href="#feature-tag-value">&lt;feature-tag-value&gt;</a><a href="value_definition_syntax#hash_mark_()">#</a><p>where <br><span id="feature-tag-value">&lt;feature-tag-value&gt;</span> = <a href="string">&lt;string&gt;</a> <a href="value_definition_syntax#brackets">[</a> <a href="integer">&lt;integer&gt;</a> <a href="value_definition_syntax#single_bar">|</a> on <a href="value_definition_syntax#single_bar">|</a> off <a href="value_definition_syntax#brackets">]</a><a href="value_definition_syntax#question_mark_()">?</a></p></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="enabling_various_font_features">Enabling various font features</h3>
+<pre data-language="css"><span class="token comment">/* use small-cap alternate glyphs */</span>
+<span class="token selector">.smallcaps</span> <span class="token punctuation">{</span> <span class="token property">font-feature-settings</span><span class="token punctuation">:</span> <span class="token string">"smcp"</span> on<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token comment">/* convert both upper and lowercase to small caps (affects punctuation also) */</span>
+<span class="token selector">.allsmallcaps</span> <span class="token punctuation">{</span> <span class="token property">font-feature-settings</span><span class="token punctuation">:</span> <span class="token string">"c2sc"</span><span class="token punctuation">,</span> <span class="token string">"smcp"</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token comment">/* use zeros with a slash through them to differentiate from "O" */</span>
+
+<span class="token selector">.nicezero</span> <span class="token punctuation">{</span> <span class="token property">font-feature-settings</span><span class="token punctuation">:</span> <span class="token string">"zero"</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token comment">/* enable historical forms */</span>
+<span class="token selector">.hist</span> <span class="token punctuation">{</span> <span class="token property">font-feature-settings</span><span class="token punctuation">:</span> <span class="token string">"hist"</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token comment">/* disable common ligatures, usually on by default */</span>
+<span class="token selector">.noligs</span> <span class="token punctuation">{</span> <span class="token property">font-feature-settings</span><span class="token punctuation">:</span> <span class="token string">"liga"</span> 0<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token comment">/* enable tabular (monospaced) figures */</span>
+<span class="token selector">td.tabular</span> <span class="token punctuation">{</span> <span class="token property">font-feature-settings</span><span class="token punctuation">:</span> <span class="token string">"tnum"</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token comment">/* enable automatic fractions */</span>
+<span class="token selector">.fractions</span> <span class="token punctuation">{</span> <span class="token property">font-feature-settings</span><span class="token punctuation">:</span> <span class="token string">"frac"</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token comment">/* use the second available swash character */</span>
+<span class="token selector">.swash</span> <span class="token punctuation">{</span> <span class="token property">font-feature-settings</span><span class="token punctuation">:</span> <span class="token string">"swsh"</span> 2<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token comment">/* enable stylistic set 7 */</span>
+<span class="token selector">.fancystyle</span> <span class="token punctuation">{</span>
+  <span class="token property">font-family</span><span class="token punctuation">:</span> Gabriola<span class="token punctuation">;</span> <span class="token comment">/* available on Windows 7, and on Mac OS */</span>
+  <span class="token property">font-feature-settings</span><span class="token punctuation">:</span> <span class="token string">"ss07"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/css-fonts-3/#propdef-font-feature-settings" hreflang="en" rel=" noopener">CSS Fonts Module Level 3<br><small>The definition of 'font-feature-settings' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>font-feature-settings</code></th>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>16</div>
+</td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes">
+<div>34</div>
+<div>The <a href="http://mpeg.chiariglione.org/standards/mpeg-4/open-font-format/text-isoiec-cd-14496-22-3rd-edition">ISO/IEC CD 14496-22 3rd edition</a> suggests using the <code>ssty</code> feature to provide glyph variants more suitable for use in scripts (for example primes used as superscripts). Starting with Firefox 29, this is done automatically by the <a href="https://developer.mozilla.org/docs/Web/MathML">MathML</a> rendering engine. The ISO/IEC CD 14496-22 3rd edition also suggests applying the <code>dtls</code> feature to letters when placing mathematical accents to get dotless forms (for example dotless i, j with a hat). Starting with Firefox 35, this is done automatically by the MathML rendering engine. You can override the default values determined by the MathML rendering engine with CSS.</div>
+<div>15</div>
+<div>From Firefox 4 to Firefox 14 (inclusive), Firefox supported an older, slightly different syntax. See <a href="http://hacks.mozilla.org/2010/11/firefox-4-font-feature-support/">OpenType Font Feature support in Firefox 4</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes">
+<div>35</div>
+<div>15</div>
+</td>
+<td class="bc-supports-yes">
+<div>9.1</div>
+<div>4-6</div>
+</td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes">
+<div>34</div>
+<div>The <a href="http://mpeg.chiariglione.org/standards/mpeg-4/open-font-format/text-isoiec-cd-14496-22-3rd-edition">ISO/IEC CD 14496-22 3rd edition</a> suggests using the <code>ssty</code> feature to provide glyph variants more suitable for use in scripts (for example primes used as superscripts). Starting with Firefox 29, this is done automatically by the <a href="https://developer.mozilla.org/docs/Web/MathML">MathML</a> rendering engine. The ISO/IEC CD 14496-22 3rd edition also suggests applying the <code>dtls</code> feature to letters when placing mathematical accents to get dotless forms (for example dotless i, j with a hat). Starting with Firefox 35, this is done automatically by the MathML rendering engine. You can override the default values determined by the MathML rendering engine with CSS.</div>
+<div>15</div>
+<div>From Firefox 4 to Firefox 14 (inclusive), Firefox supported an older, slightly different syntax. See <a href="http://hacks.mozilla.org/2010/11/firefox-4-font-feature-support/">OpenType Font Feature support in Firefox 4</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>35</div>
+<div>14</div>
+</td>
+<td class="bc-supports-yes">
+<div>9.3</div>
+<div>3.2-6.1</div>
+</td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="@font-face/font-display"><code>font-display</code></a></li> <li><a href="@font-face/font-family"><code>font-family</code></a></li> <li><a href="@font-face/font-stretch"><code>font-stretch</code></a></li> <li><a href="@font-face/font-style"><code>font-style</code></a></li> <li><a href="@font-face/font-weight"><code>font-weight</code></a></li> <li><a href="@font-face/font-variant"><code>font-variant</code></a></li> <li><a href="@font-face/font-variation-settings"><code>font-variation-settings</code></a></li> <li><a href="@font-face/src"><code>src</code></a></li> <li><a href="@font-face/unicode-range"><code>unicode-range</code></a></li> <li>
+<a href="https://www.microsoft.com/typography/otspec/featurelist.htm" rel=" noopener">OpenType Feature Tags</a> list</li> <li>
+<a href="https://blogs.msdn.com/b/ie/archive/2012/01/09/css-corner-using-the-whole-font.aspx" rel=" noopener">Using the whole font</a><br> <em>(<strong>Note:</strong> The <code>-moz</code> syntax is the old one. On Gecko, use the <code>-ms</code> syntax but with <code>-moz</code>.)</em>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-feature-settings" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/font-feature-settings</a>
+  </p>
+</div>

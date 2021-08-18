@@ -1,0 +1,81 @@
+<h1>BaseAudioContext.createBiquadFilter()</h1>
+
+  <p>The <code>createBiquadFilter()</code> method of the <a href="../baseaudiocontext"><code>BaseAudioContext</code></a> interface creates a <a href="../biquadfilternode"><code>BiquadFilterNode</code></a>, which represents a second order filter configurable as several different common filter types.</p> <h2 id="syntax">Syntax</h2>
+<pre data-language="js">baseAudioContext<span class="token punctuation">.</span><span class="token function">createBiquadFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="description">Returns</h3>
+<p>A <a href="../biquadfilternode"><code>BiquadFilterNode</code></a>.</p>
+<h2 id="example">Example</h2>
+<p>The following example shows basic usage of an AudioContext to create a Biquad filter node. For a complete working example, check out our <a href="https://mdn.github.io/voice-change-o-matic/" rel=" noopener">voice-change-o-matic</a> demo (look at the <a href="https://github.com/mdn/voice-change-o-matic" rel=" noopener">source code</a> too).</p> <pre data-language="js"><span class="token keyword">var</span> audioCtx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>AudioContext <span class="token operator">||</span> window<span class="token punctuation">.</span>webkitAudioContext<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//set up the different audio nodes we will use for the app</span>
+<span class="token keyword">var</span> analyser <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createAnalyser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> distortion <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createWaveShaper</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> gainNode <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createGain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> biquadFilter <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createBiquadFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> convolver <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createConvolver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// connect the nodes together</span>
+
+source <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createMediaStreamSource</span><span class="token punctuation">(</span>stream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+source<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>analyser<span class="token punctuation">)</span><span class="token punctuation">;</span>
+analyser<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>distortion<span class="token punctuation">)</span><span class="token punctuation">;</span>
+distortion<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>biquadFilter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+biquadFilter<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>convolver<span class="token punctuation">)</span><span class="token punctuation">;</span>
+convolver<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>gainNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+gainNode<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>audioCtx<span class="token punctuation">.</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Manipulate the Biquad filter</span>
+
+biquadFilter<span class="token punctuation">.</span>type <span class="token operator">=</span> <span class="token string">"lowshelf"</span><span class="token punctuation">;</span>
+biquadFilter<span class="token punctuation">.</span>frequency<span class="token punctuation">.</span><span class="token function">setValueAtTime</span><span class="token punctuation">(</span><span class="token number">1000</span><span class="token punctuation">,</span> audioCtx<span class="token punctuation">.</span>currentTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+biquadFilter<span class="token punctuation">.</span>gain<span class="token punctuation">.</span><span class="token function">setValueAtTime</span><span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">,</span> audioCtx<span class="token punctuation">.</span>currentTime<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://webaudio.github.io/web-audio-api/#dom-baseaudiocontext-createbiquadfilter" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'createBiquadFilter()' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>createBiquadFilter</code></th>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../web_audio_api/using_web_audio_api">Using the Web Audio API</a> </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/createBiquadFilter" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/createBiquadFilter</a>
+  </p>
+</div>

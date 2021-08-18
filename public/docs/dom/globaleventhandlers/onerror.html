@@ -1,0 +1,87 @@
+<h1>GlobalEventHandlers.onerror</h1> <p>The <code><strong>onerror</strong></code> property of the <a href="../globaleventhandlers"><code>GlobalEventHandlers</code></a> mixin is an <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a> that processes <code><a href="../element/error_event">error</a></code> events.</p> <p>Error events are fired at various targets for different kinds of errors:</p> <ul> <li>When a <strong>JavaScript runtime error</strong> (including syntax errors and exceptions thrown within handlers) occurs, an <code><a href="../element/error_event">error</a></code> event using interface <a href="../errorevent"><code>ErrorEvent</code></a> is fired at <a href="../window"><code>window</code></a> and <code>window.onerror()</code> is invoked (as well as handlers attached by <a href="../eventtarget/addeventlistener"><code>EventTarget.addEventListener</code></a> (not only capturing)).</li> <li>When a resource (such as an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img"><code>&lt;img&gt;</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script"><code>&lt;script&gt;</code></a>) <strong>fails to load</strong>, an <code><a href="../element/error_event">error</a></code> event using interface <a href="../event"><code>Event</code></a> is fired at the element that initiated the load, and the <code>onerror()</code> handler on the element is invoked. These error events do not bubble up to window, but can be handled with a <a href="../eventtarget/addeventlistener"><code>EventTarget.addEventListener</code></a> configured with <code>useCapture</code> set to <code>true</code>.</li> </ul> <p>Installing a global <code>error</code> event handler is useful for automated collection of error reports.</p>
+<h2 id="syntax">Syntax</h2>
+<p>For historical reasons, different arguments are passed to <code>window.onerror</code> and <code>element.onerror</code> handlers (as well as on error-type <a href="../eventtarget/addeventlistener"><code>EventTarget.addEventListener</code></a> handlers).</p>
+<h3 id="window.onerror">window.onerror</h3>
+<pre data-language="js">window<span class="token punctuation">.</span><span class="token function-variable function">onerror</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">message<span class="token punctuation">,</span> source<span class="token punctuation">,</span> lineno<span class="token punctuation">,</span> colno<span class="token punctuation">,</span> error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre> <p>Function parameters:</p> <ul> <li>
+<code>message</code>: error message (string). Available as <code>event</code> (sic!) in HTML <code>onerror=""</code> handler.</li> <li>
+<code>source</code>: URL of the script where the error was raised (string)</li> <li>
+<code>lineno</code>: Line number where error was raised (number)</li> <li>
+<code>colno</code>: Column number for the line where the error occurred (number)</li> <li>
+<code>error</code>: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">Error Object</a> (object)</li> </ul> <p>When the function returns <code>true</code>, this prevents the firing of the default event handler.</p>
+<h3 id="window.addeventlistenererror">window.addEventListener('error')</h3>
+<pre data-language="js">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'error'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre> <p><code>event</code> of type <a href="../errorevent"><code>ErrorEvent</code></a> contains all the information about the event and the error.</p>
+<h3 id="element.onerror">element.onerror</h3>
+<pre data-language="js">element<span class="token punctuation">.</span><span class="token function-variable function">onerror</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span>
+</pre> <p><code>element.onerror</code> accepts a function with a single argument of type <a href="../event"><code>Event</code></a>.</p> <p>A good example for this is when you are using an image tag, and need to specify a backup image in case the one you need is not available on the server for any reason.</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>imagefound.gif<span class="token punctuation">"</span></span> <span class="token attr-name">onerror</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>this.onerror=null;this.src=<span class="token punctuation">'</span>imagenotfound.gif<span class="token punctuation">'</span>;<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+</pre> <p>The reason we have the <code>this.onerror=null</code> in the function is that the browser will be stuck in an endless loop if the onerror image itself generates an error.</p>
+<h2 id="notes">Notes</h2>
+<p>When an error occurs in a script, loaded from a <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">different origin</a>, the details of the error are not reported to prevent leaking information (see <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=363897" rel=" noopener">bug 363897</a>). Instead the error reported is <code><strong>"Script error."</strong></code> This behavior can be overridden in some browsers using the <code><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-crossorigin"><code>crossorigin</code></a></code> attribute on <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script"><code>&lt;script&gt;</code></a> and having the server send the appropriate <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">CORS</a> HTTP response headers. A workaround is to isolate "Script error." and handle it knowing that the error detail is only viewable in the browser console and not accessible via JavaScript.</p> <pre data-language="js">window<span class="token punctuation">.</span><span class="token function-variable function">onerror</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">msg<span class="token punctuation">,</span> url<span class="token punctuation">,</span> lineNo<span class="token punctuation">,</span> columnNo<span class="token punctuation">,</span> error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> string <span class="token operator">=</span> msg<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> substring <span class="token operator">=</span> <span class="token string">"script error"</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>string<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>substring<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'Script Error: See Browser Console for Detail'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> message <span class="token operator">=</span> <span class="token punctuation">[</span>
+      <span class="token string">'Message: '</span> <span class="token operator">+</span> msg<span class="token punctuation">,</span>
+      <span class="token string">'URL: '</span> <span class="token operator">+</span> url<span class="token punctuation">,</span>
+      <span class="token string">'Line: '</span> <span class="token operator">+</span> lineNo<span class="token punctuation">,</span>
+      <span class="token string">'Column: '</span> <span class="token operator">+</span> columnNo<span class="token punctuation">,</span>
+      <span class="token string">'Error object: '</span> <span class="token operator">+</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">' - '</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">alert</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre> <p>When using the inline HTML markup (<code>&lt;body onerror="alert('an error occurred')"&gt;</code>), the HTML specification requires arguments passed to <code>onerror</code> to be named <code>event</code>, <code>source</code>, <code>lineno</code>, <code>colno</code>, <code>error</code>. In browsers that have not implemented this requirement, they can still be obtained via <code>arguments[0]</code> through <code>arguments[2]</code>.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onerror" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'onerror' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onerror</code></th>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>11.6</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://blog.sentry.io/2016/01/04/client-javascript-reporting-window-onerror" rel=" noopener">Capture and report JavaScript errors with window.onerror (blog.sentry.io, 2016)</a></li> <li><a href="https://danlimerick.wordpress.com/2014/01/18/how-to-catch-javascript-errors-with-window-onerror-even-on-chrome-and-firefox/" rel=" noopener">How to catch JavaScript Errors with window.onerror (even on Chrome and Firefox) (danlimerick.wordpress.com, 2014)</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror</a>
+  </p>
+</div>

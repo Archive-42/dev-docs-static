@@ -1,0 +1,91 @@
+<h1>IDBRequest.readyState</h1>
+
+  <p>The <code>readyState</code> read-only property of the <a href="../idbrequest"><code>IDBRequest</code></a> interface returns the state of the request.</p> <p><span style="line-height: 1.5;">Every request starts in the </span><code style="font-style: normal; line-height: 1.5;">pending</code><span style="line-height: 1.5;"> state. The state changes to </span><code style="font-style: normal; line-height: 1.5;">done</code><span style="line-height: 1.5;"> when the request completes successfully or when an error occurs.</span></p> 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="../web_workers_api">Web Workers</a>.</p> </div>
+ <h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> currentReadyState <span class="token operator">=</span> request<span class="token punctuation">.</span>readyState<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>The <a class="page-not-created"><code>IDBRequestReadyState</code></a> of the request, which takes one of the following two values:</p> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Value</th> <th scope="col">Meaning</th> </tr> </thead> <tbody> <tr> <td><code>pending</code></td> <td>The request is pending.</td> </tr> <tr> <td><code>done</code></td> <td>The request is done.<br> </td> </tr> </tbody> </table></div>
+<h2 id="example">Example</h2>
+<p>The following example requests a given record title, <code>onsuccess</code> gets the associated record from the <a href="../idbobjectstore"><code>IDBObjectStore</code></a> (made available as <code>objectStoreTitleRequest.result</code><span style="line-height: 1.5;">), updates one property of the record, and then puts the updated record back into the object store in another request. The <code>readyState</code> of the 2nd request is logged to the developer console. For a full working example, see our </span><a href="https://github.com/mdn/to-do-notifications/" style="line-height: 1.5;" rel=" noopener">To-do Notifications</a><span style="line-height: 1.5;"> app (</span><a href="https://mdn.github.io/to-do-notifications/" style="line-height: 1.5;" rel=" noopener">view example live</a><span style="line-height: 1.5;">.)</span></p> <pre data-language="js"><span class="token keyword">var</span> title <span class="token operator">=</span> <span class="token string">"Walk dog"</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Open up a transaction as usual</span>
+<span class="token keyword">var</span> objectStore <span class="token operator">=</span> db<span class="token punctuation">.</span><span class="token function">transaction</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'toDoList'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">"readwrite"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">objectStore</span><span class="token punctuation">(</span><span class="token string">'toDoList'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Get the to-do list object that has this title as it's title</span>
+<span class="token keyword">var</span> objectStoreTitleRequest <span class="token operator">=</span> objectStore<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>title<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+objectStoreTitleRequest<span class="token punctuation">.</span><span class="token function-variable function">onsuccess</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Grab the data object returned as the result</span>
+  <span class="token keyword">var</span> data <span class="token operator">=</span> objectStoreTitleRequest<span class="token punctuation">.</span>result<span class="token punctuation">;</span>
+
+  <span class="token comment">// Update the notified value in the object to "yes"</span>
+  data<span class="token punctuation">.</span>notified <span class="token operator">=</span> <span class="token string">"yes"</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Create another request that inserts the item</span>
+  <span class="token comment">// back into the database</span>
+  <span class="token keyword">var</span> updateTitleRequest <span class="token operator">=</span> objectStore<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Log the source of this request</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"The readyState of this request is "</span> <span class="token operator">+</span> updateTitlerequest<span class="token punctuation">.</span>readyState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// When this new request succeeds, run the displayData()</span>
+  <span class="token comment">// function again to update the display</span>
+  updateTitleRequest<span class="token punctuation">.</span><span class="token function-variable function">onsuccess</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">displayData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbrequest-readystate" hreflang="en" rel=" noopener">Indexed Database API 2.0<br><small>The definition of 'readyState' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbrequest-readystate" hreflang="en" rel=" noopener">Indexed Database API 2.0<br><small>The definition of 'readyState' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>readyState</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../indexeddb_api/using_indexeddb">Using IndexedDB</a></li> <li>Starting transactions: <a href="../idbdatabase"><code>IDBDatabase</code></a>
+</li> <li>Using transactions: <a href="../idbtransaction"><code>IDBTransaction</code></a>
+</li> <li>Setting a range of keys: <a href="../idbkeyrange"><code>IDBKeyRange</code></a>
+</li> <li>Retrieving and making changes to your data: <a href="../idbobjectstore"><code>IDBObjectStore</code></a>
+</li> <li>Using cursors: <a href="../idbcursor"><code>IDBCursor</code></a>
+</li> <li>Reference example: <a href="https://github.com/mdn/to-do-notifications/tree/gh-pages" rel=" noopener">To-do Notifications</a> (<a href="https://mdn.github.io/to-do-notifications/" rel=" noopener">view example live</a>.)</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBRequest/readyState" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBRequest/readyState</a>
+  </p>
+</div>

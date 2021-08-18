@@ -1,0 +1,289 @@
+<h1>:is() (:matches(), :any())</h1>
+
+ <div class="notecard note"> <p><strong>Note:</strong> <code>:matches()</code> was renamed to <code>:is()</code> in <a href="https://github.com/w3c/csswg-drafts/issues/3258" style="white-space: nowrap;" rel=" noopener">CSSWG issue #3258</a>.</p> </div> <p>The <code>:is()</code> <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> <a href="pseudo-classes">pseudo-class</a> function takes a selector list as its argument, and selects any element that can be selected by one of the selectors in that list. This is useful for writing large selectors in a more compact form.</p> <pre data-language="css"><span class="token comment">/* Selects any paragraph inside a header, main
+   or footer element that is being hovered */</span>
+<span class="token selector">:is(header, main, footer) p:hover</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> pointer<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* The above is equivalent to the following */</span>
+<span class="token selector">header p:hover,
+main p:hover,
+footer p:hover</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> pointer<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>Note that older browsers support this functionality as <code>:matches()</code>, or through an older, prefixed pseudo-class — <code>:any()</code>, including older versions of Chrome, Firefox, and Safari. <code>:any()</code> works in exactly the same way as <code>:matches()</code>/<code>:is()</code>, except that it requires vendor prefixes and doesn't support <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors">complex selectors</a>.</p> <p>These legacy pseudo-classes can be used to provide backwards compatibility.</p> <pre data-language="css"><span class="token comment">/* Backwards-compatible version with :-*-any() and :matches()
+   (It is not possible to group selectors into single rule,
+   because presence of invalid selector would invalidate whole rule.) */</span>
+<span class="token selector">:-webkit-any(header, main, footer) p:hover</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> pointer<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">:-moz-any(header, main, footer) p:hover</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> pointer<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">:matches(header, main, footer) p:hover</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> pointer<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="forgiving_selector_parsing">Forgiving Selector Parsing</h3>
+<p>The specification defines <code>:is()</code> and <code>:where()</code> as accepting a <a href="https://drafts.csswg.org/selectors-4/#typedef-forgiving-selector-list" rel=" noopener">forgiving selector list</a>.</p> <p>In CSS when using a selector list, if any of the selectors are invalid then the whole list is deemed invalid. When using <code>:is()</code> or <code>:where() </code>instead of the whole list of selectors being deemed invalid if one fails to parse, the incorrect or unsupported selector will be ignored and the others used.</p> <pre data-language="css"><span class="token selector">:is(:valid, :unsupported)</span> <span class="token punctuation">{</span>
+  ...
+<span class="token punctuation">}</span></pre> <p>Will still parse correctly and match <code>:valid</code> even in browsers which don't support <code>:unsupported</code>, whereas:</p> <pre data-language="css"><span class="token selector">:valid, :unsupported</span> <span class="token punctuation">{</span>
+  ...
+<span class="token punctuation">}</span></pre> <p>Will be ignored in browsers which don't support <code>:unsupported</code> even if they support <code>:valid</code>.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="cross-browser_example">Cross-browser example</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>header</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>This is my header paragraph<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>header</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>This is my first<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>list item<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>This is my second<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>list item<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>footer</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>This is my footer paragraph<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>footer</span><span class="token punctuation">&gt;</span></span></pre> <pre data-language="css"><span class="token selector">:-webkit-any(header, main, footer) p:hover</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> pointer<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">:-moz-any(header, main, footer) p:hover</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> pointer<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">:matches(header, main, footer) p:hover</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> pointer<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">:is(header, main, footer) p:hover</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> pointer<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <pre data-language="js"><span class="token keyword">let</span> matchedItems<span class="token punctuation">;</span>
+
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+  matchedItems <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">':is(header, main, footer) p'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    matchedItems <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">':matches(header, main, footer) p'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+      matchedItems <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">':-webkit-any(header, main, footer) p'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        matchedItems <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">':-moz-any(header, main, footer) p'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Your browser doesn\'t support :is(), :matches(), or :any()'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+matchedItems<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span>applyHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">applyHandler</span><span class="token punctuation">(</span><span class="token parameter">elem</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  elem<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'This paragraph is inside a '</span> <span class="token operator">+</span> e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>parentNode<span class="token punctuation">.</span>nodeName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p><iframe class="sample-code-frame" id="frame_Cross-browser_example" width="100%" height="300" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/:is/_samples_/Cross-browser_example" loading="lazy"></iframe></p>
+<h3 id="simplifying_list_selectors">Simplifying list selectors</h3>
+<p>The <code>:is()</code> pseudo-class can greatly simplify your CSS selectors. For example, the following CSS:</p> <pre data-language="css"><span class="token comment">/* 3-deep (or more) unordered lists use a square */</span>
+<span class="token selector">ol ol ul,     ol ul ul,     ol menu ul,     ol dir ul,
+ol ol menu,   ol ul menu,   ol menu menu,   ol dir menu,
+ol ol dir,    ol ul dir,    ol menu dir,    ol dir dir,
+ul ol ul,     ul ul ul,     ul menu ul,     ul dir ul,
+ul ol menu,   ul ul menu,   ul menu menu,   ul dir menu,
+ul ol dir,    ul ul dir,    ul menu dir,    ul dir dir,
+menu ol ul,   menu ul ul,   menu menu ul,   menu dir ul,
+menu ol menu, menu ul menu, menu menu menu, menu dir menu,
+menu ol dir,  menu ul dir,  menu menu dir,  menu dir dir,
+dir ol ul,    dir ul ul,    dir menu ul,    dir dir ul,
+dir ol menu,  dir ul menu,  dir menu menu,  dir dir menu,
+dir ol dir,   dir ul dir,   dir menu dir,   dir dir dir</span> <span class="token punctuation">{</span>
+  <span class="token property">list-style-type</span><span class="token punctuation">:</span> square<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>... can be replaced with:</p> <pre data-language="css"><span class="token comment">/* 3-deep (or more) unordered lists use a square */</span>
+<span class="token selector">:is(ol, ul, menu, dir) :is(ol, ul, menu, dir) ul,
+:is(ol, ul, menu, dir) :is(ol, ul, menu, dir) menu,
+:is(ol, ul, menu, dir) :is(ol, ul, menu, dir) dir</span> <span class="token punctuation">{</span>
+  <span class="token property">list-style-type</span><span class="token punctuation">:</span> square<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h3 id="simplifying_section_selectors">Simplifying section selectors</h3>
+<p>The <code>:is()</code> pseudo-class is particularly useful when dealing with HTML5 <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML_sections_and_outlines">sections and headings</a>. Since <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section"><code>&lt;section&gt;</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article"><code>&lt;article&gt;</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside"><code>&lt;aside&gt;</code></a>, and <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav"><code>&lt;nav&gt;</code></a> are commonly nested together, without <code>:is()</code>, styling them to match one another can be tricky.</p> <p>For example, without <code>:is()</code>, styling all the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements"><code>&lt;h1&gt;</code></a> elements at different depths could be very complicated:</p> <pre data-language="css"><span class="token comment">/* Level 0 */</span>
+<span class="token selector">h1</span> <span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 30px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">/* Level 1 */</span>
+<span class="token selector">section h1, article h1, aside h1, nav h1</span> <span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 25px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">/* Level 2 */</span>
+<span class="token selector">section section h1, section article h1, section aside h1, section nav h1,
+article section h1, article article h1, article aside h1, article nav h1,
+aside section h1, aside article h1, aside aside h1, aside nav h1,
+nav section h1, nav article h1, nav aside h1, nav nav h1</span> <span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">/* Level 3 */</span>
+<span class="token comment">/* ... don't even think about it! */</span>
+</pre> <p>Using <code>:is()</code>, though, it's much easier:</p> <pre data-language="css"><span class="token comment">/* Level 0 */</span>
+<span class="token selector">h1</span> <span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 30px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">/* Level 1 */</span>
+<span class="token selector">:is(section, article, aside, nav) h1</span> <span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 25px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">/* Level 2 */</span>
+<span class="token selector">:is(section, article, aside, nav)
+:is(section, article, aside, nav) h1</span> <span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">/* Level 3 */</span>
+<span class="token selector">:is(section, article, aside, nav)
+:is(section, article, aside, nav)
+:is(section, article, aside, nav) h1</span> <span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 15px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="difference_between_is_and_where">Difference between :is() and :where()</h3>
+<p>The difference between the two is that <code>:is()</code> counts towards the specificity of the overall selector (it takes the specificity of its most specific argument), whereas <code><a href=":where">:where()</a></code> has a specificity value of 0. This is demonstrated by the <a href=":where#examples">example on the <code>:where()</code> reference page</a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="notranslate">:is( <a href="#complex-selector-list">&lt;complex-selector-list&gt;</a> )<p>where <br><span id="complex-selector-list">&lt;complex-selector-list&gt;</span> = <a href="#complex-selector">&lt;complex-selector&gt;</a><a href="value_definition_syntax#hash_mark_()">#</a></p><p>where <br><span id="complex-selector">&lt;complex-selector&gt;</span> = <a href="#compound-selector">&lt;compound-selector&gt;</a> <a href="value_definition_syntax#brackets">[</a> <a href="#combinator">&lt;combinator&gt;</a><a href="value_definition_syntax#question_mark_()">?</a> <a href="#compound-selector">&lt;compound-selector&gt;</a> <a href="value_definition_syntax#brackets">]</a><a href="value_definition_syntax#asterisk_(*)">*</a></p><p>where <br><span id="compound-selector">&lt;compound-selector&gt;</span> = <a href="value_definition_syntax#brackets">[</a> <a href="#type-selector">&lt;type-selector&gt;</a><a href="value_definition_syntax#question_mark_()">?</a> <a href="#subclass-selector">&lt;subclass-selector&gt;</a><a href="value_definition_syntax#asterisk_(*)">*</a> <a href="value_definition_syntax#brackets">[</a> <a href="#pseudo-element-selector">&lt;pseudo-element-selector&gt;</a> <a href="#pseudo-class-selector">&lt;pseudo-class-selector&gt;</a><a href="value_definition_syntax#asterisk_(*)">*</a> <a href="value_definition_syntax#brackets">]</a><a href="value_definition_syntax#asterisk_(*)">*</a> <a href="value_definition_syntax#brackets">]</a><a href="#">!</a><br><span id="combinator">&lt;combinator&gt;</span> = '&gt;' <a href="value_definition_syntax#single_bar">|</a> '<a href="value_definition_syntax#plus_()">+</a>' <a href="value_definition_syntax#single_bar">|</a> '~' <a href="value_definition_syntax#single_bar">|</a> <a href="value_definition_syntax#brackets">[</a> '<a href="value_definition_syntax#double_bar">||</a>' <a href="value_definition_syntax#brackets">]</a></p><p>where <br><span id="type-selector">&lt;type-selector&gt;</span> = <a href="#wq-name">&lt;wq-name&gt;</a> <a href="value_definition_syntax#single_bar">|</a> <a href="#ns-prefix">&lt;ns-prefix&gt;</a><a href="value_definition_syntax#question_mark_()">?</a> '<a href="value_definition_syntax#asterisk_(*)">*</a>'<br><span id="subclass-selector">&lt;subclass-selector&gt;</span> = <a href="#id-selector">&lt;id-selector&gt;</a> <a href="value_definition_syntax#single_bar">|</a> <a href="#class-selector">&lt;class-selector&gt;</a> <a href="value_definition_syntax#single_bar">|</a> <a href="#attribute-selector">&lt;attribute-selector&gt;</a> <a href="value_definition_syntax#single_bar">|</a> <a href="#pseudo-class-selector">&lt;pseudo-class-selector&gt;</a><br><span id="pseudo-element-selector">&lt;pseudo-element-selector&gt;</span> = ':' <a href="#pseudo-class-selector">&lt;pseudo-class-selector&gt;</a><br><span id="pseudo-class-selector">&lt;pseudo-class-selector&gt;</span> = ':' &lt;ident-token&gt; <a href="value_definition_syntax#single_bar">|</a> ':' &lt;function-token&gt; &lt;any-value&gt; ')'</p><p>where <br><span id="wq-name">&lt;wq-name&gt;</span> = <a href="#ns-prefix">&lt;ns-prefix&gt;</a><a href="value_definition_syntax#question_mark_()">?</a> &lt;ident-token&gt;<br><span id="ns-prefix">&lt;ns-prefix&gt;</span> = <a href="value_definition_syntax#brackets">[</a> &lt;ident-token&gt; <a href="value_definition_syntax#single_bar">|</a> '<a href="value_definition_syntax#asterisk_(*)">*</a>' <a href="value_definition_syntax#brackets">]</a><a href="value_definition_syntax#question_mark_()">?</a>  <a href="value_definition_syntax#single_bar">|</a> <br><span id="id-selector">&lt;id-selector&gt;</span> = &lt;hash-token&gt;<br><span id="class-selector">&lt;class-selector&gt;</span> = '.' &lt;ident-token&gt;<br><span id="attribute-selector">&lt;attribute-selector&gt;</span> = '<a href="value_definition_syntax#brackets">[</a>' <a href="#wq-name">&lt;wq-name&gt;</a> '<a href="value_definition_syntax#brackets">]</a>' <a href="value_definition_syntax#single_bar">|</a> '<a href="value_definition_syntax#brackets">[</a>' <a href="#wq-name">&lt;wq-name&gt;</a> <a href="#attr-matcher">&lt;attr-matcher&gt;</a> <a href="value_definition_syntax#brackets">[</a> &lt;string-token&gt; <a href="value_definition_syntax#single_bar">|</a> &lt;ident-token&gt; <a href="value_definition_syntax#brackets">]</a> <a href="#attr-modifier">&lt;attr-modifier&gt;</a><a href="value_definition_syntax#question_mark_()">?</a> '<a href="value_definition_syntax#brackets">]</a>'<br></p><p>where <br><span id="attr-matcher">&lt;attr-matcher&gt;</span> = <a href="value_definition_syntax#brackets">[</a> '~' <a href="value_definition_syntax#single_bar">|</a>  <a href="value_definition_syntax#single_bar">|</a>  <a href="value_definition_syntax#single_bar">|</a> '^' <a href="value_definition_syntax#single_bar">|</a> '$' <a href="value_definition_syntax#single_bar">|</a> '<a href="value_definition_syntax#asterisk_(*)">*</a>' <a href="value_definition_syntax#brackets">]</a><a href="value_definition_syntax#question_mark_()">?</a> '='<br><span id="attr-modifier">&lt;attr-modifier&gt;</span> = i <a href="value_definition_syntax#single_bar">|</a> s</p></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/selectors-4/#matches-pseudo" hreflang="en" rel=" noopener">Selectors Level 4<br><small>The definition of ':is()' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>:is</code></th>
+<td class="bc-supports-yes">
+<div>88</div>
+<div>68-88</div>
+<div>Combinators in the selector list argument may not match correctly (see <a href="https://crbug.com/842157">bug 842157</a>).</div>
+<div>66-71</div>
+<div>Combinators in the selector list argument may not match correctly (see <a href="https://crbug.com/842157">bug 842157</a>).</div>
+<div>12</div>
+<div>Doesn't support combinators.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>Combinators in the selector list argument may not match correctly (see <a href="https://crbug.com/842157">bug 842157</a>).</div>
+<div>79</div>
+<div>Doesn't support combinators.</div>
+</td>
+<td class="bc-supports-yes">
+<div>78</div>
+<div>77</div>
+<div>Enabled by default in Firefox Nightly.</div>
+<div>4</div>
+<div>["Doesn't support combinators.", "See <a href="https://bugzil.la/906353">bug 906353</a>"]</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Combinators in the selector list argument may not match correctly (see <a href="https://crbug.com/842157">bug 842157</a>).</div>
+<div>53-58</div>
+<div>Combinators in the selector list argument may not match correctly (see <a href="https://crbug.com/842157">bug 842157</a>).</div>
+<div>15</div>
+<div>Doesn't support combinators.</div>
+</td>
+<td class="bc-supports-yes">
+<div>14</div>
+<div>9</div>
+<div>5</div>
+<div>Doesn't support combinators.</div>
+</td>
+<td class="bc-supports-yes">
+<div>88</div>
+<div>≤37</div>
+<div>Doesn't support combinators.</div>
+</td>
+<td class="bc-supports-yes">
+<div>88</div>
+<div>66-71</div>
+<div>Combinators in the selector list argument may not match correctly (see <a href="https://crbug.com/842157">bug 842157</a>).</div>
+<div>18</div>
+<div>Doesn't support combinators.</div>
+</td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>["Doesn't support combinators.", "See <a href="https://bugzil.la/906353">bug 906353</a>"]</div>
+</td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>Combinators in the selector list argument may not match correctly (see <a href="https://crbug.com/842157">bug 842157</a>).</div>
+<div>47-50</div>
+<div>Combinators in the selector list argument may not match correctly (see <a href="https://crbug.com/842157">bug 842157</a>).</div>
+<div>14</div>
+<div>Doesn't support combinators.</div>
+</td>
+<td class="bc-supports-yes">
+<div>14</div>
+<div>9</div>
+<div>5</div>
+<div>Doesn't support combinators.</div>
+</td>
+<td class="bc-supports-no">
+<div>9.0-10.0</div>
+<div>1.0</div>
+</td>
+</tr>
+<tr>
+<th><code>forgiving_selector_list</code></th>
+<td class="bc-supports-yes"><div>88</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>82</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>88</div></td>
+<td class="bc-supports-yes"><div>88</div></td>
+<td class="bc-supports-yes"><div>82</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href=":where"><code>:where()</code></a> - Like <code>:is()</code>, but with 0 <a href="specificity">specificity</a>.</li> <li><a href="selector_list">Selector list</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">Web components</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:is" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/:is</a>
+  </p>
+</div>

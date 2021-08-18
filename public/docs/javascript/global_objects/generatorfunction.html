@@ -1,0 +1,71 @@
+<h1>GeneratorFunction</h1> <p>The <code>GeneratorFunction</code> creates a new <a href="../statements/function*">generator function</a> object. In JavaScript, every generator function is actually a <code>GeneratorFunction</code> object.</p> <p>Note that <code>GeneratorFunction</code> is not a global object. It could be obtained by evaluating the following code.</p> <pre data-language="js">Object<span class="token punctuation">.</span><span class="token function">getPrototypeOf</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span>constructor
+</pre>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">new</span> <span class="token class-name">Function</span><span class="token punctuation">(</span>arg1<span class="token punctuation">,</span> functionBody<span class="token punctuation">)</span>
+<span class="token keyword">new</span> <span class="token class-name">Function</span><span class="token punctuation">(</span>arg1<span class="token punctuation">,</span> arg2<span class="token punctuation">,</span> functionBody<span class="token punctuation">)</span>
+<span class="token keyword">new</span> <span class="token class-name">Function</span><span class="token punctuation">(</span>arg1<span class="token punctuation">,</span> <span class="token operator">...</span> <span class="token punctuation">,</span> argN<span class="token punctuation">,</span> functionBody<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>arg1, arg2, ... arg<em>N</em></code></dt> <dd>Names to be used by the function as formal argument names. Each must be a string that corresponds to a valid JavaScript identifier or a list of such strings separated with a comma; for example "<code>x</code>", "<code>theValue</code>", or "<code>a,b</code>".</dd> <dt><code>functionBody</code></dt> <dd>A string containing the JavaScript statements comprising the function definition. </dd> </dl>
+<h2 id="description">Description</h2>
+<p><a href="../statements/function*"><code>generator function</code></a> objects created with the <code>GeneratorFunction</code> constructor are parsed when the function is created. This is less efficient than declaring a generator function with a <a href="../statements/function*"><code>function* expression</code></a> and calling it within your code, because such functions are parsed with the rest of the code.</p> <p>All arguments passed to the function are treated as the names of the identifiers of the parameters in the function to be created, in the order in which they are passed.</p> <div class="note notecard"> <p><strong>Note:</strong> <a href="../statements/function*"><code>generator function</code></a> created with the <code>GeneratorFunction</code> constructor do not create closures to their creation contexts; they are always created in the global scope.</p> <p>When running them, they will only be able to access their own local variables and global ones, not the ones from the scope in which the <code>GeneratorFunction</code> constructor was called.</p> <p>This is different from using <a href="eval"><code>eval</code></a> with code for a generator function expression.</p> </div> <p>Invoking the <code>GeneratorFunction</code> constructor as a function (without using the <code>new</code> operator) has the same effect as invoking it as a constructor.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="creating_a_generator_function_from_a_generatorfunction_constructor">Creating a generator function from a GeneratorFunction() constructor</h3>
+<pre data-language="js"><span class="token keyword">var</span> GeneratorFunction <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">getPrototypeOf</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token operator">*</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span>constructor
+<span class="token keyword">var</span> g <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">GeneratorFunction</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'yield a * 2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> iterator <span class="token operator">=</span> <span class="token function">g</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>iterator<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 20</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-generatorfunction-objects">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-generatorfunction-objects</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>GeneratorFunction</code></th>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../statements/function*">function* function</a></li> <li><a href="../operators/function*">function* expression</a></li> <li><a href="function"><code>Function</code></a></li> <li><a href="../statements/function">function statement</a></li> <li><a href="../operators/function">function expression</a></li> <li>
+<a href="../functions">Functions and function scope</a> </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction</a>
+  </p>
+</div>

@@ -1,0 +1,144 @@
+<h1>CanvasRenderingContext2D.drawFocusIfNeeded()</h1> <p>The <code><strong>CanvasRenderingContext2D</strong></code><code>.drawFocusIfNeeded()</code> method of the Canvas 2D API draws a focus ring around the current or given path, if the specified element is focused.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">void</span> ctx<span class="token punctuation">.</span><span class="token function">drawFocusIfNeeded</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> ctx<span class="token punctuation">.</span><span class="token function">drawFocusIfNeeded</span><span class="token punctuation">(</span>path<span class="token punctuation">,</span> element<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>element</code></dt> <dd>The element to check whether it is focused or not.</dd> <dt><code>path</code></dt> <dd>A <a href="../path2d"><code>Path2D</code></a> path to use.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="managing_button_focus">Managing button focus</h3>
+<p>This example draws two buttons on a canvas. The <code>drawFocusIfNeeded()</code> method is used to draw a focus ring when appropriate.</p> <h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>canvas<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Continue<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button2<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Quit<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">&gt;</span></span>
+</pre> <h4 id="javascript">JavaScript</h4> <pre data-language="js"><span class="token keyword">const</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ctx <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> button1 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'button1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> button2 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'button2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'focus'</span><span class="token punctuation">,</span> redraw<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'blur'</span><span class="token punctuation">,</span> redraw<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+canvas<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> handleClick<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">redraw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">redraw</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  ctx<span class="token punctuation">.</span><span class="token function">clearRect</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> canvas<span class="token punctuation">.</span>width<span class="token punctuation">,</span> canvas<span class="token punctuation">.</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">drawButton</span><span class="token punctuation">(</span>button1<span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">drawButton</span><span class="token punctuation">(</span>button2<span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">handleClick</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Calculate click coordinates</span>
+  <span class="token keyword">const</span> x <span class="token operator">=</span> e<span class="token punctuation">.</span>clientX <span class="token operator">-</span> canvas<span class="token punctuation">.</span>offsetLeft<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> y <span class="token operator">=</span> e<span class="token punctuation">.</span>clientY <span class="token operator">-</span> canvas<span class="token punctuation">.</span>offsetTop<span class="token punctuation">;</span>
+
+  <span class="token comment">// Focus button1, if appropriate</span>
+  <span class="token function">drawButton</span><span class="token punctuation">(</span>button1<span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>ctx<span class="token punctuation">.</span><span class="token function">isPointInPath</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    button1<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Focus button2, if appropriate</span>
+  <span class="token function">drawButton</span><span class="token punctuation">(</span>button2<span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">80</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>ctx<span class="token punctuation">.</span><span class="token function">isPointInPath</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    button2<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">drawButton</span><span class="token punctuation">(</span><span class="token parameter">el<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> active <span class="token operator">=</span> document<span class="token punctuation">.</span>activeElement <span class="token operator">===</span> el<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> width <span class="token operator">=</span> <span class="token number">150</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> height <span class="token operator">=</span> <span class="token number">40</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Button background</span>
+  ctx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> active <span class="token operator">?</span> <span class="token string">'pink'</span> <span class="token operator">:</span> <span class="token string">'lightgray'</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span><span class="token function">fillRect</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> width<span class="token punctuation">,</span> height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Button text</span>
+  ctx<span class="token punctuation">.</span>font <span class="token operator">=</span> <span class="token string">'15px sans-serif'</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span>textAlign <span class="token operator">=</span> <span class="token string">'center'</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span>textBaseline <span class="token operator">=</span> <span class="token string">'middle'</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> active <span class="token operator">?</span> <span class="token string">'blue'</span> <span class="token operator">:</span> <span class="token string">'black'</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span><span class="token function">fillText</span><span class="token punctuation">(</span>el<span class="token punctuation">.</span>textContent<span class="token punctuation">,</span> x <span class="token operator">+</span> width <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">,</span> y <span class="token operator">+</span> height <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Define clickable area</span>
+  ctx<span class="token punctuation">.</span><span class="token function">beginPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span><span class="token function">rect</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> width<span class="token punctuation">,</span> height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Draw focus ring, if appropriate</span>
+  ctx<span class="token punctuation">.</span><span class="token function">drawFocusIfNeeded</span><span class="token punctuation">(</span>el<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <h4 id="result">Result</h4> <p><iframe class="sample-code-frame" id="frame_Managing_button_focus" width="700" height="180" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/CanvasRenderingContext2D/drawFocusIfNeeded/_samples_/Managing_button_focus" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/scripting.html#dom-context-2d-drawfocusifneeded" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'CanvasRenderingContext2D.drawFocusIfNeeded' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>drawFocusIfNeeded</code></th>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes">
+<div>32</div>
+<div>28</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes">
+<div>32</div>
+<div>28</div>
+</td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>path_parameter</code></th>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The interface defining this method: <a href="../canvasrenderingcontext2d"><code>CanvasRenderingContext2D</code></a>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawFocusIfNeeded" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawFocusIfNeeded</a>
+  </p>
+</div>

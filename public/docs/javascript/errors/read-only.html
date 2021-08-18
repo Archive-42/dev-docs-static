@@ -1,0 +1,44 @@
+<h1>TypeError: "x" is read-only</h1> <p>The JavaScript <a href="../strict_mode">strict mode</a>-only exception "is read-only" occurs when a global variable or object property that was assigned to is a read-only property.</p>
+<h2 id="message">Message</h2>
+<pre data-language="js">TypeError<span class="token operator">:</span> Assignment to read<span class="token operator">-</span>only properties is not allowed <span class="token keyword">in</span> strict <span class="token function">mode</span> <span class="token punctuation">(</span>Edge<span class="token punctuation">)</span>
+TypeError<span class="token operator">:</span> <span class="token string">"x"</span> is read<span class="token operator">-</span><span class="token function">only</span> <span class="token punctuation">(</span>Firefox<span class="token punctuation">)</span>
+TypeError<span class="token operator">:</span> <span class="token number">0</span> is read<span class="token operator">-</span><span class="token function">only</span> <span class="token punctuation">(</span>Firefox<span class="token punctuation">)</span>
+TypeError<span class="token operator">:</span> Cannot assign to read only property <span class="token string">'x'</span> <span class="token keyword">of</span> #<span class="token operator">&lt;</span>Object<span class="token operator">&gt;</span> <span class="token punctuation">(</span>Chrome<span class="token punctuation">)</span>
+TypeError<span class="token operator">:</span> Cannot assign to read only property <span class="token string">'0'</span> <span class="token keyword">of</span> <span class="token punctuation">[</span>object Array<span class="token punctuation">]</span> <span class="token punctuation">(</span>Chrome<span class="token punctuation">)</span>
+</pre>
+<h2 id="error_type">Error type</h2>
+<p><a href="../global_objects/typeerror"><code>TypeError</code></a></p>
+<h2 id="what_went_wrong">What went wrong?</h2>
+<p>The global variable or object property that was assigned to is a read-only property. (Technically, it is a <a href="../global_objects/object/defineproperty#writable_attribute">non-writable data property</a>.)</p> <p>This error happens only in <a href="../strict_mode">strict mode code</a>. In non-strict code, the assignment is silently ignored.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="invalid_cases">Invalid cases</h3>
+<p>Read-only properties are not super common, but they can be created using <a href="../global_objects/object/defineproperty"><code>Object.defineProperty()</code></a> or <a href="../global_objects/object/freeze"><code>Object.freeze()</code></a>.</p> <pre data-language="js"><span class="token string">'use strict'</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">freeze</span><span class="token punctuation">(</span><span class="token punctuation">{</span>name<span class="token operator">:</span> <span class="token string">'Elsa'</span><span class="token punctuation">,</span> score<span class="token operator">:</span> <span class="token number">157</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+obj<span class="token punctuation">.</span>score <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>  <span class="token comment">// TypeError</span>
+
+<span class="token string">'use strict'</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token string">'LUNG_COUNT'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>value<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span> writable<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token constant">LUNG_COUNT</span> <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>  <span class="token comment">// TypeError</span>
+
+<span class="token string">'use strict'</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> frozenArray <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">freeze</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+frozenArray<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token operator">++</span><span class="token punctuation">;</span>  <span class="token comment">// TypeError</span>
+</pre> <p>There are also a few read-only properties built into JavaScript. Maybe you tried to redefine a mathematical constant.</p> <pre data-language="js"><span class="token string">'use strict'</span><span class="token punctuation">;</span>
+Math<span class="token punctuation">.</span><span class="token constant">PI</span> <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>  <span class="token comment">// TypeError</span>
+</pre> <p>Sorry, you can't do that.</p> <p>The global variable <code>undefined</code> is also read-only, so you can't silence the infamous "undefined is not a function" error by doing this:</p> <pre data-language="js"><span class="token string">'use strict'</span><span class="token punctuation">;</span>
+<span class="token function-variable function">undefined</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>  <span class="token comment">// TypeError: "undefined" is read-only</span>
+</pre>
+<h3 id="valid_cases">Valid cases</h3>
+<pre data-language="js"><span class="token string">'use strict'</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">freeze</span><span class="token punctuation">(</span><span class="token punctuation">{</span>name<span class="token operator">:</span> <span class="token string">'Score'</span><span class="token punctuation">,</span> points<span class="token operator">:</span> <span class="token number">157</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+obj <span class="token operator">=</span> <span class="token punctuation">{</span>name<span class="token operator">:</span> obj<span class="token punctuation">.</span>name<span class="token punctuation">,</span> points<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>   <span class="token comment">// replacing it with a new object works</span>
+
+<span class="token string">'use strict'</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> <span class="token constant">LUNG_COUNT</span> <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>  <span class="token comment">// a `var` works, because it's not read-only</span>
+<span class="token constant">LUNG_COUNT</span> <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span>  <span class="token comment">// ok (anatomically unlikely, though)</span>
+</pre>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../global_objects/object/defineproperty"><code>Object.defineProperty()</code></a></li> <li><a href="../global_objects/object/freeze"><code>Object.freeze()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Read-only" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Read-only</a>
+  </p>
+</div>

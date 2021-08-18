@@ -1,0 +1,74 @@
+<h1>MediaRecorder.onstop</h1> <p>The <code>MediaRecorder.onstop </code>event handler (part of the <a href="../mediastream_recording_api">MediaRecorder API</a>) handles the <code>stop</code> event, allowing you to run code in response to media recording via a <code>MediaRecorder</code> being stopped.</p> <p>The <code>stop</code> event is thrown either as a result of the <a href="stop"><code>MediaRecorder.stop()</code></a> method being invoked, or when the media stream being captured ends. In each case, the <code>stop</code> event is preceded by a <code>dataavailable</code> event, making the <a href="../blob"><code>Blob</code></a> captured up to that point available for you to use in your application.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">MediaRecorder<span class="token punctuation">.</span><span class="token function-variable function">onstop</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span>
+MediaRecorder<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'stop'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span></pre>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token operator">...</span>
+
+  mediaRecorder<span class="token punctuation">.</span><span class="token function-variable function">onstop</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"data available after MediaRecorder.stop() called."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">var</span> audio <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'audio'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    audio<span class="token punctuation">.</span>controls <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> blob <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Blob</span><span class="token punctuation">(</span>chunks<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token string">'type'</span> <span class="token operator">:</span> <span class="token string">'audio/ogg; codecs=opus'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> audioURL <span class="token operator">=</span> window<span class="token punctuation">.</span><span class="token constant">URL</span><span class="token punctuation">.</span><span class="token function">createObjectURL</span><span class="token punctuation">(</span>blob<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    audio<span class="token punctuation">.</span>src <span class="token operator">=</span> audioURL<span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"recorder stopped"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  mediaRecorder<span class="token punctuation">.</span><span class="token function-variable function">ondataavailable</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    chunks<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token operator">...</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/mediacapture-record/#dom-mediarecorder-onstop" hreflang="en" rel=" noopener">MediaStream Recording<br><small>The definition of 'MediaRecorder.onstop' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onstop</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../mediastream_recording_api/using_the_mediastream_recording_api">Using the MediaRecorder API</a></li> <li>
+<a href="https://mdn.github.io/web-dictaphone/" rel=" noopener">Web Dictaphone</a>: MediaRecorder + getUserMedia + Web Audio API visualization demo, by <a href="https://twitter.com/chrisdavidmills" rel=" noopener">Chris Mills</a> (<a href="https://github.com/mdn/web-dictaphone/" rel=" noopener">source on Github</a>.)</li> <li>
+<a href="https://simpl.info/mediarecorder/" rel=" noopener">simpl.info MediaStream Recording demo</a>, by <a href="https://twitter.com/sw12" rel=" noopener">Sam Dutton</a>.</li> <li><a href="../navigator/getusermedia"><code>Navigator.getUserMedia</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/onstop" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder/onstop</a>
+  </p>
+</div>

@@ -1,0 +1,90 @@
+<h1>Cross-Origin-Opener-Policy</h1> <p>The HTTP <code>Cross-Origin-Opener-Policy</code> (COOP) response header allows you to ensure a top-level document does not share a browsing context group with cross-origin documents.</p> <p>COOP will process-isolate your document and potential attackers can't access to your global object if they were opening it in a popup, preventing a set of cross-origin attacks dubbed <a href="https://github.com/xsleaks/xsleaks">XS-Leaks</a>.</p> <p>If a cross-origin document with COOP is opened in a new window, the opening document will not have a reference to it, and the <code><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/opener">window.opener</a></code> property of the new window will be <code>null</code>. This allows you to have more control over references to a window than <code><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types/noopener">rel=noopener</a></code>, which only affects outgoing navigations.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Header type</th> <td><a href="https://developer.mozilla.org/en-US/docs/Glossary/Response_header">Response header</a></td> </tr> <tr> <th scope="row"><a href="https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name">Forbidden header name</a></th> <td>no</td> </tr> </tbody> </table></div> <h2 id="Syntax">Syntax</h2> <pre class="syntaxbox notranslate">Cross-Origin-Opener-Policy: unsafe-none | same-origin-allow-popups | same-origin
+</pre> <h3 id="Directives">Directives</h3> <dl> <dt><code>unsafe-none</code></dt> <dd>This is the default value. Allows the document to be added to its opener's browsing context group unless the opener itself has a COOP of <code>same-origin</code> or <code>same-origin-allow-popups</code>.</dd> <dt><code>same-origin-allow-popups</code></dt> <dd>Retains references to newly opened windows or tabs which either don't set COOP or which opt out of isolation by setting a COOP of <code>unsafe-none</code>.</dd> <dt><code>same-origin</code></dt> <dd>Isolates the browsing context exclusively to same-origin documents. Cross-origin documents are not loaded in the same browsing context.</dd> </dl> <h2 id="Examples">Examples</h2> <h3 id="Certain_features_depend_on_cross-origin_isolation">Certain features depend on cross-origin isolation</h3> <p>Certain features like <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer"><code>SharedArrayBuffer</code></a> objects or <a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance/now"><code>Performance.now()</code></a> with unthrottled timers are only available if your document has a COOP header with the value <code>same-origin</code> value set.</p> <pre class="notranslate">Cross-Origin-Opener-Policy: same-origin
+Cross-Origin-Embedder-Policy: require-corp
+</pre> <p>See also the <a href="cross-origin-embedder-policy"><code>Cross-Origin-Embedder-Policy</code></a> header which you'll need to set as well.</p> <p>To check if cross-origin isolation has been successful, you can test against the <code><a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/crossOriginIsolated">crossOriginIsolated</a></code> property available to window and worker contexts:</p> <pre data-language="js">if (crossOriginIsolated) {
+  // Post SharedArrayBuffer
+} else {
+  // Do something else
+}</pre> <h2 id="Specifications">Specifications</h2> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> </tr> </thead> <tbody> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#the-cross-origin-opener-policy-header" hreflang="en">HTML Living Standard<br><small>The definition of 'Cross-Origin-Opener-Policy header' in that specification.</small></a></td> </tr> </tbody> </table></div> <h2 id="Browser_compatibility">Browser compatibility<a class="bc-github-link" href="https://github.com/mdn/browser-compat-data">Update compatibility data on GitHub</a>
+</h2>  <div class="_table">
+<table class="bc-table bc-table-web">
+<thead>
+<tr class="bc-platforms">
+<th></th>
+<th colspan="6"><span>Desktop</span></th>
+</tr>
+<tr class="bc-browsers">
+<th></th>
+<th><span class="bc-head-txt-label bc-head-icon-chrome">Chrome</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-edge">Edge</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-firefox">Firefox</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-ie">Internet Explorer</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-opera">Opera</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-safari">Safari</span></th>
+</tr>
+</thead>
+<tbody><tr>
+<th scope="row"><code>Cross-Origin-Opener-Policy</code></th>
+<td class="bc-supports-yes"> 83</td>
+<td class="bc-supports-yes"> 83</td>
+<td class="bc-supports-yes bc-has-history"> 79
+<section class="bc-history" id="sect1"><dl>
+<dt class="bc-supports-yes bc-supports"> 79
+</dt>
+
+<dt class="bc-supports-yes bc-supports"> 67<div class="bc-icons">Disabled </div>
+</dt>
+<dd>Disabled From version 67: this feature is behind the <code>browser.tabs.remote.useCrossOriginOpenerPolicy</code> preference (needs to be set to <code>true</code>). To change preferences in Firefox, visit about:config.</dd>
+</dl></section>
+</td>
+<td class="bc-supports-no"> No</td>
+<td class="bc-supports-no"> No</td>
+<td class="bc-supports-no"> No</td>
+</tr></tbody>
+</table>
+<table class="bc-table bc-table-web">
+<thead>
+<tr class="bc-platforms">
+<th></th>
+<th colspan="6"><span>Mobile</span></th>
+</tr>
+<tr class="bc-browsers">
+<th></th>
+<th><span class="bc-head-txt-label bc-head-icon-webview_android">Android webview</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-chrome_android">Chrome for Android</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-firefox_android">Firefox for Android</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-opera_android">Opera for Android</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-safari_ios">Safari on iOS</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-samsunginternet_android">Samsung Internet</span></th>
+</tr>
+</thead>
+<tbody><tr>
+<th scope="row"><code>Cross-Origin-Opener-Policy</code></th>
+<td class="bc-supports-no"> No</td>
+<td class="bc-supports-yes"> 83</td>
+<td class="bc-supports-yes bc-has-history"> 79
+<section class="bc-history" id="sect2"><dl>
+<dt class="bc-supports-yes bc-supports"> 79
+</dt>
+
+<dt class="bc-supports-yes bc-supports"> 67<div class="bc-icons">Disabled </div>
+</dt>
+<dd>Disabled From version 67: this feature is behind the <code>browser.tabs.remote.useCrossOriginOpenerPolicy</code> preference (needs to be set to <code>true</code>). To change preferences in Firefox, visit about:config.</dd>
+</dl></section>
+</td>
+<td class="bc-supports-no"> No</td>
+<td class="bc-supports-no"> No</td>
+<td class="bc-supports-no"> No</td>
+</tr></tbody>
+</table>
+</div> <h2 id="See_also">See also</h2> <ul> <li><a href="cross-origin-embedder-policy"><code>Cross-Origin-Embedder-Policy</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy$edit" class="_attribution-link">Edit this page on MDN</a>
+  </p>
+</div>
+<div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2020 Mozilla and individual contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Cross-Origin-Opener-Policy</a>
+  </p>
+</div>

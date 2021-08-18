@@ -1,0 +1,74 @@
+<h1>USB.requestDevice()</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <code>requestDevice()</code> method of the <a href="../usb"><code>USB</code></a> interface returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves with an instance of <a href="../usbdevice"><code>USBDevice</code></a> if the specified device is found. Calling this function triggers the user agent's pairing flow.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token constant">USB</span><span class="token punctuation">.</span><span class="token function">requestDevice</span><span class="token punctuation">(</span><span class="token punctuation">[</span>filters<span class="token punctuation">]</span><span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>filters</dt> <dd>An array of filter objects for possible devices you would like to pair. Each filter object can have the following properties: <ul> <li><code>vendorId</code></li> <li><code>productId</code></li> <li><code>classCode</code></li> <li><code>subclassCode</code></li> <li><code>protocolCode</code></li> <li><code>serialNumber</code></li> </ul> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves with an instance of <a href="../usbdevice"><code>USBDevice</code></a>.</p>
+<h2 id="example">Example</h2>
+<p>The following example looks for one of two USB devices. Notice that two product IDs are specified. Both are passed to <code>requestDevice()</code>. This triggers a user-agent flow that prompts the user to select a device for pairing. Only the selected device is passed to <code>then()</code>.</p> <p>The number of filters does not specifiy the number of devices shown by the user agent. For example, if only a USB device with product ID <code>0xa800</code> is found, then only one device will be listed by the user agent. On the other hand if the user agent finds two of the first listed device and one of the second, then all three devices will be listed.</p> <pre data-language="js"><span class="token keyword">const</span> filters <span class="token operator">=</span> <span class="token punctuation">[</span>
+        <span class="token punctuation">{</span>vendorId<span class="token operator">:</span> <span class="token number">0x1209</span><span class="token punctuation">,</span> productId<span class="token operator">:</span> <span class="token number">0xa800</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">{</span>vendorId<span class="token operator">:</span> <span class="token number">0x1209</span><span class="token punctuation">,</span> productId<span class="token operator">:</span> <span class="token number">0xa850</span><span class="token punctuation">}</span>
+      <span class="token punctuation">]</span><span class="token punctuation">;</span>
+navigator<span class="token punctuation">.</span>usb<span class="token punctuation">.</span><span class="token function">requestDevice</span><span class="token punctuation">(</span><span class="token punctuation">{</span>filters<span class="token operator">:</span> filters<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">usbDevice</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Product name: "</span> <span class="token operator">+</span> usbDevice<span class="token punctuation">.</span>productName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">e</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"There is no device. "</span> <span class="token operator">+</span> e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td>
+<a href="https://wicg.github.io/webusb/#dom-usb-requestdevice-options-options" hreflang="en" rel=" noopener">WebUSB<br><small>The definition of 'requestDevice' in that specification.</small></a> </td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>requestDevice</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/USB/requestDevice" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/USB/requestDevice</a>
+  </p>
+</div>

@@ -1,0 +1,114 @@
+<h1>Node.insertBefore()</h1> <p>The <code><strong>Node.insertBefore()</strong></code> method inserts a node before a <em>reference node</em> as a child of a specified <em>parent node</em>. </p> <p>If the given node already exists in the document, <code>insertBefore()</code> moves it from its current position to the new position. (That is, it will automatically be removed from its existing parent before appending it to the specified new parent.)</p> <p>This means that a node cannot be in two locations of the document simultaneously.</p> <div class="notecard note"> <p><strong>Note:</strong> The <a href="clonenode"><code>Node.cloneNode()</code></a> can be used to make a copy of the node before appending it under the new parent. Note that the copies made with <code>cloneNode()</code> will not be automatically kept in sync.</p> </div> <p>If the given child is a <a href="../documentfragment"><code>DocumentFragment</code></a>, the entire contents of the <code>DocumentFragment</code> are moved into the child list of the specified parent node.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">let</span> insertedNode <span class="token operator">=</span> parentNode<span class="token punctuation">.</span><span class="token function">insertBefore</span><span class="token punctuation">(</span>newNode<span class="token punctuation">,</span> referenceNode<span class="token punctuation">)</span>
+</pre> <dl> <dt><code><var>insertedNode</var></code></dt> <dd>The node being inserted (the same as <code><var>newNode</var></code>)</dd> <dt><code><var>parentNode</var></code></dt> <dd>The parent of the newly inserted node.</dd> <dt><code><var>newNode</var></code></dt> <dd>The node to be inserted.</dd> <dt><code><var>referenceNode</var></code></dt> <dd>The node before which <code><var>newNode</var></code> is inserted. If this is <code>null</code>, then <code><var>newNode</var></code> is inserted at the end of <code><var>parentNode</var></code>'s child nodes.</dd> </dl> <div class="note notecard"> <p><strong>Note:</strong> <code><var>referenceNode</var></code> is <strong>not</strong> an optional parameter. You must explicitly pass a <a href="../node"><code>Node</code></a> or <code>null</code>. Failing to provide it or passing invalid values may <a href="https://code.google.com/p/chromium/issues/detail?id=419780" rel=" noopener">behave</a> <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=119489" rel=" noopener">differently</a> in different browser versions.</p> </div>
+<h3 id="return_value">Return value</h3>
+<p>Returns the added child (unless <code><var>newNode</var></code> is a <a href="../documentfragment"><code>DocumentFragment</code></a>, in which case the empty <a href="../documentfragment"><code>DocumentFragment</code></a> is returned).</p>
+<h2 id="example">Example</h2>
+<h3 id="example_1">Example 1</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>parentElement<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>childElement<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>foo bar<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token comment">// Create the new node to insert</span>
+<span class="token keyword">let</span> newNode <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"span"</span><span class="token punctuation">)</span>
+
+<span class="token comment">// Get a reference to the parent node</span>
+<span class="token keyword">let</span> parentDiv <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"childElement"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>parentNode
+
+<span class="token comment">// Begin test case [ 1 ] : Existing childElement (all works correctly)</span>
+<span class="token keyword">let</span> sp2 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"childElement"</span><span class="token punctuation">)</span>
+parentDiv<span class="token punctuation">.</span><span class="token function">insertBefore</span><span class="token punctuation">(</span>newNode<span class="token punctuation">,</span> sp2<span class="token punctuation">)</span>
+<span class="token comment">// End test case [ 1 ]</span>
+
+<span class="token comment">// Begin test case [ 2 ] : childElement is of Type undefined</span>
+<span class="token keyword">let</span> sp2 <span class="token operator">=</span> <span class="token keyword">undefined</span> <span class="token comment">// Non-existent node of id "childElement"</span>
+parentDiv<span class="token punctuation">.</span><span class="token function">insertBefore</span><span class="token punctuation">(</span>newNode<span class="token punctuation">,</span> sp2<span class="token punctuation">)</span> <span class="token comment">// Implicit dynamic cast to type Node</span>
+<span class="token comment">// End test case [ 2 ]</span>
+
+<span class="token comment">// Begin test case [ 3 ] : childElement is of Type "undefined" ( string )</span>
+<span class="token keyword">let</span> sp2 <span class="token operator">=</span> <span class="token string">"undefined"</span> <span class="token comment">// Non-existent node of id "childElement"</span>
+parentDiv<span class="token punctuation">.</span><span class="token function">insertBefore</span><span class="token punctuation">(</span>newNode<span class="token punctuation">,</span> sp2<span class="token punctuation">)</span> <span class="token comment">// Generates "Type Error: Invalid Argument"</span>
+<span class="token comment">// End test case [ 3 ]</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</pre>
+<h3 id="example_2">Example 2</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>parentElement<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>childElement<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>foo bar<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token comment">// Create a new, plain &lt;span&gt; element</span>
+<span class="token keyword">let</span> sp1 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"span"</span><span class="token punctuation">)</span>
+
+<span class="token comment">// Get the reference element</span>
+<span class="token keyword">let</span> sp2 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"childElement"</span><span class="token punctuation">)</span>
+<span class="token comment">// Get the parent element</span>
+<span class="token keyword">let</span> parentDiv <span class="token operator">=</span> sp2<span class="token punctuation">.</span>parentNode
+
+<span class="token comment">// Insert the new element into before sp2</span>
+parentDiv<span class="token punctuation">.</span><span class="token function">insertBefore</span><span class="token punctuation">(</span>sp1<span class="token punctuation">,</span> sp2<span class="token punctuation">)</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</pre> <div class="notecard note"> <p><strong>Note:</strong> There is no <code>insertAfter()</code> method. It can be emulated by combining the <code>insertBefore</code> method with <a href="nextsibling"><code>Node.nextSibling</code></a>.</p> </div> <p>In the previous example, <code>sp1</code> could be inserted after <code>sp2</code> using:</p> <pre data-language="js">parentDiv<span class="token punctuation">.</span><span class="token function">insertBefore</span><span class="token punctuation">(</span>sp1<span class="token punctuation">,</span> sp2<span class="token punctuation">.</span>nextSibling<span class="token punctuation">)</span></pre> <p>If <code>sp2</code> does not have a next sibling, then it must be the last child — <code>sp2.nextSibling</code> returns <code>null</code>, and <code>sp1</code> is inserted at the end of the child node list (immediately after <code>sp2</code>).</p>
+<h3 id="example_3">Example 3</h3>
+<p>Insert an element before the first child element, using the <a href="firstchild"><code>firstChild</code></a> property.</p> <pre data-language="js"><span class="token comment">// Get the parent element</span>
+<span class="token keyword">let</span> parentElement <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'parentElement'</span><span class="token punctuation">)</span>
+<span class="token comment">// Get the parent's first child</span>
+<span class="token keyword">let</span> theFirstChild <span class="token operator">=</span> parentElement<span class="token punctuation">.</span>firstChild
+
+<span class="token comment">// Create a new element</span>
+<span class="token keyword">let</span> newElement <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"div"</span><span class="token punctuation">)</span>
+
+<span class="token comment">// Insert the new element before the first child</span>
+parentElement<span class="token punctuation">.</span><span class="token function">insertBefore</span><span class="token punctuation">(</span>newElement<span class="token punctuation">,</span> theFirstChild<span class="token punctuation">)</span>
+</pre> <p>When the element does not have a first child, then <code>firstChild</code> is <code>null</code>. The element is still appended to the parent, after the last child. </p> <p>Since the parent element did not have a first child, it did not have a last child, either. Consequently, the newly inserted element is the <em>only</em> element.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://dom.spec.whatwg.org/#dom-node-insertbefore" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'Node.insertBefore' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Fixes errors in the insertion algorithm</td> </tr> <tr> <td><a href="https://www.w3.org/TR/dom/#dom-node-insertbefore" hreflang="en" rel=" noopener">DOM4<br><small>The definition of 'Node.insertBefore' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>Describes the algorithm in more detail</td> </tr> <tr> <td><a href="https://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-952280727" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 3 Core Specification<br><small>The definition of 'Node.insertBefore' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>No notable changes</td> </tr> <tr> <td><a href="https://www.w3.org/TR/DOM-Level-2-Core/core.html#ID-952280727" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 2 Core Specification<br><small>The definition of 'Node.insertBefore' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>No notable changes</td> </tr> <tr> <td> <a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#method-insertBefore" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 1 Specification<br><small>The definition of 'Node.insertBefore' in that specification.</small></a> </td> <td><span class="spec-obsolete">Obsolete</span></td> <td>Introduced</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>insertBefore</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>1.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="removechild"><code>Node.removeChild()</code></a></li> <li><a href="replacechild"><code>Node.replaceChild()</code></a></li> <li><a href="appendchild"><code>Node.appendChild()</code></a></li> <li><a href="haschildnodes"><code>Node.hasChildNodes()</code></a></li> <li><a href="../element/insertadjacentelement"><code>Element.insertAdjacentElement()</code></a></li> <li><a href="../element/prepend"><code>Element.prepend()</code></a></li> <li><a href="../childnode/before"><code>ChildNode.before()</code></a></li> <li><a href="../childnode/after"><code>ChildNode.after()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Node/insertBefore</a>
+  </p>
+</div>

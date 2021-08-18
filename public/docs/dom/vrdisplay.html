@@ -1,0 +1,607 @@
+<h1>VRDisplay</h1>
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div> <p>The <code>VRDisplay</code> interface of the <a href="webvr_api">WebVR API</a> represents any VR device supported by this API. It includes generic information such as device IDs and descriptions, as well as methods for starting to present a VR scene, retrieving eye parameters and display capabilities, and other important functionality.</p> <p>An array of all connected VR Devices can be returned by invoking the <a href="navigator/getvrdisplays"><code>Navigator.getVRDisplays()</code></a> method.</p>
+<h2 id="properties">Properties</h2>
+<dl> <dt>
+<a href="vrdisplay/capabilities"><code>VRDisplay.capabilities</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="vrdisplaycapabilities"><code>VRDisplayCapabilities</code></a> object that indicates the various capabilities of the <code>VRDisplay</code>.</dd> <dt><a href="vrdisplay/depthfar"><code>VRDisplay.depthFar</code></a></dt> <dd>Gets and sets the z-depth defining the far plane of the <a href="https://en.wikipedia.org/wiki/Viewing_frustum" rel=" noopener">eye view frustum</a>, i.e. the furthest viewable boundary of the scene.</dd> <dt><a href="vrdisplay/depthnear"><code>VRDisplay.depthNear</code></a></dt> <dd>Gets and sets the z-depth defining the near plane of the <a href="https://en.wikipedia.org/wiki/Viewing_frustum" rel=" noopener">eye view frustum</a>, i.e. the nearest viewable boundary of the scene.</dd> <dt>
+<a href="vrdisplay/displayid"><code>VRDisplay.displayId</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns an identifier for this particular VRDisplay, which is also used as an association point in the <a href="gamepad_api">Gamepad API</a> (see <a href="gamepad/displayid"><code>Gamepad.displayId</code></a>).</dd> <dt>
+<a href="vrdisplay/displayname"><code>VRDisplay.displayName</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a human-readable name to identify the <code>VRDisplay</code>.</dd> <dt>
+<a href="vrdisplay/isconnected"><code>VRDisplay.isConnected</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> indicating whether the <code>VRDisplay</code> is connected to the computer.</dd> <dt>
+<a href="vrdisplay/ispresenting"><code>VRDisplay.isPresenting</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> indicating whether the <code>VRDisplay</code> is currently having content presented through it.</dd> <dt>
+<a href="vrdisplay/stageparameters"><code>VRDisplay.stageParameters</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="vrstageparameters"><code>VRStageParameters</code></a> object containing room-scale parameters, if the <code>VRDisplay</code> is capable of supporting room-scale experiences.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="vrdisplay/geteyeparameters"><code>VRDisplay.getEyeParameters()</code></a></dt> <dd>Returns the <a href="vreyeparameters"><code>VREyeParameters</code></a> object containing the eye parameters for the specified eye.</dd> <dt><a href="vrdisplay/getframedata"><code>VRDisplay.getFrameData()</code></a></dt> <dd>Accepts a <a href="vrframedata"><code>VRFrameData</code></a> object and populates it with the information required to render the current frame.</dd> <dt><a href="vrdisplay/getlayers"><code>VRDisplay.getLayers()</code></a></dt> <dd>Returns the layers currently being presented by the <code>VRDisplay</code>.</dd> <dt><a href="vrdisplay/resetpose"><code>VRDisplay.resetPose()</code></a></dt> <dd>Resets the pose for this <code>VRDisplay</code>, treating its current <a href="vrpose/position"><code>VRPose.position</code></a> and <a href="vrpose/orientation"><code>VRPose.orientation</code></a> as the "origin/zero" values.</dd> <dt><a href="vrdisplay/cancelanimationframe"><code>VRDisplay.cancelAnimationFrame()</code></a></dt> <dd>A special implementation of <a href="window/cancelanimationframe"><code>Window.cancelAnimationFrame</code></a> that allows callbacks registered with <a href="vrdisplay/requestanimationframe"><code>VRDisplay.requestAnimationFrame()</code></a> to be unregistered.</dd> <dt><a href="vrdisplay/requestanimationframe"><code>VRDisplay.requestAnimationFrame()</code></a></dt> <dd>A special implementation of <a href="window/requestanimationframe"><code>Window.requestAnimationFrame</code></a> containing a callback function that will be called every time a new frame of the <code>VRDisplay</code> presentation is rendered.</dd> <dt><a href="vrdisplay/requestpresent"><code>VRDisplay.requestPresent()</code></a></dt> <dd>Starts the <code>VRDisplay</code> presenting a scene.</dd> <dt><a href="vrdisplay/exitpresent"><code>VRDisplay.exitPresent()</code></a></dt> <dd>Stops the <code>VRDisplay</code> presenting a scene.</dd> <dt><a href="vrdisplay/submitframe"><code>VRDisplay.submitFrame()</code></a></dt> <dd>Captures the current state of the <a href="vrlayerinit"><code>VRLayerInit</code></a> currently being presented and displays it on the <code>VRDisplay</code>.</dd> </dl>
+<h3 id="deprecated_methods">Deprecated methods</h3>
+<dl> <dt>
+<a href="vrdisplay/getpose"><code>VRDisplay.getPose()</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>Returns a <a href="vrpose"><code>VRPose</code></a> object defining the future predicted pose of the <code>VRDisplay</code> as it will be when the current frame is actually presented. <strong>This method is deprecated — instead, you should use <a href="vrdisplay/getframedata"><code>VRDisplay.getFrameData()</code></a>, which also provides a <a href="vrpose"><code>VRPose</code></a> object.</strong>
+</dd> </dl>
+<h3 id="obsolete_methods">Obsolete methods</h3>
+<dl> <dt>
+<a href="vrdisplay/getimmediatepose"><code>VRDisplay.getImmediatePose()</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>Returns a <a href="vrpose"><code>VRPose</code></a> object defining the current pose of the <code>VRDisplay</code>, with no prediction applied. This is no longer needed, and has been removed from the spec.</dd> <dt>
+<a href="vrdisplay/hardwareunitid"><code>VRDisplay.hardwareUnitId</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>Returns a <a href="domstring"><code>DOMString</code></a> defining the shared ID of the display, and any other devices that are part of that hardware set (e.g. controllers). This is no longer needed, and has been removed from the spec. Displays now use <a href="vrdisplay/displayid"><code>VRDisplay.displayId</code></a>, and corresponsing controllers will now return the same ID under <a href="gamepad/displayid"><code>Gamepad.displayId</code></a>.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token keyword">if</span><span class="token punctuation">(</span>navigator<span class="token punctuation">.</span>getVRDisplays<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'WebVR 1.1 supported'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// Then get the displays attached to the computer</span>
+  navigator<span class="token punctuation">.</span><span class="token function">getVRDisplays</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">displays</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// If a display is available, use it to present the scene</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>displays<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      vrDisplay <span class="token operator">=</span> displays<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token comment">// Now we have our VRDisplay object and can do what we want with it</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <div class="note notecard"> <p><strong>Note</strong>: You can see this complete code at <a href="https://github.com/mdn/webvr-tests/blob/master/raw-webgl-example/webgl-demo.js" rel=" noopener">raw-webgl-example</a>.</p> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://immersive-web.github.io/webvr/spec/1.1/#interface-vrdisplay" hreflang="en" rel=" noopener">WebVR 1.1<br><small>The definition of 'VRDisplay' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>VRDisplay</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>≤18-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>cancelAnimationFrame</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>capabilities</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>depthFar</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>depthNear</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>displayId</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>displayName</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>exitPresent</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>getEyeParameters</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>getFrameData</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>getImmediatePose</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>getLayers</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>getPose</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>hardwareUnitId</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>isConnected</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>isPresenting</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>requestAnimationFrame</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>requestPresent</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>resetPose</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>stageParameters</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>submitFrame</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="webvr_api">WebVR API homepage</a></li> <li>
+<a href="https://mixedreality.mozilla.org/" rel=" noopener">https://mixedreality.mozilla.org/</a> — demos, downloads, and other resources from the Mozilla VR team.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/VRDisplay" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/VRDisplay</a>
+  </p>
+</div>

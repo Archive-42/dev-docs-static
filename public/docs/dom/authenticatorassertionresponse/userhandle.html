@@ -1,0 +1,83 @@
+<h1>AuthenticatorAssertionResponse.userHandle</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <code>userHandle</code> read-only property of the <a href="../authenticatorassertionresponse"><code>AuthenticatorAssertionResponse</code></a> interface is an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> object which is an opaque identifier for the given user. Such an identifier can be used by the relying party's server to link the user account with its corresponding credentials and other data.</p> <p>The same value may be found on the <code>id</code> property of the <a href="../publickeycredentialcreationoptions/user"><code>options.user</code></a> object (used for the creation of the <code>PublicKeyCredential</code> instance).</p> <div class="notecard note"> <p><strong>Note:</strong> An <code>AuthenticatorAssertionResponse</code> instance is available on <a href="../publickeycredential/response"><code>PublicKeyCredential.response</code></a> after calling <a href="../credentialscontainer/get"><code>navigator.credentials.get()</code></a>.</p> </div> <div class="note notecard"> <p><strong>Note:</strong> This property may only be used in top-level contexts and will not be available in an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a> for example.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">userHandle <span class="token operator">=</span> authenticatorAssertionResponse<span class="token punctuation">.</span>userHandle</pre>
+<h3 id="value">Value</h3>
+<p>An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> object which is an opaque identifier for the current user. This is not human-readable and does <strong>not</strong> contain any personally identifying information (e.g. username, e-mail, phone number, etc.)</p>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token keyword">var</span> options <span class="token operator">=</span> <span class="token punctuation">{</span>
+  challenge<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token number">26</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">// will be another value, provided by the relying party server</span>
+  timeout<span class="token operator">:</span> <span class="token number">60000</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+navigator<span class="token punctuation">.</span>credentials<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span>  publickey<span class="token operator">:</span> options <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">assertionPKCred</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> userHandle <span class="token operator">=</span> assertionPKCred<span class="token punctuation">.</span>response<span class="token punctuation">.</span>userHandle<span class="token punctuation">;</span>
+
+    <span class="token comment">// Send response and client extensions to the server so that it can</span>
+    <span class="token comment">// go on with the authentication</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td> <a href="https://w3c.github.io/webauthn/#dom-authenticatorassertionresponse-userhandle" hreflang="en" rel=" noopener">Web Authentication: An API for accessing Public Key Credentials Level 1<br><small>The definition of 'userHandle' in that specification.</small></a> </td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>userHandle</code></th>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>60</div>
+<div>Only supports USB U2F tokens.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>70</div></td>
+<td class="bc-supports-yes">
+<div>60</div>
+<div>Only supports USB U2F tokens.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../publickeycredentialcreationoptions/user"><code>PublicKeyCredentialCreationOptions.user</code></a> and its <code>id</code> property which contains the same data</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/AuthenticatorAssertionResponse/userHandle" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/AuthenticatorAssertionResponse/userHandle</a>
+  </p>
+</div>

@@ -1,0 +1,78 @@
+<h1>Headers.append()</h1> <p>The <code>append()</code> method of the <a href="../headers"><code>Headers</code></a> interface appends a new value onto an existing header inside a <code>Headers</code> object, or adds the header if it does not already exist.</p> <p>The difference between <a href="set"><code>set()</code></a> and <code>append()</code> is that if the specified header already exists and accepts multiple values, <code>set()</code> will overwrite the existing value with the new one, whereas <code>append()</code> will append the new value onto the end of the set of values.</p> <p>For security reasons, some headers can only be controlled by the user agent. These headers include the <a href="https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name">forbidden header names</a> and <a href="https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_response_header_name">forbidden response header names</a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">myHeaders<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>name</code></dt> <dd>The name of the HTTP header you want to add to the <code>Headers</code> object.</dd> <dt><code>value</code></dt> <dd>The value of the HTTP header you want to add.</dd> </dl>
+<h3 id="returns">Returns</h3>
+<p>Void.</p>
+<h2 id="example">Example</h2>
+<p>Creating an empty <code>Headers</code> object is simple:</p> <pre data-language="js"><span class="token keyword">var</span> myHeaders <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Headers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Currently empty</span></pre> <p>You could add a header to this using <code>append()</code>:</p> <pre data-language="js">myHeaders<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'Content-Type'</span><span class="token punctuation">,</span> <span class="token string">'image/jpeg'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+myHeaders<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'Content-Type'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Returns 'image/jpeg'</span>
+</pre> <p>If the specified header already exists, <code>append()</code> will change its value to the specified value. If the specified header already exists and accepts multiple values, <code>append()</code> will append the new value to the end of the value set:</p> <pre data-language="js">myHeaders<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'Accept-Encoding'</span><span class="token punctuation">,</span> <span class="token string">'deflate'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+myHeaders<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'Accept-Encoding'</span><span class="token punctuation">,</span> <span class="token string">'gzip'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+myHeaders<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'Accept-Encoding'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Returns 'deflate, gzip'</span></pre> <p>To overwrite the old value with a new one, use <a href="set"><code>Headers.set</code></a>.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://fetch.spec.whatwg.org/#dom-headers-append" hreflang="en" rel=" noopener">Fetch<br><small>The definition of 'append()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>append</code></th>
+<td class="bc-supports-yes">
+<div>42</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes">
+<div>39</div>
+<div>34</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>28</div>
+</td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes">
+<div>42</div>
+<div>41</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>28</div>
+</td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../service_worker_api">ServiceWorker API</a></li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">HTTP access control (CORS)</a> </li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP">HTTP</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Headers/append" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Headers/append</a>
+  </p>
+</div>

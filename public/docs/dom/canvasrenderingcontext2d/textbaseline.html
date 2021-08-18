@@ -1,0 +1,76 @@
+<h1>CanvasRenderingContext2D.textBaseline</h1> <p>The <code><strong>CanvasRenderingContext2D</strong></code><code>.textBaseline</code> property of the Canvas 2D API specifies the current text baseline used when drawing text.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">ctx<span class="token punctuation">.</span>textBaseline <span class="token operator">=</span> <span class="token string">"top"</span> <span class="token operator">||</span> <span class="token string">"hanging"</span> <span class="token operator">||</span> <span class="token string">"middle"</span> <span class="token operator">||</span> <span class="token string">"alphabetic"</span> <span class="token operator">||</span> <span class="token string">"ideographic"</span> <span class="token operator">||</span> <span class="token string">"bottom"</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="options">Options</h3>
+<p>Possible values:</p> <dl> <dt><code>"top"</code></dt> <dd>The text baseline is the top of the em square.</dd> <dt><code>"hanging"</code></dt> <dd>The text baseline is the hanging baseline. (Used by Tibetan and other Indic scripts.)</dd> <dt><code>"middle"</code></dt> <dd>The text baseline is the middle of the em square.</dd> <dt><code>"alphabetic"</code></dt> <dd>The text baseline is the normal alphabetic baseline. Default value.</dd> <dt><code>"ideographic"</code></dt> <dd>The text baseline is the ideographic baseline; this is the bottom of the body of the characters, if the main body of characters protrudes beneath the alphabetic baseline. (Used by Chinese, Japanese, and Korean scripts.)</dd> <dt><code>"bottom"</code></dt> <dd>The text baseline is the bottom of the bounding box. This differs from the ideographic baseline in that the ideographic baseline doesn't consider descenders. </dd> </dl> <p>The default value is <code>"alphabetic"</code>.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="comparison_of_property_values">Comparison of property values</h3>
+<p>This example demonstrates the various <code>textBaseline</code> property values.</p> <h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>canvas<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>550<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>500<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">&gt;</span></span>
+</pre> <h4 id="javascript">JavaScript</h4> <pre data-language="js"><span class="token keyword">const</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ctx <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> baselines <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'top'</span><span class="token punctuation">,</span> <span class="token string">'hanging'</span><span class="token punctuation">,</span> <span class="token string">'middle'</span><span class="token punctuation">,</span> <span class="token string">'alphabetic'</span><span class="token punctuation">,</span> <span class="token string">'ideographic'</span><span class="token punctuation">,</span> <span class="token string">'bottom'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span>font <span class="token operator">=</span> <span class="token string">'36px serif'</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span>strokeStyle <span class="token operator">=</span> <span class="token string">'red'</span><span class="token punctuation">;</span>
+
+baselines<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">baseline<span class="token punctuation">,</span> index</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  ctx<span class="token punctuation">.</span>textBaseline <span class="token operator">=</span> baseline<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> y <span class="token operator">=</span> <span class="token number">75</span> <span class="token operator">+</span> index <span class="token operator">*</span> <span class="token number">75</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span><span class="token function">beginPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> y <span class="token operator">+</span> <span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span><span class="token function">lineTo</span><span class="token punctuation">(</span><span class="token number">550</span><span class="token punctuation">,</span> y <span class="token operator">+</span> <span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span><span class="token function">stroke</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span><span class="token function">fillText</span><span class="token punctuation">(</span><span class="token string">'Abcdefghijklmnop ('</span> <span class="token operator">+</span> baseline <span class="token operator">+</span> <span class="token string">')'</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <h4 id="result">Result</h4> <p><iframe class="sample-code-frame" id="frame_Comparison_of_property_values" width="700" height="550" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/CanvasRenderingContext2D/textBaseline/_samples_/Comparison_of_property_values" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/scripting.html#dom-context-2d-textbaseline" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'CanvasRenderingContext2D.textBaseline' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>textBaseline</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The interface defining this property: <a href="../canvasrenderingcontext2d"><code>CanvasRenderingContext2D</code></a>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textBaseline" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/textBaseline</a>
+  </p>
+</div>

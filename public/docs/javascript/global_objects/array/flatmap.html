@@ -1,0 +1,129 @@
+<h1>Array.prototype.flatMap()</h1> <p>The <code><strong>flatMap()</strong></code> method returns a new array formed by applying a given callback function to each element of the array, and then flattening the result by one level. It is identical to a <a href="map"><code>map()</code></a> followed by a <a href="flat"><code>flat()</code></a> of depth 1, but slightly more efficient than calling those two methods separately.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token comment">// Arrow function</span>
+<span class="token function">flatMap</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">currentValue</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span> <span class="token punctuation">)</span>
+<span class="token function">flatMap</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">currentValue<span class="token punctuation">,</span> index</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span> <span class="token punctuation">)</span>
+<span class="token function">flatMap</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">currentValue<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span> <span class="token punctuation">)</span>
+
+<span class="token comment">// Callback function</span>
+<span class="token function">flatMap</span><span class="token punctuation">(</span>callbackFn<span class="token punctuation">)</span>
+<span class="token function">flatMap</span><span class="token punctuation">(</span>callbackFn<span class="token punctuation">,</span> thisArg<span class="token punctuation">)</span>
+
+<span class="token comment">// Inline callback function</span>
+<span class="token function">flatMap</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">callbackFn</span><span class="token punctuation">(</span><span class="token parameter">currentValue</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">flatMap</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">callbackFn</span><span class="token punctuation">(</span><span class="token parameter">currentValue<span class="token punctuation">,</span> index</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">flatMap</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">callbackFn</span><span class="token punctuation">(</span><span class="token parameter">currentValue<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">flatMap</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">callbackFn</span><span class="token punctuation">(</span><span class="token parameter">currentValue<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> thisArg<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>callback</code></dt> <dd>Function that produces an element of the new Array, taking three arguments: <dl> <dt><code>currentValue</code></dt> <dd>The current element being processed in the array.</dd> <dt>
+<code>index</code><span class="badge inline optional">Optional</span>
+</dt> <dd>The index of the current element being processed in the array.</dd> <dt>
+<code>array</code><span class="badge inline optional">Optional</span>
+</dt> <dd>The array <code>map</code> was called upon.</dd> </dl> </dd> <dt>
+<code>thisArg</code><span class="badge inline optional">Optional</span>
+</dt> <dd>Value to use as <code>this</code> when executing <code>callback</code>.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A new array with each element being the result of the callback function and flattened to a depth of 1.</p>
+<h2 id="description">Description</h2>
+<p>See <a href="map"><code>Array.prototype.map()</code></a> for a detailed description of the callback function. The <code>flatMap</code> method is identical to a <code><a href="map">map</a></code> followed by a call to <code><a href="flat">flat</a></code> of depth 1.</p>
+<h3 id="alternative">Alternative</h3>
+<h4 id="reduce_and_concat">
+<code>reduce()</code> and <code>concat()</code>
+</h4> <pre data-language="js"><span class="token keyword">var</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+arr<span class="token punctuation">.</span><span class="token function">flatMap</span><span class="token punctuation">(</span><span class="token parameter">x</span> <span class="token operator">=&gt;</span> <span class="token punctuation">[</span>x<span class="token punctuation">,</span> x <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// is equivalent to</span>
+arr<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">acc<span class="token punctuation">,</span> x</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> acc<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span><span class="token punctuation">[</span>x<span class="token punctuation">,</span> x <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// [1, 2, 2, 4, 3, 6, 4, 8]</span>
+</pre> <p>Note, however, that this is inefficient and should be avoided for large arrays: in each iteration, it creates a new temporary array that must be garbage-collected, and it copies elements from the current accumulator array into a new array instead of just adding the new elements to the existing array.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="map_and_flatmap">
+<code>map()</code> and <code>flatMap()</code>
+</h3>
+<pre data-language="js"><span class="token keyword">let</span> arr1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+arr1<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">x</span> <span class="token operator">=&gt;</span> <span class="token punctuation">[</span>x <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// [[2], [4], [6], [8]]</span>
+
+arr1<span class="token punctuation">.</span><span class="token function">flatMap</span><span class="token punctuation">(</span><span class="token parameter">x</span> <span class="token operator">=&gt;</span> <span class="token punctuation">[</span>x <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// [2, 4, 6, 8]</span>
+
+<span class="token comment">// only one level is flattened</span>
+arr1<span class="token punctuation">.</span><span class="token function">flatMap</span><span class="token punctuation">(</span><span class="token parameter">x</span> <span class="token operator">=&gt;</span> <span class="token punctuation">[</span><span class="token punctuation">[</span>x <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// [[2], [4], [6], [8]]</span>
+</pre> <p>While the above could have been achieved by using map itself, here is an example that better showcases the use of <code>flatMap</code>.</p> <p>Let's generate a list of words from a list of sentences.</p> <pre data-language="js"><span class="token keyword">let</span> arr1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"it's Sunny in"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">,</span> <span class="token string">"California"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+arr1<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">x</span> <span class="token operator">=&gt;</span> x<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// [["it's","Sunny","in"],[""],["California"]]</span>
+
+arr1<span class="token punctuation">.</span><span class="token function">flatMap</span><span class="token punctuation">(</span><span class="token parameter">x</span> <span class="token operator">=&gt;</span> x<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// ["it's","Sunny","in", "", "California"]</span></pre> <p>Notice, the output list length can be different from the input list length.</p>
+<h3 id="for_adding_and_removing_items_during_a_map">For adding and removing items during a <code>map()</code>
+</h3>
+<p><code>flatMap</code> can be used as a way to add and remove items (modify the number of items) during a <code>map</code>. In other words, it allows you to map <em>many items to many items</em> (by handling each input item separately), rather than always <em>one-to-one</em>. In this sense, it works like the opposite of <a href="filter">filter</a>. Return a 1-element array to keep the item, a multiple-element array to add items, or a 0-element array to remove the item.</p> <pre data-language="js"><span class="token comment">// Let's say we want to remove all the negative numbers</span>
+<span class="token comment">// and split the odd numbers into an even number and a 1</span>
+<span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">17</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">33</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">18</span><span class="token punctuation">]</span>
+<span class="token comment">//       |\  \  x   |  | \   x   x   |</span>
+<span class="token comment">//      [4,1, 4,   20, 16, 1,       18]</span>
+
+a<span class="token punctuation">.</span><span class="token function">flatMap</span><span class="token punctuation">(</span> <span class="token punctuation">(</span><span class="token parameter">n</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
+  <span class="token punctuation">(</span>n <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">?</span>      <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">:</span>
+  <span class="token punctuation">(</span>n <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token punctuation">[</span>n<span class="token punctuation">]</span> <span class="token operator">:</span>
+                 <span class="token punctuation">[</span>n<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span>
+<span class="token punctuation">)</span>
+
+<span class="token comment">// expected output: [4, 1, 4, 20, 16, 1, 18]</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-array.prototype.flatmap">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-array.prototype.flatmap</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>flatMap</code></th>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="flat"><code>Array.prototype.flat()</code></a></li> <li><a href="map"><code>Array.prototype.map()</code></a></li> <li><a href="reduce"><code>Array.prototype.reduce()</code></a></li> <li><a href="concat"><code>Array.prototype.concat()</code></a></li> <li><a href="https://github.com/behnammodi/polyfill/blob/master/array.polyfill.js" rel=" noopener">A polyfill</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/flatMap</a>
+  </p>
+</div>

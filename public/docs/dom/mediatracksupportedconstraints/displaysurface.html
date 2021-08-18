@@ -1,0 +1,76 @@
+<h1>MediaTrackSupportedConstraints.displaySurface</h1>
+
+ <p>The <a href="../mediatracksupportedconstraints"><code>MediaTrackSupportedConstraints</code></a> dictionary's <code>displaySurface</code> property indicates whether or not the <a href="../mediatrackconstraints/displaysurface"><code>displaySurface</code></a> constraint is supported by the user agent and the device on which the content is being used.  </p> <p>The supported constraints list is obtained by calling <a href="../mediadevices/getsupportedconstraints"><code>navigator.mediaDevices.getSupportedConstraints()</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">isDisplaySurfaceSupported <span class="token operator">=</span> supportedConstraints<span class="token punctuation">.</span>displaySurface<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>A Boolean value which is <code>true</code> if the <a href="../mediatrackconstraints/displaysurface"><code>displaySurface</code></a> constraint is supported by the device and user agent.</p>
+<h2 id="example">Example</h2>
+<p>This method sets up the constraints object specifying the options for the call to <a href="../mediadevices/getdisplaymedia"><code>getDisplayMedia()</code></a>. It adds the <code>displaySurface</code> constraint (requesting that only full-screen sharing be allowed) only if it is known to be supported by the browser. Capturing is then started by calling <code>getDisplayMedia()</code> and attaching the returned stream to the video element referenced by the variable <code>videoElem</code>.</p> <pre data-language="js"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">capture</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> supportedConstraints <span class="token operator">=</span> navigator<span class="token punctuation">.</span>mediaDevices<span class="token punctuation">.</span><span class="token function">getSupportedConstraints</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> displayMediaOptions <span class="token operator">=</span> <span class="token punctuation">{</span>
+    video<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    audio<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>supportedConstraints<span class="token punctuation">.</span>displaySurface<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    displayMediaOptions<span class="token punctuation">.</span>video<span class="token punctuation">.</span>displaySurface <span class="token operator">=</span> <span class="token string">"monitor"</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    videoElem<span class="token punctuation">.</span>srcObject <span class="token operator">=</span> <span class="token keyword">await</span> navigator<span class="token punctuation">.</span>mediaDevices<span class="token punctuation">.</span><span class="token function">getDisplayMedia</span><span class="token punctuation">(</span>displayMediaOptions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* handle the error */</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/mediacapture-screen-share/#dom-mediatracksupportedconstraints-displaysurface" hreflang="en" rel=" noopener">Screen Capture<br><small>The definition of 'MediaTrackSupportedConstraints.displaySurface' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>displaySurface</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../screen_capture_api">Screen Capture API</a></li> <li><a href="../screen_capture_api/using_screen_capture">Using the screen capture API</a></li> <li><a href="../media_streams_api/constraints">Capabilities, constraints, and settings</a></li> <li><a href="../mediadevices/getdisplaymedia"><code>MediaDevices.getDisplayMedia()</code></a></li> <li><a href="../mediastreamtrack/getconstraints"><code>MediaStreamTrack.getConstraints()</code></a></li> <li><a href="../mediastreamtrack/applyconstraints"><code>MediaStreamTrack.applyConstraints()</code></a></li> <li><a href="../mediastreamtrack/getsettings"><code>MediaStreamTrack.getSettings()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSupportedConstraints/displaySurface" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackSupportedConstraints/displaySurface</a>
+  </p>
+</div>

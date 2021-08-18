@@ -1,0 +1,92 @@
+<h1>Math.imul()</h1> <p>The <code>Math.imul()</code> function returns the result of the C-like 32-bit multiplication of the two parameters.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/math-imul.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js">Math<span class="token punctuation">.</span><span class="token function">imul</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>a</var></code></dt> <dd>First number.</dd> <dt><code><var>b</var></code></dt> <dd>Second number.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The result of the C-like 32-bit multiplication of the given arguments.</p>
+<h2 id="description">Description</h2>
+<p><code>Math.imul()</code> allows for 32-bit integer multiplication with C-like semantics. This feature is useful for projects like <a href="https://en.wikipedia.org/wiki/Emscripten" rel=" noopener">Emscripten</a>.</p> <p>Because <code>imul()</code> is a static method of <code>Math</code>, you always use it as <code>Math.imul()</code>, rather than as a method of a <code>Math</code> object you created (<code>Math</code> is not a constructor).</p> <p>If you use normal JavaScript floating point numbers in imul, you will experience a degrade in performance. This is because of the costly conversion from a floating point to an integer for multiplication, and then converting the multiplied integer back into a floating point. The reason imul exists is because it is faster in only one (so far) circumstance: AsmJS. AsmJS allows for JIST-optimizers to more easily implement internal integers in JavaScript. Multiplying two numbers stored internally as integers (which is only possible with AsmJS) with imul is the only potential circumstance where Math.imul may prove performant in current browsers.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_math.imul">Using Math.imul()</h3>
+<pre data-language="js">Math<span class="token punctuation">.</span><span class="token function">imul</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// 8</span>
+Math<span class="token punctuation">.</span><span class="token function">imul</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// -8</span>
+Math<span class="token punctuation">.</span><span class="token function">imul</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">// 4</span>
+Math<span class="token punctuation">.</span><span class="token function">imul</span><span class="token punctuation">(</span><span class="token number">0xffffffff</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// -5</span>
+Math<span class="token punctuation">.</span><span class="token function">imul</span><span class="token punctuation">(</span><span class="token number">0xfffffffe</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// -10</span>
+</pre>
+<h2 id="polyfill">Polyfill</h2>
+<p>This can be emulated with the following function:</p> <pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Math<span class="token punctuation">.</span>imul<span class="token punctuation">)</span> Math<span class="token punctuation">.</span><span class="token function-variable function">imul</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> aHi <span class="token operator">=</span> <span class="token punctuation">(</span>a <span class="token operator">&gt;&gt;&gt;</span> <span class="token number">16</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token number">0xffff</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> aLo <span class="token operator">=</span> a <span class="token operator">&amp;</span> <span class="token number">0xffff</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> bHi <span class="token operator">=</span> <span class="token punctuation">(</span>b <span class="token operator">&gt;&gt;&gt;</span> <span class="token number">16</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span> <span class="token number">0xffff</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> bLo <span class="token operator">=</span> b <span class="token operator">&amp;</span> <span class="token number">0xffff</span><span class="token punctuation">;</span>
+  <span class="token comment">// the shift by 0 fixes the sign on the high part</span>
+  <span class="token comment">// the final |0 converts the unsigned value into a signed value</span>
+  <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>aLo <span class="token operator">*</span> bLo<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span>aHi <span class="token operator">*</span> bLo <span class="token operator">+</span> aLo <span class="token operator">*</span> bHi<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token number">16</span><span class="token punctuation">)</span> <span class="token operator">&gt;&gt;&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre> <p>However, the following function is more performant because it is likely that browsers in which this polyfill would be used do not optimize with an internal integer type in JavaScript, instead using floating points for all numbers.</p> <pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Math<span class="token punctuation">.</span>imul<span class="token punctuation">)</span> Math<span class="token punctuation">.</span><span class="token function-variable function">imul</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">opA<span class="token punctuation">,</span> opB</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  opB <span class="token operator">|=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token comment">// ensure that opB is an integer. opA will automatically be coerced.</span>
+  <span class="token comment">// floating points give us 53 bits of precision to work with plus 1 sign bit</span>
+  <span class="token comment">// automatically handled for our convienence:</span>
+  <span class="token comment">// 1. 0x003fffff /*opA &amp; 0x000fffff*/ * 0x7fffffff /*opB*/ = 0x1fffff7fc00001</span>
+  <span class="token comment">//    0x1fffff7fc00001 &lt; Number.MAX_SAFE_INTEGER /*0x1fffffffffffff*/</span>
+  <span class="token keyword">var</span> result <span class="token operator">=</span> <span class="token punctuation">(</span>opA <span class="token operator">&amp;</span> <span class="token number">0x003fffff</span><span class="token punctuation">)</span> <span class="token operator">*</span> opB<span class="token punctuation">;</span>
+  <span class="token comment">// 2. We can remove an integer coersion from the statement above because:</span>
+  <span class="token comment">//    0x1fffff7fc00001 + 0xffc00000 = 0x1fffffff800001</span>
+  <span class="token comment">//    0x1fffffff800001 &lt; Number.MAX_SAFE_INTEGER /*0x1fffffffffffff*/</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>opA <span class="token operator">&amp;</span> <span class="token number">0xffc00000</span> <span class="token comment">/*!== 0*/</span><span class="token punctuation">)</span> result <span class="token operator">+=</span> <span class="token punctuation">(</span>opA <span class="token operator">&amp;</span> <span class="token number">0xffc00000</span><span class="token punctuation">)</span> <span class="token operator">*</span> opB <span class="token operator">|</span><span class="token number">0</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> result <span class="token operator">|</span><span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-math.imul">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-math.imul</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>imul</code></th>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>20</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>20</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://en.wikipedia.org/wiki/Emscripten" rel=" noopener">Emscripten</a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/imul" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/imul</a>
+  </p>
+</div>

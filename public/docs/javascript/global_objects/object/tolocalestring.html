@@ -1,0 +1,98 @@
+<h1>Object.prototype.toLocaleString()</h1>
+
+ <p>The <code><strong>toLocaleString()</strong></code> method returns a string representing the object. This method is meant to be overridden by derived objects for locale-specific purposes.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/object-prototype-tolocalestring.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">toLocaleString</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre>
+<h3 id="return_value">Return value</h3>
+<p>A string representing the object.</p>
+<h2 id="description">Description</h2>
+<p><a href="../object"><code>Object</code></a>'s <code>toLocaleString</code> returns the result of calling <a href="tostring"><code>toString()</code></a>.</p> <p>This function is provided to give objects a generic <code>toLocaleString</code> method, even though not all may use it. See the list below.</p>
+<h3 id="objects_overriding_tolocalestring">Objects overriding toLocaleString</h3>
+<ul> <li>
+<a href="../array"><code>Array</code></a>: <a href="../array/tolocalestring"><code>Array.prototype.toLocaleString()</code></a>
+</li> <li>
+<a href="../number"><code>Number</code></a>: <a href="../number/tolocalestring"><code>Number.prototype.toLocaleString()</code></a>
+</li> <li>
+<a href="../date"><code>Date</code></a>: <a href="../date/tolocalestring"><code>Date.prototype.toLocaleString()</code></a>
+</li> <li>
+<a href="../typedarray"><code>TypedArray</code></a>: <a href="../typedarray/tolocalestring"><code>TypedArray.prototype.toLocaleString()</code></a>
+</li> <li>
+<a href="../bigint"><code>BigInt</code></a>: <a href="../bigint/tolocalestring"><code>BigInt.prototype.toLocaleString()</code></a>
+</li> </ul>
+<h2 id="examples">Examples</h2>
+<h3 id="array_tolocalestring_override">Array toLocaleString() override</h3>
+<p>On <a href="../array"><code>Array</code></a> objects, <a href="../array/tolocalestring"><code>toLocaleString()</code></a> can be used to print array values as a string, optionally with locale-specific identifiers (such as currency symbols) appended to them:</p> <p>For example:</p> <pre data-language="js"><span class="token keyword">const</span> testArray <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> euroPrices <span class="token operator">=</span> testArray<span class="token punctuation">.</span><span class="token function">toLocaleString</span><span class="token punctuation">(</span><span class="token string">'fr'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> style<span class="token operator">:</span> <span class="token string">'currency'</span><span class="token punctuation">,</span> currency<span class="token operator">:</span> <span class="token string">'EUR'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// "4,00 €,7,00 €,10,00 €"</span></pre>
+<h3 id="date_tolocalestring_override">Date toLocaleString() override</h3>
+<p>On <a href="../date"><code>Date</code></a> objects, <a href="../date/tolocalestring"><code>toLocaleString()</code></a> is used to print out date displays more suitable for specific locales:</p> <p>For example:</p> <pre data-language="js"><span class="token keyword">const</span> testDate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// "Date Fri May 29 2020 18:04:24 GMT+0100 (British Summer Time)"</span>
+
+<span class="token keyword">let</span> deDate <span class="token operator">=</span> testDate<span class="token punctuation">.</span><span class="token function">toLocaleString</span><span class="token punctuation">(</span><span class="token string">'de'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// "29.5.2020, 18:04:24"</span>
+
+<span class="token keyword">var</span> frDate <span class="token operator">=</span> testDate<span class="token punctuation">.</span><span class="token function">toLocaleString</span><span class="token punctuation">(</span><span class="token string">'fr'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//"29/05/2020 à 18:04:24"</span></pre>
+<h3 id="number_tolocalestring_override">Number toLocaleString() override</h3>
+<p>On <a href="../number"><code>Number</code></a> objects, <a href="../number/tolocalestring"><code>toLocaleString()</code></a> is used to print out number displays more suitable for specific locales, e.g. with the correct separators:</p> <p>For example:</p> <pre data-language="js"><span class="token keyword">const</span> testNumber <span class="token operator">=</span> <span class="token number">2901234564</span><span class="token punctuation">;</span>
+<span class="token comment">// "2901234564"</span>
+
+<span class="token keyword">let</span> deNumber <span class="token operator">=</span> testNumber<span class="token punctuation">.</span><span class="token function">toLocaleString</span><span class="token punctuation">(</span><span class="token string">'de'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// "2.901.234.564"</span>
+
+<span class="token keyword">let</span> frNumber <span class="token operator">=</span> testNumber<span class="token punctuation">.</span><span class="token function">toLocaleString</span><span class="token punctuation">(</span><span class="token string">'fr'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// "2 901 234 564"</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-object.prototype.tolocalestring">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-object.prototype.tolocalestring</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>toLocaleString</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5.5</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="tostring"><code>Object.prototype.toString()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toLocaleString" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toLocaleString</a>
+  </p>
+</div>

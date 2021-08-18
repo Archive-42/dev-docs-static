@@ -1,0 +1,96 @@
+<h1>MediaRecorderErrorEvent.error</h1> <p>The read-only <code>error</code> property in the <strong><a href="../mediarecordererrorevent"><code>MediaRecorderErrorEvent</code></a></strong> interface is a <a href="../domexception"><code>DOMException</code></a> object providing details about the exception that was thrown by a <a href="../mediarecorder"><code>MediaRecorder</code></a> instance.</p> <p>When a <code>MediaRecorderErrorEvent</code> occurs, you can determine to some extent what went wrong by examining the <code>error</code> property within the <code>MediaRecorderErrorEvent</code> received by the <code>MediaRecorder</code>'s <code><a href="../element/error_event">error</a></code> event handler, <a href="../mediarecorder/onerror"><code>onerror</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">error <span class="token operator">=</span> MediaRecorderErrorEvent<span class="token punctuation">.</span>error<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../domexception"><code>DOMException</code></a> describing the error represented by the event. The error's <a href="../domexception/name"><code>name</code></a> property's value may be any exception that makes sense during the handling of media recording, including these specifically identified by the specification. The descriptions here are generic ones; you'll find more specific ones to various scenarios in which they may occur in the corresponding method references.</p> <dl> <dt><code>InvalidStateError</code></dt> <dd>An operation was attempted in a context in which it isn't allowed, or a request has been made on an object that's deleted or removed.</dd> <dt><code>NotSupportedError</code></dt> <dd>A <code>MediaRecorder</code> couldn't be created because the specified options weren't valid. The <code>message</code> atttribute should provide additional information, if it exists.</dd> <dt><code>SecurityError</code></dt> <dd>The <a href="../mediastream"><code>MediaStream</code></a> is configured to disallow recording. This may be the case, for example, with sources obtained using <a href="../mediadevices/getusermedia"><code>getUserMedia()</code></a> when the user denies permission to use an input device. This also happens when a <a href="../mediastreamtrack"><code>MediaStreamTrack</code></a> within the stream is marked as <a class="page-not-created"><code>isolated</code></a> due to the <a class="page-not-created"><code>peerIdentity</code></a> constraint on the source stream.</dd> <dt><code>InvalidModificationError</code></dt> <dd>The number of tracks on the stream being recorded has changed. You can't add or remove tracks while recording media.</dd> <dt><code>UnknownError</code></dt> <dd>A non-security related error occurred that cannot otherwise be categorized. Recording stops, the <code>MediaRecorder</code>'s <a href="../mediarecorder/state"><code>state</code></a> becomes <code>inactive</code>, one last <code><a href="https://developer.mozilla.org/en-US/docs/Web/Events/dataavailable">dataavailable</a></code> event is sent to the <code>MediaRecorder</code> with the remaining received data, and finally a <code><a href="https://developer.mozilla.org/en-US/docs/Web/Events/stop">stop</a></code> event is sent.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="basic_error-handling_example">Basic error-handling example</h3>
+<p>This function creates and returns a <code>MediaRecorder</code> for a given <a href="../mediastream"><code>MediaStream</code></a>, configured to buffer data into an array and to watch for errors.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">recordStream</span><span class="token punctuation">(</span><span class="token parameter">stream</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> recorder <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> bufferList <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    recorder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MediaRecorder</span><span class="token punctuation">(</span>stream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* exception while trying to create the recorder; handle that */</span>
+  <span class="token punctuation">}</span>
+
+  recorder<span class="token punctuation">.</span><span class="token function-variable function">ondataavailable</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    bufferList<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  recorder<span class="token punctuation">.</span><span class="token function-variable function">onerror</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> error <span class="token operator">=</span> event<span class="token punctuation">.</span>error<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  recorder<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">/* 100ms time slices per buffer */</span>
+  <span class="token keyword">return</span> recorder<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/mediacapture-record/#errorevent-section" hreflang="en" rel=" noopener">MediaStream Recording<br><small>The definition of 'MediaRecorderErrorEvent.error' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>error</code></th>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Uses a generic event with an <code>error</code> property.</div>
+</td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Uses a generic event with an <code>error</code> property.</div>
+</td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Uses a generic event with an <code>error</code> property.</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Uses a generic event with an <code>error</code> property.</div>
+</td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Uses a generic event with an <code>error</code> property.</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Uses a generic event with an <code>error</code> property.</div>
+</td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../mediastream_recording_api">MediaStream Recording API</a></li> <li><a href="../mediastream_recording_api/using_the_mediastream_recording_api">Using the MediaStream Recording API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorderErrorEvent/error" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorderErrorEvent/error</a>
+  </p>
+</div>

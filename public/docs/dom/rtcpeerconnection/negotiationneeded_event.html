@@ -1,0 +1,76 @@
+<h1>RTCPeerConnection: negotiationneeded event</h1>
+
+ <p>A <code><strong>negotiationneeded</strong></code> event is sent to the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> when negotiation of the connection through the signaling channel is required. This occurs both during the initial setup of the connection as well as any time a change to the communication environment requires reconfiguring the connection.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>No</td> </tr> <tr> <th scope="row">Cancelable</th> <td>No</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../event"><code>Event</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td><a href="onnegotiationneeded"><code>RTCPeerConnection.onnegotiationneeded</code></a></td> </tr> </tbody> </table></div> <p>The <code>negotiationneeded</code> event is first dispatched to the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> when media is first added to the connection. This starts the process of <a href="https://developer.mozilla.org/en-US/docs/Glossary/ICE">ICE</a> negotiation by instructing your code to begin exchanging ICE candidates through the signaling server. See <a href="../webrtc_api/signaling_and_video_calling#signaling_transaction_flow">Signaling transaction flow</a> in <a href="../webrtc_api/signaling_and_video_calling">Signaling and video calling</a> for a description of the signaling process that begins with a <code>negotiationneeded</code> event.</p>
+<h2 id="examples">Examples</h2>
+<p>In this example, we use <a href="../eventtarget/addeventlistener"><code>addEventListener()</code></a> to create an event handler for <code>negotiationneeded</code>. Its role is to create an <a href="https://developer.mozilla.org/en-US/docs/Glossary/SDP">SDP</a> offer and send it through the signaling channel to the remote peer.</p> <pre data-language="js">pc<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"negotiationneeded"</span><span class="token punctuation">,</span> <span class="token parameter">ev</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  pc<span class="token punctuation">.</span><span class="token function">createOffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">offer</span> <span class="token operator">=&gt;</span> <span class="token keyword">return</span> pc<span class="token punctuation">.</span><span class="token function">setLocalDescription</span><span class="token punctuation">(</span>offer<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">sendSignalingMessage</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">"video-offer"</span><span class="token punctuation">,</span>
+    sdp<span class="token operator">:</span> pc<span class="token punctuation">.</span>localDescription
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">err</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* handle error */</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>After creating the offer, the local end is configured by calling <a href="setlocaldescription"><code>RTCPeerConnection.setLocalDescription()</code></a>; then a signaling message is created and sent to the remote peer through the signaling server, to share that offer with the other peer. The other peer should recognize this message and follow up by creating its own <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a>, setting the remote description with <a href="setremotedescription"><code>setRemoteDescription()</code></a>, and then creating an answer to send back to the offering peer.</p> <p>You can also set an event handler for the <code>negotiationneeded</code> event by assigning the event handler function to the <a href="onnegotiationneeded"><code>RTCPeerConnection.onnegotiationneeded</code></a> property:</p> <pre data-language="js">pc<span class="token punctuation">.</span><span class="token function-variable function">onnegotiationneeded</span> <span class="token operator">=</span> <span class="token parameter">ev</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  pc<span class="token punctuation">.</span><span class="token function">createOffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">offer</span> <span class="token operator">=&gt;</span> <span class="token keyword">return</span> pc<span class="token punctuation">.</span><span class="token function">setLocalDescription</span><span class="token punctuation">(</span>offer<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">sendSignalingMessage</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">"video-offer"</span><span class="token punctuation">,</span>
+    sdp<span class="token operator">:</span> pc<span class="token punctuation">.</span>localDescription
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">err</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* handle error */</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre> <p>For a more detailed example, see <a href="../webrtc_api/signaling_and_video_calling#starting_negotiation">Starting negotiation</a> in <a href="../webrtc_api/signaling_and_video_calling">Signaling and video calling</a>.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#event-negotiation" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'negotiationneeded' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>negotiationneeded_event</code></th>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webrtc_api">WebRTC API</a></li> <li><a href="../webrtc_api/signaling_and_video_calling">Signaling and video calling</a></li> <li><a href="../webrtc_api/session_lifetime">Lifetime of a WebRTC session</a></li> <li><a href="../webrtc_api/connectivity">WebRTC connectivity</a></li> <li><a href="../webrtc_api/protocols">Introduction to WebRTC protocols</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/negotiationneeded_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/negotiationneeded_event</a>
+  </p>
+</div>

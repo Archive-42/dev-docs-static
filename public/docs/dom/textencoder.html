@@ -1,0 +1,254 @@
+<h1>TextEncoder</h1>
+
+ <p><code><strong>TextEncoder</strong></code> takes a stream of code points as input and emits a stream of UTF-8 bytes.</p> 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="web_workers_api">Web Workers</a>.</p> </div>
+
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token keyword">const</span> encoder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TextEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> view <span class="token operator">=</span> encoder<span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span><span class="token string">'€'</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>view<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Uint8Array(3) [226, 130, 172]</span>
+</pre>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="textencoder/textencoder"><code>TextEncoder()</code></a></dt> <dd>Returns a newly constructed <code>TextEncoder</code> that will generate a byte stream with UTF-8 encoding.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<p><em>The <code>TextEncoder</code> interface doesn't inherit any property.</em></p> <dl> <dt>
+<a href="textencoder/encoding"><code>TextEncoder.prototype.encoding</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>Always returns "<code>utf-8</code>".</dd> </dl>
+<h2 id="methods">Methods</h2>
+<p><em>The <code>TextEncoder</code> interface doesn't inherit any method</em>.</p> <dl> <dt><a href="textencoder/encode"><code>TextEncoder.prototype.encode()</code></a></dt> <dd>Takes a <a href="usvstring"><code>USVString</code></a> as input, and returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array"><code>Uint8Array</code></a> containing UTF-8 encoded text.</dd> <dt><a href="textencoder/encodeinto"><code>TextEncoder.prototype.encodeInto()</code></a></dt> <dd>Takes a <a href="usvstring"><code>USVString</code></a> to encode and a destination <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array"><code>Uint8Array</code></a> to put resulting UTF-8 encoded text into, and returns a dictionary object indicating the progress of the encoding. This is potentially more performant than the older <code>encode()</code> method.</dd> </dl>
+<h2 id="polyfill">Polyfill</h2>
+<p>The below polyfill is compliant with the standard and therefore only supports UTF-8. It is designed to work in IE5 "out of the box". However, in IE5-IE9, it will return a regular Array instead of a TypedArray. In those cases a polyfill might be impractical for large strings. Finally, note that you should run the below code through a minifier (especially closure compiler) to turn sequences like <code>0x1e &lt;&lt; 3</code> into <code>0xf0</code>. These sequences are not already precomputed because they serve to aesthetically illustrate how the polyfill works.</p> <pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> TextEncoder <span class="token operator">===</span> <span class="token string">"undefined"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">TextEncoder</span><span class="token operator">=</span><span class="token keyword">function</span> <span class="token function">TextEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token class-name">TextEncoder</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">encode</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">encode</span><span class="token punctuation">(</span><span class="token parameter">str</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token string">"use strict"</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> Len <span class="token operator">=</span> str<span class="token punctuation">.</span>length<span class="token punctuation">,</span> resPos <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+        <span class="token comment">// The Uint8Array's length must be at least 3x the length of the string because an invalid UTF-16</span>
+        <span class="token comment">//  takes up the equivelent space of 3 UTF-8 characters to encode it properly. However, Array's</span>
+        <span class="token comment">//  have an auto expanding length and 1.5x should be just the right balance for most uses.</span>
+        <span class="token keyword">var</span> resArr <span class="token operator">=</span> <span class="token keyword">typeof</span> Uint8Array <span class="token operator">===</span> <span class="token string">"undefined"</span> <span class="token operator">?</span> <span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span>Len <span class="token operator">*</span> <span class="token number">1.5</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span>Len <span class="token operator">*</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> point<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> nextcode<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">!==</span> Len<span class="token punctuation">;</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            point <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">charCodeAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">,</span> i <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>point <span class="token operator">&gt;=</span> <span class="token number">0xD800</span> <span class="token operator">&amp;&amp;</span> point <span class="token operator">&lt;=</span> <span class="token number">0xDBFF</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>i <span class="token operator">===</span> Len<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    resArr<span class="token punctuation">[</span>resPos <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0xef</span><span class="token comment">/*0b11101111*/</span><span class="token punctuation">;</span> resArr<span class="token punctuation">[</span>resPos <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0xbf</span><span class="token comment">/*0b10111111*/</span><span class="token punctuation">;</span>
+                    resArr<span class="token punctuation">[</span>resPos <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0xbd</span><span class="token comment">/*0b10111101*/</span><span class="token punctuation">;</span> <span class="token keyword">break</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token comment">// https://mathiasbynens.be/notes/javascript-encoding#surrogate-formulae</span>
+                nextcode <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">charCodeAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>nextcode <span class="token operator">&gt;=</span> <span class="token number">0xDC00</span> <span class="token operator">&amp;&amp;</span> nextcode <span class="token operator">&lt;=</span> <span class="token number">0xDFFF</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    point <span class="token operator">=</span> <span class="token punctuation">(</span>point <span class="token operator">-</span> <span class="token number">0xD800</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0x400</span> <span class="token operator">+</span> nextcode <span class="token operator">-</span> <span class="token number">0xDC00</span> <span class="token operator">+</span> <span class="token number">0x10000</span><span class="token punctuation">;</span>
+                    i <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>point <span class="token operator">&gt;</span> <span class="token number">0xffff</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        resArr<span class="token punctuation">[</span>resPos <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0x1e</span><span class="token comment">/*0b11110*/</span><span class="token operator">&lt;&lt;</span><span class="token number">3</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token punctuation">(</span>point<span class="token operator">&gt;&gt;&gt;</span><span class="token number">18</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        resArr<span class="token punctuation">[</span>resPos <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0x2</span><span class="token comment">/*0b10*/</span><span class="token operator">&lt;&lt;</span><span class="token number">6</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>point<span class="token operator">&gt;&gt;&gt;</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token number">0x3f</span><span class="token comment">/*0b00111111*/</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        resArr<span class="token punctuation">[</span>resPos <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0x2</span><span class="token comment">/*0b10*/</span><span class="token operator">&lt;&lt;</span><span class="token number">6</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>point<span class="token operator">&gt;&gt;&gt;</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token number">0x3f</span><span class="token comment">/*0b00111111*/</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        resArr<span class="token punctuation">[</span>resPos <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0x2</span><span class="token comment">/*0b10*/</span><span class="token operator">&lt;&lt;</span><span class="token number">6</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token punctuation">(</span>point<span class="token operator">&amp;</span><span class="token number">0x3f</span><span class="token comment">/*0b00111111*/</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token keyword">continue</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                    resArr<span class="token punctuation">[</span>resPos <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0xef</span><span class="token comment">/*0b11101111*/</span><span class="token punctuation">;</span> resArr<span class="token punctuation">[</span>resPos <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0xbf</span><span class="token comment">/*0b10111111*/</span><span class="token punctuation">;</span>
+                    resArr<span class="token punctuation">[</span>resPos <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0xbd</span><span class="token comment">/*0b10111101*/</span><span class="token punctuation">;</span> <span class="token keyword">continue</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>point <span class="token operator">&lt;=</span> <span class="token number">0x007f</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                resArr<span class="token punctuation">[</span>resPos <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0x0</span><span class="token comment">/*0b0*/</span><span class="token operator">&lt;&lt;</span><span class="token number">7</span><span class="token punctuation">)</span> <span class="token operator">|</span> point<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>point <span class="token operator">&lt;=</span> <span class="token number">0x07ff</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                resArr<span class="token punctuation">[</span>resPos <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0x6</span><span class="token comment">/*0b110*/</span><span class="token operator">&lt;&lt;</span><span class="token number">5</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token punctuation">(</span>point<span class="token operator">&gt;&gt;&gt;</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                resArr<span class="token punctuation">[</span>resPos <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0x2</span><span class="token comment">/*0b10*/</span><span class="token operator">&lt;&lt;</span><span class="token number">6</span><span class="token punctuation">)</span>  <span class="token operator">|</span> <span class="token punctuation">(</span>point<span class="token operator">&amp;</span><span class="token number">0x3f</span><span class="token comment">/*0b00111111*/</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                resArr<span class="token punctuation">[</span>resPos <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0xe</span><span class="token comment">/*0b1110*/</span><span class="token operator">&lt;&lt;</span><span class="token number">4</span><span class="token punctuation">)</span> <span class="token operator">|</span> <span class="token punctuation">(</span>point<span class="token operator">&gt;&gt;&gt;</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                resArr<span class="token punctuation">[</span>resPos <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0x2</span><span class="token comment">/*0b10*/</span><span class="token operator">&lt;&lt;</span><span class="token number">6</span><span class="token punctuation">)</span>    <span class="token operator">|</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>point<span class="token operator">&gt;&gt;&gt;</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token operator">&amp;</span><span class="token number">0x3f</span><span class="token comment">/*0b00111111*/</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                resArr<span class="token punctuation">[</span>resPos <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token number">0x2</span><span class="token comment">/*0b10*/</span><span class="token operator">&lt;&lt;</span><span class="token number">6</span><span class="token punctuation">)</span>    <span class="token operator">|</span> <span class="token punctuation">(</span>point<span class="token operator">&amp;</span><span class="token number">0x3f</span><span class="token comment">/*0b00111111*/</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> Uint8Array <span class="token operator">!==</span> <span class="token string">"undefined"</span><span class="token punctuation">)</span> <span class="token keyword">return</span> resArr<span class="token punctuation">.</span><span class="token function">subarray</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> resPos <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// else // IE 6-9</span>
+        resArr<span class="token punctuation">.</span>length <span class="token operator">=</span> resPos <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// trim off extra weight</span>
+        <span class="token keyword">return</span> resArr<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token class-name">TextEncoder</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">toString</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword">return</span> <span class="token string">"[object TextEncoder]"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span> <span class="token comment">// Object.defineProperty only works on DOM prototypes in IE8</span>
+        Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span><span class="token class-name">TextEncoder</span><span class="token punctuation">.</span>prototype<span class="token punctuation">,</span><span class="token string">"encoding"</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+            <span class="token function-variable function">get</span><span class="token operator">:</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token class-name">TextEncoder</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">isPrototypeOf</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token string">"utf-8"</span><span class="token punctuation">;</span>
+                           <span class="token keyword">else</span> <span class="token keyword">throw</span> <span class="token function">TypeError</span><span class="token punctuation">(</span><span class="token string">"Illegal invocation"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/*IE6-8 fallback*/</span> <span class="token class-name">TextEncoder</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>encoding <span class="token operator">=</span> <span class="token string">"utf-8"</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> Symbol<span class="token operator">!==</span><span class="token string">"undefined"</span><span class="token punctuation">)</span><span class="token class-name">TextEncoder</span><span class="token punctuation">.</span>prototype<span class="token punctuation">[</span>Symbol<span class="token punctuation">.</span>toStringTag<span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">"TextEncoder"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p><small>Source: <a href="https://github.com/anonyco/FastestSmallestTextEncoderDecoder" rel="noopener">https://github.com/anonyco/FastestSmallestTextEncoderDecoder</a></small></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://encoding.spec.whatwg.org/#interface-textencoder" hreflang="en" rel=" noopener">Encoding<br><small>The definition of 'TextEncoder' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>TextEncoder</code></th>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>19</div>
+<div>18</div>
+<div>Firefox 18 implemented an earlier and slightly different version of the specification.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes">
+<div>19</div>
+<div>18</div>
+<div>Firefox 18 implemented an earlier and slightly different version of the specification.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>TextEncoder</code></th>
+<td class="bc-supports-yes">
+<div>53</div>
+<div>Does not accept parameters. Supports only <code>utf-8</code> encoding.</div>
+<div>38-53</div>
+<div>Throws <code>RangeError</code> exception for unknown encoding types.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>Does not accept parameters. Supports only <code>utf-8</code> encoding.</div>
+</td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>The constructor accepts an encoding type label argument, but the value is ignored. Only <code>utf-8</code> encoding is supported.</div>
+<div>38-48</div>
+<div>If the encoding type label argument is invalid, then a <code>RangeError</code> exception is thrown.</div>
+<div>19-38</div>
+<div>If the encoding type label argument is invalid, then a <code>TypeError</code> exception is thrown.</div>
+<div>18</div>
+<div>Firefox 18 implemented an earlier and slightly different version of the specification.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>The constructor accepts an encoding type label argument, but the value is ignored. Only <code>utf-8</code> encoding is supported.</div>
+<div>38-48</div>
+<div>If the encoding type label argument is invalid, then a <code>RangeError</code> exception is thrown.</div>
+<div>19-38</div>
+<div>If the encoding type label argument is invalid, then a <code>TypeError</code> exception is thrown.</div>
+<div>18</div>
+<div>Firefox 18 implemented an earlier and slightly different version of the specification.</div>
+</td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>encode</code></th>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>19</div>
+<div>18</div>
+<div>Firefox 18 implemented an earlier and slightly different version of the specification.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes">
+<div>19</div>
+<div>18</div>
+<div>Firefox 18 implemented an earlier and slightly different version of the specification.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>encodeInto</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>encoding</code></th>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>19</div>
+<div>18</div>
+<div>Firefox 18 implemented an earlier and slightly different version of the specification.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes">
+<div>19</div>
+<div>18</div>
+<div>Firefox 18 implemented an earlier and slightly different version of the specification.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>worker_support</code></th>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>20</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>20</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The <a href="textdecoder"><code>TextDecoder</code></a> interface describing the inverse operation.</li> <li><a href="https://nodejs.org/api/util.html#util_class_util_textencoder" rel=" noopener">Node.js supports global export from v11.0.0</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/TextEncoder</a>
+  </p>
+</div>

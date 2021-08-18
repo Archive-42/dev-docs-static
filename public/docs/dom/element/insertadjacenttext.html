@@ -1,0 +1,97 @@
+<h1>Element.insertAdjacentText()</h1> <p>The <code>insertAdjacentText()</code> method of the <a href="../element"><code>Element</code></a> interface inserts a given text node at a given position relative to the element it is invoked upon.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">element<span class="token punctuation">.</span><span class="token function">insertAdjacentText</span><span class="token punctuation">(</span>position<span class="token punctuation">,</span> element<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>position</code></dt> <dd>A <a href="../domstring"><code>DOMString</code></a> representing the position relative to the <code>element</code>; must be one of the following strings: <ul> <li>
+<code style="color: red;">'beforebegin'</code>: Before the <code>element</code> itself.</li> <li>
+<code style="color: green;">'afterbegin'</code>: Just inside the <code>element</code>, before its first child.</li> <li>
+<code style="color: blue;">'beforeend'</code>: Just inside the <code>element</code>, after its last child.</li> <li>
+<code style="color: magenta;">'afterend'</code>: After the <code>element</code> itself.</li> </ul> </dd> <dt><code>element</code></dt> <dd>A <a href="../domstring"><code>DOMString</code></a> representing the text to be inserted into the tree.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>Void.</p>
+<h3 id="exceptions">Exceptions</h3>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Exception</th> <th scope="col">Explanation</th> </tr> </thead> <tbody> <tr> <td><code>SyntaxError</code></td> <td>The <code>position</code> specified is not a recognized value.</td> </tr> </tbody> </table></div>
+<h3 id="visualization_of_position_names">Visualization of position names</h3>
+<pre class="notranslate">&lt;!-- <strong>beforebegin</strong> --&gt;
+&lt;p&gt;
+  &lt;!-- <strong>afterbegin</strong> --&gt;
+  foo
+  &lt;!-- <strong>beforeend</strong> --&gt;
+&lt;/p&gt;
+&lt;!-- <strong>afterend</strong> --&gt;</pre> <div class="note notecard">
+<strong>Note:</strong> The <code>beforebegin</code> and <code>afterend</code> positions work only if the node is in a tree and has an element parent.</div>
+<h2 id="example">Example</h2>
+<pre data-language="js">beforeBtn<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  para<span class="token punctuation">.</span><span class="token function">insertAdjacentText</span><span class="token punctuation">(</span><span class="token string">'afterbegin'</span><span class="token punctuation">,</span>textInput<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+afterBtn<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  para<span class="token punctuation">.</span><span class="token function">insertAdjacentText</span><span class="token punctuation">(</span><span class="token string">'beforeend'</span><span class="token punctuation">,</span>textInput<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Have a look at our <a href="https://mdn.github.io/dom-examples/insert-adjacent/insertAdjacentText.html" rel=" noopener">insertAdjacentText.html</a> demo on GitHub (see the <a href="https://github.com/mdn/dom-examples/blob/master/insert-adjacent/insertAdjacentText.html" rel=" noopener">source code</a> too.) Here we have a simple paragraph. You can enter some text into the form element, then press the <em>Insert before</em> and <em>Insert after</em> buttons to insert it before or after the existing paragraph text using <code>insertAdjacentText()</code>. Note that the existing text node is not added to — further text nodes are created containing the new additions.</p>
+<h2 id="polyfill">Polyfill</h2>
+<p>You can polyfill the insertAdjacentText<code>() method</code> in Internet Explorer 5.5 (maybe earlier) and higher with the following code:</p> <pre class="notranslate">if (!Element.prototype.insertAdjacentText)
+  Element.prototype.insertAdjacentText = function(type, txt){
+    this.insertAdjacentHTML(
+      type,
+      (txt+'') // convert to string
+        .replace(/&amp;/g, '&amp;amp;') // embed ampersand symbols
+        .replace(/&lt;/g, '&amp;lt;') // embed less-than symbols
+    )
+  }
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://dom.spec.whatwg.org/#dom-element-insertadjacenttext" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'insertAdjacentText()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>insertAdjacentText</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>17</div>
+<div>12-17</div>
+<div>Only supported for <a href="https://developer.mozilla.org/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>, not all <code>Element</code> objects, such as <a href="https://developer.mozilla.org/docs/Web/API/SVGElement"><code>SVGElement</code></a>.</div>
+</td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes">
+<div>5</div>
+<div>Only supported for <a href="https://developer.mozilla.org/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>, not all <code>Element</code> objects, such as <a href="https://developer.mozilla.org/docs/Web/API/SVGElement"><code>SVGElement</code></a>.</div>
+</td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>2.3</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="insertadjacentelement"><code>Element.insertAdjacentElement()</code></a></li> <li><a href="insertadjacenthtml"><code>Element.insertAdjacentHTML()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentText" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentText</a>
+  </p>
+</div>

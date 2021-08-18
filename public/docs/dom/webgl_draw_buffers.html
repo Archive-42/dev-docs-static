@@ -1,0 +1,107 @@
+<h1>WEBGL_draw_buffers</h1> <p>The <code><strong>WEBGL_draw_buffers</strong></code> extension is part of the <a href="webgl_api">WebGL API</a> and enables a fragment shader to write to several textures, which is useful for <a href="https://hacks.mozilla.org/2014/01/webgl-deferred-shading/" rel=" noopener">deferred shading</a>, for example.</p> <p>WebGL extensions are available using the <a href="webglrenderingcontext/getextension"><code>WebGLRenderingContext.getExtension()</code></a> method. For more information, see also <a href="webgl_api/using_extensions">Using Extensions</a> in the <a href="webgl_api/tutorial">WebGL tutorial</a>.</p> <div class="note notecard"> <p><strong>Availability:</strong> This extension is only available to <a href="webglrenderingcontext">WebGL1</a> contexts. In <a href="webgl2renderingcontext">WebGL2</a>, the functionality of this extension is available on the WebGL2 context by default. In WebGL 2, the constants are available without the "WEBGL" suffix and the new GLSL built-ins require GLSL <code>#version 300 es</code>.</p> </div>
+<h2 id="constants">Constants</h2>
+<p>This extension exposes new constants, which can be used in the <a href="webglrenderingcontext/framebufferrenderbuffer"><code>gl.framebufferRenderbuffer()</code></a>, <a href="webglrenderingcontext/framebuffertexture2d"><code>gl.framebufferTexture2D()</code></a>, <a href="webglrenderingcontext/getframebufferattachmentparameter"><code>gl.getFramebufferAttachmentParameter()</code></a> <a href="webgl_draw_buffers/drawbufferswebgl"><code>ext.drawBuffersWEBGL()</code></a>, and <a href="webglrenderingcontext/getparameter"><code>gl.getParameter()</code></a> methods.</p> <dl> <dt><code>ext.COLOR_ATTACHMENT0_WEBGL<br>
+ ext.COLOR_ATTACHMENT1_WEBGL<br>
+ ext.COLOR_ATTACHMENT2_WEBGL<br>
+ ext.COLOR_ATTACHMENT3_WEBGL<br>
+ ext.COLOR_ATTACHMENT4_WEBGL<br>
+ ext.COLOR_ATTACHMENT5_WEBGL<br>
+ ext.COLOR_ATTACHMENT6_WEBGL<br>
+ ext.COLOR_ATTACHMENT7_WEBGL<br>
+ ext.COLOR_ATTACHMENT8_WEBGL<br>
+ ext.COLOR_ATTACHMENT9_WEBGL<br>
+ ext.COLOR_ATTACHMENT10_WEBGL<br>
+ ext.COLOR_ATTACHMENT11_WEBGL<br>
+ ext.COLOR_ATTACHMENT12_WEBGL<br>
+ ext.COLOR_ATTACHMENT13_WEBGL<br>
+ ext.COLOR_ATTACHMENT14_WEBGL<br>
+ ext.COLOR_ATTACHMENT15_WEBGL</code></dt> <dd>A <a href="webgl_api/types"><code>GLenum</code></a> specifying a color buffer.</dd> <dt><code>ext.DRAW_BUFFER0_WEBGL<br>
+ ext.DRAW_BUFFER1_WEBGL<br>
+ ext.DRAW_BUFFER2_WEBGL<br>
+ ext.DRAW_BUFFER3_WEBGL<br>
+ ext.DRAW_BUFFER4_WEBGL<br>
+ ext.DRAW_BUFFER5_WEBGL<br>
+ ext.DRAW_BUFFER6_WEBGL<br>
+ ext.DRAW_BUFFER7_WEBGL<br>
+ ext.DRAW_BUFFER8_WEBGL<br>
+ ext.DRAW_BUFFER9_WEBGL<br>
+ ext.DRAW_BUFFER10_WEBGL<br>
+ ext.DRAW_BUFFER11_WEBGL<br>
+ ext.DRAW_BUFFER12_WEBGL<br>
+ ext.DRAW_BUFFER13_WEBGL<br>
+ ext.DRAW_BUFFER14_WEBGL<br>
+ ext.DRAW_BUFFER15_WEBGL</code></dt> <dd>A <a href="webgl_api/types"><code>GLenum</code></a> returning a draw buffer.</dd> <dt><code>ext.MAX_COLOR_ATTACHMENTS_WEBGL</code></dt> <dd>A <a href="webgl_api/types"><code>GLint</code></a> indicating the maximum number of framebuffer color attachment points.</dd> <dt><code>ext.MAX_DRAW_BUFFERS_WEBGL</code></dt> <dd>A <a href="webgl_api/types"><code>GLint</code></a> indicating the maximum number of draw buffers.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<p>This extension exposes one new method.</p> <dl> <dt><a href="webgl_draw_buffers/drawbufferswebgl"><code>ext.drawBuffersWEBGL()</code></a></dt> <dd> <p>Defines the draw buffers to which all fragment colors are written. (When using <a href="webgl2renderingcontext"><code>WebGL2</code></a>, this method is available as <a href="webgl2renderingcontext/drawbuffers"><code>gl.drawBuffers()</code></a> by default).</p> </dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>Enabling the extension:</p> <pre data-language="js"><span class="token keyword">var</span> ext <span class="token operator">=</span> gl<span class="token punctuation">.</span><span class="token function">getExtension</span><span class="token punctuation">(</span><span class="token string">'WEBGL_draw_buffers'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>Binding multiple textures (to a <code>tx[]</code> array) to different framebuffer color attachments:</p> <pre data-language="js"><span class="token keyword">var</span> fb <span class="token operator">=</span> gl<span class="token punctuation">.</span><span class="token function">createFramebuffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gl<span class="token punctuation">.</span><span class="token function">bindFramebuffer</span><span class="token punctuation">(</span>gl<span class="token punctuation">.</span><span class="token constant">FRAMEBUFFER</span><span class="token punctuation">,</span> fb<span class="token punctuation">)</span><span class="token punctuation">;</span>
+gl<span class="token punctuation">.</span><span class="token function">framebufferTexture2D</span><span class="token punctuation">(</span>gl<span class="token punctuation">.</span><span class="token constant">FRAMEBUFFER</span><span class="token punctuation">,</span> ext<span class="token punctuation">.</span><span class="token constant">COLOR_ATTACHMENT0_WEBGL</span><span class="token punctuation">,</span> gl<span class="token punctuation">.</span><span class="token constant">TEXTURE_2D</span><span class="token punctuation">,</span> tx<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gl<span class="token punctuation">.</span><span class="token function">framebufferTexture2D</span><span class="token punctuation">(</span>gl<span class="token punctuation">.</span><span class="token constant">FRAMEBUFFER</span><span class="token punctuation">,</span> ext<span class="token punctuation">.</span><span class="token constant">COLOR_ATTACHMENT1_WEBGL</span><span class="token punctuation">,</span> gl<span class="token punctuation">.</span><span class="token constant">TEXTURE_2D</span><span class="token punctuation">,</span> tx<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gl<span class="token punctuation">.</span><span class="token function">framebufferTexture2D</span><span class="token punctuation">(</span>gl<span class="token punctuation">.</span><span class="token constant">FRAMEBUFFER</span><span class="token punctuation">,</span> ext<span class="token punctuation">.</span><span class="token constant">COLOR_ATTACHMENT2_WEBGL</span><span class="token punctuation">,</span> gl<span class="token punctuation">.</span><span class="token constant">TEXTURE_2D</span><span class="token punctuation">,</span> tx<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gl<span class="token punctuation">.</span><span class="token function">framebufferTexture2D</span><span class="token punctuation">(</span>gl<span class="token punctuation">.</span><span class="token constant">FRAMEBUFFER</span><span class="token punctuation">,</span> ext<span class="token punctuation">.</span><span class="token constant">COLOR_ATTACHMENT3_WEBGL</span><span class="token punctuation">,</span> gl<span class="token punctuation">.</span><span class="token constant">TEXTURE_2D</span><span class="token punctuation">,</span> tx<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Mapping the color attachments to draw buffer slots that the fragment shader will write to using <code>gl_FragData</code>:</p> <pre data-language="js">ext<span class="token punctuation">.</span><span class="token function">drawBuffersWEBGL</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+  ext<span class="token punctuation">.</span><span class="token constant">COLOR_ATTACHMENT0_WEBGL</span><span class="token punctuation">,</span> <span class="token comment">// gl_FragData[0]</span>
+  ext<span class="token punctuation">.</span><span class="token constant">COLOR_ATTACHMENT1_WEBGL</span><span class="token punctuation">,</span> <span class="token comment">// gl_FragData[1]</span>
+  ext<span class="token punctuation">.</span><span class="token constant">COLOR_ATTACHMENT2_WEBGL</span><span class="token punctuation">,</span> <span class="token comment">// gl_FragData[2]</span>
+  ext<span class="token punctuation">.</span><span class="token constant">COLOR_ATTACHMENT3_WEBGL</span>  <span class="token comment">// gl_FragData[3]</span>
+<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Shader code that writes to multiple textures:</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>x-shader/x-fragment<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+#extension GL_EXT_draw_buffers <span class="token operator">:</span> require
+
+precision highp float<span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token parameter"><span class="token keyword">void</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  gl_FragData<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">vec4</span><span class="token punctuation">(</span><span class="token number">0.25</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  gl_FragData<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">vec4</span><span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  gl_FragData<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">vec4</span><span class="token punctuation">(</span><span class="token number">0.75</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  gl_FragData<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">vec4</span><span class="token punctuation">(</span><span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.khronos.org/registry/webgl/extensions/WEBGL_draw_buffers/" hreflang="en" rel=" noopener">WEBGL_draw_buffers<br><small>The definition of 'WEBGL_draw_buffers' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>WEBGL_draw_buffers</code></th>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table> 
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="webglrenderingcontext/getextension"><code>WebGLRenderingContext.getExtension()</code></a></li> <li><a href="webgl2renderingcontext/drawbuffers"><code>WebGL2RenderingContext.drawBuffers()</code></a></li> <li><a href="https://hacks.mozilla.org/2014/01/webgl-deferred-shading/" rel=" noopener">WebGL deferred shading - Mozilla Hacks blog</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WEBGL_draw_buffers" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/WEBGL_draw_buffers</a>
+  </p>
+</div>

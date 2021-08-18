@@ -1,0 +1,125 @@
+<h1>FileSystemFileEntry</h1>
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div> <p>The <code>FileSystemFileEntry</code> interface of the <a href="file_and_directory_entries_api/introduction">File System API</a> represents a file in a file system. It offers properties describing the file's attributes, as well as the <a href="filesystemfileentry/file"><code>file()</code></a> method, which creates a <a href="file"><code>File</code></a> object that can be used to read the file.</p>
+<h2 id="properties">Properties</h2>
+<p><em>Inherits the properties of its parent interface, <a href="filesystementry"><code>FileSystemEntry</code></a>, but has no properties unique to this interface.</em></p>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="filesystemfileentry/file"><code>file()</code></a></dt> <dd>Creates a new <a href="file"><code>File</code></a> object which can be used to read the file.</dd> </dl>
+<h3 id="obsolete_methods">Obsolete methods</h3>
+<dl> <dt>
+<a href="filesystemfileentry/createwriter"><code>createWriter()</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>Creates a new <a class="page-not-created"><code>FileWriter</code></a> object which allows writing to the file represented by the file system entry.</dd> </dl>
+<h2 id="basic_concepts">Basic concepts</h2>
+<p>To write content to file, create a <a class="page-not-created"><code>FileWriter</code></a> object by calling <a href="filesystemfileentry/createwriter"><code>createWriter()</code></a>. To read a file, obtain a <a href="file"><code>File</code></a> object representing its contents by calling <a href="filesystemfileentry/file"><code>file()</code></a>.</p>
+<h3 id="example">Example</h3>
+<p>The following code creates an empty file called "<code>log.txt"</code> (if it doesn't exist) and fills it with the text "Meow". Inside the success callback, event handlers are set up to handle the <code><a href="element/error_event">error</a></code> <code>error</code> and <code><a href="https://developer.mozilla.org/en-US/docs/Web/Events/writeend">writeend</a></code> events. The text data is written to the file by creating a blob, appending text to it, and passing the blob to <a class="page-not-created"><code>FileWriter.write()</code></a>.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">onInitFs</span><span class="token punctuation">(</span><span class="token parameter">fs</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  fs<span class="token punctuation">.</span>root<span class="token punctuation">.</span><span class="token function">getFile</span><span class="token punctuation">(</span><span class="token string">'log.txt'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>create<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">fileEntry</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">// Create a FileWriter object for our FileSystemFileEntry (log.txt).</span>
+    fileEntry<span class="token punctuation">.</span><span class="token function">createWriter</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">fileWriter</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      fileWriter<span class="token punctuation">.</span><span class="token function-variable function">onwriteend</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Write completed.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+      fileWriter<span class="token punctuation">.</span><span class="token function-variable function">onerror</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Write failed: '</span> <span class="token operator">+</span> e<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// Create a new Blob and write it to log.txt.</span>
+      <span class="token keyword">var</span> bb <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">BlobBuilder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      bb<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'Meow'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      fileWriter<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>bb<span class="token punctuation">.</span><span class="token function">getBlob</span><span class="token punctuation">(</span><span class="token string">'text/plain'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> errorHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> errorHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+window<span class="token punctuation">.</span><span class="token function">requestFileSystem</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span><span class="token constant">TEMPORARY</span><span class="token punctuation">,</span> <span class="token number">1024</span><span class="token operator">*</span><span class="token number">1024</span><span class="token punctuation">,</span> onInitFs<span class="token punctuation">,</span> errorHandler<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://wicg.github.io/entries-api/#api-fileentry" hreflang="en" rel=" noopener">File and Directory Entries API<br><small>The definition of 'FileSystemFileEntry' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Draft of proposed API</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>FileSystemFileEntry</code></th>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>createWriter</code></th>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>50-52</div>
+<div>While the <code>createWriter()</code> method existed, it immediately called <code>errorCallback</code> with the <code>NS_ERROR_DOM_SECURITY_ERR</code> error.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no">
+<div>50-52</div>
+<div>While the <code>createWriter()</code> method existed, it immediately called <code>errorCallback</code> with the <code>NS_ERROR_DOM_SECURITY_ERR</code> error.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>file</code></th>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="file_and_directory_entries_api">File and Directory Entries API</a></li> <li><a href="file_and_directory_entries_api/introduction">Introduction to the File System API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileEntry" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileEntry</a>
+  </p>
+</div>

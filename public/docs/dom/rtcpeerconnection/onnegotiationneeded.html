@@ -1,0 +1,76 @@
+<h1>RTCPeerConnection.onnegotiationneeded</h1>
+
+ <p>The <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> interface's <code>onnegotiationneeded</code> property is an <a href="../eventlistener"><code>EventListener</code></a> which specifies a function which is called to handle the <code><a href="negotiationneeded_event">negotiationneeded</a></code> event when it occurs on an <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> instance. This event is fired when a change has occurred which requires session negotiation. This negotiation should be carried out as the offerer, because some session changes cannot be negotiated as the answerer.</p> <p>Most commonly, the <code><a href="negotiationneeded_event">negotiationneeded</a></code> event is fired after a send track is added to the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a>. If the session is modified in a manner that requires negotiation while a negotiation is already in progress, no <code><a href="negotiationneeded_event">negotiationneeded</a></code> event will fire until negotiation completes, and only then if negotiation is still needed.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">RTCPeerConnection<span class="token punctuation">.</span>onnegotiationneeded <span class="token operator">=</span> eventHandler<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>This should be set to a function you provide which is passed a single parameter: an <a href="../event"><code>Event</code></a> object containing the <code><a href="negotiationneeded_event">negotiationneeded</a></code> event. There's no additional information provided in the event; anything you need, you can get by examining the <a href="../rtcpeerconnection#properties">properties of the <code>RTCPeerConnection</code></a>.</p>
+<h2 id="example">Example</h2>
+<p>This example, derived from the example in <a href="../webrtc_api/signaling_and_video_calling">Signaling and video calling</a>, establishes a handler for <code><a href="negotiationneeded_event">negotiationneeded</a></code> events to handle creating an offer, configuring the local end of the connection, and sending the offer to the remote peer.</p> <pre data-language="js">pc<span class="token punctuation">.</span><span class="token function-variable function">onnegotiationneeded</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  pc<span class="token punctuation">.</span><span class="token function">createOffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">offer</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> pc<span class="token punctuation">.</span><span class="token function">setLocalDescription</span><span class="token punctuation">(</span>offer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Send the offer to the remote peer through the signaling server</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span>reportError<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>First, it creates the offer by calling <a href="createoffer"><code>createOffer()</code></a>. When that succeeds, the offer is passed into <a href="setlocaldescription"><code>setLocalDescription()</code></a> to set the local description for the connection. Once that's succeeded in turn, the offer can be sent to the signaling server for delivery to the remote peer.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcpeerconnection-onnegotiationneeded" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCPeerConnection.onnegotiationneeded' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onnegotiationneeded</code></th>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The <code><a href="negotiationneeded_event">negotiationneeded</a></code> event and its type, <a href="../event"><code>Event</code></a>.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/onnegotiationneeded" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/onnegotiationneeded</a>
+  </p>
+</div>

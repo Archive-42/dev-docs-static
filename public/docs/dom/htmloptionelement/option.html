@@ -1,0 +1,64 @@
+<h1>Option()</h1> <p>The <code>Option()</code> constructor creates a new <a href="../htmloptionelement"><code>HTMLOptionElement</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> optionElementReference <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Option</span><span class="token punctuation">(</span>text<span class="token punctuation">,</span> value<span class="token punctuation">,</span> defaultSelected<span class="token punctuation">,</span> selected<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code>text</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A <a href="../domstring"><code>DOMString</code></a> representing the content of the element, i.e. the displayed text. If this is not specified, a default value of "" (empty string) is used.</dd> <dt>
+<code>value</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A <a href="../domstring"><code>DOMString</code></a> representing the value of the <a href="../htmloptionelement"><code>HTMLOptionElement</code></a>, i.e. the value attribute of the equivalent <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option"><code>&lt;option&gt;</code></a>. If this is not specified, the value of text is used as the value, e.g. for the associated <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select"><code>&lt;select&gt;</code></a> element's value when the form is submitted to the server.</dd> <dt>
+<code>defaultSelected</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A value of either <code>true</code> or <code>false</code> that sets the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#attr-selected"><code>selected</code></a> attribute value, i.e. so that this <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option"><code>&lt;option&gt;</code></a> will be the default value selected in the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select"><code>&lt;select&gt;</code></a> element when the page is first loaded. If this is not specified, a default value of false is used. Note that a value of true does not set the option to selected if it is not already selected.</dd> <dt>
+<code>selected</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A value of either <code>true</code> or <code>false</code> that sets the option's selected state; the default is false (not selected). If omitted, even if the defaultSelected argument is true, the option is not selected.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="just_add_new_options">Just add new options</h3>
+<pre data-language="js"> <span class="token comment">/* assuming we have the following HTML
+&lt;select id='s'&gt;
+
+&lt;/select&gt;
+*/</span>
+
+<span class="token keyword">var</span> s <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'s'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> options <span class="token operator">=</span> <span class="token punctuation">[</span>Four<span class="token punctuation">,</span> Five<span class="token punctuation">,</span> Six<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+options<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">element<span class="token punctuation">,</span>key</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    s<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Option</span><span class="token punctuation">(</span>element<span class="token punctuation">,</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="append_options_with_different_parameters">Append options with different parameters </h3>
+<pre data-language="js"><span class="token comment">/* assuming we have the following HTML
+&lt;select id="s"&gt;
+    &lt;option&gt;First&lt;/option&gt;
+    &lt;option&gt;Second&lt;/option&gt;
+    &lt;option&gt;Third&lt;/option&gt;
+&lt;/select&gt;
+*/</span>
+
+<span class="token keyword">var</span> s <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'s'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> options <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token string">'zero'</span><span class="token punctuation">,</span> <span class="token string">'one'</span><span class="token punctuation">,</span> <span class="token string">'two'</span> <span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+options<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">element<span class="token punctuation">,</span> key</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>element <span class="token operator">==</span> <span class="token string">'zero'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    s<span class="token punctuation">[</span>s<span class="token punctuation">.</span>options<span class="token punctuation">.</span>length<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Option</span><span class="token punctuation">(</span>element<span class="token punctuation">,</span> s<span class="token punctuation">.</span>options<span class="token punctuation">.</span>length<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>element <span class="token operator">==</span> <span class="token string">'one'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    s<span class="token punctuation">[</span>s<span class="token punctuation">.</span>options<span class="token punctuation">.</span>length<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Option</span><span class="token punctuation">(</span>element<span class="token punctuation">,</span> s<span class="token punctuation">.</span>options<span class="token punctuation">.</span>length<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Will add the "selected" attribute</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>element <span class="token operator">==</span> <span class="token string">'two'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    s<span class="token punctuation">[</span>s<span class="token punctuation">.</span>options<span class="token punctuation">.</span>length<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Option</span><span class="token punctuation">(</span>element<span class="token punctuation">,</span> s<span class="token punctuation">.</span>options<span class="token punctuation">.</span>length<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Just will be selected in "view"</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* Result
+&lt;select id="s"&gt;
+  &lt;option value="0"&gt;zero&lt;/option&gt;
+  &lt;option value="1" selected=""&gt;one&lt;/option&gt;
+  &lt;option value="2"&gt;two&lt;/option&gt; // User will see this as 'selected'
+&lt;/select&gt;
+*/</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#dom-option" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'Option()' in that specification.</small></a></td> </tr> </tbody> </table></div>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement/Option" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLOptionElement/Option</a>
+  </p>
+</div>

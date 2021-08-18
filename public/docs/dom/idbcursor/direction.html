@@ -1,0 +1,82 @@
+<h1>IDBCursor.direction</h1>
+
+  <p>The <code>direction</code> read-only property of the <a href="../idbcursor"><code>IDBCursor</code></a> interface is a <a href="../domstring"><code>DOMString</code></a> that returns the direction of traversal of the cursor (set using <a href="../idbobjectstore/opencursor"><code>IDBObjectStore.openCursor</code></a> for example). See the <a href="#values">Values</a> section below for possible values.</p> 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="../web_workers_api">Web Workers</a>.</p> </div>
+ <h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> direction <span class="token operator">=</span> cursor<span class="token punctuation">.</span>direction<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>A string (defined by the <a href="https://w3c.github.io/IndexedDB/#enumdef-idbcursordirection" rel=" noopener"><code>IDBCursorDirection</code> enum</a>) indicating the direction in which the cursor is traversing the data. Possible values are:</p> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Value</th> <th scope="col">Description</th> </tr> </thead> <tbody> <tr> <td><code>next</code></td> <td>This direction causes the cursor to be opened at the start of the <span class="internalDFN">source</span>.</td> </tr> <tr> <td><code>nextunique</code></td> <td>This direction causes the cursor to be opened at the start of the <span class="internalDFN">source</span>. For every key with duplicate values, only the first record is yielded.</td> </tr> <tr> <td><code>prev</code></td> <td>This direction causes the cursor to be opened at the end of the <span class="internalDFN">source</span>.</td> </tr> <tr> <td><code>prevunique</code></td> <td>This direction causes the cursor to be opened at the end of the <span class="internalDFN">source</span>. For every key with duplicate values, only the first record is yielded.<br> </td> </tr> </tbody> </table></div>
+<h2 id="example">Example</h2>
+<p>In this simple fragment we create a transaction, retrieve an object store, then use a cursor to iterate through all the records in the object store. Within each iteration we log the direction of the cursor, something like this:</p> <pre class="language-html notranslate">prev</pre>  <div class="note notecard"> <p><strong>Note</strong>: we can't change the direction of travel of the cursor using the <code>direction</code> property, as it is read-only. We specify the direction of travel using the 2nd argument of <a href="../idbobjectstore/opencursor"><code>IDBObjectStore.openCursor</code></a>.</p> </div> <p>The cursor does not require us to select the data based on a key; we can just grab all of it. Also note that in each iteration of the loop, you can grab data from the current record under the cursor object using <code>cursor.value.foo</code>. For a complete working example, see our <a href="https://github.com/mdn/indexeddb-examples/tree/master/idbcursor" rel=" noopener">IDBCursor example</a> (<a href="https://mdn.github.io/indexeddb-examples/idbcursor/" rel=" noopener">view example live</a>.)</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">backwards</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  list<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> transaction <span class="token operator">=</span> db<span class="token punctuation">.</span><span class="token function">transaction</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'rushAlbumList'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'readonly'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> objectStore <span class="token operator">=</span> transaction<span class="token punctuation">.</span><span class="token function">objectStore</span><span class="token punctuation">(</span><span class="token string">'rushAlbumList'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  objectStore<span class="token punctuation">.</span><span class="token function">openCursor</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span><span class="token string">'prev'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function-variable function">onsuccess</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> cursor <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>result<span class="token punctuation">;</span>
+      <span class="token keyword">if</span><span class="token punctuation">(</span>cursor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">const</span> listItem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        listItem<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'&lt;strong&gt;'</span> <span class="token operator">+</span> cursor<span class="token punctuation">.</span>value<span class="token punctuation">.</span>albumTitle <span class="token operator">+</span> <span class="token string">'&lt;/strong&gt;, '</span> <span class="token operator">+</span> cursor<span class="token punctuation">.</span>value<span class="token punctuation">.</span>year<span class="token punctuation">;</span>
+        list<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>listItem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>cursor<span class="token punctuation">.</span>direction<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        cursor<span class="token punctuation">.</span><span class="token function">continue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Entries displayed backwards.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbcursor-direction" hreflang="en" rel=" noopener">Indexed Database API 2.0<br><small>The definition of 'direction' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbcursor-direction" hreflang="en" rel=" noopener">Indexed Database API 2.0<br><small>The definition of 'direction' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>direction</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../indexeddb_api/using_indexeddb">Using IndexedDB</a></li> <li>Starting transactions: <a href="../idbdatabase"><code>IDBDatabase</code></a>
+</li> <li>Using transactions: <a href="../idbtransaction"><code>IDBTransaction</code></a>
+</li> <li>Setting a range of keys: <a href="../idbkeyrange"><code>IDBKeyRange</code></a>
+</li> <li>Retrieving and making changes to your data: <a href="../idbobjectstore"><code>IDBObjectStore</code></a>
+</li> <li>Using cursors: <a href="../idbcursor"><code>IDBCursor</code></a>
+</li> <li>Reference example: <a href="https://github.com/mdn/to-do-notifications/tree/gh-pages" rel=" noopener">To-do Notifications</a> (<a href="https://mdn.github.io/to-do-notifications/" rel=" noopener">view example live</a>.)</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor/direction" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor/direction</a>
+  </p>
+</div>

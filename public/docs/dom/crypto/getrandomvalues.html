@@ -1,0 +1,76 @@
+<h1>Crypto.getRandomValues()</h1>
+
+ <p>The <code><strong>Crypto.getRandomValues()</strong></code> method lets you get cryptographically strong random values. The array given as the parameter is filled with random numbers (random in its cryptographic meaning).</p> <p>To guarantee enough performance, implementations are not using a truly random number generator, but they are using a pseudo-random number generator <em>seeded</em> with a value with enough entropy. The pseudo-random number generator algorithm (PRNG) may vary across <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agents</a>, but is suitable for cryptographic purposes. Implementations are required to use a seed with enough entropy, like a system-level entropy source.</p> <p><code>getRandomValues()</code> is the only member of the <code>Crypto</code> interface which can be used from an insecure context.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">typedArray <span class="token operator">=</span> cryptoObj<span class="token punctuation">.</span><span class="token function">getRandomValues</span><span class="token punctuation">(</span>typedArray<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>typedArray</var></code></dt> <dd>An integer-based <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray"><code>TypedArray</code></a>, that is an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array"><code>Int8Array</code></a>, a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array"><code>Uint8Array</code></a>, an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array"><code>Int16Array</code></a>, a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array"><code>Uint16Array</code></a>, an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array"><code>Int32Array</code></a>, or a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array"><code>Uint32Array</code></a>. All elements in the array are overwritten with random numbers.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The same array passed as <code><var>typedArray</var></code> but with its contents replaced with the newly generated random numbers. Note that <code><var>typedArray</var></code> is modified in-place, and no copy is made.</p>
+<h3 id="exceptions">Exceptions</h3>
+<p>This method can throw an exception under error conditions.</p> <dl> <dt>
+<a href="../domexception"><code>DOMException</code></a> (name: <a href="../domexception#exception-quotaexceedederror"><code>QuotaExceededError</code></a>)</dt> <dd>The requested length exceeds 65,536 bytes.</dd> </dl>
+<h2 id="usage_notes">Usage notes</h2>
+<p>Don't use <code>getRandomValues()</code> to generate encryption keys. Instead, use the <a href="../subtlecrypto/generatekey"><code>generateKey()</code></a> method. There are a few reasons for this; for example, <code>getRandomValues()</code> is not guaranteed to be running in a secure context.</p> <p>There is no minimum degree of entropy mandated by the Web Cryptography specification. User agents are instead urged to provide the best entropy they can when generating random numbers, using a well-defined, efficient pseudorandom number generator built into the user agent itself, but seeded with values taken from an external source of pseudorandom numbers, such as a platform-specific random number function, the Unix <code>/dev/urandom</code> device, or other source of random or pseudorandom data.</p>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token comment">/* Assuming that window.crypto.getRandomValues is available */</span>
+
+<span class="token keyword">var</span> array <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Uint32Array</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span><span class="token function">getRandomValues</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Your lucky numbers:"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> array<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>array<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://www.w3.org/TR/WebCryptoAPI/#Crypto-method-getRandomValues" hreflang="en" rel=" noopener">Web Cryptography API</a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getRandomValues</code></th>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>6.1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../web_crypto_api">Web Crypto API</a></li> <li>
+<a href="../window/crypto"><code>Window.crypto</code></a> to get a <a href="../crypto"><code>Crypto</code></a> object.</li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random"><code>Math.random</code></a>, a non-cryptographic source of random numbers.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues</a>
+  </p>
+</div>

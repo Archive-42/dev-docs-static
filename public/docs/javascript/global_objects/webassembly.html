@@ -1,0 +1,330 @@
+<h1>WebAssembly</h1> <p>The <code>WebAssembly</code> JavaScript object acts as the namespace for all <a href="https://developer.mozilla.org/en-US/docs/WebAssembly">WebAssembly</a>-related functionality.</p> <p>Unlike most other global objects, <code>WebAssembly</code> is not a constructor (it is not a function object). You can compare it to <a href="math"><code>Math</code></a>, which is also a namespace object for mathematical constants and functions, or to <a href="intl"><code>Intl</code></a> which is the namespace object for internationalization constructors and other language-sensitive functions.</p>
+<h2 id="description">Description</h2>
+<p>The primary uses for the <code>WebAssembly</code> object are:</p> <ul> <li>Loading WebAssembly code, using the <a href="webassembly/instantiate"><code>WebAssembly.instantiate()</code></a> function.</li> <li>Creating new memory and table instances via the <a href="webassembly/memory"><code>WebAssembly.Memory()</code></a>/<a href="webassembly/table"><code>WebAssembly.Table()</code></a> constructors.</li> <li>Providing facilities to handle errors that occur in WebAssembly via the <a href="webassembly/compileerror"><code>WebAssembly.CompileError()</code></a>/<a href="webassembly/linkerror"><code>WebAssembly.LinkError()</code></a>/<a href="webassembly/runtimeerror"><code>WebAssembly.RuntimeError()</code></a> constructors.</li> </ul>
+<h2 id="constructor_properties">Constructor properties</h2>
+<dl> <dt><a href="webassembly/compileerror/compileerror"><code>WebAssembly.CompileError()</code></a></dt> <dd>Indicates an error during WebAssembly decoding or validation.</dd> <dt><a href="webassembly/global/global"><code>WebAssembly.Global()</code></a></dt> <dd>Represents a global variable instance, accessible from both JavaScript and importable/exportable across one or more <a href="webassembly/module"><code>WebAssembly.Module</code></a> instances. This allows dynamic linking of multiple modules.</dd> <dt><a href="webassembly/instance/instance"><code>WebAssembly.Instance()</code></a></dt> <dd>Is a stateful, executable instance of a <a href="webassembly/module">WebAssembly.Module</a>
+</dd> <dt><a href="webassembly/linkerror/linkerror"><code>WebAssembly.LinkError()</code></a></dt> <dd>Indicates an error during module instantiation (besides <a href="https://webassembly.org/docs/semantics/#traps" rel="noopener">traps</a> from the start function).</dd> <dt><a href="webassembly/memory/memory"><code>WebAssembly.Memory()</code></a></dt> <dd>An object whose <a href="webassembly/memory/buffer"><code>buffer</code></a> property is a resizable <a href="arraybuffer">ArrayBuffer</a> that holds the raw bytes of memory accessed by a WebAssembly <code>Instance</code>.</dd> <dt><a href="webassembly/module/module"><code>WebAssembly.Module()</code></a></dt> <dd>Contains stateless WebAssembly code that has already been compiled by the browser and can be efficiently <a href="https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage">shared with Workers</a>, and instantiated multiple times.</dd> <dt><a href="webassembly/runtimeerror/runtimeerror"><code>WebAssembly.RuntimeError()</code></a></dt> <dd>Error type that is thrown whenever WebAssembly specifies a <a href="https://webassembly.org/docs/semantics/#traps" rel="noopener">trap</a>.</dd> <dt><a href="webassembly/table/table"><code>WebAssembly.Table()</code></a></dt> <dd>An array-like structure representing a WebAssembly Table, which stores function references.</dd> </dl>
+<h2 id="static_methods">Static methods</h2>
+<dl> <dt><a href="webassembly/instantiate"><code>WebAssembly.instantiate()</code></a></dt> <dd>The primary API for compiling and instantiating WebAssembly code, returning both a <code>Module</code> and its first <code>Instance</code>.</dd> <dt><a href="webassembly/instantiatestreaming"><code>WebAssembly.instantiateStreaming()</code></a></dt> <dd>Compiles and instantiates a WebAssembly module directly from a streamed underlying source, returning both a <code>Module</code> and its first <code>Instance</code>.</dd> <dt><a href="webassembly/compile"><code>WebAssembly.compile()</code></a></dt> <dd>Compiles a <a href="webassembly/module"><code>WebAssembly.Module</code></a> from WebAssembly binary code, leaving instantiation as a separate step.</dd> <dt><a href="webassembly/compilestreaming"><code>WebAssembly.compileStreaming()</code></a></dt> <dd>compiles a <a href="webassembly/module"><code>WebAssembly.Module</code></a> directly from a streamed underlying source, leaving instantiation as a separate step.</dd> <dt><a href="webassembly/validate"><code>WebAssembly.validate()</code></a></dt> <dd>Validates a given typed array of WebAssembly binary code, returning whether the bytes are valid WebAssembly code (<code>true</code>) or not (<code>false</code>).</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="stream_a_.wasm_module_then_compile_and_instantiate_it">Stream a .wasm module then compile and instantiate it</h3>
+<p>The following example (see our <a href="https://github.com/mdn/webassembly-examples/blob/master/js-api-examples/instantiate-streaming.html" rel=" noopener">instantiate-streaming.html</a> demo on GitHub, and <a href="https://mdn.github.io/webassembly-examples/js-api-examples/instantiate-streaming.html" rel=" noopener">view it live</a> also) directly streams a .wasm module from an underlying source then compiles and instantiates it, the promise fulfilling with a <code>ResultObject</code>. Because the <code>instantiateStreaming()</code> function accepts a promise for a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Response"><code>Response</code></a> object, you can directly pass it a <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch"><code>WindowOrWorkerGlobalScope.fetch()</code></a> call, and it will pass the response into the function when it fulfills.</p> <pre data-language="js"><span class="token keyword">var</span> importObject <span class="token operator">=</span> <span class="token punctuation">{</span> imports<span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token function-variable function">imported_func</span><span class="token operator">:</span> <span class="token parameter">arg</span> <span class="token operator">=&gt;</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arg<span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+WebAssembly<span class="token punctuation">.</span><span class="token function">instantiateStreaming</span><span class="token punctuation">(</span><span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'simple.wasm'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> importObject<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">obj</span> <span class="token operator">=&gt;</span> obj<span class="token punctuation">.</span>instance<span class="token punctuation">.</span>exports<span class="token punctuation">.</span><span class="token function">exported_func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>The <code>ResultObject</code>'s instance member is then accessed, and the contained exported function invoked.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://webassembly.github.io/spec/js-api/#webassembly-namespace">WebAssembly JavaScript Interface (WebAssembly JavaScript Interface)<br> <small>#webassembly-namespace</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>CompileError</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>Global</code></th>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.1</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.4</div></td>
+<td class="bc-supports-yes"><div>10.0</div></td>
+</tr>
+<tr>
+<th><code>Instance</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>LinkError</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>Memory</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>Module</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>RuntimeError</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>Table</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>WebAssembly</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>compile</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>compileStreaming</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>instantiate</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>instantiateStreaming</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>validate</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="https://developer.mozilla.org/en-US/docs/WebAssembly">WebAssembly</a> overview page</li> <li><a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Concepts">WebAssembly concepts</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Using_the_JavaScript_API">Using the WebAssembly JavaScript API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly</a>
+  </p>
+</div>

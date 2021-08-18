@@ -1,0 +1,106 @@
+<h1>speak-as</h1> <p>The <code>speak-as</code> descriptor specifies how a counter symbol constructed with a given <a href="../@counter-style"><code>@counter-style</code></a> will be represented in the spoken form. For example, an author can specify a counter symbol to be either spoken as its numerical value or just represented with an audio cue.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="css"><span class="token comment">/* Keyword values */</span>
+<span class="token property">speak-as</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+<span class="token property">speak-as</span><span class="token punctuation">:</span> bullets<span class="token punctuation">;</span>
+<span class="token property">speak-as</span><span class="token punctuation">:</span> numbers<span class="token punctuation">;</span>
+<span class="token property">speak-as</span><span class="token punctuation">:</span> words<span class="token punctuation">;</span>
+<span class="token property">speak-as</span><span class="token punctuation">:</span> spell-out<span class="token punctuation">;</span>
+
+<span class="token comment">/* @counter-style name value */</span>
+<span class="token property">speak-as</span><span class="token punctuation">:</span> &lt;counter-style-name&gt;<span class="token punctuation">;</span>
+</pre>
+<h3 id="values">Values</h3>
+<dl> <dt><code>auto</code></dt> <dd>If the value of <code>speak-as</code> is specified as <code>auto</code>, then the effective value of <code>speak-as</code> will be determined based on the value of the <a href="system"><code>@counter-style/system</code></a> descriptor: <ul> <li>If the value of <code>system</code> is <code>alphabetic</code>, the effective value of <code>speak-as</code> will be <code>spell-out</code>.</li> <li>If <code>system</code> is <code>cyclic</code>, the effective value of <code>speak-as</code> will be <code>bullets</code>.</li> <li>If <code>system</code> is <code>extends</code>, the value of <code>speak-as</code> will be the same as if <code>speak-as: auto</code> is specified on the extended style.</li> <li>For all other cases, specifying <code>auto</code> has the same effect as specifying <code>speak-as: numbers</code>.</li> </ul> </dd> <dt><code>bullets</code></dt> <dd>A phrase or an audio cue defined by the <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent</a> for representing an unordered list item will be read out.</dd> <dt><code>numbers</code></dt> <dd>The numerical value of the counter will be read out in the document language.</dd> <dt><code>words</code></dt> <dd>The user agent will generate a counter value as normal and read it out as a word in the document language.</dd> <dt><code>spell-out</code></dt> <dd>The user agent will generate a counter representation as normal and would read it out letter by letter. If the user agent doesn't know how to read out a particular counter symbol, the user agent might read it out as if the value of <code>speak-as</code> was <code>numbers</code>.</dd> <dt><code>&lt;counter-style-name&gt;</code></dt> <dd>The name of another counter style, specified as a <a href="../custom-ident"><code>&lt;custom-ident&gt;</code></a>. If included, the counter will be spoken out in the form specified in that counter style, kind of like specifying the <a href="fallback"><code>@counter-style/fallback</code></a> descriptor. If the specified style does not exist, <code>speak-as</code> defaults to <code>auto</code>.</dd> </dl>
+<h2 id="accessibility_concerns">Accessibility concerns</h2>
+<p>Assistive technology support is very limited for the <code>speak-as</code> property. Do not rely on it to convey information critical to understanding the page's purpose.</p> <p><a href="https://css-tricks.com/lets-talk-speech-css/" rel=" noopener">Let's Talk About Speech CSS | CSS Tricks</a></p>
+<h2 id="formal_definition">Formal definition</h2>
+
+<div class="_table"><table class="properties"><tbody>
+<tr>
+<th scope="row">Related <a href="../at-rule">at-rule</a>
+</th>
+<td><a href="../@counter-style"><code>@counter-style</code></a></td>
+</tr>
+<tr>
+<th scope="row"><a href="../initial_value">Initial value</a></th>
+<td><code>auto</code></td>
+</tr>
+<tr>
+<th scope="row"><a href="../computed_value">Computed value</a></th>
+<td>as specified</td>
+</tr>
+</tbody></table></div>
+
+<h2 id="formal_syntax">Formal syntax</h2>
+<pre class="notranslate">auto <a href="../value_definition_syntax#single_bar">|</a> bullets <a href="../value_definition_syntax#single_bar">|</a> numbers <a href="../value_definition_syntax#single_bar">|</a> words <a href="../value_definition_syntax#single_bar">|</a> spell-out <a href="../value_definition_syntax#single_bar">|</a> <a href="#counter-style-name">&lt;counter-style-name&gt;</a><p>where <br><span id="counter-style-name">&lt;counter-style-name&gt;</span> = <a href="../custom-ident">&lt;custom-ident&gt;</a></p></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="setting_the_spoken_form_for_a_counter">Setting the spoken form for a counter</h3>
+<h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>list<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>One<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>Two<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>Three<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>Four<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>Five<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span></pre> <h4 id="css">CSS</h4> <pre data-language="css"><span class="token atrule"><span class="token rule">@counter-style</span> speak-as-example</span> <span class="token punctuation">{</span>
+  <span class="token property">system</span><span class="token punctuation">:</span> fixed<span class="token punctuation">;</span>
+  <span class="token property">symbols</span><span class="token punctuation">:</span>     <span class="token punctuation">;</span>
+  <span class="token property">suffix</span><span class="token punctuation">:</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+  <span class="token property">speak-as</span><span class="token punctuation">:</span> numbers<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.list</span> <span class="token punctuation">{</span>
+  <span class="token property">list-style</span><span class="token punctuation">:</span> speak-as-example<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <h4 id="result">Result</h4> <p><iframe class="sample-code-frame" id="frame_Setting_the_spoken_form_for_a_counter" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/@counter-style/speak-as/_samples_/Setting_the_spoken_form_for_a_counter" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/css-counter-styles-3/#counter-style-speak-as" hreflang="en" rel=" noopener">CSS Counter Styles Level 3<br><small>The definition of 'speak-as' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>speak-as</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../list-style"><code>list-style</code></a>, <a href="../list-style-image"><code>list-style-image</code></a>, <a href="../list-style-position"><code>list-style-position</code></a>
+</li> <li>
+<a href="../symbols()"><code>symbols()</code></a>, the functional notation creating anonymous counter styles.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@counter-style/speak-as" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/@counter-style/speak-as</a>
+  </p>
+</div>

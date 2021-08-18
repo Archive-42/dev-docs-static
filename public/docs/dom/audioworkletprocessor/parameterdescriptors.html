@@ -1,0 +1,74 @@
+<h1>AudioWorkletProcessor.parameterDescriptors (static getter)</h1>
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div> <p class="summary">The read-only <code>parameterDescriptors</code> property of an <a href="../audioworkletprocessor"><code>AudioWorkletProcessor</code></a>-derived class is a <em>static getter</em>, which returns an iterable of <a href="../audioparamdescriptor"><code>AudioParamDescriptor</code></a>-based objects.</p> <p class="summary">The property is not a part of the <a href="../audioworkletprocessor"><code>AudioWorkletProcessor</code></a> interface, but, if defined, it is called internally by the <a href="../audioworkletprocessor"><code>AudioWorkletProcessor</code></a> constructor to create a list of custom <a href="../audioparam"><code>AudioParam</code></a> objects in the <a href="../audioworkletnode/parameters"><code>parameters</code></a> property of the associated <a href="../audioworkletnode"><code>AudioWorkletNode</code></a>.</p> <p class="summary">Defining the getter is optional.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">AudioWorkletProcessorSubclass<span class="token punctuation">.</span>parameterDescriptors<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>An iterable of <a href="../audioparamdescriptor"><code>AudioParamDescriptor</code></a>-based objects. The properties of these objects are as follows: </p>
+<dl> <dt><code>name</code></dt> <dd>The <a href="../domstring"><code>DOMString</code></a> which represents the name of the <code>AudioParam</code>. Under this name the <code>AudioParam</code> will be available in the <a href="../audioworkletnode/parameters"><code>parameters</code></a> property of the node, and under this name the <a href="process"><code>AudioWorkletProcessor.process</code></a> method will acquire the calculated values of this <code>AudioParam</code>.</dd> <dt>
+<code>automationRate</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>Either <code><a href="../audioparam#a-rate">"a-rate"</a></code>, or <code><a href="../audioparam#k-rate">"k-rate"</a></code> string which represents an automation rate of this <code>AudioParam</code>. Defaults to <code>"a-rate"</code>.</dd> <dt>
+<code>minValue</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A <code>float</code> which represents minimum value of the <code>AudioParam</code>. Defaults to <code>-3.4028235e38</code>.</dd> <dt>
+<code>maxValue</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A <code>float</code> which represents maximum value of the <code>AudioParam</code>. Defaults to <code>3.4028235e38</code>.</dd> <dt>
+<code>defaultValue</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A <code>float</code> which represents initial value of the <code>AudioParam</code>. Defaults to <code>0</code>.</dd> </dl>
+
+<h2 id="examples">Examples</h2>
+
+<p>To demonstrate creation and usage of custom <code>AudioParam</code>s, we'll expand the example from <a href="../audioworkletnode"><code>AudioWorkletNode</code></a> page. There we've created a simple node which outputs white noise. Here, additionally, we'll create a custom gain parameter, so we can directly change volume of the output (although you could use <a href="../gainnode"><code>GainNode</code></a> to achieve this as well).</p>
+<p>First, we need to define a custom <code>AudioWorkletProcessor</code>, and register it. Note that this should be done in a separate file.</p>
+<p>We expand the processor by adding a static <a href="parameterdescriptors"><code>parameterDescriptors</code></a> getter. It will be used internally by the <code>AudioWorkletNode</code> constructor to populate its <code>parameters</code> with instantiated <code>AudioParam</code> objects. </p>
+<pre data-language="js"><span class="token comment">// white-noise-processor.js</span>
+<span class="token keyword">class</span> <span class="token class-name">WhiteNoiseProcessor</span> <span class="token keyword">extends</span> <span class="token class-name">AudioWorkletProcessor</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> <span class="token keyword">get</span> <span class="token function">parameterDescriptors</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+      name<span class="token operator">:</span> <span class="token string">'customGain'</span><span class="token punctuation">,</span>
+      defaultValue<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      minValue<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+      maxValue<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+      automationRate<span class="token operator">:</span> <span class="token string">'a-rate'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">process</span> <span class="token punctuation">(</span><span class="token parameter">inputs<span class="token punctuation">,</span> outputs<span class="token punctuation">,</span> parameters</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> output <span class="token operator">=</span> outputs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+    output<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">channel</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> channel<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        channel<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">*</span>
+          <span class="token punctuation">(</span>parameters<span class="token punctuation">[</span><span class="token string">'customGain'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">1</span> <span class="token operator">?</span> parameters<span class="token punctuation">[</span><span class="token string">'customGain'</span><span class="token punctuation">]</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">:</span> parameters<span class="token punctuation">[</span><span class="token string">'customGain'</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        <span class="token comment">// note: a parameter contains an array of 128 values (one value for each of 128 samples),</span>
+        <span class="token comment">// however it may contain a single value which is to be used for all 128 samples</span>
+        <span class="token comment">// if no automation is scheduled for the moment.</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">registerProcessor</span><span class="token punctuation">(</span><span class="token string">'white-noise-processor'</span><span class="token punctuation">,</span> WhiteNoiseProcessor<span class="token punctuation">)</span>
+</pre>
+<p>Next, in our main scripts file we'll load the processor, create an instance of <code>AudioWorkletNode</code> passing it the name of the processor, and connect the node to an audio graph.</p>
+<pre data-language="js"><span class="token keyword">const</span> audioContext <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">await</span> audioContext<span class="token punctuation">.</span>audioWorklet<span class="token punctuation">.</span><span class="token function">addModule</span><span class="token punctuation">(</span><span class="token string">'white-noise-processor.js'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> whiteNoiseNode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioWorkletNode</span><span class="token punctuation">(</span>audioContext<span class="token punctuation">,</span> <span class="token string">'white-noise-processor'</span><span class="token punctuation">)</span>
+whiteNoiseNode<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>audioContext<span class="token punctuation">.</span>destination<span class="token punctuation">)</span>
+</pre>
+<p>Now we can change the gain on the node like this:</p>
+<pre data-language="js"><span class="token keyword">const</span> gainParam <span class="token operator">=</span> whiteNoiseNode<span class="token punctuation">.</span>parameters<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'customGain'</span><span class="token punctuation">)</span>
+gainParam<span class="token punctuation">.</span><span class="token function">setValueAtTime</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> audioContext<span class="token punctuation">.</span>currentTime<span class="token punctuation">)</span>
+gainParam<span class="token punctuation">.</span><span class="token function">linearRampToValueAtTime</span><span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">,</span> audioContext<span class="token punctuation">.</span>currentTime <span class="token operator">+</span> <span class="token number">0.5</span><span class="token punctuation">)</span>
+</pre>
+
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td>
+<a href="https://webaudio.github.io/web-audio-api/#parameterdescriptors" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'parameterDescriptors' in that specification.</small></a> </td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<div class="notecard warning"><p>No compatibility data found for <code>api.AudioWorkletProcessor.parameterDescriptors</code>.<br><a href="#on-github">Check for problems with this page</a> or contribute missing data to <a href="https://github.com/mdn/browser-compat-data">mdn/browser-compat-data</a>.</p></div>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../web_audio_api">Web Audio API</a></li> <li><a href="../web_audio_api/using_web_audio_api">Using the Web Audio API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioWorkletProcessor/parameterDescriptors" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/AudioWorkletProcessor/parameterDescriptors</a>
+  </p>
+</div>

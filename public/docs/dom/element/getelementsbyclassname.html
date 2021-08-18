@@ -1,0 +1,89 @@
+<h1>Element.getElementsByClassName()</h1> <p>The <a href="../element"><code>Element</code></a> method <code><strong>getElementsByClassName()</strong></code> returns a live <a href="../htmlcollection"><code>HTMLCollection</code></a> which contains every descendant element which has the specified class name or names.</p> <p>The method <a href="../document/getelementsbyclassname"><code>getElementsByClassName()</code></a> on the <a href="../document"><code>Document</code></a> interface works essentially the same way, except it acts on the entire document, starting at the document root.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> elements <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">getElementsByClassName</span><span class="token punctuation">(</span>names<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>names</code></dt> <dd>A <a href="../domstring"><code>DOMString</code></a> containing one or more class names to match on, separated by whitespace.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>An <a href="../htmlcollection"><code>HTMLCollection</code></a> providing a live-updating list of every element which is a member of every class in <code>names</code>.</p>
+<h2 id="usage_notes">Usage notes</h2>
+<p>As always, the returned collection is <em>live</em>, meaning that it always reflects the current state of the DOM tree rooted at the element on which the function was called. As new elements that match <code>names</code> are added to the subtree, they immediately appear in the collection. Similarly, if an existing element that doesn't match <code>names</code> has its set of classes adjusted so that it matches, it immediately appears in the collection.</p> <p>The opposite is also true; as elements no longer match the set of names, they are immediately removed from the collection.</p> <div class="note notecard"> <p>In <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Quirks_Mode_and_Standards_Mode">quirks mode</a>, the class names are compared in a case-insensitive fashion. Otherwise, they're case sensitive.</p> </div>
+<h2 id="examples">Examples</h2>
+<h3 id="matching_a_single_class">Matching a single class</h3>
+<p>To look for elements that include among their classes a single specified class, we just provide that class name when calling <code>getElementsByClassName()</code>:</p> <pre data-language="js">element<span class="token punctuation">.</span><span class="token function">getElementsByClassName</span><span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>This example finds all elements that have a class of <code>test</code>, which are also a descendant of the element that has the <code>id</code> of <code>main</code>:</p> <pre data-language="js">document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'main'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getElementsByClassName</span><span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="matching_multiple_classes">Matching multiple classes</h3>
+<p>To find elements whose class lists include both the <code>red</code> and <code>test</code> classes:</p> <pre data-language="js">element<span class="token punctuation">.</span><span class="token function">getElementsByClassName</span><span class="token punctuation">(</span><span class="token string">'red test'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="examining_the_results">Examining the results</h3>
+<p>You can use either the <a href="../htmlcollection/item"><code>item()</code></a> method on the returned <code>HTMLCollection</code> or standard array syntax to examine individual elements in the collection. However <u><strong>the following code will not work</strong></u> as one might expect because <code>"matches"</code> will change as soon as any <code>"colorbox"</code> class is removed.</p> <pre data-language="js"><span class="token keyword">var</span> matches <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">getElementsByClassName</span><span class="token punctuation">(</span><span class="token string">'colorbox'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>matches<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  matches<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token string">'colorbox'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  matches<span class="token punctuation">.</span><span class="token function">item</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">'hueframe'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>Instead, use another method, such as:</p> <pre data-language="js"><span class="token keyword">var</span> matches <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">getElementsByClassName</span><span class="token punctuation">(</span><span class="token string">'colorbox'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">while</span> <span class="token punctuation">(</span>matches<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  matches<span class="token punctuation">.</span><span class="token function">item</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">'hueframe'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  matches<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token string">'colorbox'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>This code finds descendant elements with the <code>"colorbox"</code> class, adds the class <code>"hueframe"</code>, by calling <code>item(0), </code>then removes <code>"colorbox" </code>(using array notation). Another element (if any are left) will then become <code>item(0)</code>.</p>
+<h3 id="filtering_the_results_using_array_methods">Filtering the results using array methods</h3>
+<p>We can also use methods of <a class="page-not-created"><code>Array.prototype</code></a> on any <a href="../htmlcollection"><code>HTMLCollection</code></a> by passing the <a href="../htmlcollection"><code>HTMLCollection</code></a> as the method's <code>this</code> value. Here we'll find all <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a> elements that have a class of <code>test</code>:</p> <pre data-language="js"><span class="token keyword">var</span> testElements <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementsByClassName</span><span class="token punctuation">(</span><span class="token string">'test'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> testDivs <span class="token operator">=</span> <span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>testElements<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">testElement</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> testElement<span class="token punctuation">.</span>nodeName <span class="token operator">===</span> <span class="token string">'DIV'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://dom.spec.whatwg.org/#dom-element-getelementsbyclassname" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'Element.getElementsByClassName()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getElementsByClassName</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>12-16</div>
+<div>Only supported for <a href="https://developer.mozilla.org/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>, not all <code>Element</code> objects, such as <a href="https://developer.mozilla.org/docs/Web/API/SVGElement"><code>SVGElement</code></a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>3</div>
+<div>Prior to Firefox 19, this method was returning a <code>NodeList</code>; it was then changed to reflect the change in the spec.</div>
+</td>
+<td class="bc-supports-yes">
+<div>9</div>
+<div>Only supported for <a href="https://developer.mozilla.org/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>, not all <code>Element</code> objects, such as <a href="https://developer.mozilla.org/docs/Web/API/SVGElement"><code>SVGElement</code></a>.</div>
+</td>
+<td class="bc-supports-yes"><div>9.5</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getElementsByClassName" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/getElementsByClassName</a>
+  </p>
+</div>

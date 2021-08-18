@@ -1,0 +1,215 @@
+<h1>RTCConfiguration</h1>
+
+ <p>The <code>RTCConfiguration</code> dictionary is used to provide configuration options for an <a href="rtcpeerconnection"><code>RTCPeerConnection</code></a>. It may be passed into the constructor when instantiating a connection, or used with the <a href="rtcpeerconnection/getconfiguration"><code>RTCPeerConnection.getConfiguration()</code></a> and <a href="rtcpeerconnection/setconfiguration"><code>RTCPeerConnection.setConfiguration()</code></a> methods, which allow inspecting and changing the configuration while a connection is established.</p> <p>The options include ICE server and transport settings and identity information.</p>
+<h2 id="properties">Properties</h2>
+<dl> <dt>
+<a href="rtcconfiguration/bundlepolicy"><code>bundlePolicy</code></a> <span class="badge inline optional">Optional</span>
+</dt> <dd>Specifies how to handle negotiation of candidates when the remote peer is not compatible with the <a href="https://webrtcstandards.info/sdp-bundle/" rel=" noopener">SDP BUNDLE standard</a>. This must be one of the values from the enum <code><a href="#rtcbundlepolicy_enum">RTCBundlePolicy</a></code>. If this value isn't included in the dictionary, <code>"balanced"</code> is assumed.</dd> <dt>
+<a href="rtcconfiguration/certificates"><code>certificates</code></a> <span class="badge inline optional">Optional</span>
+</dt> <dd>An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of objects of type <a href="rtccertificate"><code>RTCCertificate</code></a> which are used by the connection for authentication. If this property isn't specified, a set of certificates is generated automatically for each <a href="rtcpeerconnection"><code>RTCPeerConnection</code></a> instance. Although only one certificate is used by a given connection, providing certificates for multiple algorithms may improve the odds of successfully connecting in some circumstances. See <a href="rtcconfiguration/certificates#using_certificates">Using certificates</a> for further information. <div class="note notecard">This configuration option cannot be changed after it is first specified; once the certificates have been set, this property is ignored in future calls to <a href="rtcpeerconnection/setconfiguration"><code>RTCPeerConnection.setConfiguration()</code></a>.</div> </dd> <dt>
+<a class="page-not-created"><code>iceCandidatePoolSize</code></a> <span class="badge inline optional">Optional</span>
+</dt> <dd>An unsigned 16-bit integer value which specifies the size of the prefetched ICE candidate pool. The default value is 0 (meaning no candidate prefetching will occur). You may find in some cases that connections can be established more quickly by allowing the ICE agent to start fetching ICE candidates before you start trying to connect, so that they're already available for inspection when <a href="rtcpeerconnection/setlocaldescription"><code>RTCPeerConnection.setLocalDescription()</code></a> is called. <div class="note notecard">Changing the size of the ICE candidate pool may trigger the beginning of ICE gathering.</div> </dd> <dt>
+<a href="rtcconfiguration/iceservers"><code>iceServers</code></a> <span class="badge inline optional">Optional</span>
+</dt> <dd>An array of <a href="rtciceserver"><code>RTCIceServer</code></a> objects, each describing one server which may be used by the ICE agent; these are typically STUN and/or TURN servers. If this isn't specified, the connection attempt will be made with no STUN or TURN server available, which limits the connection to local peers.</dd> <dt>
+<a href="rtcconfiguration/icetransportpolicy"><code>iceTransportPolicy</code></a> <span class="badge inline optional">Optional</span>
+</dt> <dd>The current ICE transport policy; this must be one of the values from the <a class="page-not-created"><code>RTCIceTransportPolicy</code></a> enumeration. If the policy isn't specified, <code>all</code> is assumed by default, allowing all candidates to be considered. A value of <code>relay</code> limits the candidates to those relayed through another server, such as a STUN or TURN server.</dd> <dt>
+<a class="page-not-created"><code>peerIdentity</code></a> <span class="badge inline optional">Optional</span>
+</dt> <dd>A <a href="domstring"><code>DOMString</code></a> which specifies the target peer identity for the <a href="rtcpeerconnection"><code>RTCPeerConnection</code></a>. If this value is set (it defaults to <code>null</code>), the <code>RTCPeerConnection</code> will not connect to a remote peer unless it can successfully authenticate with the given name.</dd> <dt>
+<a class="page-not-created"><code>rtcpMuxPolicy</code></a> <span class="badge inline optional">Optional</span>
+</dt> <dd>The RTCP mux policy to use when gathering ICE candidates, in order to support non-multiplexed RTCP. The value must be one of those from the <a href="#rtcrtcpmuxpolicy_enum"><code>RTCRtcpMuxPolicy</code> enum</a>. The default is <code>"require"</code>.</dd> </dl>
+<h2 id="constants">Constants</h2>
+
+<h3 id="rtcbundlepolicy_enum">RTCBundlePolicy enum</h3>
+<p>The <code>RTCBundlePolicy</code> enum defines string constants which are used to request a specific policy for gathering ICE candidates if the remote peer isn't "BUNDLE-aware" (compatible with the <a href="https://webrtcstandards.info/sdp-bundle/" rel=" noopener">SDP BUNDLE standard</a> for bundling multiple media streams on a single transport link). All browser implementations are BUNDLE-aware.</p>
+<p>If the remote endpoint is BUNDLE-aware, all media tracks and data channels are bundled onto a single transport at the completion of negotiation, regardless of policy used, and any superfluous transports that were created initially are closed at that point.</p>
+<div class="note notecard"> <p><strong>Note:</strong> In technical terms, a BUNDLE lets all media flow between two peers flow across a single <strong>5-tuple</strong>; that is, from a single IP and port on one peer to a single IP and port on the other peer, using the same transport protocol.</p> </div>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Constant</th> <th scope="col">Description</th> </tr> </thead> <tbody> <tr> <td><code>"balanced"</code></td> <td>The ICE agent initially creates one <a href="rtcdtlstransport"><code>RTCDtlsTransport</code></a> for each type of content added: audio, video, and data channels. If the remote endpoint is not BUNDLE-aware, then each of these DTLS transports then handles all the communication for one type of data.</td> </tr> <tr> <td><code>"max-compat"</code></td> <td>The ICE agent initially creates one <a href="rtcdtlstransport"><code>RTCDtlsTransport</code></a> per media track and a separate one for data channels. If the remote endpoint is not BUNDLE-aware, everything is negotiated on these separate DTLS transports.</td> </tr> <tr> <td><code>"max-bundle"</code></td> <td>The ICE agent initially creates only a single <a href="rtcdtlstransport"><code>RTCDtlsTransport</code></a> to carry all of the <code>RTCPeerConnection</code>'s data. If the remote endpoint is not BUNDLE-aware, then only a single track will be negotiated and the rest ignored.</td> </tr> </tbody> </table></div>
+ 
+<h3 id="rtcicetransportpolicy_enum">RTCIceTransportPolicy enum</h3>
+<p>The <code>RTCIceTransportPolicy</code> enum defines string constants which can be used to limit the transport policies of the ICE candidates to be considered during the connection process.</p>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Constant</th> <th scope="col">Description</th> </tr> </thead> <tbody> <tr> <td><code>"all"</code></td> <td>All ICE candidates will be considered.</td> </tr> <tr> <td>
+<code>"public" </code><span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</td> <td>Only ICE candidates with public IP addresses will be considered. <em>Removed from the specification's May 13, 2016 working draft.</em>
+</td> </tr> <tr> <td><code>"relay"</code></td> <td>Only ICE candidates whose IP addresses are being relayed, such as those being passed through a TURN server, will be considered.</td> </tr> </tbody> </table></div>
+ 
+<h3 id="rtcrtcpmuxpolicy_enum">RTCRtcpMuxPolicy enum</h3>
+<p>The <code>RTCRtcpMuxPolicy</code> enum defines string constants which specify what ICE candidates are gathered to support non-multiplexed RTCP. <strong>&lt;&lt;&lt;add a link to info about multiplexed RTCP.</strong></p>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Constant</th> <th scope="col">Description</th> </tr> </thead> <tbody> <tr> <td><code>"negotiate"</code></td> <td>Instructs the ICE agent to gather both <a href="https://developer.mozilla.org/en-US/docs/Glossary/RTP">RTP</a> and <a href="https://developer.mozilla.org/en-US/docs/Glossary/RTCP">RTCP</a> candidates. If the remote peer can multiplex RTCP, then RTCP candidates are multiplexed atop the corresponding RTP candidates. Otherwise, both the RTP and RTCP candidates are returned, separately.</td> </tr> <tr> <td><code>"require"</code></td> <td>Tells the ICE agent to gather ICE candidates for only RTP, and to multiplex RTCP atop them. If the remote peer doesn't support RTCP multiplexing, then session negotiation fails.</td> </tr> </tbody> </table></div>
+
+<h2 id="example">Example</h2>
+<p>The configuration below establishes two ICE servers. The first one, <code>stun:stun.services.mozilla.com</code>, requires authentication, so the username and password are provided. The second server has two URLs: <code>stun:stun.example.com</code> and <code>stun:stun-1.example.com</code>.</p> <pre data-language="js"><span class="token keyword">var</span> configuration <span class="token operator">=</span> <span class="token punctuation">{</span> iceServers<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+                          urls<span class="token operator">:</span> <span class="token string">"stun:stun.services.mozilla.com"</span><span class="token punctuation">,</span>
+                          username<span class="token operator">:</span> <span class="token string">"louis@mozilla.com"</span><span class="token punctuation">,</span>
+                          credential<span class="token operator">:</span> <span class="token string">"webrtcdemo"</span>
+                      <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+                          urls<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"stun:stun.example.com"</span><span class="token punctuation">,</span> <span class="token string">"stun:stun-1.example.com"</span><span class="token punctuation">]</span>
+                      <span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> pc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RTCPeerConnection</span><span class="token punctuation">(</span>configuration<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcconfiguration" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCConfiguration' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>RTCConfiguration</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>bundlePolicy</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>certificates</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>iceCandidatePoolSize</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>iceServers</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>iceTransportPolicy</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>peerIdentity</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>rtcpMuxPolicy</code></th>
+<td class="bc-supports-yes">
+<div>57</div>
+<div>Default for <code>rtcpMuxPolicy</code> is <code>require</code>
+</div>
+</td>
+<td class="bc-supports-yes">
+<div>≤79</div>
+<div>Default for <code>rtcpMuxPolicy</code> is <code>require</code>
+</div>
+</td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>Default for <code>rtcpMuxPolicy</code> is <code>require</code>
+</div>
+</td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCConfiguration" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCConfiguration</a>
+  </p>
+</div>

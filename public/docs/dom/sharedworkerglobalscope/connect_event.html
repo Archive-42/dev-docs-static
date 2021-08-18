@@ -1,0 +1,77 @@
+<h1>SharedWorkerGlobalScope: connect event</h1> <p>The <code>connect</code> event is fired in shared workers at their <a href="../sharedworkerglobalscope"><code>SharedWorkerGlobalScope</code></a> when a new client connects.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th>Bubbles</th> <td>No</td> </tr> <tr> <th>Cancelable</th> <td>No</td> </tr> <tr> <th>Interface</th> <td><a href="../messageevent"><code>MessageEvent</code></a></td> </tr> <tr> <th>Event handler property</th> <td><a href="onconnect"><code>SharedWorkerGlobalScope.onconnect</code></a></td> </tr> </tbody> </table></div>
+<h2 id="examples">Examples</h2>
+<p>This example shows a shared worker file — when a connection to the worker occurs from a main thread via a <a href="../messageport"><code>MessagePort</code></a>, the <code>onconnect</code> event handler fires. The event object is a <a href="../messageevent"><code>MessageEvent</code></a>.</p> <p>The connecting port can be referenced through the event object's <code>ports</code> parameter; this reference can have an <code>onmessage</code> handler attached to it to handle messages coming in through the port, and its <code>postMessage()</code> method can be used to send messages back to the main thread using the worker.</p> <pre data-language="js">self<span class="token punctuation">.</span><span class="token function-variable function">onconnect</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> port <span class="token operator">=</span> e<span class="token punctuation">.</span>ports<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    port<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> workerResult <span class="token operator">=</span> <span class="token string">'Result: '</span> <span class="token operator">+</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> e<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      port<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span>workerResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    port<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>For a complete running example, see our <a href="https://github.com/mdn/simple-shared-worker" rel=" noopener">Basic shared worker example</a> (<a href="https://mdn.github.io/simple-shared-worker/" rel=" noopener">run shared worker</a>.)</p>
+<h3 id="addeventlistener_equivalent">addEventListener equivalent</h3>
+<p>You could also set up an event handler using the <a href="../eventtarget/addeventlistener"><code>addEventListener()</code></a> method:</p> <pre data-language="js">self<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'connect'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> port <span class="token operator">=</span> e<span class="token punctuation">.</span>ports<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  port<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> workerResult <span class="token operator">=</span> <span class="token string">'Result: '</span> <span class="token operator">+</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> e<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    port<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span>workerResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> </tr> </thead> <tbody> <tr> <td><a href="https://html.spec.whatwg.org/multipage/indices.html#event-workerglobalscope-connect" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'connect event' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>connect_event</code></th>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>Before version 65 the <code>data</code> property of the event object was <code>null</code>; it is now initialized to an empty string, as per spec.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>10.6</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>Before version 65 the <code>data</code> property of the event object was <code>null</code>; it is now initialized to an empty string, as per spec.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../web_workers_api/using_web_workers">Using web workers</a></li> <li><a href="../sharedworkerglobalscope"><code>SharedWorkerGlobalScope</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/SharedWorkerGlobalScope/connect_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/SharedWorkerGlobalScope/connect_event</a>
+  </p>
+</div>

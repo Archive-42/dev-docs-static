@@ -1,0 +1,78 @@
+<h1>VRDevice.hardwareUnitId</h1>
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div>
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div> <p>The <code>hardwareUnitId</code> read-only property of the <a href="../vrdisplay"><code>VRDisplay</code></a> interface returns the distinct hardware ID for the overall hardware unit that this <code>VRDevice</code> is a part of. All devices that are part of the same physical piece of hardware will have the same <code>hardwareUnitId</code>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> hardwareID <span class="token operator">=</span> VRDevice<span class="token punctuation">.</span>hardwareUnitId<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../domstring"><code>DOMString</code></a> containing the ID of the overall hardware unit.</p>
+<h2 id="examples">Examples</h2>
+<p>The following snippet (see our <a href="https://mdn.github.io/webvr-tests/vrdevice/" rel=" noopener">VRDevice example</a>) returns an array of all the <a href="../vrdisplay"><code>VRDisplay</code></a>s connected to your computer via <a href="../navigator/getvrdisplays"><code>Navigator.getVRDisplays</code></a>. For each connected device it then prints out the <code>hardwareUnitId</code>, <a href="displayid"><code>VRDisplay.displayId</code></a>, and <a href="displayname"><code>VRDisplay.displayName</code></a>.</p> <pre data-language="js"><span class="token keyword">var</span> list <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'ul'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> info <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'p'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>navigator<span class="token punctuation">.</span>getVRDevices<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  navigator<span class="token punctuation">.</span><span class="token function">getVRDevices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">myDevices</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">reportDevices</span><span class="token punctuation">(</span>myDevices<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  info<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'WebVR API not supported by this browser.'</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">reportDevices</span><span class="token punctuation">(</span><span class="token parameter">devices</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> devices<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> listItem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    listItem<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'Device '</span> <span class="token operator">+</span> <span class="token punctuation">(</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span>
+                 <span class="token operator">+</span> <span class="token string">': &lt;strong&gt;Hardware ID&lt;/strong&gt;: '</span> <span class="token operator">+</span> devices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>hardwareUnitId
+                 <span class="token operator">+</span> <span class="token string">', &lt;strong&gt;VD Device ID&lt;/strong&gt;: '</span> <span class="token operator">+</span> devices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>deviceId
+                 <span class="token operator">+</span> <span class="token string">', &lt;strong&gt;VR Device Name&lt;/strong&gt;: '</span> <span class="token operator">+</span> devices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>deviceName
+                 <span class="token operator">+</span> <span class="token string">'.'</span><span class="token punctuation">;</span>
+    list<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>listItem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>hardwareUnitId</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../webvr_api">WebVR API homepage</a>.</li> <li>
+<a href="https://mixedreality.mozilla.org/" rel=" noopener">https://mixedreality.mozilla.org/</a> — demos, downloads, and other resources from the Mozilla VR team.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/VRDisplay/hardwareUnitId" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/VRDisplay/hardwareUnitId</a>
+  </p>
+</div>

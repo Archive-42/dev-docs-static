@@ -1,0 +1,244 @@
+<h1>Function.prototype.bind()</h1> <p>The <code><strong>bind()</strong></code> method creates a new function that, when called, has its <code>this</code> keyword set to the provided value, with a given sequence of arguments preceding any provided when the new function is called.</p> <iframe class="interactive" width="100%" height="692" src="https://interactive-examples.mdn.mozilla.net/pages/js/function-bind.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">bind</span><span class="token punctuation">(</span>thisArg<span class="token punctuation">)</span>
+<span class="token function">bind</span><span class="token punctuation">(</span>thisArg<span class="token punctuation">,</span> arg1<span class="token punctuation">)</span>
+<span class="token function">bind</span><span class="token punctuation">(</span>thisArg<span class="token punctuation">,</span> arg1<span class="token punctuation">,</span> arg2<span class="token punctuation">)</span>
+<span class="token function">bind</span><span class="token punctuation">(</span>thisArg<span class="token punctuation">,</span> arg1<span class="token punctuation">,</span> <span class="token operator">...</span> <span class="token punctuation">,</span> argN<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>thisArg</var></code></dt> <dd>The value to be passed as the <code>this</code> parameter to the target function <code><var>func</var></code> when the bound function is called. The value is ignored if the bound function is constructed using the <a href="../../operators/new"><code>new</code></a> operator. When using <code>bind</code> to create a function (supplied as a callback) inside a <code>setTimeout</code>, any primitive value passed as <code><var>thisArg</var></code> is converted to object. If no arguments are provided to <code>bind </code>, or if the <code><var>thisArg</var></code> is <code><var>null</var></code> or <code><var>undefined</var></code>, the <code>this</code> of the executing scope is treated as the <code><var>thisArg</var></code> for the new function.</dd> <dt>
+<code><var>arg1</var>, <var>arg2</var>, ...<var>argN</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>Arguments to prepend to arguments provided to the bound function when invoking <code><var>func</var></code>.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A copy of the given function with the specified <code>this</code> value, and initial arguments (if provided).</p>
+<h2 id="description">Description</h2>
+<p>The <code>bind()</code> function creates a new <strong>bound function</strong>, which is an <em>exotic function object</em> (a term from ECMAScript 2015) that wraps the original function object. Calling the bound function generally results in the execution of its wrapped function.</p> <p>A bound function has the following internal properties:</p> <dl> <dt><code>[[BoundTargetFunction]]</code></dt> <dd>The wrapped function object</dd> <dt><code><strong>[[BoundThis]]</strong></code></dt> <dd>The value that is always passed as <code>this</code> value when calling the wrapped function.</dd> <dt><code><strong>[[BoundArguments]]</strong></code></dt> <dd>A list of values whose elements are used as the first arguments to any call to the wrapped function.</dd> <dt><code><strong>[[Call]]</strong></code></dt> <dd>Executes code associated with this object. Invoked via a function call expression. The arguments to the internal method are a <code>this</code> value and a list containing the arguments passed to the function by a call expression.</dd> </dl> <p>When a bound function is called, it calls internal method <code>[[Call]]</code> on <code>[[BoundTargetFunction]]</code>, with following arguments <code>Call(<var>boundThis</var>, ...<var>args</var>)</code>. Where <code><var>boundThis</var></code> is <code>[[BoundThis]]</code>, <code><var>args</var></code> is <code>[[BoundArguments]]</code>, followed by the arguments passed by the function call.</p> <p>A bound function may also be constructed using the <a href="../../operators/new"><code>new</code></a> operator. Doing so acts as though the target function had instead been constructed. The provided <code>this</code> value is ignored, while prepended arguments are provided to the emulated function.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="creating_a_bound_function">Creating a bound function</h3>
+<p>The simplest use of <code>bind()</code> is to make a function that, no matter how it is called, is called with a particular <code>this</code> value.</p> <p>A common mistake for new JavaScript programmers is to extract a method from an object, then to later call that function and expect it to use the original object as its <code>this</code> (e.g., by using the method in callback-based code).</p> <p>Without special care, however, the original object is usually lost. Creating a bound function from the function, using the original object, neatly solves this problem:</p> <pre data-language="js"><span class="token keyword">this</span><span class="token punctuation">.</span>x <span class="token operator">=</span> <span class="token number">9</span><span class="token punctuation">;</span>    <span class="token comment">// 'this' refers to global 'window' object here in a browser</span>
+<span class="token keyword">const</span> module <span class="token operator">=</span> <span class="token punctuation">{</span>
+  x<span class="token operator">:</span> <span class="token number">81</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">getX</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>x<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span><span class="token function">getX</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//  returns 81</span>
+
+<span class="token keyword">const</span> retrieveX <span class="token operator">=</span> module<span class="token punctuation">.</span>getX<span class="token punctuation">;</span>
+<span class="token function">retrieveX</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//  returns 9; the function gets invoked at the global scope</span>
+
+<span class="token comment">//  Create a new function with 'this' bound to module</span>
+<span class="token comment">//  New programmers might confuse the</span>
+<span class="token comment">//  global variable 'x' with module's property 'x'</span>
+<span class="token keyword">const</span> boundGetX <span class="token operator">=</span> <span class="token function">retrieveX</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>module<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">boundGetX</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//  returns 81</span>
+</pre>
+<h3 id="partially_applied_functions">Partially applied functions</h3>
+<p>The next simplest use of <code>bind()</code> is to make a function with pre-specified initial arguments.</p> <p>These arguments (if any) follow the provided <code>this</code> value and are then inserted at the start of the arguments passed to the target function, followed by whatever arguments are passed bound function at the time it is called.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">addArguments</span><span class="token punctuation">(</span><span class="token parameter">arg1<span class="token punctuation">,</span> arg2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> arg1 <span class="token operator">+</span> arg2
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> list1 <span class="token operator">=</span> <span class="token function">list</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//  [1, 2, 3]</span>
+
+<span class="token keyword">const</span> result1 <span class="token operator">=</span> <span class="token function">addArguments</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//  3</span>
+
+<span class="token comment">// Create a function with a preset leading argument</span>
+<span class="token keyword">const</span> leadingThirtysevenList <span class="token operator">=</span> <span class="token function">list</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token number">37</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Create a function with a preset first argument.</span>
+<span class="token keyword">const</span> addThirtySeven <span class="token operator">=</span> <span class="token function">addArguments</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token number">37</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> list2 <span class="token operator">=</span> <span class="token function">leadingThirtysevenList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//  [37]</span>
+
+<span class="token keyword">const</span> list3 <span class="token operator">=</span> <span class="token function">leadingThirtysevenList</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//  [37, 1, 2, 3]</span>
+
+<span class="token keyword">const</span> result2 <span class="token operator">=</span> <span class="token function">addThirtySeven</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//  37 + 5 = 42</span>
+
+<span class="token keyword">const</span> result3 <span class="token operator">=</span> <span class="token function">addThirtySeven</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//  37 + 5 = 42</span>
+<span class="token comment">//  (the second argument is ignored)</span>
+</pre>
+<h3 id="with_settimeout">With <code>setTimeout()</code>
+</h3>
+<p>By default within <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/setTimeout"><code>window.setTimeout()</code></a>, the <code>this</code> keyword will be set to the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window"><code>window</code></a> (or <code>global</code>) object. When working with class methods that require <code>this</code> to refer to class instances, you may explicitly bind <code>this</code> to the callback function, in order to maintain the instance.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">LateBloomer</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>petalCount <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">12</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Declare bloom after a delay of 1 second</span>
+<span class="token class-name">LateBloomer</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">bloom</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  window<span class="token punctuation">.</span><span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">declare</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token class-name">LateBloomer</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">declare</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">I am a beautiful flower with </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>petalCount<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> petals!</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> flower <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LateBloomer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+flower<span class="token punctuation">.</span><span class="token function">bloom</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//  after 1 second, calls 'flower.declare()'</span>
+</pre>
+<h3 id="bound_functions_used_as_constructors">Bound functions used as constructors</h3>
+<div class="warning notecard"> <p><strong>Warning:</strong> This section demonstrates JavaScript capabilities and documents some edge cases of the <code>bind()</code> method.</p> <p>The methods shown below are not the best way to do things, and probably should not be used in any production environment.</p> </div> <p>Bound functions are automatically suitable for use with the <a href="../../operators/new"><code>new</code></a> operator to construct new instances created by the target function. When a bound function is used to construct a value, the provided <code>this</code> is ignored. </p> <p>However, provided arguments are still prepended to the constructor call:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">Point</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token punctuation">,</span> y</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>x <span class="token operator">=</span> x<span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>y <span class="token operator">=</span> y<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">Point</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">toString</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>x<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">,</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>y<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Point</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+p<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// '1,2'</span>
+
+<span class="token comment">//  not supported in the polyfill below,</span>
+
+<span class="token comment">//  works fine with native bind:</span>
+
+<span class="token keyword">const</span> YAxisPoint <span class="token operator">=</span> <span class="token function">Point</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token comment">/*x*/</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> emptyObj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> YAxisPoint <span class="token operator">=</span> <span class="token function">Point</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>emptyObj<span class="token punctuation">,</span> <span class="token number">0</span><span class="token comment">/*x*/</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> axisPoint <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">YAxisPoint</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+axisPoint<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                    <span class="token comment">// '0,5'</span>
+
+axisPoint <span class="token keyword">instanceof</span> <span class="token class-name">Point</span><span class="token punctuation">;</span>              <span class="token comment">// true</span>
+axisPoint <span class="token keyword">instanceof</span> <span class="token class-name">YAxisPoint</span><span class="token punctuation">;</span>         <span class="token comment">// true</span>
+<span class="token keyword">new</span> <span class="token class-name">YAxisPoint</span><span class="token punctuation">(</span><span class="token number">17</span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">)</span> <span class="token keyword">instanceof</span> <span class="token class-name">Point</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+</pre> <p>Note that you need not do anything special to create a bound function for use with <a href="../../operators/new"><code>new</code></a>.</p> <p>The corollary is that you need not do anything special to create a bound function to be called plainly, even if you would rather require the bound function to only be called using <a href="../../operators/new"><code>new</code></a>.</p> <pre data-language="js"><span class="token comment">//  Example can be run directly in your JavaScript console</span>
+<span class="token comment">//  ...continued from above</span>
+
+<span class="token comment">//  Can still be called as a normal function</span>
+<span class="token comment">//  (although usually this is undesired)</span>
+<span class="token function">YAxisPoint</span><span class="token punctuation">(</span><span class="token number">13</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>emptyObj<span class="token punctuation">.</span>x<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">,</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>emptyObj<span class="token punctuation">.</span>y<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token comment">// &gt;  '0,13'</span>
+</pre> <p>If you wish to support the use of a bound function only using <a href="../../operators/new"><code>new</code></a>, or only by calling it, the target function must enforce that restriction.</p>
+<h3 id="creating_shortcuts">Creating shortcuts</h3>
+<p><code>bind()</code> is also helpful in cases where you want to create a shortcut to a function which requires a specific <code>this</code> value.</p> <p>Take <a href="../array/slice"><code>Array.prototype.slice()</code></a>, for example, which you want to use for converting an array-like object to a real array. You could create a shortcut like this: </p> <pre data-language="js"><span class="token keyword">const</span> slice <span class="token operator">=</span> <span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>slice<span class="token punctuation">;</span>
+
+<span class="token comment">// ...</span>
+
+<span class="token function">slice</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>With <code>bind()</code>, this can be simplified.</p> <p>In the following piece of code, <code>slice()</code> is a bound function to the <a href="apply"><code>apply()</code></a> function of <a href="../function"><code>Function</code></a>, with the <code>this</code> value set to the <a href="../array/slice"><code>slice()</code></a> function of <a class="page-not-created"><code>Array.prototype</code></a>. This means that additional <code>apply()</code> calls can be eliminated:</p> <pre data-language="js"><span class="token comment">//  same as "slice" in the previous example</span>
+<span class="token keyword">const</span> unboundSlice <span class="token operator">=</span> <span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>slice<span class="token punctuation">;</span>
+<span class="token keyword">const</span> slice <span class="token operator">=</span> <span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>unboundSlice<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// ...</span>
+
+<span class="token function">slice</span><span class="token punctuation">(</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="polyfill">Polyfill</h2>
+<p>Because older browsers are generally also slower browsers, it is far more critical than most people recognize to create performance polyfills to make the browsing experience in outdated browsers slightly less horrible.</p> <p>Thus, presented below are two options for <code>Function.prototype.bind()</code> polyfills:</p> <ol> <li>The first one is much smaller and more performant, but does not work when using the <code>new</code> operator.</li> <li>The second one is bigger and less performant, but it permits some usage of the <code>new</code> operator on bound functions.</li> </ol> <p>Generally, in most code it's very rare to see <code>new</code> used on a bound function, so it is generally best to go with the first option.</p> <pre data-language="js"><span class="token comment">//  Does not work with `new (funcA.bind(thisArg, args))`</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>bind<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">var</span> slice <span class="token operator">=</span> <span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>slice<span class="token punctuation">;</span>
+  <span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">bind</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> thatFunc <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">,</span> thatArg <span class="token operator">=</span> arguments<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> args <span class="token operator">=</span> <span class="token function">slice</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>arguments<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> thatFunc <span class="token operator">!==</span> <span class="token string">'function'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// closest thing possible to the ECMAScript 5</span>
+      <span class="token comment">// internal IsCallable function</span>
+      <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">TypeError</span><span class="token punctuation">(</span><span class="token string">'Function.prototype.bind - '</span> <span class="token operator">+</span>
+             <span class="token string">'what is trying to be bound is not callable'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">var</span> funcArgs <span class="token operator">=</span> args<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span><span class="token function">slice</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>arguments<span class="token punctuation">)</span><span class="token punctuation">)</span>
+      <span class="token keyword">return</span> <span class="token function">thatFunc</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>thatArg<span class="token punctuation">,</span> funcArgs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>You can partially work around this by inserting the following code at the beginning of your scripts, allowing use of much of the functionality of <code>bind()</code> in implementations that do not natively support it.</p> <pre data-language="js"><span class="token comment">//  Yes, it does work with `new (funcA.bind(thisArg, args))`</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>bind<span class="token punctuation">)</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">var</span> ArrayPrototypeSlice <span class="token operator">=</span> <span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>slice<span class="token punctuation">;</span>
+  <span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">bind</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">otherThis</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> <span class="token keyword">this</span> <span class="token operator">!==</span> <span class="token string">'function'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// closest thing possible to the ECMAScript 5</span>
+      <span class="token comment">// internal IsCallable function</span>
+      <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">TypeError</span><span class="token punctuation">(</span><span class="token string">'Function.prototype.bind - what is trying to be bound is not callable'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">var</span> baseArgs<span class="token operator">=</span> <span class="token function">ArrayPrototypeSlice</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>arguments<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+        baseArgsLength <span class="token operator">=</span> baseArgs<span class="token punctuation">.</span>length<span class="token punctuation">,</span>
+        fToBind <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">fNOP</span>    <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token function-variable function">fBound</span>  <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          baseArgs<span class="token punctuation">.</span>length <span class="token operator">=</span> baseArgsLength<span class="token punctuation">;</span> <span class="token comment">// reset to default base arguments</span>
+          baseArgs<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>baseArgs<span class="token punctuation">,</span> arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token keyword">return</span> <span class="token function">fToBind</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>
+                 fNOP<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">isPrototypeOf</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token keyword">this</span> <span class="token operator">:</span> otherThis<span class="token punctuation">,</span> baseArgs
+          <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Function.prototype doesn't have a prototype property</span>
+      fNOP<span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>prototype<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    fBound<span class="token punctuation">.</span>prototype <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">fNOP</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">return</span> fBound<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>Some of the many differences (there may well be others, as this list does not seriously attempt to be exhaustive) between this algorithm and the specified algorithm are:</p> <ul> <li>The partial implementation relies on <a href="../array/slice"><code>Array.prototype.slice()</code></a>, <a href="../array/concat"><code>Array.prototype.concat()</code></a>, <a href="call"><code>Function.prototype.call()</code></a> and <a href="apply"><code>Function.prototype.apply()</code></a>, built-in methods to have their original values.</li> <li>The partial implementation creates functions that do not have immutable "poison pill" <a href="caller"><code>caller</code></a> and <code>arguments</code> properties that throw a <a href="../typeerror"><code>TypeError</code></a> upon get, set, or deletion. (This could be added if the implementation supports <a href="../object/defineproperty"><code>Object.defineProperty</code></a>, or partially implemented [without throw-on-delete behavior] if the implementation supports the <a href="../object/__definegetter__"><code>__defineGetter__</code></a> and <a href="../object/__definesetter__"><code>__defineSetter__</code></a> extensions.)</li> <li>The partial implementation creates functions that have a <code>prototype</code> property. (Proper bound functions have none.)</li> <li>The partial implementation creates bound functions whose <a href="length"><code>length</code></a> property does not agree with that mandated by ECMA-262: it creates functions with <code>length</code> of <code>0</code>. A full implementation—depending on the length of the target function and the number of pre-specified arguments—may return a non-zero length.</li> <li>The partial implementation creates bound functions whose <a href="name"><code>name</code></a> property is not derived from the original function name. According to ECMA-262, name of the returned bound function should be "bound " + name of target function (note the space character).</li> </ul> <p>If you choose to use this partial implementation, <strong>you must not rely on those cases where behavior deviates from ECMA-262, 5<sup>th</sup> edition!</strong> Thankfully, these deviations from the specification rarely (if ever) come up in most coding situations. If you do not understand any of the deviations from the specification above, then it is safe in this particular case to not worry about these noncompliant deviation details.</p> <p><strong>If it's absolutely necessary and performance is not a concern</strong>, a far slower (but more specification-compliant solution) can be found at <a href="https://github.com/Raynos/function-bind" rel=" noopener">https://github.com/Raynos/function-bind</a>. </p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-function.prototype.bind">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-function.prototype.bind</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>bind</code></th>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>11.6</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="apply"><code>Function.prototype.apply()</code></a></li> <li><a href="call"><code>Function.prototype.call()</code></a></li> <li><a href="../../functions">Functions</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/bind</a>
+  </p>
+</div>

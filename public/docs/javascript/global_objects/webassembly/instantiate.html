@@ -1,0 +1,113 @@
+<h1>WebAssembly.instantiate()</h1> <p>The <code>WebAssembly.instantiate()</code> function allows you to compile and instantiate WebAssembly code. This function has two overloads:</p> <ul> <li>The primary overload takes the WebAssembly binary code, in the form of a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a> or <a href="../arraybuffer"><code>ArrayBuffer</code></a>, and performs both compilation and instantiation in one step. The returned <code>Promise</code> resolves to both a compiled <a href="module"><code>WebAssembly.Module</code></a> and its first <a href="instance"><code>WebAssembly.Instance</code></a>. </li> <li>The secondary overload takes an already-compiled <a href="module"><code>WebAssembly.Module</code></a> and returns a <code>Promise</code> that resolves to an <code>Instance</code> of that <code>Module</code>. This overload is useful if the <code>Module</code> has already been compiled.</li> </ul> <div class="warning notecard"> <p><strong>Warning:</strong> This method is not the most efficient way of fetching and instantiating wasm modules. If at all possible, you should use the newer <a href="instantiatestreaming"><code>WebAssembly.instantiateStreaming()</code></a> method instead, which fetches, compiles, and instantiates a module all in one step, directly from the raw bytecode, so doesn't require conversion to an <a href="../arraybuffer"><code>ArrayBuffer</code></a>.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<h3 id="primary_overload_—_taking_wasm_binary_code">Primary overload — taking wasm binary code</h3>
+<pre data-language="js">WebAssembly<span class="token punctuation">.</span><span class="token function">instantiate</span><span class="token punctuation">(</span>bufferSource<span class="token punctuation">,</span> importObject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <h4 id="parameters">Parameters</h4> <dl> <dt><em>bufferSource</em></dt> <dd>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">typed array</a> or <a href="../arraybuffer"><code>ArrayBuffer</code></a> containing the binary code of the .wasm module you want to compile.</dd> <dt>
+<em>importObject</em> <span class="badge inline optional">Optional</span>
+</dt> <dd>An object containing the values to be imported into the newly-created <code>Instance</code>, such as functions or <a href="memory"><code>WebAssembly.Memory</code></a> objects. There must be one matching property for each declared import of the compiled module or else a <a href="linkerror"><code>WebAssembly.LinkError</code></a> is thrown.</dd> </dl> <h4 id="return_value">Return value</h4> <p>A <code>Promise</code> that resolves to a <code>ResultObject</code> which contains two fields:</p> <ul> <li>
+<code>module</code>: A <a href="module"><code>WebAssembly.Module</code></a> object representing the compiled WebAssembly module. This <code>Module</code> can be instantiated again, shared via <a href="https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage"><code>postMessage()</code></a> or <a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Caching_modules">cached in IndexedDB</a>.</li> <li>
+<code>instance</code>: A <a href="instance"><code>WebAssembly.Instance</code></a> object that contains all the <a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Exported_functions">Exported WebAssembly functions</a>.</li> </ul> <h4 id="exceptions">Exceptions</h4> <ul> <li>If either of the parameters are not of the correct type or structure, a <a href="../typeerror"><code>TypeError</code></a> is thrown.</li> <li>If the operation fails, the promise rejects with a <a href="compileerror"><code>WebAssembly.CompileError</code></a>, <a href="linkerror"><code>WebAssembly.LinkError</code></a>, or <a href="runtimeerror"><code>WebAssembly.RuntimeError</code></a>, depending on the cause of the failure.</li> </ul>
+<h3 id="secondary_overload_—_taking_a_module_object_instance">Secondary overload — taking a module object instance</h3>
+<pre data-language="js">WebAssembly<span class="token punctuation">.</span><span class="token function">instantiate</span><span class="token punctuation">(</span>module<span class="token punctuation">,</span> importObject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <h4 id="parameters_2">Parameters</h4> <dl> <dt><em>module</em></dt> <dd>The <a href="module"><code>WebAssembly.Module</code></a> object to be instantiated.</dd> <dt>
+<em>importObject</em> <span class="badge inline optional">Optional</span>
+</dt> <dd>An object containing the values to be imported into the newly-created <code>Instance</code>, such as functions or <a href="memory"><code>WebAssembly.Memory</code></a> objects. There must be one matching property for each declared import of <code>module</code> or else a <a href="linkerror"><code>WebAssembly.LinkError</code></a> is thrown.</dd> </dl> <h4 id="return_value_2">Return value</h4> <p>A <code>Promise</code> that resolves to an <a href="instance"><code>WebAssembly.Instance</code></a> object. </p> <h4 id="exceptions_2">Exceptions</h4> <ul> <li>If either of the parameters are not of the correct type or structure, a <a href="../typeerror"><code>TypeError</code></a> is thrown.</li> <li>If the operation fails, the promise rejects with a <a href="compileerror"><code>WebAssembly.CompileError</code></a>, <a href="linkerror"><code>WebAssembly.LinkError</code></a>, or <a href="runtimeerror"><code>WebAssembly.RuntimeError</code></a>, depending on the cause of the failure.</li> </ul>
+<h2 id="examples">Examples</h2>
+<p><strong>Note</strong>: You'll probably want to use <a href="instantiatestreaming"><code>WebAssembly.instantiateStreaming()</code></a> in most cases, as it is more efficient than <code>instantiate()</code>.</p>
+<h3 id="first_overload_example">First overload example</h3>
+<p>After fetching some WebAssembly bytecode using fetch, we compile and instantiate the module using the <a href="instantiate"><code>WebAssembly.instantiate()</code></a> function, importing a JavaScript function into the WebAssembly Module in the process. We then call an <a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Exported_functions">Exported WebAssembly function</a> that is exported by the <code>Instance</code>.</p> <pre data-language="js"><span class="token keyword">var</span> importObject <span class="token operator">=</span> <span class="token punctuation">{</span>
+  imports<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">imported_func</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">arg</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'simple.wasm'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">response</span> <span class="token operator">=&gt;</span>
+  response<span class="token punctuation">.</span><span class="token function">arrayBuffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">bytes</span> <span class="token operator">=&gt;</span>
+  WebAssembly<span class="token punctuation">.</span><span class="token function">instantiate</span><span class="token punctuation">(</span>bytes<span class="token punctuation">,</span> importObject<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">result</span> <span class="token operator">=&gt;</span>
+  result<span class="token punctuation">.</span>instance<span class="token punctuation">.</span>exports<span class="token punctuation">.</span><span class="token function">exported_func</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <div class="note notecard"> <p><strong>Note:</strong> You can also find this example at <a href="https://github.com/mdn/webassembly-examples/blob/master/js-api-examples/index.html" rel=" noopener">index.html</a> on GitHub (<a href="https://mdn.github.io/webassembly-examples/js-api-examples/" rel=" noopener">view it live also</a>).</p> </div>
+<h3 id="second_overload_example">Second overload example</h3>
+<p>The following example (see our <a href="https://github.com/mdn/webassembly-examples/blob/master/js-api-examples/index-compile.html" rel=" noopener">index-compile.html</a> demo on GitHub, and <a href="https://mdn.github.io/webassembly-examples/js-api-examples/index-compile.html" rel=" noopener">view it live</a> also) compiles the loaded simple.wasm byte code using the <a href="compilestreaming"><code>WebAssembly.compileStreaming()</code></a> method and then sends it to a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">worker</a> using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage"><code>postMessage()</code></a>.</p> <pre data-language="js"><span class="token keyword">var</span> worker <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Worker</span><span class="token punctuation">(</span><span class="token string">"wasm_worker.js"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+WebAssembly<span class="token punctuation">.</span><span class="token function">compileStreaming</span><span class="token punctuation">(</span><span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'simple.wasm'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">mod</span> <span class="token operator">=&gt;</span>
+  worker<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span>mod<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>In the worker (see <code><a href="https://github.com/mdn/webassembly-examples/blob/master/js-api-examples/wasm_worker.js" rel=" noopener">wasm_worker.js</a></code>) we define an import object for the module to use, then set up an event handler to receive the module from the main thread. When the module is received, we create an instance from it using the <a href="instantiate"><code>WebAssembly.instantiate()</code></a> method and invoke an exported function from inside it.</p> <pre data-language="js"><span class="token keyword">var</span> importObject <span class="token operator">=</span> <span class="token punctuation">{</span>
+  imports<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">imported_func</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">arg</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'module received from main thread'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> mod <span class="token operator">=</span> e<span class="token punctuation">.</span>data<span class="token punctuation">;</span>
+
+  WebAssembly<span class="token punctuation">.</span><span class="token function">instantiate</span><span class="token punctuation">(</span>mod<span class="token punctuation">,</span> importObject<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">instance</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    instance<span class="token punctuation">.</span>exports<span class="token punctuation">.</span><span class="token function">exported_func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://webassembly.github.io/spec/js-api/#dom-webassembly-instantiate">WebAssembly JavaScript Interface (WebAssembly JavaScript Interface)<br> <small>#dom-webassembly-instantiate</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>instantiate</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="https://developer.mozilla.org/en-US/docs/WebAssembly">WebAssembly</a> overview page</li> <li><a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Concepts">WebAssembly concepts</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Using_the_JavaScript_API">Using the WebAssembly JavaScript API</a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/instantiate" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/instantiate</a>
+  </p>
+</div>

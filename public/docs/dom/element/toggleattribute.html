@@ -1,0 +1,98 @@
+<h1>Element.toggleAttribute()</h1> <p>The <code><strong>toggleAttribute()</strong></code> method of the <a href="../element"><code>Element</code></a> interface toggles a Boolean attribute (removing it if it is present and adding it if it is not present) on the given element.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">Element<span class="token punctuation">.</span><span class="token function">toggleAttribute</span><span class="token punctuation">(</span>name <span class="token punctuation">[</span><span class="token punctuation">,</span> force<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>name</code></dt> <dd>A <a href="../domstring"><code>DOMString</code></a> specifying the name of the attribute to be toggled. The attribute name is automatically converted to all lower-case when <code>toggleAttribute()</code> is called on an HTML element in an HTML document. </dd> <dt>
+<code>force</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A boolean value to determine whether the attribute should be added or removed, no matter whether the attribute is present or not at the moment.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p><code>true</code> if attribute <code>name</code> is eventually present, and <code>false</code> otherwise.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>InvalidCharacterError</code></dt> <dd>The specified attribute <code>name</code> contains one or more characters which are not valid in attribute names.</dd> </dl>
+<h2 id="example">Example</h2>
+<p>In the following example, <code>toggleAttribute()</code> is used to toggle the <code>disabled</code> attribute of an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a>.</p>
+<h3 id="html">HTML</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">&gt;</span></span>toggleAttribute("disabled")<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span></pre>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js"><span class="token keyword">var</span> button <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"button"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> input <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"input"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+button<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  input<span class="token punctuation">.</span><span class="token function">toggleAttribute</span><span class="token punctuation">(</span><span class="token string">"disabled"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="result">Result</h3>
+<p><iframe class="sample-code-frame" id="frame_Example" width="300" height="60" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Element/toggleAttribute/_samples_/Example" loading="lazy"></iframe></p> 
+<p>DOM methods dealing with element's attributes:</p> <div class="_table"><table class="standard-table"> <thead> <tr> <th>Not namespace-aware, most commonly used methods</th> <th>Namespace-aware variants (DOM Level 2)</th> <th>DOM Level 1 methods for dealing with <code>Attr</code> nodes directly (seldom used)</th> <th>DOM Level 2 namespace-aware methods for dealing with <code>Attr</code> nodes directly (seldom used)</th> </tr> </thead> <tbody> <tr> <td>
+<a href="setattribute"><code>setAttribute</code></a> (DOM 1)</td> <td><a href="setattributens"><code>setAttributeNS</code></a></td> <td><a href="setattributenode"><code>setAttributeNode</code></a></td> <td><a href="setattributenodens"><code>setAttributeNodeNS</code></a></td> </tr> <tr> <td>
+<a href="getattribute"><code>getAttribute</code></a> (DOM 1)</td> <td><a href="getattributens"><code>getAttributeNS</code></a></td> <td><a href="getattributenode"><code>getAttributeNode</code></a></td> <td><a href="getattributenodens"><code>getAttributeNodeNS</code></a></td> </tr> <tr> <td>
+<a href="hasattribute"><code>hasAttribute</code></a> (DOM 2)</td> <td><a href="hasattributens"><code>hasAttributeNS</code></a></td> <td>-</td> <td>-</td> </tr> <tr> <td>
+<a href="removeattribute"><code>removeAttribute</code></a> (DOM 1)</td> <td><a href="removeattributens"><code>removeAttributeNS</code></a></td> <td><a href="removeattributenode"><code>removeAttributeNode</code></a></td> <td>-</td> </tr> </tbody> </table></div>
+
+<h2 id="polyfill">Polyfill</h2>
+<pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toggleAttribute<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">toggleAttribute</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> force</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>force <span class="token operator">!==</span> <span class="token keyword">void</span> <span class="token number">0</span><span class="token punctuation">)</span> force <span class="token operator">=</span> <span class="token operator">!</span><span class="token operator">!</span>force
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">hasAttribute</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>force<span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">removeAttribute</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>force <span class="token operator">===</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://dom.spec.whatwg.org/#dom-element-toggleattribute" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'Element.toggleAttribute' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>toggleAttribute</code></th>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/toggleAttribute" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/toggleAttribute</a>
+  </p>
+</div>

@@ -1,0 +1,96 @@
+<h1>DelayNode.delayTime</h1>
+
+  <p>The <code>delayTime</code> property of the <a href="../delaynode"><code>DelayNode</code></a> interface is an <a href="../audioparam#a-rate">a-rate</a> <a href="../audioparam"><code>AudioParam</code></a> representing the amount of delay to apply.</p> <p><code>delayTime</code> is expressed in seconds, its minimal value is <code>0</code>, and its maximum value is defined by the <code>maxDelayTime</code> argument of the <a href="../baseaudiocontext/createdelay"><code>BaseAudioContext.createDelay</code></a> method that created it.</p> <h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> audioCtx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> myDelay <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createDelay</span><span class="token punctuation">(</span><span class="token number">5.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+myDelay<span class="token punctuation">.</span>delayTime<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token number">3.0</span><span class="token punctuation">;</span>
+</pre> <div class="note notecard"> <p><strong>Note</strong>: Though the <a href="../audioparam"><code>AudioParam</code></a> returned is read-only, the value it represents is not.</p> </div>
+<h3 id="value">Value</h3>
+<p>An <a href="../audioparam"><code>AudioParam</code></a>.</p>
+<h2 id="example">Example</h2>
+
+<p>We have created a simple example that allows you to play three different samples on a constant loop — see <a href="https://chrisdavidmills.github.io/create-delay/" rel=" noopener">create-delay</a> (you can also <a href="https://github.com/chrisdavidmills/create-delay" rel=" noopener">view the source code</a>). If you just press the play buttons, the loops will start immediately; if you slide the sliders up to the right, then press the play buttons, a delay will be introduced, so the looping sounds don't start playing for a short amount of time.</p>
+<pre data-language="js"><span class="token keyword">var</span> AudioContext <span class="token operator">=</span> window<span class="token punctuation">.</span>AudioContext <span class="token operator">||</span> window<span class="token punctuation">.</span>webkitAudioContext<span class="token punctuation">;</span>
+<span class="token keyword">var</span> audioCtx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> synthDelay <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createDelay</span><span class="token punctuation">(</span><span class="token number">5.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token operator">...</span>
+
+<span class="token keyword">var</span> synthSource<span class="token punctuation">;</span>
+
+playSynth<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  synthSource <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createBufferSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  synthSource<span class="token punctuation">.</span>buffer <span class="token operator">=</span> buffers<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  synthSource<span class="token punctuation">.</span>loop <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  synthSource<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  synthSource<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>synthDelay<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  synthDelay<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'disabled'</span><span class="token punctuation">,</span> <span class="token string">'disabled'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+stopSynth<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  synthSource<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span>synthDelay<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  synthDelay<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  synthSource<span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  playSynth<span class="token punctuation">.</span><span class="token function">removeAttribute</span><span class="token punctuation">(</span><span class="token string">'disabled'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token operator">...</span>
+
+<span class="token keyword">var</span> delay1<span class="token punctuation">;</span>
+rangeSynth<span class="token punctuation">.</span><span class="token function-variable function">oninput</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  delay1 <span class="token operator">=</span> rangeSynth<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+  synthDelay<span class="token punctuation">.</span>delayTime<span class="token punctuation">.</span><span class="token function">setValueAtTime</span><span class="token punctuation">(</span>delay1<span class="token punctuation">,</span> audioCtx<span class="token punctuation">.</span>currentTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://webaudio.github.io/web-audio-api/#dom-delaynode-delaytime" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'delayTime' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>delayTime</code></th>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../web_audio_api/using_web_audio_api">Using the Web Audio API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/DelayNode/delayTime" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/DelayNode/delayTime</a>
+  </p>
+</div>

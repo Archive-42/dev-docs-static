@@ -1,0 +1,380 @@
+<h1>IDBDatabase</h1>
+
+ <p>The <code>IDBDatabase</code> interface of the IndexedDB API provides a <a href="indexeddb_api#database_connection">connection to a database</a>; you can use an <code>IDBDatabase</code> object to open a <a href="indexeddb_api#gloss_transaction">transaction</a> on your database then create, manipulate, and delete objects (data) in that database. The interface provides the only way to get and manage versions of the database.</p> 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="web_workers_api">Web Workers</a>.</p> </div>
+ <div class="note notecard"> <p><strong>Note</strong>: Everything you do in IndexedDB always happens in the context of a <a href="indexeddb_api/basic_concepts_behind_indexeddb#gloss_transaction">transaction</a>, representing interactions with data in the database. All objects in IndexedDB — including object stores, indexes, and cursors — are tied to a particular transaction. Thus, you cannot execute commands, access data, or open anything outside of a transaction.</p> </div>  <iframe class="inheritance-diagram-frame" id="frame_inheritance_diagram" width="600" height="70" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/IDBDatabase/_samples_/inheritance_diagram" loading="lazy"></iframe>
+<h2 id="properties">Properties</h2>
+<dl> <dt>
+<a href="idbdatabase/name"><code>IDBDatabase.name</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="domstring"><code>DOMString</code></a> that contains the name of the connected database.</dd> <dt>
+<a href="idbdatabase/version"><code>IDBDatabase.version</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="https://developer.mozilla.org/en-US/docs/NSPR_API_Reference/Long_Long_(64-bit)_Integers">64-bit integer</a> that contains the version of the connected database. When a database is first created, this attribute is an empty string.</dd> <dt>
+<a href="idbdatabase/objectstorenames"><code>IDBDatabase.objectStoreNames</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="domstringlist"><code>DOMStringList</code></a> that contains a list of the names of the <a href="indexeddb_api#gloss_object_store">object stores</a> currently in the connected database.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<p>Inherits from: <a href="eventtarget">EventTarget</a></p> <dl> <dt><a href="idbdatabase/close"><code>IDBDatabase.close()</code></a></dt> <dd>Returns immediately and closes the connection to a database in a separate thread.</dd> <dt><a class="page-not-created"><code>IDBDatabase.createMutableFile()</code></a></dt> <dd>Creates a file handle, allowing files to be stored inside an IndexedDB database.</dd> <dt><a href="idbdatabase/createobjectstore"><code>IDBDatabase.createObjectStore()</code></a></dt> <dd>Creates and returns a new object store or index.</dd> <dt><a href="idbdatabase/deleteobjectstore"><code>IDBDatabase.deleteObjectStore()</code></a></dt> <dd>Destroys the object store with the given name in the connected database, along with any indexes that reference it.</dd> <dt><a href="idbdatabase/transaction"><code>IDBDatabase.transaction()</code></a></dt> <dd>Immediately returns a transaction object (<a href="idbtransaction"><code>IDBTransaction</code></a>) containing the <a href="idbtransaction/objectstore"><code>IDBTransaction.objectStore</code></a> method, which you can use to access your object store. Runs in a separate thread.</dd> </dl>
+<h2 id="events">Events</h2>
+<p>Listen to these events using <code>addEventListener()</code> or by assigning an event listener to the <code>on<em>eventname</em></code> property of this interface.</p> <dl> <dt><a href="idbdatabase/abort_event"><code>abort</code></a></dt> <dd>Fired when a transaction is aborted and bubbles up to the connection object. Also available via the <code><a href="idbdatabase/onabort">onabort</a></code> property.</dd> <dt><a href="idbdatabase/close_event"><code>close</code></a></dt> <dd>Fired when the database connection is unexpectedly closed. Also available via the <code><a href="idbdatabase/onclose">onclose</a></code> property.</dd> <dt><a href="idbdatabase/error_event"><code>error</code></a></dt> <dd>Fired when a request returns an error and the event bubbles up to the connection object. Also available via the <code><a href="idbdatabase/onerror">onerror</a></code> property.</dd> <dt><a href="idbdatabase/versionchange_event"><code>versionchange</code></a></dt> <dd>Fired when a database structure change was requested. Also available via the <code><a href="idbdatabase/onversionchange">onversionchange</a></code> property.</dd> </dl>
+<h2 id="example">Example</h2>
+<p>In the following code snippet, we open a database asynchronously (<a href="idbfactory"><code>IDBFactory</code></a>), handle success and error cases, and create a new object store in the case that an upgrade is needed (<a href="idbdatabase"><code>IDBdatabase</code></a>). For a complete working example, see our <a href="https://github.com/mdn/to-do-notifications/" rel=" noopener">To-do Notifications</a> app (<a href="https://mdn.github.io/to-do-notifications/" rel=" noopener">view example live</a>.)</p> <pre data-language="js"><span class="token comment">// Let us open our database</span>
+<span class="token keyword">var</span> DBOpenRequest <span class="token operator">=</span> window<span class="token punctuation">.</span>indexedDB<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"toDoList"</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// these two event handlers act on the IDBDatabase object,</span>
+<span class="token comment">// when the database is opened successfully, or not</span>
+DBOpenRequest<span class="token punctuation">.</span><span class="token function-variable function">onerror</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  note<span class="token punctuation">.</span>innerHTML <span class="token operator">+=</span> <span class="token string">'&lt;li&gt;Error loading database.&lt;/li&gt;'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+DBOpenRequest<span class="token punctuation">.</span><span class="token function-variable function">onsuccess</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  note<span class="token punctuation">.</span>innerHTML <span class="token operator">+=</span> <span class="token string">'&lt;li&gt;Database initialised.&lt;/li&gt;'</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// store the result of opening the database in the db</span>
+  <span class="token comment">// variable. This is used a lot later on</span>
+  db <span class="token operator">=</span> DBOpenRequest<span class="token punctuation">.</span>result<span class="token punctuation">;</span>
+
+  <span class="token comment">// Run the displayData() function to populate the task</span>
+  <span class="token comment">// list with all the to-do list data already in the IDB</span>
+  <span class="token function">displayData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// This event handles the event whereby a new version of</span>
+<span class="token comment">// the database needs to be created Either one has not</span>
+<span class="token comment">// been created before, or a new version number has been</span>
+<span class="token comment">// submitted via the window.indexedDB.open line above</span>
+
+DBOpenRequest<span class="token punctuation">.</span><span class="token function-variable function">onupgradeneeded</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> db <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>result<span class="token punctuation">;</span>
+
+  db<span class="token punctuation">.</span><span class="token function-variable function">onerror</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    note<span class="token punctuation">.</span>innerHTML <span class="token operator">+=</span> <span class="token string">'&lt;li&gt;Error loading database.&lt;/li&gt;'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Create an objectStore for this database using</span>
+  <span class="token comment">// IDBDatabase.createObjectStore</span>
+
+  <span class="token keyword">var</span> objectStore <span class="token operator">=</span> db<span class="token punctuation">.</span><span class="token function">createObjectStore</span><span class="token punctuation">(</span><span class="token string">"toDoList"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> keyPath<span class="token operator">:</span> <span class="token string">"taskTitle"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// define what data items the objectStore will contain</span>
+
+  objectStore<span class="token punctuation">.</span><span class="token function">createIndex</span><span class="token punctuation">(</span><span class="token string">"hours"</span><span class="token punctuation">,</span> <span class="token string">"hours"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> unique<span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  objectStore<span class="token punctuation">.</span><span class="token function">createIndex</span><span class="token punctuation">(</span><span class="token string">"minutes"</span><span class="token punctuation">,</span> <span class="token string">"minutes"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> unique<span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  objectStore<span class="token punctuation">.</span><span class="token function">createIndex</span><span class="token punctuation">(</span><span class="token string">"day"</span><span class="token punctuation">,</span> <span class="token string">"day"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> unique<span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  objectStore<span class="token punctuation">.</span><span class="token function">createIndex</span><span class="token punctuation">(</span><span class="token string">"month"</span><span class="token punctuation">,</span> <span class="token string">"month"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> unique<span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  objectStore<span class="token punctuation">.</span><span class="token function">createIndex</span><span class="token punctuation">(</span><span class="token string">"year"</span><span class="token punctuation">,</span> <span class="token string">"year"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> unique<span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  objectStore<span class="token punctuation">.</span><span class="token function">createIndex</span><span class="token punctuation">(</span><span class="token string">"notified"</span><span class="token punctuation">,</span> <span class="token string">"notified"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> unique<span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  note<span class="token punctuation">.</span>innerHTML <span class="token operator">+=</span> <span class="token string">'&lt;li&gt;Object store created.&lt;/li&gt;'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre> <p>This next line opens up a transaction on the Database, then opens an object store that we can then manipulate the data inside of.</p> <pre data-language="js"><span class="token keyword">var</span> objectStore <span class="token operator">=</span> db<span class="token punctuation">.</span><span class="token function">transaction</span><span class="token punctuation">(</span><span class="token string">'toDoList'</span><span class="token punctuation">,</span> <span class="token string">'readwrite'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">objectStore</span><span class="token punctuation">(</span><span class="token string">'toDoList'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.w3.org/TR/IndexedDB/#idbdatabase" hreflang="en" rel=" noopener">Indexed Database API 2.0<br><small>The definition of 'IDBDatabase' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial version</td> </tr> <tr> <td><a href="https://www.w3.org/TR/IndexedDB/#database-interface" hreflang="en" rel=" noopener">Indexed Database API 2.0<br><small>The definition of 'IDBDatabase' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>IDBDatabase</code></th>
+<td class="bc-supports-yes">
+<div>24</div>
+<div>23-57</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>10-16</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes">
+<div>≤37</div>
+<div>≤37-57</div>
+</td>
+<td class="bc-supports-yes">
+<div>25</div>
+<div>25-57</div>
+</td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes">
+<div>1.5</div>
+<div>1.5-7.0</div>
+</td>
+</tr>
+<tr>
+<th><code>abort_event</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>close</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>close_event</code></th>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+</tr>
+<tr>
+<th><code>createObjectStore</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>deleteObjectStore</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>error_event</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>name</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>objectStoreNames</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>onabort</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>onclose</code></th>
+<td class="bc-supports-yes">
+<div>31</div>
+<div>approx</div>
+</td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+</tr>
+<tr>
+<th><code>onerror</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>onversionchange</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>transaction</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>version</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>versionchange_event</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>worker_support</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+</tbody>
+</table>  
+  <h2 id="see_also">See also</h2>
+<ul> <li><a href="indexeddb_api/using_indexeddb">Using IndexedDB</a></li> <li>Starting transactions: <a href="idbdatabase"><code>IDBDatabase</code></a>
+</li> <li>Using transactions: <a href="idbtransaction"><code>IDBTransaction</code></a>
+</li> <li>Setting a range of keys: <a href="idbkeyrange"><code>IDBKeyRange</code></a>
+</li> <li>Retrieving and making changes to your data: <a href="idbobjectstore"><code>IDBObjectStore</code></a>
+</li> <li>Using cursors: <a href="idbcursor"><code>IDBCursor</code></a>
+</li> <li>Reference example: <a href="https://github.com/mdn/to-do-notifications/tree/gh-pages" rel=" noopener">To-do Notifications</a> (<a href="https://mdn.github.io/to-do-notifications/" rel=" noopener">view example live</a>.)</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase</a>
+  </p>
+</div>

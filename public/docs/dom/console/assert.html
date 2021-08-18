@@ -1,0 +1,85 @@
+<h1>console.assert()</h1> <p>The <code><strong>console.assert()</strong></code> method writes an error message to the console if the assertion is false. If the assertion is true, nothing happens.</p> 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="../web_workers_api">Web Workers</a>.</p> </div>
+
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">console<span class="token punctuation">.</span><span class="token function">assert</span><span class="token punctuation">(</span>assertion<span class="token punctuation">,</span> obj1 <span class="token punctuation">[</span><span class="token punctuation">,</span> obj2<span class="token punctuation">,</span> <span class="token operator">...</span><span class="token punctuation">,</span> objN<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">assert</span><span class="token punctuation">(</span>assertion<span class="token punctuation">,</span> msg <span class="token punctuation">[</span><span class="token punctuation">,</span> subst1<span class="token punctuation">,</span> <span class="token operator">...</span><span class="token punctuation">,</span> substN<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// C-like message formatting</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>assertion</code></dt> <dd>Any boolean expression. If the assertion is false, the message is written to the console.</dd> <dt>
+<code>obj1</code> ... <code>objN</code>
+</dt> <dd>A list of JavaScript objects to output. The string representations of each of these objects are appended together in the order listed and output.</dd> <dt><code>msg</code></dt> <dd>A JavaScript string containing zero or more substitution strings.</dd> <dt>
+<code>subst1</code> ... <code>substN</code>
+</dt> <dd>JavaScript objects with which to replace substitution strings within <code>msg</code>. This parameter gives you additional control over the format of the output.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>The following code example demonstrates the use of a JavaScript object following the assertion:</p> <pre data-language="js"><span class="token keyword">const</span> errorMsg <span class="token operator">=</span> <span class="token string">'the # is not even'</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> number <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> number <span class="token operator">&lt;=</span> <span class="token number">5</span><span class="token punctuation">;</span> number <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'the # is '</span> <span class="token operator">+</span> number<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">assert</span><span class="token punctuation">(</span>number <span class="token operator">%</span> <span class="token number">2</span> <span class="token operator">===</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>number<span class="token operator">:</span> number<span class="token punctuation">,</span> errorMsg<span class="token operator">:</span> errorMsg<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// or, using ES2015 object property shorthand:</span>
+    <span class="token comment">// console.assert(number % 2 === 0, {number, errorMsg});</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// output:</span>
+<span class="token comment">// the # is 2</span>
+<span class="token comment">// the # is 3</span>
+<span class="token comment">// Assertion failed: {number: 3, errorMsg: "the # is not even"}</span>
+<span class="token comment">// the # is 4</span>
+<span class="token comment">// the # is 5</span>
+<span class="token comment">// Assertion failed: {number: 5, errorMsg: "the # is not even"}</span>
+</pre> <p>Note that, while a string containing a substitution string works as a parameter for <code>console.log</code> in Node and many, if not most, browsers...</p> <pre data-language="js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'the word is %s'</span><span class="token punctuation">,</span> <span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// output: the word is foo</span>
+</pre> <p>...the use of such a string does not currently work as intended as a parameter for <code>console.assert</code> in all browsers:</p> <pre data-language="js">console<span class="token punctuation">.</span><span class="token function">assert</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token string">'the word is %s'</span><span class="token punctuation">,</span> <span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// correct output in Node.js and some browsers</span>
+<span class="token comment">//     (e.g. Firefox v60.0.2):</span>
+<span class="token comment">// Assertion failed: the word is foo</span>
+<span class="token comment">// incorrect output in some browsers</span>
+<span class="token comment">//     (e.g. Chrome v67.0.3396.87):</span>
+<span class="token comment">// Assertion failed: the word is %s foo</span>
+</pre> <p>See <a href="../console#outputting_text_to_the_console">Outputting text to the console</a> in the documentation of <a href="../console"><code>console</code></a> for further details.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://console.spec.whatwg.org/#assert" hreflang="en" rel=" noopener">Console API<br><small>The definition of 'console.assert()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>assert</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/console/assert" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/console/assert</a>
+  </p>
+</div>

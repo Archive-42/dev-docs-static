@@ -1,0 +1,78 @@
+<h1>FileSystemEntry.getParent()</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <a href="../filesystementry"><code>FileSystemEntry</code></a> interface's method <code><strong>getParent</strong></code><code>()</code> obtains a <a href="../filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">FileSystemEntry<span class="token punctuation">.</span><span class="token function">getParent</span><span class="token punctuation">(</span>successCallback<span class="token punctuation">[</span><span class="token punctuation">,</span> errorCallback<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>successCallback</code></dt> <dd>A function which is called when the parent directory entry has been retrieved. The callback receives a single input parameter: a <a href="../filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a> object representing the parent directory. The parent of the root directory is considered to be the root directory, itself, so be sure to watch for that.</dd> <dt>
+<code>errorCallback</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An optional callback which is executed if an error occurs. There's a single parameter: a <a href="../fileerror"><code>FileError</code></a> describing what went wrong.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"><code>undefined</code></a>.</p>
+<h3 id="errors">Errors</h3>
+<dl> <dt><code>FileError.INVALID_STATE_ERR</code></dt> <dd>The operation failed because the file system's state doesn't permit it. This can happen, for example, if the file system's cached state differs from the actual state of the file system.</dd> <dt><code>FileError.NOT_FOUND_ERR</code></dt> <dd>The specified path could not be found.</dd> <dt><code>FileError.SECURITY_ERR</code></dt> <dd>Security restrictions prohibit obtaining the parent directory's information.</dd> </dl>
+<h2 id="example">Example</h2>
+<p>This example renames the file specified by the variable <code>fileEntry</code> to <code>"newname.html"</code>.</p> <pre data-language="js">fileEntry<span class="token punctuation">.</span><span class="token function">getParent</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">parent</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  fileEntry<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>parent<span class="token punctuation">,</span> <span class="token string">"newname.html"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">updatedEntry</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"File "</span> <span class="token operator">+</span> fileEntry<span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">" renamed to newname.html."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"An error occurred: Unable to rename "</span> <span class="token operator">+</span> fileEntry<span class="token punctuation">.</span>name
+        <span class="token operator">+</span> <span class="token string">" to newname.html."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>This is accomplished by first obtaining a <a href="../filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a> object representing the directory the file is currently located in. Then <a href="moveto"><code>moveTo()</code></a> is used to rename the file within that directory.</p>
+<h2 id="using_promises">Using promises</h2>
+<p>Currently, there isn't a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>-based version of this method. You can, however, create a simple helper function to adapt it, like this:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">getParentPromise</span><span class="token punctuation">(</span><span class="token parameter">entry</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    entry<span class="token punctuation">.</span><span class="token function">getParent</span><span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>A similar approach can be taken elsewhere in the File and Directory Entries API.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://wicg.github.io/entries-api/#dom-filesystementry-getparent" hreflang="en" rel=" noopener">File and Directory Entries API<br><small>The definition of 'getParent()' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getParent</code></th>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../file_and_directory_entries_api">File and Directory Entries API</a></li> <li><a href="../file_and_directory_entries_api/introduction">Introduction to the File System API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemEntry/getParent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemEntry/getParent</a>
+  </p>
+</div>

@@ -1,0 +1,99 @@
+<h1>FormData.append()</h1>
+
+ <p>The <code><strong>append()</strong></code> method of the <a href="../formdata"><code>FormData</code></a> interface appends a new value onto an existing key inside a <code>FormData</code> object, or adds the key if it does not already exist.</p> <p>The difference between <a href="set"><code>FormData.set</code></a> and <code>append()</code> is that if the specified key already exists, <a href="set"><code>FormData.set</code></a> will overwrite all existing values with the new one, whereas <code>append()</code> will append the new value onto the end of the existing set of values.</p> <div class="note notecard"> <p><strong>Note</strong>: This method is available in <a href="../web_workers_api">Web Workers</a>.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<p>There are two versions of this method: a two and a three parameter version:</p> <pre data-language="js">formData<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+formData<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> value<span class="token punctuation">,</span> filename<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="append_parameters">Parameters</h3>
+<dl> <dt><code>name</code></dt> <dd>The name of the field whose data is contained in <code>value</code>.</dd> <dt><code>value</code></dt> <dd>The field's value. This can be a <a href="../usvstring"><code>USVString</code></a> or <a href="../blob"><code>Blob</code></a> (including subclasses such as <a href="../file"><code>File</code></a>). If none of these are specified the value is converted to a string.</dd> <dt>
+<code>filename </code><span class="badge inline optional">Optional</span>
+</dt> <dd>The filename reported to the server (a <a href="../usvstring"><code>USVString</code></a>), when a <a href="../blob"><code>Blob</code></a> or <a href="../file"><code>File</code></a> is passed as the second parameter. The default filename for <a href="../blob"><code>Blob</code></a> objects is "blob". The default filename for <a href="../file"><code>File</code></a> objects is the file's filename.</dd> </dl> <div class="note notecard"> <p><strong>Note:</strong> If you specify a <a href="../blob"><code>Blob</code></a> as the data to append to the <code>FormData</code> object, the filename that will be reported to the server in the "Content-Disposition" header used to vary from browser to browser.</p> </div>
+<h3 id="returns">Returns</h3>
+<p>Void.</p>
+<h2 id="example">Example</h2>
+<p>The following line creates an empty <code>FormData</code> object:</p> <pre data-language="js"><span class="token keyword">var</span> formData <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FormData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Currently empty</span></pre> <p>You can add key/value pairs to this using <a href="append"><code>FormData.append</code></a>:</p> <pre data-language="js">formData<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'username'</span><span class="token punctuation">,</span> <span class="token string">'Chris'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+formData<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'userpic'</span><span class="token punctuation">,</span> myFileInput<span class="token punctuation">.</span>files<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'chris.jpg'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>As with regular form data, you can append multiple values with the same name. For example (and being compatible with PHP's naming conventions by adding [] to the name):</p> <pre data-language="js">formData<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'userpic[]'</span><span class="token punctuation">,</span> myFileInput<span class="token punctuation">.</span>files<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'chris1.jpg'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+formData<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'userpic[]'</span><span class="token punctuation">,</span> myFileInput<span class="token punctuation">.</span>files<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'chris2.jpg'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>This technique makes it simpler to process multi-file uploads because the resultant data structure is more conducive to looping.</p> <p>If the sent value is different than String or Blob it will be automatically converted to String:</p> <pre data-language="js">formData<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+formData<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">,</span> <span class="token number">74</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+formData<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">,</span> <span class="token string">'John'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+formData<span class="token punctuation">.</span><span class="token function">getAll</span><span class="token punctuation">(</span><span class="token string">'name'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ["true", "74", "John"]</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://xhr.spec.whatwg.org/#dom-formdata-append" hreflang="en" rel=" noopener">XMLHttpRequest<br><small>The definition of 'append()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>append</code></th>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Prior to Firefox 7, specifying a <a href="https://developer.mozilla.org/docs/Web/API/Blob"><code>Blob</code></a> as the data to append to the object, the filename reported in the <code>Content-Disposition</code> HTTP header was an empty string, resulting in errors on some servers. Starting with Firefox 7, the filename <code>blob</code> is sent.</div>
+</td>
+<td class="bc-supports-yes">
+<div>10</div>
+<div>With the "Include local directory pass when uploading files to a server" option enabled, IE will change the filename inside the <a href="https://developer.mozilla.org/docs/Web/API/Blob"><code>Blob</code></a> on the fly. To have direct control of the sent filename, the developer should send the filename as the third parameter value, i.e. <code>formData.append(name, value, filename)</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes">
+<div>3</div>
+<div>XHR in Android 4.0 sends empty content for <code>FormData</code> with <code>blob</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Prior to Firefox 7, specifying a <a href="https://developer.mozilla.org/docs/Web/API/Blob"><code>Blob</code></a> as the data to append to the object, the filename reported in the <code>Content-Disposition</code> HTTP header was an empty string, resulting in errors on some servers. Starting with Firefox 7, the filename <code>blob</code> is sent.</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>AppendWithFilename</code></th>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>≤14</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../xmlhttprequest"><code>XMLHTTPRequest</code></a></li> <li><a href="../xmlhttprequest/using_xmlhttprequest">Using XMLHttpRequest</a></li> <li><a href="using_formdata_objects">Using FormData objects</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form"><code>&lt;form&gt;</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/FormData/append" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FormData/append</a>
+  </p>
+</div>

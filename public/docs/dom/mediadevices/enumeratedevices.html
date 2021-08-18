@@ -1,0 +1,91 @@
+<h1>MediaDevices.enumerateDevices()</h1> <p>The <a href="../mediadevices"><code>MediaDevices</code></a> method <code>enumerateDevices()</code> requests a list of the available media input and output devices, such as microphones, cameras, headsets, and so forth. The returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> is resolved with a <a href="../mediadeviceinfo"><code>MediaDeviceInfo</code></a> array describing the devices.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> enumeratorPromise <span class="token operator">=</span> navigator<span class="token punctuation">.</span>mediaDevices<span class="token punctuation">.</span><span class="token function">enumerateDevices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that receives an array of <a href="../mediadeviceinfo"><code>MediaDeviceInfo</code></a> objects when the promise is fulfilled. Each object in the array describes one of the available media input and output devices. The order is significant - the default capture devices will be listed first.</p> <p>If enumeration fails, the promise is rejected.</p>
+<h2 id="example">Example</h2>
+<p>Here's an example of using <code>enumerateDevices()</code>. It outputs a list of the <a href="../mediadeviceinfo/deviceid">device IDs</a>, with their labels if available.</p> <pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>navigator<span class="token punctuation">.</span>mediaDevices <span class="token operator">||</span> <span class="token operator">!</span>navigator<span class="token punctuation">.</span>mediaDevices<span class="token punctuation">.</span>enumerateDevices<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"enumerateDevices() not supported."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// List cameras and microphones.</span>
+
+navigator<span class="token punctuation">.</span>mediaDevices<span class="token punctuation">.</span><span class="token function">enumerateDevices</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">devices</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  devices<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">device</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>device<span class="token punctuation">.</span>kind <span class="token operator">+</span> <span class="token string">": "</span> <span class="token operator">+</span> device<span class="token punctuation">.</span>label <span class="token operator">+</span>
+                <span class="token string">" id = "</span> <span class="token operator">+</span> device<span class="token punctuation">.</span>deviceId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">": "</span> <span class="token operator">+</span> err<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>This might produce:</p> <pre data-language="bash">videoinput: <span class="token function">id</span> <span class="token operator">=</span> csO9c0YpAf274OuCPUA53CNE0YHlIr2yXCi+SqfBZZ8<span class="token operator">=</span>
+audioinput: <span class="token function">id</span> <span class="token operator">=</span> RKxXByjnabbADGQNNZqLVLdmXlS0YkETYCIbg+XxnvM<span class="token operator">=</span>
+audioinput: <span class="token function">id</span> <span class="token operator">=</span> r2/xw1xUPIyZunfV1lGrKOma5wTOvCkWfZ368XCndm0<span class="token operator">=</span>
+</pre> <p>or if one or more <a href="../mediastream"><code>MediaStream</code></a>s are active or persistent permissions are granted:</p> <pre data-language="bash">videoinput: FaceTime HD Camera <span class="token punctuation">(</span>Built-in<span class="token punctuation">)</span> <span class="token assign-left variable">id</span><span class="token operator">=</span>csO9c0YpAf274OuCPUA53CNE0YHlIr2yXCi+SqfBZZ8<span class="token operator">=</span>
+audioinput: default <span class="token punctuation">(</span>Built-in Microphone<span class="token punctuation">)</span> <span class="token assign-left variable">id</span><span class="token operator">=</span>RKxXByjnabbADGQNNZqLVLdmXlS0YkETYCIbg+XxnvM<span class="token operator">=</span>
+audioinput: Built-in Microphone <span class="token assign-left variable">id</span><span class="token operator">=</span>r2/xw1xUPIyZunfV1lGrKOma5wTOvCkWfZ368XCndm0<span class="token operator">=</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/mediacapture-main/#dom-mediadevices-enumeratedevices" hreflang="en" rel=" noopener">Media Capture and Streams<br><small>The definition of 'mediaDevices: enumerateDevices' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>enumerateDevices</code></th>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>39</div>
+<div>63</div>
+<div>Prior to Firefox 63, <code>enumerateDevices()</code> only returned input devices. Starting with Firefox 63, output devices are also included if the <code>media.setsinkid.enabled</code> preference is enabled.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes">
+<div>39</div>
+<div>63</div>
+<div>Prior to Firefox 63, <code>enumerateDevices()</code> only returned input devices. Starting with Firefox 63, output devices are also included if the <code>media.setsinkid.enabled</code> preference is enabled.</div>
+</td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="getusermedia"><code>MediaDevices.getUserMedia</code></a></li> <li>
+<a href="../webrtc_api">WebRTC</a> - the introductory page to the API</li> <li>
+<a href="../media_streams_api">MediaStream API</a> - the API for the media stream objects</li> <li>
+<a href="../webrtc_api/taking_still_photos">Taking webcam photos</a> - a tutorial on using <code>getUserMedia()</code> for taking photos rather than video. </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/enumerateDevices" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/enumerateDevices</a>
+  </p>
+</div>

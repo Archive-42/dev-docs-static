@@ -1,0 +1,64 @@
+<h1>CookieStoreManager.subscribe()</h1>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div> <p class="summary">The <code>subscribe()</code> method of the <a href="../cookiestoremanager"><code>CookieStoreManager</code></a> interface subscribes a <a href="../serviceworkerregistration"><code>ServiceWorkerRegistration</code></a> to cookie change events.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="syntaxbox notranslate">let promise = registration.cookies.subscribe(subscriptions);</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>subscriptions</dt> <dd>An object containing: <dl> <dt><code>name</code></dt> <dd>A <a href="../usvstring"><code>USVString</code></a> with the name of a cookie.</dd> <dt><code>url</code></dt> <dd>A <a href="../usvstring"><code>USVString</code></a> with the url of a cookie scope. This may be narrower than the scope of the service worker registration.</dd> </dl> </dd> </dl>
+<h3 id="returns">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"><code>Undefined</code></a> when the subscription completes.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError"><code>TypeError</code></a></dt> <dd>Thrown if the url passed in <code>subscriptions</code> does not match the service worker registration's <a href="../serviceworkerregistration/scope"><code>scope</code></a>.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>In this example the <a href="../serviceworkerregistration"><code>ServiceWorkerRegistration</code></a> represented by <code>registration</code> is subscribing to change events on the cookie named <code>"cookie1"</code> with a scope of <code>"/path1"</code>.</p> <pre data-language="js"><span class="token keyword">const</span> subscriptions <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token string">'cookie1'</span><span class="token punctuation">,</span> url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/path1</span><span class="token template-punctuation string">`</span></span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">await</span> registration<span class="token punctuation">.</span>cookies<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>subscriptions<span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>The url passed to the <code>subscribe()</code> method, may be narrower than the service worker registration scope. In the following example the subscription is for <code>/path/one/</code>, so it will receive change events for changes on the first cookie, but not the second.</p> <pre data-language="js">registration<span class="token punctuation">.</span>cookies<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">{</span>name<span class="token operator">:</span> <span class="token string">'cookie1'</span><span class="token punctuation">,</span> url<span class="token operator">:</span> <span class="token string">'/path/one/'</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// subscription</span>
+cookieStore<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token punctuation">{</span>name<span class="token operator">:</span> <span class="token string">'cookie1'</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token string">'cookie-value'</span><span class="token punctuation">,</span> path<span class="token operator">:</span> <span class="token string">'/path/one/'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// recieves a change event</span>
+cookieStore<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token punctuation">{</span>name<span class="token operator">:</span> <span class="token string">'cookie1'</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token string">'cookie-value'</span><span class="token punctuation">,</span> path<span class="token operator">:</span> <span class="token string">'/path/two/'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// does not receive a change event</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://wicg.github.io/cookie-store/#CookieStoreManager-subscribe" hreflang="en" rel=" noopener">Cookie Store API<br><small>The definition of 'CookieStoreManager.subscribe()' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>subscribe</code></th>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/CookieStoreManager/subscribe" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/CookieStoreManager/subscribe</a>
+  </p>
+</div>

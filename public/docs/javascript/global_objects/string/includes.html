@@ -1,0 +1,100 @@
+<h1>String.prototype.includes()</h1> <p>The <code>includes()</code> method performs a case-sensitive search to determine whether one string may be found within another string, returning <code>true</code> or <code>false</code> as appropriate.</p> <iframe class="interactive" width="100%" height="410" src="https://interactive-examples.mdn.mozilla.net/pages/js/string-includes.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">includes</span><span class="token punctuation">(</span>searchString<span class="token punctuation">)</span>
+<span class="token function">includes</span><span class="token punctuation">(</span>searchString<span class="token punctuation">,</span> position<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>searchString</var></code></dt> <dd>A string to be searched for within <code><var>str</var></code>.</dd> <dt>
+<code><var>position</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>The position within the string at which to begin searching for <code>searchString</code>. (Defaults to <code>0</code>.)</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p><code>true</code> if the search string is found anywhere within the given string; otherwise, <code>false</code> if not.</p>
+<h2 id="description">Description</h2>
+<p>This method lets you determine whether or not a string includes another string.</p>
+<h3 id="case-sensitivity">Case-sensitivity</h3>
+<p>The <code>includes()</code> method is case sensitive. For example, the following expression returns <code>false</code>:</p> <pre data-language="js"><span class="token string">'Blue Whale'</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'blue'</span><span class="token punctuation">)</span>  <span class="token comment">// returns false</span>
+</pre>
+<h2 id="polyfill">Polyfill</h2>
+<p>This method has been added to the ECMAScript 2015 specification and may not be available in all JavaScript implementations yet.</p> <p>However, you can easily polyfill this method:</p> <pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">String</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>includes<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token class-name">String</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">includes</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">search<span class="token punctuation">,</span> start</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token string">'use strict'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>search <span class="token keyword">instanceof</span> <span class="token class-name">RegExp</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">throw</span> <span class="token function">TypeError</span><span class="token punctuation">(</span><span class="token string">'first argument must not be a RegExp'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>start <span class="token operator">===</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> start <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>search<span class="token punctuation">,</span> start<span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="using_includes">Using <code>includes()</code>
+</h3>
+<pre data-language="js"><span class="token keyword">const</span> str <span class="token operator">=</span> <span class="token string">'To be, or not to be, that is the question.'</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'To be'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>        <span class="token comment">// true</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'question'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>     <span class="token comment">// true</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'nonexistent'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment">// false</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'To be'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>     <span class="token comment">// false</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'TO BE'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>        <span class="token comment">// false</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">)</span>             <span class="token comment">// true</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-string.prototype.includes">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-string.prototype.includes</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>includes</code></th>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>40</div>
+<div>18-48</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes">
+<div>40</div>
+<div>18-48</div>
+</td>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../array/includes"><code>Array.prototype.includes()</code></a></li> <li><a href="../typedarray/includes"><code>TypedArray.prototype.includes()</code></a></li> <li><a href="indexof"><code>String.prototype.indexOf()</code></a></li> <li><a href="lastindexof"><code>String.prototype.lastIndexOf()</code></a></li> <li><a href="startswith"><code>String.prototype.startsWith()</code></a></li> <li><a href="endswith"><code>String.prototype.endsWith()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/includes</a>
+  </p>
+</div>

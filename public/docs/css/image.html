@@ -1,0 +1,270 @@
+<h1>&lt;image&gt;</h1> <p>The <code>&lt;image&gt;</code> <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> <a href="css_types">data type</a> represents a two-dimensional image.</p>
+<h2 id="syntax">Syntax</h2>
+<p>The <code>&lt;image&gt;</code> data type can be represented with any of the following:</p> <ul> <li>An image denoted by the <a href="url()"><code>url()</code></a> data type</li> <li>A <a href="gradient"><code>&lt;gradient&gt;</code></a> data type</li> <li>A part of the webpage, defined by the <a href="element()"><code>element()</code></a> function</li> <li>An image, image fragment or solid patch of color, defined by the <a href="image()"><code>image()</code></a> function</li> <li>A blending of two or more images defined by the <a href="cross-fade()"><code>cross-fade()</code></a> function.</li> <li>A selection of images chosen based on resolution defined by the <a href="image-set()"><code>image-set()</code></a> function.</li> </ul>
+<h2 id="description">Description</h2>
+<p>CSS can handle the following kinds of images:</p> <ul> <li>Images with <em>intrinsic dimensions</em> (a natural size), like a JPEG, PNG, or other <a href="https://en.wikipedia.org/wiki/Raster_graphics" rel=" noopener">raster format</a>.</li> <li>Images with <em>multiple intrinsic dimensions</em>, existing in multiple versions inside a single file, like some .ico formats. (In this case, the intrinsic dimensions will be those of the image largest in area and the aspect ratio most similar to the containing box.)</li> <li>Images with no intrinsic dimensions but with <em>an intrinsic aspect ratio</em> between its width and height, like an SVG or other <a href="https://en.wikipedia.org/wiki/Vector_graphics" rel=" noopener">vector format</a>.</li> <li id="no_intrinsic">Images with <em>neither intrinsic dimensions, nor an intrinsic aspect ratio</em>, like a CSS gradient.</li> </ul> <p>CSS determines an object's <em>concrete size</em> using (1) its <em>intrinsic dimensions</em>; (2) its <em>specified size</em>, defined by CSS properties like <a href="width"><code>width</code></a>, <a href="height"><code>height</code></a>, or <a href="background-size"><code>background-size</code></a>; and (3) its <em>default size</em>, determined by the kind of property the image is used with:</p> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Kind of Object (CSS Property)</th> <th scope="col">Default object size</th> </tr> </thead> <tbody> <tr> <td><a href="background-image"><code>background-image</code></a></td> <td>The size of the element's background positioning area</td> </tr> <tr> <td><a href="list-style-image"><code>list-style-image</code></a></td> <td>The size of a <code>1em</code> character</td> </tr> <tr> <td><a href="border-image-source"><code>border-image-source</code></a></td> <td>The size of the element's border image area</td> </tr> <tr> <td><a href="cursor"><code>cursor</code></a></td> <td>The browser-defined size matching the usual cursor size on the client's system</td> </tr> <tr> <td><a href="mask-image"><code>mask-image</code></a></td> <td>?</td> </tr> <tr> <td><a href="shape-outside"><code>shape-outside</code></a></td> <td>?</td> </tr> <tr> <td><a href="mask-border-source"><code>mask-border-source</code></a></td> <td>?</td> </tr> <tr> <td>
+<a href="symbols()"><code>symbols()</code></a> for @counter-style</td> <td>At risk feature. If supported, the browser-defined size matching the usual cursor size on the client's system</td> </tr> <tr> <td>
+<a href="content"><code>content</code></a> for a pseudo-element (<a href="::after"><code>::after</code></a>/<a href="::before"><code>::before</code></a>)</td> <td>A 300px × 150px rectangle</td> </tr> </tbody> </table></div> <p>The concrete object size is calculated using the following algorithm:</p> <ul> <li>If the specified size defines <em>both the width and the height</em>, these values are used as the concrete object size.</li> <li>If the specified size defines <em>only the width or only the height</em>, the missing value is determined using the intrinsic ratio, if there is any, the intrinsic dimensions if the specified value matches, or the default object size for that missing value.</li> <li>If the specified size defines <em>neither the width nor the height</em>, the concrete object size is calculated so that it matches the intrinsic aspect ratio of the image but without exceeding the default object size in any dimension. If the image has no intrinsic aspect ratio, the intrinsic aspect ratio of the object it applies to is used; if this object has none, the missing width or height are taken from the default object size.</li> </ul> <div class="note notecard">
+<strong>Note:</strong> Not all browsers support every type of image on every property. See the <a href="#browser_compatibility">browser compatibility section</a> for details.</div>
+<h2 id="accessibility_concerns">Accessibility concerns</h2>
+<p>Browsers do not provide any special information on background images to assistive technology. This is important primarily for screen readers, as a screen reader will not announce its presence and therefore convey nothing to its users. If the image contains information critical to understanding the page's overall purpose, it is better to describe it semantically in the document.</p> <ul> <li><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable#guideline_1.1_%e2%80%94_providing_text_alternatives_for_non-text_content">MDN Understanding WCAG, Guideline 1.1 explanations</a></li> <li><a href="https://www.w3.org/TR/2016/NOTE-UNDERSTANDING-WCAG20-20161007/text-equiv-all.html" rel=" noopener">Understanding Success Criterion 1.1.1 | W3C Understanding WCAG 2.0</a></li> </ul>
+<h2 id="examples">Examples</h2>
+<h3 id="valid_images">Valid images</h3>
+<pre data-language="css"><span class="token url"><span class="token function">url</span><span class="token punctuation">(</span>test.jpg<span class="token punctuation">)</span></span>               <span class="token comment">/* A &lt;url&gt;, as long as test.jpg is an actual image */</span>
+<span class="token function">linear-gradient</span><span class="token punctuation">(</span>blue<span class="token punctuation">,</span> red<span class="token punctuation">)</span>  <span class="token comment">/* A &lt;gradient&gt; */</span>
+<span class="token function">element</span><span class="token punctuation">(</span>#realid<span class="token punctuation">)</span>            <span class="token comment">/* A part of the webpage, referenced with the element() function,
+                               if "realid" is an existing ID on the page */</span>
+<span class="token function">image</span><span class="token punctuation">(</span>ltr <span class="token string">'arrow.png#xywh=0,0,16,16'</span><span class="token punctuation">,</span> red<span class="token punctuation">)</span>
+                            <span class="token comment">/* A section 16x16 section of &lt;url&gt;, starting from the top, left of the original
+                               image as long as arrow.png is a supported image, otherwise a solid
+                               red swatch. If language is rtl, the image will be horizontally flipped. */</span>
+<span class="token function">cross-fade</span><span class="token punctuation">(</span>20% <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span>twenty.png<span class="token punctuation">)</span></span><span class="token punctuation">,</span> <span class="token url"><span class="token function">url</span><span class="token punctuation">(</span>eighty.png<span class="token punctuation">)</span></span><span class="token punctuation">)</span>
+                            <span class="token comment">/* cross faded images, with twenty being 20% opaque
+                               and eighty being 80% opaque. */</span>
+<span class="token function">image-set</span><span class="token punctuation">(</span><span class="token string">'test.jpg'</span> 1x<span class="token punctuation">,</span> <span class="token string">'test-2x.jpg'</span> 2x<span class="token punctuation">)</span>
+                            <span class="token comment">/* a selection of images with varying resolutions */</span></pre>
+<h3 id="invalid_images">Invalid images</h3>
+<pre data-language="css">nourl.jpg            <span class="token comment">/* An image file must be defined using the url() function. */</span>
+<span class="token url"><span class="token function">url</span><span class="token punctuation">(</span>report.pdf<span class="token punctuation">)</span></span>      <span class="token comment">/* A file pointed to by the url() function must be an image. */</span>
+<span class="token function">element</span><span class="token punctuation">(</span>#fakeid<span class="token punctuation">)</span>     <span class="token comment">/* An element ID must be an existing ID on the page. */</span>
+<span class="token function">image</span><span class="token punctuation">(</span>z.jpg#xy=0<span class="token punctuation">,</span>0<span class="token punctuation">)</span>  <span class="token comment">/* The spatial fragment must be written in the format of xywh=#,#,#,# */</span>
+<span class="token function">image-set</span><span class="token punctuation">(</span><span class="token string">'cat.jpg'</span> 1x<span class="token punctuation">,</span> <span class="token string">'dog.jpg'</span> 1x<span class="token punctuation">)</span> <span class="token comment">/* every image in an image set must have a different resolutions */</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/css-images-4/#typedef-image" hreflang="en" rel=" noopener">CSS Images Module Level 4<br><small>The definition of '&lt;image&gt;' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Adds <a href="element()"><code>element()</code></a>, <a href="image()"><code>image()</code></a>, <a href="image-set()"><code>image-set()</code></a>, <a href="conic-gradient()"><code>conic-gradient()</code></a>, <a href="repeating-conic-gradient()"><code>repeating-conic-gradient()</code></a>, and <a href="image-resolution"><code>image-resolution</code></a>.</td> </tr> <tr> <td><a href="https://drafts.csswg.org/css-images-3/#typedef-image" hreflang="en" rel=" noopener">CSS Images Module Level 3<br><small>The definition of '&lt;image&gt;' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition. Before this, there was no explicitly defined <code>&lt;image&gt;</code> data type. Images could only be defined using the <code>url()</code> functional notation.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>image</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>cross-fade</code></th>
+<td class="bc-supports-yes">
+<div>17</div>
+<div>Supports the original dual-image with percentage implementation only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>Supports the original dual-image with percentage implementation only.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>15</div>
+<div>Supports the original dual-image with percentage implementation only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>10</div>
+<div>Supports the original dual-image with percentage implementation only.</div>
+<div>5.1</div>
+<div>Supports the original dual-image with percentage implementation only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>≤37</div>
+<div>Supports the original dual-image with percentage implementation only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>Supports the original dual-image with percentage implementation only.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>14</div>
+<div>Supports the original dual-image with percentage implementation only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>9.3</div>
+<div>Support for the original dual-image with percentage implementation only.</div>
+<div>5</div>
+<div>Supports the original dual-image with percentage implementation only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>1.0</div>
+<div>Support for the original dual-image with percentage implementation only.</div>
+</td>
+</tr>
+<tr>
+<th><code>element</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>57</div>
+<div>29-57</div>
+<div>
+<code>-moz-element()</code> is limited to <a href="https://developer.mozilla.org/docs/Web/CSS/background-image"><code>background-image</code></a>, <a href="https://developer.mozilla.org/docs/Web/CSS/background"><code>background</code></a>, <a href="https://developer.mozilla.org/docs/Web/CSS/border-image"><code>border-image</code></a> and <a href="https://developer.mozilla.org/docs/Web/CSS/border-image-source"><code>border-image-source</code></a>.</div>
+<div>4-29</div>
+<div>
+<code>-moz-element()</code> is limited to <a href="https://developer.mozilla.org/docs/Web/CSS/background-image"><code>background-image</code></a> and <a href="https://developer.mozilla.org/docs/Web/CSS/background"><code>background</code></a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>60</div>
+<div>29-60</div>
+<div>
+<code>-moz-element()</code> is limited to <a href="https://developer.mozilla.org/docs/Web/CSS/background-image"><code>background-image</code></a>, <a href="https://developer.mozilla.org/docs/Web/CSS/background"><code>background</code></a>, <a href="https://developer.mozilla.org/docs/Web/CSS/border-image"><code>border-image</code></a> and <a href="https://developer.mozilla.org/docs/Web/CSS/border-image-source"><code>border-image-source</code></a>.</div>
+<div>4-29</div>
+<div>
+<code>-moz-element()</code> is limited to <a href="https://developer.mozilla.org/docs/Web/CSS/background-image"><code>background-image</code></a> and <a href="https://developer.mozilla.org/docs/Web/CSS/background"><code>background</code></a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>gradient</code></th>
+<td class="bc-supports-yes">
+<div>26</div>
+<div>10</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>3.6</div>
+<div>Gradients are limited to <a href="https://developer.mozilla.org/docs/Web/CSS/background-image"><code>background-image</code></a>, <a href="https://developer.mozilla.org/docs/Web/CSS/border-image"><code>border-image</code></a>, and <a href="https://developer.mozilla.org/docs/Web/CSS/mask-image"><code>mask-image</code></a>.</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes">
+<div>12.1</div>
+<div>11-15</div>
+<div>15</div>
+</td>
+<td class="bc-supports-yes">
+<div>6.1</div>
+<div>5.1</div>
+</td>
+<td class="bc-supports-yes">
+<div>≤37</div>
+<div>≤37</div>
+</td>
+<td class="bc-supports-yes">
+<div>26</div>
+<div>18</div>
+</td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Gradients are limited to <a href="https://developer.mozilla.org/docs/Web/CSS/background-image"><code>background-image</code></a>, <a href="https://developer.mozilla.org/docs/Web/CSS/border-image"><code>border-image</code></a>, and <a href="https://developer.mozilla.org/docs/Web/CSS/mask-image"><code>mask-image</code></a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>12.1</div>
+<div>11-14</div>
+<div>14</div>
+</td>
+<td class="bc-supports-yes">
+<div>7</div>
+<div>6</div>
+</td>
+<td class="bc-supports-yes">
+<div>1.5</div>
+<div>1.0</div>
+</td>
+</tr>
+<tr>
+<th><code>image</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>["See <a href="https://bugzil.la/703217">bug 703217</a>.", "The <a href="https://developer.mozilla.org/docs/Web/CSS/-moz-image-rect"><code>-moz-image-rect()</code></a> function supports fragments as of Firefox 4."]</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>The <a href="https://developer.mozilla.org/docs/Web/CSS/-moz-image-rect"><code>-moz-image-rect()</code></a> function supports fragments as of Firefox 4.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>image-set</code></th>
+<td class="bc-supports-yes"><div>21</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>88</div>
+<div>["The <code>type()</code> function is not supported as an argument to <code>image-set()</code>. See <a href="https://bugzil.la/1695404">bug 1695404</a>.", "In <code>cursor</code> and <code>content</code> properties, gradients are not supported as arguments to <code>image-set()</code>. See <a href="https://bugzil.la/1696314">bug 1696314</a>."]</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes">
+<div>6</div>
+<div>Support for <code>url</code> images only and <code>x</code> is the only supported resolution unit. See <a href="https://webkit.org/b/160934">bug 160934</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes">
+<div>88</div>
+<div>["The <code>type()</code> function is not supported as an argument to <code>image-set()</code>. See <a href="https://bugzil.la/1695404">bug 1695404</a>.", "In <code>cursor</code> and <code>content</code> properties, gradients are not supported as arguments to <code>image-set()</code>. See <a href="https://bugzil.la/1696314">bug 1696314</a>."]</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes">
+<div>6</div>
+<div>Support for <code>url</code> images only and <code>x</code> is the only supported resolution unit. See <a href="https://webkit.org/b/160934">bug 160934</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>paint</code></th>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>9.2</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="gradient"><code>&lt;gradient&gt;</code></a></li> <li><a href="element()"><code>element()</code></a></li> <li><a href="image()"><code>image()</code></a></li> <li><a href="image-set()"><code>image-set()</code></a></li> <li><a href="cross-fade()"><code>cross-fade()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/image" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/image</a>
+  </p>
+</div>

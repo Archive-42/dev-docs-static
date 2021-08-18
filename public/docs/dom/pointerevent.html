@@ -1,0 +1,372 @@
+<h1>PointerEvent</h1>
+
+ <p>The <code>PointerEvent</code> interface represents the state of a DOM event produced by a pointer such as the geometry of the contact point, the device type that generated the event, the amount of pressure that was applied on the contact surface, etc.</p> <p>A <em>pointer</em> is a hardware agnostic representation of input devices (such as a mouse, pen or contact point on a touch-enable surface). The pointer can target a specific coordinate (or set of coordinates) on the contact surface such as a screen.</p> <p>A pointer's <em>hit test</em> is the process a browser uses to determine the target element for a pointer event. Typically, this is determined by considering the pointer's location and also the visual layout of elements in a document on screen media.</p>
+<h2 id="constructors">Constructors</h2>
+<dl> <dt><a href="pointerevent/pointerevent"><code>PointerEvent()</code></a></dt> <dd>Creates a synthetic—and untrusted—<code>PointerEvent</code>.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<p><em>This interface inherits properties from <a href="mouseevent"><code>MouseEvent</code></a> and <a href="event"><code>Event</code></a>.</em></p> <dl> <dt>
+<a href="pointerevent/pointerid"><code>PointerEvent.pointerId</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A unique identifier for the pointer causing the event.</dd> <dt>
+<a href="pointerevent/width"><code>PointerEvent.width</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>The width (magnitude on the X axis), in CSS pixels, of the contact geometry of the pointer.</dd> <dt>
+<a href="pointerevent/height"><code>PointerEvent.height</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>The height (magnitude on the Y axis), in CSS pixels, of the contact geometry of the pointer.</dd> <dt>
+<a href="pointerevent/pressure"><code>PointerEvent.pressure</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>The normalized pressure of the pointer input in the range <code>0</code> to <code>1</code>, where <code>0</code> and <code>1</code> represent the minimum and maximum pressure the hardware is capable of detecting, respectively.</dd> <dt>
+<a href="pointerevent/tangentialpressure"><code>PointerEvent.tangentialPressure</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>The normalized tangential pressure of the pointer input (also known as barrel pressure or <a href="https://en.wikipedia.org/wiki/Cylinder_stress" rel=" noopener">cylinder stress</a>) in the range <code>-1</code> to <code>1</code>, where <code>0</code> is the neutral position of the control.</dd> <dt>
+<a href="pointerevent/tiltx"><code>PointerEvent.tiltX</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>The plane angle (in degrees, in the range of <code>-90</code> to <code>90</code>) between the Y–Z plane and the plane containing both the pointer (e.g. pen stylus) axis and the Y axis.</dd> <dt>
+<a href="pointerevent/tilty"><code>PointerEvent.tiltY</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>The plane angle (in degrees, in the range of <code>-90</code> to <code>90</code>) between the X–Z plane and the plane containing both the pointer (e.g. pen stylus) axis and the X axis.</dd> <dt>
+<a href="pointerevent/twist"><code>PointerEvent.twist</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>The clockwise rotation of the pointer (e.g. pen stylus) around its major axis in degrees, with a value in the range <code>0</code> to <code>359</code>.</dd> <dt>
+<a href="pointerevent/pointertype"><code>PointerEvent.pointerType</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Indicates the device type that caused the event (mouse, pen, touch, etc.)</dd> <dt>
+<a href="pointerevent/isprimary"><code>PointerEvent.isPrimary</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Indicates if the pointer represents the primary pointer of this pointer type.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<dl> <dt>
+<a href="pointerevent/getcoalescedevents"><code>PointerEvent.getCoalescedEvents()</code></a> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt> <dd>Returns a sequence of all <code>PointerEvent</code> instances that were coalesced into the dispatched <code><a href="htmlelement/pointermove_event">pointermove</a></code> event.</dd> <dt>
+<a class="page-not-created"><code>PointerEvent.getPredictedEvents()</code></a> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt> <dd>Returns a sequence of <code>PointerEvent</code> instances that the browser predicts will follow the dispatched <code><a href="htmlelement/pointermove_event">pointermove</a></code> event's coalesced events.</dd> </dl>
+<h2 id="pointer_event_types">Pointer event types</h2>
+<p>The <code>PointerEvent</code> interface has several event types. To determine which event fired, look at the event's <a href="event/type"><code>type</code></a> property.</p> <div class="note notecard">
+<strong>Note:</strong> It's important to note that in many cases, both pointer and mouse events get sent (in order to let non-pointer-specific code still interact with the user). If you use pointer events, you should call <a href="event/preventdefault"><code>event.preventDefault()</code></a> to keep the mouse event from being sent as well.</div> <dl> <dt><code><a href="htmlelement/pointerover_event">pointerover</a></code></dt> <dd>This event is fired when a pointing device is moved into an element's hit test boundaries.</dd> <dt><code><a href="htmlelement/pointerenter_event">pointerenter</a></code></dt> <dd>This event is fired when a pointing device is moved into the hit test boundaries of an element or one of its descendants, including as a result of a pointerdown event from a device that does not support hover (see pointerdown). This event type is similar to <code>pointerover</code>, but differs in that it does not bubble.</dd> <dt><code><a href="htmlelement/pointerdown_event">pointerdown</a></code></dt> <dd>The event is fired when a pointer becomes <em>active</em>. For mouse, it is fired when the device transitions from no buttons depressed to at least one button depressed. For touch, it is fired when physical contact is made with the digitizer. For pen, it is fired when the stylus makes physical contact with the digitizer.</dd> <dt><code><a href="htmlelement/pointermove_event">pointermove</a></code></dt> <dd>This event is fired when a pointer changes coordinates.</dd> <dt>
+<code><a href="https://developer.mozilla.org/en-US/docs/Web/Events/pointerrawupdate">pointerrawupdate</a></code> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt> <dd>This event is fired when any of a pointer's properties change.</dd> <dt><code><a href="htmlelement/pointerup_event">pointerup</a></code></dt> <dd>This event is fired when a pointer is no longer <em>active</em>.</dd> <dt><code><a href="htmlelement/pointercancel_event">pointercancel</a></code></dt> <dd>A browser fires this event if it concludes the pointer will no longer be able to generate events (for example the related device is deactivated).</dd> <dt><code><a href="htmlelement/pointerout_event">pointerout</a></code></dt> <dd>This event is fired for several reasons including: pointing device is moved out of the hit test boundaries of an element; firing the <code>pointerup</code> event for a device that does not support hover (see <code>pointerup</code>); after firing the <code>pointercancel</code> event (see <code>pointercancel</code>); when a pen stylus leaves the hover range detectable by the digitizer.</dd> <dt><code><a href="htmlelement/pointerleave_event">pointerleave</a></code></dt> <dd>This event is fired when a pointing device is moved out of the hit test boundaries of an element. For pen devices, this event is fired when the stylus leaves the hover range detectable by the digitizer.</dd> <dt><code><a href="htmlelement/gotpointercapture_event">gotpointercapture</a></code></dt> <dd>This event is fired when an element receives pointer capture.</dd> <dt><code><a href="htmlelement/lostpointercapture_event">lostpointercapture</a></code></dt> <dd>This event is fired after pointer capture is released for a pointer.</dd> </dl>
+<h2 id="globaleventhandlers">GlobalEventHandlers</h2>
+<dl> <dt><a href="globaleventhandlers/onpointerover"><code>GlobalEventHandlers.onpointerover</code></a></dt> <dd>A <a href="globaleventhandlers"><code>global event handler</code></a> for the <code><a href="htmlelement/pointerover_event">pointerover</a></code> event.</dd> <dt><a href="globaleventhandlers/onpointerenter"><code>GlobalEventHandlers.onpointerenter</code></a></dt> <dd>A <a href="globaleventhandlers"><code>global event handler</code></a> for the <code><a href="htmlelement/pointerenter_event">pointerenter</a></code> event.</dd> <dt><a href="globaleventhandlers/onpointerdown"><code>GlobalEventHandlers.onpointerdown</code></a></dt> <dd>A <a href="globaleventhandlers"><code>global event handler</code></a> for the <code><a href="htmlelement/pointerdown_event">pointerdown</a></code> event.</dd> <dt><a href="globaleventhandlers/onpointermove"><code>GlobalEventHandlers.onpointermove</code></a></dt> <dd>A <a href="globaleventhandlers"><code>global event handler</code></a> for the <code><a href="htmlelement/pointermove_event">pointermove</a></code> event.</dd> <dt><a href="globaleventhandlers/onpointerup"><code>GlobalEventHandlers.onpointerup</code></a></dt> <dd>A <a href="globaleventhandlers"><code>global event handler</code></a> for the <code><a href="htmlelement/pointerup_event">pointerup</a></code> event.</dd> <dt><a href="globaleventhandlers/onpointercancel"><code>GlobalEventHandlers.onpointercancel</code></a></dt> <dd>A <a href="globaleventhandlers"><code>global event handler</code></a> for the <code><a href="htmlelement/pointercancel_event">pointercancel</a></code> event.</dd> <dt><a href="globaleventhandlers/onpointerout"><code>GlobalEventHandlers.onpointerout</code></a></dt> <dd>A <a href="globaleventhandlers"><code>global event handler</code></a> for the <code><a href="htmlelement/pointerout_event">pointerout</a></code> event.</dd> <dt><a href="globaleventhandlers/onpointerleave"><code>GlobalEventHandlers.onpointerleave</code></a></dt> <dd>A <a href="globaleventhandlers"><code>global event handler</code></a> for the <code><a href="htmlelement/pointerleave_event">pointerleave</a></code> event.</dd> </dl>
+<h2 id="example">Example</h2>
+<p>Examples of each property, event type, and global event handler are included in their respective reference pages.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/pointerevents/#pointerevent-interface" hreflang="en" rel=" noopener">Pointer Events – Level 3<br><small>The definition of 'PointerEvent' in that specification.</small></a></td> <td><span class="spec-ed">Editor's Draft</span></td> <td>Added the <a href="pointerevent/getcoalescedevents"><code>getCoalescedEvents()</code></a> and <a class="page-not-created"><code>getPredictedEvents()</code></a> methods and <code><a href="https://developer.mozilla.org/en-US/docs/Web/Events/pointerrawupdate">pointerrawupdate</a></code> event.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/pointerevents2/#pointerevent-interface" hreflang="en" rel=" noopener">Pointer Events – Level 2<br><small>The definition of 'PointerEvent' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Added the <a href="pointerevent/twist"><code>twist</code></a> and <a href="pointerevent/tangentialpressure"><code>tangentialPressure</code></a> properties.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/pointerevents1/#pointerevent-interface" hreflang="en" rel=" noopener">Pointer Events<br><small>The definition of 'PointerEvent' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>PointerEvent</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>10</div>
+<div>See <a href="https://msdn.microsoft.com/library/dn304886">MSDN Pointer events updates</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>PointerEvent</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>10</div>
+<div>See <a href="https://msdn.microsoft.com/library/dn304886">MSDN Pointer events updates</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>getCoalescedEvents</code></th>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>59</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>height</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>10</div>
+<div>Returns values in screen pixels instead of CSS document pixels.</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>isPrimary</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>pointerId</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>pointerType</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>10</div>
+<div>Returns an integer enumeration instead of a string.</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>pressure</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>10</div>
+<div>Returns 0 instead of 0.5 on hardware that doesn't support pressure.</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>tangentialPressure</code></th>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>54</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>54</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>tiltX</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>tiltY</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>twist</code></th>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>54</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>54</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>width</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>10</div>
+<div>Returns values in screen pixels instead of CSS document pixels.</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="touch_events"><code>Touch Events</code></a></li> <li><a href="gestureevent"><code>GestureEvent</code></a></li> <li><a href="msgestureevent"><code>MSGestureEvent</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action"><code>touch-action</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PointerEvent</a>
+  </p>
+</div>

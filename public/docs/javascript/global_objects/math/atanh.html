@@ -1,0 +1,76 @@
+<h1>Math.atanh()</h1> <p>The <code>Math.atanh()</code> function returns the hyperbolic arctangent of a number, that is</p> <p><math display="block"> <semantics> <mrow> <mo>∀</mo> <mi>x</mi> <mo>∊</mo> <mrow> <mo>(</mo> <mrow> <mo>-</mo> <mn>1</mn> <mo>,</mo> <mn>1</mn> </mrow> <mo>)</mo> </mrow> <mo>,</mo> <mstyle mathvariant="monospace"> <mrow> <mo lspace="0em" rspace="thinmathspace">Math.atanh</mo> <mo stretchy="false">(</mo> <mi>x</mi> <mo stretchy="false">)</mo> </mrow> </mstyle> <mo>=</mo> <mo lspace="0em" rspace="thinmathspace">arctanh</mo> <mo stretchy="false">(</mo> <mi>x</mi> <mo stretchy="false">)</mo> <mo>=</mo> <mtext> the unique </mtext> <mspace width="thickmathspace"></mspace> <mi>y</mi> <mspace width="thickmathspace"></mspace> <mtext>such that</mtext> <mspace width="thickmathspace"></mspace> <mo lspace="0em" rspace="0em">tanh</mo> <mo stretchy="false">(</mo> <mi>y</mi> <mo stretchy="false">)</mo> <mo>=</mo> <mi>x</mi> </mrow> <annotation encoding="TeX">\forall x \in \left( -1, 1 \right), \mathtt{\operatorname{Math.atanh}(x)} = \operatorname{arctanh}(x) = \text{ the unique } \; y \; \text{such that} \; \tanh(y) = x</annotation> </semantics> </math></p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/math-atanh.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js">Math<span class="token punctuation">.</span><span class="token function">atanh</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>x</var></code></dt> <dd>A number.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The hyperbolic arctangent of the given number.</p>
+<h2 id="description">Description</h2>
+<p>Because <code>atanh()</code> is a static method of <code>Math</code>, you always use it as <code>Math.atanh()</code>, rather than as a method of a <code>Math</code> object you created (<code>Math</code> is not a constructor).</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_math.atanh">Using Math.atanh()</h3>
+<pre data-language="js">Math<span class="token punctuation">.</span><span class="token function">atanh</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// NaN</span>
+Math<span class="token punctuation">.</span><span class="token function">atanh</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// -Infinity</span>
+Math<span class="token punctuation">.</span><span class="token function">atanh</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 0</span>
+Math<span class="token punctuation">.</span><span class="token function">atanh</span><span class="token punctuation">(</span><span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 0.5493061443340548</span>
+Math<span class="token punctuation">.</span><span class="token function">atanh</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// Infinity</span>
+Math<span class="token punctuation">.</span><span class="token function">atanh</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// NaN</span>
+</pre> <p>For values greater than 1 or less than -1, <a href="../nan"><code>NaN</code></a> is returned.</p>
+<h2 id="polyfill">Polyfill</h2>
+<p>For <math> <semantics> <mrow> <mrow> <mo>|</mo> <mi>x</mi> <mo>|</mo> </mrow> <mo>&lt;</mo> <mn>1</mn> </mrow> <annotation encoding="TeX">\left|x\right| &lt; 1</annotation> </semantics> </math>, we have <math> <semantics> <mrow> <mo lspace="0em" rspace="thinmathspace">artanh</mo> <mo stretchy="false">(</mo> <mi>x</mi> <mo stretchy="false">)</mo> <mo>=</mo> <mfrac> <mn>1</mn> <mn>2</mn> </mfrac> <mo lspace="0em" rspace="0em">ln</mo> <mrow> <mo>(</mo> <mfrac> <mrow> <mn>1</mn> <mo>+</mo> <mi>x</mi> </mrow> <mrow> <mn>1</mn> <mo>-</mo> <mi>x</mi> </mrow> </mfrac> <mo>)</mo> </mrow> </mrow> <annotation encoding="TeX">\operatorname {artanh} (x) = \frac{1}{2}\ln \left( \frac{1 + x}{1 - x} \right)</annotation> </semantics> </math> so this can be emulated by the following function:</p> <pre data-language="js">Math<span class="token punctuation">.</span>atanh <span class="token operator">=</span> Math<span class="token punctuation">.</span>atanh <span class="token operator">||</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">+</span>x<span class="token punctuation">)</span><span class="token operator">/</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token operator">-</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-math.atanh">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-math.atanh</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>atanh</code></th>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="acosh"><code>Math.acosh()</code></a></li> <li><a href="asinh"><code>Math.asinh()</code></a></li> <li><a href="cosh"><code>Math.cosh()</code></a></li> <li><a href="sinh"><code>Math.sinh()</code></a></li> <li><a href="tanh"><code>Math.tanh()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/atanh" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/atanh</a>
+  </p>
+</div>

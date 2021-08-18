@@ -1,0 +1,76 @@
+<h1>GlobalEventHandlers.onclick</h1>
+
+ <p>The <code><strong>onclick</strong></code> property of the <a href="../globaleventhandlers"><code>GlobalEventHandlers</code></a> mixin is the <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a> for processing <a href="../element/click_event"><code>click</code></a> events on a given element.</p> <p>The <code>click</code> event is raised when the user clicks on an element. It fires after the <a href="../element/mousedown_event"><code>mousedown</code></a> and <a href="../element/mouseup_event"><code>mouseup</code></a> events, in that order.</p> <div class="note notecard">
+<strong>Note:</strong> When using the <code>click</code> event to trigger an action, also consider adding this same action to the <a href="../element/keydown_event"><code>keydown</code></a> event, to allow the use of that same action by people who don't use a mouse or a touch screen.</div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">target<span class="token punctuation">.</span>onclick <span class="token operator">=</span> functionRef<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p><code><var>functionRef</var></code> is a function name or a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function">function expression</a>. The function receives a <a href="../mouseevent"><code>MouseEvent</code></a> object as its sole argument. Within the function, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this"><code>this</code></a> will be the object that <code>onclick</code> was bound too (which will also match <code>event.currentTarget</code>)</p> <p>Only one <code>onclick</code> handler can be assigned to an object at a time. You may prefer to use the <a href="../eventtarget/addeventlistener"><code>EventTarget.addEventListener()</code></a> method instead, since it's more flexible.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="detecting_clicks">Detecting clicks</h3>
+<p>This example changes the color of an element when it's clicked upon.</p> <h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>demo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Click here<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></pre> <h4 id="javascript">JavaScript</h4> <pre data-language="js">document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'demo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">changeContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+   document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'demo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"Help me"</span><span class="token punctuation">;</span>
+   document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'demo'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>style <span class="token operator">=</span> <span class="token string">"Color: red"</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span></pre> <h4 id="result">Result</h4> <p><iframe class="sample-code-frame" id="frame_Detecting_clicks" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/GlobalEventHandlers/onclick/_samples_/Detecting_clicks" loading="lazy"></iframe></p>
+<h3 id="getting_the_coordinates_of_clicks">Getting the coordinates of clicks</h3>
+<p>This example displays the coordinates at which the most recent mouse button click occurred.</p> <h4 id="html_2">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Click anywhere in this example.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>log<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre> <h4 id="javascript_2">JavaScript</h4> <pre data-language="js"><span class="token keyword">let</span> log <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'log'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+document<span class="token punctuation">.</span>onclick <span class="token operator">=</span> inputChange<span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">inputChange</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  log<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Position: (</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>e<span class="token punctuation">.</span>clientX<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>e<span class="token punctuation">.</span>clientY<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">)</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <h4 id="result_2">Result</h4> <p><iframe class="sample-code-frame" id="frame_Getting_the_coordinates_of_clicks" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/GlobalEventHandlers/onclick/_samples_/Getting_the_coordinates_of_clicks" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onclick" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'onclick' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onclick</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../element/click_event"><code>click</code></a> event</li> <li>Related event handlers <ul> <li><a href="onauxclick"><code>GlobalEventHandlers.onauxclick</code></a></li> <li><a href="ondblclick"><code>GlobalEventHandlers.ondblclick</code></a></li> </ul> </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onclick" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onclick</a>
+  </p>
+</div>

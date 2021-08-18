@@ -1,0 +1,285 @@
+<h1>Error</h1> <p><code>Error</code> objects are thrown when runtime errors occur. The <code>Error</code> object can also be used as a base object for user-defined exceptions. See below for standard built-in error types.</p>
+<h2 id="description">Description</h2>
+<p>Runtime errors result in new <code>Error</code> objects being created and thrown.</p>
+<h3 id="error_types">Error types</h3>
+<p>Besides the generic <code>Error</code> constructor, there are other core error constructors in JavaScript. For client-side exceptions, see <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling#exception_handling_statements">Exception handling statements</a>.</p> <dl> <dt><a href="evalerror"><code>EvalError</code></a></dt> <dd>Creates an instance representing an error that occurs regarding the global function <a href="eval"><code>eval()</code></a>.</dd> <dt><a href="rangeerror"><code>RangeError</code></a></dt> <dd>Creates an instance representing an error that occurs when a numeric variable or parameter is outside of its valid range.</dd> <dt><a href="referenceerror"><code>ReferenceError</code></a></dt> <dd>Creates an instance representing an error that occurs when de-referencing an invalid reference.</dd> <dt><a href="syntaxerror"><code>SyntaxError</code></a></dt> <dd>Creates an instance representing a syntax error.</dd> <dt><a href="typeerror"><code>TypeError</code></a></dt> <dd>Creates an instance representing an error that occurs when a variable or parameter is not of a valid type.</dd> <dt><a href="urierror"><code>URIError</code></a></dt> <dd>Creates an instance representing an error that occurs when <a href="encodeuri"><code>encodeURI()</code></a> or <a href="decodeuri"><code>decodeURI()</code></a> are passed invalid parameters.</dd> <dt><a href="aggregateerror"><code>AggregateError</code></a></dt> <dd>Creates an instance representing several errors wrapped in a single error when multiple errors need to be reported by an operation, for example by <a href="promise/any"><code>Promise.any()</code></a>.</dd> <dt>
+<a href="internalerror"><code>InternalError</code></a> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized.   </span>
+</dt> <dd>Creates an instance representing an error that occurs when an internal error in the JavaScript engine is thrown. E.g. "too much recursion".</dd> </dl>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="error/error"><code>Error()</code></a></dt> <dd>Creates a new <code>Error</code> object.</dd> </dl>
+<h2 id="static_methods">Static methods</h2>
+<dl> <dt><a class="page-not-created"><code>Error.captureStackTrace()</code></a></dt> <dd>A non-standard <strong>V8</strong> function that creates the <a href="error/stack"><code>stack</code></a> property on an Error instance.</dd> </dl>
+<h2 id="instance_properties">Instance properties</h2>
+<dl> <dt><a href="error/message"><code>Error.prototype.message</code></a></dt> <dd>Error message.</dd> <dt><a href="error/name"><code>Error.prototype.name</code></a></dt> <dd>Error name.</dd> <dt><a class="page-not-created"><code>Error.prototype.description</code></a></dt> <dd>A non-standard Microsoft property for the error description. Similar to <a href="error/message"><code>message</code></a>.</dd> <dt><a class="page-not-created"><code>Error.prototype.number</code></a></dt> <dd>A non-standard Microsoft property for an error number.</dd> <dt><a href="error/filename"><code>Error.prototype.fileName</code></a></dt> <dd>A non-standard Mozilla property for the path to the file that raised this error.</dd> <dt><a href="error/linenumber"><code>Error.prototype.lineNumber</code></a></dt> <dd>A non-standard Mozilla property for the line number in the file that raised this error.</dd> <dt><a href="error/columnnumber"><code>Error.prototype.columnNumber</code></a></dt> <dd>A non-standard Mozilla property for the column number in the line that raised this error.</dd> <dt><a href="error/stack"><code>Error.prototype.stack</code></a></dt> <dd>A non-standard Mozilla property for a stack trace.</dd> </dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl> <dt><a href="error/tostring"><code>Error.prototype.toString()</code></a></dt> <dd>Returns a string representing the specified object. Overrides the <a href="object/tostring"><code>Object.prototype.toString()</code></a> method.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="throwing_a_generic_error">Throwing a generic error</h3>
+<p>Usually you create an <code>Error</code> object with the intention of raising it using the <a href="../statements/throw"><code>throw</code></a> keyword. You can handle the error using the <a href="../statements/try...catch"><code>try...catch</code></a> construct:</p> <pre data-language="js"><span class="token keyword">try</span> <span class="token punctuation">{</span>
+  <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'Whoops!'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">': '</span> <span class="token operator">+</span> e<span class="token punctuation">.</span>message<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="handling_a_specific_error">Handling a specific error</h3>
+<p>You can choose to handle only specific error types by testing the error type with the error's <a href="object/constructor"><code>constructor</code></a> property or, if you're writing for modern JavaScript engines, <a href="../operators/instanceof"><code>instanceof</code></a> keyword:</p> <pre data-language="js"><span class="token keyword">try</span> <span class="token punctuation">{</span>
+  foo<span class="token punctuation">.</span><span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>e <span class="token keyword">instanceof</span> <span class="token class-name">EvalError</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">': '</span> <span class="token operator">+</span> e<span class="token punctuation">.</span>message<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>e <span class="token keyword">instanceof</span> <span class="token class-name">RangeError</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">': '</span> <span class="token operator">+</span> e<span class="token punctuation">.</span>message<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// ... etc</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="custom_error_types">Custom Error Types</h3>
+<p>You might want to define your own error types deriving from <code>Error</code> to be able to <code>throw new MyError()</code> and use <code>instanceof MyError</code> to check the kind of error in the exception handler. This results in cleaner and more consistent error handling code. </p> <p>See <a href="https://stackoverflow.com/questions/1382107/whats-a-good-way-to-extend-error-in-javascript" rel=" noopener">"What's a good way to extend Error in JavaScript?"</a> on StackOverflow for an in-depth discussion.</p> <h4 id="es6_custom_error_class">ES6 Custom Error Class</h4> <div class="notecard warning"> <p><strong>Warning:</strong> Versions of Babel prior to 7 can handle <code>CustomError</code> class methods, but only when they are declared with <a href="object/defineproperty">Object.defineProperty()</a>. Otherwise, old versions of Babel and other transpilers will not correctly handle the following code without <a href="https://github.com/loganfsmyth/babel-plugin-transform-builtin-extend" rel=" noopener">additional configuration</a>.</p> </div> <div class="notecard note"> <p><strong>Note:</strong> Some browsers include the <code>CustomError</code> constructor in the stack trace when using ES2015 classes.</p> </div> <pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">CustomError</span> <span class="token keyword">extends</span> <span class="token class-name">Error</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span>foo <span class="token operator">=</span> <span class="token string">'bar'</span><span class="token punctuation">,</span> <span class="token operator">...</span>params<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Pass remaining arguments (including vendor specific ones) to parent constructor</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token operator">...</span>params<span class="token punctuation">)</span>
+
+    <span class="token comment">// Maintains proper stack trace for where our error was thrown (only available on V8)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>Error<span class="token punctuation">.</span>captureStackTrace<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      Error<span class="token punctuation">.</span><span class="token function">captureStackTrace</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> CustomError<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'CustomError'</span>
+    <span class="token comment">// Custom debugging information</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>foo <span class="token operator">=</span> foo
+    <span class="token keyword">this</span><span class="token punctuation">.</span>date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+  <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">CustomError</span><span class="token punctuation">(</span><span class="token string">'baz'</span><span class="token punctuation">,</span> <span class="token string">'bazMessage'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>name<span class="token punctuation">)</span>    <span class="token comment">//CustomError</span>
+  console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>foo<span class="token punctuation">)</span>     <span class="token comment">//baz</span>
+  console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>message<span class="token punctuation">)</span> <span class="token comment">//bazMessage</span>
+  console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>stack<span class="token punctuation">)</span>   <span class="token comment">//stacktrace</span>
+<span class="token punctuation">}</span></pre> <h4 id="es5_custom_error_object">ES5 Custom Error Object</h4> <div class="warning notecard"> <p><strong>Warning:</strong> All browsers include the <code>CustomError</code> constructor in the stack trace when using a prototypal declaration.</p> </div> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">CustomError</span><span class="token punctuation">(</span><span class="token parameter">foo<span class="token punctuation">,</span> message<span class="token punctuation">,</span> fileName<span class="token punctuation">,</span> lineNumber</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span>message<span class="token punctuation">,</span> fileName<span class="token punctuation">,</span> lineNumber<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  instance<span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'CustomError'</span><span class="token punctuation">;</span>
+  instance<span class="token punctuation">.</span>foo <span class="token operator">=</span> foo<span class="token punctuation">;</span>
+  Object<span class="token punctuation">.</span><span class="token function">setPrototypeOf</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> Object<span class="token punctuation">.</span><span class="token function">getPrototypeOf</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>Error<span class="token punctuation">.</span>captureStackTrace<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Error<span class="token punctuation">.</span><span class="token function">captureStackTrace</span><span class="token punctuation">(</span>instance<span class="token punctuation">,</span> CustomError<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> instance<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">CustomError</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token class-name">Error</span><span class="token punctuation">.</span>prototype<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  constructor<span class="token operator">:</span> <span class="token punctuation">{</span>
+    value<span class="token operator">:</span> Error<span class="token punctuation">,</span>
+    enumerable<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    writable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    configurable<span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>Object<span class="token punctuation">.</span>setPrototypeOf<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  Object<span class="token punctuation">.</span><span class="token function">setPrototypeOf</span><span class="token punctuation">(</span>CustomError<span class="token punctuation">,</span> Error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  CustomError<span class="token punctuation">.</span>__proto__ <span class="token operator">=</span> Error<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+  <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">CustomError</span><span class="token punctuation">(</span><span class="token string">'baz'</span><span class="token punctuation">,</span> <span class="token string">'bazMessage'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//CustomError</span>
+  console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>foo<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//baz</span>
+  console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//bazMessage</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-error-objects">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-error-objects</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>Error</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>Error</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>columnNumber</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>fileName</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>lineNumber</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>message</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>name</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>stack</code></th>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10.5</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>toSource</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>1-74</div>
+<div>Starting in Firefox 74, <code>toSource()</code> is no longer available for use by web content. It is still allowed for internal and privileged code.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>toString</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../statements/throw"><code>throw</code></a></li> <li><a href="../statements/try...catch"><code>try...catch</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error</a>
+  </p>
+</div>

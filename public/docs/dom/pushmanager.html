@@ -1,0 +1,300 @@
+<h1>PushManager</h1>
+
+ <p>The <code>PushManager</code> interface of the <a href="push_api">Push API</a> provides a way to receive notifications from third-party servers as well as request URLs for push notifications.</p> <p>This interface is accessed via the <a href="serviceworkerregistration/pushmanager"><code>ServiceWorkerRegistration.pushManager</code></a> property.</p> <div class="note notecard"> <p><strong>Note</strong>: This interface replaces functionality previously offered by the obsolete <a href="pushregistrationmanager"><code>PushRegistrationManager</code></a> interface.</p> </div>
+<h2 id="properties">Properties</h2>
+<dl> <dt><a href="pushmanager/supportedcontentencodings"><code>PushManager.supportedContentEncodings</code></a></dt> <dd>Returns an array of supported content codings that can be used to encrypt the payload of a push message.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="pushmanager/getsubscription"><code>PushManager.getSubscription()</code></a></dt> <dd>Retrieves an existing push subscription. It returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to a <a href="pushsubscription"><code>PushSubscription</code></a> object containing details of an existing subscription. If no existing subscription exists, this resolves to a <code>null</code> value.</dd> <dt><a href="pushmanager/permissionstate"><code>PushManager.permissionState()</code></a></dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to the permission state of the current <a href="pushmanager"><code>PushManager</code></a>, which will be one of <code>'granted'</code>, <code>'denied'</code>, or <code>'prompt'</code>.</dd> <dt><a href="pushmanager/subscribe"><code>PushManager.subscribe()</code></a></dt> <dd>Subscribes to a push service. It returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to a <a href="pushsubscription"><code>PushSubscription</code></a> object containing details of a push subscription. A new push subscription is created if the current service worker does not have an existing subscription.</dd> </dl>
+<h3 id="deprecated_methods">Deprecated methods</h3>
+<dl> <dt>
+<a href="pushmanager/haspermission"><code>PushManager.hasPermission()</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to the <code>PushPermissionStatus</code> of the requesting webapp, which will be one of <code>granted</code>, <code>denied</code>, or <code>default</code>. Replaced by <a href="pushmanager/permissionstate"><code>PushManager.permissionState()</code></a>.</dd> <dt>
+<a href="pushmanager/register"><code>PushManager.register()</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>Subscribes to a push subscription. Replaced by <a href="pushmanager/subscribe"><code>PushManager.subscribe()</code></a>.</dd> <dt>
+<a href="pushmanager/registrations"><code>PushManager.registrations()</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>Retrieves existing push subscriptions. Replaced by <a href="pushmanager/getsubscription"><code>PushManager.getSubscription()</code></a>.</dd> <dt>
+<a href="pushmanager/unregister"><code>PushManager.unregister()</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>Unregisters and deletes a specified subscription endpoint. In the updated API, a subscription is unregistered by calling the <a href="pushsubscription/unsubscribe"><code>PushSubscription.unsubscribe()</code></a> method.</dd> </dl>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">onpush</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// From here we can write the data to IndexedDB, send it to any open</span>
+  <span class="token comment">// windows, display a notification, etc.</span>
+<span class="token punctuation">}</span>
+
+navigator<span class="token punctuation">.</span>serviceWorker<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'serviceworker.js'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>
+  <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">serviceWorkerRegistration</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    serviceWorkerRegistration<span class="token punctuation">.</span>pushManager<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>
+      <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">pushSubscription</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>pushSubscription<span class="token punctuation">.</span>endpoint<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// The push subscription details needed by the application</span>
+        <span class="token comment">// server are now available, and can be sent to it using,</span>
+        <span class="token comment">// for example, an XMLHttpRequest.</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// During development it often helps to log errors to the</span>
+        <span class="token comment">// console. In a production environment it might make sense to</span>
+        <span class="token comment">// also report information about errors back to the</span>
+        <span class="token comment">// application server.</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/push-api/#pushmanager-interface" hreflang="en" rel=" noopener">Push API<br><small>The definition of 'PushManager' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>PushManager</code></th>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://crbug.com/421921">bug 421921</a>
+</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>Push enabled by default.</div>
+</td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>getSubscription</code></th>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>Push enabled by default.</div>
+</td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>hasPermission</code></th>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>Push enabled by default.</div>
+</td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>permissionState</code></th>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>Push enabled by default.</div>
+</td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>register</code></th>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>Push enabled by default.</div>
+</td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>registrations</code></th>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>Push enabled by default.</div>
+</td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>subscribe</code></th>
+<td class="bc-supports-yes">
+<div>42</div>
+<div>The <code>options</code> parameter with a <code>applicationServerKey</code> value is required.</div>
+</td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>["<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.", "From Firefox 72 onwards, can only be called in response to a user gesture such as a <code>click</code> event."]</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>Push enabled by default.</div>
+</td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>supportedContentEncodings</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>Push enabled by default.</div>
+</td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>unregister</code></th>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>Push enabled by default.</div>
+</td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>worker_support</code></th>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="push_api">Push API</a></li> <li><a href="service_worker_api">Service Worker API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PushManager" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PushManager</a>
+  </p>
+</div>

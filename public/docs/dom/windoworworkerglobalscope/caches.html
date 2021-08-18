@@ -1,0 +1,75 @@
+<h1>WindowOrWorkerGlobalScope.caches</h1>
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div> <p>The <code><strong>caches</strong></code> read-only property of the <a href="../windoworworkerglobalscope"><code>WindowOrWorkerGlobalScope</code></a> interface returns the <a href="../cachestorage"><code>CacheStorage</code></a> object associated with the current context. This object enables functionality such as storing assets for offline use, and generating custom responses to requests.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> myCacheStorage <span class="token operator">=</span> self<span class="token punctuation">.</span>caches<span class="token punctuation">;</span> <span class="token comment">// or just caches</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../cachestorage"><code>CacheStorage</code></a> object.</p>
+<h2 id="example">Example</h2>
+<p>The following example shows how you'd use a cache in a <a href="../service_worker_api">service worker</a> context to store assets offline.</p> <pre data-language="js"><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'install'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  event<span class="token punctuation">.</span><span class="token function">waitUntil</span><span class="token punctuation">(</span>
+    caches<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'v1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">cache</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> cache<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+        <span class="token string">'/sw-test/'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/index.html'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/style.css'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/app.js'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/image-list.js'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/star-wars-logo.jpg'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/gallery/'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/gallery/bountyHunters.jpg'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/gallery/myLittleVader.jpg'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/gallery/snowTroopers.jpg'</span>
+      <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/ServiceWorker/#self-caches" hreflang="en" rel=" noopener">Service Workers<br><small>The definition of 'caches' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Defined in a <code>WindowOrWorkerGlobalScope</code> partial in the newest spec. </td> </tr> <tr> <td><a href="https://w3c.github.io/ServiceWorker/" hreflang="en" rel=" noopener">Service Workers</a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>caches</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../service_worker_api">Service Workers</a></li> <li><a href="../web_workers_api">Web Workers</a></li> <li><a href="../cachestorage"><code>CacheStorage</code></a></li> <li><a href="../cache"><code>Cache</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/caches" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/caches</a>
+  </p>
+</div>

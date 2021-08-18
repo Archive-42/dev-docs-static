@@ -1,0 +1,85 @@
+<h1>XRInputSource.targetRayMode</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The read-only <a href="../xrinputsource"><code>XRInputSource</code></a> property <code>targetRayMode</code> indicates the method by which the target ray for the input source should be generated and how it should be presented to the user.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">let</span> rayMode <span class="token operator">=</span> xrInputSource<span class="token punctuation">.</span>targetRayMode<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../domstring"><code>DOMString</code></a> taken from the <a href="../xrtargetraymode"><code>XRTargetRayMode</code></a> enumerated type, indicating which method to use when generating and presenting the target ray to the user. The possible values are:</p> 
+<dl> <dt><code>gaze</code></dt> <dd>The user is using a gaze-tracking system (or <strong>gaze input</strong>) which detects the direction in which the user is looking. The target ray will be drawn originating at the viewer's eyes and will follow the direction in which they're looking.</dd> <dt><code>screen</code></dt> <dd>The direction of the target ray is indicated using a tap on a touch screen, mouse, or other tactile input device.</dd> <dt><code>tracked-pointer</code></dt> <dd>Targeting is being performed using a handheld device or hand-tracking system which the user points in the direction of the target. The target ray extends from the hand (or the object in the hand) in the targeted direction. The direction is determined using platform-specific rules, though if no such rules exist, the direction is chosen by assuming the user is pointing their index finger straight out from their hand.</dd> </dl>
+
+<h2 id="usage_notes">Usage notes</h2>
+<p>The input source's <a href="targetrayspace"><code>targetRaySpace</code></a> indicates the position and orientation of the target ray, and can be used to determine where to render the ray.</p>
+<h2 id="example">Example</h2>
+
+<p>This fragment of code shows part of a function to be called once every frame. It looks for inputs which have a non-<code>null</code> <a href="targetrayspace"><code>targetRaySpace</code></a>. Inputs which have a value for this property represent inputs that project a target ray outward from the user.</p>
+<p>For each such input, this example looks for inputs whose <a href="targetraymode"><code>targetRayMode</code></a> is <code>tracked-pointer</code>, indicating that the input is in fact intended to represent a targeting device rather than a gazing device, screen tap, or mouse click. For tracked pointers, a function <code>myRenderTargetRayAsBeam()</code> is called to render a beam from the input controller's virtual position outward in the direction it's pointing.</p>
+<p>The code should continue to perform tasks such as drawing controllers or any objects representative of the user's hands' positions in the virtual space, as well as any other input-related tasks.</p>
+<pre data-language="js"><span class="token keyword">function</span> <span class="token function">updateInputSources</span><span class="token punctuation">(</span><span class="token parameter">session<span class="token punctuation">,</span> frame<span class="token punctuation">,</span> refSpace</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> source <span class="token keyword">of</span> session<span class="token punctuation">.</span><span class="token function">getInputSources</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> targetRayPose <span class="token operator">=</span> frame<span class="token punctuation">.</span><span class="token function">getPose</span><span class="token punctuation">(</span>inputSource<span class="token punctuation">.</span>targetRaySpace<span class="token punctuation">,</span> refSpace<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>targetRayPose<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>source<span class="token punctuation">.</span>targetRayMode <span class="token operator">==</span> <span class="token string">"tracked-pointer"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">myRenderTargetRayAsBeam</span><span class="token punctuation">(</span>targetRayPose<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/* ... */</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>See the article <a href="../webxr_device_api/inputs">Inputs and input sources</a> for more details and a more complete example.</p>
+
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td> <a href="https://immersive-web.github.io/webxr/#dom-xrinputsource-targetraymode" hreflang="en" rel=" noopener">WebXR Device API<br><small>The definition of 'XRInputSource.handedness' in that specification.</small></a> </td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>targetRayMode</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webxr_device_api">WebXR Device API</a></li> <li>
+<a href="../webxr_device_api/inputs">Inputs and input sources</a> </li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/WebXR%20Device%20API/Gamepads">Using gamepads in WebXR applications</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XRInputSource/targetRayMode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XRInputSource/targetRayMode</a>
+  </p>
+</div>

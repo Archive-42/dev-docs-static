@@ -1,0 +1,226 @@
+<h1>VRDisplayCapabilities</h1>
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div> <p>The <code>VRDisplayCapabilities</code> interface of the <a href="webvr_api">WebVR API</a> describes the capabilities of a <a href="vrdisplay"><code>VRDisplay</code></a> — its features can be used to perform VR device capability tests, for example can it return position information.</p> <p>This interface is accessible through the <a href="vrdisplay/capabilities"><code>VRDisplay.capabilities</code></a> property.</p>
+<h2 id="properties">Properties</h2>
+<dl> <dt>
+<a href="vrdisplaycapabilities/canpresent"><code>VRDisplayCapabilities.canPresent</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> stating whether the VR display is capable of presenting content (e.g. through an HMD).</dd> <dt>
+<a href="vrdisplaycapabilities/hasexternaldisplay"><code>VRDisplayCapabilities.hasExternalDisplay</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> stating whether the VR display is separate from the device's primary display.</dd> <dt>
+<a href="vrdisplaycapabilities/hasorientation"><code>VRDisplayCapabilities.hasOrientation</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> stating whether the VR display can track and return orientation information.</dd> <dt>
+<a href="vrdisplaycapabilities/hasposition"><code>VRDisplayCapabilities.hasPosition</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> stating whether the VR display can track and return position information.</dd> <dt>
+<a href="vrdisplaycapabilities/maxlayers"><code>VRDisplayCapabilities.maxLayers</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a number indicating the maximum number of <a href="vrlayerinit"><code>VRLayerInit</code></a>s that the VR display can present at once (e.g. the maximum length of the array that <a href="vrdisplay/requestpresent"><code>VRDisplay.requestPresent()</code></a> can accept.)</dd> </dl>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token keyword">function</span> <span class="token function">reportDisplays</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  navigator<span class="token punctuation">.</span><span class="token function">getVRDisplays</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">displays</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> displays<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> cap <span class="token operator">=</span> displays<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>capabilities<span class="token punctuation">;</span>
+      <span class="token comment">// cap is a VRDisplayCapabilities object</span>
+      <span class="token keyword">var</span> listItem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      listItem<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'&lt;strong&gt;Display '</span> <span class="token operator">+</span> <span class="token punctuation">(</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'&lt;/strong&gt;'</span>
+                   <span class="token operator">+</span> <span class="token string">'&lt;br&gt;VR Display ID: '</span> <span class="token operator">+</span> displays<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>displayId
+                   <span class="token operator">+</span> <span class="token string">'&lt;br&gt;VR Display Name: '</span> <span class="token operator">+</span> displays<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>displayName
+                   <span class="token operator">+</span> <span class="token string">'&lt;br&gt;Display can present content: '</span> <span class="token operator">+</span> cap<span class="token punctuation">.</span>canPresent
+                   <span class="token operator">+</span> <span class="token string">'&lt;br&gt;Display is separate from the computer\'s main display: '</span> <span class="token operator">+</span> cap<span class="token punctuation">.</span>hasExternalDisplay
+                   <span class="token operator">+</span> <span class="token string">'&lt;br&gt;Display can return position info: '</span> <span class="token operator">+</span> cap<span class="token punctuation">.</span>hasPosition
+                   <span class="token operator">+</span> <span class="token string">'&lt;br&gt;Display can return orientation info: '</span> <span class="token operator">+</span> cap<span class="token punctuation">.</span>hasOrientation
+                   <span class="token operator">+</span> <span class="token string">'&lt;br&gt;Display max layers: '</span> <span class="token operator">+</span> cap<span class="token punctuation">.</span>maxLayers<span class="token punctuation">;</span>
+      list<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>listItem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://immersive-web.github.io/webvr/spec/1.1/#interface-vrdisplaycapabilities" hreflang="en" rel=" noopener">WebVR 1.1<br><small>The definition of 'VRDisplayCapabilities' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>VRDisplayCapabilities</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>≤18-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>canPresent</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>hasExternalDisplay</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>hasOrientation</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>hasPosition</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>maxLayers</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="webvr_api">WebVR API homepage</a></li> <li>
+<a href="https://mixedreality.mozilla.org/" rel=" noopener">https://mixedreality.mozilla.org/</a> — demos, downloads, and other resources from the Mozilla VR team.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/VRDisplayCapabilities" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/VRDisplayCapabilities</a>
+  </p>
+</div>

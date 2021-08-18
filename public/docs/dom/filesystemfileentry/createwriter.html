@@ -1,0 +1,78 @@
+<h1>FileSystemFileEntry.createWriter()</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div>
+<div class="notecard warning"> <strong id="non-standard">Non-standard</strong> <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p> </div>
+ <p>The <a href="../filesystemfileentry"><code>FileSystemFileEntry</code></a> interface's method <code>createWriter()</code> returns a <a class="page-not-created"><code>FileWriter</code></a> object which can be used to write data into the file represented by the directory entry.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">FileSystemFileEntry<span class="token punctuation">.</span><span class="token function">createWriter</span><span class="token punctuation">(</span>successCallback<span class="token punctuation">[</span><span class="token punctuation">,</span> errorCallback<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>successCallback</code></dt> <dd>A callback function which is called when the <a class="page-not-created"><code>FileWriter</code></a> has been created successfully; the <code>FileWriter</code> is passed into the callback as the only parameter.</dd> <dt>
+<code>errorCallback</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>If provided, this must be a method which is called when an error occurs while trying to create the <a class="page-not-created"><code>FileWriter</code></a>. This callback receives as input a <a href="../fileerror"><code>FileError</code></a> object describing the error.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"><code>undefined</code></a>.</p>
+<h2 id="example">Example</h2>
+<p>This example establishes a method, <code>writeToFileEntry()</code>, which outputs a text string to the file corresponding to the passed-in directory entry.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">writeToFileEntry</span><span class="token punctuation">(</span><span class="token parameter">entry<span class="token punctuation">,</span> text</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  entry<span class="token punctuation">.</span><span class="token function">createWriter</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">fileWriter</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> data <span class="token operator">=</span> <span class="token function">Blob</span><span class="token punctuation">(</span><span class="token punctuation">[</span>text<span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">"text/plain"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    fileWriter<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">fileError</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* do whatever to handle the error */</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>The success callback for the <code>createWriter()</code> call takes the text which was passed in and creates a new <a href="../blob"><code>Blob</code></a> object of type <code>text/plain</code> that contains the passed text. This blob is then output to the <a class="page-not-created"><code>FileWriter</code></a> object to be written to the file.</p> <p>This API has no official W3C or WHATWG specification.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>createWriter</code></th>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>50-52</div>
+<div>While the <code>createWriter()</code> method existed, it immediately called <code>errorCallback</code> with the <code>NS_ERROR_DOM_SECURITY_ERR</code> error.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no">
+<div>50-52</div>
+<div>While the <code>createWriter()</code> method existed, it immediately called <code>errorCallback</code> with the <code>NS_ERROR_DOM_SECURITY_ERR</code> error.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../file_and_directory_entries_api">File and Directory Entries API</a></li> <li><a href="../file_and_directory_entries_api/introduction">Introduction to the File System API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileEntry/createWriter" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileEntry/createWriter</a>
+  </p>
+</div>

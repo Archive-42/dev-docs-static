@@ -1,0 +1,99 @@
+<h1>Range.extractContents()</h1> <p>The <code>Range.extractContents()</code> method moves contents of the <a href="../range"><code>Range</code></a> from the document tree into a <a href="../documentfragment"><code>DocumentFragment</code></a>. </p> <p>Event listeners added using DOM Events are not retained during extraction. HTML attribute events are retained or duplicated as they are for the <a href="../node/clonenode"><code>Node.cloneNode()</code></a> method. HTML <code>id</code> attributes are also cloned, which can lead to an invalid document if a partially-selected node is extracted and appended to the document.</p> <p>Partially selected nodes are cloned to include the parent tags necessary to make the document fragment valid.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">documentFragment <span class="token operator">=</span> range<span class="token punctuation">.</span><span class="token function">extractContents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="example">Example</h2>
+<h3 id="basic_example">Basic example</h3>
+<pre data-language="js"><span class="token keyword">var</span> range <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createRange</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+range<span class="token punctuation">.</span><span class="token function">selectNode</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">"div"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">item</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> documentFragment <span class="token operator">=</span> range<span class="token punctuation">.</span><span class="token function">extractContents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>documentFragment<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="moving_items_between_containers">Moving items between containers</h3>
+<p>This example lets you move items between two containers. Select one or more item, and then click "swap" to move them to the opposite container.</p> <h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>list1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>123456<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>swap<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Swap selected item(s)<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>list2<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>abcdef<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre> <h4 id="css">CSS</h4> <pre data-language="css"><span class="token selector">body</span> <span class="token punctuation">{</span>
+  <span class="token property">pointer-events</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">p</span> <span class="token punctuation">{</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid<span class="token punctuation">;</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 2em<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> .3em<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">button</span> <span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 1.2em<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> .5em<span class="token punctuation">;</span>
+  <span class="token property">pointer-events</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <h4 id="javascript">JavaScript</h4> <pre data-language="js"><span class="token keyword">const</span> list1 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'list1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> list2 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'list2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> button <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'swap'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+button<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token parameter">e</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  selection <span class="token operator">=</span> window<span class="token punctuation">.</span><span class="token function">getSelection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> selection<span class="token punctuation">.</span>rangeCount<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> range <span class="token operator">=</span> selection<span class="token punctuation">.</span><span class="token function">getRangeAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>range<span class="token punctuation">.</span>commonAncestorContainer <span class="token operator">===</span> list1 <span class="token operator">||</span>
+        range<span class="token punctuation">.</span>commonAncestorContainer<span class="token punctuation">.</span>parentNode <span class="token operator">===</span> list1<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> documentFragment <span class="token operator">=</span> range<span class="token punctuation">.</span><span class="token function">extractContents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      list2<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>documentFragment<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>range<span class="token punctuation">.</span>commonAncestorContainer <span class="token operator">===</span> list2 <span class="token operator">||</span>
+        range<span class="token punctuation">.</span>commonAncestorContainer<span class="token punctuation">.</span>parentNode <span class="token operator">===</span> list2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> documentFragment <span class="token operator">=</span> range<span class="token punctuation">.</span><span class="token function">extractContents</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      list1<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>documentFragment<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <h4 id="result">Result</h4> <p><iframe class="sample-code-frame" id="frame_Moving_items_between_containers" width="700" height="300" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Range/extractContents/_samples_/Moving_items_between_containers" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://dom.spec.whatwg.org/#dom-range-extractcontents" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'Range.extractContents()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>No change.</td> </tr> <tr> <td>
+<a href="https://www.w3.org/TR/DOM-Level-2-Traversal-Range/ranges.html#Level2-Range-method-extractContents" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 2 Traversal and Range Specification<br><small>The definition of 'Range.extractContents()' in that specification.</small></a> </td> <td><span class="spec-obsolete">Obsolete</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>extractContents</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../document_object_model">The DOM interfaces index</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Range/extractContents" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Range/extractContents</a>
+  </p>
+</div>

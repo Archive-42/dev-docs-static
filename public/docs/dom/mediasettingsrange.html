@@ -1,0 +1,127 @@
+<h1>MediaSettingsRange</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <code>MediaSettingsRange</code> interface of the <a href="mediastream_image_capture_api">MediaStream Image Capture API</a> provides the possible range and value size of <a href="photocapabilities/imageheight"><code>PhotoCapabilities.imageHeight</code></a> and <a href="photocapabilities/imagewidth"><code>PhotoCapabilities.imageWidth</code></a>. A <a href="photocapabilities"><code>PhotoCapabilities</code></a> object can be retrieved by calling <a class="page-not-created"><code>ImageCapture.PhotoCapabilities()</code></a>.</p>
+<h2 id="properties">Properties</h2>
+<dl> <dt><a href="mediasettingsrange/max"><code>MediaSettingsRange.max</code></a></dt> <dd>Returns the maximum value of this settings.</dd> <dt><a href="mediasettingsrange/min"><code>MediaSettingsRange.min</code></a></dt> <dd>Returns the minimum value of this setting.</dd> <dt><a href="mediasettingsrange/step"><code>MediaSettingsRange.step</code></a></dt> <dd>Returns the minimum difference between consecutive values of this setting.</dd> </dl>
+<h2 id="example">Example</h2>
+<p>The following example, extracted from <a href="https://googlechrome.github.io/samples/image-capture/photo-resolution.html" rel=" noopener">Chrome's Image Capture / Photo Resolution Sample</a>, uses the results from <code>getPhotoCapabilities().imageWidth</code> to modify the size of an input range. </p> <pre class="notranslate">const input = document.querySelector('input[type="range"]');
+
+var imageCapture;
+
+navigator.mediaDevices.getUserMedia({video: true})
+.then(mediaStream =&gt; {
+  document.querySelector('video').srcObject = mediaStream;
+
+  const track = mediaStream.getVideoTracks()[0];
+  imageCapture = new ImageCapture(track);
+
+  return imageCapture.getPhotoCapabilities();
+})
+.then(photoCapabilities =&gt; {
+  const settings = imageCapture.track.getSettings();
+
+  input.min = photoCapabilities.imageWidth.min;
+  input.max = photoCapabilities.imageWidth.max;
+  input.step = photoCapabilities.imageWidth.step;
+
+  return imageCapture.getPhotoSettings();
+})
+.then(photoSettings =&gt; {
+  input.value = photoSettings.imageWidth;
+})
+.catch(error =&gt; console.log('Argh!', error.name || error));</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/mediacapture-image/#mediasettingsrange-section" hreflang="en" rel=" noopener">MediaStream Image Capture<br><small>The definition of 'MediaSettingsRange' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>MediaSettingsRange</code></th>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>max</code></th>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>min</code></th>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>step</code></th>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaSettingsRange" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaSettingsRange</a>
+  </p>
+</div>

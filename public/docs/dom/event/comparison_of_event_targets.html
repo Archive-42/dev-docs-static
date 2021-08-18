@@ -1,0 +1,88 @@
+<h1>Comparison of Event Targets</h1>
+<h3 id="event_targets">Event targets</h3>
+<p>It's easy to get confused about which target to examine when writing an event handler. This article should clarify the use of the target properties.</p> <p>There are five targets to consider:</p> <div class="_table"><table class="standard-table"> <tbody> <tr> <th>Property</th> <th>Defined in</th> <th>Purpose</th> </tr> <tr> <td><code><a href="target">event.target</a></code></td> <td><a href="https://www.w3.org/TR/DOM-Level-2/events.html#Events-interface" rel=" noopener">DOM Event Interface</a></td> <td> <p>The DOM element on the lefthand side of the call that triggered this event, eg:</p> <pre>element.dispatchEvent(event)
+</pre> </td> </tr> <tr> <td><code><a href="currenttarget">event.currentTarget</a></code></td> <td><a href="https://www.w3.org/TR/DOM-Level-2/events.html#Events-interface" rel=" noopener">DOM Event Interface</a></td> <td>The <a href="https://www.w3.org/TR/DOM-Level-2/events.html#Events-EventTarget" rel=" noopener"><code>EventTarget</code></a> whose <a href="https://www.w3.org/TR/DOM-Level-2/events.html#Events-EventListener" rel=" noopener"><code>EventListeners</code></a> are currently being processed. As the event capturing and bubbling occurs, this value changes.</td> </tr> <tr> <td><code><a href="../mouseevent/relatedtarget">event.relatedTarget</a></code></td> <td><a href="https://www.w3.org/TR/DOM-Level-2/events.html#Events-MouseEvent" rel=" noopener">DOM MouseEvent Interface</a></td> <td>Identifies a secondary target for the event.</td> </tr> <tr> <td><code><a href="explicitoriginaltarget">event.explicitOriginalTarget</a></code></td> <td><a rel="custom noopener" href="https://dxr.mozilla.org/mozilla-central/source//dom/webidl/Event.webidl">Event.webidl</a></td> <td>
+<span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized.   </span> If the event was retargeted for some reason other than an anonymous boundary crossing, this will be set to the target before the retargeting occurs. For example, mouse events are retargeted to their parent node when they happen over text nodes (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=185889" rel=" noopener">bug 185889</a>), and in that case <code>.target</code> will show the parent and <code>.explicitOriginalTarget</code> will show the text node.<br> Unlike <code>.originalTarget</code>, <code>.explicitOriginalTarget</code> will never contain anonymous content.</td> </tr> <tr> <td><code><a href="originaltarget">event.originalTarget</a></code></td> <td><a rel="custom noopener" href="https://dxr.mozilla.org/mozilla-central/source//dom/webidl/Event.webidl">Event.webidl</a></td> <td>
+<span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized.   </span> The original target of the event, before any retargetings. See <a href="https://developer.mozilla.org/en-US/docs/XBL/XBL_1.0_Reference/Anonymous_Content#Event_Flow_and_Targeting">Anonymous Content#Event_Flow_and_Targeting</a> for details.</td> </tr> <tr> <td>event.composedTarget</td> <td><a rel="custom noopener" href="https://dxr.mozilla.org/mozilla-central/source//dom/webidl/Event.webidl">Event.webidl</a></td> <td>
+<span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized.   </span> The original non-native target of the event before composition from Shadow DOM.</td> </tr> </tbody> </table></div>
+<h3 id="use_of_explicitoriginaltarget_and_originaltarget">Use of <code>explicitOriginalTarget</code> and <code>originalTarget</code>
+</h3>
+<div class="notecard note"> <p><strong>TODO:</strong> Only available in a Mozilla-based browser?</p> </div> <div class="notecard note"> <p><strong>TODO:</strong> Only suitable for extension-developers?</p> </div>
+<h3 id="examples">Examples</h3>
+<pre class="notranslate">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge"&gt;
+    &lt;title&gt;Comparison of Event Targets&lt;/title&gt;
+    &lt;style&gt;
+        table {
+            border-collapse: collapse;
+            height: 150px;
+            width: 100%;
+        }
+        td {
+            border: 1px solid #ccc;
+            font-weight: bold;
+            padding: 5px;
+            min-height: 30px;
+        }
+        .standard {
+            background-color: #99ff99;
+        }
+        .non-standard {
+            background-color: #902D37;
+        }
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;td class="standard"&gt;Original target dispatching the event &lt;small&gt;event.target&lt;/small&gt;&lt;/td&gt;
+            &lt;td class="standard"&gt;Target who's event listener is being processed &lt;small&gt;event.currentTarget&lt;/small&gt;&lt;/td&gt;
+            &lt;td class="standard"&gt;Identify other element (if any) involved in the event &lt;small&gt;event.relatedTarget&lt;/small&gt;&lt;/td&gt;
+            &lt;td class="non-standard"&gt;If there was a retargeting of the event for some reason &lt;small&gt; event.explicitOriginalTarget&lt;/small&gt; contains the target before retargeting (never contains anonymous targets)&lt;/td&gt;
+            &lt;td class="non-standard"&gt;If there was a retargeting of the event for some reason &lt;small&gt; event.originalTarget&lt;/small&gt; contains the target before retargeting (may contain anonymous targets)&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tr&gt;
+        &lt;td id="target"&gt;&lt;/td&gt;
+        &lt;td id="currentTarget"&gt;&lt;/td&gt;
+        &lt;td id="relatedTarget"&gt;&lt;/td&gt;
+        &lt;td id="explicitOriginalTarget"&gt;&lt;/td&gt;
+        &lt;td id="originalTarget"&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+&lt;p&gt;Clicking on the text will show the difference between explicitOriginalTarget, originalTarget, and target&lt;/p&gt;
+&lt;script&gt;
+    function handleClicks(e) {
+        document.getElementById('target').innerHTML = e.target;
+        document.getElementById('currentTarget').innerHTML = e.currentTarget;
+        document.getElementById('relatedTarget').innerHTML = e.relatedTarget;
+        document.getElementById('explicitOriginalTarget').innerHTML = e.explicitOriginalTarget;
+        document.getElementById('originalTarget').innerHTML = e.originalTarget;
+    }
+
+    function handleMouseover(e) {
+        document.getElementById('target').innerHTML = e.target;
+        document.getElementById('relatedTarget').innerHTML = e.relatedTarget;
+    }
+
+    document.addEventListener('click', handleClicks, false);
+    document.addEventListener('mouseover', handleMouseover, false);
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+<h3 id="use_of_target_and_relatedtarget">Use of <code>target</code> and <code>relatedTarget</code>
+</h3>
+<p>The <code>relatedTarget</code> property for the <code>mouseover</code> event holds the node that the mouse was previously over. For the <code>mouseout</code> event, it holds the node that the mouse moved to.</p> <div class="_table"><table class="standard-table"> <tbody> <tr> <th>Event type</th> <th><a href="target">event.target</a></th> <th><a href="../mouseevent/relatedtarget">event.relatedTarget</a></th> </tr> <tr> <td><code>mouseover</code></td> <td>the EventTarget which the pointing device entered</td> <td>the EventTarget which the pointing device exited</td> </tr> <tr> <td><code>mouseout</code></td> <td>the EventTarget which the pointing device exited</td> <td>the EventTarget which the pointing device entered</td> </tr> </tbody> </table></div> <div class="notecard note"> <p><strong>TODO:</strong> Also needs descriptions for <code>dragenter</code> and <code>dragexit</code> events.</p> </div> <h4 id="example">Example</h4> <pre data-language="xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hbox</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>outer<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>hbox</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>inner<span class="token punctuation">"</span></span>
+        <span class="token attr-name">onmouseover</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dump(<span class="token punctuation">'</span>mouseover <span class="token punctuation">'</span> + event.relatedTarget.id + <span class="token punctuation">'</span> &gt; <span class="token punctuation">'</span> + event.target.id + <span class="token punctuation">'</span>\n<span class="token punctuation">'</span>);<span class="token punctuation">"</span></span>
+        <span class="token attr-name">onmouseout</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>dump(<span class="token punctuation">'</span>mouseout  <span class="token punctuation">'</span> + event.target.id + <span class="token punctuation">'</span> &gt; <span class="token punctuation">'</span> + event.relatedTarget.id + <span class="token punctuation">'</span>\n<span class="token punctuation">'</span>);<span class="token punctuation">"</span></span>
+        <span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>margin: 100px; border: 10px solid black; width: 100px; height: 100px;<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>hbox</span><span class="token punctuation">&gt;</span></span>
+</pre>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/Comparison_of_Event_Targets" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Event/Comparison_of_Event_Targets</a>
+  </p>
+</div>

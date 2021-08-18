@@ -1,0 +1,87 @@
+<h1>Intl.DateTimeFormat.prototype.formatRange()</h1> <p>The <code>Intl.DateTimeFormat.prototype.formatRange()</code> formats a date range in the most concise way based on the <code>locale</code> and <code><strong>options</strong></code> provided when instantiating <a href="../datetimeformat"><code>Intl.DateTimeFormat</code></a> object.</p> <iframe class="interactive" width="100%" height="692" src="https://interactive-examples.mdn.mozilla.net/pages/js/intl-datetimeformat-prototype-formatrange.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">formatRange</span><span class="token punctuation">(</span>startDate<span class="token punctuation">,</span> endDate<span class="token punctuation">)</span></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="basic_formatrange_usage">Basic formatRange usage</h3>
+<p>This method receives two <a href="../../date"><code>Date</code></a>s and formats the date range in the most concise way based on the <code>locale</code> and <code>options</code> provided when instantiating <a href="../datetimeformat"><code>Intl.DateTimeFormat</code></a>.</p> <pre data-language="js"><span class="token keyword">let</span> date1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>Date<span class="token punctuation">.</span><span class="token constant">UTC</span><span class="token punctuation">(</span><span class="token number">2007</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> date2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>Date<span class="token punctuation">.</span><span class="token constant">UTC</span><span class="token punctuation">(</span><span class="token number">2007</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> date3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>Date<span class="token punctuation">.</span><span class="token constant">UTC</span><span class="token punctuation">(</span><span class="token number">2007</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// &gt; 'Wed, 10 Jan 2007 10:00:00 GMT'</span>
+<span class="token comment">// &gt; 'Wed, 10 Jan 2007 11:00:00 GMT'</span>
+<span class="token comment">// &gt; 'Sat, 20 Jan 2007 10:00:00 GMT'</span>
+
+<span class="token keyword">let</span> fmt1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>DateTimeFormat</span><span class="token punctuation">(</span><span class="token string">"en"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    year<span class="token operator">:</span> <span class="token string">'2-digit'</span><span class="token punctuation">,</span>
+    month<span class="token operator">:</span> <span class="token string">'numeric'</span><span class="token punctuation">,</span>
+    day<span class="token operator">:</span> <span class="token string">'numeric'</span><span class="token punctuation">,</span>
+    hour<span class="token operator">:</span> <span class="token string">'numeric'</span><span class="token punctuation">,</span>
+    minute<span class="token operator">:</span> <span class="token string">'numeric'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>fmt1<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>fmt1<span class="token punctuation">.</span><span class="token function">formatRange</span><span class="token punctuation">(</span>date1<span class="token punctuation">,</span> date2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>fmt1<span class="token punctuation">.</span><span class="token function">formatRange</span><span class="token punctuation">(</span>date1<span class="token punctuation">,</span> date3<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// &gt; '1/10/07, 10:00 AM'</span>
+<span class="token comment">// &gt; '1/10/07, 10:00 – 11:00 AM'</span>
+<span class="token comment">// &gt; '1/10/07, 10:00 AM – 1/20/07, 10:00 AM'</span>
+
+<span class="token keyword">let</span> fmt2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>DateTimeFormat</span><span class="token punctuation">(</span><span class="token string">"en"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    year<span class="token operator">:</span> <span class="token string">'numeric'</span><span class="token punctuation">,</span>
+    month<span class="token operator">:</span> <span class="token string">'short'</span><span class="token punctuation">,</span>
+    day<span class="token operator">:</span> <span class="token string">'numeric'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>fmt2<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>fmt2<span class="token punctuation">.</span><span class="token function">formatRange</span><span class="token punctuation">(</span>date1<span class="token punctuation">,</span> date2<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>fmt2<span class="token punctuation">.</span><span class="token function">formatRange</span><span class="token punctuation">(</span>date1<span class="token punctuation">,</span> date3<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// &gt; 'Jan 10, 2007'</span>
+<span class="token comment">// &gt; 'Jan 10, 2007'</span>
+<span class="token comment">// &gt; 'Jan 10 – 20, 2007'</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma402/#sec-intl.datetimeformat.prototype.formatRange">ECMAScript Internationalization API Specification (ECMAScript Internationalization API)<br> <small>#sec-intl.datetimeformat.prototype.formatRange</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>formatRange</code></th>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../datetimeformat"><code>Intl.DateTimeFormat</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatRange" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/formatRange</a>
+  </p>
+</div>

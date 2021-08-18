@@ -1,0 +1,88 @@
+<h1>Geolocation.getCurrentPosition()</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <code>Geolocation.getCurrentPosition()</code> method is used to get the current position of the device.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">navigator<span class="token punctuation">.</span>geolocation<span class="token punctuation">.</span><span class="token function">getCurrentPosition</span><span class="token punctuation">(</span>success<span class="token punctuation">[</span><span class="token punctuation">,</span> error<span class="token punctuation">[</span><span class="token punctuation">,</span> <span class="token punctuation">[</span>options<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>success</var></code></dt> <dd>A callback function that takes a <a href="../geolocationposition"><code>GeolocationPosition</code></a> object as its sole input parameter.</dd> <dt>
+<code><var>error</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An optional callback function that takes a <a href="../geolocationpositionerror"><code>GeolocationPositionError</code></a> object as its sole input parameter.</dd> <dt>
+<code><var>options</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An optional <a href="../positionoptions"><code>PositionOptions</code></a> object.<br> Options includes: <ul> <li>
+<code>maximumAge</code>: integer (milliseconds) | infinity - maximum cached position age.</li> <li>
+<code>timeout</code>: integer (milliseconds) - amount of time before the error callback is invoked, if 0 it will never invoke.</li> <li>
+<code>enableHighAccuracy</code>: false | true</li> </ul> </dd> </dl>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token keyword">var</span> options <span class="token operator">=</span> <span class="token punctuation">{</span>
+  enableHighAccuracy<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  timeout<span class="token operator">:</span> <span class="token number">5000</span><span class="token punctuation">,</span>
+  maximumAge<span class="token operator">:</span> <span class="token number">0</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">success</span><span class="token punctuation">(</span><span class="token parameter">pos</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> crd <span class="token operator">=</span> pos<span class="token punctuation">.</span>coords<span class="token punctuation">;</span>
+
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Your current position is:'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Latitude : </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>crd<span class="token punctuation">.</span>latitude<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Longitude: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>crd<span class="token punctuation">.</span>longitude<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">More or less </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>crd<span class="token punctuation">.</span>accuracy<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> meters.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">error</span><span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">ERROR(</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>err<span class="token punctuation">.</span>code<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">): </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>err<span class="token punctuation">.</span>message<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+navigator<span class="token punctuation">.</span>geolocation<span class="token punctuation">.</span><span class="token function">getCurrentPosition</span><span class="token punctuation">(</span>success<span class="token punctuation">,</span> error<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/geolocation-api/" hreflang="en" rel=" noopener">Geolocation API</a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getCurrentPosition</code></th>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>10.6</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../geolocation_api/using_the_geolocation_api">Using the Geolocation API</a></li> <li><a href="../navigator/geolocation"><code>Navigator.geolocation</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/getCurrentPosition</a>
+  </p>
+</div>

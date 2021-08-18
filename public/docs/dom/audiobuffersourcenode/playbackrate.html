@@ -1,0 +1,104 @@
+<h1>AudioBufferSourceNode.playbackRate</h1>
+
+  <p>The <code>playbackRate</code> property of the <a href="../audiobuffersourcenode"><code>AudioBufferSourceNode</code></a> interface Is a <a href="../audioparam#k-rate">k-rate</a> <a href="../audioparam"><code>AudioParam</code></a> that defines the speed at which the audio asset will be played.</p> <p>A value of 1.0 indicates it should play at the same speed as its sampling rate, values less than 1.0 cause the sound to play more slowly, while values greater than 1.0 result in audio playing faster than normal. The default value is <code>1.0</code>. When set to another value, the <code>AudioBufferSourceNode</code> resamples the audio before sending it to the output.</p> <h2 id="syntax">Syntax</h2>
+<pre data-language="js">AudioBufferSourceNode<span class="token punctuation">.</span>playbackRate<span class="token punctuation">.</span>value <span class="token operator">=</span> playbackRateProportion<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>An <a href="../audioparam"><code>AudioParam</code></a> whose <a href="../audioparam/value"><code>value</code></a> is a floating-point value indicating the playback rate of the audio as a decimal proportion of the original sampling rate.</p> <p>Consider a sound buffer containing audio sampled at 44.1 kHz (44,100 samples per second). Let's see what a few values of <code>playbackRate</code> do:</p> <ul> <li>A <code>playbackRate</code> of 1.0 plays the audio at full speed, or 44,100 Hz.</li> <li>A <code>playbackRate</code> of 0.5 plays the audio at half speed, or 22,050 Hz.</li> <li>A <code>playbackRate</code> of 2.0 doubles the audio's playback rate to 88,200 Hz. </li> </ul>
+<h2 id="example">Example</h2>
+<p>In this example, the <a href="../baseaudiocontext/decodeaudiodata"><code>AudioContext.decodeAudioData()</code></a> function is used to decode an audio track, and put it into an <a href="../audiobuffersourcenode"><code>AudioBufferSourceNode</code></a>. Buttons are provided to play and stop the audio playback, and a slider control is used to change the <code>playbackRate</code> property value on the fly.</p> <div class="note notecard"> <p>You can <a href="https://mdn.github.io/webaudio-examples/decode-audio-data/" rel=" noopener">run the example live</a> (or <a href="https://github.com/mdn/webaudio-examples/tree/master/decode-audio-data" rel=" noopener">view the source</a>.) Play the song and alter the playback rate for some fun results.</p> </div> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>playback-rate-control<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>range<span class="token punctuation">"</span></span> <span class="token attr-name">min</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0.25<span class="token punctuation">"</span></span> <span class="token attr-name">max</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span> <span class="token attr-name">step</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>0.05<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>playback-rate-value<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>1.0<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+</pre> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  source <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createBufferSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  request<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'GET'</span><span class="token punctuation">,</span> <span class="token string">'viper.ogg'</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  request<span class="token punctuation">.</span>responseType <span class="token operator">=</span> <span class="token string">'arraybuffer'</span><span class="token punctuation">;</span>
+
+  request<span class="token punctuation">.</span><span class="token function-variable function">onload</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> audioData <span class="token operator">=</span> request<span class="token punctuation">.</span>response<span class="token punctuation">;</span>
+
+    audioCtx<span class="token punctuation">.</span><span class="token function">decodeAudioData</span><span class="token punctuation">(</span>audioData<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">buffer</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        myBuffer <span class="token operator">=</span> buffer<span class="token punctuation">;</span>
+        source<span class="token punctuation">.</span>buffer <span class="token operator">=</span> myBuffer<span class="token punctuation">;</span>
+        source<span class="token punctuation">.</span>playbackRate<span class="token punctuation">.</span>value <span class="token operator">=</span> playbackControl<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+        source<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>audioCtx<span class="token punctuation">.</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        source<span class="token punctuation">.</span>loop <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+      <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token string">"Error with decoding audio data"</span> <span class="token operator">+</span> e<span class="token punctuation">.</span>err<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token punctuation">}</span>
+
+  request<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// wire up buttons to stop and play audio, and range slider control</span>
+
+play<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  source<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  play<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'disabled'</span><span class="token punctuation">,</span> <span class="token string">'disabled'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  playbackControl<span class="token punctuation">.</span><span class="token function">removeAttribute</span><span class="token punctuation">(</span><span class="token string">'disabled'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+stop<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  source<span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  play<span class="token punctuation">.</span><span class="token function">removeAttribute</span><span class="token punctuation">(</span><span class="token string">'disabled'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  playbackControl<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'disabled'</span><span class="token punctuation">,</span> <span class="token string">'disabled'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+playbackControl<span class="token punctuation">.</span><span class="token function-variable function">oninput</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  source<span class="token punctuation">.</span>playbackRate<span class="token punctuation">.</span>value <span class="token operator">=</span> playbackControl<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+  playbackValue<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> playbackControl<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://webaudio.github.io/web-audio-api/#dom-audiobuffersourcenode-playbackrate" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'playbackRate' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>playbackRate</code></th>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../web_audio_api/using_web_audio_api">Using the Web Audio API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioBufferSourceNode/playbackRate" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/AudioBufferSourceNode/playbackRate</a>
+  </p>
+</div>

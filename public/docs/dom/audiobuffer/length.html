@@ -1,0 +1,81 @@
+<h1>AudioBuffer.length</h1>
+
+ <p>The <code>length</code> property of the <a href="../audiobuffer"><code>AudioBuffer</code></a> interface returns an integer representing the length, in sample-frames, of the PCM data stored in the buffer.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> myArrayBuffer <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createBuffer</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> frameCount<span class="token punctuation">,</span> audioCtx<span class="token punctuation">.</span>sampleRate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+myArrayBuffer<span class="token punctuation">.</span>length<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>An integer.</p>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token comment">// Stereo</span>
+<span class="token keyword">var</span> channels <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Create an empty two second stereo buffer at the</span>
+<span class="token comment">// sample rate of the AudioContext</span>
+<span class="token keyword">var</span> frameCount <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span>sampleRate <span class="token operator">*</span> <span class="token number">2.0</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> myArrayBuffer <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createBuffer</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> frameCount<span class="token punctuation">,</span> audioCtx<span class="token punctuation">.</span>sampleRate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+button<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Fill the buffer with white noise;</span>
+  <span class="token comment">// just random values between -1.0 and 1.0</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> channel <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> channel <span class="token operator">&lt;</span> channels<span class="token punctuation">;</span> channel<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// This gives us the actual ArrayBuffer that contains the data</span>
+    <span class="token keyword">var</span> nowBuffering <span class="token operator">=</span> myArrayBuffer<span class="token punctuation">.</span><span class="token function">getChannelData</span><span class="token punctuation">(</span>channel<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> frameCount<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Math.random() is in [0; 1.0]</span>
+      <span class="token comment">// audio needs to be in [-1.0; 1.0]</span>
+      nowBuffering<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2</span> <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myArrayBuffer<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://webaudio.github.io/web-audio-api/#dom-audiobuffer-length" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'length' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>length</code></th>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../web_audio_api/using_web_audio_api">Using the Web Audio API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioBuffer/length" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/AudioBuffer/length</a>
+  </p>
+</div>

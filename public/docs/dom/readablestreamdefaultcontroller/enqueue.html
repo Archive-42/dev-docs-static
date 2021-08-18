@@ -1,0 +1,86 @@
+<h1>ReadableStreamDefaultController.enqueue()</h1> <p class="summary">The <code>enqueue()</code> method of the <a href="../readablestreamdefaultcontroller"><code>ReadableStreamDefaultController</code></a> interface enqueues a given chunk in the associated stream.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">readableStreamDefaultController<span class="token punctuation">.</span><span class="token function">enqueue</span><span class="token punctuation">(</span>chunk<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><em>chunk</em></dt> <dd>The chunk to enqueue.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p><code>undefined</code>.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt>TypeError</dt> <dd>The source object is not a <code>ReadableStreamDefaultController</code>.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>In the following simple example, a custom <code>ReadableStream</code> is created using a constructor (see our <a href="https://mdn.github.io/dom-examples/streams/simple-random-stream/" rel=" noopener">Simple random stream example</a> for the full code). The <code>start()</code> function generates a random string of text every second and enqueues it into the stream — see <code>controller.enqueue(string)</code>. A <code>cancel()</code> function is also provided to stop the generation if <a href="../readablestream/cancel"><code>ReadableStream.cancel()</code></a> is called for any reason.</p> <p>When a button is pressed, the generation is stopped, the stream is closed using <a href="close"><code>ReadableStreamDefaultController.close()</code></a>, and another function is run, which reads the data back out of the stream.</p> <pre data-language="js"><span class="token keyword">const</span> stream <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReadableStream</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token function">start</span><span class="token punctuation">(</span><span class="token parameter">controller</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    interval <span class="token operator">=</span> <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> string <span class="token operator">=</span> <span class="token function">randomChars</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// Add the string to the stream</span>
+      controller<span class="token punctuation">.</span><span class="token function">enqueue</span><span class="token punctuation">(</span>string<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// show it on the screen</span>
+      <span class="token keyword">let</span> listItem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      listItem<span class="token punctuation">.</span>textContent <span class="token operator">=</span> string<span class="token punctuation">;</span>
+      list1<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>listItem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    button<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">clearInterval</span><span class="token punctuation">(</span>interval<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">fetchStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      controller<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">pull</span><span class="token punctuation">(</span><span class="token parameter">controller</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// We don't really need a pull in this example</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">cancel</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// This is called if the reader cancels,</span>
+    <span class="token comment">// so we should stop generating strings</span>
+    <span class="token function">clearInterval</span><span class="token punctuation">(</span>interval<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://streams.spec.whatwg.org/#rs-default-controller-enqueue" hreflang="en" rel=" noopener">Streams<br><small>The definition of 'enqueue()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>enqueue</code></th>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/ReadableStreamDefaultController/enqueue" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ReadableStreamDefaultController/enqueue</a>
+  </p>
+</div>

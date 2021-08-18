@@ -1,0 +1,70 @@
+<h1>BackgroundFetchManager.fetch()</h1> <p class="summary">The <code>fetch()</code> method of the <a href="../backgroundfetchmanager"><code>BackgroundFetchManager</code></a> interface returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves with a <a href="../backgroundfetchregistration"><code>BackgroundFetchRegistration</code></a> object for a supplied array of URLs and <a href="../request"><code>Request</code></a> objects. </p>
+<h2 id="syntax">Syntax</h2>
+<pre class="syntaxbox notranslate">let backgroundFetchRegistration = BackgroundFetchManager.fetch(id, requests [,options]);</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>id</code></dt> <dd>A developer-defined identifier that can be passed to the other methods to retrieve a <a href="../backgroundfetchregistration"><code>backgroundFetchRegistration</code></a>.</dd> <dt><code>requests</code></dt> <dd>A <a class="page-not-created"><code>RequestInfo</code></a> object or an array of such objects.</dd> <dt>
+<code>options</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A <a class="page-not-created"><code>BackgroundFetchOptions</code></a> object.</dd> </dl>
+<h3 id="returns">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves with a <a href="../backgroundfetchregistration"><code>BackgroundFetchRegistration</code></a> object.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt>TypeError</dt> <dd>Raised if no request is provided, if the mode of a request is 'no-cors', if no service worker is present, a request already exists with the requested <code>id</code>, or the request fails.</dd> <dt>DOMException</dt> <dd> <p>This method may raise a <a href="../domexception"><code>DOMException</code></a> of the following types:</p> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Exception</th> <th scope="col">Description</th> </tr> </thead> <tbody> <tr> <td><code>AbortError</code></td> <td> <p>Indicates the fetch was aborted.</p> </td> </tr> <tr> <td><code>NotAllowedError</code></td> <td> <p>Indicates that user permission has not been granted to make background fetches.</p> </td> </tr> </tbody> </table></div> </dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>The following examples shows how to use <code>fetch()</code> to create a <a href="../backgroundfetchregistration"><code>BackgroundFetchRegistration</code></a>. With an active <a href="../serviceworker"><code>service worker</code></a>, use the <a class="page-not-created"><code>ServiceWorkerRegistration.backgroundFetch</code></a> property to access the <code>BackgroundFetchManager</code> object and call its <code>fetch()</code> method.</p> <pre data-language="js">navigator<span class="token punctuation">.</span>serviceWorker<span class="token punctuation">.</span>ready<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">swReg</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> bgFetch <span class="token operator">=</span> <span class="token keyword">await</span> swReg<span class="token punctuation">.</span>backgroundFetch<span class="token punctuation">.</span><span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'my-fetch'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'/ep-5.mp3'</span><span class="token punctuation">,</span> <span class="token string">'ep-5-artwork.jpg'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    title<span class="token operator">:</span> <span class="token string">'Episode 5: Interesting things.'</span><span class="token punctuation">,</span>
+    icons<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+      sizes<span class="token operator">:</span> <span class="token string">'300x300'</span><span class="token punctuation">,</span>
+      src<span class="token operator">:</span> <span class="token string">'/ep-5-icon.png'</span><span class="token punctuation">,</span>
+      type<span class="token operator">:</span> <span class="token string">'image/png'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    downloadTotal<span class="token operator">:</span> <span class="token number">60</span> <span class="token operator">*</span> <span class="token number">1024</span> <span class="token operator">*</span> <span class="token number">1024</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://wicg.github.io/background-fetch/#background-fetch-manager-fetch" hreflang="en" rel=" noopener">Background Fetch<br><small>The definition of 'fetch' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>fetch</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/BackgroundFetchManager/fetch" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/BackgroundFetchManager/fetch</a>
+  </p>
+</div>

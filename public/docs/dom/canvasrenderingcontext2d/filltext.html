@@ -1,0 +1,76 @@
+<h1>CanvasRenderingContext2D.fillText()</h1> <p>The <a href="../canvasrenderingcontext2d"><code>CanvasRenderingContext2D</code></a> method <code><strong>fillText()</strong></code>, part of the Canvas 2D API, draws a text string at the specified coordinates, filling the string's characters with the current <a href="fillstyle"><code>fillStyle</code></a>. An optional parameter allows specifying a maximum width for the rendered text, which the <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent</a> will achieve by condensing the text or by using a lower font size.</p> <p>This method draws directly to the canvas without modifying the current path, so any subsequent <a href="fill"><code>fill()</code></a> or <a href="stroke"><code>stroke()</code></a> calls will have no effect on it.</p> <p>The text is rendered using the font and text layout configuration as defined by the <a href="font"><code>font</code></a>, <a href="textalign"><code>textAlign</code></a>, <a href="textbaseline"><code>textBaseline</code></a>, and <a href="direction"><code>direction</code></a> properties.</p> <div class="notecard note"> <p>To draw the outlines of the characters in a string, call the context's <a href="stroketext"><code>strokeText()</code></a> method.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">CanvasRenderingContext2D<span class="token punctuation">.</span><span class="token function">fillText</span><span class="token punctuation">(</span>text<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y <span class="token punctuation">[</span><span class="token punctuation">,</span> maxWidth<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>text</code></dt> <dd>A <a href="../domstring"><code>DOMString</code></a> specifying the text string to render into the context. The text is rendered using the settings specified by <a href="font"><code>font</code></a>, <a href="textalign"><code>textAlign</code></a>, <a href="textbaseline"><code>textBaseline</code></a>, and <a href="direction"><code>direction</code></a>.</dd> <dt><code>x</code></dt> <dd>The x-axis coordinate of the point at which to begin drawing the text, in pixels. </dd> <dt><code>y</code></dt> <dd>The y-axis coordinate of the baseline on which to begin drawing the text, in pixels. </dd> <dt>
+<code>maxWidth</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>The maximum number of pixels wide the text may be once rendered. If not specified, there is no limit to the width of the text. However, if this value is provided, the user agent will adjust the kerning, select a more horizontally condensed font (if one is available or can be generated without loss of quality), or scale down to a smaller font size in order to fit the text in the specified width.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"><code>undefined</code></a>.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="drawing_filled_text">Drawing filled text</h3>
+<p>This example writes the words "Hello world" using the <code>fillText()</code> method. </p> <h4 id="html">HTML</h4> <p>First, we need a canvas to draw into. This code creates a context 400 pixels wide and 150 pixels across.</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>canvas<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>400<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>150<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">&gt;</span></span>
+</pre> <h4 id="javascript">JavaScript</h4> <p>The JavaScript code for this example follows.</p> <pre data-language="js"><span class="token keyword">const</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ctx <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+ctx<span class="token punctuation">.</span>font <span class="token operator">=</span> <span class="token string">'50px serif'</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">fillText</span><span class="token punctuation">(</span><span class="token string">'Hello world'</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">90</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>This code obtains a reference to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas"><code>&lt;canvas&gt;</code></a>, then gets a reference to its 2D graphics context.</p> <p>With that in hand, we set the <a href="font"><code>font</code></a> to 50-pixel-tall "serif" (the user's default <a href="https://en.wikipedia.org/wiki/Serif" rel=" noopener">serif</a> font), then call <code>fillText()</code> to draw the text "Hello world," starting at the coordinates (50, 90).</p> <h4 id="result">Result</h4> <p><iframe class="sample-code-frame" id="frame_Drawing_filled_text" width="700" height="180" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/CanvasRenderingContext2D/fillText/_samples_/Drawing_filled_text" loading="lazy"></iframe></p>
+<h3 id="restricting_the_text_size">Restricting the text size</h3>
+<p>This example writes the words "Hello world," restricting its width to 140 pixels.</p> <h4 id="html_2">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>canvas<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>400<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>150<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">&gt;</span></span>
+</pre> <h4 id="javascript_2">JavaScript</h4> <pre data-language="js"><span class="token keyword">const</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ctx <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+ctx<span class="token punctuation">.</span>font <span class="token operator">=</span> <span class="token string">'50px serif'</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">fillText</span><span class="token punctuation">(</span><span class="token string">'Hello world'</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">90</span><span class="token punctuation">,</span> <span class="token number">140</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <h4 id="result_2">Result</h4> <p><iframe class="sample-code-frame" id="frame_Restricting_the_text_size" width="700" height="180" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/CanvasRenderingContext2D/fillText/_samples_/Restricting_the_text_size" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/scripting.html#dom-context-2d-filltext" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'CanvasRenderingContext2D.fillText' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>fillText</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../canvas_api/tutorial/drawing_text">Drawing text</a></li> <li><a href="../canvasrenderingcontext2d"><code>CanvasRenderingContext2D</code></a></li> <li><a href="stroketext"><code>CanvasRenderingContext2D.strokeText()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillText" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillText</a>
+  </p>
+</div>

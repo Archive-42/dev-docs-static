@@ -1,0 +1,104 @@
+<h1>WindowOrWorkerGlobalScope.btoa()</h1>
+
+ <p>The <code><strong>WindowOrWorkerGlobalScope.btoa()</strong></code> method creates a <a href="https://developer.mozilla.org/en-US/docs/Glossary/Base64">Base64</a>-encoded ASCII string from a <a href="../domstring/binary">binary string</a> (i.e., a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a> object in which each character in the string is treated as a byte of binary data).</p> <p>You can use this method to encode data which may otherwise cause communication problems, transmit it, then use the <a href="atob"><code>atob()</code></a> method to decode the data again. For example, you can encode control characters such as ASCII values 0 through 31.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> encodedData <span class="token operator">=</span> scope<span class="token punctuation">.</span><span class="token function">btoa</span><span class="token punctuation">(</span>stringToEncode<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>stringToEncode</var></code></dt> <dd>The <a href="../domstring/binary">binary string</a> to encode.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>An ASCII string containing the Base64 representation of <code><var>stringToEncode</var></code>.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>InvalidCharacterError</code></dt> <dd>The string contained a character that did not fit in a single byte. See "Unicode strings" below for more detail.</dd> </dl>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token keyword">const</span> encodedData <span class="token operator">=</span> window<span class="token punctuation">.</span><span class="token function">btoa</span><span class="token punctuation">(</span><span class="token string">'Hello, world'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// encode a string</span>
+<span class="token keyword">const</span> decodedData <span class="token operator">=</span> window<span class="token punctuation">.</span><span class="token function">atob</span><span class="token punctuation">(</span>encodedData<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// decode the string</span>
+</pre>
+<h2 id="unicode_strings">Unicode strings</h2>
+<p>The <code>btoa()</code> function takes a JavaScript string as a parameter. In JavaScript strings are represented using the UTF-16 character encoding: in this encoding, strings are represented as a sequence of 16-bit (2 byte) units. Every ASCII character fits into the first byte of one of these units, but many other characters don't.</p> <p>Base64, by design, expects binary data as its input. In terms of JavaScript strings, this means strings in which each character occupies only one byte. So if you pass a string into <code>btoa()</code> containing characters that occupy more than one byte, you will get an error, because this is not considered binary data:</p> <pre data-language="js"><span class="token keyword">const</span> ok <span class="token operator">=</span> <span class="token string">"a"</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>ok<span class="token punctuation">.</span><span class="token function">codePointAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//   61: occupies &lt; 1 byte</span>
+
+<span class="token keyword">const</span> notOK <span class="token operator">=</span> <span class="token string">"✓"</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>notOK<span class="token punctuation">.</span><span class="token function">codePointAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 2713: occupies &gt; 1 byte</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">btoa</span><span class="token punctuation">(</span>ok<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// YQ==</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">btoa</span><span class="token punctuation">(</span>notOK<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// error</span></pre> <p>If you need to encode Unicode text as ASCII using <code>btoa()</code>, one option is to convert the string such that each 16-bit unit occupies only one byte. For example:</p> <pre data-language="js"><span class="token comment">// convert a Unicode string to a string in which</span>
+<span class="token comment">// each 16-bit unit occupies only one byte</span>
+<span class="token keyword">function</span> <span class="token function">toBinary</span><span class="token punctuation">(</span><span class="token parameter">string</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> codeUnits <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Uint16Array</span><span class="token punctuation">(</span>string<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> codeUnits<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    codeUnits<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> string<span class="token punctuation">.</span><span class="token function">charCodeAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> String<span class="token punctuation">.</span><span class="token function">fromCharCode</span><span class="token punctuation">(</span><span class="token operator">...</span><span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span>codeUnits<span class="token punctuation">.</span>buffer<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// a string that contains characters occupying &gt; 1 byte</span>
+<span class="token keyword">const</span> myString <span class="token operator">=</span> <span class="token string">"☸☹☺☻☼☾☿"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> converted <span class="token operator">=</span> <span class="token function">toBinary</span><span class="token punctuation">(</span>myString<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> encoded <span class="token operator">=</span> <span class="token function">btoa</span><span class="token punctuation">(</span>converted<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>encoded<span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// OCY5JjomOyY8Jj4mPyY=</span>
+</pre> <p>If you do this, of course you'll have to reverse the conversion on the decoded string: </p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">fromBinary</span><span class="token punctuation">(</span><span class="token parameter">binary</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> bytes <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span>binary<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> bytes<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    bytes<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> binary<span class="token punctuation">.</span><span class="token function">charCodeAt</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> String<span class="token punctuation">.</span><span class="token function">fromCharCode</span><span class="token punctuation">(</span><span class="token operator">...</span><span class="token keyword">new</span> <span class="token class-name">Uint16Array</span><span class="token punctuation">(</span>bytes<span class="token punctuation">.</span>buffer<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> decoded <span class="token operator">=</span> <span class="token function">atob</span><span class="token punctuation">(</span>encoded<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> original <span class="token operator">=</span> <span class="token function">fromBinary</span><span class="token punctuation">(</span>decoded<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>original<span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment">// ☸☹☺☻☼☾☿</span>
+</pre>
+<h2 id="polyfill">Polyfill</h2>
+<p>You can use a polyfill from <a href="https://github.com/MaxArt2501/base64-js/blob/master/base64.js" rel=" noopener">https://github.com/MaxArt2501/base64-js/blob/master/base64.js</a> for browsers that don't support it.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td>
+<a href="https://html.spec.whatwg.org/multipage/#dom-btoa" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'WindowOrWorkerGlobalScope.btoa()' in that specification.</small></a> </td> <td><span class="spec-living">Living Standard</span></td> <td>Method moved to the <code>WindowOrWorkerGlobalScope</code> mixin in the latest spec.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/html51/#dom-windowbase64-btoa" hreflang="en" rel=" noopener">HTML 5.1<br><small>The definition of 'WindowBase64.btoa()' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Snapshot of <a href="https://html.spec.whatwg.org/multipage/" hreflang="en" rel=" noopener">HTML Living Standard</a>. No change.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/html52/#dom-windowbase64-btoa" hreflang="en" rel=" noopener">HTML5<br><small>The definition of 'WindowBase64.btoa()' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Snapshot of <a href="https://html.spec.whatwg.org/multipage/" hreflang="en" rel=" noopener">HTML Living Standard</a>. Creation of <code>WindowBase64</code> (properties where on the target before it).</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>btoa</code></th>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10.5</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs"><code>data</code> URIs</a> </li> <li><a href="atob"><code>atob()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/btoa" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/btoa</a>
+  </p>
+</div>

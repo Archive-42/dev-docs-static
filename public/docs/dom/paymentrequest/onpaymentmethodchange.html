@@ -1,0 +1,83 @@
+<h1>PaymentRequest.onpaymentmethodchange</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <a href="../paymentrequest"><code>PaymentRequest</code></a> event handler <code><strong>onpaymentmethodchange</strong></code> is invoked when the <code><a href="paymentmethodchange_event">paymentmethodchange</a></code> is fired, indicating that the user has changed payment methods within a given payment handler. For example, when using Apple Pay, the user can swipe to select different credit cards, debit cards, and so forth. Each time the user does so, this event is fired.</p> <p>This event may not be fired by all payment handlers.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">PaymentRequest<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'paymentmethodchange'</span><span class="token punctuation">,</span> <span class="token parameter">paymentMethodChangeEvent</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+PaymentRequest<span class="token punctuation">.</span><span class="token function-variable function">onpaymentmethodchange</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">paymentMethodChangeEvent</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>An event handler function which is to be called whenever the <code><a href="paymentmethodchange_event">paymentmethodchange</a></code> event is fired at the <a href="../paymentrequest"><code>PaymentRequest</code></a>, indicating that the user has changed payment methods within the same payment handler. </p> <p>The <code><a href="paymentmethodchange_event">paymentmethodchange</a></code> event is triggered by a user-agent controlled interaction (i.e., the end-user switches from a debit to a credit card in the payment UI). To make sure you receive the event, you should add event listeners to <a href="../paymentrequest"><code>PaymentRequest</code></a> object after instantiation, but before you call <code>show()</code>.</p>
+<h2 id="examples">Examples</h2>
+<p>An example payment method change handler is shown below; this example handles changes made to the payment method when using Apple Pay, specifically:</p> <pre data-language="js">request<span class="token punctuation">.</span><span class="token function-variable function">onpaymentmethodchange</span> <span class="token operator">=</span> <span class="token parameter">ev</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> type<span class="token operator">:</span> cardType <span class="token punctuation">}</span> <span class="token operator">=</span> ev<span class="token punctuation">.</span>methodDetails<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> newStuff <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>ev<span class="token punctuation">.</span>methodName <span class="token operator">===</span> <span class="token string">"https://apple.com/apple-pay"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>cardType<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">case</span> <span class="token string">"store"</span><span class="token operator">:</span>
+        <span class="token comment">// do Apple Pay specific handling for store card...</span>
+        <span class="token comment">// methodDetails contains the store card information</span>
+        <span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token function">calculateDiscount</span><span class="token punctuation">(</span>ev<span class="token punctuation">.</span>methodDetails<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>newStuff<span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// finally...</span>
+  ev<span class="token punctuation">.</span><span class="token function">updateWith</span><span class="token punctuation">(</span>newStuff<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> request<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/payment-request/#onpaymentmethodchange-attribute" hreflang="en" rel=" noopener">Payment Request API<br><small>The definition of 'onpaymentmethodchange' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onpaymentmethodchange</code></th>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>12.2</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/onpaymentmethodchange" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/onpaymentmethodchange</a>
+  </p>
+</div>

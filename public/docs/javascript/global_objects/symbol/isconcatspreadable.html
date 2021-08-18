@@ -1,0 +1,87 @@
+<h1>Symbol.isConcatSpreadable</h1> <p>The <code>Symbol.isConcatSpreadable</code> well-known symbol is used to configure if an object should be flattened to its array elements when using the <a href="../array/concat"><code>Array.prototype.concat()</code></a> method.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/symbol-isconcatspreadable.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="description">Description</h2>
+<p>The <code>@@isConcatSpreadable</code> symbol (<code>Symbol.isConcatSpreadable</code>) can be defined as an own or inherited property and its value is a boolean. It can control behavior for arrays and array-like objects:</p> <ul> <li>For array objects, the default behavior is to spread (flatten) elements. <code>Symbol.isConcatSpreadable</code> can avoid flattening in these cases.</li> <li>For array-like objects, the default behavior is no spreading or flattening. <code>Symbol.isConcatSpreadable</code> can force flattening in these cases.</li> </ul> 
+<div class="_table"><table class="standard-table"> <thead> <tr> <th class="header" colspan="2">Property attributes of <code>Symbol.isConcatSpreadable</code>
+</th> </tr> </thead> <tbody> <tr> <td>Writable</td> <td>no</td> </tr> <tr> <td>Enumerable</td> <td>no</td> </tr> <tr> <td>Configurable</td> <td>no</td> </tr> </tbody> </table></div>
+
+<h2 id="examples">Examples</h2>
+<h3 id="arrays">Arrays</h3>
+<p>By default, <a href="../array/concat"><code>Array.prototype.concat()</code></a> spreads (flattens) arrays into its result:</p> <pre data-language="js"><span class="token keyword">let</span> alpha <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token keyword">let</span> numeric <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+
+<span class="token keyword">let</span> alphaNumeric <span class="token operator">=</span> alpha<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>numeric<span class="token punctuation">)</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>alphaNumeric<span class="token punctuation">)</span>  <span class="token comment">// Result: ['a', 'b', 'c', 1, 2, 3]</span>
+</pre> <p>When setting <code>Symbol.isConcatSpreadable</code> to <code>false</code>, you can disable the default behavior:</p> <pre data-language="js"><span class="token keyword">let</span> alpha <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+<span class="token keyword">let</span> numeric <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+
+numeric<span class="token punctuation">[</span>Symbol<span class="token punctuation">.</span>isConcatSpreadable<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">false</span>
+<span class="token keyword">let</span> alphaNumeric <span class="token operator">=</span> alpha<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>numeric<span class="token punctuation">)</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>alphaNumeric<span class="token punctuation">)</span>  <span class="token comment">// Result: ['a', 'b', 'c', [1, 2, 3] ]</span>
+</pre>
+<h3 id="array-like_objects">Array-like objects</h3>
+<p>For array-like objects, the default is to not spread. <code>Symbol.isConcatSpreadable</code> needs to be set to <code>true</code> in order to get a flattened array:</p> <pre data-language="js"><span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span>
+
+<span class="token keyword">let</span> fakeArray <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">[</span>Symbol<span class="token punctuation">.</span>isConcatSpreadable<span class="token punctuation">]</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  length<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+  <span class="token number">0</span><span class="token operator">:</span> <span class="token string">'hello'</span><span class="token punctuation">,</span>
+  <span class="token number">1</span><span class="token operator">:</span> <span class="token string">'world'</span>
+<span class="token punctuation">}</span>
+
+x<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>fakeArray<span class="token punctuation">)</span>  <span class="token comment">// [1, 2, 3, "hello", "world"]</span>
+</pre> <div class="notecard note"> <p><strong>Note:</strong> The <code>length</code> property is used to control the number of object properties to be added. In the above example, <code>length:2</code> indicates two properties has to be added.</p> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-symbol.isconcatspreadable">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-symbol.isconcatspreadable</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>isConcatSpreadable</code></th>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../array/concat"><code>Array.prototype.concat()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/isConcatSpreadable" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/isConcatSpreadable</a>
+  </p>
+</div>

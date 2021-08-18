@@ -1,0 +1,83 @@
+<h1>XRInputSource.handedness</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The read-only <a href="../xrinputsource"><code>XRInputSource</code></a> property <code><strong>handedness</strong></code> indicates which of the user's hands the WebXR input source is associated with, or if it's not associated with a hand at all.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">let</span> hand <span class="token operator">=</span> xrInputSource<span class="token punctuation">.</span>handedness<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../domstring"><code>DOMString</code></a> indicating whether the input controller is held in one of the user's hands, and if it is, which hand. The value, which comes from the <a href="../xrhandedness"><code>XRHandedness</code></a> enumerated type, is one of the following:</p> 
+<dl> <dt><code>none</code></dt> <dd>The input controller is not associated with one of the user's hands.</dd> <dt><code>left</code></dt> <dd>The input controller is being held in, worn on, or is attached to the user's left hand.</dd> <dt><code>right</code></dt> <dd>The input controller is being held in, worn on, or is attached to the user's right hand.</dd> </dl>
+
+<h2 id="usage_notes">Usage notes</h2>
+<p>If the input source is not a device associated with a user's hand (whether by being held, attached, or worn), the value of <code>handedness</code> is <code>none</code>. This may indicate, for example, an input source which isn't hand-held, such as controls built into a headset or an input device attached to the head or body.</p>
+<h2 id="examples">Examples</h2>
+
+<p>One important usage scentario for <code>handedness</code> is to determine which hand a controller is in so you can draw a representation of that hand (or the device that hand is controlling) in virtual space.</p>
+<pre data-language="js"><span class="token keyword">function</span> <span class="token function">updateInputSources</span><span class="token punctuation">(</span><span class="token parameter">session<span class="token punctuation">,</span> frame<span class="token punctuation">,</span> refSpace</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> source <span class="token keyword">of</span> session<span class="token punctuation">.</span>inputSources<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>source<span class="token punctuation">.</span>gripSpace<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> gripPose <span class="token operator">=</span> frame<span class="token punctuation">.</span><span class="token function">getPose</span><span class="token punctuation">(</span>source<span class="token punctuation">.</span>gripSpace<span class="token punctuation">,</span> refSpace<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>gripPose<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">myRenderHandObject</span><span class="token punctuation">(</span>gripPose<span class="token punctuation">,</span> inputSource<span class="token punctuation">.</span>handedness<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<p>This function, which would be called every animation frame (or possibly just periodically, depending on the degree of smoothness required and any performance constraints), scans the list of input sources looking for any which have a <a href="gripspace"><code>gripSpace</code></a> which isn't <code>null</code>. If a <code>gripSpace</code> is present, that means the input source is a hand-held device of some sort, so it should be rendered visibly if possible.</p>
+<p>If <code>gripSpace</code> is non-<code>null</code>, the function proceeds to get the pose for the <code>gripSpace</code> transformed into the current reference space. Assuming that's then valid, a function called <code>myRenderHandObject()</code> is called with the grip's pose and the value of <code>handedness</code>. With these values in hand (no pun intended), <code>myRenderHandObject()</code> can draw the appropriate model positioned and formed for the correct hand.</p>
+
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td>
+<a href="https://immersive-web.github.io/webxr/#dom-xrinputsource-handedness" hreflang="en" rel=" noopener">WebXR Device API<br><small>The definition of 'XRInputSource.handedness' in that specification.</small></a> </td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>handedness</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webxr_device_api">WebXR Device API</a></li> <li>
+<a href="../webxr_device_api/inputs">Inputs and input sources</a> </li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/WebXR%20Device%20API/Gamepads">Using gamepads in WebXR applications</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XRInputSource/handedness" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XRInputSource/handedness</a>
+  </p>
+</div>

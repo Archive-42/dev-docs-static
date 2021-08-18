@@ -1,0 +1,83 @@
+<h1>Headers.get()</h1> <p>The <code>get()</code> method of the <a href="../headers"><code>Headers</code></a> interface returns a byte string of all the values of a header within a <code>Headers</code> object with a given name. If the requested header doesn't exist in the <code>Headers</code> object, it returns <code>null</code>.</p> <p>For security reasons, some headers can only be controlled by the user agent. These headers include the <a href="https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name">forbidden header names</a> and <a href="https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_response_header_name">forbidden response header names</a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">myHeaders<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>name</code></dt> <dd>The name of the HTTP header whose values you want to retrieve from the <code>Headers</code> object. If the given name is not the name of an HTTP header, this method throws a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError"><code>TypeError</code></a>. The name is case-insensitive.</dd> </dl>
+<h3 id="returns">Returns</h3>
+<p>A <a href="../bytestring"><code>ByteString</code></a> sequence representing the values of the retrieved header or <code>null</code> if this header is not set.</p>
+<h2 id="example">Example</h2>
+<p>Creating an empty <code>Headers</code> object is simple:</p> <pre data-language="js"><span class="token keyword">var</span> myHeaders <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Headers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Currently empty</span>
+myHeaders<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'Not-Set'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Returns null</span>
+</pre> <p>You could add a header to this using <a href="append"><code>Headers.append</code></a>, then retrieve it using <code>get()</code>:</p> <pre data-language="js">myHeaders<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'Content-Type'</span><span class="token punctuation">,</span> <span class="token string">'image/jpeg'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+myHeaders<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'Content-Type'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Returns "image/jpeg"</span>
+</pre> <p>If the header has multiple values associated with it, the byte string will contain all the values, in the order they were added to the Headers object:</p> <pre data-language="js">myHeaders<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'Accept-Encoding'</span><span class="token punctuation">,</span> <span class="token string">'deflate'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+myHeaders<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'Accept-Encoding'</span><span class="token punctuation">,</span> <span class="token string">'gzip'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+myHeaders<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'Accept-Encoding'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Returns "deflate,gzip"</span>
+</pre> <div class="note notecard"> <p><strong>Note</strong>: <a href="getall"><code>Headers.getAll</code></a> used to have this functionality, with <a href="get"><code>Headers.get</code></a> returning only the first value added to the <code>Headers</code> object. The latest spec has removed <code>getAll()</code>, and updated <code>get()</code> to return all values.</p> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://fetch.spec.whatwg.org/#dom-headers-get" hreflang="en" rel=" noopener">Fetch<br><small>The definition of 'get()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>get</code></th>
+<td class="bc-supports-yes">
+<div>42</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Prior to Firefox 52, <code>get()</code> only returned the first value in the specified header, with <code>getAll()</code> returning all values. From 52 onwards, <code>get()</code> now returns all values and <code>getAll()</code> has been deleted.</div>
+<div>39</div>
+<div>34</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>28</div>
+</td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes">
+<div>42</div>
+<div>41</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>28</div>
+</td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../service_worker_api">ServiceWorker API</a></li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">HTTP access control (CORS)</a> </li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP">HTTP</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Headers/get" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Headers/get</a>
+  </p>
+</div>

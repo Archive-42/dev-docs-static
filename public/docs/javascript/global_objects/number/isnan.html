@@ -1,0 +1,86 @@
+<h1>Number.isNaN()</h1> <p>The <code>Number.isNaN()</code> method determines whether the passed value is <a href="../nan"><code>NaN</code></a> and its type is <a href="../number"><code>Number</code></a>. It is a more robust version of the original, global <a href="../isnan"><code>isNaN()</code></a>.</p> <iframe class="interactive" width="100%" height="692" src="https://interactive-examples.mdn.mozilla.net/pages/js/number-isnan.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js">Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>value</var></code></dt> <dd>The value to be tested for <a href="../nan"><code>NaN</code></a>.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p><strong>true</strong> if the given value is <a href="../nan"><code>NaN</code></a> and its type is <a href="../number"><code>Number</code></a>; otherwise, <strong>false</strong>.</p>
+<h2 id="description">Description</h2>
+<p>Due to both equality operators, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#equality"><code>==</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#identity"><code>===</code></a>, evaluating to <code>false</code> when checking if <a href="../nan"><code>NaN</code></a> <em>is</em> <a href="../nan"><code>NaN</code></a>, the function <code>Number.isNaN()</code> has become necessary. This situation is unlike all other possible value comparisons in JavaScript.</p> <p>In comparison to the global <a href="../isnan"><code>isNaN()</code></a> function, <code>Number.isNaN()</code> doesn't suffer the problem of forcefully converting the parameter to a number. This means it is now safe to pass values that would normally convert to <a href="../nan"><code>NaN</code></a>, but aren't actually the same value as <a href="../nan"><code>NaN</code></a>. This also means that only values of the type number, that are also <a href="../nan"><code>NaN</code></a>, return <code>true</code>.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_isnan">Using isNaN</h3>
+<pre data-language="js">Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">// true</span>
+Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span>Number<span class="token punctuation">.</span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token number">0</span> <span class="token operator">/</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// true</span>
+
+<span class="token comment">// e.g. these would have been true with global isNaN()</span>
+Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token string">'NaN'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// false</span>
+Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token keyword">undefined</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// false</span>
+Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// false</span>
+Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token string">'blabla'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// false</span>
+
+<span class="token comment">// These all return false</span>
+Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token number">37</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token string">'37'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token string">'37.37'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token string">' '</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="polyfill">Polyfill</h2>
+<p>The following works because NaN is the only value in JavaScript which is not equal to itself.</p> <pre data-language="js">Number<span class="token punctuation">.</span>isNaN <span class="token operator">=</span> Number<span class="token punctuation">.</span>isNaN <span class="token operator">||</span> <span class="token keyword">function</span> <span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token parameter">input</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">typeof</span> input <span class="token operator">===</span> <span class="token string">'number'</span> <span class="token operator">&amp;&amp;</span> input <span class="token operator">!==</span> input<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-number.isnan">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-number.isnan</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>isNaN</code></th>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../number"><code>Number</code></a></li> <li><a href="../isnan"><code>isNaN()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN</a>
+  </p>
+</div>

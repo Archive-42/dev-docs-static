@@ -1,0 +1,81 @@
+<h1>PerformanceEntry.entryType</h1> <p>The <code>entryType</code> property returns a <a href="../domstring"><code>DOMString</code></a> representing the type of performance metric such as, for example, "<code>mark</code>". This property is read only.</p> 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="../web_workers_api">Web Workers</a>.</p> </div>
+
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> type <span class="token operator">=</span> entry<span class="token punctuation">.</span>entryType<span class="token punctuation">;</span></pre>
+<h3 id="return_value">Return value</h3>
+<p>The return value depends on the subtype of the <code>PerformanceEntry</code> object and affects the value of the <a href="name"><code>PerformanceEntry.name</code></a> property as shown by the table below.</p>
+<h3 id="performance_entry_type_names">Performance entry type names</h3>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Value</th> <th scope="col">Subtype</th> <th scope="col">Type of name property</th> <th scope="col">Description of name property</th> </tr> </thead> <tbody> <tr> <td><code>element</code></td> <td><a href="../performanceelementtiming"><code>PerformanceElementTiming</code></a></td> <td><a href="../domstring"><code>DOMString</code></a></td> <td>Reports load time of elements.</td> </tr> <tr> <td>
+<code>frame</code>, <code>navigation</code>
+</td> <td>
+<a href="../performanceframetiming"><code>PerformanceFrameTiming</code></a>, <a href="../performancenavigationtiming"><code>PerformanceNavigationTiming</code></a>
+</td> <td><a href="../url"><code>URL</code></a></td> <td>The document's address.</td> </tr> <tr> <td><code>resource</code></td> <td><a href="../performanceresourcetiming"><code>PerformanceResourceTiming</code></a></td> <td><a href="../url"><code>URL</code></a></td> <td>The resolved URL of the requested resource. This value doesn't change even if the request is redirected.</td> </tr> <tr> <td><code>mark</code></td> <td><a href="../performancemark"><code>PerformanceMark</code></a></td> <td><a href="../domstring"><code>DOMString</code></a></td> <td>The name used when the mark was created by calling <a href="../performance/mark"><code>performance.mark()</code></a>.</td> </tr> <tr> <td><code>measure</code></td> <td><a href="../performancemeasure"><code>PerformanceMeasure</code></a></td> <td><a href="../domstring"><code>DOMString</code></a></td> <td>name used when the measure was created by calling <a href="../performance/measure"><code>performance.measure()</code></a>.</td> </tr> <tr> <td><code>paint</code></td> <td><a href="../performancepainttiming"><code>PerformancePaintTiming</code></a></td> <td><a href="../domstring"><code>DOMString</code></a></td> <td> <p>Either <code>'first-paint'</code> or <code>'first-contentful-paint'</code>.</p> </td> </tr> <tr> <td><code>longtask</code></td> <td><a href="../performancelongtasktiming"><code>PerformanceLongTaskTiming</code></a></td> <td><a href="../domstring"><code>DOMString</code></a></td> <td>reports instances of long tasks</td> </tr> </tbody> </table></div>
+<h2 id="example">Example</h2>
+<p>The following example shows the use of the <code>entryType</code> property.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">run_PerformanceEntry</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token comment">// check for feature support before continuing</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>performance<span class="token punctuation">.</span>mark <span class="token operator">===</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"performance.mark not supported"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Create a performance entry named "begin" via the mark() method</span>
+  performance<span class="token punctuation">.</span><span class="token function">mark</span><span class="token punctuation">(</span><span class="token string">"begin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Check the entryType of all the "begin" entries</span>
+  <span class="token keyword">var</span> entriesNamedBegin <span class="token operator">=</span> performance<span class="token punctuation">.</span><span class="token function">getEntriesByName</span><span class="token punctuation">(</span><span class="token string">"begin"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+	<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> entriesNamedBegin<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> typeOfEntry <span class="token operator">=</span> entriesNamedBegin<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>entryType<span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Entry is type: "</span> <span class="token operator">+</span> typeOfEntry<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/performance-timeline/#dom-performanceentry-entrytype" hreflang="en" rel=" noopener">Performance Timeline Level 2<br><small>The definition of 'entryType' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/performance-timeline/#dom-performanceentry-entrytype" hreflang="en" rel=" noopener">Performance Timeline<br><small>The definition of 'entryType' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>entryType</code></th>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry/entryType" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PerformanceEntry/entryType</a>
+  </p>
+</div>

@@ -1,0 +1,128 @@
+<h1>Navigator.getUserMedia()</h1>
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div> <p>The deprecated <code><strong>Navigator.getUserMedia()</strong></code> method prompts the user for permission to use up to one video input device (such as a camera or shared screen) and up to one audio input device (such as a microphone) as the source for a <a href="../mediastream"><code>MediaStream</code></a>.</p> <p>If permission is granted, a <code>MediaStream</code> whose video and/or audio tracks come from those devices is delivered to the specified success callback. If permission is denied, no compatible input devices exist, or any other error condition occurs, the error callback is executed with a <a class="page-not-created"><code>MediaStreamError</code></a> object describing what went wrong. If the user instead doesn't make a choice at all, neither callback is executed.</p> <div class="note notecard"> <p>This is a legacy method. Please use the newer <a href="../mediadevices/getusermedia"><code>navigator.mediaDevices.getUserMedia()</code></a> instead. While technically not deprecated, this old callback version is marked as such, since the specification strongly encourages using the newer promise returning version.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">navigator<span class="token punctuation">.</span><span class="token function">getUserMedia</span><span class="token punctuation">(</span>constraints<span class="token punctuation">,</span> successCallback<span class="token punctuation">,</span> errorCallback<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>constraints</var></code></dt> <dd>A <a href="../mediastreamconstraints"><code>MediaStreamConstraints</code></a> object specifying the types of media to request, along with any requirements for each type. For details, see the <a href="../mediadevices/getusermedia#parameters">constraints</a> section under the modern <a href="../mediadevices/getusermedia"><code>MediaDevices.getUserMedia()</code></a> method, as well as the article <a href="../media_streams_api/constraints">Capabilities, constraints, and settings</a>.</dd> <dt><code><var>successCallback</var></code></dt> <dd>A function which is invoked when the request for media access is approved. The function is called with one parameter: the <a href="../mediastream"><code>MediaStream</code></a> object that contains the media stream. Your callback can then assign the stream to the desired object (such as an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio"><code>&lt;audio&gt;</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"><code>&lt;video&gt;</code></a> element), as shown in the following example: <pre data-language="js"><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">stream</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">var</span> video <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'video'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+   video<span class="token punctuation">.</span>srcObject <span class="token operator">=</span> stream<span class="token punctuation">;</span>
+   video<span class="token punctuation">.</span><span class="token function-variable function">onloadedmetadata</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Do something with the video here.</span>
+   <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> </dd> <dt><code><var>errorCallback</var></code></dt> <dd>When the call fails, the function specified in the <code>errorCallback</code> is invokedwith a <a class="page-not-created"><code>MediaStreamError</code></a> object as its sole argument; this object is modeled on <a href="../domexception"><code>DOMException</code></a>. See <a href="#errors">Errors</a> below for a list of the errors which can occur.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p><a class="page-not-created"><code>undefined</code></a>.</p>
+<h3 id="errors">Errors</h3>
+<p>{{page("/en-US/docs/Web/API/MediaDevices/getUserMedia", "Errors")}}</p>
+<h2 id="examples">Examples</h2>
+<h3 id="width_and_height">Width and height</h3>
+<p>Here's an example of using <code>getUserMedia()</code>, including code to cope with various browsers' prefixes. Note that this is the deprecated way of doing it: See the <a href="../mediadevices/getusermedia#frame_rate">Examples</a> section under the <a href="../mediadevices/getusermedia"><code>MediaDevices.getUserMedia()</code></a> for modern examples.</p> <pre data-language="js">navigator<span class="token punctuation">.</span>getUserMedia <span class="token operator">=</span> navigator<span class="token punctuation">.</span>getUserMedia <span class="token operator">||</span>
+                         navigator<span class="token punctuation">.</span>webkitGetUserMedia <span class="token operator">||</span>
+                         navigator<span class="token punctuation">.</span>mozGetUserMedia<span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>navigator<span class="token punctuation">.</span>getUserMedia<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   navigator<span class="token punctuation">.</span><span class="token function">getUserMedia</span><span class="token punctuation">(</span><span class="token punctuation">{</span> audio<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> video<span class="token operator">:</span> <span class="token punctuation">{</span> width<span class="token operator">:</span> <span class="token number">1280</span><span class="token punctuation">,</span> height<span class="token operator">:</span> <span class="token number">720</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">stream</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         <span class="token keyword">var</span> video <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'video'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         video<span class="token punctuation">.</span>srcObject <span class="token operator">=</span> stream<span class="token punctuation">;</span>
+         video<span class="token punctuation">.</span><span class="token function-variable function">onloadedmetadata</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+           video<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token punctuation">}</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+         console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"The following error occurred: "</span> <span class="token operator">+</span> err<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+   <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"getUserMedia not supported"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="permissions">Permissions</h2>
+<p>To use <code>getUserMedia()</code> in an installable app (for example, a <a href="https://developer.mozilla.org/en-US/docs/Web/Apps/Build/Building_apps_for_Firefox_OS/Firefox_OS_app_beginners_tutorial">Firefox OS app</a>), you need to specify one or both of the following fields inside your manifest file:</p> <pre data-language="js"><span class="token string">"permissions"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+  <span class="token string">"audio-capture"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"description"</span><span class="token operator">:</span> <span class="token string">"Required to capture audio using getUserMedia()"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token string">"video-capture"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"description"</span><span class="token operator">:</span> <span class="token string">"Required to capture video using getUserMedia()"</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre> <p>See <a href="https://developer.mozilla.org/en-US/docs/Web/Apps/Developing/App_permissions#audio-capture">permission: audio-capture</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/Apps/Developing/App_permissions#video-capture">permission: video-capture</a> for more information.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getUserMedia</code></th>
+<td class="bc-supports-yes">
+<div>53</div>
+<div>21</div>
+</td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>79</div>
+</td>
+<td class="bc-supports-yes">
+<div>17</div>
+<div>The constraint syntax described here is available as of Firefox 38. Earlier versions (32-37) used an outdated constraint syntax, but the syntax described here is available there through the <a href="https://github.com/webrtc/adapter">adapter.js</a> polyfill.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>40</div>
+<div>15</div>
+<div>12-15</div>
+</td>
+<td class="bc-supports-no"><div>11-12</div></td>
+<td class="bc-supports-yes">
+<div>53</div>
+<div>40</div>
+</td>
+<td class="bc-supports-yes">
+<div>53</div>
+<div>25</div>
+</td>
+<td class="bc-supports-yes">
+<div>24</div>
+<div>The constraint syntax described here is available as of Firefox 38. Earlier versions (32-37) used an outdated constraint syntax, but the syntax described here is available there through the <a href="https://github.com/webrtc/adapter">adapter.js</a> polyfill.</div>
+</td>
+<td class="bc-supports-yes">
+<div>41</div>
+<div>14</div>
+<div>12-14</div>
+</td>
+<td class="bc-supports-no"><div>11-12</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>1.5</div>
+</td>
+</tr></tbody>
+</table>
+<div class="warning notecard"> <p>New code should use <a href="../mediadevices/getusermedia"><code>Navigator.mediaDevices.getUserMedia()</code></a> instead. </p> </div> 
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../mediadevices/getusermedia"><code>MediaDevices.getUserMedia()</code></a> that replaces this deprecated method. </li> <li>
+<a href="../webrtc_api">WebRTC</a> - the introductory page to the API</li> <li>
+<a href="../media_streams_api">MediaStream API</a> - the API for the media stream objects</li> <li>
+<a href="../webrtc_api/taking_still_photos">Taking webcam photos</a> - a tutorial on using <code>getUserMedia() for taking photos rather than video.</code> </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getUserMedia" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/getUserMedia</a>
+  </p>
+</div>

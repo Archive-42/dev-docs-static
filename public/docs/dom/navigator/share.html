@@ -1,0 +1,99 @@
+<h1>Navigator.share()</h1>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div> <p>The <code>navigator.share()</code> method of the Web Share API invokes the native sharing mechanism of the device.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">const</span> sharePromise <span class="token operator">=</span> navigator<span class="token punctuation">.</span><span class="token function">share</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>data</var></code></dt> <dd>An object containing data to share. At least one of the following fields must be specified. Available options are:</dd> </dl> <ul> <li>
+<code>url</code>: A <a href="../usvstring"><code>USVString</code></a> representing a URL to be shared.</li> <li>
+<code>text</code>: A <a href="../usvstring"><code>USVString</code></a> representing text to be shared.</li> <li>
+<code>title</code>: A <a href="../usvstring"><code>USVString</code></a> representing the title to be shared. </li> <li>
+<code>files</code>: A "FrozenArray" representing the array of files to be shared. </li> </ul>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that will be fulfilled once a user has completed a share action (usually the user has chosen an application to share to). It will reject immediately if the <var>data</var> parameter is not correctly specified, and will also reject if the user cancels sharing.</p>
+<h2 id="examples">Examples</h2>
+<p>In our <a href="https://mdn.github.io/dom-examples/web-share/" rel=" noopener">Web share test</a> (<a href="https://github.com/mdn/dom-examples/blob/master/web-share/index.html" rel=" noopener">see the source code</a>) there is a button which, when clicked, invokes the Web Share API to share MDN's URL. The JavaScript looks like this:</p> <pre data-language="js"><span class="token keyword">const</span> shareData <span class="token operator">=</span> <span class="token punctuation">{</span>
+  title<span class="token operator">:</span> <span class="token string">'MDN'</span><span class="token punctuation">,</span>
+  text<span class="token operator">:</span> <span class="token string">'Learn web development on MDN!'</span><span class="token punctuation">,</span>
+  url<span class="token operator">:</span> <span class="token string">'https://developer.mozilla.org'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> btn <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'button'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> resultPara <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.result'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Must be triggered some kind of "user activation"</span>
+btn<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token keyword">await</span> navigator<span class="token punctuation">.</span><span class="token function">share</span><span class="token punctuation">(</span>shareData<span class="token punctuation">)</span>
+    resultPara<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'MDN shared successfully'</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    resultPara<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'Error: '</span> <span class="token operator">+</span> err
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <h4 id="sharing_files"><strong>Sharing Files</strong></h4> <p>To share files, first test for and call <code>navigator.canShare()</code>. Then include an array of files in the call to <code>navigator.share():</code></p> <p>Notice: That the sample handles feature detection by testing for <code>navigator.canShare()</code> rather than for <code>navigator.share()</code>. The data object passed to <code>canShare()</code> only supports the <code>files</code> property. Image, video, audio, and text files can be shared.</p> <pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span>navigator<span class="token punctuation">.</span>canShare <span class="token operator">&amp;&amp;</span> navigator<span class="token punctuation">.</span><span class="token function">canShare</span><span class="token punctuation">(</span><span class="token punctuation">{</span> files<span class="token operator">:</span> filesArray <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  navigator<span class="token punctuation">.</span><span class="token function">share</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    files<span class="token operator">:</span> filesArray<span class="token punctuation">,</span>
+    title<span class="token operator">:</span> <span class="token string">'Pictures'</span><span class="token punctuation">,</span>
+    text<span class="token operator">:</span> <span class="token string">'Our Pictures.'</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Share was successful.'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">error</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Sharing failed'</span><span class="token punctuation">,</span> error<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Your system doesn't support sharing files.</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/web-share/#share-method" hreflang="en" rel=" noopener">Web Share API<br><small>The definition of 'share()' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>share</code></th>
+<td class="bc-supports-yes">
+<div>89</div>
+<div>Not supported on macOS, see <a href="https://crbug.com/1144920">bug 1144920</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>81</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>Firefox for Android does not support sharing files or text.</div>
+</td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>12.2</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="canshare"><code>navigator.canShare()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Navigator/share</a>
+  </p>
+</div>

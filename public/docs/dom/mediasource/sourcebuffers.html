@@ -1,0 +1,75 @@
+<h1>MediaSource.sourceBuffers</h1>
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div> <p>The <code><strong>sourceBuffers</strong></code> read-only property of the <a href="../mediasource"><code>MediaSource</code></a> interface returns a <a href="../sourcebufferlist"><code>SourceBufferList</code></a> object containing the list of <a href="../sourcebuffer"><code>SourceBuffer</code></a> objects associated with this <code>MediaSource</code>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> mySourceBuffers <span class="token operator">=</span> mediaSource<span class="token punctuation">.</span>sourceBuffers<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../sourcebufferlist"><code>SourceBufferList</code></a>.</p>
+<h2 id="example">Example</h2>
+<p>The following snippet is based on a simple example written by Nick Desaulniers (<a href="https://nickdesaulniers.github.io/netfix/demo/bufferAll.html" rel=" noopener">view the full demo live</a>, or <a href="https://github.com/nickdesaulniers/netfix/blob/gh-pages/demo/bufferAll.html" rel=" noopener">download the source</a> for further investigation.)</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">sourceOpen</span> <span class="token punctuation">(</span><span class="token parameter">_</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">//console.log(this.readyState); // open</span>
+  <span class="token keyword">var</span> mediaSource <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> sourceBuffer <span class="token operator">=</span> mediaSource<span class="token punctuation">.</span><span class="token function">addSourceBuffer</span><span class="token punctuation">(</span>mimeCodec<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">fetchAB</span><span class="token punctuation">(</span>assetURL<span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">buf</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    sourceBuffer<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'updateend'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">_</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      mediaSource<span class="token punctuation">.</span><span class="token function">endOfStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>mediaSource<span class="token punctuation">.</span>sourceBuffers<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// will contain the source buffer that was added above</span>
+      video<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">//console.log(mediaSource.readyState); // ended</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sourceBuffer<span class="token punctuation">.</span><span class="token function">appendBuffer</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token operator">...</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/media-source/#idl-def-mediasource-sourcebuffers" hreflang="en" rel=" noopener">Media Source Extensions<br><small>The definition of 'sourceBuffers' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>sourceBuffers</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>Only works on Windows 8+.</div>
+</td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>4.4.3</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../sourcebuffer"><code>SourceBuffer</code></a></li> <li><a href="../sourcebufferlist"><code>SourceBufferList</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/sourceBuffers" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/sourceBuffers</a>
+  </p>
+</div>

@@ -1,0 +1,125 @@
+<h1>setter</h1> <p>The <code>set</code> syntax binds an object property to a function to be called when there is an attempt to set that property.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/functions-setter.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token punctuation">{</span><span class="token keyword">set</span> <span class="token function">prop</span><span class="token punctuation">(</span><span class="token parameter">val</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">.</span> <span class="token punctuation">.</span> <span class="token punctuation">.</span> <span class="token punctuation">}</span><span class="token punctuation">}</span>
+<span class="token punctuation">{</span><span class="token keyword">set</span> <span class="token punctuation">[</span>expression<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token parameter">val</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token punctuation">.</span> <span class="token punctuation">.</span> <span class="token punctuation">.</span> <span class="token punctuation">}</span><span class="token punctuation">}</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>prop</var></code></dt> <dd>The name of the property to bind to the given function.</dd> <dt><code><var>val</var></code></dt> <dd>An alias for the variable that holds the value attempted to be assigned to <code><var>prop</var></code>.</dd> <dt><code><var>expression</var></code></dt> <dd>Starting with ECMAScript 2015, you can also use expressions for a computed property name to bind to the given function.</dd> </dl>
+<h2 id="description">Description</h2>
+<p>In JavaScript, a setter can be used to execute a function whenever a specified property is attempted to be changed. Setters are most often used in conjunction with getters to create a type of pseudo-property. It is not possible to simultaneously have a setter on a property that holds an actual value.</p> <p>Note the following when working with the <code>set</code> syntax:</p> <ul> <li>It can have an identifier which is either a number or a string;</li> <li>It must have exactly one parameter (see <a href="https://whereswalden.com/2010/08/22/incompatible-es5-change-literal-getter-and-setter-functions-must-now-have-exactly-zero-or-one-arguments/" rel="external nofollow noopener">Incompatible <abbr title="ECMAScript 5th edition">ES5</abbr> change: literal getter and setter functions must now have exactly zero or one arguments</a> for more information); </li> <li>It must not appear in an object literal with another <code>set</code> or with a data entry for the same property.<br> ( <code>{ set x(v) { }, set x(v) { } }</code> and <code>{ x: ..., set x(v) { } }</code> are forbidden )</li> </ul>
+<h2 id="examples">Examples</h2>
+<h3 id="defining_a_setter_on_new_objects_in_object_initializers">Defining a setter on new objects in object initializers</h3>
+<p>The following example define a pseudo-property <code>current</code> of object <code>language</code>. When <code>current</code> is assigned a value, it updates <code>log</code> with that value:</p> <pre data-language="js"><span class="token keyword">const</span> language <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token keyword">set</span> <span class="token function">current</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>log<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  log<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+language<span class="token punctuation">.</span>current <span class="token operator">=</span> <span class="token string">'EN'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>language<span class="token punctuation">.</span>log<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ['EN']</span>
+
+language<span class="token punctuation">.</span>current <span class="token operator">=</span> <span class="token string">'FA'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>language<span class="token punctuation">.</span>log<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ['EN', 'FA']</span>
+</pre> <p>Note that <code>current</code> is not defined, and any attempts to access it will result in <code>undefined</code>.</p>
+<h3 id="removing_a_setter_with_the_delete_operator">Removing a setter with the <code>delete</code> operator</h3>
+<p>If you want to remove the setter, you can just <a href="../operators/delete"><code>delete</code></a> it:</p> <pre data-language="js"><span class="token keyword">delete</span> language<span class="token punctuation">.</span>current<span class="token punctuation">;</span>
+</pre>
+<h3 id="defining_a_setter_on_existing_objects_using_defineproperty">Defining a setter on existing objects using <code>defineProperty</code>
+</h3>
+<p>To append a setter to an <em>existing</em> object, use <a href="../global_objects/object/defineproperty"><code>Object.defineProperty()</code></a>.</p> <pre data-language="js"><span class="token keyword">const</span> o <span class="token operator">=</span> <span class="token punctuation">{</span>a<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">set</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">this</span><span class="token punctuation">.</span>a <span class="token operator">=</span> x <span class="token operator">/</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+o<span class="token punctuation">.</span>b <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token comment">//  Runs the setter, which assigns 10 / 2 (5) to the 'a' property</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span>a<span class="token punctuation">)</span>
+<span class="token comment">//  5</span></pre>
+<h3 id="using_a_computed_property_name">Using a computed property name</h3>
+<pre data-language="js"><span class="token keyword">const</span> expr <span class="token operator">=</span> <span class="token string">'foo'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+  baz<span class="token operator">:</span> <span class="token string">'bar'</span><span class="token punctuation">,</span>
+  <span class="token keyword">set</span> <span class="token punctuation">[</span>expr<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token parameter">v</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">this</span><span class="token punctuation">.</span>baz <span class="token operator">=</span> v<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>baz<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//  "bar"</span>
+
+obj<span class="token punctuation">.</span>foo <span class="token operator">=</span> <span class="token string">'baz'</span><span class="token punctuation">;</span>
+<span class="token comment">//  run the setter</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>baz<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//  "baz"</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-method-definitions">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-method-definitions</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>set</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>9.5</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>computed_property_names</code></th>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>9.1</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>9.3</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="get">getter</a></li> <li><a href="../operators/delete"><code>delete</code></a></li> <li><a href="../global_objects/object/defineproperty"><code>Object.defineProperty()</code></a></li> <li><a href="../global_objects/object/__definegetter__"><code>__defineGetter__</code></a></li> <li><a href="../global_objects/object/__definesetter__"><code>__defineSetter__</code></a></li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects#defining_getters_and_setters">Defining Getters and Setters</a> in JavaScript Guide</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set</a>
+  </p>
+</div>

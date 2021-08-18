@@ -1,0 +1,106 @@
+<h1>SubtleCrypto.digest()</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <code><strong>digest()</strong></code> method of the <a href="../subtlecrypto"><code>SubtleCrypto</code></a> interface generates a <a href="https://developer.mozilla.org/en-US/docs/Glossary/Digest">digest</a> of the given data. A digest is a short fixed-length value derived from some variable-length input. Cryptographic digests should exhibit collision-resistance, meaning that it's hard to come up with two different inputs that have the same digest value.</p> <p>It takes as its arguments an identifier for the digest algorithm to use and the data to digest. It returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which will be fulfilled with the digest.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">const</span> digest <span class="token operator">=</span> crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">digest</span><span class="token punctuation">(</span>algorithm<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<ul> <li>
+<code><var>algorithm</var></code> is a <a href="../domstring"><code>DOMString</code></a> defining the hash function to use. Supported values are: <ul> <li>
+<code>SHA-1</code> (but don't use this in cryptographic applications)</li> <li><code>SHA-256</code></li> <li><code>SHA-384</code></li> <li>
+<code>SHA-512</code>.</li> </ul> </li> <li>
+<code><var>data</var></code> is an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> or <a href="../arraybufferview"><code>ArrayBufferView</code></a> containing the data to be digested.</li> </ul>
+<h3 id="return_value">Return value</h3>
+<ul> <li>
+<code><var>digest</var></code> is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that fulfills with an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> containing the digest.</li> </ul>
+<h2 id="supported_algorithms">Supported algorithms</h2>
+<p>Digest algorithms, also known as <a href="https://developer.mozilla.org/en-US/docs/Glossary/Cryptographic_hash_function">cryptographic hash functions</a>, transform an arbitrarily large block of data into a fixed-size output, usually much shorter than the input. They have a variety of applications in cryptography.</p> <div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Algorithm</th> <th scope="col">Output length (bits)</th> <th scope="col">Block size (bits)</th> <th scope="col">Specification</th> </tr> <tr> <th scope="row">SHA-1</th> <td>160</td> <td>512</td> <td> <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf" rel=" noopener">FIPS 180-4</a>, section 6.1 </td> </tr> <tr> <th scope="row">SHA-256</th> <td>256</td> <td>512</td> <td> <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf" rel=" noopener">FIPS 180-4</a>, section 6.2 </td> </tr> <tr> <th scope="row">SHA-384</th> <td>384</td> <td>1024</td> <td>
+<a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf" rel=" noopener">FIPS 180-4</a>, section 6.5 </td> </tr> <tr> <th scope="row">SHA-512</th> <td>512</td> <td>1024</td> <td> <a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf" rel=" noopener">FIPS 180-4</a>, section 6.4 </td> </tr> </tbody> </table></div> <div class="notecard warning"> <p><strong>Warning</strong>: SHA-1 is now considered vulnerable and should not be used for cryptographic applications.</p> </div> <div class="notecard note"> <p>Hint: If you are looking here for how to create an keyed-hash message authentication code (<a href="https://developer.mozilla.org/en-US/docs/Glossary/HMAC">HMAC</a>), you need to use the <a href="sign#hmac">SubtleCrypto.sign()</a> instead. </p> </div>
+<h2 id="examples">Examples</h2>
+<h3 id="basic_example">Basic example</h3>
+<p>This example encodes a message, then calculates its SHA-256 digest and logs the digest length:</p> <pre data-language="js"><span class="token keyword">const</span> text <span class="token operator">=</span> <span class="token string">'An obscure body in the S-K System, your majesty. The inhabitants refer to it as the planet Earth.'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">digestMessage</span><span class="token punctuation">(</span><span class="token parameter">message</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> encoder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TextEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> data <span class="token operator">=</span> encoder<span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> hash <span class="token operator">=</span> <span class="token keyword">await</span> crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">digest</span><span class="token punctuation">(</span><span class="token string">'SHA-256'</span><span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> hash<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> digestBuffer <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">digestMessage</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>digestBuffer<span class="token punctuation">.</span>byteLength<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="converting_a_digest_to_a_hex_string">Converting a digest to a hex string</h3>
+<p>The digest is returned as an <code>ArrayBuffer</code>, but for comparison and display digests are often represented as hex strings. This example calculates a digest, then converts the <code>ArrayBuffer</code> to a hex string:</p> <pre data-language="js"><span class="token keyword">const</span> text <span class="token operator">=</span> <span class="token string">'An obscure body in the S-K System, your majesty. The inhabitants refer to it as the planet Earth.'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">digestMessage</span><span class="token punctuation">(</span><span class="token parameter">message</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> msgUint8 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TextEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>                           <span class="token comment">// encode as (utf-8) Uint8Array</span>
+  <span class="token keyword">const</span> hashBuffer <span class="token operator">=</span> <span class="token keyword">await</span> crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">digest</span><span class="token punctuation">(</span><span class="token string">'SHA-256'</span><span class="token punctuation">,</span> msgUint8<span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// hash the message</span>
+  <span class="token keyword">const</span> hashArray <span class="token operator">=</span> Array<span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span>hashBuffer<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token comment">// convert buffer to byte array</span>
+  <span class="token keyword">const</span> hashHex <span class="token operator">=</span> hashArray<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">b</span> <span class="token operator">=&gt;</span> b<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">padStart</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'0'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// convert bytes to hex string</span>
+  <span class="token keyword">return</span> hashHex<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> digestHex <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">digestMessage</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>digestHex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto-method-digest" hreflang="en" rel=" noopener">Web Cryptography API<br><small>The definition of 'SubtleCrypto.digest()' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>digest</code></th>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>Not supported: SHA-1.</div>
+</td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>Returns <code>CryptoOperation</code> instead of <code>Promise</code>
+</div>
+</td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+ <div class="notecard note"> <p> In Chrome 60, they added a feature that disables crypto.subtle for non-TLS connections.</p> </div>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://www.chromium.org/Home/chromium-security/prefer-secure-origins-for-powerful-new-features" rel=" noopener">Chromium secure origins specification</a></li> <li>
+<a href="https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf" rel="noopener">FIPS 180-4</a> specifies the SHA family of digest algorithms.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/digest</a>
+  </p>
+</div>

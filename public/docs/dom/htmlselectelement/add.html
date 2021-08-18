@@ -1,0 +1,159 @@
+<h1>HTMLSelectElement.add()</h1>
+
+ <p>The <code><strong>HTMLSelectElement.add()</strong></code> method adds an element to the collection of <code>option</code> elements for this <code>select</code> element.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">collection<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>item<span class="token punctuation">[</span><span class="token punctuation">,</span> before<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<ul> <li>
+<em>item</em> is an <a href="../htmloptionelement"><code>HTMLOptionElement</code></a> or <a href="../htmloptgroupelement"><code>HTMLOptGroupElement</code></a>
+</li> <li>
+<em>before</em> is optional and an element of the collection, or an index of type <em>long</em>, representing the <em>item</em> should be inserted before. If this parameter is <code>null</code> (or the index does not exist), the new element is appended to the end of the collection.</li> </ul>
+<h3 id="exceptions">Exceptions</h3>
+<ul> <li>A <a href="../domerror"><code>DOMError</code></a> of the type <code>HierarchyRequestError</code> if the <em>item</em> passed to the method is an ancestor of the <code><a href="../htmlselectelement"><code>HTMLSelectElement</code></a></code>.</li> </ul>
+<h2 id="examples">Examples</h2>
+<h3 id="creating_elements_from_scratch">Creating Elements from Scratch</h3>
+<pre data-language="js"><span class="token keyword">var</span> sel <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"select"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> opt1 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"option"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> opt2 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"option"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+opt1<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">"1"</span><span class="token punctuation">;</span>
+opt1<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token string">"Option: Value 1"</span><span class="token punctuation">;</span>
+
+opt2<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">"2"</span><span class="token punctuation">;</span>
+opt2<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token string">"Option: Value 2"</span><span class="token punctuation">;</span>
+
+sel<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>opt1<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+sel<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>opt2<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/*
+  Produces the following, conceptually:
+
+  &lt;select&gt;
+    &lt;option value="1"&gt;Option: Value 1&lt;/option&gt;
+    &lt;option value="2"&gt;Option: Value 2&lt;/option&gt;
+  &lt;/select&gt;
+*/</span></pre> <p>The before parameter is optional. So the following is accepted.</p> <pre data-language="js"><span class="token operator">...</span>
+sel<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>opt1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+sel<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>opt2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">...</span>
+</pre>
+<h3 id="append_to_an_existing_collection">Append to an Existing Collection</h3>
+<pre data-language="js"><span class="token keyword">var</span> sel <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"existingList"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> opt <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"option"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+opt<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">"3"</span><span class="token punctuation">;</span>
+opt<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token string">"Option: Value 3"</span><span class="token punctuation">;</span>
+
+sel<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>opt<span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/*
+  Takes the existing following select object:
+
+  &lt;select id="existingList"&gt;
+    &lt;option value="1"&gt;Option: Value 1&lt;/option&gt;
+    &lt;option value="2"&gt;Option: Value 2&lt;/option&gt;
+  &lt;/select&gt;
+
+  And changes it to:
+
+  &lt;select id="existingList"&gt;
+    &lt;option value="1"&gt;Option: Value 1&lt;/option&gt;
+    &lt;option value="2"&gt;Option: Value 2&lt;/option&gt;
+    &lt;option value="3"&gt;Option: Value 3&lt;/option&gt;
+  &lt;/select&gt;
+*/</span>
+</pre> <p>The before parameter is optional. So the following is accepted.</p> <pre data-language="js"><span class="token operator">...</span>
+sel<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>opt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token operator">...</span>
+</pre>
+<h3 id="inserting_to_an_existing_collection">Inserting to an Existing Collection</h3>
+<pre data-language="js"><span class="token keyword">var</span> sel <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"existingList"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> opt <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"option"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+opt<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">"3"</span><span class="token punctuation">;</span>
+opt<span class="token punctuation">.</span>text <span class="token operator">=</span> <span class="token string">"Option: Value 3"</span><span class="token punctuation">;</span>
+
+sel<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>opt<span class="token punctuation">,</span> sel<span class="token punctuation">.</span>options<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/*
+  Takes the existing following select object:
+
+  &lt;select id="existingList"&gt;
+    &lt;option value="1"&gt;Option: Value 1&lt;/option&gt;
+    &lt;option value="2"&gt;Option: Value 2&lt;/option&gt;
+  &lt;/select&gt;
+
+  And changes it to:
+
+  &lt;select id="existingList"&gt;
+    &lt;option value="1"&gt;Option: Value 1&lt;/option&gt;
+    &lt;option value="3"&gt;Option: Value 3&lt;/option&gt;
+    &lt;option value="2"&gt;Option: Value 2&lt;/option&gt;
+  &lt;/select&gt;
+*/</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#dom-select-add" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'HTMLSelectElement.add()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/html52/forms.html#dom-select-add" hreflang="en" rel=" noopener">HTML5<br><small>The definition of 'HTMLSelectElement.add()' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Is a snapshot of <a href="https://html.spec.whatwg.org/multipage/" hreflang="en" rel=" noopener">HTML Living Standard</a>.<br> The value of <code>before</code> can now be a long and is optional. It throws a <a href="../domerror"><code>DOMError</code></a> of the type <code>HierarchyRequestError</code> if the passed <code>item</code> is an ancestor of the <a href="../htmlselectelement"><code>HTMLSelectElement</code></a> and no longer throws if the <code>before</code> parameter is not found.</td> </tr> <tr> <td>
+<a href="https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-14493106" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 2 HTML Specification<br><small>The definition of 'HTMLSelectElement.add()' in that specification.</small></a> </td> <td><span class="spec-obsolete">Obsolete</span></td> <td>The method now throws an NOT_FOUND_ERR exception if the item of the <code>before</code> parameter is not a child of this element.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-html.html#ID-14493106" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 1 Specification<br><small>The definition of 'HTMLSelectElement.add()' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>add</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5.5</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>index_before_parameter</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+</tbody>
+</table> 
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/add" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLSelectElement/add</a>
+  </p>
+</div>

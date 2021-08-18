@@ -1,0 +1,81 @@
+<h1>HTMLElement.oncut</h1> <div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div> <p>The <code><strong>HTMLElement.oncut</strong></code> property of the <a href="../htmlelement"><code>HTMLElement</code></a> interface is an <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a> that processes <code><a href="../element/cut_event">cut</a></code> events.</p> <p>The <code>cut</code> event fires when the user attempts to cut text.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">target<span class="token punctuation">.</span>oncut <span class="token operator">=</span> functionRef<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p><code>functionRef</code> is a function name or a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function">function expression</a>. The function receives a <a href="../clipboardevent"><code>ClipboardEvent</code></a> object as its sole argument.</p>
+<h2 id="example">Example</h2>
+<p>This example allows text to be copied from the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea"><code>&lt;textarea&gt;</code></a>, but doesn't allow text to be cut. It also logs each copy and cut attempt.</p>
+<h3 id="html">HTML</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">&gt;</span></span>Play with this text area:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>textarea</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>editor<span class="token punctuation">"</span></span> <span class="token attr-name">rows</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>3<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Try copying and cutting the text in this field!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>textarea</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">&gt;</span></span>Log:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>log<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js"><span class="token keyword">function</span> <span class="token function">logCopy</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  log<span class="token punctuation">.</span>innerText <span class="token operator">=</span> <span class="token string">'Copied!\n'</span> <span class="token operator">+</span> log<span class="token punctuation">.</span>innerText<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">preventCut</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  log<span class="token punctuation">.</span>innerText <span class="token operator">=</span> <span class="token string">'Cut blocked!\n'</span> <span class="token operator">+</span> log<span class="token punctuation">.</span>innerText<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> editor <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'editor'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> log <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'log'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+editor<span class="token punctuation">.</span>oncopy <span class="token operator">=</span> logCopy<span class="token punctuation">;</span>
+editor<span class="token punctuation">.</span>oncut <span class="token operator">=</span> preventCut<span class="token punctuation">;</span></pre>
+<h3 id="result">Result</h3>
+<p><iframe class="sample-code-frame" id="frame_Example" width="700" height="300" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/HTMLElement/oncut/_samples_/Example" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<p><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-oncut" rel=" noopener">WHATWG Standard</a></p>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>oncut</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>5.5</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+ <p>Since Firefox 13, the preference <code>dom.event.clipboardevents.enabled</code> controls this feature. It defaults to <code>true</code> but can be disabled.</p>
+<h2 id="see_also">See also</h2>
+<ul> <li>Clipboard API event <code><a href="../element/cut_event">cut</a></code>
+</li> <li>Related event handlers <ul> <li><a href="oncopy"><code>HTMLElement.oncopy</code></a></li> <li><a href="onpaste"><code>HTMLElement.onpaste</code></a></li> </ul> </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/oncut" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/oncut</a>
+  </p>
+</div>

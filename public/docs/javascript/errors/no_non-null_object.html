@@ -1,0 +1,36 @@
+<h1>TypeError: "x" is not a non-null object</h1> <p>The JavaScript exception "is not a non-null object" occurs when an object is expected somewhere and wasn't provided. <a href="../global_objects/null"><code>null</code></a> is not an object and won't work.</p>
+<h2 id="message">Message</h2>
+<pre data-language="js">TypeError<span class="token operator">:</span> Invalid descriptor <span class="token keyword">for</span> property <span class="token punctuation">{</span>x<span class="token punctuation">}</span> <span class="token punctuation">(</span>Edge<span class="token punctuation">)</span>
+TypeError<span class="token operator">:</span> <span class="token string">"x"</span> is not a non<span class="token operator">-</span><span class="token keyword">null</span> <span class="token function">object</span> <span class="token punctuation">(</span>Firefox<span class="token punctuation">)</span>
+TypeError<span class="token operator">:</span> Property description must be an object<span class="token operator">:</span> <span class="token string">"x"</span> <span class="token punctuation">(</span>Chrome<span class="token punctuation">)</span>
+TypeError<span class="token operator">:</span> Invalid value used <span class="token keyword">in</span> weak <span class="token function">set</span> <span class="token punctuation">(</span>Chrome<span class="token punctuation">)</span>
+</pre>
+<h2 id="error_type">Error type</h2>
+<p><a href="../global_objects/typeerror"><code>TypeError</code></a></p>
+<h2 id="what_went_wrong">What went wrong?</h2>
+<p>An object is expected somewhere and wasn't provided. <a href="../global_objects/null"><code>null</code></a> is not an object and won't work. You must provide a proper object in the given situation.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="property_descriptor_expected">Property descriptor expected</h3>
+<p>When methods like <a href="../global_objects/object/create"><code>Object.create()</code></a> or <a href="../global_objects/object/defineproperty"><code>Object.defineProperty()</code></a> and <a href="../global_objects/object/defineproperties"><code>Object.defineProperties()</code></a> are used, the optional descriptor parameter expects a property descriptor object. Providing no object (like just a number), will throw an error:</p> <pre data-language="js">Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'key'</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// TypeError: 1 is not a non-null object</span>
+
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'key'</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// TypeError: null is not a non-null object</span>
+</pre> <p>A valid property descriptor object might look like this:</p> <pre data-language="js">Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">'key'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> value<span class="token operator">:</span> <span class="token string">'foo'</span><span class="token punctuation">,</span> writable<span class="token operator">:</span> <span class="token boolean">false</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="weakmap_and_weakset_objects_require_object_keys">
+<code>WeakMap</code> and <code>WeakSet</code> objects require object keys</h3>
+<p><a href="../global_objects/weakmap"><code>WeakMap</code></a> and <a href="../global_objects/weakset"><code>WeakSet</code></a> objects store object keys. You can't use other types as keys.</p> <pre data-language="js"><span class="token keyword">var</span> ws <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WeakSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ws<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// TypeError: "foo" is not a non-null object</span></pre> <p>Use objects instead:</p> <pre data-language="js">ws<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token punctuation">{</span>foo<span class="token operator">:</span> <span class="token string">'bar'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ws<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>window<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../global_objects/object/create"><code>Object.create()</code></a></li> <li>
+<a href="../global_objects/object/defineproperty"><code>Object.defineProperty()</code></a>, <a href="../global_objects/object/defineproperties"><code>Object.defineProperties()</code></a>
+</li> <li>
+<a href="../global_objects/weakmap"><code>WeakMap</code></a>, <a href="../global_objects/weakset"><code>WeakSet</code></a>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/No_non-null_object" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/No_non-null_object</a>
+  </p>
+</div>

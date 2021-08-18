@@ -1,0 +1,104 @@
+<h1>ConstantSourceNode</h1> <p>The <code>ConstantSourceNode</code> interface—part of the Web Audio API—represents an audio source (based upon <a href="audioscheduledsourcenode"><code>AudioScheduledSourceNode</code></a>) whose output is single unchanging value. This makes it useful for cases in which you need a constant value coming in from an audio source. In addition, it can be used like a constructible <a href="audioparam"><code>AudioParam</code></a> by automating the value of its <a href="constantsourcenode/offset"><code>offset</code></a> or by connecting another node to it; see <a href="web_audio_api/controlling_multiple_parameters_with_constantsourcenode">Controlling multiple parameters with ConstantSourceNode</a>.</p> <p>A <code>ConstantSourceNode</code> has no inputs and exactly one monaural (one-channel) output. The output's value is always the same as the value of the <a href="constantsourcenode/offset"><code>offset</code></a> parameter.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Number of inputs</th> <td><code>0</code></td> </tr> <tr> <th scope="row">Number of outputs</th> <td><code>1</code></td> </tr> </tbody> </table></div>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="constantsourcenode/constantsourcenode"><code>ConstantSourceNode()</code></a></dt> <dd>Creates and returns a new <code>ConstantSourceNode</code> instance, optionally specifying an object which establishes initial values for the object's properties. You can also create a <code>ConstantSourceNode</code> whose properties are initialized to their default values by calling <a href="baseaudiocontext/createconstantsource"><code>AudioContext.createConstantSource()</code></a>.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<p><em>Inherits properties from its parent interface, <a href="audioscheduledsourcenode"><code>AudioScheduledSourceNode</code></a>, and adds the following properties:</em></p> <dl> <dt><a href="constantsourcenode/offset"><code>offset</code></a></dt> <dd>An <a href="audioparam"><code>AudioParam</code></a> which specifies the value that this source continuously outputs. The default value is 1.0.</dd> </dl>
+<h3 id="event_handlers">Event handlers</h3>
+<p><em>Inherits event handlers from its parent interface, <a href="audioscheduledsourcenode"><code>AudioScheduledSourceNode</code></a>.</em></p> <div class="note notecard"> <p>Some browsers' implementations of this event handler are part of the <a href="audioscheduledsourcenode"><code>AudioScheduledSourceNode</code></a> interface.</p> </div> <dl> <dt><a href="audioscheduledsourcenode/onended"><code>onended</code></a></dt> <dd>Fired whenever the <a href="constantsourcenode"><code>ConstantSourceNode</code></a> data has stopped playing.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<p><em>Inherits methods from its parent interface, <a href="audioscheduledsourcenode"><code>AudioScheduledSourceNode</code></a>.</em></p> <div class="note notecard"> <p>Some browsers' implementations of these methods are part of the <a href="audioscheduledsourcenode"><code>AudioScheduledSourceNode</code></a> interface.</p> </div> <dl> <dt><a href="audioscheduledsourcenode/start"><code>start()</code></a></dt> <dd>Schedules a sound to playback at an exact time.</dd> <dt><a href="audioscheduledsourcenode/stop"><code>stop()</code></a></dt> <dd>Schedules a sound to stop playback at an exact time.</dd> </dl>
+<h2 id="example">Example</h2>
+<p>In the article <a href="web_audio_api/controlling_multiple_parameters_with_constantsourcenode">Controlling multiple parameters with ConstantSourceNode</a>, a <code>ConstantSourceNode</code> is created to allow one slider control to change the gain on two <a href="gainnode"><code>GainNode</code></a>s. The three nodes are set up like this:</p> <pre data-language="js">gainNode2 <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">createGain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gainNode3 <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">createGain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gainNode2<span class="token punctuation">.</span>gain<span class="token punctuation">.</span>value <span class="token operator">=</span> gainNode3<span class="token punctuation">.</span>gain<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token number">0.5</span><span class="token punctuation">;</span>
+volumeSliderControl<span class="token punctuation">.</span>value <span class="token operator">=</span> gainNode2<span class="token punctuation">.</span>gain<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+
+constantNode <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">createConstantSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+constantNode<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>gainNode2<span class="token punctuation">.</span>gain<span class="token punctuation">)</span><span class="token punctuation">;</span>
+constantNode<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>gainNode3<span class="token punctuation">.</span>gain<span class="token punctuation">)</span><span class="token punctuation">;</span>
+constantNode<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+gainNode2<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>context<span class="token punctuation">.</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+gainNode3<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>context<span class="token punctuation">.</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>This code starts by creating the gain nodes and setting them and the volume control that will adjust their value all to 0.5. Then the <code>ConstantSourceNode</code> is created by calling <a href="baseaudiocontext/createconstantsource"><code>AudioContext.createConstantSource()</code></a>, and the gain parameters of each of the two gain nodes are connected to the <code>ConstantSourceNode</code>. After starting the constant source by calling its <a href="audioscheduledsourcenode/start"><code>start()</code></a> method. Finally, the two gain nodes are connected to the audio destination (typically speakers or headphones).</p> <p>Now, whenever the value of <a href="constantsourcenode/offset"><code>constantNode.offset</code></a> changes, the gain on both <code>gainNode2</code> and <code>gainNode3</code> will change to have that same value.</p> <p>To see this example in action, as well as to read the rest of the code from which these snippets were derived, see <a href="web_audio_api/controlling_multiple_parameters_with_constantsourcenode">Controlling multiple parameters with ConstantSourceNode.</a></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://webaudio.github.io/web-audio-api/#ConstantSourceNode" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'ConstantSourceNode' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>ConstantSourceNode</code></th>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>ConstantSourceNode</code></th>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>offset</code></th>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="web_audio_api/using_web_audio_api">Using the Web Audio API</a></li> <li><a href="audioscheduledsourcenode"><code>AudioScheduledSourceNode</code></a></li> <li><a href="audionode"><code>AudioNode</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/ConstantSourceNode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ConstantSourceNode</a>
+  </p>
+</div>

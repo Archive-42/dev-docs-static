@@ -1,0 +1,89 @@
+<h1>FileSystemHandle.requestPermission()</h1>
+<div class="notecard draft"> <strong id="draft">Draft</strong> <p>This page is not complete.</p> </div>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>  <p class="summary">The <code>requestPermission()</code> method of the <a href="../filesystemhandle"><code>FileSystemHandle</code></a> interface requests read or readwrite permissions for the file handle.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> PermissionState <span class="token operator">=</span> FileSystemHandle<span class="token punctuation">.</span><span class="token function">requestPermission</span><span class="token punctuation">(</span>FileSystemHandlePermissionDescriptor<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>FileSystemHandlePermissionDescriptor <span class="badge inline optional">Optional</span>
+</dt> <dd>An object which specifies the permission mode to query for. Options are as follows: <ul> <li>
+<code>'mode'</code>: Can be either <code>'read'</code> or <code>'readwrite'</code>.</li> </ul> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p><a href="../permissionstatus/state"><code>PermissionStatus.state</code></a> which is one of <code>'granted'</code>, <code>'denied'</code> or <code>'prompt'</code>.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>TypeError</code></dt> <dd>No parameter is specified or the <code>mode</code> is not that of <code>'read'</code> or <code>'readwrite'</code>
+</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>The following asynchronous function requests permissions if they have not been granted. </p> <pre data-language="js"><span class="token comment">// fileHandle is a FileSystemFileHandle</span>
+<span class="token comment">// withWrite is a boolean set to true if write</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">verifyPermission</span><span class="token punctuation">(</span><span class="token parameter">fileHandle<span class="token punctuation">,</span> withWrite</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> opts <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>withWrite<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    opts<span class="token punctuation">.</span>mode <span class="token operator">=</span> <span class="token string">'readwrite'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Check if we already have permission, if so, return true.</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">await</span> fileHandle<span class="token punctuation">.</span><span class="token function">queryPermission</span><span class="token punctuation">(</span>opts<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">'granted'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Request permission to the file, if the user grants permission, return true.</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">await</span> fileHandle<span class="token punctuation">.</span><span class="token function">requestPermission</span><span class="token punctuation">(</span>opts<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">'granted'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// The user did not grant permission, return false.</span>
+  <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://wicg.github.io/file-system-access/#api-filesystemhandle-requestpermission" hreflang="en" rel=" noopener">File System Access API<br><small>The definition of 'requestPermission' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>requestPermission</code></th>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../file_system_access_api">File System Access API</a></li> <li><a href="https://web.dev/file-system-access/" rel=" noopener">The File System Access API: simplifying access to local files</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemHandle/requestPermission" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemHandle/requestPermission</a>
+  </p>
+</div>

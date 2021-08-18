@@ -1,0 +1,84 @@
+<h1>WindowOrWorkerGlobalScope.queueMicrotask()</h1> <p>The <code><strong>queueMicrotask()</strong></code> method, which is exposed on the <a href="../window"><code>Window</code></a> or <a href="../worker"><code>Worker</code></a> interface, queues a microtask to be executed at a safe time prior to control returning to the browser's event loop. The microtask is a short function which will run after the current task has completed its work and when there is no other code waiting to be run before control of the execution context is returned to the browser's event loop.</p> <p>This lets your code run without interfering with any other, potentially higher priority, code that is pending, but before the browser regains control over the execution context, potentially depending on work you need to complete. You can learn more about how to use microtasks and why you might choose to do so in our <a href="../html_dom_api/microtask_guide">microtask guide</a>.</p> <p>The importance of microtasks comes in its ability to perform tasks asynchronously but in a specific order. See <a href="../html_dom_api/microtask_guide">Using microtasks in JavaScript with queueMicrotask()</a> for more details.</p> <p>Microtasks are especially useful for libraries and frameworks that need to perform final cleanup or other just-before-rendering tasks.</p> <p><code>queueMicrotask()</code> is exposed on the <a href="../windoworworkerglobalscope"><code>WindowOrWorkerGlobalScope</code></a> mixin.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">scope<span class="token punctuation">.</span><span class="token function">queueMicrotask</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>function</code></dt> <dd>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function"><code>function</code></a> to be executed when the browser engine determines it is safe to call your code. Enqueued microtasks are executed after all pending tasks have completed but before yielding control to the browser's event loop.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p><code>undefined</code>.</p>
+<h2 id="examples">Examples</h2>
+<pre data-language="js">self<span class="token punctuation">.</span><span class="token function">queueMicrotask</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// function contents here</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></pre> <p>Taken from the <a href="https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#microtask-queuing" rel=" noopener">queueMicrotask spec</a>:</p> <pre data-language="js"><span class="token class-name">MyElement</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">loadData</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">url</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>_cache<span class="token punctuation">[</span>url<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">queueMicrotask</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_setData</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>_cache<span class="token punctuation">[</span>url<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">dispatchEvent</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Event</span><span class="token punctuation">(</span><span class="token string">"load"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token function">fetch</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">res</span> <span class="token operator">=&gt;</span> res<span class="token punctuation">.</span><span class="token function">arrayBuffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">data</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>_cache<span class="token punctuation">[</span>url<span class="token punctuation">]</span> <span class="token operator">=</span> data<span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">_setData</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">dispatchEvent</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Event</span><span class="token punctuation">(</span><span class="token string">"load"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="when_queuemicrotask_isnt_available">When queueMicrotask() isn't available</h2>
+<p>The code below is basically a monkey-patch for <code>queueMicrotask()</code> for modern engines. It creates a microtask by using a promise that resolves immediately.</p> <pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> window<span class="token punctuation">.</span>queueMicrotask <span class="token operator">!==</span> <span class="token string">"function"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  window<span class="token punctuation">.</span><span class="token function-variable function">queueMicrotask</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">callback</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>callback<span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">e</span> <span class="token operator">=&gt;</span> <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token keyword">throw</span> e<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// report exceptions</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th>Specification</th> <th>Status</th> <th>Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#microtask-queuing" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'self.queueMicrotask()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>queueMicrotask</code></th>
+<td class="bc-supports-yes"><div>71</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>71</div></td>
+<td class="bc-supports-yes"><div>71</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>12.2</div></td>
+<td class="bc-supports-yes"><div>10.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../html_dom_api/microtask_guide">Using microtasks in JavaScript with queueMicrotask()</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous">Asynchronous JavaScript</a></li> <li><a href="https://github.com/fergald/docs/blob/master/explainers/queueMicrotask.md" rel=" noopener">queueMicrotask explainer</a></li> <li>
+<a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/" rel=" noopener">Tasks, microtasks, queues and schedules</a> by Jake Archibald</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/queueMicrotask" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/queueMicrotask</a>
+  </p>
+</div>

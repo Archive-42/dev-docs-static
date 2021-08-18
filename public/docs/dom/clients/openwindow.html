@@ -1,0 +1,117 @@
+<h1>Clients.openWindow()</h1> <p>The <code>openWindow()</code> method of the <a href="../clients"><code>Clients</code></a> interface creates a new top level browsing context and loads a given URL. If the calling script doesn't have permission to show popups, <code>openWindow()</code> will throw an <code>InvalidAccessError</code>.</p> <p>In Firefox, the method is allowed to show popups only when called as the result of a notification click event.</p> <p>In Chrome for Android, the method may instead open the URL in an existing browsing context provided by a <a href="https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps">standalone web app</a> previously added to the user's home screen. As of recently, this also works on Chrome for Windows.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">self<span class="token punctuation">.</span>clients<span class="token punctuation">.</span><span class="token function">openWindow</span><span class="token punctuation">(</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">windowClient</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Do something with your WindowClient</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>url</code></dt> <dd>A <a href="../usvstring"><code>USVString</code></a> representing the URL of the client you want to open in the window. Generally this value must be a URL from the same origin as the calling script.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to a <a href="../windowclient"><code>WindowClient</code></a> object if the URL is from the same origin as the service worker or a <a href="https://developer.mozilla.org/en-US/docs/Glossary/Null">null value</a> otherwise.</p>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token comment">// Send notification to OS if applicable</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span>Notification<span class="token punctuation">.</span>permission <span class="token operator">===</span> <span class="token string">'granted'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> notificationObject <span class="token operator">=</span> <span class="token punctuation">{</span>
+    body<span class="token operator">:</span> <span class="token string">'Click here to view your messages.'</span><span class="token punctuation">,</span>
+    data<span class="token operator">:</span> <span class="token punctuation">{</span> url<span class="token operator">:</span> self<span class="token punctuation">.</span>location<span class="token punctuation">.</span>origin <span class="token operator">+</span> <span class="token string">'/some/path'</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token comment">// data: { url: 'http://example.com' },</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  self<span class="token punctuation">.</span>registration<span class="token punctuation">.</span><span class="token function">showNotification</span><span class="token punctuation">(</span><span class="token string">'You\'ve got messages!'</span><span class="token punctuation">,</span> notificationObject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Notification click event listener</span>
+self<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'notificationclick'</span><span class="token punctuation">,</span> <span class="token parameter">e</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Close the notification popout</span>
+  e<span class="token punctuation">.</span>notification<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// Get all the Window clients</span>
+  e<span class="token punctuation">.</span><span class="token function">waitUntil</span><span class="token punctuation">(</span>clients<span class="token punctuation">.</span><span class="token function">matchAll</span><span class="token punctuation">(</span><span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">'window'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">clientsArr</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// If a Window tab matching the targeted URL already exists, focus that;</span>
+    <span class="token keyword">const</span> hadWindowToFocus <span class="token operator">=</span> clientsArr<span class="token punctuation">.</span><span class="token function">some</span><span class="token punctuation">(</span><span class="token parameter">windowClient</span> <span class="token operator">=&gt;</span> windowClient<span class="token punctuation">.</span>url <span class="token operator">===</span> e<span class="token punctuation">.</span>notification<span class="token punctuation">.</span>data<span class="token punctuation">.</span>url <span class="token operator">?</span> <span class="token punctuation">(</span>windowClient<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Otherwise, open a new tab to the applicable URL and focus it.</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>hadWindowToFocus<span class="token punctuation">)</span> clients<span class="token punctuation">.</span><span class="token function">openWindow</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>notification<span class="token punctuation">.</span>data<span class="token punctuation">.</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">windowClient</span> <span class="token operator">=&gt;</span> windowClient <span class="token operator">?</span> windowClient<span class="token punctuation">.</span><span class="token function">focus</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td>
+<a href="https://w3c.github.io/ServiceWorker/#clients-openwindow" hreflang="en" rel=" noopener">Service Workers<br><small>The definition of 'Clients: openWindow' in that specification.</small></a> </td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>openWindow</code></th>
+<td class="bc-supports-yes">
+<div>40</div>
+<div>42</div>
+<div>Can only open URLs on the same origin.</div>
+<div>43</div>
+<div>Can open any URL. </div>
+<div>51</div>
+<div>URLs may open inside an existing browsing context provided by a standalone web app</div>
+</td>
+<td class="bc-supports-yes">
+<div>17</div>
+<div>79</div>
+<div>URLs may open inside an existing browsing context provided by a standalone web app</div>
+</td>
+<td class="bc-supports-yes">
+<div>45</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes">
+<div>40</div>
+<div>42</div>
+<div>Can only open URLs on the same origin.</div>
+<div>43</div>
+<div>Can open any URL. </div>
+<div>51</div>
+<div>URLs may open inside an existing browsing context provided by a standalone web app</div>
+</td>
+<td class="bc-supports-yes">
+<div>40</div>
+<div>42</div>
+<div>Can only open URLs on the same origin.</div>
+<div>43</div>
+<div>Can open any URL. </div>
+<div>51</div>
+<div>URLs may open inside an existing browsing context provided by a standalone web app</div>
+</td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes">
+<div>4.0</div>
+<div>5.0</div>
+<div>URLs may open inside an existing browsing context provided by a standalone web app</div>
+</td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Clients/openWindow" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Clients/openWindow</a>
+  </p>
+</div>

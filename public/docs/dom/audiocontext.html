@@ -1,0 +1,295 @@
+<h1>AudioContext</h1> <p>The <code>AudioContext</code> interface represents an audio-processing graph built from audio modules linked together, each represented by an <a href="audionode"><code>AudioNode</code></a>. An audio context controls both the creation of the nodes it contains and the execution of the audio processing, or decoding. You need to create an <code>AudioContext</code> before you do anything else, as everything happens inside a context. It's recommended to create one AudioContext and reuse it instead of initializing a new one each time, and it's OK to use a single <code>AudioContext</code> for several different audio sources and pipeline concurrently.</p>  <iframe class="inheritance-diagram-frame" id="frame_inheritance_diagram" width="600" height="70" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/AudioContext/_samples_/inheritance_diagram" loading="lazy"></iframe>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="audiocontext/audiocontext"><code>AudioContext()</code></a></dt> <dd>Creates and returns a new <code>AudioContext</code> object.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<p><em>Also inherits properties from its parent interface, <a href="baseaudiocontext"><code>BaseAudioContext</code></a>.</em></p> <dl> <dt>
+<a href="audiocontext/baselatency"><code>AudioContext.baseLatency</code></a> <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt> <dd>Returns the number of seconds of processing latency incurred by the <a href="audiocontext"><code>AudioContext</code></a> passing the audio from the <a href="audiodestinationnode"><code>AudioDestinationNode</code></a> to the audio subsystem.</dd> <dt>
+<a href="audiocontext/outputlatency"><code>AudioContext.outputLatency</code></a> <span class="badge inline readonly">Read only </span> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt> <dd>Returns an estimation of the output latency of the current audio context.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<p><em>Also inherits methods from its parent interface, <a href="baseaudiocontext"><code>BaseAudioContext</code></a>.</em></p> <dl> <dt><a href="audiocontext/close"><code>AudioContext.close()</code></a></dt> <dd>Closes the audio context, releasing any system audio resources that it uses.</dd> <dt><a href="audiocontext/createmediaelementsource"><code>AudioContext.createMediaElementSource()</code></a></dt> <dd>Creates a <a href="mediaelementaudiosourcenode"><code>MediaElementAudioSourceNode</code></a> associated with an <a href="htmlmediaelement"><code>HTMLMediaElement</code></a>. This can be used to play and manipulate audio from <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"><code>&lt;video&gt;</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio"><code>&lt;audio&gt;</code></a> elements.</dd> <dt><a href="audiocontext/createmediastreamsource"><code>AudioContext.createMediaStreamSource()</code></a></dt> <dd>Creates a <a href="mediastreamaudiosourcenode"><code>MediaStreamAudioSourceNode</code></a> associated with a <a href="mediastream"><code>MediaStream</code></a> representing an audio stream which may come from the local computer microphone or other sources.</dd> <dt><a href="audiocontext/createmediastreamdestination"><code>AudioContext.createMediaStreamDestination()</code></a></dt> <dd>Creates a <a href="mediastreamaudiodestinationnode"><code>MediaStreamAudioDestinationNode</code></a> associated with a <a href="mediastream"><code>MediaStream</code></a> representing an audio stream which may be stored in a local file or sent to another computer.</dd> <dt><a href="audiocontext/createmediastreamtracksource"><code>AudioContext.createMediaStreamTrackSource()</code></a></dt> <dd>Creates a <a href="mediastreamtrackaudiosourcenode"><code>MediaStreamTrackAudioSourceNode</code></a> associated with a <a href="mediastream"><code>MediaStream</code></a> representing an media stream track.</dd> <dt><a href="audiocontext/getoutputtimestamp"><code>AudioContext.getOutputTimestamp()</code></a></dt> <dd>Returns a new <code>AudioTimestamp</code> object containing two audio timestamp values relating to the current audio context.</dd> <dt><a href="audiocontext/resume"><code>AudioContext.resume()</code></a></dt> <dd>Resumes the progression of time in an audio context that has previously been suspended/paused.</dd> <dt><a href="audiocontext/suspend"><code>AudioContext.suspend()</code></a></dt> <dd>Suspends the progression of time in the audio context, temporarily halting audio hardware access and reducing CPU/battery usage in the process.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>Basic audio context declaration:</p> <pre data-language="js"><span class="token keyword">var</span> audioCtx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Cross browser variant:</p> <pre data-language="js"><span class="token keyword">var</span> AudioContext <span class="token operator">=</span> window<span class="token punctuation">.</span>AudioContext <span class="token operator">||</span> window<span class="token punctuation">.</span>webkitAudioContext<span class="token punctuation">;</span>
+<span class="token keyword">var</span> audioCtx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> oscillatorNode <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createOscillator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> gainNode <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createGain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> finish <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span>destination<span class="token punctuation">;</span>
+<span class="token comment">// etc.</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://webaudio.github.io/web-audio-api/#AudioContext" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'AudioContext' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>AudioContext</code></th>
+<td class="bc-supports-yes">
+<div>35</div>
+<div>14-57</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>22</div>
+<div>15-44</div>
+</td>
+<td class="bc-supports-yes">
+<div>14.1</div>
+<div>6-14.1</div>
+</td>
+<td class="bc-supports-yes">
+<div>37</div>
+<div>≤37-57</div>
+</td>
+<td class="bc-supports-yes">
+<div>35</div>
+<div>18-57</div>
+</td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes">
+<div>22</div>
+<div>14-43</div>
+</td>
+<td class="bc-supports-yes">
+<div>14.5</div>
+<div>6-14.5</div>
+</td>
+<td class="bc-supports-yes">
+<div>3.0</div>
+<div>1.0-7.0</div>
+</td>
+</tr>
+<tr>
+<th><code>AudioContext</code></th>
+<td class="bc-supports-yes">
+<div>35</div>
+<div>["Prior to Chrome 66, each tab is limited to 6 audio contexts in Chrome; attempting to create more will throw a <code>DOMException</code>. For details see <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Per-tab_audio_context_limitation_in_Chrome">Per-tab audio context limitation in Chrome</a>.", "If <code>latencyHint</code> isn't valid, Chrome throws a <code>TypeError</code> exception. See <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Non-standard_exceptions_in_Chrome">Non-standard exceptions in Chrome</a> for details."]</div>
+<div>14-57</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>22</div>
+<div>["Prior to Opera 53, each tab is limited to 6 audio contexts in Opera; attempting to create more will throw a <code>DOMException</code>. For details see <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Per-tab_audio_context_limitation_in_Chrome">Per-tab audio context limitation in Chrome</a>.", "If <code>latencyHint</code> isn't valid, Opera throws a <code>TypeError</code> exception. See <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Non-standard_exceptions_in_Chrome">Non-standard exceptions in Chrome</a> for details."]</div>
+<div>15-44</div>
+</td>
+<td class="bc-supports-yes">
+<div>14.1</div>
+<div>6</div>
+</td>
+<td class="bc-supports-yes">
+<div>37</div>
+<div>["Prior to WebView 66, each tab is limited to 6 audio contexts in WebView; attempting to create more will throw a <code>DOMException</code>. For details see <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Per-tab_audio_context_limitation_in_Chrome">Per-tab audio context limitation in Chrome</a>.", "If <code>latencyHint</code> isn't valid, WebView throws a <code>TypeError</code> exception. See <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Non-standard_exceptions_in_Chrome">Non-standard exceptions in Chrome</a> for details."]</div>
+<div>≤37-57</div>
+</td>
+<td class="bc-supports-yes">
+<div>35</div>
+<div>["Prior to Chrome 66, each tab is limited to 6 audio contexts in Chrome; attempting to create more will throw a <code>DOMException</code>. For details see <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Per-tab_audio_context_limitation_in_Chrome">Per-tab audio context limitation in Chrome</a>.", "If <code>latencyHint</code> isn't valid, Chrome throws a <code>TypeError</code> exception. See <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Non-standard_exceptions_in_Chrome">Non-standard exceptions in Chrome</a> for details."]</div>
+<div>18-57</div>
+</td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes">
+<div>22</div>
+<div>["Prior to Opera Android 47, each tab is limited to 6 audio contexts in Opera; attempting to create more will throw a <code>DOMException</code>. For details see <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Per-tab_audio_context_limitation_in_Chrome">Per-tab audio context limitation in Chrome</a>.", "If <code>latencyHint</code> isn't valid, Opera throws a <code>TypeError</code> exception. See <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Non-standard_exceptions_in_Chrome">Non-standard exceptions in Chrome</a> for details."]</div>
+<div>14-43</div>
+</td>
+<td class="bc-supports-yes">
+<div>14.5</div>
+<div>6</div>
+</td>
+<td class="bc-supports-yes">
+<div>3.0</div>
+<div>["Prior to Samsung Internet 9.0, each tab is limited to 6 audio contexts in Samsung Internet; attempting to create more will throw a <code>DOMException</code>. For details see <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Per-tab_audio_context_limitation_in_Chrome">Per-tab audio context limitation in Chrome</a>.", "If <code>latencyHint</code> isn't valid, Samsung Internet throws a <code>TypeError</code> exception. See <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Non-standard_exceptions_in_Chrome">Non-standard exceptions in Chrome</a> for details."]</div>
+<div>1.0-7.0</div>
+</td>
+</tr>
+<tr>
+<th><code>baseLatency</code></th>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>70</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>close</code></th>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>createMediaElementSource</code></th>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>createMediaStreamDestination</code></th>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>createMediaStreamSource</code></th>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>createMediaStreamTrackSource</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>Firefox 68 implements the updated standard's definition of the "first" audio track; now the first track is the one whose ID comes first lexicographically.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>Firefox 68 implements the updated standard's definition of the "first" audio track; now the first track is the one whose ID comes first lexicographically.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>getOutputTimestamp</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>70</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>outputLatency</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>70</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>resume</code></th>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>suspend</code></th>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul style="margin-left: 40px;"> <li><a href="web_audio_api/using_web_audio_api">Using the Web Audio API</a></li> <li><a href="offlineaudiocontext"><code>OfflineAudioContext</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/AudioContext</a>
+  </p>
+</div>

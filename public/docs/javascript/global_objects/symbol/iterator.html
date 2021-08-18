@@ -1,0 +1,88 @@
+<h1>Symbol.iterator</h1> <p>The well-known <code><strong>Symbol.iterator</strong></code> symbol specifies the default iterator for an object. Used by <a href="../../statements/for...of"><code>for...of</code></a>.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/symbol-iterator.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="description">Description</h2>
+<p>Whenever an object needs to be iterated (such as at the beginning of a <code>for..of</code> loop), its <code>@@iterator</code> method is called with no arguments, and the returned <strong>iterator</strong> is used to obtain the values to be iterated.</p> <p>Some built-in types have a default iteration behavior, while other types (such as <a href="../object"><code>Object</code></a>) do not. The built-in types with a <code>@@iterator</code> method are:</p> <ul> <li><a href="../array/@@iterator"><code>Array.prototype[@@iterator]()</code></a></li> <li><a href="../typedarray/@@iterator"><code>TypedArray.prototype[@@iterator]()</code></a></li> <li><a href="../string/@@iterator"><code>String.prototype[@@iterator]()</code></a></li> <li><a href="../map/@@iterator"><code>Map.prototype[@@iterator]()</code></a></li> <li><a href="../set/@@iterator"><code>Set.prototype[@@iterator]()</code></a></li> </ul> <p>See also <a href="../../iteration_protocols">Iteration protocols</a> for more information.</p> 
+<div class="_table"><table class="standard-table"> <thead> <tr> <th class="header" colspan="2">Property attributes of <code>Symbol.iterator</code>
+</th> </tr> </thead> <tbody> <tr> <td>Writable</td> <td>no</td> </tr> <tr> <td>Enumerable</td> <td>no</td> </tr> <tr> <td>Configurable</td> <td>no</td> </tr> </tbody> </table></div>
+
+<h2 id="examples">Examples</h2>
+<h3 id="user-defined_iterables">User-defined iterables</h3>
+<p>We can make our own iterables like this:</p> <pre data-language="js"><span class="token keyword">var</span> myIterable <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+myIterable<span class="token punctuation">[</span>Symbol<span class="token punctuation">.</span>iterator<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token operator">*</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">yield</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">yield</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token keyword">yield</span> <span class="token number">3</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">[</span><span class="token operator">...</span>myIterable<span class="token punctuation">]</span> <span class="token comment">// [1, 2, 3]</span>
+</pre> <p>Or iterables can be defined directly inside a class or object using a <a href="../../operators/object_initializer#computed_property_names">computed property</a>:</p> <pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">Foo</span> <span class="token punctuation">{</span>
+  <span class="token operator">*</span><span class="token punctuation">[</span>Symbol<span class="token punctuation">.</span>iterator<span class="token punctuation">]</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">yield</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token keyword">yield</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    <span class="token keyword">yield</span> <span class="token number">3</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> someObj <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token operator">*</span><span class="token punctuation">[</span>Symbol<span class="token punctuation">.</span>iterator<span class="token punctuation">]</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">yield</span> <span class="token string">'a'</span><span class="token punctuation">;</span>
+    <span class="token keyword">yield</span> <span class="token string">'b'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token operator">...</span><span class="token keyword">new</span> <span class="token class-name">Foo</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1, 2, 3</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token operator">...</span>someObj<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 'a', 'b'</span>
+</pre>
+<h3 id="non-well-formed_iterables">Non-well-formed iterables</h3>
+<p>If an iterable's <code>@@iterator</code> method does not return an iterator object, then it is a non-well-formed iterable. Using it as such is likely to result in runtime exceptions or buggy behavior:</p> <pre data-language="js"><span class="token keyword">var</span> nonWellFormedIterable <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+nonWellFormedIterable<span class="token punctuation">[</span>Symbol<span class="token punctuation">.</span>iterator<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token number">1</span>
+<span class="token punctuation">[</span><span class="token operator">...</span>nonWellFormedIterable<span class="token punctuation">]</span> <span class="token comment">// TypeError: [] is not a function</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> </tr> </thead> <tbody> <tr> <td><a href="https://tc39.es/ecma262/#sec-symbol.iterator" hreflang="en" rel=" noopener">ECMAScript (ECMA-262)<br><small>The definition of 'Symbol.iterator' in that specification.</small></a></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>iterator</code></th>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../../iteration_protocols">Iteration protocols</a></li> <li><a href="../array/@@iterator"><code>Array.prototype[@@iterator]()</code></a></li> <li><a href="../typedarray/@@iterator"><code>TypedArray.prototype[@@iterator]()</code></a></li> <li><a href="../string/@@iterator"><code>String.prototype[@@iterator]()</code></a></li> <li><a href="../map/@@iterator"><code>Map.prototype[@@iterator]()</code></a></li> <li><a href="../set/@@iterator"><code>Set.prototype[@@iterator]()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/iterator</a>
+  </p>
+</div>

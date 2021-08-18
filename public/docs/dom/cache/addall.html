@@ -1,0 +1,105 @@
+<h1>Cache.addAll()</h1>
+
+ <p>The <code>addAll()</code> method of the <a href="../cache"><code>Cache</code></a> interface takes an array of URLs, retrieves them, and adds the resulting response objects to the given cache. The request objects created during retrieval become keys to the stored response operations. </p> <div class="note notecard"> <p><strong>Note</strong>: <code>addAll()</code> will overwrite any key/value pairs previously stored in the cache that match the request, but will fail if a resulting <code>put()</code> operation would overwrite a previous cache entry stored by the same <code>addAll()</code> method.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">cache<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span>requests<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// requests have been added to the cache</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>requests</dt> <dd>An array of string URLs that you want to be fetched and added to the cache. You can specify the <a href="../request"><code>Request</code></a> object instead of the URL.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves with <code>undefined</code>.</p>
+<h3 id="exceptions">Exceptions</h3>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col"><strong>Exception</strong></th> <th scope="col"><strong>Happens when</strong></th> </tr> </thead> <tbody> <tr> <td><code>TypeError</code></td> <td> <p>The URL scheme is not <code>http</code> or <code>https</code>.</p> <p>The Response status is not in the 200 range (i.e., not a successful response.) This occurs if the request does not return successfully, but also if the request is a <em>cross-origin no-cors</em> request (in which case the reported status is always 0.)</p> </td> </tr> </tbody> </table></div>
+<h2 id="examples">Examples</h2>
+<p>This code block waits for an <a href="../installevent"><code>InstallEvent</code></a> to fire, then runs <a href="../extendableevent/waituntil"><code>waitUntil()</code></a> to handle the install process for the app. This consists of calling <a href="../cachestorage/open"><code>CacheStorage.open</code></a> to create a new cache, then using <code>addAll()</code> to add a series of assets to it.</p> <pre data-language="js"><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'install'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  event<span class="token punctuation">.</span><span class="token function">waitUntil</span><span class="token punctuation">(</span>
+    caches<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'v1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">cache</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> cache<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+        <span class="token string">'/sw-test/'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/index.html'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/style.css'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/app.js'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/image-list.js'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/star-wars-logo.jpg'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/gallery/'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/gallery/bountyHunters.jpg'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/gallery/myLittleVader.jpg'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/gallery/snowTroopers.jpg'</span>
+      <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="specifications">Specifications</h3>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/ServiceWorker/#cache-addAll" hreflang="en" rel=" noopener">Service Workers<br><small>The definition of 'Cache: addAll' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>addAll</code></th>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>Requires HTTPS.</div>
+</td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>39</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>33</div>
+<div>Requires HTTPS.</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>Requires HTTPS.</div>
+</td>
+<td class="bc-supports-yes">
+<div>46</div>
+<div>Requires HTTPS.</div>
+</td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-yes">
+<div>33</div>
+<div>Requires HTTPS.</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>5.0</div>
+<div>Requires HTTPS.</div>
+</td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../service_worker_api/using_service_workers">Using Service Workers</a></li> <li><a href="../cache"><code>Cache</code></a></li> <li><a href="../windoworworkerglobalscope/caches"><code>WorkerGlobalScope.caches</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Cache/addAll" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Cache/addAll</a>
+  </p>
+</div>

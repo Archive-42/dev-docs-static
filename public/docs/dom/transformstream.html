@@ -1,0 +1,196 @@
+<h1>TransformStream</h1>
+
+ <p>The <code>TransformStream</code> interface of the <a href="streams_api">Streams API</a> represents a set of transformable data.</p>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a class="page-not-created"><code>TransformStream()</code></a></dt> <dd>Creates and returns a transform stream object from the given handlers.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<dl> <dt>
+<a class="page-not-created"><code>TransformStream.readable</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>The <code>readable</code> end of a TransformStream.</dd> <dt>
+<a class="page-not-created"><code>TransformStream.writable</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>The <code>writable</code> end of a TransformStream.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<p>None</p>
+<h2 id="examples">Examples</h2>
+<h3 id="anything-to-uint8array_stream">Anything-to-uint8array stream</h3>
+<p>In the following example, a transform stream passes through all chunks it receives as <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array"><code>Uint8Array</code></a> values.</p> <pre data-language="js"><span class="token keyword">const</span> transformContent <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token comment">// required.</span>
+  <span class="token keyword">async</span> <span class="token function">transform</span><span class="token punctuation">(</span><span class="token parameter">chunk<span class="token punctuation">,</span> controller</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    chunk <span class="token operator">=</span> <span class="token keyword">await</span> chunk
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> chunk<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">case</span> <span class="token string">'object'</span><span class="token operator">:</span>
+        <span class="token comment">// just say the stream is done I guess</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>chunk <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> controller<span class="token punctuation">.</span><span class="token function">terminate</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>ArrayBuffer<span class="token punctuation">.</span><span class="token function">isView</span><span class="token punctuation">(</span>chunk<span class="token punctuation">)</span><span class="token punctuation">)</span>
+          controller<span class="token punctuation">.</span><span class="token function">enqueue</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span>chunk<span class="token punctuation">.</span>buffer<span class="token punctuation">,</span> chunk<span class="token punctuation">.</span>byteOffset<span class="token punctuation">,</span> chunk<span class="token punctuation">.</span>byteLength<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span>chunk<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> chunk<span class="token punctuation">.</span><span class="token function">every</span><span class="token punctuation">(</span><span class="token parameter">value</span> <span class="token operator">=&gt;</span> <span class="token keyword">typeof</span> value <span class="token operator">===</span> <span class="token string">'number'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+          controller<span class="token punctuation">.</span><span class="token function">enqueue</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span>chunk<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">'function'</span> <span class="token operator">===</span> <span class="token keyword">typeof</span> chunk<span class="token punctuation">.</span>valueOf <span class="token operator">&amp;&amp;</span> chunk<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!==</span> chunk<span class="token punctuation">)</span>
+          <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">transform</span><span class="token punctuation">(</span>chunk<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> controller<span class="token punctuation">)</span> <span class="token comment">// hack</span>
+        <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">'toJSON'</span> <span class="token keyword">in</span> chunk<span class="token punctuation">)</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">transform</span><span class="token punctuation">(</span><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>chunk<span class="token punctuation">)</span><span class="token punctuation">,</span> controller<span class="token punctuation">)</span>
+        <span class="token keyword">break</span>
+      <span class="token keyword">case</span> <span class="token string">'symbol'</span><span class="token operator">:</span>
+        controller<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"Cannot send a symbol as a chunk part"</span><span class="token punctuation">)</span>
+        <span class="token keyword">break</span>
+      <span class="token keyword">case</span> <span class="token string">'undefined'</span><span class="token operator">:</span>
+        controller<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"Cannot send undefined as a chunk part"</span><span class="token punctuation">)</span>
+        <span class="token keyword">break</span>
+      <span class="token keyword">default</span><span class="token operator">:</span>
+        controller<span class="token punctuation">.</span><span class="token function">enqueue</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>textencoder<span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span><span class="token function">String</span><span class="token punctuation">(</span>chunk<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">break</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">flush</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/* do any destructor work here */</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">AnyToU8Stream</span> <span class="token keyword">extends</span> <span class="token class-name">TransformStream</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token operator">...</span>transformContent<span class="token punctuation">,</span> textencoder<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">TextEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="polyfilling_textencoderstream_and_textdecoderstream">Polyfilling TextEncoderStream and TextDecoderStream</h3>
+<p>Note that this is deprecated by the native constructors. This is intended as a polyfill for unsupported platforms.</p> <pre data-language="js"><span class="token keyword">const</span> tes <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>encoder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TextEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">transform</span><span class="token punctuation">(</span><span class="token parameter">chunk<span class="token punctuation">,</span> controller</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    controller<span class="token punctuation">.</span><span class="token function">enqueue</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>encoder<span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span>chunk<span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> _jstes_wm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WeakMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* info holder */</span>
+<span class="token keyword">class</span> <span class="token class-name">JSTextEncoderStream</span> <span class="token keyword">extends</span> <span class="token class-name">TransformStream</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> t <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token operator">...</span>tes<span class="token punctuation">}</span>
+
+    <span class="token keyword">super</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span>
+    _jstes_wm<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> t<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">get</span> <span class="token function">encoding</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token keyword">return</span> _jstes_wm<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">.</span>encoder<span class="token punctuation">.</span>encoding<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre> <p>Similarly, <code>TextDecoderStream</code> can be written as such:</p> <pre data-language="js"><span class="token keyword">const</span> tds <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>decoder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TextDecoder</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>encoding<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">.</span>options<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">transform</span><span class="token punctuation">(</span><span class="token parameter">chunk<span class="token punctuation">,</span> controller</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    controller<span class="token punctuation">.</span><span class="token function">enqueue</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>decoder<span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span>chunk<span class="token punctuation">,</span> <span class="token punctuation">{</span> stream<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> _jstds_wm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WeakMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* info holder */</span>
+<span class="token keyword">class</span> <span class="token class-name">JSTextDecoderStream</span> <span class="token keyword">extends</span> <span class="token class-name">TransformStream</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span>encoding <span class="token operator">=</span> <span class="token string">'utf-8'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token operator">...</span>options<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> t <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token operator">...</span>tds<span class="token punctuation">,</span> encoding<span class="token punctuation">,</span> options<span class="token punctuation">}</span>
+
+    <span class="token keyword">super</span><span class="token punctuation">(</span>t<span class="token punctuation">)</span>
+    _jstds_wm<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> t<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">get</span> <span class="token function">encoding</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token keyword">return</span> _jstds_wm<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decoder<span class="token punctuation">.</span>encoding<span class="token punctuation">}</span>
+  <span class="token keyword">get</span> <span class="token function">fatal</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token keyword">return</span> _jstds_wm<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decoder<span class="token punctuation">.</span>fatal<span class="token punctuation">}</span>
+  <span class="token keyword">get</span> <span class="token function">ignoreBOM</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token keyword">return</span> _jstds_wm<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">.</span>decoder<span class="token punctuation">.</span>ignoreBOM<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="chaining_multiple_readablestreams_together">Chaining multiple ReadableStreams together</h3>
+<p>This is a useful one, where multiple streams can be conjoined. Examples include building a PWA with progressive loading and progressive streaming.</p> <pre data-language="js"><span class="token keyword">let</span> responses <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token comment">/* conjoined response tree */</span> <span class="token punctuation">]</span>
+<span class="token keyword">let</span> <span class="token punctuation">{</span>readable<span class="token punctuation">,</span> writable<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TransformStream</span>
+
+responses<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span>
+  <span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> res<span class="token punctuation">,</span> i<span class="token punctuation">,</span> arr</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> a<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> res<span class="token punctuation">.</span><span class="token function">pipeTo</span><span class="token punctuation">(</span>writable<span class="token punctuation">,</span> <span class="token punctuation">{</span>preventClose<span class="token operator">:</span> <span class="token punctuation">(</span>i<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">!==</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+</pre> <p>Note that this is not resilient to other influences.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://streams.spec.whatwg.org/#ts-class" hreflang="en" rel=" noopener">Streams<br><small>The definition of 'TransformStream' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>TransformStream</code></th>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+<tr>
+<th><code>TransformStream</code></th>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+<tr>
+<th><code>readable</code></th>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+<tr>
+<th><code>writable</code></th>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="https://whatwg-stream-visualizer.glitch.me/" rel=" noopener">WHATWG Stream Visualiser</a>, for a basic visualisation of readable, writable, and transform streams.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/TransformStream" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/TransformStream</a>
+  </p>
+</div>

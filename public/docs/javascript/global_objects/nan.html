@@ -1,0 +1,76 @@
+<h1>NaN</h1> <p>The global <code><strong>NaN</strong></code> property is a value representing Not-A-Number.</p> 
+<div class="_table"><table class="standard-table"> <thead> <tr> <th class="header" colspan="2">Property attributes of <code>NaN</code>
+</th> </tr> </thead> <tbody> <tr> <td>Writable</td> <td>no</td> </tr> <tr> <td>Enumerable</td> <td>no</td> </tr> <tr> <td>Configurable</td> <td>no</td> </tr> </tbody> </table></div>
+ <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/globalprops-nan.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="description">Description</h2>
+<p><code>NaN</code> is a property of the <em>global object</em>. In other words, it is a variable in global scope.</p> <p>The initial value of <code>NaN</code> is Not-A-Number — the same as the value of <a href="number/nan"><code>Number.NaN</code></a>. In modern browsers, <code>NaN</code> is a non-configurable, non-writable property. Even when this is not the case, avoid overriding it. It is rather rare to use <code>NaN</code> in a program.</p> <p>There are five different types of operations that return <code>NaN</code>:</p> <ul> <li>Number cannot be parsed (e.g. <code>parseInt("blabla")</code> or <code>Number(undefined)</code>)</li> <li>Math operation where the result is not a real number (e.g. <code>Math.sqrt(-1)</code>)</li> <li>Operand of an argument is <code>NaN</code> (e.g. <code>7 ** NaN</code>)</li> <li>Indeterminate form (e.g. <code>0 * Infinity</code>, or <code>undefined + undefined</code>)</li> <li>Any operation that involves a string and is not an addition operation (e.g. <code>"foo" / 3</code>)</li> </ul>
+<h2 id="examples">Examples</h2>
+<h3 id="testing_against_nan">Testing against NaN</h3>
+<p><code>NaN</code> compares unequal (via <code>==</code>, <code>!=</code>, <code>===</code>, and <code>!==</code>) to any other value -- including to another <code>NaN</code> value. Use <a href="number/isnan"><code>Number.isNaN()</code></a> or <a href="isnan"><code>isNaN()</code></a> to most clearly determine whether a value is <code>NaN</code>. Or perform a self-comparison: <code>NaN</code>, and only <code>NaN</code>, will compare unequal to itself.</p> <pre data-language="js"><span class="token number">NaN</span> <span class="token operator">===</span> <span class="token number">NaN</span><span class="token punctuation">;</span>        <span class="token comment">// false</span>
+Number<span class="token punctuation">.</span><span class="token number">NaN</span> <span class="token operator">===</span> <span class="token number">NaN</span><span class="token punctuation">;</span> <span class="token comment">// false</span>
+<span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// true</span>
+<span class="token function">isNaN</span><span class="token punctuation">(</span>Number<span class="token punctuation">.</span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// true</span>
+Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// true</span>
+
+<span class="token keyword">function</span> <span class="token function">valueIsNaN</span><span class="token punctuation">(</span><span class="token parameter">v</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> v <span class="token operator">!==</span> v<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token function">valueIsNaN</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// false</span>
+<span class="token function">valueIsNaN</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">// true</span>
+<span class="token function">valueIsNaN</span><span class="token punctuation">(</span>Number<span class="token punctuation">.</span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+</pre> <p>However, do note the difference between <code>isNaN()</code> and <code>Number.isNaN()</code>: the former will return <code>true</code> if the value is currently <code>NaN</code>, or if it is going to be <code>NaN</code> after it is coerced to a number, while the latter will return <code>true</code> only if the value is currently <code>NaN</code>:</p> <pre data-language="js"><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token string">'hello world'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">// true</span>
+Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span><span class="token string">'hello world'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// false</span>
+</pre> <p>Additionally, some array methods cannot find <code>NaN</code>, while others can.</p> <pre data-language="js"><span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">NaN</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+arr<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                      <span class="token comment">// -1 (false)</span>
+arr<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                     <span class="token comment">// true</span>
+arr<span class="token punctuation">.</span><span class="token function">findIndex</span><span class="token punctuation">(</span><span class="token parameter">n</span> <span class="token operator">=&gt;</span> Number<span class="token punctuation">.</span><span class="token function">isNaN</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// 2</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-value-properties-of-the-global-object-nan">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-value-properties-of-the-global-object-nan</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>NaN</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="number/nan"><code>Number.NaN</code></a></li> <li><a href="number/isnan"><code>Number.isNaN()</code></a></li> <li><a href="isnan"><code>isNaN()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN</a>
+  </p>
+</div>

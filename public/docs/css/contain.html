@@ -1,0 +1,145 @@
+<h1>contain</h1> <p>The <code>contain</code> <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> property allows an author to indicate that an element and its contents are, as much as possible, <em>independent</em> of the rest of the document tree. This allows the browser to recalculate layout, style, paint, size, or any combination of them for a limited area of the DOM and not the entire page, leading to obvious performance benefits.</p> <p>This property is useful on pages that contain a lot of widgets that are all independent, as it can be used to prevent each widget's internals from having side effects outside of the widget's bounding-box.</p> <div class="notecard note"> <p><strong>Note:</strong> If applied (with value: <code>paint</code>, <code>strict</code> or <code>content</code>), this property creates:</p> <ol> <li>A new <a href="containing_block">containing block</a> (for the descendants whose <a href="position"><code>position</code></a> property is <code>absolute</code> or <code>fixed</code>).</li> <li>A new <a href="css_positioning/understanding_z_index/the_stacking_context">stacking context</a>.</li> <li>A new <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context">block formatting context</a>.</li> </ol> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="css"><span class="token comment">/* Keyword values */</span>
+<span class="token property">contain</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token property">contain</span><span class="token punctuation">:</span> strict<span class="token punctuation">;</span>
+<span class="token property">contain</span><span class="token punctuation">:</span> content<span class="token punctuation">;</span>
+<span class="token property">contain</span><span class="token punctuation">:</span> size<span class="token punctuation">;</span>
+<span class="token property">contain</span><span class="token punctuation">:</span> layout<span class="token punctuation">;</span>
+<span class="token property">contain</span><span class="token punctuation">:</span> style<span class="token punctuation">;</span>
+<span class="token property">contain</span><span class="token punctuation">:</span> paint<span class="token punctuation">;</span>
+
+<span class="token comment">/* Multiple keywords */</span>
+<span class="token property">contain</span><span class="token punctuation">:</span> size paint<span class="token punctuation">;</span>
+<span class="token property">contain</span><span class="token punctuation">:</span> size layout paint<span class="token punctuation">;</span>
+
+<span class="token comment">/* Global values */</span>
+<span class="token property">contain</span><span class="token punctuation">:</span> inherit<span class="token punctuation">;</span>
+<span class="token property">contain</span><span class="token punctuation">:</span> initial<span class="token punctuation">;</span>
+<span class="token property">contain</span><span class="token punctuation">:</span> unset<span class="token punctuation">;</span></pre> <p>The <code>contain</code> property is specified as either one of the following:</p> <ul> <li>Using a single <code>none</code>, <code>strict</code>, or <code>content</code> keyword.</li> <li>Using one or more of the <code>size</code>, <code>layout</code>, <code>style</code>, and <code>paint</code> keywords in any order.</li> </ul>
+<h3 id="values">Values</h3>
+<dl> <dt><code>none</code></dt> <dd>Indicates the element renders as normal, with no containment applied.</dd> <dt><code>strict</code></dt> <dd>Indicates that all containment rules except <code>style</code> are applied to the element. This is equivalent to <code>contain: size layout paint</code>.</dd> <dt><code>content</code></dt> <dd>Indicates that all containment rules except <code>size</code> and <code>style</code> are applied to the element. This is equivalent to <code>contain: layout paint</code>.</dd> <dt><code>size</code></dt> <dd>Indicates that the element can be sized without the need to examine its descendants' sizes.</dd> <dt><code>layout</code></dt> <dd>Indicates that nothing outside the element may affect its internal layout and vice versa.</dd> <dt><code>style</code></dt> <dd>Indicates that, for properties that can have effects on more than just an element and its descendants, those effects don't escape the containing element. Note that this value is marked "at-risk" in the spec and may not be supported everywhere.</dd> <dt><code>paint</code></dt> <dd>Indicates that descendants of the element don't display outside its bounds. If the containing box is offscreen, the browser does not need to paint its contained elements — these must also be offscreen as they are contained completely by that box. And if a descendant overflows the containing element's bounds, then that descendant will be clipped to the containing element's border-box.</dd> </dl>
+<h2 id="formal_definition">Formal definition</h2>
+
+<div class="_table"><table class="properties"><tbody>
+<tr>
+<th scope="row"><a href="initial_value">Initial value</a></th>
+<td><code>none</code></td>
+</tr>
+<tr>
+<th scope="row">Applies to</th>
+<td>all elements</td>
+</tr>
+<tr>
+<th scope="row"><a href="inheritance">Inherited</a></th>
+<td>no</td>
+</tr>
+<tr>
+<th scope="row"><a href="computed_value">Computed value</a></th>
+<td>as specified</td>
+</tr>
+<tr>
+<th scope="row">Animation type</th>
+<td>discrete</td>
+</tr>
+</tbody></table></div>
+
+<h2 id="formal_syntax">Formal syntax</h2>
+<pre class="notranslate">none <a href="value_definition_syntax#single_bar">|</a> strict <a href="value_definition_syntax#single_bar">|</a> content <a href="value_definition_syntax#single_bar">|</a> <a href="value_definition_syntax#brackets">[</a> size <a href="value_definition_syntax#double_bar">||</a> layout <a href="value_definition_syntax#double_bar">||</a> style <a href="value_definition_syntax#double_bar">||</a> paint <a href="value_definition_syntax#brackets">]</a></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="simple_layout">Simple layout</h3>
+<p>The markup below consists of a number of articles, each with content:</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>My blog<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>article</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">&gt;</span></span>Heading of a nice article<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Content here.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>article</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>article</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">&gt;</span></span>Another heading of another article<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>graphic.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>photo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>More content here.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>article</span><span class="token punctuation">&gt;</span></span></pre> <p>Each <code>&lt;article&gt;</code> and <code>&lt;img&gt;</code> is given a border, and the images are floated:</p> <pre data-language="css"><span class="token selector">img</span> <span class="token punctuation">{</span>
+  <span class="token property">float</span><span class="token punctuation">:</span> left<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 3px solid black<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">article</span> <span class="token punctuation">{</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid black<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p><iframe width="100%" height="400" src="https://mdn.github.io/css-examples/contain/simple-layout.html" loading="lazy"></iframe></p> <p>You can immediately see an issue — no effort is made to clear the floating beyond the bottom of the article.</p>
+<h3 id="float_interference">Float interference</h3>
+<p>If we were to insert another image at the bottom of the first article, a large portion of the DOM tree may be re-laid out or repainted, and this would interfere further with the layout of the second article:</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>My blog<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>article</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">&gt;</span></span>Heading of a nice article<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Content here.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>i-just-showed-up.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>social<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>article</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>article</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">&gt;</span></span>Another heading of another article<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>graphic.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>photo<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>More content here.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>article</span><span class="token punctuation">&gt;</span></span></pre> <p>As you can see, because of the way floats work, the first image ends up inside the area of the second article:</p> <p><iframe width="100%" height="400" src="https://mdn.github.io/css-examples/contain/float-interference.html" loading="lazy"></iframe></p>
+<h3 id="fixing_with_contain">Fixing with contain</h3>
+<p>If we give each <code>article</code> the <code>contain</code> property with a value of <code>content</code>, when new elements are inserted the browser understands it only needs to recalculate the containing element's subtree, and not anything outside it:</p> <pre data-language="css"><span class="token selector">img</span> <span class="token punctuation">{</span>
+  <span class="token property">float</span><span class="token punctuation">:</span> left<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 3px solid black<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">article</span> <span class="token punctuation">{</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid black<span class="token punctuation">;</span>
+  <span class="token property">contain</span><span class="token punctuation">:</span> content<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>This also means that the first image no longer floats down to the second article, and instead stays inside it's containing element's bounds:</p> <p><iframe width="100%" height="500" src="https://mdn.github.io/css-examples/contain/contain-fix.html" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/css-contain-2/#contain-property" hreflang="en" rel=" noopener">CSS Containment Module Level 2<br><small>The definition of 'contain' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Added <code>style</code> keyword</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>contain</code></th>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>69</div>
+<div>Firefox does not support the <code>style</code> value.</div>
+<div>41</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes">
+<div>41</div>
+<div>Firefox does not support the <code>style</code> value.</div>
+</td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="css_containment">CSS containment</a></li> <li>CSS <a href="content-visibility"><code>content-visibility</code></a> property</li> <li>CSS <a href="position"><code>position</code></a> property</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/contain" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/contain</a>
+  </p>
+</div>

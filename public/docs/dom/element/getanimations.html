@@ -1,0 +1,115 @@
+<h1>Element.getAnimations()</h1>
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div> <p>The <code>getAnimations()</code> method of the <a href="../element"><code>Element</code></a> interface (specified on the <code>Animatable</code> mixin) returns an array of all <a href="../animation"><code>Animation</code></a> objects affecting this element or which are scheduled to do so in future. It can optionally return <a href="../animation"><code>Animation</code></a> objects for descendant elements too.</p> <div class="notecard note"> <p><strong>Note</strong>: This array includes <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations">CSS Animations</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions">CSS Transitions</a>, and <a href="../web_animations_api">Web Animations</a>.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">const</span> animations <span class="token operator">=</span> Element<span class="token punctuation">.</span><span class="token function">getAnimations</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>options <span class="badge inline optional">Optional</span></code></dt> <dd>An options object containing the following property:</dd> <dd> <dl> <dt><code>subtree</code></dt> <dd>A boolean value which, if <code>true</code>, causes animations that target descendants of <em>Element</em> to be returned as well. This includes animations that target any CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements">pseudo-elements</a> attached to <em>Element</em> or one of its descendants. Defaults to <code>false</code>.</dd> </dl> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of <a href="../animation"><code>Animation</code></a> objects, each representing an animation currently targeting the <a href="../element"><code>Element</code></a> on which this method is called, or one of its descendant elements if <code>{ subtree: true }</code> is specified.</p>
+<h2 id="examples">Examples</h2>
+<p>The following code snippet will wait for all animations on <code>elem</code> and its descendants to finish before removing the element from the document.</p> <pre data-language="js">Promise<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span>
+  elem<span class="token punctuation">.</span><span class="token function">getAnimations</span><span class="token punctuation">(</span><span class="token punctuation">{</span> subtree<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token parameter">animation</span> <span class="token operator">=&gt;</span> animation<span class="token punctuation">.</span>finished<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> elem<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://drafts.csswg.org/web-animations-1/#dom-animatable-getanimations" hreflang="en" rel=" noopener">Web Animations<br><small>The definition of 'Animatable.getAnimations()' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Editor's draft.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getAnimations</code></th>
+<td class="bc-supports-yes">
+<div>84</div>
+<div>79</div>
+<div>67-79</div>
+<div>Does not support the <code>subtree</code> option.</div>
+<div>44-67</div>
+<div>Does not automatically flush pending style changes and does not support the <code>subtree</code> option.</div>
+<div>38-44</div>
+<div>Does not automatically flush pending style changes and does not support the <code>subtree</code> option.</div>
+</td>
+<td class="bc-supports-yes">
+<div>84</div>
+<div>79</div>
+</td>
+<td class="bc-supports-yes">
+<div>75</div>
+<div>63-75</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>70</div>
+<div>66</div>
+<div>54-66</div>
+<div>Does not support the <code>subtree</code> option.</div>
+<div>31-54</div>
+<div>Does not automatically flush pending style changes and does not support the <code>subtree</code> option.</div>
+<div>25-31</div>
+<div>Does not automatically flush pending style changes and does not support the <code>subtree</code> option.</div>
+</td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Does not support the <code>subtree</code> option.</div>
+</td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes">
+<div>84</div>
+<div>79</div>
+<div>67-79</div>
+<div>Does not support the <code>subtree</code> option.</div>
+<div>44-67</div>
+<div>Does not automatically flush pending style changes and does not support the <code>subtree</code> option.</div>
+<div>38-44</div>
+<div>Does not automatically flush pending style changes and does not support the <code>subtree</code> option.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>63-79</div>
+</td>
+<td class="bc-supports-yes">
+<div>60</div>
+<div>57</div>
+<div>48-57</div>
+<div>Does not support the <code>subtree</code> option.</div>
+<div>32-48</div>
+<div>Does not automatically flush pending style changes and does not support the <code>subtree</code> option.</div>
+<div>25-32</div>
+<div>Does not automatically flush pending style changes and does not support the <code>subtree</code> option.</div>
+</td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Does not support the <code>subtree</code> option.</div>
+</td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../web_animations_api">Web Animations API</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations">CSS Animations</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Transitions">CSS Transitions</a></li> <li>
+<a href="../document/getanimations"><code>Document.getAnimations()</code></a> - Fetch all animations in the document</li> <li><a href="../animation"><code>Animation</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getAnimations" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/getAnimations</a>
+  </p>
+</div>

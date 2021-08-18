@@ -1,0 +1,212 @@
+<h1>TextDecoder</h1>
+
+ <p>The <code><strong>TextDecoder</strong></code> interface represents a decoder for a specific text encoding, such as <code>UTF-8</code>, <code>ISO-8859-2</code>, <code>KOI8-R</code>, <code>GBK</code>, etc. A decoder takes a stream of bytes as input and emits a stream of code points.</p> 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="web_workers_api">Web Workers</a>.</p> </div>
+
+<h2 id="examples">Examples</h2>
+<h3 id="representing_text_with_typed_arrays">Representing text with typed arrays</h3>
+<p>This example shows how to decode a Chinese/Japanese character <img alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAAgCAAAAACqBA7iAAAACXBIWXMAABYlAAAWJQFJUiTwAAAASUlEQVR4nGP4TyxgoJNKBqzasaok3kwaqmTAKgpiYoKBdCdtVCL7iQEhiB0QsIlY2wmrREtD6FwUKTxRRLaZw08l9UMJPxgqKgFknKCY7ZqzGQAAAABJRU5ErkJggg==" width="41" height="32" loading="lazy">, as represented by five different typed arrays: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array"><code>Uint8Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array"><code>Int8Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array"><code>Uint16Array</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array"><code>Int16Array</code></a>, and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array"><code>Int32Array</code></a>.</p> <pre data-language="js"><span class="token keyword">let</span> utf8decoder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TextDecoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// default 'utf-8' or 'utf8'</span>
+
+<span class="token keyword">let</span> u8arr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">240</span><span class="token punctuation">,</span> <span class="token number">160</span><span class="token punctuation">,</span> <span class="token number">174</span><span class="token punctuation">,</span> <span class="token number">183</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> i8arr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Int8Array</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">16</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">96</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">82</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">73</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> u16arr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Uint16Array</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">41200</span><span class="token punctuation">,</span> <span class="token number">47022</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> i16arr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Int16Array</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">24336</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">18514</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> i32arr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Int32Array</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">1213292304</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>utf8decoder<span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span>u8arr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>utf8decoder<span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span>i8arr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>utf8decoder<span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span>u16arr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>utf8decoder<span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span>i16arr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>utf8decoder<span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span>i32arr<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="handling_non-utf8_text">Handling non-UTF8 text</h3>
+<p>In this example, we decode the Russian text "Привет, мир!", which means "Hello, world." In our <a href="textdecoder/textdecoder"><code>TextDecoder()</code></a> constructor, we specify the Windows-1251 character encoding, which is appropriate for Cyrillic script.</p> <pre data-language="js"><span class="token keyword">let</span> win1251decoder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TextDecoder</span><span class="token punctuation">(</span><span class="token string">'windows-1251'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> bytes <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">207</span><span class="token punctuation">,</span> <span class="token number">240</span><span class="token punctuation">,</span> <span class="token number">232</span><span class="token punctuation">,</span> <span class="token number">226</span><span class="token punctuation">,</span> <span class="token number">229</span><span class="token punctuation">,</span> <span class="token number">242</span><span class="token punctuation">,</span> <span class="token number">44</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">236</span><span class="token punctuation">,</span> <span class="token number">232</span><span class="token punctuation">,</span> <span class="token number">240</span><span class="token punctuation">,</span> <span class="token number">33</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>win1251decoder<span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span>bytes<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Привет, мир!</span>
+</pre>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="textdecoder/textdecoder"><code>TextDecoder()</code></a></dt> <dd>Returns a newly constructed <code>TextDecoder</code> that will generate a code point stream with the decoding method specified in parameters.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<p><em>The <code>TextDecoder</code> interface doesn't inherit any properties.</em></p> <dl> <dt>
+<a href="textdecoder/encoding"><code>TextDecoder.prototype.encoding</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>Is a <a href="domstring"><code>DOMString</code></a> containing the name of the decoder, that is a string describing the method the <code>TextDecoder</code> will use.</dd> <dt>
+<a class="page-not-created"><code>TextDecoder.prototype.fatal</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>Is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> indicating whether the error mode is fatal.</dd> <dt>
+<a class="page-not-created"><code>TextDecoder.prototype.ignoreBOM</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>Is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> indicating whether the byte order marker is ignored.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<p><em>The <code>TextDecoder</code> interface doesn't inherit any method</em>.</p> <dl> <dt><a href="textdecoder/decode"><code>TextDecoder.prototype.decode()</code></a></dt> <dd>Returns a <a href="domstring"><code>DOMString</code></a> containing the text decoded with the method of the specific <code>TextDecoder</code> object.</dd> </dl>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://encoding.spec.whatwg.org/#interface-textdecoder" hreflang="en" rel=" noopener">Encoding<br><small>The definition of 'TextDecoder' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>TextDecoder</code></th>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>19</div>
+<div>18</div>
+<div>Implemented a slightly different version of the spec.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes">
+<div>19</div>
+<div>18</div>
+<div>Implemented a slightly different version of the spec.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>TextDecoder</code></th>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>19</div>
+<div>18</div>
+<div>Implemented a slightly different version of the spec.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes">
+<div>19</div>
+<div>18</div>
+<div>Implemented a slightly different version of the spec.</div>
+</td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>decode</code></th>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>19</div>
+<div>18</div>
+<div>Implemented a slightly different version of the spec.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes">
+<div>19</div>
+<div>18</div>
+<div>Implemented a slightly different version of the spec.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>encoding</code></th>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>19</div>
+<div>18</div>
+<div>Implemented a slightly different version of the spec.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes">
+<div>19</div>
+<div>18</div>
+<div>Implemented a slightly different version of the spec.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>fatal</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>ignoreBOM</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>worker_support</code></th>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>20</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>20</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The <a href="textencoder"><code>TextEncoder</code></a> interface describing the inverse operation.</li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/Code_snippets/StringView"><code>StringView</code></a> – a C-like representation of strings based on typed arrays</li> <li>A <a href="https://code.google.com/p/stringencoding/" rel=" noopener">shim</a> allowing to use this interface in browsers that don't support it.</li> <li><code><a href="https://developer.mozilla.org/en-US/docs/Mozilla/Tech/XPCOM/Language_Bindings/Components.utils.importGlobalProperties">Components.utils.importGlobalProperties</a></code></li> <li><a href="https://nodejs.org/api/util.html#util_class_util_textdecoder" rel=" noopener">Node.js supports global export from v11.0.0</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder</a>
+  </p>
+</div>

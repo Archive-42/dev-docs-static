@@ -1,0 +1,73 @@
+<h1>Window.crypto</h1> <p>The read-only <code>Window.crypto</code> property returns the <a href="../crypto"><code>Crypto</code></a> object associated to the global object. This object allows web pages access to certain cryptographic related services. Although the property itself is read-only, all of its methods (and the methods of its child object, <a href="../subtlecrypto"><code>SubtleCrypto</code></a>) are not read-only, and therefore vulnerable to attack by <a href="https://developer.mozilla.org/en-US/docs/Glossary/Polyfill">polyfill</a>.</p> <p>Although <code>window.crypto</code> is available on all windows, the returned <code>Crypto</code> object only has one usable feature in insecure contexts: the <a href="../crypto/getrandomvalues"><code>getRandomValues()</code></a> method. In general, you should use this API only in secure contexts.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">let</span> cryptoObj <span class="token operator">=</span> window<span class="token punctuation">.</span>crypto <span class="token operator">||</span> window<span class="token punctuation">.</span>msCrypto<span class="token punctuation">;</span> <span class="token comment">// for IE 11</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>An instance of the <a href="../crypto"><code>Crypto</code></a> interface, providing access to general-purpose cryptography and a strong random-number generator.</p>
+<h2 id="example">Example</h2>
+<p id="Using_the_domxrefWindow.crypto_property_to_access_the_getRandomValues_method.">This example uses the <a href="crypto"><code>Window.crypto</code></a> property to access the <a href="../crypto/getrandomvalues"><code>getRandomValues()</code></a> method.</p>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js"><span class="token function-variable function">genRandomNumbers</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">getRandomNumbers</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> array <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Uint32Array</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span><span class="token function">getRandomValues</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> randText <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"myRandText"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  randText<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"The random numbers are: "</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> array<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    randText<span class="token punctuation">.</span>textContent <span class="token operator">+=</span> array<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre>
+<h3 id="html">HTML</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>myRandText<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>The random numbers are: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name">onClick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>genRandomNumbers()<span class="token punctuation">'</span></span><span class="token punctuation">&gt;</span></span>Generate 10 random numbers<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span></pre>
+<h3 id="result">Result</h3>
+<p><iframe class="sample-code-frame" id="frame_Example" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Window/crypto/_samples_/Example" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.w3.org/TR/WebCryptoAPI/#dfn-GlobalCrypto" hreflang="en" rel=" noopener">Web Cryptography API<br><small>The definition of 'Window.crypto' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>crypto</code></th>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>6.1</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>6.1</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The <a href="../window"><code>Window</code></a> global object</li> <li>The <a href="../crypto"><code>Crypto</code></a> interface</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/crypto" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Window/crypto</a>
+  </p>
+</div>

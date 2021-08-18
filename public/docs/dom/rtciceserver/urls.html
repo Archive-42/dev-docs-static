@@ -1,0 +1,107 @@
+<h1>RTCIceServers.urls</h1>
+
+ 
+<div class="notecard draft"> <strong id="draft">Draft</strong> <p>This page is not complete.</p> <em>I'm experimenting with structure for pages documenting members of dictionaries. Please contact <a href="https://developer.mozilla.org/en-US/settings">sheppy</a> with any feedback.</em> </div>
+ 
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <a href="../rtciceserver"><code>RTCIceServer</code></a> dictionary's <code>urls</code> property specifies the URL or URLs of the servers to be used for ICE negotiations. These are typically STUN and/or TURN servers.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> iceServer <span class="token operator">=</span> <span class="token punctuation">{</span>
+                  urls <span class="token operator">=</span> iceServerUrl <span class="token operator">|</span> <span class="token punctuation">[</span> url1<span class="token punctuation">,</span> <span class="token operator">...</span><span class="token punctuation">,</span> urlN <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                  username<span class="token operator">:</span> <span class="token string">"webrtc"</span><span class="token punctuation">,</span> <span class="token comment">// optional</span>
+                  credential<span class="token operator">:</span> <span class="token string">"turnpassword"</span> <span class="token comment">// optional</span>
+                <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+iceServers<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>iceServer<span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>The value of this property may be specified as a single URL or as an array of multiple URLs.</p>
+<h2 id="examples">Examples</h2>
+<p>Let's look a few examples of varying complexity.</p>
+<h3 id="a_single_ice_server">A single ICE server</h3>
+<p>This example creates a new <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> which will use a <a href="https://developer.mozilla.org/en-US/docs/Glossary/STUN">STUN</a> server at <code>stunserver.example.org</code> to negotiate connections.</p> <pre data-language="js">myPeerConnection <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RTCPeerConnection</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  iceServers<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      urls<span class="token operator">:</span> <span class="token string">"stun:stunserver.example.org"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Notice that only the <code>urls</code> property is provided; the STUN server doesn't require authentication, so this is all that's needed.</p>
+<h3 id="a_single_ice_server_with_authentication">A single ICE server with authentication </h3>
+<p>The second example creates a new <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> which will use a <a href="https://developer.mozilla.org/en-US/docs/Glossary/TURN">TURN</a> server at <code>turnserver.example.org</code> to negotiate connections. Logging into the TURN server will use the username "webrtc" and the creative password "turnpassword".</p> <pre data-language="js">myPeerConnection <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RTCPeerConnection</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  iceServers<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      urls<span class="token operator">:</span> <span class="token string">"turn:turnserver.example.org"</span><span class="token punctuation">,</span>
+      username<span class="token operator">:</span> <span class="token string">"webrtc"</span><span class="token punctuation">,</span>
+      credential<span class="token operator">:</span> <span class="token string">"turnpassword"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="a_single_ice_server_with_multiple_urls">A single ICE server with multiple URLs </h3>
+<p>The next example creates a new <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> which will use a single <a href="https://developer.mozilla.org/en-US/docs/Glossary/TURN">TURN</a> server which has multiple URLs. This is useful if the server is, for example, available both on "turn" and "turns" schemes, or if there's a fallback address available for the server.</p> <div class="note notecard"> <p>Keep in mind that ICE will try all the URLs you list here, so the more you include, the longer connections will take to establish.</p> </div> <pre data-language="js">myPeerConnection <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RTCPeerConnection</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  iceServers<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      urls<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"turns:turnserver.example.org"</span><span class="token punctuation">,</span> <span class="token string">"turn:turnserver.example.org"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      username<span class="token operator">:</span> <span class="token string">"webrtc"</span><span class="token punctuation">,</span>
+      credential<span class="token operator">:</span> <span class="token string">"turnpassword"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="multiple_ice_servers">Multiple ICE servers</h3>
+<p>Finally, this example creates a new <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> which will use one of two servers for ICE negotiation. Each server can have one or more URLs, as demonstrated above.</p> <pre data-language="js">myPeerConnection <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RTCPeerConnection</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  iceServers<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      urls<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"turns:turnserver.example.org"</span><span class="token punctuation">,</span> <span class="token string">"turn:turnserver.example.org"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+      username<span class="token operator">:</span> <span class="token string">"webrtc"</span><span class="token punctuation">,</span>
+      credential<span class="token operator">:</span> <span class="token string">"turnpassword"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      urls<span class="token operator">:</span> <span class="token string">"stun: stunserver.example.org"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Two ICE servers are provided. One is a TURN server which can be accessed both over TURN and TURNS. The other is a STUN server. Any number of servers could be listed of any combination of types.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-rtciceserver-urls" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCIceServer.urls' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>urls</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../rtciceserver"><code>RTCIceServer</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCIceServer/urls" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCIceServer/urls</a>
+  </p>
+</div>

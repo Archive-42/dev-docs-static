@@ -1,0 +1,99 @@
+<h1>Intl.NumberFormat.prototype.formatToParts()</h1> <p>The <code>Intl.Numberformat.prototype.formatToParts()</code> method allows locale-aware formatting of strings produced by <code>NumberFormat</code> formatters.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">formatToParts</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">formatToParts</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code><var>number</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A <a href="../../number"><code>Number</code></a> or <a href="../../bigint"><code>BigInt</code></a> to format.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>An <a href="../../array"><code>Array</code></a> of objects containing the formatted number in parts.</p>
+<h2 id="description">Description</h2>
+<p>The <code>formatToParts()</code> method is useful for custom formatting of number strings. It returns an <a href="../../array"><code>Array</code></a> of objects containing the locale-specific tokens from which it possible to build custom strings while preserving the locale-specific parts. The structure the <code>formatToParts()</code> method returns, looks like this:</p> <pre data-language="js"><span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">"integer"</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token string">"3"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">"group"</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token string">"."</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">"integer"</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token string">"500"</span> <span class="token punctuation">}</span>
+<span class="token punctuation">]</span></pre> <p>Possible types are the following:</p> <dl> <dt>currency</dt> <dd>The currency string, such as the symbols "$" and "€" or the name "Dollar", "Euro" depending on how <code>currencyDisplay</code> is specified.</dd> <dt>decimal</dt> <dd>The decimal separator string (".").</dd> <dt>fraction</dt> <dd>The fraction number.</dd> <dt>group</dt> <dd>The group separator string (",").</dd> <dt>infinity</dt> <dd>The <a href="../../infinity"><code>Infinity</code></a> string ("∞").</dd> <dt>integer</dt> <dd>The integer number.</dd> <dt>literal</dt> <dd>Any literal strings or whitespace in the formatted number.</dd> <dt>minusSign</dt> <dd>The minus sign string ("-").</dd> <dt>nan</dt> <dd>The <a href="../../nan"><code>NaN</code></a> string ("NaN").</dd> <dt>plusSign</dt> <dd>The plus sign string ("+").</dd> <dt>percentSign</dt> <dd>The percent sign string ("%").</dd> <dt>unit</dt> <dd>The unit string, such as the "l" or "litres", depending on how <code>unitDisplay</code> is specified.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="comparing_format_and_formattoparts">Comparing format and formatToParts</h3>
+<p><code>NumberFormat</code> outputs localized, opaque strings that cannot be manipulated directly:</p> <pre data-language="js"><span class="token keyword">var</span> number <span class="token operator">=</span> <span class="token number">3500</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> formatter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>NumberFormat</span><span class="token punctuation">(</span><span class="token string">'de-DE'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  style<span class="token operator">:</span> <span class="token string">'currency'</span><span class="token punctuation">,</span>
+  currency<span class="token operator">:</span> <span class="token string">'EUR'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+formatter<span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// "3.500,00 €"</span>
+</pre> <p>However, in many User Interfaces there is a desire to customize the formatting of this string. The <code>formatToParts</code> method enables locale-aware formatting of strings produced by <code>NumberFormat</code> formatters by providing you the string in parts:</p> <pre data-language="js">formatter<span class="token punctuation">.</span><span class="token function">formatToParts</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// return value:</span>
+<span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">"integer"</span><span class="token punctuation">,</span>  value<span class="token operator">:</span> <span class="token string">"3"</span>   <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">"group"</span><span class="token punctuation">,</span>    value<span class="token operator">:</span> <span class="token string">"."</span>   <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">"integer"</span><span class="token punctuation">,</span>  value<span class="token operator">:</span> <span class="token string">"500"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">"decimal"</span><span class="token punctuation">,</span>  value<span class="token operator">:</span> <span class="token string">","</span>   <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">"fraction"</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token string">"00"</span>  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">"literal"</span><span class="token punctuation">,</span>  value<span class="token operator">:</span> <span class="token string">" "</span>   <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> type<span class="token operator">:</span> <span class="token string">"currency"</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token string">"€"</span>   <span class="token punctuation">}</span>
+<span class="token punctuation">]</span>
+</pre> <p>Now the information is available separately and it can be formatted and concatenated again in a customized way. For example by using <a href="../../array/map"><code>Array.prototype.map()</code></a>, <a href="../../../functions/arrow_functions">arrow functions</a>, a <a href="../../../statements/switch">switch statement</a>, <a href="../../../template_literals">template literals</a>, and <a href="../../array/reduce"><code>Array.prototype.reduce()</code></a>.</p> <pre data-language="js"><span class="token keyword">var</span> numberString <span class="token operator">=</span> formatter<span class="token punctuation">.</span><span class="token function">formatToParts</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span>type<span class="token punctuation">,</span> value<span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">'currency'</span><span class="token operator">:</span> <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">&lt;strong&gt;</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>value<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;/strong&gt;</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span> <span class="token operator">:</span> <span class="token keyword">return</span> value<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">string<span class="token punctuation">,</span> part</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> string <span class="token operator">+</span> part<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>This will make the currency bold, when using the <code>formatToParts()</code> method. </p> <pre data-language="js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>numberString<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// "3.500,00 &lt;strong&gt;€&lt;/strong&gt;"</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma402/#sec-intl.numberformat.prototype.formattoparts">ECMAScript Internationalization API Specification (ECMAScript Internationalization API)<br> <small>#sec-intl.numberformat.prototype.formattoparts</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>formatToParts</code></th>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../numberformat"><code>Intl.NumberFormat</code></a></li> <li><a href="format"><code>Intl.NumberFormat.prototype.format</code></a></li> <li>Formatting dates: <a href="../datetimeformat/formattoparts"><code>Intl.DateTimeFormat.prototype.formatToParts()</code></a>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/formatToParts" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/NumberFormat/formatToParts</a>
+  </p>
+</div>

@@ -1,0 +1,97 @@
+<h1>CanvasRenderingContext2D.bezierCurveTo()</h1> <p>The <code><strong>CanvasRenderingContext2D</strong></code><code>.bezierCurveTo()</code> method of the Canvas 2D API adds a cubic <a href="https://en.wikipedia.org/wiki/B%C3%A9zier_curve" rel=" noopener">Bézier curve</a> to the current sub-path. It requires three points: the first two are control points and the third one is the end point. The starting point is the latest point in the current path, which can be changed using <a href="moveto"><code>moveTo()</code></a> before creating the Bézier curve.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">void</span> ctx<span class="token punctuation">.</span><span class="token function">bezierCurveTo</span><span class="token punctuation">(</span>cp1x<span class="token punctuation">,</span> cp1y<span class="token punctuation">,</span> cp2x<span class="token punctuation">,</span> cp2y<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>cp1x</code></dt> <dd>The x-axis coordinate of the first control point.</dd> <dt><code>cp1y</code></dt> <dd>The y-axis coordinate of the first control point.</dd> <dt><code>cp2x</code></dt> <dd>The x-axis coordinate of the second control point.</dd> <dt><code>cp2y</code></dt> <dd>The y-axis coordinate of the second control point.</dd> <dt><code>x</code></dt> <dd>The x-axis coordinate of the end point.</dd> <dt><code>y</code></dt> <dd>The y-axis coordinate of the end point.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="how_beziercurveto_works">How bezierCurveTo works</h3>
+<p>This example shows how a cubic Bézier curve is drawn.</p> <h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>canvas<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">&gt;</span></span>
+</pre> <h4 id="javascript">JavaScript</h4> <pre data-language="js"><span class="token comment">// Define canvas and context</span>
+<span class="token keyword">const</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ctx <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Define the points as {x, y}</span>
+<span class="token keyword">let</span> start <span class="token operator">=</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">50</span><span class="token punctuation">,</span>    y<span class="token operator">:</span> <span class="token number">20</span>  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> cp1 <span class="token operator">=</span>   <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">230</span><span class="token punctuation">,</span>   y<span class="token operator">:</span> <span class="token number">30</span>  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> cp2 <span class="token operator">=</span>   <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">150</span><span class="token punctuation">,</span>   y<span class="token operator">:</span> <span class="token number">80</span>  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> end <span class="token operator">=</span>   <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">250</span><span class="token punctuation">,</span>   y<span class="token operator">:</span> <span class="token number">100</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Cubic Bézier curve</span>
+ctx<span class="token punctuation">.</span><span class="token function">beginPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>start<span class="token punctuation">.</span>x<span class="token punctuation">,</span> start<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">bezierCurveTo</span><span class="token punctuation">(</span>cp1<span class="token punctuation">.</span>x<span class="token punctuation">,</span> cp1<span class="token punctuation">.</span>y<span class="token punctuation">,</span> cp2<span class="token punctuation">.</span>x<span class="token punctuation">,</span> cp2<span class="token punctuation">.</span>y<span class="token punctuation">,</span> end<span class="token punctuation">.</span>x<span class="token punctuation">,</span> end<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">stroke</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Start and end points</span>
+ctx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> <span class="token string">'blue'</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">beginPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">arc</span><span class="token punctuation">(</span>start<span class="token punctuation">.</span>x<span class="token punctuation">,</span> start<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token constant">PI</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Start point</span>
+ctx<span class="token punctuation">.</span><span class="token function">arc</span><span class="token punctuation">(</span>end<span class="token punctuation">.</span>x<span class="token punctuation">,</span> end<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token constant">PI</span><span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// End point</span>
+ctx<span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Control points</span>
+ctx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> <span class="token string">'red'</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">beginPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">arc</span><span class="token punctuation">(</span>cp1<span class="token punctuation">.</span>x<span class="token punctuation">,</span> cp1<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token constant">PI</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Control point one</span>
+ctx<span class="token punctuation">.</span><span class="token function">arc</span><span class="token punctuation">(</span>cp2<span class="token punctuation">.</span>x<span class="token punctuation">,</span> cp2<span class="token punctuation">.</span>y<span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token constant">PI</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Control point two</span>
+ctx<span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <h4 id="result">Result</h4> <p>In this example, the <span style="color: red;">control points are red</span> and the <span style="color: blue;">start and end points are blue</span>.</p> <p><iframe class="sample-code-frame" id="frame_How_bezierCurveTo_works" width="315" height="165" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/CanvasRenderingContext2D/bezierCurveTo/_samples_/How_bezierCurveTo_works" loading="lazy"></iframe></p>
+<h3 id="a_simple_bézier_curve">A simple Bézier curve</h3>
+<p>This example draws a simple Bézier curve using <code>bezierCurveTo()</code>.</p> <h4 id="html_2">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>canvas<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">&gt;</span></span>
+</pre> <h4 id="javascript_2">JavaScript</h4> <p>The curve begins at the point specified by <code>moveTo()</code>: (30, 30). The first control point is placed at (120, 160), and the second at (180, 10). The curve ends at (220, 140).</p> <pre data-language="js"><span class="token keyword">const</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ctx <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+ctx<span class="token punctuation">.</span><span class="token function">beginPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">bezierCurveTo</span><span class="token punctuation">(</span><span class="token number">120</span><span class="token punctuation">,</span><span class="token number">160</span><span class="token punctuation">,</span> <span class="token number">180</span><span class="token punctuation">,</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">220</span><span class="token punctuation">,</span><span class="token number">140</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">stroke</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <h4 id="result_2">Result</h4> <p><iframe class="sample-code-frame" id="frame_A_simple_Bézier_curve" width="700" height="180" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/CanvasRenderingContext2D/bezierCurveTo/_samples_/A_simple_B%C3%A9zier_curve" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/scripting.html#dom-context-2d-beziercurveto" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'CanvasRenderingContext2D.beziercurveto' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>bezierCurveTo</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>11.6</div></td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The interface defining this method: <a href="../canvasrenderingcontext2d"><code>CanvasRenderingContext2D</code></a>
+</li> <li><a href="https://en.wikipedia.org/wiki/B%C3%A9zier_curve" rel=" noopener">Wikipedia article on Bézier curves</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/bezierCurveTo" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/bezierCurveTo</a>
+  </p>
+</div>

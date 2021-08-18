@@ -1,0 +1,74 @@
+<h1>CredentialsContainer.store()</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <code>store()</code> method of the <a href="../credentialscontainer"><code>CredentialsContainer</code></a> stores a set of credentials for the user inside a <a href="../credential"><code>Credential</code></a> instance, returning this in a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>. </p> <div class="note notecard"> <p>This method is restricted to top-level contexts. Calls to it within an <code>&lt;iframe&gt;</code> element will resolve without effect.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">CredentialsContainer<span class="token punctuation">.</span><span class="token function">store</span><span class="token punctuation">(</span>Credential<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">Credential</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span> <span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>Credentials</dt> <dd>A valid <a href="../credential"><code>Credential</code></a> instance.</dd> </dl>
+<h3 id="returns">Returns</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>, resolving to the passed <a href="../credential"><code>Credential</code></a> instance. </p>
+<h2 id="example">Example</h2>
+<h3 id="storing_a_password_credential_at_successful_authentication">Storing a password credential at successful authentication</h3>
+<p>This code would be executed after a user signs up or logs in and the server confirms the credential is correct.</p> <pre data-language="js"><span class="token comment">// Check if the browser supports password credentials (and the Credential Management API)</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">"PasswordCredential"</span> <span class="token keyword">in</span> window<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> credential <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PasswordCredential</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    id<span class="token operator">:</span> <span class="token string">"example-username"</span><span class="token punctuation">,</span>
+    name<span class="token operator">:</span> <span class="token string">"John Doe"</span><span class="token punctuation">,</span> <span class="token comment">// In case of a login, the name comes from the server.</span>
+    password<span class="token operator">:</span> <span class="token string">"correct horse battery staple"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  navigator<span class="token punctuation">.</span>credentials<span class="token punctuation">.</span><span class="token function">store</span><span class="token punctuation">(</span>credential<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span><span class="token string">"Credential stored in the user agent's credential manager."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">"Error while storing the credential: "</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webappsec-credential-management/" hreflang="en" rel=" noopener">Credential Management Level 1</a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>store</code></th>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/CredentialsContainer/store" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/CredentialsContainer/store</a>
+  </p>
+</div>

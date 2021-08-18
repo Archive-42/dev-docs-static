@@ -1,0 +1,110 @@
+<h1>Event.timeStamp</h1> <p>The <code><strong>timeStamp</strong></code> read-only property of the <a href="../event"><code>Event</code></a> interface returns the time (in milliseconds) at which the event was created.</p> <div class="notecard note"> <p><strong>Note:</strong> This property only works if the event system supports it for the particular event.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">time <span class="token operator">=</span> event<span class="token punctuation">.</span>timeStamp<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>This value is the number of milliseconds elapsed from the beginning of the current <a href="../performance/timeorigin">document's lifetime</a> till the event was created.</p> <p>In newer implementations, the value is a <a href="../domhighrestimestamp"><code>DOMHighResTimeStamp</code></a> accurate to 5 microseconds (0.005 ms). In older implementations, the value is a <a href="../domtimestamp"><code>DOMTimeStamp</code></a>, accurate to a millisecond.</p>
+<h2 id="example">Example</h2>
+<h3 id="html">HTML</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>
+  Focus this iframe and press any key to get the
+  current timestamp for the keypress event.
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>timeStamp: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>time<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js"><span class="token keyword">function</span> <span class="token function">getTime</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> time <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"time"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  time<span class="token punctuation">.</span>firstChild<span class="token punctuation">.</span>nodeValue <span class="token operator">=</span> event<span class="token punctuation">.</span>timeStamp<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"keypress"</span><span class="token punctuation">,</span> getTime<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="result">Result</h3>
+<p><iframe class="sample-code-frame" id="frame_Example" width="100%" height="100" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Event/timeStamp/_samples_/Example" loading="lazy"></iframe></p>
+<h2 id="reduced_time_precision">Reduced time precision</h2>
+<p>To offer protection against timing attacks and fingerprinting, the precision of <code>Event.timeStamp</code> might get rounded depending on browser settings.</p> <p>In Firefox, the <code>privacy.reduceTimerPrecision</code> preference is enabled by default and defaults to 20us in Firefox 59; in 60 it will be 2ms.</p> <pre data-language="js"><span class="token comment">// reduced time precision (2ms) in Firefox 60</span>
+event<span class="token punctuation">.</span>timeStamp<span class="token punctuation">;</span>
+<span class="token comment">// 1519211809934</span>
+<span class="token comment">// 1519211810362</span>
+<span class="token comment">// 1519211811670</span>
+<span class="token comment">// ...</span>
+
+<span class="token comment">// reduced time precision with `privacy.resistFingerprinting` enabled</span>
+event<span class="token punctuation">.</span>timeStamp<span class="token punctuation">;</span>
+<span class="token comment">// 1519129853500</span>
+<span class="token comment">// 1519129858900</span>
+<span class="token comment">// 1519129864400</span>
+<span class="token comment">// ...</span>
+</pre> <p>In Firefox, if you also enable <code>privacy.resistFingerprinting</code>, the precision will be 100ms or the value of <code>privacy.resistFingerprinting.reduceTimerPrecision.microseconds</code>, whichever is larger.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://dom.spec.whatwg.org/#dom-event-timestamp" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'Event.timeStamp' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>timeStamp</code></th>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>Starting with Chrome 49, Firefox 54 and Opera 36, this property returns <a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a> instead of <a href="https://developer.mozilla.org/docs/Web/API/DOMTimeStamp"><code>DOMTimeStamp</code></a>.</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Starting with Chrome 49, Firefox 54 and Opera 36, this property returns <a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a> instead of <a href="https://developer.mozilla.org/docs/Web/API/DOMTimeStamp"><code>DOMTimeStamp</code></a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Starting with Chrome 49, Firefox 54 and Opera 36, this property returns <a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a> instead of <a href="https://developer.mozilla.org/docs/Web/API/DOMTimeStamp"><code>DOMTimeStamp</code></a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>36</div>
+<div>Starting with Chrome 49, Firefox 54 and Opera 36, this property returns <a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a> instead of <a href="https://developer.mozilla.org/docs/Web/API/DOMTimeStamp"><code>DOMTimeStamp</code></a>.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>Starting with version 49, this property returns <a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a> instead of <a href="https://developer.mozilla.org/docs/Web/API/DOMTimeStamp"><code>DOMTimeStamp</code></a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>Starting with Chrome 49, Firefox 54 and Opera 36, this property returns <a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a> instead of <a href="https://developer.mozilla.org/docs/Web/API/DOMTimeStamp"><code>DOMTimeStamp</code></a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Starting with Chrome 49, Firefox 54 and Opera 36, this property returns <a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a> instead of <a href="https://developer.mozilla.org/docs/Web/API/DOMTimeStamp"><code>DOMTimeStamp</code></a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>36</div>
+<div>Starting with Chrome 49, Firefox 54 and Opera 36, this property returns <a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a> instead of <a href="https://developer.mozilla.org/docs/Web/API/DOMTimeStamp"><code>DOMTimeStamp</code></a>.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes">
+<div>5.0</div>
+<div>Starting with Samsung Internet 5.0, Firefox 54 and Opera 36, this property returns <a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a> instead of <a href="https://developer.mozilla.org/docs/Web/API/DOMTimeStamp"><code>DOMTimeStamp</code></a>.</div>
+</td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/timeStamp" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Event/timeStamp</a>
+  </p>
+</div>

@@ -1,0 +1,223 @@
+<h1>XDomainRequest</h1>
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div>
+<div class="notecard warning"> <strong id="non-standard">Non-standard</strong> <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p> </div> <p>XDomainRequest is an implementation of <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">HTTP access control (CORS) </a>that worked in Internet Explorer 8 and 9. It was removed in Internet Explorer 10 in favor of using <a href="xmlhttprequest">XMLHttpRequest </a>with proper CORS; if you are targeting Internet Explorer 10 or later, or wish to support any other browser, you need to use standard <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">HTTP access control</a>.</p> <p>This interface can send both GET and POST requests.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> xdr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XDomainRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Returns a new <code>XDomainRequest</code> object, which can then be used to make and manage these requests.</p>
+<h2 id="properties">Properties</h2>
+<dl> <dt><a href="xdomainrequest/timeout"><code>XDomainRequest.timeout</code></a></dt> <dd>Gets or sets the amount of time until a request times out.</dd> <dt><a href="xdomainrequest/responsetext"><code>XDomainRequest.responseText</code></a></dt> <dd>Gets the response body as a string.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="xdomainrequest/open"><code>XDomainRequest.open()</code></a></dt> <dd>Opens the request, specifying the method (GET/POST) and URL.</dd> <dt><a href="xdomainrequest/send"><code>XDomainRequest.send()</code></a></dt> <dd>Sends the request. POST data is specified in this method.</dd> <dt><a href="xdomainrequest/abort"><code>XDomainRequest.abort()</code></a></dt> <dd>Aborts the request.</dd> </dl>
+<h2 id="event_handlers">Event handlers</h2>
+<dl> <dt><a href="xdomainrequest/onprogress"><code>XDomainRequest.onprogress</code></a></dt> <dd>A handler for when the request has made progress between the send method call and the onload event.</dd> <dt><a href="xdomainrequest/ontimeout"><code>XDomainRequest.ontimeout</code></a></dt> <dd>A handler for when the request times out.</dd> <dt><a href="xdomainrequest/onerror"><code>XDomainRequest.onerror</code></a></dt> <dd>A handler for when a request has errored.</dd> <dt><a href="xdomainrequest/onload"><code>XDomainRequest.onload</code></a></dt> <dd>A handler for when the full response has been received from the server.</dd> </dl>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token keyword">if</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>XDomainRequest<span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">var</span> xdr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XDomainRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  xdr<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"get"</span><span class="token punctuation">,</span> <span class="token string">"http://example.com/api/method"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  xdr<span class="token punctuation">.</span><span class="token function-variable function">onprogress</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//Progress</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  xdr<span class="token punctuation">.</span><span class="token function-variable function">ontimeout</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//Timeout</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  xdr<span class="token punctuation">.</span><span class="token function-variable function">onerror</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//Error Occurred</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  xdr<span class="token punctuation">.</span><span class="token function-variable function">onload</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">//success(xdr.responseText);</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    xdr<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <div class="note notecard"> <p><strong>Note:</strong> The <code>xdr.send()</code> call is wrapped in a timeout (see <a href="windoworworkerglobalscope/settimeout"><code>window.setTimeout()</code></a> to prevent an issue with the interface where some requests are lost if multiple <code>XDomainRequest</code>s are being sent at the same time.</p> </div> <div class="note notecard"> <p><strong>Note:</strong> The <code>xdr.onprogress</code> event should always be defined, even as an empty function, or <code>XDomainRequest</code> may not fire onload for duplicate requests.</p> </div>
+<h2 id="security">Security</h2>
+<p>The XDomainRequest is built to be secure in multiple ways.</p> <ul> <li>The origin's security protocol must match that of the requested URL. (http to http, https to https). If these do not match, the request will error "Access is Denied". </li> <li>The requested URL's server must have the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#access-control-allow-origin"><code>Access-Control-Allow-Origin</code></a> header set to either all ("*") or to include the origin of the request.</li> </ul>
+<h2 id="specifications">Specifications</h2>
+<p>This interface and its methods are non-standard.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>XDomainRequest</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>8-11</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>abort</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>8-11</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>onerror</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>8-11</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>onload</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>8-11</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>onprogress</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>8-11</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>ontimeout</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>8-11</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>open</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>8-11</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>responseText</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>8-11</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>send</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>8-11</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>timeout</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>8-11</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XDomainRequest" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XDomainRequest</a>
+  </p>
+</div>

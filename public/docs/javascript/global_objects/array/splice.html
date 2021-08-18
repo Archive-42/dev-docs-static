@@ -1,0 +1,125 @@
+<h1>Array.prototype.splice()</h1> <p>The <code>splice()</code> method changes the contents of an array by removing or replacing existing elements and/or adding new elements <a href="https://en.wikipedia.org/wiki/In-place_algorithm" rel=" noopener">in place</a>.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/array-splice.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">splice</span><span class="token punctuation">(</span>start<span class="token punctuation">)</span>
+<span class="token function">splice</span><span class="token punctuation">(</span>start<span class="token punctuation">,</span> deleteCount<span class="token punctuation">)</span>
+<span class="token function">splice</span><span class="token punctuation">(</span>start<span class="token punctuation">,</span> deleteCount<span class="token punctuation">,</span> item1<span class="token punctuation">)</span>
+<span class="token function">splice</span><span class="token punctuation">(</span>start<span class="token punctuation">,</span> deleteCount<span class="token punctuation">,</span> item1<span class="token punctuation">,</span> item2<span class="token punctuation">,</span> itemN<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>start</var></code></dt> <dd> <p>The index at which to start changing the array.</p> <p>If greater than the length of the array, <code><var>start</var></code> will be set to the length of the array. In this case, no element will be deleted but the method will behave as an adding function, adding as many element as item[n*] provided.</p> <p>If negative, it will begin that many elements from the end of the array. (In this case, the origin <code>-1</code>, meaning <code>-<var>n</var></code> is the index of the <code><var>n</var></code><sup>th</sup> last element, and is therefore equivalent to the index of <code><var>array</var>.length - <var>n</var></code>.) If <code><var>array</var>.length + <var>start</var></code> is less than <code>0</code>, it will begin from index <code>0</code>.</p> </dd> <dt>
+<code><var>deleteCount</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>An integer indicating the number of elements in the array to remove from <code><var>start</var></code>.</p> <p>If <code><var>deleteCount</var></code> is omitted, or if its value is equal to or larger than <code><var>array</var>.length - <var>start</var></code> (that is, if it is equal to or greater than the number of elements left in the array, starting at <code><var>start</var></code>), then all the elements from <code><var>start</var></code> to the end of the array will be deleted.</p> <p>If <code><var>deleteCount</var></code> is <code>0</code> or negative, no elements are removed. In this case, you should specify at least one new element (see below).</p> </dd> <dt>
+<code><var>item1</var>, <var>item2</var>, ...</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>The elements to add to the array, beginning from <code><var>start</var></code>. If you do not specify any elements, <code>splice()</code> will only remove elements from the array.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>An array containing the deleted elements.</p> <p>If only one element is removed, an array of one element is returned.</p> <p>If no elements are removed, an empty array is returned.</p>
+<h2 id="description">Description</h2>
+<p>If the specified number of elements to insert differs from the number of elements being removed, the array's <code>length</code> will be changed.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="remove_0_zero_elements_before_index_2_and_insert_drum">Remove 0 (zero) elements before index 2, and insert "drum"</h3>
+<pre data-language="js"><span class="token keyword">let</span> myFish <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'angel'</span><span class="token punctuation">,</span> <span class="token string">'clown'</span><span class="token punctuation">,</span> <span class="token string">'mandarin'</span><span class="token punctuation">,</span> <span class="token string">'sturgeon'</span><span class="token punctuation">]</span>
+<span class="token keyword">let</span> removed <span class="token operator">=</span> myFish<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">'drum'</span><span class="token punctuation">)</span>
+
+<span class="token comment">// myFish is ["angel", "clown", "drum", "mandarin", "sturgeon"]</span>
+<span class="token comment">// removed is [], no elements removed</span></pre>
+<h3 id="remove_0_zero_elements_before_index_2_and_insert_drum_and_guitar">Remove 0 (zero) elements before index 2, and insert "drum" and "guitar"</h3>
+<pre data-language="js"><span class="token keyword">let</span> myFish <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'angel'</span><span class="token punctuation">,</span> <span class="token string">'clown'</span><span class="token punctuation">,</span> <span class="token string">'mandarin'</span><span class="token punctuation">,</span> <span class="token string">'sturgeon'</span><span class="token punctuation">]</span>
+<span class="token keyword">let</span> removed <span class="token operator">=</span> myFish<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">'drum'</span><span class="token punctuation">,</span> <span class="token string">'guitar'</span><span class="token punctuation">)</span>
+
+<span class="token comment">// myFish is ["angel", "clown", "drum", "guitar", "mandarin", "sturgeon"]</span>
+<span class="token comment">// removed is [], no elements removed</span>
+</pre>
+<h3 id="remove_1_element_at_index_3">Remove 1 element at index 3</h3>
+<pre data-language="js"><span class="token keyword">let</span> myFish <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'angel'</span><span class="token punctuation">,</span> <span class="token string">'clown'</span><span class="token punctuation">,</span> <span class="token string">'drum'</span><span class="token punctuation">,</span> <span class="token string">'mandarin'</span><span class="token punctuation">,</span> <span class="token string">'sturgeon'</span><span class="token punctuation">]</span>
+<span class="token keyword">let</span> removed <span class="token operator">=</span> myFish<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token comment">// myFish is ["angel", "clown", "drum", "sturgeon"]</span>
+<span class="token comment">// removed is ["mandarin"]</span>
+</pre>
+<h3 id="remove_1_element_at_index_2_and_insert_trumpet">Remove 1 element at index 2, and insert "trumpet"</h3>
+<pre data-language="js"><span class="token keyword">let</span> myFish <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'angel'</span><span class="token punctuation">,</span> <span class="token string">'clown'</span><span class="token punctuation">,</span> <span class="token string">'drum'</span><span class="token punctuation">,</span> <span class="token string">'sturgeon'</span><span class="token punctuation">]</span>
+<span class="token keyword">let</span> removed <span class="token operator">=</span> myFish<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">'trumpet'</span><span class="token punctuation">)</span>
+
+<span class="token comment">// myFish is ["angel", "clown", "trumpet", "sturgeon"]</span>
+<span class="token comment">// removed is ["drum"]</span></pre>
+<h3 id="remove_2_elements_from_index_0_and_insert_parrot_anemone_and_blue">Remove 2 elements from index 0, and insert "parrot", "anemone" and "blue"</h3>
+<pre data-language="js"><span class="token keyword">let</span> myFish <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'angel'</span><span class="token punctuation">,</span> <span class="token string">'clown'</span><span class="token punctuation">,</span> <span class="token string">'trumpet'</span><span class="token punctuation">,</span> <span class="token string">'sturgeon'</span><span class="token punctuation">]</span>
+<span class="token keyword">let</span> removed <span class="token operator">=</span> myFish<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'parrot'</span><span class="token punctuation">,</span> <span class="token string">'anemone'</span><span class="token punctuation">,</span> <span class="token string">'blue'</span><span class="token punctuation">)</span>
+
+<span class="token comment">// myFish is ["parrot", "anemone", "blue", "trumpet", "sturgeon"]</span>
+<span class="token comment">// removed is ["angel", "clown"]</span></pre>
+<h3 id="remove_2_elements_starting_from_index_2">Remove 2 elements, starting from index 2</h3>
+<pre data-language="js"><span class="token keyword">let</span> myFish <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'parrot'</span><span class="token punctuation">,</span> <span class="token string">'anemone'</span><span class="token punctuation">,</span> <span class="token string">'blue'</span><span class="token punctuation">,</span> <span class="token string">'trumpet'</span><span class="token punctuation">,</span> <span class="token string">'sturgeon'</span><span class="token punctuation">]</span>
+<span class="token keyword">let</span> removed <span class="token operator">=</span> myFish<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+
+<span class="token comment">// myFish is ["parrot", "anemone", "sturgeon"]</span>
+<span class="token comment">// removed is ["blue", "trumpet"]</span></pre>
+<h3 id="remove_1_element_from_index_-2">Remove 1 element from index -2</h3>
+<pre data-language="js"><span class="token keyword">let</span> myFish <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'angel'</span><span class="token punctuation">,</span> <span class="token string">'clown'</span><span class="token punctuation">,</span> <span class="token string">'mandarin'</span><span class="token punctuation">,</span> <span class="token string">'sturgeon'</span><span class="token punctuation">]</span>
+<span class="token keyword">let</span> removed <span class="token operator">=</span> myFish<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span>
+
+<span class="token comment">// myFish is ["angel", "clown", "sturgeon"]</span>
+<span class="token comment">// removed is ["mandarin"]</span></pre>
+<h3 id="remove_all_elements_starting_from_index_2">Remove all elements, starting from index 2</h3>
+<pre data-language="js"><span class="token keyword">let</span> myFish <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'angel'</span><span class="token punctuation">,</span> <span class="token string">'clown'</span><span class="token punctuation">,</span> <span class="token string">'mandarin'</span><span class="token punctuation">,</span> <span class="token string">'sturgeon'</span><span class="token punctuation">]</span>
+<span class="token keyword">let</span> removed <span class="token operator">=</span> myFish<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+<span class="token comment">// myFish is ["angel", "clown"]</span>
+<span class="token comment">// removed is ["mandarin", "sturgeon"]</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-array.prototype.splice">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-array.prototype.splice</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>splice</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>5.5</div>
+<div>From Internet Explorer 5.5 through 8, all elements of the array will not be deleted if <code>deleteCount</code> is omitted. This behavior was fixed in Internet Explorer 9.</div>
+</td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="push"><code>push()</code></a> / <a href="pop"><code>pop()</code></a>— add/remove elements from the end of the array</li> <li>
+<a href="unshift"><code>unshift()</code></a> / <a href="shift"><code>shift()</code></a>— add/remove elements from the beginning of the array</li> <li>
+<a href="concat"><code>concat()</code></a>— returns a new array comprised of this array joined with other array(s) and/or value(s)</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice</a>
+  </p>
+</div>

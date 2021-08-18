@@ -1,0 +1,85 @@
+<h1>Function.prototype.toString()</h1> <p>The <code><strong>toString()</strong></code> method returns a string representing the source code of the function.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/function-tostring.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre>
+<h3 id="return_value">Return value</h3>
+<p>A string representing the source code of the function.</p>
+<h2 id="description">Description</h2>
+<p>The <a href="../function"><code>Function</code></a> object overrides the <a href="../object/tostring"><code>toString</code></a> method inherited from <a href="../object"><code>Object</code></a>; it does not inherit <a href="../object/tostring"><code>Object.prototype.toString</code></a>. For user-defined <a href="../function"><code>Function</code></a> objects, the <code>toString</code> method returns a string containing the source text segment which was used to define the function.</p> <p>JavaScript calls the <code>toString</code> method automatically when a <a href="../function"><code>Function</code></a> is to be represented as a text value, e.g. when a function is concatenated with a string.</p> <p>The <code>toString()</code> method will throw a <a href="../typeerror"><code>TypeError</code></a> exception ("Function.prototype.toString called on incompatible object"), if its <code>this</code> value object is not a <code>Function</code> object.</p> <pre data-language="js"><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// TypeError</span>
+</pre> <p>If the <code>toString()</code> method is called on built-in function objects or a function created by <code>Function.prototype.bind</code>, <code>toString()</code> returns a <em>native function string</em> which looks like</p> <pre data-language="js"><span class="token string">"function () {\n    [native code]\n}"</span>
+</pre> <p>If the <code>toString()</code> method is called on a function created by the <code>Function</code> constructor, <code>toString()</code> returns the source code of a synthesized function declaration named "anonymous" using the provided parameters and function body.</p> <p>It's also possible to explicitly get the string representation of a function using the <code>+</code> operator:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token string">'bar'</span> <span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>foo <span class="token operator">+</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// "function foo() { return 'bar' }"</span></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="comparing_actual_source_code_and_tostring_results">Comparing actual source code and toString results</h3>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Function</th> <th scope="col">Function.prototype.toString result</th> </tr> </thead> <tbody> <tr> <td> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span></pre> </td> <td> <pre data-language="js"><span class="token string">"function f(){}"</span></pre> </td> </tr> <tr> <td> <pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">A</span> <span class="token punctuation">{</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">}</span></pre> </td> <td> <pre data-language="js"><span class="token string">"class A { a(){} }"</span></pre> </td> </tr> <tr> <td> <pre data-language="js"><span class="token keyword">function</span><span class="token operator">*</span> <span class="token function">g</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span></pre> </td> <td> <pre data-language="js"><span class="token string">"function* g(){}"</span></pre> </td> </tr> <tr> <td> <pre data-language="js"><span class="token parameter">a</span> <span class="token operator">=&gt;</span> a</pre> </td> <td> <pre data-language="js"><span class="token string">"a =&gt; a"</span></pre> </td> </tr> <tr> <td> <pre data-language="js"><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">.</span>a<span class="token punctuation">)</span></pre> </td> <td> <pre data-language="js"><span class="token string">"a(){}"</span></pre> </td> </tr> <tr> <td> <pre data-language="js"><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token operator">*</span><span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">.</span>a<span class="token punctuation">)</span></pre> </td> <td> <pre data-language="js"><span class="token string">"*a(){}"</span></pre> </td> </tr> <tr> <td> <pre data-language="js"><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span></pre> </td> <td> <pre data-language="js"><span class="token string">"[0](){}"</span></pre> </td> </tr> <tr> <td> <pre data-language="js">Object<span class="token punctuation">.</span><span class="token function">getOwnPropertyDescriptor</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token keyword">get</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>get</pre> </td> <td> <pre data-language="js"><span class="token string">"get a(){}"</span></pre> </td> </tr> <tr> <td> <pre data-language="js">Object<span class="token punctuation">.</span><span class="token function">getOwnPropertyDescriptor</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token keyword">set</span> <span class="token function">a</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>set</pre> </td> <td> <pre data-language="js"><span class="token string">"set a(x){}"</span></pre> </td> </tr> <tr> <td> <pre data-language="js"><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>toString</pre> </td> <td> <pre data-language="js"><span class="token string">"function toString() { [native code] }"</span></pre> </td> </tr> <tr> <td> <pre data-language="js"><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span></pre> </td> <td> <pre data-language="js"><span class="token string">"function () { [native code] }"</span></pre> </td> </tr> <tr> <td> <pre data-language="js"><span class="token function">Function</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">)</span></pre> </td> <td> <pre data-language="js"><span class="token string">"function anonymous(a\n) {\nb\n}"</span></pre> </td> </tr> </tbody> </table></div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-function.prototype.tostring">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-function.prototype.tostring</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>toString</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>toString_revision</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../object/tostring"><code>Object.prototype.toString()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/toString" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/toString</a>
+  </p>
+</div>

@@ -1,0 +1,96 @@
+<h1>AnalyserNode.minDecibels</h1>
+
+ <p class="summary">The <code>minDecibels</code> property of the <a href="../analysernode"><code>AnalyserNode</code></a> interface is a double value representing the minimum power value in the scaling range for the FFT analysis data, for conversion to unsigned byte values — basically, this specifies the minimum value for the range of results when using <code>getByteFrequencyData()</code>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> curValue <span class="token operator">=</span> analyserNode<span class="token punctuation">.</span>minDecibels<span class="token punctuation">;</span>
+analyserNode<span class="token punctuation">.</span>minDecibels <span class="token operator">=</span> newValue<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>A double, representing the minimum <a href="https://en.wikipedia.org/wiki/Decibel" rel=" noopener">decibel</a> value for scaling the FFT analysis data, where <code>0</code> dB is the loudest possible sound, <code>-10</code> dB is a 10th of that, etc. The default value is <code>-100</code> dB.</p> <p>When getting data from <code>getByteFrequencyData()</code>, any frequencies with an amplitude of <code>minDecibels</code> or lower will be returned as <code>0</code>.</p> <div class="note notecard"> <p><strong>Note</strong>: If a value greater than <code>AnalyserNode.maxDecibels</code> is set, an <code>INDEX_SIZE_ERR</code> exception is thrown.</p> </div>
+<h2 id="example">Example</h2>
+<p>The following example shows basic usage of an <a href="../audiocontext"><code>AudioContext</code></a> to create an <code>AnalyserNode</code>, then <a href="../window/requestanimationframe"><code>requestAnimationFrame</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas"><code>&lt;canvas&gt;</code></a> to collect frequency data repeatedly and draw a "winamp bargraph style" output of the current audio input. For more complete applied examples/information, check out our <a href="https://mdn.github.io/voice-change-o-matic/" rel=" noopener">Voice-change-O-matic</a> demo (see <a href="https://github.com/mdn/voice-change-o-matic/blob/gh-pages/scripts/app.js#L128-L205" rel=" noopener">app.js lines 128–205</a> for relevant code).</p> <pre data-language="js"><span class="token keyword">var</span> audioCtx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>AudioContext <span class="token operator">||</span> window<span class="token punctuation">.</span>webkitAudioContext<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> analyser <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createAnalyser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+analyser<span class="token punctuation">.</span>minDecibels <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">90</span><span class="token punctuation">;</span>
+analyser<span class="token punctuation">.</span>maxDecibels <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">10</span><span class="token punctuation">;</span>
+
+  <span class="token operator">...</span>
+
+analyser<span class="token punctuation">.</span>fftSize <span class="token operator">=</span> <span class="token number">256</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> bufferLength <span class="token operator">=</span> analyser<span class="token punctuation">.</span>frequencyBinCount<span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>bufferLength<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> dataArray <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span>bufferLength<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+canvasCtx<span class="token punctuation">.</span><span class="token function">clearRect</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token constant">WIDTH</span><span class="token punctuation">,</span> <span class="token constant">HEIGHT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  drawVisual <span class="token operator">=</span> <span class="token function">requestAnimationFrame</span><span class="token punctuation">(</span>draw<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  analyser<span class="token punctuation">.</span><span class="token function">getByteFrequencyData</span><span class="token punctuation">(</span>dataArray<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  canvasCtx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> <span class="token string">'rgb(0, 0, 0)'</span><span class="token punctuation">;</span>
+  canvasCtx<span class="token punctuation">.</span><span class="token function">fillRect</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token constant">WIDTH</span><span class="token punctuation">,</span> <span class="token constant">HEIGHT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">var</span> barWidth <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token constant">WIDTH</span> <span class="token operator">/</span> bufferLength<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">2.5</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> barHeight<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> bufferLength<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    barHeight <span class="token operator">=</span> dataArray<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    canvasCtx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> <span class="token string">'rgb('</span> <span class="token operator">+</span> <span class="token punctuation">(</span>barHeight<span class="token operator">+</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">',50,50)'</span><span class="token punctuation">;</span>
+    canvasCtx<span class="token punctuation">.</span><span class="token function">fillRect</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span><span class="token constant">HEIGHT</span><span class="token operator">-</span>barHeight<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">,</span>barWidth<span class="token punctuation">,</span>barHeight<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    x <span class="token operator">+=</span> barWidth <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token function">draw</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://webaudio.github.io/web-audio-api/#dom-analysernode-mindecibels" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'minDecibels' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>minDecibels</code></th>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../web_audio_api/using_web_audio_api">Using the Web Audio API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/minDecibels" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/AnalyserNode/minDecibels</a>
+  </p>
+</div>

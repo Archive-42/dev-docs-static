@@ -1,0 +1,91 @@
+<h1>Document.importNode()</h1> <p>The <a href="../document"><code>Document</code></a> object's <code>importNode()</code> method creates a copy of a <a href="../node"><code>Node</code></a> or <a href="../documentfragment"><code>DocumentFragment</code></a> from another document, to be inserted into the current document later.</p> <p>The imported node is not yet included in the document tree. To include it, you need to call an insertion method such as <a href="../node/appendchild"><code>appendChild()</code></a> or <a href="../node/insertbefore"><code>insertBefore()</code></a> with a node that <em>is</em> currently in the document tree.</p> <p>Unlike <a href="adoptnode"><code>document.adoptNode()</code></a>, the original node is not removed from its original document. The imported node is a clone of the original.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">const</span> importedNode <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">importNode</span><span class="token punctuation">(</span>externalNode <span class="token punctuation">[</span><span class="token punctuation">,</span> deep<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>externalNode</var></code></dt> <dd>The external <a href="../node"><code>Node</code></a> or <a href="../documentfragment"><code>DocumentFragment</code></a> to import into the current document.</dd> <dt>
+<code><var>deep</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A Boolean which controls whether to include the entire DOM subtree of the <code><var>externalNode</var></code> in the import. <ul> <li>If <code><var>deep</var></code> is set to <code>true</code>, then <code><var>externalNode</var></code> and all of its descendants are copied.</li> <li>If <code><var>deep</var></code> is set to <code>false</code>, then only <code><var>externalNode</var></code> is imported — the new node has no children. </li> </ul> <div class="note notecard"> <p><strong>Note:</strong> In the DOM4 specification, <code><var>deep</var></code> was an optional argument with a default value of <code>true</code>.</p> <p><strong>This default has changed in the latest spec!</strong> The new default value is <code>false</code>.</p> <p><strong>Best Practice:</strong> Though it's still an optional argument, you should always provide the <code><var>deep</var></code> argument for backward <em>and</em> forward compatibility.</p> <ul> <li>With Gecko 28.0 (Firefox 28 / Thunderbird 28 / SeaMonkey 2.25 / Firefox OS 1.3), the console warns developers not to omit the argument.</li> <li>Starting with Gecko 29.0 (Firefox 29 / Thunderbird 29 / SeaMonkey 2.26)), a shallow clone is defaulted instead of a deep clone.</li> </ul> </div> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The copied <code><var>importedNode</var></code> in the scope of the importing document. </p> <div class="notecard note"> <p><strong>Note:</strong> <code><var>importedNode</var></code>'s <a href="../node/parentnode"><code>Node.parentNode</code></a> is <code>null</code>, since it has not yet been inserted into the document tree!</p> </div>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token keyword">const</span> iframe  <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"iframe"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> oldNode <span class="token operator">=</span> iframe<span class="token punctuation">.</span>contentWindow<span class="token punctuation">.</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"myNode"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> newNode <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">importNode</span><span class="token punctuation">(</span>oldNode<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"container"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>newNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="notes">Notes</h2>
+
+<p>Before they can be inserted into the current document, nodes from external documents should either be:</p>
+<ul> <li>cloned using <a href="importnode"><code>document.importNode()</code></a>; or</li> <li>adopted using <a href="adoptnode"><code>document.adoptNode()</code></a>.</li> </ul>
+<div class="notecard note"> <p><strong>Best Practice:</strong> Although Firefox doesn't currently enforce this rule, we encourage you to follow this rule for improved future compatibility.</p> </div>
+<p>For more on the <a href="../node/ownerdocument"><code>Node.ownerDocument</code></a> issues, see the W3C DOM FAQ.</p>
+
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td>
+<a href="https://dom.spec.whatwg.org/#dom-document-importnode" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'document.importNode()' in that specification.</small></a> </td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/DOM-Level-2-Core/core.html#Core-Document-importNode" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 2 Core Specification<br><small>The definition of 'document.importNode()' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>importNode</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>deep_optional</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="adoptnode"><code>document.adoptNode()</code></a>, which behaves very similar to this method</li> <li><a href="../node/appendchild"><code>Node.appendChild()</code></a></li> <li><a href="../node/insertbefore"><code>Node.insertBefore()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/importNode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Document/importNode</a>
+  </p>
+</div>

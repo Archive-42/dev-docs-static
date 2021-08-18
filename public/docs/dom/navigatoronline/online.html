@@ -1,0 +1,87 @@
+<h1>Navigator.onLine</h1> <p>Returns the online status of the browser. The property returns a boolean value, with <code>true</code> meaning online and <code>false</code> meaning offline. The property sends updates whenever the browser's ability to connect to the network changes. The update occurs when the user follows links or when a script requests a remote page. For example, the property should return <code>false</code> when users click links soon after they lose internet connection.</p> <p>Browsers implement this property differently.</p> <p>In Chrome and Safari, if the browser is not able to connect to a local area network (LAN) or a router, it is offline; all other conditions return <code>true</code>. So while you can assume that the browser is offline when it returns a <code>false</code> value, you cannot assume that a true value necessarily means that the browser can access the internet. You could be getting false positives, such as in cases where the computer is running a virtualization software that has virtual ethernet adapters that are always "connected." Therefore, if you really want to determine the online status of the browser, you should develop additional means for checking. To learn more, see the HTML5 Rocks article, <a href="https://www.html5rocks.com/en/mobile/workingoffthegrid.html" rel=" noopener"> Working Off the Grid</a>.</p> <p>In Firefox and Internet Explorer, switching the browser to offline mode sends a <code>false</code> value. Until Firefox 41, all other conditions return a <code>true</code> value; testing actual behavior on Nightly 68 on Windows shows that it only looks for LAN connection like Chrome and Safari giving false positives.</p> <p>You can see changes in the network state by listening for the events on <a href="../document/ononline"><code>window.ononline</code></a> and <a href="../document/onoffline"><code>window.onoffline</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">online <span class="token operator">=</span> window<span class="token punctuation">.</span>navigator<span class="token punctuation">.</span>onLine<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p><code>online</code> is a boolean <code>true</code> or <code>false</code>.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="basic_usage">Basic usage</h3>
+<p>To check if you are online, query <code>window.navigator.onLine</code>, as in the following example:</p> <pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span>navigator<span class="token punctuation">.</span>onLine<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'online'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'offline'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>If the browser doesn't support <code>navigator.onLine</code> the above example will always come out as <code>false</code>/<code>undefined</code>.</p>
+<h3 id="listening_for_changes_in_network_status">Listening for changes in network status </h3>
+<p>To see changes in the network state, use <code><a href="../eventtarget/addeventlistener">addEventListener</a></code> to listen for the events on <code>window.online</code> and <code>window.offline</code>, as in the following example:</p> <pre data-language="js">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'offline'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'offline'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'online'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'online'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://html.spec.whatwg.org/multipage/browsers.html#dom-navigator-online" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'navigator.onLine' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onLine</code></th>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Earlier versions of Chrome incorrectly return true when a tab is first opened, but it starts reporting the correct connectivity status after the first network event. Windows: 11, Mac: 14, Chrome OS: 13, Linux: Always returns <code>true</code>. For history, see <a href="https://crbug.com/7469">crbug.com/7469</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>1.5</div>
+<div>Since Firefox 4 the browser returns <code>true</code> when 'Work Offline' mode is disabled and <code>false</code> when it is enabled, regardless of actual connectivity. Since Firefox 41, on OS X and Windows, the returned values follow the actual network connectivity, unless 'Work offline' mode is selected (where it will always return <code>false</code>).</div>
+</td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>in Internet Explorer 8 'online' and 'offline' events are raised on the <code>document.body</code>; under IE 9 they are raised on both <code>document.body</code> and <code>window</code>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>3</div>
+<div>From Opera 11.1 until Opera 12.1, the browser returns <code>true</code> when 'Work Offline' mode is disabled and <code>false</code> when it is enabled, regardless of actual connectivity.</div>
+</td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Faulty in a WebView component, see Issue <a href="http://code.google.com/p/android/issues/detail?id=16760">bug 16760</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>10.1</div>
+<div>From Opera 11.1 until Opera 12.1, the browser returns <code>true</code> when 'Work Offline' mode is disabled and <code>false</code> when it is enabled, regardless of actual connectivity.</div>
+</td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="notes">Notes</h2>
+<p>See <a href="online_and_offline_events">Online/Offline Events</a> for a more detailed description of this property as well as new offline-related features introduced in Firefox 3.</p>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://www.html5rocks.com/en/mobile/workingoffthegrid.html" rel=" noopener">HTML5 Rocks: Working Off the Grid With HTML5 Offline</a></li> <li><a href="https://www.html5rocks.com/en/tutorials/offline/whats-offline/" rel=" noopener">HTML5 Rocks: "Offline": What does it mean and why should I care?</a></li> <li><a href="https://hacks.mozilla.org/2010/01/offline-web-applications/" rel=" noopener">Mozilla Blog: Offline Web Applications</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/onLine" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine/onLine</a>
+  </p>
+</div>

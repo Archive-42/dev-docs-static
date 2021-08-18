@@ -1,0 +1,93 @@
+<h1>Notification.requestPermission()</h1>
+
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="../web_workers_api">Web Workers</a>.</p> </div>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <div class="note notecard"> <p><strong>Note:</strong> This feature is <strong>not</strong> available in <a href="../sharedworker"><code>SharedWorker</code></a></p> </div> <div class="notecard note"> <p><strong>Note</strong>: Safari still uses the callback syntax to get the permission. Read <a href="../notifications_api/using_the_notifications_api">Using the Notifications API</a> for a good example of how to feature detect this and run code as appropriate.</p> </div> <p>The <code>requestPermission()</code> method of the <a href="../notification"><code>Notification</code></a> interface requests permission from the user for the current origin to display notifications.</p>
+<h2 id="syntax">Syntax</h2>
+<p>The latest spec has updated this method to a promise-based syntax that works like this:</p> <pre class="notranslate">Notification.requestPermission().then(function(permission) { ... });</pre> <p>Previously, the syntax was based on a simple callback; this version is now deprecated:</p> <pre class="notranslate">Notification.requestPermission(<var>callback</var>);</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code><var>callback</var></code> <span class="badge inline optional">Optional</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>An optional callback function that is called with the permission value. Deprecated in favor of the promise return value.</dd> </dl>
+<h3 id="returns">Returns</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to a <a href="../domstring"><code>DOMString</code></a> with the permission picked by the user. Possible values for this string are:</p> <ul> <li><code>granted</code></li> <li><code>denied</code></li> <li><code>default</code></li> </ul>
+<h2 id="examples">Examples</h2>
+<p>Assume this basic HTML:</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>notifyMe()<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Notify me!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span></pre> <p>It's possible to send a notification as follows — here we present a fairly verbose and complete set of code you could use if you wanted to first check whether notifications are supported, then check if permission has been granted for the current origin to send notifications, then request permission if required, before then sending a notification.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">notifyMe</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Let's check if the browser supports notifications</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span><span class="token string">"Notification"</span> <span class="token keyword">in</span> window<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"This browser does not support desktop notification"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Let's check whether notification permissions have already been granted</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>Notification<span class="token punctuation">.</span>permission <span class="token operator">===</span> <span class="token string">"granted"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// If it's okay let's create a notification</span>
+    <span class="token keyword">var</span> notification <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Notification</span><span class="token punctuation">(</span><span class="token string">"Hi there!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Otherwise, we need to ask the user for permission</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>Notification<span class="token punctuation">.</span>permission <span class="token operator">!==</span> <span class="token string">"denied"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Notification<span class="token punctuation">.</span><span class="token function">requestPermission</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">permission</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// If the user accepts, let's create a notification</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>permission <span class="token operator">===</span> <span class="token string">"granted"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> notification <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Notification</span><span class="token punctuation">(</span><span class="token string">"Hi there!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// At last, if the user has denied notifications, and you</span>
+  <span class="token comment">// want to be respectful there is no need to bother them any more.</span>
+<span class="token punctuation">}</span></pre> <p>We no longer show a live sample on this page, as Chrome and Firefox no longer allow notification permissions to be requested from cross-origin <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a>s, with other browsers to follow. To see a example in action, check out our <a href="https://github.com/mdn/to-do-notifications/tree/gh-pages" rel=" noopener">To-do list example</a> (also see <a href="https://mdn.github.io/to-do-notifications/" rel=" noopener">the app running live</a>.)</p> <div class="notecard note"> <p><strong>Note</strong>: In the above example we spawn notifications in response to a user gesture (clicking a button). This is not only best practice — you should not be spamming users with notifications they didn't agree to — but going forward browsers will explicitly disallow notifications not triggered in response to a user gesture. Firefox is already doing this from version 72, for example.</p> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://notifications.spec.whatwg.org/" hreflang="en" rel=" noopener">Notifications API</a></td> <td><span class="spec-living">Living Standard</span></td> <td>Living standard</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>requestPermission</code></th>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes">
+<div>47</div>
+<div>["From Firefox 70 onwards, cannot be called from a cross-origin IFrame.", "From Firefox 72 onwards, can only be called in response to a user gesture such as a <code>click</code> event."]</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../notifications_api/using_the_notifications_api">Using the Notifications API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Notification/requestPermission" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Notification/requestPermission</a>
+  </p>
+</div>

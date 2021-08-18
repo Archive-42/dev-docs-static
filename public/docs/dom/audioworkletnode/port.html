@@ -1,0 +1,80 @@
+<h1>AudioWorkletNode.port</h1>
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div> <p class="summary">The read-only <code>port</code> property of the <a href="../audioworkletnode"><code>AudioWorkletNode</code></a> interface returns the associated <a href="../messageport"><code>MessagePort</code></a>. It can be used to communicate between the node and its associated <a href="../audioworkletprocessor"><code>AudioWorkletProcessor</code></a>.</p> <div class="notecard note"> <p class="summary"><strong>Note</strong>: The port at the other end of the channel is available under the <a href="../audioworkletprocessor/port"><code>port</code></a> property of the processor.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">audioWorkletNodeInstance<span class="token punctuation">.</span>port<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>The <a href="../messageport"><code>MessagePort</code></a> object that is connecting the <code>AudioWorkletNode</code> and its associated <code>AudioWorkletProcessor</code>.</p>
+<h2 id="examples">Examples</h2>
+<p>To demonstrate bidirectional communication capabilities, we'll create an <code>AudioWorkletProcessor</code>, which will output silence and respond to ping requests from its <code>AudioWorkletNode</code>.</p> <p>First, we need to define a custom <code>AudioWorkletProcessor</code>, and register it. Note that this should be done in a separate file.</p> <pre data-language="js"><span class="token comment">// ping-pong-processor.js</span>
+<span class="token keyword">class</span> <span class="token class-name">PingPongProcessor</span> <span class="token keyword">extends</span> <span class="token class-name">AudioWorkletProcessor</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token operator">...</span>args</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token operator">...</span>args<span class="token punctuation">)</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>port<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>data<span class="token punctuation">)</span>
+      <span class="token keyword">this</span><span class="token punctuation">.</span>port<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span><span class="token string">'pong'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">process</span> <span class="token punctuation">(</span><span class="token parameter">inputs<span class="token punctuation">,</span> outputs<span class="token punctuation">,</span> parameters</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">registerProcessor</span><span class="token punctuation">(</span><span class="token string">'ping-pong-processor'</span><span class="token punctuation">,</span> PingPongProcessor<span class="token punctuation">)</span>
+</pre> <p>Now in our main scripts file we'll load the processor, create an instance of <code>AudioWorkletNode</code> passing the name of the processor, and connect the node to an audio graph.</p> <pre data-language="js"><span class="token keyword">const</span> audioContext <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">await</span> audioContext<span class="token punctuation">.</span>audioWorklet<span class="token punctuation">.</span><span class="token function">addModule</span><span class="token punctuation">(</span><span class="token string">'ping-pong-processor.js'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> pingPongNode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioWorkletNode</span><span class="token punctuation">(</span>audioContext<span class="token punctuation">,</span> <span class="token string">'ping-pong-processor'</span><span class="token punctuation">)</span>
+<span class="token comment">// send the message containing 'ping' string</span>
+<span class="token comment">// to the AudioWorkletProcessor from the AudioWorkletNode every second</span>
+<span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> pingPongNode<span class="token punctuation">.</span>port<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span><span class="token string">'ping'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span>
+pingPongNode<span class="token punctuation">.</span>port<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>data<span class="token punctuation">)</span>
+pingPongNode<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>audioContext<span class="token punctuation">.</span>destination<span class="token punctuation">)</span>
+</pre> <p>This will output <code>"ping"</code> and <code>"pong"</code> strings to the console every second.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://webaudio.github.io/web-audio-api/#dom-audioworkletnode-port" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'port' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>port</code></th>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../web_audio_api">Web Audio API</a></li> <li><a href="../web_audio_api/using_web_audio_api">Using the Web Audio API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioWorkletNode/port" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/AudioWorkletNode/port</a>
+  </p>
+</div>

@@ -1,0 +1,83 @@
+<h1>IDBDatabase.deleteObjectStore()</h1>
+
+  <p>The <code>deleteObjectStore()</code> method of the <a href="../idbdatabase"><code>IDBDatabase</code></a> interface destroys the object store with the given name in the connected database, along with any indexes that reference it.</p>  <p>As with <a href="createobjectstore"><code>IDBDatabase.createObjectStore</code></a>, this method can be called <em>only</em> within a <a href="../idbtransaction#version_change"><code>versionchange</code></a> transaction.</p> 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="../web_workers_api">Web Workers</a>.</p> </div>
+
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">dbInstance<span class="token punctuation">.</span><span class="token function">deleteObjectStore</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>name</code></dt> <dd>The name of the object store you want to delete.</dd> </dl>
+<h3 id="exceptions">Exceptions</h3>
+<p>This method may raise a <a href="../domexception"><code>DOMException</code></a> of one of the following types:</p> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Exception</th> <th scope="col">Description</th> </tr> </thead> <tbody> <tr> <td><code>InvalidStateError</code></td> <td>Occurs if the method was not called from a <code>versionchange</code> transaction callback. For older WebKit browsers, you must call first.</td> </tr> <tr> <td><code>TransactionInactiveError</code></td> <td>Occurs if a request is made on a source database that doesn't exist (e.g. has been deleted or removed.) In Firefox previous to version 41, an <code>InvalidStateError</code> was raised in this case as well, which was misleading; this has now been fixed (see <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1176165" rel=" noopener">bug 1176165</a>.)</td> </tr> <tr> <td><code>NotFoundError</code></td> <td>You are trying to delete an object store that does not exist. Names are case sensitive.</td> </tr> </tbody> </table></div>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token keyword">var</span> dbName <span class="token operator">=</span> <span class="token string">"sampleDB"</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> dbVersion <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> request <span class="token operator">=</span> indexedDB<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>dbName<span class="token punctuation">,</span> dbVersion<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+request<span class="token punctuation">.</span><span class="token function-variable function">onupgradeneeded</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> db <span class="token operator">=</span> request<span class="token punctuation">.</span>result<span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>oldVersion <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    db<span class="token punctuation">.</span><span class="token function">createObjectStore</span><span class="token punctuation">(</span><span class="token string">"store1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>oldVersion <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    db<span class="token punctuation">.</span><span class="token function">deleteObjectStore</span><span class="token punctuation">(</span><span class="token string">"store1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    db<span class="token punctuation">.</span><span class="token function">createObjectStore</span><span class="token punctuation">(</span><span class="token string">"store2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// etc. for version &lt; 3, 4...</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbdatabase-deleteobjectstore" hreflang="en" rel=" noopener">Indexed Database API 2.0<br><small>The definition of 'deleteObjectStore()' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbdatabase-deleteobjectstore" hreflang="en" rel=" noopener">Indexed Database API 2.0<br><small>The definition of 'deleteObjectStore()' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>deleteObjectStore</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../indexeddb_api/using_indexeddb">Using IndexedDB</a></li> <li>Starting transactions: <a href="../idbdatabase"><code>IDBDatabase</code></a>
+</li> <li>Using transactions: <a href="../idbtransaction"><code>IDBTransaction</code></a>
+</li> <li>Setting a range of keys: <a href="../idbkeyrange"><code>IDBKeyRange</code></a>
+</li> <li>Retrieving and making changes to your data: <a href="../idbobjectstore"><code>IDBObjectStore</code></a>
+</li> <li>Using cursors: <a href="../idbcursor"><code>IDBCursor</code></a>
+</li> <li>Reference example: <a href="https://github.com/mdn/to-do-notifications/tree/gh-pages" rel=" noopener">To-do Notifications</a> (<a href="https://mdn.github.io/to-do-notifications/" rel=" noopener">view example live</a>.)</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase/deleteObjectStore" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBDatabase/deleteObjectStore</a>
+  </p>
+</div>

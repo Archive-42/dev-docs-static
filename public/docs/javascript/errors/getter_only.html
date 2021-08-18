@@ -1,0 +1,58 @@
+<h1>TypeError: setting getter-only property "x"</h1> <p>The JavaScript <a href="../strict_mode">strict mode</a>-only exception "setting getter-only property" occurs when there is an attempt to set a new value to a property for which only a <a href="../functions/get">getter</a> is specified.</p>
+<h2 id="message">Message</h2>
+<pre data-language="js">TypeError<span class="token operator">:</span> Assignment to read<span class="token operator">-</span>only properties is not allowed <span class="token keyword">in</span> strict <span class="token function">mode</span> <span class="token punctuation">(</span>Edge<span class="token punctuation">)</span>
+TypeError<span class="token operator">:</span> setting getter<span class="token operator">-</span>only property <span class="token string">"x"</span> <span class="token punctuation">(</span>Firefox<span class="token punctuation">)</span>
+TypeError<span class="token operator">:</span> Cannot <span class="token keyword">set</span> property <span class="token string">"prop"</span> <span class="token keyword">of</span> #<span class="token operator">&lt;</span>Object<span class="token operator">&gt;</span> which has only a <span class="token function">getter</span> <span class="token punctuation">(</span>Chrome<span class="token punctuation">)</span>
+</pre>
+<h2 id="error_type">Error type</h2>
+<p><a href="../global_objects/typeerror"><code>TypeError</code></a> in <a href="../strict_mode">strict mode</a> only.</p>
+<h2 id="what_went_wrong">What went wrong?</h2>
+<p>There is an attempt to set a new value to a property for which only a <a href="../functions/get">getter</a> is specified. While this will be silently ignored in non-strict mode, it will throw a <a href="../global_objects/typeerror"><code>TypeError</code></a> in <a href="../strict_mode">strict mode</a>.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="property_with_no_setter">Property with no setter</h3>
+<p>The example below shows how to set a getter for a property. It doesn't specify a <a href="../functions/set">setter</a>, so a <code>TypeError</code> will be thrown upon trying to set the <code>temperature</code> property to <code>30</code>. For more details see also the <a href="../global_objects/object/defineproperty"><code>Object.defineProperty()</code></a> page.</p> <pre data-language="js"><span class="token string">"use strict"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">Archiver</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> temperature <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token string">'temperature'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">get</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'get!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> temperature<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> arc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Archiver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+arc<span class="token punctuation">.</span>temperature<span class="token punctuation">;</span> <span class="token comment">// 'get!'</span>
+
+arc<span class="token punctuation">.</span>temperature <span class="token operator">=</span> <span class="token number">30</span><span class="token punctuation">;</span>
+<span class="token comment">// TypeError: setting getter-only property "temperature"</span></pre> <p>To fix this error, you will either need to remove line 16, where there is an attempt to set the temperature property, or you will need to implement a <a href="../functions/set">setter</a> for it, for example like this:</p> <pre data-language="js"><span class="token string">"use strict"</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">Archiver</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> temperature <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> archive <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token string">'temperature'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">get</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'get!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> temperature<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function-variable function">set</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      temperature <span class="token operator">=</span> value<span class="token punctuation">;</span>
+      archive<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span> val<span class="token operator">:</span> temperature <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">getArchive</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> archive<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> arc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Archiver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+arc<span class="token punctuation">.</span>temperature<span class="token punctuation">;</span> <span class="token comment">// 'get!'</span>
+arc<span class="token punctuation">.</span>temperature <span class="token operator">=</span> <span class="token number">11</span><span class="token punctuation">;</span>
+arc<span class="token punctuation">.</span>temperature <span class="token operator">=</span> <span class="token number">13</span><span class="token punctuation">;</span>
+arc<span class="token punctuation">.</span><span class="token function">getArchive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [{ val: 11 }, { val: 13 }]</span></pre>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../global_objects/object/defineproperty"><code>Object.defineProperty()</code></a></li> <li><a href="../global_objects/object/defineproperties"><code>Object.defineProperties()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Getter_only" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Getter_only</a>
+  </p>
+</div>

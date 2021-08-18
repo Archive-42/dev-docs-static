@@ -1,0 +1,79 @@
+<h1>RTCPeerConnection.sctp</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The read-only <code>sctp</code> property on the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> interface returns an <a href="../rtcsctptransport"><code>RTCSctpTransport</code></a> describing the <a href="https://developer.mozilla.org/en-US/docs/Glossary/SCTP">SCTP</a> transport over which SCTP data is being sent and received. If SCTP hasn't been negotiated, this value is <code>null</code>.</p> <p>The SCTP transport is used for transmitting and receiving data for any and all <a href="../rtcdatachannel"><code>RTCDataChannel</code></a>s on the peer connection.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> sctp <span class="token operator">=</span> RTCPeerConnection<span class="token punctuation">.</span>sctp<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../rtcsctptransport"><code>RTCSctpTransport</code></a> object describing the SCTP transport being used by the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> for transmitting and receiving on its data channels, or <code>null</code> if SCTP negotiation hasn't happened.</p>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token keyword">var</span> pc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RTCPeerConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> channel <span class="token operator">=</span> pc<span class="token punctuation">.</span><span class="token function">createDataChannel</span><span class="token punctuation">(</span><span class="token string">"Mydata"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+channel<span class="token punctuation">.</span><span class="token function-variable function">onopen</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  channel<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token string">'sending a message'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+channel<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Determine the largest message size that can be sent</span>
+
+<span class="token keyword">var</span> sctp <span class="token operator">=</span> pc<span class="token punctuation">.</span>sctp<span class="token punctuation">;</span>
+<span class="token keyword">var</span> maxMessageSize <span class="token operator">=</span> sctp<span class="token punctuation">.</span>maxMessageSize<span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcpeerconnection-sctp" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCPeerConnection.sctp' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>sctp</code></th>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1278299">bug 1278299</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1278299">bug 1278299</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webrtc_api">WebRTC</a></li> <li><a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a></li> <li><a href="../rtcdatachannel"><code>RTCDataChannel</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Glossary/SCTP">SCTP</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/sctp" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/sctp</a>
+  </p>
+</div>

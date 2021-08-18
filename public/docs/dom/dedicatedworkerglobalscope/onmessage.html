@@ -1,0 +1,72 @@
+<h1>DedicatedWorkerGlobalScope.onmessage</h1>
+
+ <p>The <code>onmessage</code> property of the <a href="../dedicatedworkerglobalscope"><code>DedicatedWorkerGlobalScope</code></a> interface represents an <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a> to be called when the <code><a href="../broadcastchannel/message_event">message</a></code> event occurs and bubbles through the <a href="../worker"><code>Worker</code></a> — i.e. when a message is sent to the worker using the <a href="../worker/postmessage"><code>Worker.postMessage</code></a> method.</p>
+<h2 id="syntax">Syntax</h2>
+<pre class="notranslate">self.onmessage = function() { ... };</pre>
+<h2 id="example">Example</h2>
+<p>The following code snippet shows creation of a <a href="../worker"><code>Worker</code></a> object using the <a href="../worker/worker"><code>Worker()</code></a> constructor. Messages are passed to the worker when the value inside the form input <code>first</code> changes. A <a href="../worker/onmessage"><code>Worker.onmessage</code></a> handler is also present, to deal with messages are passed back from the worker.</p> <pre data-language="js"><span class="token keyword">var</span> myWorker <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Worker</span><span class="token punctuation">(</span><span class="token string">"worker.js"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+first<span class="token punctuation">.</span><span class="token function-variable function">onchange</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  myWorker<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span><span class="token punctuation">[</span>first<span class="token punctuation">.</span>value<span class="token punctuation">,</span>second<span class="token punctuation">.</span>value<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Message posted to worker'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+myWorker<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  result<span class="token punctuation">.</span>textContent <span class="token operator">=</span> e<span class="token punctuation">.</span>data<span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Message received from worker'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>In the <code>worker.js</code> script, a <code>DedicatedWorkerGlobalScope.onmessage</code> handler is used to handle messages from the main script:</p> <pre data-language="js"><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Message received from main script'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> workerResult <span class="token operator">=</span> <span class="token string">'Result: '</span> <span class="token operator">+</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> e<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Posting message back to main script'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">postMessage</span><span class="token punctuation">(</span>workerResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>Notice how in the main script, <code>onmessage</code> has to be called on <code>myWorker</code>, whereas inside the worker script you just need <code>onmessage</code> because the worker is effectively the global scope (the <a href="../dedicatedworkerglobalscope"><code>DedicatedWorkerGlobalScope</code></a>, in this case).</p> <p>For a full example, see our<a href="https://github.com/mdn/simple-web-worker" rel=" noopener">Basic dedicated worker example</a> (<a href="https://mdn.github.io/simple-web-worker/" rel=" noopener">run dedicated worker</a>).</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#handler-dedicatedworkerglobalscope-onmessage" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'DedicatedWorkerGlobalScope.onmessage' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onmessage</code></th>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10.6</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The <a href="../dedicatedworkerglobalscope"><code>DedicatedWorkerGlobalScope</code></a> interface it belongs to.</li> <li><a href="../workerglobalscope"><code>WorkerGlobalScope</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/DedicatedWorkerGlobalScope/onmessage" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/DedicatedWorkerGlobalScope/onmessage</a>
+  </p>
+</div>

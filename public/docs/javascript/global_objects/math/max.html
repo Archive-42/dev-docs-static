@@ -1,0 +1,82 @@
+<h1>Math.max()</h1> <p>The <code>Math.max()</code> function returns the largest of the zero or more numbers given as input parameters, or <a href="../nan"><code>NaN</code></a> if any parameter isn't a number and can't be converted into one.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/math-max.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js">Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>value0<span class="token punctuation">)</span>
+Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>value0<span class="token punctuation">,</span> value1<span class="token punctuation">)</span>
+Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>value0<span class="token punctuation">,</span> value1<span class="token punctuation">,</span> <span class="token operator">...</span> <span class="token punctuation">,</span> valueN<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>value1</var>, <var>value2</var>, ...</code></dt> <dd>Zero or more numbers among which the largest value will be selected and returned.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The largest of the given numbers. If any one or more of the parameters cannot be converted into a number, <a href="../nan"><code>NaN</code></a> is returned. The result is -<a href="../infinity"><code>Infinity</code></a> if no parameters are provided.</p>
+<h2 id="description">Description</h2>
+<p>Because <code>max()</code> is a static method of <code>Math</code>, you always use it as <code>Math.max()</code>, rather than as a method of a <code>Math</code> object you created (<code>Math</code> is not a constructor).</p> <p>If no arguments are given, the result is -<a href="../infinity"><code>Infinity</code></a>.</p> <p>If at least one of arguments cannot be converted to a number, the result is <a href="../nan"><code>NaN</code></a>.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_math.max">Using Math.max()</h3>
+<pre data-language="js">Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">//  20</span>
+Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// -10</span>
+Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">//  20</span>
+</pre>
+<h3 id="getting_the_maximum_element_of_an_array">Getting the maximum element of an array </h3>
+<p><a href="../array/reduce"><code>Array.reduce()</code></a> can be used to find the maximum element in a numeric array, by comparing each value:</p> <pre data-language="js"><span class="token keyword">var</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> max <span class="token operator">=</span> arr<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>The following function uses <a href="../function/apply"><code>Function.prototype.apply()</code></a> to get the maximum of an array. <code>getMaxOfArray([1, 2, 3])</code> is equivalent to <code>Math.max(1, 2, 3)</code>, but you can use <code>getMaxOfArray()</code> on programmatically constructed arrays. This should only be used for arrays with relatively few elements.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">getMaxOfArray</span><span class="token punctuation">(</span><span class="token parameter">numArray</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> numArray<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>The new <a href="../../operators/spread_syntax">spread operator</a> is a shorter way of writing the <code>apply</code> solution to get the maximum of an array:</p> <pre data-language="js"><span class="token keyword">var</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> max <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token operator">...</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>However, both spread (<code>...</code>) and <code>apply</code> will either fail or return the wrong result if the array has too many elements, because they try to pass the array elements as function parameters. See <a href="../function/apply#using_apply_and_built-in_functions">Using apply and built-in functions</a> for more details. The <code>reduce</code> solution does not have this problem.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-math.max">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-math.max</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>max</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="min"><code>Math.min()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/max</a>
+  </p>
+</div>

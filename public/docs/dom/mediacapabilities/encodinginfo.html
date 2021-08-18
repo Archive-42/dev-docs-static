@@ -1,0 +1,80 @@
+<h1>MediaCapabilities.encodingInfo()</h1>
+
+ <p>The <code>MediaCapabilities.encodingInfo()</code> method, part of the <a href="../mediacapabilities"><code>MediaCapabilities</code></a> interface of the <a href="../mediacapabilities">Media Capabilities API</a>, returns a promise with the tested media configuration's <a href="../mediacapabilitiesinfo"><code>MediaCapabilitiesInfo</code></a>; this contains the three Boolean properties <code>supported</code>, <code>smooth</code>, and <code>powerefficient</code>, which describe how compatible the device is with the type of media.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">mediaCapabilities<span class="token punctuation">.</span><span class="token function">encodingInfo</span><span class="token punctuation">(</span>mediaEncodingConfiguration<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><a href="../mediaencodingconfiguration"><code>mediaEncodingConfiguration</code></a></dt> <dd>A valid <a href="../mediaencodingconfiguration"><code>MediaEncodingConfiguration</code></a> dictionary containing a valid media encoding type of <code>record</code> or <code>transmission</code> and a valid media configuration: either an <a href="../audioconfiguration"><code>AudioConfiguration</code></a> or <a href="../videoconfiguration"><code>VideoConfiguration</code></a> dictionary.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> fulfilling with a <a href="../mediacapabilitiesinfo"><code>MediaCapabilitiesInfo</code></a> interface containing three Boolean attributes:</p> <ul> <li><code>supported</code></li> <li><code>smooth</code></li> <li><code>powerEfficient</code></li> </ul>
+<h3 id="exceptions">Exceptions</h3>
+<p>A <code>TypeError</code> is raised if the <code>MediaConfiguration</code> passed to the <code>encodingInfo()</code> method is invalid, either because the type is not video or audio, the <code>contentType</code> is not a valid codec MIME type, or any other error in the media configuration passed to the method, including omitting any of the <a href="../mediaencodingconfiguration">media encoding configuration</a> elements.</p>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token comment">//Create media configuration to be tested</span>
+<span class="token keyword">const</span> mediaConfig <span class="token operator">=</span> <span class="token punctuation">{</span>
+    type <span class="token operator">:</span> <span class="token string">'record'</span><span class="token punctuation">,</span> <span class="token comment">// or 'transmission'</span>
+    video <span class="token operator">:</span> <span class="token punctuation">{</span>
+        contentType <span class="token operator">:</span> <span class="token string">"video/webm;codecs=vp8.0"</span><span class="token punctuation">,</span> <span class="token comment">// valid content type</span>
+        width <span class="token operator">:</span> <span class="token number">1920</span><span class="token punctuation">,</span>     <span class="token comment">// width of the video</span>
+        height <span class="token operator">:</span> <span class="token number">1080</span><span class="token punctuation">,</span>    <span class="token comment">// height of the video</span>
+        bitrate <span class="token operator">:</span> <span class="token number">120000</span><span class="token punctuation">,</span> <span class="token comment">// number of bits used to encode 1s of video</span>
+        framerate <span class="token operator">:</span> <span class="token number">48</span>   <span class="token comment">// number of frames making up that 1s.</span>
+     <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// check support and performance</span>
+navigator<span class="token punctuation">.</span>mediaCapabilities<span class="token punctuation">.</span><span class="token function">encodingInfo</span><span class="token punctuation">(</span>mediaConfig<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">result</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'This configuration is '</span> <span class="token operator">+</span>
+        <span class="token punctuation">(</span>result<span class="token punctuation">.</span>supported <span class="token operator">?</span> <span class="token string">''</span> <span class="token operator">:</span> <span class="token string">'not '</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'supported, '</span> <span class="token operator">+</span>
+        <span class="token punctuation">(</span>result<span class="token punctuation">.</span>smooth <span class="token operator">?</span> <span class="token string">''</span> <span class="token operator">:</span> <span class="token string">'not '</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'smooth, and '</span> <span class="token operator">+</span>
+        <span class="token punctuation">(</span>result<span class="token punctuation">.</span>powerEfficient <span class="token operator">?</span> <span class="token string">''</span> <span class="token operator">:</span> <span class="token string">'not '</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'power efficient.'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/media-capabilities/#dom-mediacapabilities-encodinginfo-configuration-configuration" hreflang="en" rel=" noopener">Media Capabilities<br><small>The definition of 'encodingInfo()' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>encodingInfo</code></th>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../mediaencodingconfiguration"><code>MediaEncodingConfiguration</code></a></li> <li><a href="../videoconfiguration"><code>VideoConfiguration</code></a></li> <li><a href="../audioconfiguration"><code>AudioConfiguration</code></a></li> <li><a href="decodinginfo"><code>MediaCapabilities.decodingInfo()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaCapabilities/encodingInfo" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaCapabilities/encodingInfo</a>
+  </p>
+</div>

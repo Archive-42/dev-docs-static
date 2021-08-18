@@ -1,0 +1,117 @@
+<h1>SharedWorker()</h1> <p>The <code><strong>SharedWorker()</strong></code> constructor creates a <a href="../sharedworker"><code>SharedWorker</code></a> object that executes the script at the specified URL. This script must obey the <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">same-origin policy</a>.</p> <div class="note notecard"> <p><strong>Note</strong>: there is disagreement among browser manufacturers about whether a data URI is of the same origin or not. Although Gecko 10.0 (Firefox 10.0 / Thunderbird 10.0 / SeaMonkey 2.7) and later accept data URIs, that's not the case in all other browsers.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> myWorker <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SharedWorker</span><span class="token punctuation">(</span>aURL<span class="token punctuation">,</span> name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> myWorker <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SharedWorker</span><span class="token punctuation">(</span>aURL<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><em>aURL</em></dt> <dd>A <a href="../domstring"><code>DOMString</code></a> representing the URL of the script the worker will execute. It must obey the same-origin policy.</dd> <dt>name <span class="badge inline optional">Optional</span>
+</dt> <dd>A <a href="../domstring"><code>DOMString</code></a> specifying an identifying name for the <a href="../sharedworkerglobalscope"><code>SharedWorkerGlobalScope</code></a> representing the scope of the worker, which is mainly useful for debugging purposes.</dd> <dt>
+<em>options</em> <span class="badge inline optional">Optional</span>
+</dt> <dd>An object containing option properties that can set when creating the object instance. Available properties are as follows: <ul> <li>
+<code>type</code>: A <a href="../domstring"><code>DOMString</code></a> specifying the type of worker to create. The value can be <code>classic</code> or <code>module</code>. If not specified, the default used is <code>classic</code>.</li> <li>
+<code>credentials</code>: A <a href="../domstring"><code>DOMString</code></a> specifying the type of credentials to use for the worker. The value can be<dfn> <code>omit</code></dfn>, <code><dfn>same-origin</dfn></code>, or <dfn><code>include</code>. If not specified, or if type is <code>classic</code>, the default used is <code>omit</code> (no credentials required).</dfn>
+</li> <li>
+<dfn><code>name</code>: A </dfn><a href="../domstring"><code>DOMString</code></a> specifying an identifying name for the <a href="../sharedworkerglobalscope"><code>SharedWorkerGlobalScope</code></a> representing the scope of the worker, which is mainly useful for debugging purposes.</li> </ul> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The created worker.</p>
+<h3 id="exceptions">Exceptions</h3>
+<ul> <li>A <code>SecurityError</code> is raised if the document is not allowed to start workers, for example if the URL has an invalid syntax or if the same-origin policy is violated.</li> <li>A <code>NetworkError</code> is raised if the MIME type of the worker script is incorrect. It should <em>always</em> be <code>text/javascript</code> (for historical reasons <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types#javascript_types">other JavaScript MIME types</a> may be accepted).</li> <li>A <code>SyntaxError</code> is raised if <em>aURL</em> cannot be parsed.</li> </ul>
+<h2 id="examples">Examples</h2>
+<p>The following code snippet shows creation of a <a href="../sharedworker"><code>SharedWorker</code></a> object using the <code>SharedWorker()</code> constructor and subsequent usage of the object:</p> <pre data-language="js"><span class="token keyword">var</span> myWorker <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SharedWorker</span><span class="token punctuation">(</span><span class="token string">'worker.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+myWorker<span class="token punctuation">.</span>port<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+first<span class="token punctuation">.</span><span class="token function-variable function">onchange</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  myWorker<span class="token punctuation">.</span>port<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span><span class="token punctuation">[</span>first<span class="token punctuation">.</span>value<span class="token punctuation">,</span>second<span class="token punctuation">.</span>value<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Message posted to worker'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+second<span class="token punctuation">.</span><span class="token function-variable function">onchange</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  myWorker<span class="token punctuation">.</span>port<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span><span class="token punctuation">[</span>first<span class="token punctuation">.</span>value<span class="token punctuation">,</span>second<span class="token punctuation">.</span>value<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Message posted to worker'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+myWorker<span class="token punctuation">.</span>port<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  result1<span class="token punctuation">.</span>textContent <span class="token operator">=</span> e<span class="token punctuation">.</span>data<span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Message received from worker'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>For a full example, see our <a href="https://github.com/mdn/simple-shared-worker" rel=" noopener">Basic shared worker example</a> (<a href="https://mdn.github.io/simple-shared-worker/" rel=" noopener">run shared worker</a>.)</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#dom-sharedworker" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'SharedWorker()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>SharedWorker</code></th>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>10.6</div></td>
+<td class="bc-supports-no"><div>5-6.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-no"><div>11-14</div></td>
+<td class="bc-supports-no"><div>5.1-7</div></td>
+<td class="bc-supports-no"><div>4.0-5.0</div></td>
+</tr>
+<tr>
+<th><code>mime_checks</code></th>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>81</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>81</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>name_option</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>4.0-5.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The <a href="../sharedworker"><code>SharedWorker</code></a> interface it belongs to.</li> <li><a href="https://anlexn.github.io/shared-worker-mdn/" rel=" noopener">another multiply demo</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker/SharedWorker" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker/SharedWorker</a>
+  </p>
+</div>

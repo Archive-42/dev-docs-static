@@ -1,0 +1,103 @@
+<h1>Compression Streams API</h1> <p>The <strong>Compression Streams API</strong> provides a JavaScript API for compressing and decompressing streams of data using the gzip or deflate formats.</p> <p>Built in compression means that JavaScript applications will not need to include a compression library, which makes the download size of the application smaller.</p>
+<h2 id="interfaces">Interfaces</h2>
+<dl> <dt><a href="compressionstream"><code>CompressionStream</code></a></dt> <dd>Compresses a stream of data.</dd> <dt><a href="decompressionstream"><code>DecompressionStream</code></a></dt> <dd>Decompresses a stream of data.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>In this example a stream is compressed using gzip compression.</p> <pre data-language="js"><span class="token keyword">const</span> compressedReadableStream <span class="token operator">=</span> inputReadableStream<span class="token punctuation">.</span><span class="token function">pipeThrough</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">CompressionStream</span><span class="token punctuation">(</span><span class="token string">'gzip'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>In the following example a function decompresses a blob using gzip.</p> <pre data-language="js"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">DecompressBlob</span><span class="token punctuation">(</span><span class="token parameter">blob</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> ds <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DecompressionStream</span><span class="token punctuation">(</span><span class="token string">'gzip'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> decompressedStream <span class="token operator">=</span> blob<span class="token punctuation">.</span><span class="token function">stream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">pipeThrough</span><span class="token punctuation">(</span>ds<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token keyword">await</span> <span class="token keyword">new</span> <span class="token class-name">Response</span><span class="token punctuation">(</span>decompressedStream<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">blob</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://wicg.github.io/compression/" hreflang="en" rel=" noopener">Compression Streams</a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>Compression_Streams_API</code></th>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr>
+<tr>
+<th><code>CompressionStream</code></th>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr>
+<tr>
+<th><code>readable</code></th>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr>
+<tr>
+<th><code>writable</code></th>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Compression_Streams_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Compression_Streams_API</a>
+  </p>
+</div>

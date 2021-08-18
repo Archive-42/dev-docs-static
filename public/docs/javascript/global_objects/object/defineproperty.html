@@ -1,0 +1,375 @@
+<h1>Object.defineProperty()</h1> <p>The static method <code><strong>Object.defineProperty()</strong></code> defines a new property directly on an object, or modifies an existing property on an object, and returns the object.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/object-defineproperty.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js">Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> prop<span class="token punctuation">,</span> descriptor<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>obj</var></code></dt> <dd>The object on which to define the property.</dd> <dt><code><var>prop</var></code></dt> <dd>The name or <a href="../symbol"><code>Symbol</code></a> of the property to be defined or modified.</dd> <dt><code><var>descriptor</var></code></dt> <dd>The descriptor for the property being defined or modified.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The object that was passed to the function.</p>
+<h2 id="description">Description</h2>
+<p>This method allows a precise addition to or modification of a property on an object. Normal property addition through assignment creates properties which show up during property enumeration (<a href="../../statements/for...in"><code>for...in</code></a> loop or <a href="keys"><code>Object.keys</code></a> method), whose values may be changed, and which may be <a href="../../operators/delete">deleted</a>. This method allows these extra details to be changed from their defaults. By default, values added using <code>Object.defineProperty()</code> are immutable and not enumerable.</p> <p>Property descriptors present in objects come in two main flavors: data descriptors and accessor descriptors. A <em><dfn>data descriptor</dfn></em> is a property that has a value, which may or may not be writable. An <em><dfn>accessor descriptor</dfn></em> is a property described by a getter-setter pair of functions. A descriptor must be one of these two flavors; it cannot be both.</p> <p>Both data and accessor descriptors are objects. They share the following optional keys (please note: the <strong>defaults</strong> mentioned here are in the case of defining properties using <code>Object.defineProperty()</code>):</p> <dl> <dt><code>configurable</code></dt> <dd>
+<code>true</code> if the type of this property descriptor may be changed and if the property may be deleted from the corresponding object.<br> <code>false</code> </dd> <dt><code>enumerable</code></dt> <dd>
+<code>true</code> if and only if this property shows up during enumeration of the properties on the corresponding object.<br> <code>false</code> </dd> </dl> <p>A <strong>data descriptor</strong> also has the following optional keys:</p> <dl> <dt><code>value</code></dt> <dd>The value associated with the property. Can be any valid JavaScript value (number, object, function, etc).<br> <strong>Defaults to <a href="../undefined"><code>undefined</code></a>.</strong> </dd> <dt><code>writable</code></dt> <dd>
+<code>true</code> if the value associated with the property may be changed with an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#assignment_operators">assignment operator</a>.<br> <code>false</code> </dd> </dl> <p>An <strong>accessor descriptor</strong> also has the following optional keys:</p> <dl> <dt><code>get</code></dt> <dd>A function which serves as a getter for the property, or <a href="../undefined"><code>undefined</code></a> if there is no getter. When the property is accessed, this function is called without arguments and with <code>this</code> set to the object through which the property is accessed (this may not be the object on which the property is defined due to inheritance). The return value will be used as the value of the property.<br> <strong>Defaults to <a href="../undefined"><code>undefined</code></a>.</strong> </dd> <dt><code>set</code></dt> <dd>A function which serves as a setter for the property, or <a href="../undefined"><code>undefined</code></a> if there is no setter. When the property is assigned, this function is called with one argument (the value being assigned to the property) and with <code>this</code> set to the object through which the property is assigned.<br> <strong>Defaults to <a href="../undefined"><code>undefined</code></a>.</strong> </dd> </dl> <p>If a descriptor has neither of <code>value</code>, <code>writable</code>, <code>get</code> and <code>set</code> keys, it is treated as a data descriptor. If a descriptor has both [<code>value</code> or <code>writable</code>] and [<code>get</code> or <code>set</code>] keys, an exception is thrown.</p> <p>Bear in mind that these attributes are not necessarily the descriptor's own properties. Inherited properties will be considered as well. In order to ensure these defaults are preserved, you might freeze the <a href="../object"><code>Object</code></a> upfront, specify all options explicitly, or point to <a href="../null"><code>null</code></a> with <a href="create"><code>Object.create(null)</code></a>.</p> <pre data-language="js"><span class="token comment">// using __proto__</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> descriptor <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// no inherited properties</span>
+descriptor<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token string">'static'</span><span class="token punctuation">;</span>
+
+<span class="token comment">// not enumerable, not configurable, not writable as defaults</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">'key'</span><span class="token punctuation">,</span> descriptor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// being explicit</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">'key'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  enumerable<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  configurable<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  writable<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  value<span class="token operator">:</span> <span class="token string">'static'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// recycling same object</span>
+<span class="token keyword">function</span> <span class="token function">withValue</span><span class="token punctuation">(</span><span class="token parameter">value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> d <span class="token operator">=</span> withValue<span class="token punctuation">.</span>d <span class="token operator">||</span> <span class="token punctuation">(</span>
+    withValue<span class="token punctuation">.</span>d <span class="token operator">=</span> <span class="token punctuation">{</span>
+      enumerable<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      writable<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      configurable<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+      value<span class="token operator">:</span> value
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// avoiding duplicate operation for assigning value</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>d<span class="token punctuation">.</span>value <span class="token operator">!==</span> value<span class="token punctuation">)</span> d<span class="token punctuation">.</span>value <span class="token operator">=</span> value<span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> d<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// ... and ...</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">'key'</span><span class="token punctuation">,</span> <span class="token function">withValue</span><span class="token punctuation">(</span><span class="token string">'static'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// if freeze is available, prevents adding or</span>
+<span class="token comment">// removing the object prototype properties</span>
+<span class="token comment">// (value, get, set, enumerable, writable, configurable)</span>
+<span class="token punctuation">(</span>Object<span class="token punctuation">.</span>freeze <span class="token operator">||</span> Object<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="creating_a_property">Creating a property</h3>
+<p>When the property specified doesn't exist in the object, <code>Object.defineProperty()</code> creates a new property as described. Fields may be omitted from the descriptor, and default values for those fields are inputted.</p> <pre data-language="js"><span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">// Creates a new object</span>
+
+<span class="token comment">// Example of an object property added</span>
+<span class="token comment">// with defineProperty with a data property descriptor</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  value<span class="token operator">:</span> <span class="token number">37</span><span class="token punctuation">,</span>
+  writable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  enumerable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  configurable<span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 'a' property exists in the o object and its value is 37</span>
+
+<span class="token comment">// Example of an object property added</span>
+<span class="token comment">// with defineProperty with an accessor property descriptor</span>
+<span class="token keyword">var</span> bValue <span class="token operator">=</span> <span class="token number">38</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Using shorthand method names (ES2015 feature).</span>
+  <span class="token comment">// This is equivalent to:</span>
+  <span class="token comment">// get: function() { return bValue; },</span>
+  <span class="token comment">// set: function(newValue) { bValue = newValue; },</span>
+  <span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> bValue<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">set</span><span class="token punctuation">(</span>newValue<span class="token punctuation">)</span> <span class="token punctuation">{</span> bValue <span class="token operator">=</span> newValue<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  enumerable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  configurable<span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+o<span class="token punctuation">.</span>b<span class="token punctuation">;</span> <span class="token comment">// 38</span>
+<span class="token comment">// 'b' property exists in the o object and its value is 38</span>
+<span class="token comment">// The value of o.b is now always identical to bValue,</span>
+<span class="token comment">// unless o.b is redefined</span>
+
+<span class="token comment">// You cannot try to mix both:</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">'conflict'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  value<span class="token operator">:</span> <span class="token number">0x9f91102</span><span class="token punctuation">,</span>
+  <span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token number">0xdeadbeef</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// throws a TypeError: value appears</span>
+<span class="token comment">// only in data descriptors,</span>
+<span class="token comment">// get appears only in accessor descriptors</span>
+</pre>
+<h3 id="modifying_a_property">Modifying a property</h3>
+<p>When the property already exists, <code>Object.defineProperty()</code> attempts to modify the property according to the values in the descriptor and the object's current configuration. If the old descriptor had its <code>configurable</code> attribute set to <code>false</code> the property is said to be “non-configurable”. It is not possible to change any attribute of a non-configurable accessor property. For data properties, it is possible to modify the value if the property is writable, and it is possible to change <code>writable</code> attribute from <code>true</code> to <code>false</code>. It is not possible to switch between data and accessor property types when the property is non-configurable.</p> <p>A <a href="../typeerror"><code>TypeError</code></a> is thrown when attempts are made to change non-configurable property attributes (except <code>value</code> and <code>writable</code>, if permitted) unless the current and new values are the same.</p> <h4 id="writable_attribute">Writable attribute</h4> <p>When the <code>writable</code> property attribute is set to <code>false</code>, the property is said to be “non-writable”. It cannot be reassigned.</p> <pre data-language="js"><span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">// Creates a new object</span>
+
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  value<span class="token operator">:</span> <span class="token number">37</span><span class="token punctuation">,</span>
+  writable<span class="token operator">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// logs 37</span>
+o<span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token number">25</span><span class="token punctuation">;</span> <span class="token comment">// No error thrown</span>
+<span class="token comment">// (it would throw in strict mode,</span>
+<span class="token comment">// even if the value had been the same)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// logs 37. The assignment didn't work.</span>
+
+<span class="token comment">// strict mode</span>
+<span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token string">'use strict'</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    value<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+    writable<span class="token operator">:</span> <span class="token boolean">false</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  o<span class="token punctuation">.</span>b <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span> <span class="token comment">// throws TypeError: "b" is read-only</span>
+  <span class="token keyword">return</span> o<span class="token punctuation">.</span>b<span class="token punctuation">;</span> <span class="token comment">// returns 2 without the line above</span>
+<span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>As seen in the example, trying to write into the non-writable property doesn't change it but doesn't throw an error either.</p> <h4 id="enumerable_attribute">Enumerable attribute</h4> <p>The <code>enumerable</code> property attribute defines whether the property is picked by <a href="assign"><code>Object.assign()</code></a> or <a href="../../operators/spread_syntax">spread </a>operator. For non-<a href="../symbol"><code>Global_Objects/Symbol</code></a> properties it also defines whether it shows up in a <a href="../../statements/for...in"><code>for...in</code></a> loop and <a href="keys"><code>Object.keys()</code></a> or not.</p> <pre data-language="js"><span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  value<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  enumerable<span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  value<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+  enumerable<span class="token operator">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  value<span class="token operator">:</span> <span class="token number">3</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// enumerable defaults to false</span>
+o<span class="token punctuation">.</span>d <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span> <span class="token comment">// enumerable defaults to true</span>
+         <span class="token comment">// when creating a property by setting it</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> Symbol<span class="token punctuation">.</span><span class="token function">for</span><span class="token punctuation">(</span><span class="token string">'e'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  value<span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">,</span>
+  enumerable<span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> Symbol<span class="token punctuation">.</span><span class="token function">for</span><span class="token punctuation">(</span><span class="token string">'f'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  value<span class="token operator">:</span> <span class="token number">6</span><span class="token punctuation">,</span>
+  enumerable<span class="token operator">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token keyword">in</span> o<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// logs 'a' and 'd' (in undefined order)</span>
+
+Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>o<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ['a', 'd']</span>
+
+o<span class="token punctuation">.</span><span class="token function">propertyIsEnumerable</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+o<span class="token punctuation">.</span><span class="token function">propertyIsEnumerable</span><span class="token punctuation">(</span><span class="token string">'b'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// false</span>
+o<span class="token punctuation">.</span><span class="token function">propertyIsEnumerable</span><span class="token punctuation">(</span><span class="token string">'c'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// false</span>
+o<span class="token punctuation">.</span><span class="token function">propertyIsEnumerable</span><span class="token punctuation">(</span><span class="token string">'d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+o<span class="token punctuation">.</span><span class="token function">propertyIsEnumerable</span><span class="token punctuation">(</span>Symbol<span class="token punctuation">.</span><span class="token function">for</span><span class="token punctuation">(</span><span class="token string">'e'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+o<span class="token punctuation">.</span><span class="token function">propertyIsEnumerable</span><span class="token punctuation">(</span>Symbol<span class="token punctuation">.</span><span class="token function">for</span><span class="token punctuation">(</span><span class="token string">'f'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// false</span>
+
+<span class="token keyword">var</span> p <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token operator">...</span>o <span class="token punctuation">}</span>
+p<span class="token punctuation">.</span>a <span class="token comment">// 1</span>
+p<span class="token punctuation">.</span>b <span class="token comment">// undefined</span>
+p<span class="token punctuation">.</span>c <span class="token comment">// undefined</span>
+p<span class="token punctuation">.</span>d <span class="token comment">// 4</span>
+p<span class="token punctuation">[</span>Symbol<span class="token punctuation">.</span><span class="token function">for</span><span class="token punctuation">(</span><span class="token string">'e'</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token comment">// 5</span>
+p<span class="token punctuation">[</span>Symbol<span class="token punctuation">.</span><span class="token function">for</span><span class="token punctuation">(</span><span class="token string">'f'</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token comment">// undefined</span>
+</pre> <h4 id="configurable_attribute">Configurable attribute</h4> <p>The <code>configurable</code> attribute controls at the same time whether the property can be deleted from the object and whether its attributes (other than <code>value</code> and <code>writable</code>) can be changed.</p> <pre data-language="js"><span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  configurable<span class="token operator">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  configurable<span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// throws a TypeError</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  enumerable<span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// throws a TypeError</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token function">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// throws a TypeError (set was undefined previously)</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// throws a TypeError</span>
+<span class="token comment">// (even though the new get does exactly the same thing)</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  value<span class="token operator">:</span> <span class="token number">12</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// throws a TypeError // ('value' can be changed when 'configurable' is false but not in this case due to 'get' accessor)</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// logs 1</span>
+<span class="token keyword">delete</span> o<span class="token punctuation">.</span>a<span class="token punctuation">;</span> <span class="token comment">// Nothing happens</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// logs 1</span>
+</pre> <p>If the <code>configurable</code> attribute of <code>o.a</code> had been <code>true</code>, none of the errors would be thrown and the property would be deleted at the end.</p>
+<h3 id="adding_properties_and_default_values">Adding properties and default values</h3>
+<p>It is important to consider the way default values of attributes are applied. There is often a difference between using dot notation to assign a value and using <code>Object.defineProperty()</code>, as shown in the example below.</p> <pre data-language="js"><span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+o<span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token comment">// is equivalent to:</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  value<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  writable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  configurable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+  enumerable<span class="token operator">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// On the other hand,</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> value<span class="token operator">:</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// is equivalent to:</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  value<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  writable<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  configurable<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  enumerable<span class="token operator">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="custom_setters_and_getters">Custom Setters and Getters</h3>
+<p>The example below shows how to implement a self-archiving object. When <code>temperature</code> property is set, the <code>archive</code> array gets a log entry.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">Archiver</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> temperature <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> archive <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token string">'temperature'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'get!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span> temperature<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function">set</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      temperature <span class="token operator">=</span> value<span class="token punctuation">;</span>
+      archive<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token punctuation">{</span> val<span class="token operator">:</span> temperature <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">getArchive</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> archive<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> arc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Archiver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+arc<span class="token punctuation">.</span>temperature<span class="token punctuation">;</span> <span class="token comment">// 'get!'</span>
+arc<span class="token punctuation">.</span>temperature <span class="token operator">=</span> <span class="token number">11</span><span class="token punctuation">;</span>
+arc<span class="token punctuation">.</span>temperature <span class="token operator">=</span> <span class="token number">13</span><span class="token punctuation">;</span>
+arc<span class="token punctuation">.</span><span class="token function">getArchive</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [{ val: 11 }, { val: 13 }]</span>
+</pre> <p>In this example, a getter always returns the same value.</p> <pre data-language="js"><span class="token keyword">var</span> pattern <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">'I always return this string, '</span> <span class="token operator">+</span>
+               <span class="token string">'whatever you have assigned'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token function">set</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>myname <span class="token operator">=</span> <span class="token string">'this is my name string'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">TestDefineSetAndGet</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token string">'myproperty'</span><span class="token punctuation">,</span> pattern<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TestDefineSetAndGet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+instance<span class="token punctuation">.</span>myproperty <span class="token operator">=</span> <span class="token string">'test'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span>myproperty<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// I always return this string, whatever you have assigned</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span>myname<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// this is my name string</span>
+</pre>
+<h3 id="inheritance_of_properties">Inheritance of properties</h3>
+<p>If an accessor property is inherited, its <code>get</code> and <code>set</code> methods will be called when the property is accessed and modified on descendant objects. If these methods use a variable to store the value, this value will be shared by all objects.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">myclass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> value<span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>myclass<span class="token punctuation">.</span>prototype<span class="token punctuation">,</span> <span class="token string">"x"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> value<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">set</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    value <span class="token operator">=</span> x<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">myclass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">myclass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+a<span class="token punctuation">.</span>x <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>b<span class="token punctuation">.</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1</span>
+</pre> <p>This can be fixed by storing the value in another property. In <code>get</code> and <code>set</code> methods, <code>this</code> points to the object which is used to access or modify the property.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">myclass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>myclass<span class="token punctuation">.</span>prototype<span class="token punctuation">,</span> <span class="token string">"x"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>stored_x<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token function">set</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>stored_x <span class="token operator">=</span> x<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">myclass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">myclass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+a<span class="token punctuation">.</span>x <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>b<span class="token punctuation">.</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// undefined</span>
+</pre> <p>Unlike accessor properties, value properties are always set on the object itself, not on a prototype. However, if a non-writable value property is inherited, it still prevents from modifying the property on the object.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">myclass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token punctuation">}</span>
+
+myclass<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>x <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>myclass<span class="token punctuation">.</span>prototype<span class="token punctuation">,</span> <span class="token string">"y"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  writable<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  value<span class="token operator">:</span> <span class="token number">1</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">myclass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+a<span class="token punctuation">.</span>x <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 2</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myclass<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1</span>
+a<span class="token punctuation">.</span>y <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token comment">// Ignored, throws in strict mode</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myclass<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-object.defineproperty">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-object.defineproperty</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>defineProperty</code></th>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>9</div>
+<div>8</div>
+<div>In Internet Explorer 8, this was only supported on DOM objects and with some non-standard behaviors.  This was later fixed in Internet Explorer 9.</div>
+</td>
+<td class="bc-supports-yes"><div>11.6</div></td>
+<td class="bc-supports-yes">
+<div>5.1</div>
+<div>Also supported in Safari 5, but not on DOM objects.</div>
+</td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>6</div>
+<div>Also supported in Safari for iOS 4.2, but not on DOM objects.</div>
+</td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h3 id="redefining_the_length_property_of_an_array_object">Redefining the <code>length</code> property of an <code>Array</code> object</h3>
+<p>It is possible to redefine the <a href="../array/length"><code>length</code></a> property of arrays, subject to the usual redefinition restrictions. (The <a href="../array/length"><code>length</code></a> property is initially non-configurable, non-enumerable, and writable. Thus on an unaltered array, it's possible to change the <a href="../array/length"><code>length</code></a> property's value or to make it non-writable. It is not allowed to change its enumerability or configurability, or if it is non-writable to change its value or writability.) However, not all browsers permit this redefinition.</p> <p>Firefox 4 through 22 will throw a <a href="../typeerror"><code>TypeError</code></a> on any attempt whatsoever (whether permitted or not) to redefine the <a href="../array/length"><code>length</code></a> property of an array.</p> <p>Versions of Chrome which implement <code>Object.defineProperty()</code> in some circumstances ignore a length value different from the array's current <a href="../array/length"><code>length</code></a> property. In some circumstances changing writability seems to silently not work (and not throw an exception). Also, relatedly, some array-mutating methods like <a href="../array/push"><code>Array.prototype.push</code></a> don't respect a non-writable length.</p> <p>Versions of Safari which implement <code>Object.defineProperty()</code> ignore a <code>length</code> value different from the array's current <a href="../array/length"><code>length</code></a> property, and attempts to change writability execute without error but do not actually change the property's writability.</p> <p>Only Internet Explorer 9 and later, and Firefox 23 and later, appear to fully and correctly implement redefinition of the <a href="../array/length"><code>length</code></a> property of arrays. For now, don't rely on redefining the <a href="../array/length"><code>length</code></a> property of an array to either work, or to work in a particular manner. And even when you <em>can</em> rely on it, <a href="https://whereswalden.com/2013/08/05/new-in-firefox-23-the-length-property-of-an-array-can-be-made-non-writable-but-you-shouldnt-do-it/" rel=" noopener">there's really no good reason to do so</a>.</p>
+<h3 id="internet_explorer_8_specific_notes">Internet Explorer 8 specific notes</h3>
+<p>Internet Explorer 8 implemented a <code>Object.defineProperty()</code> method that could <a href="https://msdn.microsoft.com/en-us/library/dd229916%28VS.85%29.aspx" rel=" noopener">only be used on DOM objects</a>. A few things need to be noted:</p> <ul> <li>Trying to use <code>Object.defineProperty()</code> on native objects throws an error.</li> <li>Property attributes must be set to some values. The <code>configurable</code>, <code>enumerable</code> and <code>writable</code> attributes should all be set to <code>true</code> for data descriptor and <code>true</code> for <code>configurable</code>, <code>false</code> for <code>enumerable</code> for accessor descriptor.(?) Any attempt to provide other value(?) will result in an error being thrown.</li> <li>Reconfiguring a property requires first deleting the property. If the property isn't deleted, it stays as it was before the reconfiguration attempt.</li> </ul>
+<h3 id="chrome_37_and_below_specific_notes">Chrome 37 (and below) specific notes</h3>
+<p>Chrome 37 (and below) has a <a href="https://bugs.chromium.org/p/v8/issues/detail?id=3448" rel=" noopener">bug</a> where an attempt to define a "prototype" property, on a function, with <code>writable: false</code> doesn't work as expected.</p>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Enumerability_and_ownership_of_properties">Enumerability and ownership of properties</a></li> <li><a href="defineproperties"><code>Object.defineProperties()</code></a></li> <li><a href="propertyisenumerable"><code>Object.propertyIsEnumerable()</code></a></li> <li><a href="getownpropertydescriptor"><code>Object.getOwnPropertyDescriptor()</code></a></li> <li><a class="page-not-created"><code>Object.prototype.watch()</code></a></li> <li><a class="page-not-created"><code>Object.prototype.unwatch()</code></a></li> <li><a href="../../functions/get"><code>get</code></a></li> <li><a href="../../functions/set"><code>set</code></a></li> <li><a href="create"><code>Object.create()</code></a></li> <li><a href="../reflect/defineproperty"><code>Reflect.defineProperty()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty</a>
+  </p>
+</div>

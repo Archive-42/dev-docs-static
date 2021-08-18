@@ -1,0 +1,177 @@
+<h1>WeakSet</h1> <p>The <code>WeakSet</code> object lets you store weakly held <em>objects</em> in a collection.</p>
+<h2 id="description">Description</h2>
+<p><code>WeakSet</code> objects are collections of objects. Just as with <a href="set"><code>Set</code></a>s, each object in a <code>WeakSet</code> may occur only once; all objects in a <code>WeakSet</code>'s collection are unique.</p> <p>The main differences to the <a href="set"><code>Set</code></a> object are:</p> <ul> <li>
+<code>WeakSet</code>s are collections of <strong>objects only</strong>. They cannot contain arbitrary values of any type, as <a href="set"><code>Set</code></a>s can.</li> <li>The <code>WeakSet</code> is <em>weak</em>, meaning references to objects in a <code>WeakSet</code> are held <em>weakly</em>. If no other references to an object stored in the <code>WeakSet</code> exist, those objects can be garbage collected. <div class="notecard note"> <p><strong>Note:</strong> This also means that there is no list of current objects stored in the collection. <code>WeakSets</code> are not enumerable.</p> </div> </li> </ul>
+<h3 id="use_case_detecting_circular_references">Use case: Detecting circular references</h3>
+<p>Functions that call themselves recursively need a way of guarding against circular data structures by tracking which objects have already been processed.</p> <p><code>WeakSet</code>s are ideal for this purpose:</p> <pre data-language="js"><span class="token comment">// Execute a callback on everything stored inside an object</span>
+<span class="token keyword">function</span> <span class="token function">execRecursively</span><span class="token punctuation">(</span><span class="token parameter">fn<span class="token punctuation">,</span> subject<span class="token punctuation">,</span> _refs <span class="token operator">=</span> <span class="token keyword">null</span></span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>_refs<span class="token punctuation">)</span>
+    _refs <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WeakSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Avoid infinite recursion</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>_refs<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>subject<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+  <span class="token function">fn</span><span class="token punctuation">(</span>subject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token string">"object"</span> <span class="token operator">===</span> <span class="token keyword">typeof</span> subject<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    _refs<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>subject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> key <span class="token keyword">in</span> subject<span class="token punctuation">)</span>
+      <span class="token function">execRecursively</span><span class="token punctuation">(</span>fn<span class="token punctuation">,</span> subject<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">,</span> _refs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> foo <span class="token operator">=</span> <span class="token punctuation">{</span>
+  foo<span class="token operator">:</span> <span class="token string">"Foo"</span><span class="token punctuation">,</span>
+  bar<span class="token operator">:</span> <span class="token punctuation">{</span>
+    bar<span class="token operator">:</span> <span class="token string">"Bar"</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+foo<span class="token punctuation">.</span>bar<span class="token punctuation">.</span>baz <span class="token operator">=</span> foo<span class="token punctuation">;</span> <span class="token comment">// Circular reference!</span>
+<span class="token function">execRecursively</span><span class="token punctuation">(</span><span class="token parameter">obj</span> <span class="token operator">=&gt;</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">,</span> foo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>Here, a <code>WeakSet</code> is created on the first run, and passed along with every subsequent function call (using the internal <code>_refs</code> parameter).</p> <p>The number of objects or their traversal order is immaterial, so a <code>WeakSet</code> is more suitable (and performant) than a <a href="set"><code>Set</code></a> for tracking object references, especially if a very large number of objects is involved.</p>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="weakset/weakset"><code>WeakSet()</code></a></dt> <dd>Creates a new <code>WeakSet</code> object.</dd> </dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl> <dt><a href="weakset/add"><code>WeakSet.prototype.add(<var>value</var>)</code></a></dt> <dd>Appends <code><var>value</var></code> to the <code>WeakSet</code> object.</dd> <dt><a href="weakset/delete"><code>WeakSet.prototype.delete(<var>value</var>)</code></a></dt> <dd>Removes <code><var>value</var></code> from the <code>WeakSet</code>. <code>WeakSet.prototype.has(<var>value</var>)</code> will return <code>false</code> afterwards.</dd> <dt><a href="weakset/has"><code>WeakSet.prototype.has(<var>value</var>)</code></a></dt> <dd>Returns a boolean asserting whether <code><var>value</var></code> is present in the <code>WeakSet</code> object or not.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="using_the_weakset_object">Using the WeakSet object</h3>
+<pre data-language="js"><span class="token keyword">const</span> ws <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WeakSet</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> foo <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> bar <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+ws<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ws<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>bar<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+ws<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// true</span>
+ws<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>bar<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// true</span>
+
+ws<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// removes foo from the set</span>
+ws<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// false, foo has been removed</span>
+ws<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>bar<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// true, bar is retained</span></pre> <p>Note that <code>foo !== bar</code>. While they are similar objects, <em>they are not <strong>the same object</strong></em>. And so they are both added to the set.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> </tr> </thead> <tbody> <tr> <td><a href="https://tc39.es/ecma262/#sec-weakset-objects" hreflang="en" rel=" noopener">ECMAScript (ECMA-262)<br><small>The definition of 'WeakSet' in that specification.</small></a></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>WeakSet</code></th>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>WeakSet</code></th>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>add</code></th>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>clear</code></th>
+<td class="bc-supports-no"><div>36-41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>34-46</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>23-28</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>37-41</div></td>
+<td class="bc-supports-no"><div>36-41</div></td>
+<td class="bc-supports-no"><div>34-46</div></td>
+<td class="bc-supports-no"><div>24-28</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>3.0-4.0</div></td>
+</tr>
+<tr>
+<th><code>delete</code></th>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>has</code></th>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="map"><code>Map</code></a></li> <li><a href="set"><code>Set</code></a></li> <li><a href="weakmap"><code>WeakMap</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet</a>
+  </p>
+</div>

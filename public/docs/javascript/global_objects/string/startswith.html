@@ -1,0 +1,85 @@
+<h1>String.prototype.startsWith()</h1> <p>The <code>startsWith()</code> method determines whether a string begins with the characters of a specified string, returning <code>true</code> or <code>false</code> as appropriate.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/string-startswith.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">startsWith</span><span class="token punctuation">(</span>searchString<span class="token punctuation">)</span>
+<span class="token function">startsWith</span><span class="token punctuation">(</span>searchString<span class="token punctuation">,</span> position<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>searchString</var></code></dt> <dd>The characters to be searched for at the start of this string.</dd> <dt>
+<code><var>position</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>The position in this string at which to begin searching for <code><var>searchString</var></code>. Defaults to <code>0</code>.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p><code>true</code> if the given characters are found at the beginning of the string; otherwise, <code>false</code>.</p>
+<h2 id="description">Description</h2>
+<p>This method lets you determine whether or not a string begins with another string. This method is case-sensitive.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_startswith">Using startsWith()</h3>
+<pre data-language="js"><span class="token comment">//startswith</span>
+<span class="token keyword">let</span> str <span class="token operator">=</span> <span class="token string">'To be, or not to be, that is the question.'</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">'To be'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>          <span class="token comment">// true</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">'not to be'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>      <span class="token comment">// false</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token string">'not to be'</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment">// true</span>
+</pre>
+<h2 id="polyfill">Polyfill</h2>
+<p>This method has been added to the ECMAScript 2015 specification and may not be available in all JavaScript implementations yet. However, you can polyfill <code>String.prototype.startsWith()</code> with the following snippet:</p> <pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">String</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>startsWith<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">.</span>prototype<span class="token punctuation">,</span> <span class="token string">'startsWith'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        <span class="token function-variable function">value</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">search<span class="token punctuation">,</span> rawPos</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">var</span> pos <span class="token operator">=</span> rawPos <span class="token operator">&gt;</span> <span class="token number">0</span> <span class="token operator">?</span> rawPos<span class="token operator">|</span><span class="token number">0</span> <span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">substring</span><span class="token punctuation">(</span>pos<span class="token punctuation">,</span> pos <span class="token operator">+</span> search<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token operator">===</span> search<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>A more robust (fully ES2015 specification compliant), but less performant and compact, Polyfill is available <a href="https://github.com/mathiasbynens/String.prototype.startsWith" rel=" noopener">on GitHub by Mathias Bynens</a>.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-string.prototype.startswith">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-string.prototype.startswith</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>startsWith</code></th>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="endswith"><code>String.prototype.endsWith()</code></a></li> <li><a href="includes"><code>String.prototype.includes()</code></a></li> <li><a href="indexof"><code>String.prototype.indexOf()</code></a></li> <li><a href="lastindexof"><code>String.prototype.lastIndexOf()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/startsWith</a>
+  </p>
+</div>

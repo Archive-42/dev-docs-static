@@ -1,0 +1,74 @@
+<h1>PaymentRequest.onmerchantvalidation</h1>
+
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div>
+<div class="notecard warning"> <strong id="non-standard">Non-standard</strong> <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p> </div>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <a href="../paymentrequest"><code>PaymentRequest</code></a> event handler <code><strong>onmerchantvalidation</strong></code> is invoked when the <code><a href="merchantvalidation_event">merchantvalidation</a></code> is fired, indicating that the payment handler (e.g., Apple Pay) requires the merchant to validate themselves. This is usually the first event to be fired, and the user won't be able to proceed with a payment until the merchant validate themselves.</p> <p>This event is not be fired by all payment handlers. In particular, it's used by Apple Pay.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">paymentRequest<span class="token punctuation">.</span>onmerchantvalidation <span class="token operator">=</span> eventHandlerFunction<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>An event handler function which is to be called whenever the <code><a href="merchantvalidation_event">merchantvalidation</a></code> event is fired at the <a href="../paymentrequest"><code>PaymentRequest</code></a>, indicating that the payment handler requires the merchant to validate themselves as allowed to use this payment handler.</p>
+<h2 id="examples">Examples</h2>
+<p>An example merchant validation handler for the <a href="../paymentrequest"><code>PaymentRequest</code></a> object <code>request</code> looks like this:</p> <pre data-language="js">request<span class="token punctuation">.</span><span class="token function-variable function">onmerchantvalidation</span> <span class="token operator">=</span> <span class="token parameter">ev</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  ev<span class="token punctuation">.</span><span class="token function">complete</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> merchantServerUrl <span class="token operator">=</span> window<span class="token punctuation">.</span>location<span class="token punctuation">.</span>origin <span class="token operator">+</span>
+        <span class="token string">'/validation?url='</span> <span class="token operator">+</span> <span class="token function">encodeURIComponent</span><span class="token punctuation">(</span>ev<span class="token punctuation">.</span>validationURL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// get validation data, and complete validation;</span>
+    <span class="token keyword">return</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span>merchantServerUrl<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">r</span> <span class="token operator">=&gt;</span> r<span class="token punctuation">.</span><span class="token function">text</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> request<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>For more information, see <a href="#">Merchant Validation</a> in <a href="../payment_request_api/concepts">Payment processing concepts</a>.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onmerchantvalidation</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/onmerchantvalidation" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/onmerchantvalidation</a>
+  </p>
+</div>

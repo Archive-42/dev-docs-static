@@ -1,0 +1,101 @@
+<h1>AbsoluteOrientationSensor</h1> <p>The <code>AbsoluteOrientationSensor</code> interface of the <a href="sensor_apis">Sensor APIs</a> describes the device's physical orientation in relation to the Earth's reference coordinate system.</p> <p>To use this sensor, the user must grant permission to the <code>'accelerometer'</code>, <code>'gyroscope'</code>, and <code>'magnetometer'</code> device sensors through the <a href="permissions"><code>Permissions</code></a> API.</p> <p>If a feature policy blocks use of a feature it is because your code is inconsistent with the policies set on your server. This is not something that would ever be shown to a user. See <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy"><code>Feature-Policy</code></a> for implementation instructions.</p>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="absoluteorientationsensor/absoluteorientationsensor"><code>AbsoluteOrientationSensor.AbsoluteOrientationSensor()</code></a></dt> <dd>Creates a new <code>AbsoluteOrientationSensor</code> object.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<p><em>No specific properties; inherits methods from its ancestors <a href="orientationsensor"><code>OrientationSensor</code></a> and <a href="sensor"><code>Sensor</code></a>.</em></p>
+<h3 id="event_handlers">Event handlers</h3>
+<p><em>No specific event handlers; inherits methods from its ancestor, <a href="sensor"><code>Sensor</code></a>.</em></p>
+<h2 id="methods">Methods</h2>
+<p><em>No specific methods; inherits methods from its ancestors <a href="orientationsensor"><code>OrientationSensor</code></a> and <a href="sensor"><code>Sensor</code></a>.</em></p>
+<h2 id="examples">Examples</h2>
+<h3 id="basic_example">Basic Example</h3>
+<p>The following example, which is loosely based on <a href="https://intel.github.io/generic-sensor-demos/orientation-phone/" rel=" noopener">Intel's Orientation Phone demo</a>, instantiates an <code>AbsoluteOrientationSensor</code> with a frequency of 60 times a second. On each reading it uses <a href="orientationsensor/quaternion"><code>OrientationSensor.quaternion</code></a> to rotate a visual model of a phone.</p> <pre data-language="js"><span class="token keyword">const</span> options <span class="token operator">=</span> <span class="token punctuation">{</span> frequency<span class="token operator">:</span> <span class="token number">60</span><span class="token punctuation">,</span> referenceFrame<span class="token operator">:</span> <span class="token string">'device'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> sensor <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AbsoluteOrientationSensor</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+sensor<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'reading'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// model is a Three.js object instantiated elsewhere.</span>
+  model<span class="token punctuation">.</span>quaternion<span class="token punctuation">.</span><span class="token function">fromArray</span><span class="token punctuation">(</span>sensor<span class="token punctuation">.</span>quaternion<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">inverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+sensor<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'error'</span><span class="token punctuation">,</span> <span class="token parameter">error</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>error<span class="token punctuation">.</span>name <span class="token operator">==</span> <span class="token string">'NotReadableError'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Sensor is not available."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+sensor<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="permissions_example">Permissions Example</h3>
+<p>Using orientation sensors requires requesting permissions for multiple device sensors. Because the <a href="permissions"><code>Permissions</code></a> uses promises, a good way to request permissions is to use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all"><code>Promise.all</code></a>.</p> <pre data-language="js"><span class="token keyword">const</span> sensor <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AbsoluteOrientationSensor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Promise<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span><span class="token punctuation">[</span>navigator<span class="token punctuation">.</span>permissions<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token string">"accelerometer"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+             navigator<span class="token punctuation">.</span>permissions<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token string">"magnetometer"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+             navigator<span class="token punctuation">.</span>permissions<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span><span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token string">"gyroscope"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+       <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">results</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+         <span class="token keyword">if</span> <span class="token punctuation">(</span>results<span class="token punctuation">.</span><span class="token function">every</span><span class="token punctuation">(</span><span class="token parameter">result</span> <span class="token operator">=&gt;</span> result<span class="token punctuation">.</span>state <span class="token operator">===</span> <span class="token string">"granted"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+           sensor<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+           <span class="token operator">...</span>
+         <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+           console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"No permissions to use AbsoluteOrientationSensor."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+         <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.w3.org/TR/generic-sensor/" hreflang="en" rel=" noopener">Generic Sensor API</a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Defines sensors in general.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/orientation-sensor/#absoluteorientationsensor-interface" hreflang="en" rel=" noopener">Orientation Sensor<br><small>The definition of 'AbsoluteOrientationSensor' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>AbsoluteOrientationSensor</code></th>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+<tr>
+<th><code>AbsoluteOrientationSensor</code></th>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/AbsoluteOrientationSensor" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/AbsoluteOrientationSensor</a>
+  </p>
+</div>

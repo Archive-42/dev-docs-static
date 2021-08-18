@@ -1,0 +1,104 @@
+<h1>env()</h1> <p>The <code>env()</code> <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> <a href="css_functions">function</a> can be used to insert the value of a user agent-defined environment variable into your CSS, in a similar fashion to the <a href="var()"><code>var()</code></a> function and <a href="--*">custom properties</a>. The difference is that, as well as being user-agent defined rather than user-defined, environment variables are globally scoped to a document, whereas custom properties are scoped to the element(s) on which they are declared. </p> <p>To tell the browser to use the whole available space on the screen, and so enabling us to use the <code>env()</code> variables, we need to add a new viewport meta value:</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>viewport-fit=cover<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span></pre> <pre data-language="css"><span class="token selector">body</span> <span class="token punctuation">{</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span>
+    <span class="token function">env</span><span class="token punctuation">(</span>safe-area-inset-top<span class="token punctuation">,</span> 20px<span class="token punctuation">)</span>
+    <span class="token function">env</span><span class="token punctuation">(</span>safe-area-inset-right<span class="token punctuation">,</span> 20px<span class="token punctuation">)</span>
+    <span class="token function">env</span><span class="token punctuation">(</span>safe-area-inset-bottom<span class="token punctuation">,</span> 20px<span class="token punctuation">)</span>
+    <span class="token function">env</span><span class="token punctuation">(</span>safe-area-inset-left<span class="token punctuation">,</span> 20px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>In addition, unlike custom properties, which cannot be used outside of declarations, the <code>env()</code> function can be used in place of any part of a property value, or any part of a descriptor (e.g. in <a href="@media">Media query rules</a>). As the spec evolves, it may also be usable in other places such as selectors.</p> <p>Originally provided by the iOS browser to allow developers to place their content in a safe area of the viewport, the <code>safe-area-inset-*</code> values defined in the specification can be used to help ensure content is visible even to viewers using non‑rectangular displays.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="css"><span class="token comment">/* Using the four safe area inset values with no fallback values */</span>
+<span class="token function">env</span><span class="token punctuation">(</span>safe-area-inset-top<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">env</span><span class="token punctuation">(</span>safe-area-inset-right<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">env</span><span class="token punctuation">(</span>safe-area-inset-bottom<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">env</span><span class="token punctuation">(</span>safe-area-inset-left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* Using them with fallback values */</span>
+<span class="token function">env</span><span class="token punctuation">(</span>safe-area-inset-top<span class="token punctuation">,</span> 20px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">env</span><span class="token punctuation">(</span>safe-area-inset-right<span class="token punctuation">,</span> 1em<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">env</span><span class="token punctuation">(</span>safe-area-inset-bottom<span class="token punctuation">,</span> 0.5vh<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">env</span><span class="token punctuation">(</span>safe-area-inset-left<span class="token punctuation">,</span> 1.4rem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="values">Values</h3>
+<dl> <dt>
+<code id="safe-area-inset-top" style="white-space: nowrap;">safe-area-inset-top</code>, <code id="safe-area-inset-right" style="white-space: nowrap;">safe-area-inset-right</code>, <code id="safe-area-inset-bottom" style="white-space: nowrap;">safe-area-inset-bottom</code>, <code id="safe-area-inset-left" style="white-space: nowrap;">safe-area-inset-left</code>
+</dt> <dd>The <code style="white-space: nowrap;">safe-area-inset-*</code> variables are four environment variables that define a rectangle by its top, right, bottom, and left insets from the edge of the viewport, which is safe to put content into without risking it being cut off by the shape of a non‑rectangular display. For rectangular viewports, like your average laptop monitor, their value is equal to zero. For non-rectangular displays — like a round watch face — the four values set by the user agent form a rectangle such that all content inside the rectangle is visible.</dd> </dl> <p><strong>Note</strong>: Unlike other CSS properties, user agent-defined property names are case-sensitive.</p>
+<h3 id="formal_syntax">Formal syntax</h3>
+<pre class="notranslate">env( <a href="custom-ident">&lt;custom-ident&gt;</a> , &lt;declaration-value&gt;<a href="value_definition_syntax#question_mark_()">?</a> )</pre>
+<h2 id="examples">Examples</h2>
+<p>The below example makes use of the optional second parameter of <code>env()</code>, which allows you to provide a fallback value in case the environment variable is not available.</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>
+  If the <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">&gt;</span></span>env()<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">&gt;</span></span> function is supported in your browser,
+  this paragraph’s text will have 50px of padding between it and
+  the left border — but not the top, right and bottom.
+  This is because the accompanying CSS is the equivalent of
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">&gt;</span></span>padding: 0 0 0 50px<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">&gt;</span></span>, because, unlike other CSS
+  properties, user agent property names are case-sensitive.
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre> <pre data-language="css"><span class="token selector">p</span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 2px solid red<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span>
+    <span class="token function">env</span><span class="token punctuation">(</span>safe-area-inset-top<span class="token punctuation">,</span> 50px<span class="token punctuation">)</span>
+    <span class="token function">env</span><span class="token punctuation">(</span>safe-area-inset-right<span class="token punctuation">,</span> 50px<span class="token punctuation">)</span>
+    <span class="token function">env</span><span class="token punctuation">(</span>safe-area-inset-bottom<span class="token punctuation">,</span> 50px<span class="token punctuation">)</span>
+    <span class="token function">env</span><span class="token punctuation">(</span>SAFE-AREA-INSET-LEFT<span class="token punctuation">,</span> 50px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p><iframe class="sample-code-frame" id="frame_Examples" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/env()/_samples_/Examples" loading="lazy"></iframe></p>
+<h3 id="example_values">Example values</h3>
+<pre data-language="css"><span class="token property">padding</span><span class="token punctuation">:</span> <span class="token function">env</span><span class="token punctuation">(</span>safe-area-inset-bottom<span class="token punctuation">,</span> 50px<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* zero for all rectangular user agents */</span>
+<span class="token property">padding</span><span class="token punctuation">:</span> <span class="token function">env</span><span class="token punctuation">(</span>Safe-area-inset-bottom<span class="token punctuation">,</span> 50px<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* 50px because UA properties are case sensitive */</span>
+<span class="token property">padding</span><span class="token punctuation">:</span> <span class="token function">env</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> 50px 20px<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* as if padding: '50px 20px' were set because x is not a valid environment variable */</span>
+<span class="token property">padding</span><span class="token punctuation">:</span> <span class="token function">env</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> 50px<span class="token punctuation">,</span> 20px<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* ignored because '50px, 20px' is not a valid padding value and x is not a valid environment variable */</span>
+</pre> <p>The syntax of the fallback, like that of custom properties, allows commas. But, if the property value doesn't support commas, the value is not valid.</p> <p><strong>Note</strong>: User agent properties are not reset by the <a href="all">all</a> property.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/css-env-1/#env-function" hreflang="en" rel=" noopener">CSS Environment Variables Module Level 1<br><small>The definition of 'env()' in that specification.</small></a></td> <td><span class="spec-ed">Editor's Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>env()</code></th>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes">
+<div>11.1</div>
+<div>11-11.1</div>
+</td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes">
+<div>11.3</div>
+<div>11-11.3</div>
+</td>
+<td class="bc-supports-yes"><div>10.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="var()"><code>var(…)</code></a></li> <li><a href="css_variables">CSS Custom Properties for Cascading Variables</a></li> <li><a href="--*">Custom Properties (--*)</a></li> <li><a href="using_css_custom_properties">Using CSS custom properties (variables)</a></li> <li><a href="@viewport"><code>viewport-fit (@viewport)</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/env()" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/env()</a>
+  </p>
+</div>

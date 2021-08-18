@@ -1,0 +1,82 @@
+<h1>Element: auxclick event</h1> <p>The <code><strong>auxclick</strong></code> event is fired at an <a href="../element"><code>Element</code></a> when a non-primary pointing device button (any mouse button other than the primary—usually leftmost—button) has been pressed and released both within the same element.</p> <p><code>auxclick</code> is fired after the <code><a href="mousedown_event">mousedown</a></code> and <code><a href="mouseup_event">mouseup</a></code> events have been fired, in that order.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th>Bubbles</th> <td>Yes</td> </tr> <tr> <th>Cancelable</th> <td>Yes</td> </tr> <tr> <th>Interface</th> <td><a href="../mouseevent"><code>MouseEvent</code></a></td> </tr> <tr> <th>Event handler property</th> <td><a href="../globaleventhandlers/onauxclick"><code>onauxclick</code></a></td> </tr> </tbody> </table></div>
+<h2 id="preventing_default_actions">Preventing default actions</h2>
+<p>For the vast majority of browsers that map middle click to opening a link in a new tab, including Firefox, it is possible to cancel this behavior by calling <a href="../event/preventdefault"><code>preventDefault()</code></a> from within an <code>auxclick</code> event handler.</p> <p>When listening for <code>auxclick</code> events originating on elements that do not support input or navigation, you will often want to explicitly prevent other default actions mapped to the down action of the middle mouse button. On Windows this is usually autoscroll, and on macOS and Linux this is usually clipboard paste. This can be done by preventing the default behavior of the <code><a href="mousedown_event">mousedown</a></code> or <code><a href="../htmlelement/pointerdown_event">pointerdown</a></code> event.</p> <p>Additionally, you may need to avoid opening a system context menu after a right click. Due to timing differences between operating systems, this too is not a preventable default behavior of <code>auxclick</code>. Instead, this can be done by preventing the default behavior of the <code><a href="contextmenu_event">contextmenu</a></code> event.</p>
+<h2 id="examples">Examples</h2>
+<p>In this example we define functions for two event handlers — <a href="../globaleventhandlers/onclick"><code>onclick</code></a> and <a href="../globaleventhandlers/onauxclick"><code>onauxclick</code></a>. The former changes the color of the button background, while the latter changes the button foreground (text) color. You also can see the two functions in action by trying the demo out with a multi-button mouse (<a href="https://mdn.github.io/dom-examples/auxclick/" rel=" noopener">see it live on GitHub</a>; also <a href="https://github.com/mdn/dom-examples/blob/master/auxclick/index.html" rel=" noopener">see the source code</a>).</p>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js"><span class="token keyword">let</span> button <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'button'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> html <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'html'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">random</span><span class="token punctuation">(</span><span class="token parameter">number</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> number<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">randomColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">rgb(</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token number">255</span><span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">)</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+button<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  button<span class="token punctuation">.</span>style<span class="token punctuation">.</span>backgroundColor <span class="token operator">=</span> <span class="token function">randomColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+button<span class="token punctuation">.</span><span class="token function-variable function">onauxclick</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  button<span class="token punctuation">.</span>style<span class="token punctuation">.</span>color <span class="token operator">=</span> <span class="token function">randomColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+button<span class="token punctuation">.</span><span class="token function-variable function">oncontextmenu</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>Notice that in addition to capturing the <code>auxclick</code> event using <a href="../globaleventhandlers/onauxclick"><code>onauxclick</code></a>, the <a href="contextmenu_event"><code>contextmenu</code></a> event is also captured, and <a href="../event/preventdefault"><code>preventDefault()</code></a> called on that event, in order to prevent the context menu from popping up after the color change is applied.</p>
+<h3 id="html">HTML</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Click me!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span></pre> <p><iframe class="sample-code-frame" id="frame_Examples" width="640" height="300" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Element/auxclick_event/_samples_/Examples" loading="lazy"></iframe></p> <div class="note notecard"> <p><strong>Note</strong>: If you are using a three-button mouse, you'll notice that the <code>onauxclick</code> handler is run when any of the non-left mouse buttons are clicked (usually including any "special" buttons on gaming mice).</p> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> </tr> <tr> <td><a href="https://w3c.github.io/uievents/#event-type-auxclick" hreflang="en" rel=" noopener">UI Events<br><small>The definition of 'auxclick' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>auxclick_event</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>53</div>
+<div>Starting in Firefox 68, the <code>auxclick</code> event is used to trigger the <em>new tab on middle-click</em> action; previously, this had been done with the <code>click</code> event. Apps can prevent middle-click from opening new tabs (or middle-click to paste, if that feature is enabled) by intercepting <code>auxclick</code> on links, and <code>auxclick</code> event handlers can now open popups without triggering the popup blocker.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events">Introduction to events</a></li> <li><code><a href="click_event">click</a></code></li> <li><code><a href="contextmenu_event">contextmenu</a></code></li> <li><code><a href="dblclick_event">dblclick</a></code></li> <li><code><a href="mousedown_event">mousedown</a></code></li> <li><code><a href="mouseup_event">mouseup</a></code></li> <li><code><a href="../htmlelement/pointerdown_event">pointerdown</a></code></li> <li><code><a href="../htmlelement/pointerup_event">pointerup</a></code></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/auxclick_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/auxclick_event</a>
+  </p>
+</div>

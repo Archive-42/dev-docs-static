@@ -1,0 +1,74 @@
+<h1>XRWebGLLayerInit.ignoreDepthValues</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <a href="../xrwebgllayerinit"><code>XRWebGLLayerInit</code></a> dictionary's Boolean <code><strong>ignoreDepthValues</strong></code> property can be provided in the options passed into the <a href="../xrwebgllayer/xrwebgllayer"><code>XRWebGLLayer()</code></a> constructor to indicate that the depth buffer, if it exists, should be ignored while composing the scene.</p> <p>The depth buffer is typically used to assist in ordering vertices and, by extension, polygons while compositing, to ensure that the scene is correctly composited, with objects the correct distance away and with clipping and other distance-related computations performed as accurately as possible. Without the depth buffer, these computations must rely entirely on the coordinates of each pixel.</p> <p>This property differs from <a href="depth"><code>depth</code></a> in that <code>depth</code> requests a WebGL layer that does not have a depth buffer at all, while <code>ignoreDepthValues</code> merely asks that the depth layer be ignored.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">let</span> layerInit <span class="token operator">=</span> <span class="token punctuation">{</span>
+  ignoreDepthValues<span class="token operator">:</span> boolValue
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> glLayer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XRWebGLLayer</span><span class="token punctuation">(</span>xrSession<span class="token punctuation">,</span> gl<span class="token punctuation">,</span> layerInit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> glLayer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XRWebGLLayer</span><span class="token punctuation">(</span>xrSession<span class="token punctuation">,</span> gl<span class="token punctuation">,</span> <span class="token punctuation">{</span> ignoreDepthValues<span class="token operator">:</span> boolValue <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>A Boolean value which can be set to <code>true</code> to disable the use of the depth buffer by the WebGL rendering layer created by the <a href="../xrwebgllayer/xrwebgllayer"><code>XRWebGLLayer()</code></a> constructor. The default value, <code>false</code>, means the depth buffer <em>will</em> be used, if available. </p>
+<h2 id="usage_notes">Usage notes</h2>
+<p>If <code>ignoreDepthValues</code> is <code>true</code>, the WebXR compositor will ignore the contents of the depth buffer, if it exists, while compositing and rendering the scene. If <code>false</code>, the depth buffer's contents are used, if one is present.</p> <p>Using a depth buffer while compositing allows the XR compositor to help ensure the compositing is done as accurately as possible. Each entry in the depth buffer corresponds to the depth of the fragment whose color is at the same location in the color buffer, and must have a value between 0.0 and 1.0, where 0.0 corresponds to the distance specified in the <a href="../xrsession"><code>XRSession</code></a> object's <a href="../xrsession/renderstate"><code>renderState</code></a> record's <a href="../xrrenderstate/depthnear"><code>depthNear</code></a> and 1.0 represents the distance given by <a href="../xrrenderstate/depthfar"><code>depthFar</code></a>.</p> <p>Ignoring depth values causes the compositor to rely solely upon the relative position of objects to establish depth, and may result in less effective and less comfortable 3D effects. The default is <code>false</code> (depth values are used by default).</p>
+<h2 id="example">Example</h2>
+<p>In this example, a new <a href="../xrwebgllayer"><code>XRWebGLLayer</code></a> is created for a WebXR session, <code>xrSession</code>. It's configured to ignore depth values or an alpha channel.</p> <pre data-language="js">xrSession<span class="token punctuation">.</span><span class="token function">updateRenderState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  baseLayer<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">XRWebGLLayer</span><span class="token punctuation">(</span>xrSession<span class="token punctuation">,</span> gl<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+     alpha<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+     ignoredepthValues<span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td> <a href="https://immersive-web.github.io/webxr/#dom-xrwebgllayerinit-ignoredepthvalues" hreflang="en" rel=" noopener">WebXR Device API<br><small>The definition of 'XRWebGLLayerInit.ignoreDepthValues' in that specification.</small></a> </td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>ignoreDepthValues</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webxr_device_api">WebXR Device API</a></li> <li><a href="../webgl_api/tutorial/getting_started_with_webgl">Getting started with WebGL</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XRWebGLLayerInit/ignoreDepthValues" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XRWebGLLayerInit/ignoreDepthValues</a>
+  </p>
+</div>

@@ -1,0 +1,88 @@
+<h1>Document.mozSetImageElement()</h1>
+
+<div class="notecard warning"> <strong id="non-standard">Non-standard</strong> <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p> </div>
+ <p>The <code><strong>Document.mozSetImageElement()</strong></code> method changes the element being used as the CSS background for a background with a given background element ID.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">document<span class="token punctuation">.</span><span class="token function">mozSetImageElement</span><span class="token punctuation">(</span>imageElementId<span class="token punctuation">,</span> imageElement<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<ul> <li>
+<code>imageElementId</code> is a string indicating the name of an element that has been specified as a background image using the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/element()"><code>-moz-element()</code></a> CSS function.</li> <li>
+<code>imageElement</code> is the new element to use as the background corresponding to that image element string. Specify <code>null</code> to remove the background element.</li> </ul>
+<h2 id="example">Example</h2>
+<p>This example changes the background of a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a> block each time the block is clicked by the user.</p> <p><a href="https://media.prod.mdn.mozit.cloud/samples/domref/mozSetImageElement.html" rel=" noopener">View this example live</a>.</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token style"><span class="token language-css">
+  <span class="token selector">#mybox</span> <span class="token punctuation">{</span>
+    <span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token function">-moz-element</span><span class="token punctuation">(</span>#canvasbg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> 400px<span class="token punctuation">;</span>
+    <span class="token property">height</span><span class="token punctuation">:</span> 400px<span class="token punctuation">;</span>
+    <span class="token property">cursor</span><span class="token punctuation">:</span> pointer<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+</pre> <p>The CSS defined by the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style"><code>&lt;style&gt;</code></a> block above is used by our <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a> to use an element with the id "canvasbg" as its background.</p> <pre data-language="js"><span class="token keyword">var</span> c <span class="token operator">=</span> <span class="token number">0x00</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">clicked</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"canvas"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  canvas<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"width"</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  canvas<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"height"</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">var</span> ctx <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> <span class="token string">"#"</span> <span class="token operator">+</span> c<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"0000"</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span><span class="token function">fillRect</span><span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">75</span><span class="token punctuation">,</span> <span class="token number">75</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  c <span class="token operator">+=</span> <span class="token number">0x11</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>c <span class="token operator">&gt;</span> <span class="token number">0xff</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    c <span class="token operator">=</span> <span class="token number">0x00</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  document<span class="token punctuation">.</span><span class="token function">mozSetImageElement</span><span class="token punctuation">(</span><span class="token string">"canvasbg"</span><span class="token punctuation">,</span> canvas<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>The code here is called each time the user clicks the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a> element. It creates a new <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas"><code>&lt;canvas&gt;</code></a> with the width and height set to 100 pixels, then draws into it a 50 by 50 pixel square. Each time the function is called, the square is a different color (its red component is increased each time), so each time the user clicks the element, the background is filled with a brighter and brighter pattern of red tiles.</p> <p>Once the canvas is drawn, <code>document.mozSetImageElement()</code> is called to set the background for any CSS using the ID "canvasbg" as its background element ID to be our new canvas.</p>
+<h2 id="specifications">Specifications</h2>
+<p>Not part of any specification.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>mozSetImageElement</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/element()"><code>-moz-element()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/mozSetImageElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Document/mozSetImageElement</a>
+  </p>
+</div>

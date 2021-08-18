@@ -1,0 +1,106 @@
+<h1>MouseEvent.pageX</h1> <p>The <code><strong>pageX</strong></code> read-only property of the <a href="../mouseevent"><code>MouseEvent</code></a> interface returns the X (horizontal) coordinate (in pixels) at which the mouse was clicked, relative to the left edge of the entire document. This includes any portion of the document not currently visible.</p> <p>Being based on the edge of the document as it is, this property takes into account any horizontal scrolling of the page. For example, if the page is scrolled such that 200 pixels of the left side of the document are scrolled out of view, and the mouse is clicked 100 pixels inward from the left edge of the view, the value returned by <code>pageX</code> will be 300.</p> <p>Originally, this property was defined as a <code>long</code> integer. The <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSSOM_View">CSSOM View Module</a> redefined it as a <code>double</code> float. See the <a href="#browser_compatibility">Browser compatibility</a> section for details.</p> <p>See <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSSOM_View/Coordinate_systems#page">Page</a> in <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSSOM_View/Coordinate_systems">Coordinate systems</a> for some additional information about coordinates specified in this fashion.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> pageX <span class="token operator">=</span> MouseEvent<span class="token punctuation">.</span>pageX<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>A floating-point number of pixels from the left edge of the <em>document</em> at which the mouse was clicked, regardless of any scrolling or viewport positioning that may be in effect.</p> <p>This property was originally specified in the Touch Events specification as a long integer, but was redefined in the CSSOM View Module to be a double-precision floating-point number to allow for subpixel precision. Even though numeric types both are represented by <code>Number</code> in JavaScript, they may be handled differently internally in the browser's code, resulting in potential behavior differences. See <a href="#browser_compatibility">Browser compatibility</a> to learn which browsers have been updated to use the revised data type.</p>
+<h2 id="example">Example</h2>
+<div class="moreinfo pull-aside"> <h4 id="more_examples">More examples</h4> You can also see an example that demonstrates <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSSOM_View/Coordinate_systems#example">how to access the mouse position</a> information in every available coordinate system. </div> <p>Let's take a look at a simple example that shows you the mouse's position relative to the page's origin. Since this example is presented in an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a>, that top-left corner is the top-left corner of the frame, not the browser window.</p>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js"><span class="token keyword">var</span> box <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">".box"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> pageX <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"x"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> pageY <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"y"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">updateDisplay</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  pageX<span class="token punctuation">.</span>innerText <span class="token operator">=</span> event<span class="token punctuation">.</span>pageX<span class="token punctuation">;</span>
+  pageY<span class="token punctuation">.</span>innerText <span class="token operator">=</span> event<span class="token punctuation">.</span>pageY<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+box<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"mousemove"</span><span class="token punctuation">,</span> updateDisplay<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+box<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"mouseenter"</span><span class="token punctuation">,</span> updateDisplay<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+box<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"mouseleave"</span><span class="token punctuation">,</span> updateDisplay<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>The JavaScript code uses <a href="../eventtarget/addeventlistener"><code>addEventListener()</code></a> to register the function <code>updateDisplay()</code> as the event handler for the <code><a href="../element/mousemove_event">mousemove</a></code>, <code><a href="../element/mouseenter_event">mouseenter</a></code>, and <code><a href="../element/mouseleave_event">mouseleave</a></code> events.</p> <p><code>updateDisplay()</code> replaces the contents of the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span"><code>&lt;span&gt;</code></a> elements meant to contain the X and Y coordinates with the values of <code>pageX</code> and <a href="pagey"><code>pageY</code></a>.</p>
+<h3 id="html">HTML</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>box<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>
+    Move the mouse around in this box to watch its coordinates change.
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">&gt;</span></span>pageX<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">&gt;</span></span>: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>x<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>n/a<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">&gt;</span></span>pageY<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">&gt;</span></span>: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>y<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>n/a<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></pre> <p>The HTML is simple; the box we'll be watching for mouse events on is given the class <code>"box"</code>. It has two <code>&lt;span&gt;</code> elements, one with the ID <code>"x"</code> and one with the ID <code>"y"</code>. Those will be updated each time an event occurs to contain the latest mouse coordinates relative to the page.</p> <details open=""> <summary> <h3 id="CSS">CSS</h3> </summary> <p>The CSS used for this example is shown below.</p> <pre data-language="css"><span class="token selector">.box</span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 400px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 250px<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 2px solid darkblue<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> white<span class="token punctuation">;</span>
+  <span class="token property">font</span><span class="token punctuation">:</span> 16px <span class="token string">"Zilla"</span><span class="token punctuation">,</span> <span class="token string">"Open Sans"</span><span class="token punctuation">,</span> <span class="token string">"Helvetica"</span><span class="token punctuation">,</span> <span class="token string">"Arial"</span><span class="token punctuation">,</span> sans-serif<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> </details><h3 id="result">Result</h3>
+<p>Try this out here:</p> <p><iframe class="sample-code-frame" id="frame_Example" width="500" height="300" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/MouseEvent/pageX/_samples_/Example" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th>Specification</th> <th>Status</th> <th>Comment</th> </tr> <tr> <td><a href="https://drafts.csswg.org/cssom-view/#dom-mouseevent-pagex" hreflang="en" rel=" noopener">CSS Object Model (CSSOM) View Module<br><small>The definition of 'pageX' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Redefined from <code>long</code> to <code>double</code>.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/touch-events/#widl-Touch-pageX" hreflang="en" rel=" noopener">Touch Events<br><small>The definition of 'pageX' in that specification.</small></a></td> <td><span class="spec-">Unknown</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div> <p>Prior to being added to the CSSOM View specification, <code>pageX</code> and <code>pageY</code> were available on the <a href="../uievent"><code>UIEvent</code></a> interface in a limited subset of browsers for a short time.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>pageX</code></th>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>long_to_double</code></th>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="pagey"><code>MouseEvent.pageY</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/pageX" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/pageX</a>
+  </p>
+</div>

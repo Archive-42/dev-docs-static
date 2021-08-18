@@ -1,0 +1,125 @@
+<h1>SubtleCrypto.generateKey()</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>Use the <code><strong>generateKey()</strong></code> method of the <a href="../subtlecrypto"><code>SubtleCrypto</code></a> interface to generate a new key (for symmetric algorithms) or key pair (for public-key algorithms).</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">const</span> result <span class="token operator">=</span> crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">generateKey</span><span class="token punctuation">(</span>algorithm<span class="token punctuation">,</span> extractable<span class="token punctuation">,</span> keyUsages<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<ul> <li>
+<em><code>algorithm</code></em> is a dictionary object defining the type of key to generate and providing extra algorithm-specific parameters. <ul> <li>For <a href="sign#rsassa-pkcs1-v1_5">RSASSA-PKCS1-v1_5</a>, <a href="sign#rsa-pss">RSA-PSS</a>, or <a href="encrypt#rsa-oaep">RSA-OAEP</a>: pass an <code><a href="../rsahashedkeygenparams">RsaHashedKeyGenParams</a></code> object.</li> <li>For <a href="sign#ecdsa">ECDSA</a> or <a href="derivekey#ecdh">ECDH</a>: pass an <code><a href="../eckeygenparams">EcKeyGenParams</a></code> object.</li> <li>For <a href="sign#hmac">HMAC</a>: pass an <code><a href="../hmackeygenparams">HmacKeyGenParams</a></code> object.</li> <li>For <a href="encrypt#aes-ctr">AES-CTR</a>, <a href="encrypt#aes-cbc">AES-CBC</a>, <a href="encrypt#aes-gcm">AES-GCM</a>, or <a href="encrypt#aes-kw">AES-KW</a>: pass an <code><a href="../aeskeygenparams">AesKeyGenParams</a></code> object.</li> </ul> </li> <li>
+<code><em>extractable</em></code> is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> indicating whether it will be possible to export the key using <a href="exportkey"><code>SubtleCrypto.exportKey()</code></a> or <a href="wrapkey"><code>SubtleCrypto.wrapKey()</code></a>.</li> <li>
+<code><em>keyUsages</em></code> is an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> indicating what can be done with the newly generated key. Possible values for array elements are: <ul> <li>
+<code>encrypt</code>: The key may be used to <a href="encrypt"><code>encrypt</code></a> messages.</li> <li>
+<code>decrypt</code>: The key may be used to <a href="decrypt"><code>decrypt</code></a> messages.</li> <li>
+<code>sign</code>: The key may be used to <a href="sign"><code>sign</code></a> messages.</li> <li>
+<code>verify</code>: The key may be used to <a href="verify"><code>verify</code></a> signatures.</li> <li>
+<code>deriveKey</code>: The key may be used in <a href="derivekey"><code>deriving a new key</code></a>.</li> <li>
+<code>deriveBits</code>: The key may be used in <a href="derivebits"><code>deriving bits</code></a>.</li> <li>
+<code>wrapKey</code>: The key may be used to <a href="wrapkey"><code>wrap a key</code></a>.</li> <li>
+<code>unwrapKey</code>: The key may be used to <a href="unwrapkey"><code>unwrap a key</code></a>.</li> </ul> </li> </ul>
+<h3 id="return_value">Return value</h3>
+<ul> <li>
+<code><em>result</em></code> is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that fulfills with a <a href="../cryptokey"><code>CryptoKey</code></a> (for symmetric algorithms) or a <a href="../cryptokeypair"><code>CryptoKeyPair</code></a> (for public-key algorithms).</li> </ul>
+<h3 id="exceptions">Exceptions</h3>
+<p>The promise is rejected when the following exception is encountered:</p> <dl> <dt><a href="../domexception#exception-syntaxerror"><code>SyntaxError</code></a></dt> <dd>Raised when the result is a <a href="../cryptokey"><code>CryptoKey</code></a> of type <code>secret</code> or <code>private</code> but <em><code>keyUsages</code></em> is empty.</dd> <dt><a href="../domexception#exception-syntaxerror"><code>SyntaxError</code></a></dt> <dd>Raised when the result is a <a href="../cryptokeypair"><code>CryptoKeyPair</code></a> and its <code>privateKey.usages</code> attribute is empty.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<div class="notecard note"> <p><strong>Note</strong>: You can <a href="https://mdn.github.io/dom-examples/web-crypto/encrypt-decrypt/index.html" rel=" noopener">try the working examples</a> on GitHub.</p> </div>
+<h3 id="rsa_key_pair_generation">RSA key pair generation</h3>
+<p>This code generates an RSA-OAEP encryption key pair. <a href="https://github.com/mdn/dom-examples/blob/master/web-crypto/encrypt-decrypt/rsa-oaep.js" rel=" noopener">See the complete code on GitHub.</a></p> <pre data-language="js"><span class="token keyword">let</span> keyPair <span class="token operator">=</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">generateKey</span><span class="token punctuation">(</span>
+  <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">"RSA-OAEP"</span><span class="token punctuation">,</span>
+    modulusLength<span class="token operator">:</span> <span class="token number">4096</span><span class="token punctuation">,</span>
+    publicExponent<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    hash<span class="token operator">:</span> <span class="token string">"SHA-256"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">"encrypt"</span><span class="token punctuation">,</span> <span class="token string">"decrypt"</span><span class="token punctuation">]</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="elliptic_curve_key_pair_generation">Elliptic curve key pair generation</h3>
+<p>This code generates an ECDSA signing key pair. <a href="https://github.com/mdn/dom-examples/blob/master/web-crypto/sign-verify/ecdsa.js" rel=" noopener">See the complete code on GitHub.</a></p> <pre data-language="js"><span class="token keyword">let</span> keyPair <span class="token operator">=</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">generateKey</span><span class="token punctuation">(</span>
+  <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">"ECDSA"</span><span class="token punctuation">,</span>
+    namedCurve<span class="token operator">:</span> <span class="token string">"P-384"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">"sign"</span><span class="token punctuation">,</span> <span class="token string">"verify"</span><span class="token punctuation">]</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="hmac_key_generation">HMAC key generation</h3>
+<p>This code generates an HMAC signing key. <a href="https://github.com/mdn/dom-examples/blob/master/web-crypto/sign-verify/hmac.js" rel=" noopener">See the complete code on GitHub.</a></p> <pre data-language="js"><span class="token keyword">let</span> key <span class="token operator">=</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">generateKey</span><span class="token punctuation">(</span>
+  <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">"HMAC"</span><span class="token punctuation">,</span>
+    hash<span class="token operator">:</span> <span class="token punctuation">{</span>name<span class="token operator">:</span> <span class="token string">"SHA-512"</span><span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">"sign"</span><span class="token punctuation">,</span> <span class="token string">"verify"</span><span class="token punctuation">]</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="aes_key_generation">AES key generation</h3>
+<p>This code generates an AES-GCM encryption key. <a href="https://github.com/mdn/dom-examples/blob/master/web-crypto/encrypt-decrypt/aes-gcm.js" rel=" noopener">See the complete code on GitHub.</a></p> <pre data-language="js"><span class="token keyword">let</span> key <span class="token operator">=</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">generateKey</span><span class="token punctuation">(</span>
+  <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">"AES-GCM"</span><span class="token punctuation">,</span>
+    length<span class="token operator">:</span> <span class="token number">256</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">"encrypt"</span><span class="token punctuation">,</span> <span class="token string">"decrypt"</span><span class="token punctuation">]</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto-method-generateKey" hreflang="en" rel=" noopener">Web Cryptography API<br><small>The definition of 'SubtleCrypto.generateKey()' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>generateKey</code></th>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>["Not supported: RSA-PSS, ECDSA, ECDH.", "Not supported: AES-CTR."]</div>
+</td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>Returns <code>KeyOperation</code> instead of <code>Promise</code>
+</div>
+</td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="https://www.keylength.com/" rel=" noopener">Cryptographic key length recommendations</a>. </li> <li>
+<a href="https://csrc.nist.gov/publications/detail/sp/800-131a/rev-1/final" rel=" noopener">NIST cryptographic algorithm and key length recommendations</a>.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/generateKey" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/generateKey</a>
+  </p>
+</div>

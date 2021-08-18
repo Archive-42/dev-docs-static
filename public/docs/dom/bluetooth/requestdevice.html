@@ -1,0 +1,117 @@
+<h1>Bluetooth.requestDevice()</h1>
+ <div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <code>Bluetooth.requestDevice()</code> method of the <a href="../bluetooth"><code>Bluetooth</code></a> interface returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> to a <a href="../bluetoothdevice"><code>BluetoothDevice</code></a> object with the specified options. If there is no chooser UI, this method returns the first device matching the criteria.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">Bluetooth<span class="token punctuation">.</span><span class="token function">requestDevice</span><span class="token punctuation">(</span><span class="token punctuation">[</span>options<span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">bluetoothDevice</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span></pre>
+<h3 id="returns">Returns</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> to a <a href="../bluetoothdevice"><code>BluetoothDevice</code></a> object.</p>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>options <span class="badge inline optional">Optional</span>
+</dt> <dd>An object that sets options for the device request. The available options are: <ul> <li>
+<code>filters[]</code>: An array of <code>BluetoothScanFilters</code>. This filter consists of an array of <code>BluetoothServiceUUID</code>s, a <code>name</code> parameter, and a <code>namePrefix</code> parameter.</li> <li>
+<code>optionalServices[]</code>: An array of <code>BluetoothServiceUUID</code>s. </li> <li>
+<code>acceptAllDevices</code>: A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> indicating that the requesting script can accept all Bluetooth devices. The default is <code>false</code>.</li> </ul> </dd> </dl>
+<h2 id="exceptions">Exceptions</h2>
+<dl> <dt><code>TypeError</code></dt> <dd>The provided <code>options</code> do not makes sense. For example, <code>options.filters</code> is present and <code>options.acceptAllDevices</code> is <code>true</code>, or if <code>options.filters</code> is not present and <code>options.acceptAllDevices</code> is <code>false</code>. Or <code>options.filters</code> is <code>[]</code>.</dd> <dt><code>NotFoundError</code></dt> <dd>There is no Bluetooth device that matches the specified options.</dd> <dt><code>SecurityError</code></dt> <dd>This operation is not permitted in this context due to security concerns. For example, it is called from insecure origin.</dd> </dl>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token comment">// Discovery options match any devices advertising:</span>
+<span class="token comment">// . The standard heart rate service.</span>
+<span class="token comment">// . Both 16-bit service IDs 0x1802 and 0x1803.</span>
+<span class="token comment">// . A proprietary 128-bit UUID service c48e6067-5295-48d3-8d5c-0395f61792b1.</span>
+<span class="token comment">// . Devices with name "ExampleName".</span>
+<span class="token comment">// . Devices with name starting with "Prefix".</span>
+<span class="token comment">//</span>
+<span class="token comment">// And enables access to the battery service if devices</span>
+<span class="token comment">// include it, even if devices do not advertise that service.</span>
+<span class="token keyword">let</span> options <span class="token operator">=</span> <span class="token punctuation">{</span>
+  filters<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>services<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'heart_rate'</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>services<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token number">0x1802</span><span class="token punctuation">,</span> <span class="token number">0x1803</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>services<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'c48e6067-5295-48d3-8d5c-0395f61792b1'</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>name<span class="token operator">:</span> <span class="token string">'ExampleName'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>namePrefix<span class="token operator">:</span> <span class="token string">'Prefix'</span><span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  optionalServices<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'battery_service'</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+navigator<span class="token punctuation">.</span>bluetooth<span class="token punctuation">.</span><span class="token function">requestDevice</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">device</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Name: '</span> <span class="token operator">+</span> device<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// Do something with the device.</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Something went wrong. "</span> <span class="token operator">+</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p><a href="https://webbluetoothcg.github.io/web-bluetooth/#example-filter-by-services" rel=" noopener">Detailed examples</a> are in the specification.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td>
+<a href="https://webbluetoothcg.github.io/web-bluetooth/#dom-bluetooth-requestdevice" hreflang="en" rel=" noopener">Web Bluetooth<br><small>The definition of 'requestDevice()' in that specification.</small></a> </td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>requestDevice</code></th>
+<td class="bc-supports-yes">
+<div>56</div>
+<div>macOS only.</div>
+<div>56</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>70</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>macOS only.</div>
+<div>79</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>79</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>macOS only.</div>
+<div>43</div>
+<div>Linux and versions of Windows earlier than 10.</div>
+<div>57</div>
+<div>Windows 10.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Bluetooth/requestDevice" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Bluetooth/requestDevice</a>
+  </p>
+</div>

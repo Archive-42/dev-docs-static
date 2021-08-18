@@ -1,0 +1,73 @@
+<h1>HTMLInputElement: invalid event</h1>
+
+ <p>The <code>invalid</code> event fires when a submittable element has been checked for validity and doesn't satisfy its constraints.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th>Bubbles</th> <td>No</td> </tr> <tr> <th>Cancelable</th> <td>Yes</td> </tr> <tr> <th>Interface</th> <td><a href="../event"><code>Event</code></a></td> </tr> <tr> <th>Event handler property</th> <td><a href="../globaleventhandlers/oninvalid"><code>GlobalEventHandlers.oninvalid</code></a></td> </tr> </tbody> </table></div> <p>This event can be useful for displaying a summary of the problems with a form on submission. When a form is submitted, <code>invalid</code> events are fired at each form control that is invalid. The validity of submittable elements is checked before submitting their owner <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form"><code>&lt;form&gt;</code></a>, or after the <a href="https://developer.mozilla.org/en-US/docs/Learn/Forms#constraint_validation_api"><code>checkValidity()</code></a> method of the element or its owner <code>&lt;form&gt;</code> is called.</p> <p>It is not checked on <a href="../element/blur_event"><code>blur</code></a>.</p>
+<h2 id="examples">Examples</h2>
+<p>If a form is submitted with an invalid value, the submittable elements are checked and, if an error is found, the <code>invalid</code> event will fire on the <code>invalid</code> element. In this example, when an invalid event fires because of an invalid value in the input, the invalid value is logged.</p>
+<h3 id="html">HTML</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>Enter an integer between 1 and 10: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>number<span class="token punctuation">"</span></span> <span class="token attr-name">min</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span> <span class="token attr-name">max</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>10<span class="token punctuation">"</span></span> <span class="token attr-name">required</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>log<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js"><span class="token keyword">const</span> input <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'input'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> log <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'log'</span><span class="token punctuation">)</span>
+
+input<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'invalid'</span><span class="token punctuation">,</span> logValue<span class="token punctuation">)</span>
+
+<span class="token keyword">function</span> <span class="token function">logValue</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  log<span class="token punctuation">.</span>textContent <span class="token operator">+=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value
+<span class="token punctuation">}</span></pre>
+<h3 id="result">Result</h3>
+<p><iframe class="sample-code-frame" id="frame_Examples" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/HTMLInputElement/invalid_event/_samples_/Examples" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://html.spec.whatwg.org/multipage/forms.html#the-constraint-validation-api" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'Invalid event' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/html51/sec-forms.html#the-constraint-validation-api" hreflang="en" rel=" noopener">HTML 5.1<br><small>The definition of 'Invalid event' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/html52/forms.html#the-constraint-validation-api" hreflang="en" rel=" noopener">HTML5<br><small>The definition of 'Invalid event' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>invalid_event</code></th>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>HTML <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form"><code>&lt;form&gt;</code></a> element</li> <li>Related event: <a href="../htmlformelement/submit_event"><code>submit</code></a>
+</li> <li>CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:invalid"><code>:invalid</code></a> pseudo class</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/invalid_event</a>
+  </p>
+</div>

@@ -1,0 +1,66 @@
+<h1>Node.setUserData()</h1>
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div> <p>The <code><strong>Node.setUserData()</strong></code> method allows a user to attach (or remove) data to an element, without needing to modify the DOM. Note that such data will not be preserved when imported via <a class="page-not-created"><code>Node.importNode</code></a>, as with <a href="clonenode"><code>Node.cloneNode()</code></a> and <a class="page-not-created"><code>Node.renameNode()</code></a> operations (though <a class="page-not-created"><code>Node.adoptNode</code></a> does preserve the information), and equality tests in <a href="isequalnode"><code>Node.isEqualNode()</code></a> do not consider user data in making the assessment. </p> <p>This method offers the convenience of associating data with specific nodes without needing to alter the structure of a document and in a standard fashion, but it also means that extra steps may need to be taken if one wishes to serialize the information or include the information upon clone, import, or rename operations.</p> <div class="note notecard"> <p>The <code>Node.getUserData</code> and <a href="setuserdata"><code>Node.setUserData</code></a> methods are no longer available from Web content. <a href="../htmlorforeignelement/dataset"><code>HTMLElement.dataset</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap"><code>WeakMap</code></a> can be used instead.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> prevUserData <span class="token operator">=</span> someNode<span class="token punctuation">.</span><span class="token function">setUserData</span><span class="token punctuation">(</span>userKey<span class="token punctuation">,</span> userData<span class="token punctuation">,</span> handler<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<ul> <li>
+<code>userKey</code> is used as the key by which one may subsequently obtain the stored data. More than one key can be set for a given node.</li> <li>
+<code>handler</code> is a callback which will be called any time the node is being cloned, imported, renamed, as well as if deleted or adopted; a function can be used or an object implementing the <code>handle</code> method (part of the <a href="../userdatahandler"><code>UserDataHandler</code></a> interface). The handler will be passed five arguments: an operation type integer (e.g., 1 to indicate a clone operation), the user key, the data on the node, the source node (<code>null</code> if being deleted), the destination node (the newly created node or <code>null</code> if none).If no handler is desired, one must specify <code>null</code>.</li> <li>
+<code>userData</code> is the object to associate to <code>userKey</code> on someNode. If <code>null</code>, any previously registered object and UserDataHandler associated to <code>userKey</code> on this node will be removed.</li> </ul>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token keyword">var</span> d <span class="token operator">=</span> document<span class="token punctuation">.</span>implementation<span class="token punctuation">.</span><span class="token function">createDocument</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span> <span class="token string">'test'</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+d<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span><span class="token function">setUserData</span><span class="token punctuation">(</span><span class="token string">'key'</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token function-variable function">handle</span><span class="token operator">:</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">o<span class="token punctuation">,</span> k<span class="token punctuation">,</span> d<span class="token punctuation">,</span> s<span class="token punctuation">,</span> ds</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>o<span class="token operator">+</span><span class="token string">'::'</span><span class="token operator">+</span>k<span class="token operator">+</span><span class="token string">'::'</span><span class="token operator">+</span>d<span class="token operator">+</span><span class="token string">'::'</span><span class="token operator">+</span>s<span class="token operator">+</span><span class="token string">'::'</span><span class="token operator">+</span>ds<span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 2::key::15::[object Element]::[object Element]</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span><span class="token function">getUserData</span><span class="token punctuation">(</span><span class="token string">'key'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 15</span>
+<span class="token keyword">var</span> e <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">importNode</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span>documentElement<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// causes handler to be called</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span><span class="token function">getUserData</span><span class="token punctuation">(</span><span class="token string">'key'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// null since user data is not copied</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td>
+<a href="https://www.w3.org/TR/DOM-Level-3-Core/core.html#Node3-setUserData" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 3 Core Specification<br><small>The definition of 'Node.setUserData()' in that specification.</small></a> </td> <td><span class="spec-obsolete">Obsolete</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>setUserData</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>1-22</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>4-22</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="getuserdata"><code>Node.getUserData()</code></a></li> <li><a href="../userdatahandler"><code>UserDataHandler</code></a></li> <li><a href="../domuserdata"><code>DOMUserData</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/setUserData" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Node/setUserData</a>
+  </p>
+</div>

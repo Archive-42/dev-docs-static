@@ -1,0 +1,24 @@
+<h1>TypeError: can't access dead object</h1> <p>The JavaScript exception "can't access dead object" occurs when Firefox disallows add-ons to keep strong references to DOM objects after their parent document has been destroyed to improve in memory usage and to prevent memory leaks.</p>
+<h2 id="message">Message</h2>
+<pre data-language="js">TypeError<span class="token operator">:</span> can't access dead object
+</pre>
+<h2 id="error_type">Error type</h2>
+<p><a href="../global_objects/typeerror"><code>TypeError</code></a></p>
+<h2 id="what_went_wrong">What went wrong?</h2>
+<p>To improve in memory usage and to prevent memory leaks, Firefox disallows add-ons to keep strong references to DOM objects after their parent document has been destroyed. A dead object, is holding a strong (keep alive) reference to a DOM element that persists even after it was destroyed in the DOM. To avoid these issues, references to DOM nodes in foreign document should instead be stored in an object which is specific to that document, and cleaned up when the document is unloaded, or stored as <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Tech/XPCOM/Language_Bindings/Components.utils.getWeakReference">weak references</a>.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="checking_if_an_object_is_dead">Checking if an object is dead</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Mozilla/Tech/XPCOM/Language_Bindings/Components.utils">Components.utils</a> offers a <code>isDeadWrapper()</code> method, which privileged code might use.</p> <pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span>Components<span class="token punctuation">.</span>utils<span class="token punctuation">.</span><span class="token function">isDeadWrapper</span><span class="token punctuation">(</span>window<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// dead</span>
+<span class="token punctuation">}</span></pre> <p>Unprivileged code has no access to Component.utils and might just be able catch the exception.</p> <pre data-language="js"><span class="token keyword">try</span> <span class="token punctuation">{</span>
+  <span class="token function">String</span><span class="token punctuation">(</span>window<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"window is likely dead"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://blog.mozilla.org/addons/2012/09/12/what-does-cant-access-dead-object-mean/" rel=" noopener">What does “can’t access dead object” mean?</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Extensions/Common_causes_of_memory_leaks_in_extensions">Common causes of memory leaks in extensions</a></li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Mozilla/Tech/XPCOM/Language_Bindings/Components.utils">Components.utils</a> </li> <li><a href="https://developer.mozilla.org/en-US/docs/Mozilla/Zombie_compartments">Zombie Compartments</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Dead_object" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Dead_object</a>
+  </p>
+</div>

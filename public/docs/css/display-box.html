@@ -1,0 +1,110 @@
+<h1>&lt;display-box&gt;</h1> <p class="summary">These keywords define whether an element generates display boxes at all.</p>
+<h2 id="syntax">Syntax</h2>
+<p>Valid <code>&lt;display-box&gt;</code> values:</p> <dl> <dt><code>contents</code></dt> <dd>These elements don't produce a specific box by themselves. They are replaced by their pseudo-box and their child boxes. Please note that the CSS Display Level 3 spec defines how the <code>contents</code> value should affect "unusual elements" — elements that aren’t rendered purely by CSS box concepts such as replaced elements. See <a href="https://drafts.csswg.org/css-display/#unbox" rel=" noopener">Appendix B: Effects of display: contents on Unusual Elements</a> for more details.<br> <br> <em>Due to a bug in browsers this will currently remove the element from the accessibility tree — screen readers will not look at what's inside. See the <a href="#accessibility_concerns">Accessibility concerns</a> section below for more details.</em>
+</dd> <dt><code>none</code></dt> <dd>Turns off the display of an element so that it has no effect on layout (the document is rendered as though the element did not exist). All descendant elements also have their display turned off.<br> To have an element take up the space that it would normally take, but without actually rendering anything, use the <a href="visibility"><code>visibility</code></a> property instead.</dd> </dl>
+<h2 id="accessibility_concerns">Accessibility concerns</h2>
+<p>Current implementations in most browsers will remove from the <a href="https://developer.mozilla.org/en-US/docs/Learn/Accessibility/What_is_accessibility#accessibility_apis">accessibility tree</a> any element with a <code>display</code> value of <code>contents</code>. This will cause the element — and in some browser versions, its descendant elements — to no longer be announced by screen reading technology. This is incorrect behavior according to the <a href="https://drafts.csswg.org/css-display/#the-display-properties" rel=" noopener">CSSWG specification</a>.</p> <ul> <li><a href="https://hiddedevries.nl/en/blog/2018-04-21-more-accessible-markup-with-display-contents" rel=" noopener">More accessible markup with display: contents | Hidde de Vries</a></li> <li><a href="https://adrianroselli.com/2018/05/display-contents-is-not-a-css-reset.html" rel=" noopener">Display: Contents Is Not a CSS Reset | Adrian Roselli</a></li> </ul>
+<h2 id="examples">Examples</h2>
+<p>In this first example, the paragraph with a class of secret is set to <code>display: none</code>; the box and any content is now not rendered.</p>
+<h3 id="display_none">display: none</h3>
+<h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Visible text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>secret<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Invisible text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre> <h4 id="css">CSS</h4> <pre data-language="css"><span class="token selector">p.secret</span> <span class="token punctuation">{</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <h4 id="result">Result</h4> <p><iframe class="sample-code-frame" id="frame_display_none" width="100%" height="60" src="https://yari-demos.prod.mdn.mozit.cloud/en-us/docs/web/css/display-box/_samples_/display_none" loading="lazy"></iframe></p>
+<h3 id="display_contents">display: contents</h3>
+<p>In this example the outer <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a> has a 2-pixel red border and a width of 300px. However it also has <code>display: contents</code> specified therefore this <code>&lt;div&gt;</code> will not be rendered, the border and width will no longer apply, and the child element will be displayed as if the parent had never existed.</p> <h4 id="html_2">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>outer<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>Inner div.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</pre> <h4 id="css_2">CSS</h4> <pre data-language="css"><span class="token selector">.outer</span> <span class="token punctuation">{</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 2px solid red<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> contents<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.outer &gt; div</span> <span class="token punctuation">{</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid green<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <h4 id="result_2">Result</h4> <p><iframe class="sample-code-frame" id="frame_display_contents" width="300" height="60" src="https://yari-demos.prod.mdn.mozit.cloud/en-us/docs/web/css/display-box/_samples_/display_contents" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/css-display/#typedef-display-box" hreflang="en" rel=" noopener">CSS Display Module Level 3<br><small>The definition of 'display-box' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>display-box</code></th>
+<td class="bc-supports-yes">
+<div>65</div>
+<div>58-65</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>37</div>
+<div>36-53</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>45-52</div>
+</td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes">
+<div>65</div>
+<div>58-65</div>
+</td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>47</div>
+<div>43-47</div>
+</td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+<tr>
+<th><code>contents_unusual</code></th>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+</tbody>
+</table>
+<p>BCD tables only load in the browser</p>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="display"><code>display</code></a> <ul> <li><a href="display-outside"><code>&lt;display-outside&gt;</code></a></li> <li><a href="display-inside"><code>&lt;display-inside&gt;</code></a></li> <li><a href="display-listitem"><code>&lt;display-listitem&gt;</code></a></li> <li><a href="display-internal"><code>&lt;display-internal&gt;</code></a></li> <li><a href="display-legacy"><code>&lt;display-legacy&gt;</code></a></li> </ul> </li> <li><a href="https://adrianroselli.com/2018/05/display-contents-is-not-a-css-reset.html" rel=" noopener">Display: Contents Is Not a CSS Reset | Adrian Roselli</a></li> <li><a href="https://hiddedevries.nl/en/blog/2018-04-21-more-accessible-markup-with-display-contents" rel=" noopener">More accessible markup with display: contents — hiddedevries.nl</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display-box" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/display-box</a>
+  </p>
+</div>

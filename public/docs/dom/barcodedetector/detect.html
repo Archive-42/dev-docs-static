@@ -1,0 +1,73 @@
+<h1>BarcodeDetector.detect()</h1>
+<div class="notecard draft"> <strong id="draft">Draft</strong> <p>This page is not complete.</p> </div>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div> <p class="summary">The <code>detect()</code> method of the <a href="../barcodedetector"><code>BarcodeDetector</code></a> interface returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which fulfills with an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of detected barcodes within an image.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> detectedBarcode <span class="token operator">=</span> BarcodeDetector<span class="token punctuation">.</span><span class="token function">detect</span><span class="token punctuation">(</span>ImageBitmapSource<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><em>image</em></dt> <dd>Receives an <code>ImageBitmapSource</code> as a parameter. This can be an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img"> element</a>, a <a href="../blob"><code>Blob</code></a> of type image or an <a href="../imagedata"><code>ImageData</code></a> object.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which fulfills with an array of <code>detectedBarcode</code> objects with the following properties:</p> <ul> <li>
+<code>boundingBox</code>: A <a href="../domrectreadonly"><code>DOMRectReadOnly</code></a>, which returns the dimensions of a rectangle representing the extent of a detected barcode, aligned with the image.</li> <li>
+<code>cornerPoints</code>: The x and y co-ordinates of the four corner points of the detected barcode relative to the image, starting with the top left and working clockwise. This may not be square due to perspective distortions within the image. </li> <li>
+<code>format</code>: The detected barcode format. (For a full list of formats see the <a href="../barcode_detection_api"><code>Barcode Detection API overview page</code></a>).</li> <li>
+<code>rawValue</code>: A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a> decoded from the barcode data.</li> </ul>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>TypeError</code></dt> <dd>No parameter is specified or the <code>type</code> is not that of an <code>ImageBitmapSource</code>.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>This example uses the <code>detect()</code> method to detect the barcodes within the given image. These are iterated over and the barcode data is logged to the console.</p> <pre data-language="js">barcodeDetector<span class="token punctuation">.</span><span class="token function">detect</span><span class="token punctuation">(</span>imageEl<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">barcodes</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    barcodes<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">barcode</span> <span class="token operator">=&gt;</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>barcode<span class="token punctuation">.</span>rawData<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">err</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://wicg.github.io/shape-detection-api/#dom-barcodedetector-detect" hreflang="en" rel=" noopener">Accelerated Shape Detection in Images<br><small>The definition of 'BarcodeDetector.detect()' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>detect</code></th>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/BarcodeDetector/detect" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/BarcodeDetector/detect</a>
+  </p>
+</div>

@@ -1,0 +1,204 @@
+<h1>TrustedTypePolicyFactory</h1> <p class="summary">The <code>TrustedTypePolicyFactory</code> interface of the <a href="trusted_types_api"><code>Trusted Types API</code></a> creates policies and allows the verification of Trusted Type objects against created policies.</p>
+<h2 id="properties">Properties</h2>
+<dl> <dt>
+<a href="trustedtypepolicyfactory/emptyhtml"><code>TrustedTypePolicyFactory.emptyHTML</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="trustedhtml"><code>TrustedHTML</code></a> object containing an empty string.</dd> <dt>
+<a href="trustedtypepolicyfactory/emptyscript"><code>TrustedTypePolicyFactory.emptyScript</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="trustedscript"><code>TrustedScript</code></a> object containing an empty string.</dd> <dt>
+<a href="trustedtypepolicyfactory/defaultpolicy"><code>TrustedTypePolicyFactory.defaultPolicy</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the default <a href="trustedtypepolicy"><code>TrustedTypePolicy</code></a> or null if this is empty.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="trustedtypepolicyfactory/createpolicy"><code>TrustedTypePolicyFactory.createPolicy()</code></a></dt> <dd>Creates a <a href="trustedtypepolicy"><code>TrustedTypePolicy</code></a> object that implements the rules passed as <code>policyOptions</code>.</dd> <dt><a href="trustedtypepolicyfactory/ishtml"><code>TrustedTypePolicyFactory.isHTML()</code></a></dt> <dd>When passed a value checks that it is a valid <a href="trustedhtml"><code>TrustedHTML</code></a> object.</dd> <dt><a href="trustedtypepolicyfactory/isscript"><code>TrustedTypePolicyFactory.isScript()</code></a></dt> <dd>When passed a value checks that it is a valid <a href="trustedscript"><code>TrustedScript</code></a> object.</dd> <dt><a href="trustedtypepolicyfactory/isscripturl"><code>TrustedTypePolicyFactory.isScriptURL()</code></a></dt> <dd>When passed a value checks that it is a valid <a href="trustedscripturl"><code>TrustedScriptURL</code></a> object.</dd> <dt><a href="trustedtypepolicyfactory/getattributetype"><code>TrustedTypePolicyFactory.getAttributeType()</code></a></dt> <dd>Allows web developers to check whether a Trusted Type is required for an element and attribute, and if so which one.</dd> <dt><a href="trustedtypepolicyfactory/getpropertytype"><code>TrustedTypePolicyFactory.getPropertyType()</code></a></dt> <dd>Allows web developers to check whether a Trusted Type is required for a property, and if so which one.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>The below code creates a policy with the name <code>"myEscapePolicy"</code> with a function defined for <code>createHTML()</code> which sanitizes HTML.</p> <p>We then use the policy to sanitize a string, creating a <a href="trustedhtml"><code>TrustedHTML</code></a> object, <code>escaped</code>. This object can be tested with <a href="trustedtypepolicyfactory/ishtml"><code>isHTML()</code></a> to ensure that it was created by one of our policies.</p> <pre data-language="js"><span class="token keyword">const</span> escapeHTMLPolicy <span class="token operator">=</span> trustedTypes<span class="token punctuation">.</span><span class="token function">createPolicy</span><span class="token punctuation">(</span><span class="token string">"myEscapePolicy"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">createHTML</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">string</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> string<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\&gt;</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">,</span> <span class="token string">"&lt;"</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> escaped <span class="token operator">=</span> escapeHTMLPolicy<span class="token punctuation">.</span><span class="token function">createHTML</span><span class="token punctuation">(</span><span class="token string">"&lt;img src=x onerror=alert(1)&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>trustedTypes<span class="token punctuation">.</span><span class="token function">isHTML</span><span class="token punctuation">(</span>escaped<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// true;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webappsec-trusted-types/dist/spec/#trusted-type-policy-factory" hreflang="en" rel=" noopener">Trusted Types<br><small>The definition of 'TrustedTypePolicyFactory' in that specification.</small></a></td> <td><span class="spec-ed">Editor's Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>TrustedTypePolicyFactory</code></th>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr>
+<tr>
+<th><code>createPolicy</code></th>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr>
+<tr>
+<th><code>defaultPolicy</code></th>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr>
+<tr>
+<th><code>emptyHTML</code></th>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr>
+<tr>
+<th><code>emptyScript</code></th>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr>
+<tr>
+<th><code>getAttributeType</code></th>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr>
+<tr>
+<th><code>getPropertyType</code></th>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr>
+<tr>
+<th><code>isHTML</code></th>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr>
+<tr>
+<th><code>isScript</code></th>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr>
+<tr>
+<th><code>isScriptURL</code></th>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/TrustedTypePolicyFactory" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/TrustedTypePolicyFactory</a>
+  </p>
+</div>

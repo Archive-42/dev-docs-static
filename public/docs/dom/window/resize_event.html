@@ -1,0 +1,92 @@
+<h1>Window: resize event</h1> <p>The <code>resize</code> event fires when the document view (window) has been resized.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>No</td> </tr> <tr> <th scope="row">Cancelable</th> <td>No</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../uievent"><code>UIEvent</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td><a href="../globaleventhandlers/onresize"><code>onresize</code></a></td> </tr> </tbody> </table></div> <p>In some earlier browsers it was possible to register <code>resize</code> event handlers on any HTML element. It is still possible to set <code>onresize</code> attributes or use <a href="../eventtarget/addeventlistener"><code>addEventListener()</code></a> to set a handler on any element. However, <code>resize</code> events are only fired on the <a href="../window"><code>window</code></a> object (i.e. returned by <a href="../document/defaultview"><code>document.defaultView</code></a>). Only handlers registered on the <code>window</code> object will receive <code>resize</code> events.</p> <p>There is a proposal to allow all elements to be notified of resize changes. See <a href="https://wicg.github.io/ResizeObserver/" rel=" noopener">Resize Observer</a> to read the draft document, and <a href="https://github.com/WICG/ResizeObserver/issues" rel=" noopener">GitHub issues</a> to read the on-going discussions.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="window_size_logger">Window size logger</h3>
+<p>The following example reports the window size each time it is resized. Bear in mind that since the example is running in an <code>&lt;iframe&gt;</code>, you'll need to actually get the <code>&lt;iframe&gt;</code> to resize before you see an effect.</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Resize the browser window to fire the <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>code</span><span class="token punctuation">&gt;</span></span>resize<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>code</span><span class="token punctuation">&gt;</span></span> event.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Window height: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>height<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Window width: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>width<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre> <pre data-language="js"><span class="token keyword">const</span> heightOutput <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#height'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> widthOutput <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#width'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">reportWindowSize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  heightOutput<span class="token punctuation">.</span>textContent <span class="token operator">=</span> window<span class="token punctuation">.</span>innerHeight<span class="token punctuation">;</span>
+  widthOutput<span class="token punctuation">.</span>textContent <span class="token operator">=</span> window<span class="token punctuation">.</span>innerWidth<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+window<span class="token punctuation">.</span>onresize <span class="token operator">=</span> reportWindowSize<span class="token punctuation">;</span></pre> <p><iframe class="sample-code-frame" id="frame_Window_size_logger" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Window/resize_event/_samples_/Window_size_logger" loading="lazy"></iframe></p>
+<h3 id="addeventlistener_equivalent">addEventListener equivalent</h3>
+<p>You could set up the event handler using the <code><a href="../eventtarget/addeventlistener">addEventListener()</a></code> method:</p> <pre data-language="js">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'resize'</span><span class="token punctuation">,</span> reportWindowSize<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> </tr> <tr> <td><a href="https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/#event-type-resize" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 3 Events Specification<br><small>The definition of 'resize' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> </tr> <tr> <td><a href="https://drafts.csswg.org/cssom-view/#resizing-viewports" hreflang="en" rel=" noopener">CSS Object Model (CSSOM) View Module<br><small>The definition of 'resize' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>resize_event</code></th>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Chrome does not emit a <code>resize</code> event on page load.</div>
+</td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>Prior to Edge 79, Edge emitted a <code>resize</code> event on page load. This is no longer the case.</div>
+</td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Prior to Firefox 68, Firefox emitted a <code>resize</code> event on page load. This is no longer the case.</div>
+</td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>7</div>
+<div>Opera does not emit a <code>resize</code> event on page load.</div>
+</td>
+<td class="bc-supports-yes"><div>1.1</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Webview does not emit a <code>resize</code> event on page load.</div>
+</td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>Chrome does not emit a <code>resize</code> event on page load.</div>
+</td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Prior to Firefox 68, Firefox emitted a <code>resize</code> event on page load. This is no longer the case.</div>
+</td>
+<td class="bc-supports-yes">
+<div>10.1</div>
+<div>Opera does not emit a <code>resize</code> event on page load.</div>
+</td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>1.0</div>
+<div>Samsung Internet does not emit a <code>resize</code> event on page load.</div>
+</td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../globaleventhandlers/onresize"><code>GlobalEventHandlers.onresize</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/resize_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Window/resize_event</a>
+  </p>
+</div>

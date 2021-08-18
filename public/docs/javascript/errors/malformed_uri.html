@@ -1,0 +1,29 @@
+<h1>URIError: malformed URI sequence</h1> <p>The JavaScript exception "malformed URI sequence" occurs when URI encoding or decoding wasn't successful.</p>
+<h2 id="message">Message</h2>
+<pre data-language="js">URIError<span class="token operator">:</span> The <span class="token constant">URI</span> to be encoded contains invalid <span class="token function">character</span> <span class="token punctuation">(</span>Edge<span class="token punctuation">)</span>
+URIError<span class="token operator">:</span> malformed <span class="token constant">URI</span> <span class="token function">sequence</span> <span class="token punctuation">(</span>Firefox<span class="token punctuation">)</span>
+URIError<span class="token operator">:</span> <span class="token constant">URI</span> <span class="token function">malformed</span> <span class="token punctuation">(</span>Chrome<span class="token punctuation">)</span>
+</pre>
+<h2 id="error_type">Error type</h2>
+<p><a href="../global_objects/urierror"><code>URIError</code></a></p>
+<h2 id="what_went_wrong">What went wrong?</h2>
+<p>URI encoding or decoding wasn't successful. An argument given to either the <a href="../global_objects/decodeuri"><code>decodeURI</code></a>, <a href="../global_objects/encodeuri"><code>encodeURI</code></a>, <a href="../global_objects/encodeuricomponent"><code>encodeURIComponent</code></a>, or <a href="../global_objects/decodeuricomponent"><code>decodeURIComponent</code></a> function was not valid, so that the function was unable encode or decode properly.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="encoding">Encoding</h3>
+<p>Encoding replaces each instance of certain characters by one, two, three, or four escape sequences representing the UTF-8 encoding of the character. An <a href="../global_objects/urierror"><code>URIError</code></a> will be thrown if there is an attempt to encode a surrogate which is not part of a high-low pair, for example:</p> <pre data-language="js"><span class="token function">encodeURI</span><span class="token punctuation">(</span><span class="token string">'\uD800'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// "URIError: malformed URI sequence"</span>
+
+<span class="token function">encodeURI</span><span class="token punctuation">(</span><span class="token string">'\uDFFF'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// "URIError: malformed URI sequence"</span>
+</pre> <p>A high-low pair is ok. For example:</p> <pre data-language="js"><span class="token function">encodeURI</span><span class="token punctuation">(</span><span class="token string">'\uD800\uDFFF'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// "%F0%90%8F%BF"</span></pre>
+<h3 id="decoding">Decoding</h3>
+<p>Decoding replaces each escape sequence in the encoded URI component with the character that it represents. If there isn't such a character, an error will be thrown:</p> <pre data-language="js"><span class="token function">decodeURIComponent</span><span class="token punctuation">(</span><span class="token string">'%E0%A4%A'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// "URIError: malformed URI sequence"</span>
+</pre> <p>With proper input, this should usually look like something like this:</p> <pre data-language="js"><span class="token function">decodeURIComponent</span><span class="token punctuation">(</span><span class="token string">'JavaScript_%D1%88%D0%B5%D0%BB%D0%BB%D1%8B'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// "JavaScript_шеллы"</span></pre>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../global_objects/urierror"><code>URIError</code></a></li> <li><a href="../global_objects/decodeuri"><code>decodeURI</code></a></li> <li><a href="../global_objects/encodeuri"><code>encodeURI</code></a></li> <li><a href="../global_objects/encodeuricomponent"><code>encodeURIComponent</code></a></li> <li><a href="../global_objects/decodeuricomponent"><code>decodeURIComponent</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Malformed_URI" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Malformed_URI</a>
+  </p>
+</div>

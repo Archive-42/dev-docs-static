@@ -1,0 +1,75 @@
+<h1>Presentation.receiver</h1>
+
+ <p>The <strong>read-only</strong> <a href="../presentation"><code>Presentation</code></a> attribute <code>receiver</code>, which is only available in browser contexts which are <strong>receiving</strong> a presentation, returns the <a href="../presentationreceiver"><code>PresentationReceiver</code></a> object which can be used to access and communicate with the browser context which controls the presentation. This property is always <code>null</code> when accessed from outside a browser context which is receiving a presentation.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">receiver <span class="token operator">=</span> Presentation<span class="token punctuation">.</span>receiver<span class="token punctuation">;</span>
+
+receiver <span class="token operator">=</span> navigator<span class="token punctuation">.</span>presentation<span class="token punctuation">.</span>receiver<span class="token punctuation">;</span></pre> <p>Since the <a href="../presentation"><code>Presentation</code></a> interface is typically accessed through <a class="page-not-created"><code>navigation.presentation</code></a>, the second form of the syntax shown above is the more commonly used.</p>
+<h3 id="value">Value</h3>
+<p>If the code is running in a context which is receiving a presentation, the returned value is a <a href="../presentationreceiver"><code>PresentationReceiver</code></a> which can then be used to communicate with the context which is the source of the presentation.</p> <p>If the current context is not receiving a presentation, <code>receiver</code> is <code>null</code>.</p>
+<h2 id="example">Example</h2>
+<h3 id="determining_whether_or_not_the_context_is_receiving_a_presentation">Determining whether or not the context is receiving a presentation</h3>
+<p>You can easily determine whether or not the context is the receiver for a presentation by checking the value of <code>navigator.receiver</code>. If it's a non-null value, then the context is indeed receiving a presentation. If it's <code>null</code>, there's no incoming presentation.</p> <pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span>navigator<span class="token punctuation">.</span>receiver<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  footer<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">"Receiving presentation"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>  <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  footer<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">"(idle)"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h3 id="accessing_the_connection_list">Accessing the connection list</h3>
+<p>This example uses <code>receiver</code> to access the list of incoming connections and to build and display a list of those connections' ID strings.</p> <pre data-language="js"><span class="token keyword">let</span> listElem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"connectionview"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+navigator<span class="token punctuation">.</span>presentation<span class="token punctuation">.</span>receiver<span class="token punctuation">.</span>connectionList
+          <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">connections</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    connections<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">aConnection</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      listElem<span class="token punctuation">.</span>innerHTML <span class="token operator">+=</span> <span class="token string">"&lt;li&gt;"</span> <span class="token operator">+</span> aConnection<span class="token punctuation">.</span>id
+            <span class="token operator">+</span> <span class="token string">"&lt;/li&gt;"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>After getting access to the output list element in the variable <code>connectionView</code>, <a class="page-not-created"><code>navigator.receiver</code></a> is used to get a reference to the <a href="../presentationreceiver"><code>PresentationReceiver</code></a> object for this context, and its <a class="page-not-created"><code>connectionList</code></a> is used to get a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which will be called when the list is available.</p> <p>The promise handler receives as its input parameter an array of the incoming connections. We iterate over these using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach"><code>forEach()</code></a>, appending a new item to the <code>connectionView</code> list element for each connection.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/presentation-api/#dom-presentation-receiver" hreflang="en" rel=" noopener">Presentation API<br><small>The definition of 'receiver' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>receiver</code></th>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-no"><div>51-88</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-no"><div>51-79</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>Presentation API</li> <li><a href="../presentation"><code>Presentation</code></a></li> <li><a href="../presentationreceiver"><code>PresentationReceiver</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Presentation/receiver" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Presentation/receiver</a>
+  </p>
+</div>

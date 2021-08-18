@@ -1,0 +1,66 @@
+<h1>XRInputSourceEvent.frame</h1>
+ <div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The read-only <a href="../xrinputsourceevent"><code>XRInputSourceEvent</code></a> property <code><strong>frame</strong></code> specifies an <a href="../xrframe"><code>XRFrame</code></a> object representing the event frame during which a <a href="../webxr_device_api">WebXR</a> user input occurred. This may thus be an event which occurred in the past rather than a current or impending event.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">let</span> inputFrame <span class="token operator">=</span> xrInputSourceEvent<span class="token punctuation">.</span>frame<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>An <a href="../xrframe"><code>XRFrame</code></a> indicating the event frame at which the user input event described by the object took place.</p>
+<h2 id="usage_notes">Usage notes</h2>
+<p>The event frame does not correspond to a visual frame as is delivered to the frame rendering callback function (see <a href="../webxr_device_api/rendering">Rendering and the WebXR frame rendering callback</a> for details on the callback). Instead, the <code>XRFrame</code> specified by the <code>frame</code> property is a method to provide access to the <a href="../xrframe/getpose"><code>getPose()</code></a> method, which you can use to get the relative positions of the objects in the scene at the time the event occurred.</p> <p>However, since the event frame isn't an animation frame, there is no viewer pose available to represent the viewer's current point of view; the results of calling <a href="../xrframe/getviewerpose"><code>getViewerPose()</code></a> will be an <a href="../xrviewerpose"><code>XRViewerPose</code></a> with an empty <a href="../xrviewerpose/views"><code>views</code></a> list.</p>
+<h2 id="examples">Examples</h2>
+<p>This code shows a handler for the <a href="../xrsession/selectstart_event"><code>selectstart</code></a> event which gets the target ray's pose from the frame, mapping the pose representing the ray (<code>event.inputSource.targetRaySpace</code>) to the overall reference space <code>myRefSpace</code>.</p> <p>Then, if the result isn't <code>null</code>, the target ray pose's transform is passed into a function called <code>myCheckAndHandleHit()</code> to see if the ray was pointing at anything when the select was triggered.</p> <pre data-language="js">xrSession<span class="token punctuation">.</span><span class="token function-variable function">onselectstart</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> targetRayPose <span class="token operator">=</span> event<span class="token punctuation">.</span>frame<span class="token punctuation">.</span><span class="token function">getPose</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>inputSource<span class="token punctuation">.</span>targetRaySpace<span class="token punctuation">,</span>
+                            myRefSpace<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>targetRayPose<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">checkAndHandleHit</span><span class="token punctuation">(</span>targetRayPose<span class="token punctuation">.</span>transform<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td>
+<a href="https://immersive-web.github.io/webxr/#dom-xrinputsourceevent-frame" hreflang="en" rel=" noopener">WebXR Device API<br><small>The definition of 'XRInputSourceEvent.frame' in that specification.</small></a> </td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>frame</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr></tbody>
+</table>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XRInputSourceEvent/frame" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XRInputSourceEvent/frame</a>
+  </p>
+</div>

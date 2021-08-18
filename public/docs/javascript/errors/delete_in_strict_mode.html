@@ -1,0 +1,37 @@
+<h1>SyntaxError: applying the 'delete' operator to an unqualified name is deprecated</h1> <p>The JavaScript <a href="../strict_mode">strict mode</a>-only exception "applying the 'delete' operator to an unqualified name is deprecated" occurs when variables are attempted to be deleted using the <code><a href="../operators/delete">delete</a></code> operator.</p>
+<h2 id="message">Message</h2>
+<pre data-language="js">SyntaxError<span class="token operator">:</span> Calling <span class="token keyword">delete</span> on expression not allowed <span class="token keyword">in</span> strict <span class="token function">mode</span> <span class="token punctuation">(</span>Edge<span class="token punctuation">)</span>
+SyntaxError<span class="token operator">:</span> applying the <span class="token string">'delete'</span> operator to an unqualified name is <span class="token function">deprecated</span> <span class="token punctuation">(</span>Firefox<span class="token punctuation">)</span>
+SyntaxError<span class="token operator">:</span> Delete <span class="token keyword">of</span> an unqualified identifier <span class="token keyword">in</span> strict mode<span class="token punctuation">.</span> <span class="token punctuation">(</span>Chrome<span class="token punctuation">)</span>
+</pre>
+<h2 id="error_type">Error type</h2>
+<p><a href="../global_objects/syntaxerror"><code>SyntaxError</code></a> in <a href="../strict_mode">strict mode</a> only.</p>
+<h2 id="what_went_wrong">What went wrong?</h2>
+<p>Normal variables in JavaScript can't be deleted using the <code><a href="../operators/delete">delete</a></code> operator. In strict mode, an attempt to delete a variable will throw an error and is not allowed.</p> <p>The <code>delete</code> operator can only delete properties on an object. Object properties are "qualified" if they are configurable.</p> <p>Unlike what common belief suggests, the <code>delete</code> operator has <strong>nothing</strong> to do with directly freeing memory. Memory management is done indirectly via breaking references, see the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management">memory management</a> page and the <code><a href="../operators/delete">delete</a></code> operator page for more details.</p> <p>This error only happens in <a href="../strict_mode">strict mode code</a>. In non-strict code, the operation just returns <code>false</code>.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="freeing_the_contents_of_a_variable">Freeing the contents of a variable</h3>
+<p>Attempting to delete a plain variable, doesn't work in JavaScript and it throws an error in strict mode:</p> <pre data-language="js"><span class="token string">'use strict'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> x<span class="token punctuation">;</span>
+
+<span class="token comment">// ...</span>
+
+<span class="token keyword">delete</span> x<span class="token punctuation">;</span>
+
+<span class="token comment">// SyntaxError: applying the 'delete' operator to an unqualified name</span>
+<span class="token comment">// is deprecated</span>
+</pre> <p>To free the contents of a variable, you can set it to <a href="../global_objects/null"><code>null</code></a>:</p> <pre data-language="js"><span class="token string">'use strict'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> x<span class="token punctuation">;</span>
+
+<span class="token comment">// ...</span>
+
+x <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+<span class="token comment">// x can be garbage collected</span>
+</pre>
+<h2 id="see_also">See also</h2>
+<ul> <li><code><a href="../operators/delete">delete</a></code></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Memory_Management">Memory management</a></li> <li><a href="cant_delete">TypeError: property "x" is non-configurable and can't be deleted</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Delete_in_strict_mode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Delete_in_strict_mode</a>
+  </p>
+</div>

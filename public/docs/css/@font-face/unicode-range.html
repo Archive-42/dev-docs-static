@@ -1,0 +1,94 @@
+<h1>unicode-range</h1> <p>The <code>unicode-range</code> CSS descriptor sets the specific range of characters to be used from a font defined by <a href="../@font-face"><code>@font-face</code></a> and made available for use on the current page. If the page doesn't use any character in this range, the font is not downloaded; if it uses at least one, the whole font is downloaded.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="css"><span class="token comment">/* &lt;unicode-range&gt; values */</span>
+<span class="token property">unicode-range</span><span class="token punctuation">:</span> U+26<span class="token punctuation">;</span>               <span class="token comment">/* single codepoint */</span>
+<span class="token property">unicode-range</span><span class="token punctuation">:</span> U+0-7F<span class="token punctuation">;</span>
+<span class="token property">unicode-range</span><span class="token punctuation">:</span> U+0025-00FF<span class="token punctuation">;</span>        <span class="token comment">/* codepoint range */</span>
+<span class="token property">unicode-range</span><span class="token punctuation">:</span> U+4??<span class="token punctuation">;</span>              <span class="token comment">/* wildcard range */</span>
+<span class="token property">unicode-range</span><span class="token punctuation">:</span> U+0025-00FF<span class="token punctuation">,</span> U+4??<span class="token punctuation">;</span> <span class="token comment">/* multiple values */</span>
+</pre>
+<h3 id="values">Values</h3>
+<dl> <dt><em><strong>single codepoint</strong></em></dt> <dd>A single Unicode character code point, for example <code>U+26</code>.</dd> <dt><em><strong>codepoint range</strong></em></dt> <dd>A range of Unicode code points. So for example, <code>U+0025-00FF</code> means <em>include all characters in the range <code>U+0025</code> to <code>U+00FF</code></em>.</dd> <dt><em><strong>wildcard range</strong></em></dt> <dd>A range of Unicode code points containing wildcard characters, that is using the <code>'?'</code> character, so for example <code>U+4??</code> means <em>include all characters in the range <code>U+400</code> to <code>U+4FF</code></em>.</dd> </dl>
+<h2 id="description">Description</h2>
+<p>The purpose of this descriptor is to allow the font resources to be segmented so that a browser only needs to download the font resource needed for the text content of a particular page. For example, a site with many localizations could provide separate font resources for English, Greek and Japanese. For users viewing the English version of a page, the font resources for Greek and Japanese fonts wouldn't need to be downloaded, saving bandwidth.</p>
+<h2 id="formal_definition">Formal definition</h2>
+
+<div class="_table"><table class="properties"><tbody>
+<tr>
+<th scope="row">Related <a href="../at-rule">at-rule</a>
+</th>
+<td><a href="../@font-face"><code>@font-face</code></a></td>
+</tr>
+<tr>
+<th scope="row"><a href="../initial_value">Initial value</a></th>
+<td><code>U+0-10FFFF</code></td>
+</tr>
+<tr>
+<th scope="row"><a href="../computed_value">Computed value</a></th>
+<td>as specified</td>
+</tr>
+</tbody></table></div>
+
+<h2 id="formal_syntax">Formal syntax</h2>
+<pre class="notranslate">&lt;unicode-range&gt;<a href="../value_definition_syntax#hash_mark_()">#</a></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="using_a_different_font_for_a_single_character">Using a different font for a single character</h3>
+<p>In this example we create a simple HTML containing a single <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a> element, including an ampersand, that we want to style with a different font. To make it obvious, we will use a sans-serif font, <em>Helvetica</em>, for the text, and a serif font, <em>Times New Roman</em>, for the ampersand.</p> <p>In the CSS we are in effect defining a completely separate <a href="../@font-face"><code>@font-face</code></a> that only includes a single character in it, meaning that only this character will be styled with this font. We could also have done this by wrapping the ampersand in a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span"><code>&lt;span&gt;</code></a> and applying a different font just to that, but that is an extra element and rule set.</p> <h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>Me &amp; You = Us<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></pre> <h4 id="css">CSS</h4> <pre data-language="css"><span class="token atrule"><span class="token rule">@font-face</span></span> <span class="token punctuation">{</span>
+  <span class="token property">font-family</span><span class="token punctuation">:</span> <span class="token string">'Ampersand'</span><span class="token punctuation">;</span>
+  <span class="token property">src</span><span class="token punctuation">:</span> <span class="token function">local</span><span class="token punctuation">(</span><span class="token string">'Times New Roman'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token property">unicode-range</span><span class="token punctuation">:</span> U+26<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">div</span> <span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 4em<span class="token punctuation">;</span>
+  <span class="token property">font-family</span><span class="token punctuation">:</span> Ampersand<span class="token punctuation">,</span> Helvetica<span class="token punctuation">,</span> sans-serif<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <h4 id="result">Result</h4> <p><iframe class="sample-code-frame" id="frame_Using_a_different_font_for_a_single_character" width="500" height="104" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/@font-face/unicode-range/_samples_/Using_a_different_font_for_a_single_character" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/css-fonts-3/#unicode-range-desc" hreflang="en" rel=" noopener">CSS Fonts Module Level 3<br><small>The definition of 'unicode-range' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>unicode-range</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="font-display"><code>font-display</code></a></li> <li><a href="font-family"><code>font-family</code></a></li> <li><a href="font-stretch"><code>font-stretch</code></a></li> <li><a href="font-style"><code>font-style</code></a></li> <li><a href="font-weight"><code>font-weight</code></a></li> <li><a href="font-variant"><code>font-variant</code></a></li> <li><a href="../font-feature-settings"><code>font-feature-settings</code></a></li> <li><a href="font-variation-settings"><code>font-variation-settings</code></a></li> <li><a href="src"><code>src</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/unicode-range" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/unicode-range</a>
+  </p>
+</div>

@@ -1,0 +1,83 @@
+<h1>revert</h1> <p>The <code>revert</code> CSS keyword reverts the cascaded value of the property from its current value to the value the property would have had if no changes had been made by the current <strong><a href="https://developer.mozilla.org/en-US/docs/Glossary/Style_origin">style origin</a></strong> to the current element. Thus, it resets the property to its inherited value if it inherits from its parent or to the default value established by the user agent's stylesheet (or by user styles, if any exist). It can be applied to any CSS property, including the CSS shorthand <a href="all"><code>all</code></a>.</p> <p>This removes from the cascade all of the styles that have been overridden until the style being rolled back to is reached.</p> <ul> <li>If used by a site's own styles (the author origin), <code>revert</code> rolls back the property's cascaded value to the user's custom style, if one exists; otherwise, it rolls the style back to the user agent's default style.</li> <li>If used in a user's custom stylesheet, or if the style was applied by the user (the user origin), <code>revert</code> rolls back the cascaded value to the user agent's default style.</li> <li>If used within the user agent's default styles, this keyword is functionally equivalent to <a href="unset"><code>unset</code></a>.</li> </ul> <p>The <code>revert</code> keyword works exactly the same as <code><a href="unset">unset</a></code> in many cases. The only difference is for properties that have values set by the browser or by custom stylesheets created by users (set on the browser side).</p> <p>Revert will not affect rules applied to children of an element you reset (but will remove effects of a parent rule on a child). So if you have a <code>color: green</code> for all sections and <code>all: revert</code> on a specific section the color of the section will be black. But if you have a rule to make all paragraphs red then all paragraphs will still be red in all sections.</p> <div class="notecard note"> <p>Revert is just a value. It is still possible to override <code>revert</code> value using <a href="specificity">specificity</a>.</p> </div> <div class="note notecard"> <p>The <code>revert</code> keyword is different from and should not be confused with <a href="initial"><code>initial</code></a>, which uses the <a href="initial_value">initial value</a> defined on a per-property basis by the CSS specifications. In contrast, user-agent stylesheets set default values on the basis of CSS selectors.</p> <p>For example, the <a href="initial_value">initial value</a> for the <a href="display"><code>display</code></a> property is <code>inline</code>, whereas a normal user-agent stylesheet sets the default <a href="display"><code>display</code></a> value of <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a>s to <code>block</code>, of <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table"><code>&lt;table&gt;</code></a>s to <code>table</code>, etc.</p> </div>
+<h2 id="examples">Examples</h2>
+<h3 id="revert_vs_unset">Revert vs unset</h3>
+<p>Although <code>revert</code> and <code>unset</code> are similar they differ for some properties for some elements.</p> <p>So in the below example, we set custom <code>font-weight</code> in a global stylesheet, but then try to unset and revert. Unset will keep the text normal because this is an initial value for font-weight property. Revert will revert to bold because this is a default value for headers in most browsers.</p> <pre data-language="css"><span class="token selector">h3</span> <span class="token punctuation">{</span>
+  <span class="token property">font-weight</span><span class="token punctuation">:</span> normal<span class="token punctuation">;</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span> <span class="token style-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token style language-css"><span class="token property">font-weight</span><span class="token punctuation">:</span> unset<span class="token punctuation">;</span> <span class="token property">color</span><span class="token punctuation">:</span> unset<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">&gt;</span></span>This will still have font-weight: normal, but color: black<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Just some text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span> <span class="token style-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token style language-css"><span class="token property">font-weight</span><span class="token punctuation">:</span> revert<span class="token punctuation">;</span> <span class="token property">color</span><span class="token punctuation">:</span> revert<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">&gt;</span></span>This should have its original font-weight (bold) and color: black<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Just some text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre> <p><iframe class="sample-code-frame" id="frame_Revert_vs_unset" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/revert/_samples_/Revert_vs_unset" loading="lazy"></iframe></p>
+<h3 id="revert_all">Revert all</h3>
+<p>Reverting all values is useful when you did heavy modifications for something and then want to revert to defaults. So to iterate on above example instead of reverting font-weight and color separately you could just revert all of them.</p> <pre data-language="css"><span class="token selector">h3</span> <span class="token punctuation">{</span>
+  <span class="token property">font-weight</span><span class="token punctuation">:</span> normal<span class="token punctuation">;</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span>
+  <span class="token property">border-bottom</span><span class="token punctuation">:</span> 1px solid grey<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">&gt;</span></span>This will have custom styles<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Just some text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span> <span class="token style-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token style language-css"><span class="token property">all</span><span class="token punctuation">:</span> revert</span><span class="token punctuation">"</span></span></span><span class="token punctuation">&gt;</span></span>This should be reverted to browser/user defaults<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Just some text<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre> <p><iframe class="sample-code-frame" id="frame_Revert_all" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/revert/_samples_/Revert_all" loading="lazy"></iframe></p>
+<h3 id="revert_on_a_parent">Revert on a parent</h3>
+<p>Reverting effectively removes the value for the element you select with some rule and only for that element. To illustrate this we will set a green color on a section and red color on a paragraph.</p> <pre data-language="css"><span class="token selector">section</span> <span class="token punctuation">{</span> <span class="token property">color</span><span class="token punctuation">:</span> darkgreen <span class="token punctuation">}</span>
+<span class="token selector">p</span> <span class="token punctuation">{</span> <span class="token property">color</span><span class="token punctuation">:</span> red <span class="token punctuation">}</span>
+<span class="token selector">section.with-revert</span> <span class="token punctuation">{</span> <span class="token property">color</span><span class="token punctuation">:</span> revert <span class="token punctuation">}</span>
+</pre> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>section</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">&gt;</span></span>This will be dark green<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Text in paragraph will be red.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  This will also be dark green.
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>section</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>section</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>with-revert<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h3</span><span class="token punctuation">&gt;</span></span>This will be black<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h3</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Text in paragraph will be red.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+  This will also be black.
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>section</span><span class="token punctuation">&gt;</span></span></pre> <p>Notice how paragraph still has a red color even though a color property for the section was reverted. Also note that both the header and plain text node is black. This is exactly the same as if <code>section { color: darkgreen }</code> would not exist for the second section.</p> <p><iframe class="sample-code-frame" id="frame_Revert_on_a_parent" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/revert/_samples_/Revert_on_a_parent" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/css-cascade/#default" hreflang="en" rel=" noopener">CSS Cascading and Inheritance Level 4<br><small>The definition of 'revert' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>revert</code></th>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>70</div></td>
+<td class="bc-supports-yes"><div>9.1</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>9.3</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://crbug.com/579788">bug 579788</a>.</div>
+</td>
+</tr></tbody>
+</table>  
+  <h2 id="see_also">See also</h2>
+<ul> <li>Use <a href="initial"><code>initial</code></a> to set a property to its initial value.</li> <li>Use <a href="unset"><code>unset</code></a> to set a property to its inherited value if it inherits, or to its initial value if not.</li> <li>Use <a href="inherit"><code>inherit</code></a> to make an element's property the same as its parent.</li> <li>The <a href="all"><code>all</code></a> property lets you reset all properties to their initial, inherited, reverted, or unset state at once.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/revert" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/revert</a>
+  </p>
+</div>

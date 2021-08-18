@@ -1,0 +1,69 @@
+<h1>navigator.hardwareConcurrency</h1>
+
+ 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="../web_workers_api">Web Workers</a>.</p> </div>
+ <p>The <code><strong>navigator.hardwareConcurrency</strong></code> read-only property returns the number of logical processors available to run threads on the user's computer.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">logicalProcessors <span class="token operator">=</span> window<span class="token punctuation">.</span>navigator<span class="token punctuation">.</span>hardwareConcurrency
+</pre>
+<h2 id="value">Value</h2>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number"><code>Number</code></a> indicating the number of logical processor cores.</p> <p>Modern computers have multiple physical processor cores in their CPU (two or four cores is typical), but each physical core is also usually able to run more than one thread at a time using advanced scheduling techniques. So a four-core CPU may offer eight <strong>logical processor cores</strong>, for example. The number of logical processor cores can be used to measure the number of threads which can effectively be run at once without them having to context switch.</p> <p>The browser may, however, choose to report a lower number of logical cores in order to represent more accurately the number of <a href="../worker"><code>Worker</code></a>s that can run at once, so don't treat this as an absolute measurement of the number of cores in the user's system. </p>
+<h2 id="examples">Examples</h2>
+<p>In this example, one <a href="../worker"><code>Worker</code></a> is created for each logical processor reported by the browser and a record is created which includes a reference to the new worker as well as a Boolean value indicating whether or not we're using that worker yet; these objects are, in turn, stored into an array for later use. This creates a pool of workers we can use to process requests later.</p> <pre data-language="js"><span class="token keyword">let</span> workerList <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> window<span class="token punctuation">.</span>navigator<span class="token punctuation">.</span>hardwareConcurrency<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> newWorker <span class="token operator">=</span> <span class="token punctuation">{</span>
+    worker<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Worker</span><span class="token punctuation">(</span><span class="token string">'cpuworker.js'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    inUse<span class="token operator">:</span> <span class="token boolean">false</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  workerList<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>newWorker<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#dom-navigator-hardwareconcurrency" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'navigator.hardwareConcurrency' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>hardwareConcurrency</code></th>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-no"><div>10.1-11</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-no"><div>10.3-11</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../navigator"><code>Navigator</code></a></li> <li><a href="../workernavigator"><code>WorkerNavigator</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorConcurrentHardware/hardwareConcurrency" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NavigatorConcurrentHardware/hardwareConcurrency</a>
+  </p>
+</div>

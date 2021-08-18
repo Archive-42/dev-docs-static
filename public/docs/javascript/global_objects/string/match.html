@@ -1,0 +1,112 @@
+<h1>String.prototype.match()</h1> <p>The <code>match()</code> method retrieves the result of matching a <em>string</em> against a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>. </p> <iframe class="interactive" width="100%" height="410" src="https://interactive-examples.mdn.mozilla.net/pages/js/string-match.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">match</span><span class="token punctuation">(</span>regexp<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>regexp</var></code></dt> <dd> <p>A regular expression object.</p> <p>If <code><var>regexp</var></code> is a non-<code>RegExp</code> object, it is implicitly converted to a <a href="../regexp"><code>RegExp</code></a> by using <code>new RegExp(<var>regexp</var>)</code>.</p> <p>If you don't give any parameter and use the <code>match()</code> method directly, you will get an <a href="../array"><code>Array</code></a> with an empty string: <code>[""]</code>.</p> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>An <a href="../array"><code>Array</code></a> whose contents depend on the presence or absence of the global (<code>g</code>) flag, or <a href="../null"><code>null</code></a> if no matches are found.</p> <ul> <li>If the <code>g</code> flag is used, all results matching the complete regular expression will be returned, but capturing groups will not.</li> <li>if the <code>g</code> flag is not used, only the first complete match and its related capturing groups are returned. In this case, the returned item will have additional properties as described below.</li> </ul> <h4 id="additional_properties">Additional properties</h4> <p>As explained above, some results contain additional properties as described below.</p> <dl> <dt><code>groups</code></dt> <dd>An object of named capturing groups whose keys are the names and values are the capturing groups or <a href="../undefined"><code>undefined</code></a> if no named capturing groups were defined. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Groups_and_Ranges">Groups and Ranges</a> for more information.</dd> <dt><code>index</code></dt> <dd>The index of the search at which the result was found.</dd> <dt><code>input</code></dt> <dd>A copy of the search string.</dd> </dl>
+<h2 id="description">Description</h2>
+<p>If the regular expression does not include the <code>g</code> flag, <code>str.match()</code> will return the same result as <a href="../regexp/exec"><code>RegExp.exec()</code></a>.</p>
+<h3 id="other_methods">Other methods</h3>
+<ul> <li>If you need to know if a string matches a regular expression <a href="../regexp"><code>RegExp</code></a>, use <a href="../regexp/test"><code>RegExp.test()</code></a>.</li> <li>If you only want the first match found, you might want to use <a href="../regexp/exec"><code>RegExp.exec()</code></a> instead.</li> <li>If you want to obtain capture groups and the global flag is set, you need to use <a href="../regexp/exec"><code>RegExp.exec()</code></a> or <a href="matchall"><code>String.prototype.matchAll()</code></a> instead.</li> </ul>
+<h2 id="examples">Examples</h2>
+<h3 id="using_match">Using match()</h3>
+<p>In the following example, <code>match()</code> is used to find '<code>Chapter</code>' followed by 1 or more numeric characters followed by a decimal point and numeric character 0 or more times.</p> <p>The regular expression includes the <code>i</code> flag so that upper/lower case differences will be ignored.</p> <pre data-language="js"><span class="token keyword">const</span> str <span class="token operator">=</span> <span class="token string">'For more information, see Chapter 3.4.5.1'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> re <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">see (chapter \d+(\.\d)*)</span><span class="token regex-delimiter">/</span><span class="token regex-flags">i</span></span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> found <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>re<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>found<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// logs [ 'see Chapter 3.4.5.1',</span>
+<span class="token comment">//        'Chapter 3.4.5.1',</span>
+<span class="token comment">//        '.1',</span>
+<span class="token comment">//        index: 22,</span>
+<span class="token comment">//        input: 'For more information, see Chapter 3.4.5.1' ]</span>
+
+<span class="token comment">// 'see Chapter 3.4.5.1' is the whole match.</span>
+<span class="token comment">// 'Chapter 3.4.5.1' was captured by '(chapter \d+(\.\d)*)'.</span>
+<span class="token comment">// '.1' was the last value captured by '(\.\d)'.</span>
+<span class="token comment">// The 'index' property (22) is the zero-based index of the whole match.</span>
+<span class="token comment">// The 'input' property is the original string that was parsed.</span></pre>
+<h3 id="using_global_and_ignore_case_flags_with_match">Using global and ignore case flags with match()</h3>
+<p>The following example demonstrates the use of the global and ignore case flags with <code>match()</code>. All letters <code>A</code> through <code>E</code> and <code>a</code> through <code>e</code> are returned, each its own element in the array. </p> <pre data-language="js"><span class="token keyword">const</span> str <span class="token operator">=</span> <span class="token string">'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> regexp <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">[A-E]</span><span class="token regex-delimiter">/</span><span class="token regex-flags">gi</span></span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> matches_array <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>regexp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>matches_array<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// ['A', 'B', 'C', 'D', 'E', 'a', 'b', 'c', 'd', 'e']</span>
+</pre> <div class="notecard note"> <p><strong>Note:</strong> See also <a href="matchall"><code>String.prototype.matchAll()</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#advanced_searching_with_flags">Advanced searching with flags</a>.</p> </div>
+<h3 id="using_named_capturing_groups">Using named capturing groups</h3>
+<p>In browsers which support named capturing groups, the following code captures "<code>fox</code>" or "<code>cat</code>" into a group named "<code>animal</code>":</p> <pre data-language="js"><span class="token keyword">const</span> paragraph <span class="token operator">=</span> <span class="token string">'The quick brown fox jumps over the lazy dog. It barked.'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> capturingRegex <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">(?&lt;animal&gt;fox|cat) jumps over</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> found <span class="token operator">=</span> paragraph<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>capturingRegex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>found<span class="token punctuation">.</span>groups<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// {animal: "fox"}</span>
+</pre>
+<h3 id="using_match_with_no_parameter">Using match() with no parameter</h3>
+<pre data-language="js"><span class="token keyword">const</span> str <span class="token operator">=</span> <span class="token string">"Nothing will come of nothing."</span><span class="token punctuation">;</span>
+
+str<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// returns [""]</span></pre>
+<h3 id="a_non-regexp_object_as_the_parameter">A non-RegExp object as the parameter</h3>
+<p>When the <code><var>regexp</var></code> parameter is a string or a number, it is implicitly converted to a <a href="../regexp"><code>RegExp</code></a> by using <code>new RegExp(<var>regexp</var>)</code>.</p> <p>If it is a positive number with a positive sign, <code>RegExp()</code> will ignore the positive sign.</p> <pre data-language="js"><span class="token keyword">const</span> str1 <span class="token operator">=</span> <span class="token string">"NaN means not a number. Infinity contains -Infinity and +Infinity in JavaScript."</span><span class="token punctuation">,</span>
+    str2 <span class="token operator">=</span> <span class="token string">"My grandfather is 65 years old and My grandmother is 63 years old."</span><span class="token punctuation">,</span>
+    str3 <span class="token operator">=</span> <span class="token string">"The contract was declared null and void."</span><span class="token punctuation">;</span>
+str1<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token string">"number"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// "number" is a string. returns ["number"]</span>
+str1<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">// the type of NaN is the number. returns ["NaN"]</span>
+str1<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token number">Infinity</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// the type of Infinity is the number. returns ["Infinity"]</span>
+str1<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token operator">+</span><span class="token number">Infinity</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// returns ["Infinity"]</span>
+str1<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">Infinity</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// returns ["-Infinity"]</span>
+str2<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token number">65</span><span class="token punctuation">)</span><span class="token punctuation">;</span>         <span class="token comment">// returns ["65"]</span>
+str2<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token operator">+</span><span class="token number">65</span><span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">// A number with a positive sign. returns ["65"]</span>
+str3<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>       <span class="token comment">// returns ["null"]</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> </tr> </thead> <tbody> <tr> <td>
+<a href="https://tc39.es/ecma262/#sec-string.prototype.match" hreflang="en" rel=" noopener">ECMAScript (ECMA-262)<br><small>The definition of 'String.prototype.match' in that specification.</small></a> </td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>match</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="matchall"><code>String.prototype.matchAll()</code></a></li> <li><a href="../regexp"><code>RegExp</code></a></li> <li><a href="../regexp/exec"><code>RegExp.prototype.exec()</code></a></li> <li><a href="../regexp/test"><code>RegExp.prototype.test()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match</a>
+  </p>
+</div>

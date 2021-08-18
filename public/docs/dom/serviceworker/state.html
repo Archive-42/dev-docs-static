@@ -1,0 +1,76 @@
+<h1>ServiceWorker.state</h1> <p>The <code>state</code> read-only property of the <a href="../serviceworker"><code>ServiceWorker</code></a> interface returns a string representing the current state of the service worker. It can be one of the following values: <code>installing</code>, <code>installed,</code> <code>activating</code>, <code>activated</code>, or <code>redundant</code>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">someURL <span class="token operator">=</span> ServiceWorker<span class="token punctuation">.</span>state
+</pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../serviceworkerstate"><code>ServiceWorkerState</code></a> definition (<a href="https://slightlyoff.github.io/ServiceWorker/spec/service_worker/#service-worker-state-enum" rel=" noopener">see the spec</a>.)</p>
+<h2 id="examples">Examples</h2>
+<p>This code snippet is from the <a href="https://github.com/GoogleChrome/samples/blob/gh-pages/service-worker/registration-events/index.html" rel=" noopener">service worker registration-events sample</a> (<a href="https://googlechrome.github.io/samples/service-worker/registration-events/" rel=" noopener">live demo</a>). The code listens for any change in the <a href="state"><code>ServiceWorker.state</code></a> and returns its value.</p> <pre data-language="js"><span class="token keyword">var</span> serviceWorker<span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>registration<span class="token punctuation">.</span>installing<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  serviceWorker <span class="token operator">=</span> registration<span class="token punctuation">.</span>installing<span class="token punctuation">;</span>
+  document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#kind'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'installing'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>registration<span class="token punctuation">.</span>waiting<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  serviceWorker <span class="token operator">=</span> registration<span class="token punctuation">.</span>waiting<span class="token punctuation">;</span>
+  document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#kind'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'waiting'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>registration<span class="token punctuation">.</span>active<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  serviceWorker <span class="token operator">=</span> registration<span class="token punctuation">.</span>active<span class="token punctuation">;</span>
+  document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#kind'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'active'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>serviceWorker<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">logState</span><span class="token punctuation">(</span>serviceWorker<span class="token punctuation">.</span>state<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  serviceWorker<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'statechange'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">logState</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>state<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/ServiceWorker/#service-worker-state" hreflang="en" rel=" noopener">Service Workers<br><small>The definition of 'state' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>state</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>27</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>27</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker/state" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker/state</a>
+  </p>
+</div>

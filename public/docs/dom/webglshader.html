@@ -1,0 +1,100 @@
+<h1>WebGLShader</h1> <p>The <strong>WebGLShader</strong> is part of the <a href="webgl_api">WebGL API</a> and can either be a vertex or a fragment shader. A <a href="webglprogram"><code>WebGLProgram</code></a> requires both types of shaders.</p>
+<h2 id="description">Description</h2>
+<p>To create a <strong>WebGLShader</strong> use <a href="webglrenderingcontext/createshader"><code>WebGLRenderingContext.createShader</code></a>, then hook up the GLSL source code using <a href="webglrenderingcontext/shadersource"><code>WebGLRenderingContext.shaderSource()</code></a>, and finally invoke <a href="webglrenderingcontext/compileshader"><code>WebGLRenderingContext.compileShader()</code></a> to finish and compile the shader. At this point the <strong>WebGLShader</strong> is still not in a usable form and must still be attached to a <a href="webglprogram"><code>WebGLProgram</code></a>.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">createShader</span> <span class="token punctuation">(</span><span class="token parameter">gl<span class="token punctuation">,</span> sourceCode<span class="token punctuation">,</span> type</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Compiles either a shader of type gl.VERTEX_SHADER or gl.FRAGMENT_SHADER</span>
+  <span class="token keyword">var</span> shader <span class="token operator">=</span> gl<span class="token punctuation">.</span><span class="token function">createShader</span><span class="token punctuation">(</span> type <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  gl<span class="token punctuation">.</span><span class="token function">shaderSource</span><span class="token punctuation">(</span> shader<span class="token punctuation">,</span> sourceCode <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  gl<span class="token punctuation">.</span><span class="token function">compileShader</span><span class="token punctuation">(</span> shader <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token operator">!</span>gl<span class="token punctuation">.</span><span class="token function">getShaderParameter</span><span class="token punctuation">(</span>shader<span class="token punctuation">,</span> gl<span class="token punctuation">.</span><span class="token constant">COMPILE_STATUS</span><span class="token punctuation">)</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> info <span class="token operator">=</span> gl<span class="token punctuation">.</span><span class="token function">getShaderInfoLog</span><span class="token punctuation">(</span> shader <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">throw</span> <span class="token string">'Could not compile WebGL program. \n\n'</span> <span class="token operator">+</span> info<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> shader<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>See <a href="webglprogram"><code>WebGLProgram</code></a> for information on attaching the shaders.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="creating_a_vertex_shader">Creating a vertex shader</h3>
+<p>Note that there are many other strategies for writing and accessing shader source code strings. These example are for illustration purposes only.</p> <pre data-language="js"><span class="token keyword">var</span> vertexShaderSource <span class="token operator">=</span>
+  <span class="token string">'attribute vec4 position;\n'</span> <span class="token operator">+</span>
+  <span class="token string">'void main() {\n'</span> <span class="token operator">+</span>
+  <span class="token string">'  gl_Position = position;\n'</span> <span class="token operator">+</span>
+  <span class="token string">'}\n'</span><span class="token punctuation">;</span>
+
+<span class="token comment">//Use the createShader function from the example above</span>
+<span class="token keyword">var</span> vertexShader <span class="token operator">=</span> <span class="token function">createShader</span><span class="token punctuation">(</span>gl<span class="token punctuation">,</span> vertexShaderSource<span class="token punctuation">,</span> gl<span class="token punctuation">.</span><span class="token constant">VERTEX_SHADER</span><span class="token punctuation">)</span>
+</pre>
+<h3 id="creating_a_fragment_shader">Creating a fragment shader</h3>
+<pre data-language="js"><span class="token keyword">var</span> fragmentShaderSource <span class="token operator">=</span>
+  <span class="token string">'void main() {\n'</span> <span class="token operator">+</span>
+  <span class="token string">'  gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);\n'</span> <span class="token operator">+</span>
+  <span class="token string">'}\n'</span><span class="token punctuation">;</span>
+
+<span class="token comment">//Use the createShader function from the example above</span>
+<span class="token keyword">var</span> fragmentShader <span class="token operator">=</span> <span class="token function">createShader</span><span class="token punctuation">(</span>gl<span class="token punctuation">,</span> fragmentShaderSource<span class="token punctuation">,</span> gl<span class="token punctuation">.</span><span class="token constant">FRAGMENT_SHADER</span><span class="token punctuation">)</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.8" hreflang="en" rel=" noopener">WebGL 1.0<br><small>The definition of 'WebGLShader' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>WebGLShader</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>worker_support</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+</tbody>
+</table> 
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="webglprogram"><code>WebGLProgram</code></a></li> <li><a href="webglrenderingcontext/attachshader"><code>WebGLRenderingContext.attachShader()</code></a></li> <li><a href="webglrenderingcontext/bindattriblocation"><code>WebGLRenderingContext.bindAttribLocation()</code></a></li> <li><a href="webglrenderingcontext/compileshader"><code>WebGLRenderingContext.compileShader()</code></a></li> <li><a href="webglrenderingcontext/createprogram"><code>WebGLRenderingContext.createProgram()</code></a></li> <li><a href="webglrenderingcontext/createshader"><code>WebGLRenderingContext.createShader()</code></a></li> <li><a href="webglrenderingcontext/deleteprogram"><code>WebGLRenderingContext.deleteProgram()</code></a></li> <li><a href="webglrenderingcontext/deleteshader"><code>WebGLRenderingContext.deleteShader()</code></a></li> <li><a href="webglrenderingcontext/detachshader"><code>WebGLRenderingContext.detachShader()</code></a></li> <li><a href="webglrenderingcontext/getattachedshaders"><code>WebGLRenderingContext.getAttachedShaders()</code></a></li> <li><a href="webglrenderingcontext/getprogramparameter"><code>WebGLRenderingContext.getProgramParameter()</code></a></li> <li><a href="webglrenderingcontext/getprograminfolog"><code>WebGLRenderingContext.getProgramInfoLog()</code></a></li> <li><a href="webglrenderingcontext/getshaderparameter"><code>WebGLRenderingContext.getShaderParameter()</code></a></li> <li><a href="webglrenderingcontext/getshaderprecisionformat"><code>WebGLRenderingContext.getShaderPrecisionFormat()</code></a></li> <li><a href="webglrenderingcontext/getshaderinfolog"><code>WebGLRenderingContext.getShaderInfoLog()</code></a></li> <li><a href="webglrenderingcontext/getshadersource"><code>WebGLRenderingContext.getShaderSource()</code></a></li> <li><a href="webglrenderingcontext/isprogram"><code>WebGLRenderingContext.isProgram()</code></a></li> <li><a href="webglrenderingcontext/isshader"><code>WebGLRenderingContext.isShader()</code></a></li> <li><a href="webglrenderingcontext/linkprogram"><code>WebGLRenderingContext.linkProgram()</code></a></li> <li><a href="webglrenderingcontext/shadersource"><code>WebGLRenderingContext.shaderSource()</code></a></li> <li><a href="webglrenderingcontext/useprogram"><code>WebGLRenderingContext.useProgram()</code></a></li> <li><a href="webglrenderingcontext/validateprogram"><code>WebGLRenderingContext.validateProgram()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGLShader" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/WebGLShader</a>
+  </p>
+</div>

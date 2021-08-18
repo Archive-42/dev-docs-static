@@ -1,0 +1,90 @@
+<h1>CSP: frame-ancestors</h1> <p>The HTTP <a href="../content-security-policy"><code>Content-Security-Policy</code></a> (CSP) <code><strong>frame-ancestors</strong></code> directive specifies valid parents that may embed a page using <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/frame"><code>&lt;frame&gt;</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/object"><code>&lt;object&gt;</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/embed"><code>&lt;embed&gt;</code></a>, or <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/applet"><code>&lt;applet&gt;</code></a>.</p> <p>Setting this directive to <code>'none'</code> is similar to <a href="../x-frame-options"><code>X-Frame-Options</code></a><code>: deny</code> (which is also supported in older browsers).</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">CSP version</th> <td>2</td> </tr> <tr> <th scope="row">Directive type</th> <td><a href="https://developer.mozilla.org/en-US/docs/Glossary/Navigation_directive">Navigation directive</a></td> </tr> <tr> <th scope="row">
+<a href="default-src"><code>default-src</code></a> fallback</th> <td>No. Not setting this allows anything.</td> </tr> <tr> <th colspan="2" scope="row">This directive is not supported in the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta"><code>&lt;meta&gt;</code></a> element.</th> </tr> </tbody> </table></div> <h2 id="Syntax">Syntax</h2> <p>One or more sources can be set for the <code>frame-ancestors</code> policy:</p> <pre class="syntaxbox notranslate">Content-Security-Policy: frame-ancestors &lt;source&gt;;
+Content-Security-Policy: frame-ancestors &lt;source&gt; &lt;source&gt;;
+</pre> <h3 id="Sources">Sources</h3> <p>&lt;source&gt; can be one of the following:</p> <div class="note"> <p>The <code>frame-ancestors</code> directive’s syntax is similar to a source list of other directives (e.g. <a href="default-src"><code>default-src</code></a>), but doesn't allow <code>'unsafe-eval'</code> or <code>'unsafe-inline'</code> for example. It will also not fall back to a <code>default-src</code> setting. Only the sources listed below are allowed:</p> </div> <dl> <dt>&lt;host-source&gt;</dt> <dd>Internet hosts by name or IP address, as well as an optional <a href="https://developer.mozilla.org/en-US/docs/URIs_and_URLs">URL scheme</a> and/or port number, separated by spaces. The site's address may include an optional leading wildcard (the asterisk character, <code>'*'</code>), and you may use a wildcard (again, <code>'*'</code>) as the port number, indicating that all legal ports are valid for the source. Single quotes surrounding the host are not allowed.<br> Examples: <ul> <li>
+<code>http://*.example.com</code>: Matches all attempts to load from any subdomain of example.com using the <code>http:</code> URL scheme.</li> <li>
+<code>mail.example.com:443</code>: Matches all attempts to access port 443 on mail.example.com.</li> <li>
+<code>https://store.example.com</code>: Matches all attempts to access store.example.com using <code>https:</code>.</li> </ul> <div class="blockIndicator warning"> <p>If no URL scheme is specified for a <code>host-source</code> and the iframe is loaded from an <code>https</code> URL, the URL for the page loading the iframe must also be <code>https</code>, per the W3C spec on <a href="https://w3c.github.io/webappsec-csp/2/#match-source-expression">matching source expressions</a>.</p> </div> </dd> <dt>&lt;scheme-source&gt;</dt> <dd>A scheme such as <code>http:</code> or <code>https:</code>. The colon is required and scheme should not be quoted. You can also specify data schemes (not recommended). <ul> <li>
+<code>data:</code> Allows <a href="../../basics_of_http/data_uris"><code>data:</code> URIs</a> to be used as a content source.<em> This is insecure; an attacker can also inject arbitrary data: URIs. Use this sparingly and definitely not for scripts.</em>
+</li> <li>
+<code>mediastream:</code> Allows <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStream_API"><code>mediastream:</code> URIs</a> to be used as a content source.</li> <li>
+<code>blob:</code> Allows <a href="https://developer.mozilla.org/en-US/docs/Web/API/Blob"><code>blob:</code> URIs</a> to be used as a content source.</li> <li>
+<code>filesystem:</code> Allows <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystem"><code>filesystem:</code> URIs</a> to be used as a content source.</li> </ul> </dd> <dt><code>'self'</code></dt> <dd>Refers to the origin from which the protected document is being served, including the same URL scheme and port number. You must include the single quotes. Some browsers specifically exclude <code>blob</code> and <code>filesystem</code> from source directives. Sites needing to allow these content types can specify them using the Data attribute.</dd> <dt><code>'none'</code></dt> <dd>Refers to the empty set; that is, no URLs match. The single quotes are required.</dd> </dl> <h2 id="Examples">Examples</h2> <pre data-language="bash">Content-Security-Policy: frame-ancestors 'none';
+
+Content-Security-Policy: frame-ancestors 'self' https://www.example.org;</pre> <h2 id="Specifications">Specifications</h2> <div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webappsec-csp/#directive-frame-ancestors" hreflang="en">Content Security Policy Level 3<br><small>The definition of 'frame-ancestors' in that specification.</small></a></td> <td><span class="spec-WD">Working Draft</span></td> <td>No changes.</td> </tr> <tr> <td><a href="https://w3c.github.io/webappsec-csp/2/#directive-frame-ancestors" hreflang="en">Content Security Policy Level 2<br><small>The definition of 'frame-ancestors' in that specification.</small></a></td> <td><span class="spec-REC">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div> <h2 id="Browser_compatibility">Browser compatibility<a class="bc-github-link" href="https://github.com/mdn/browser-compat-data">Update compatibility data on GitHub</a>
+</h2>  <div class="_table">
+<table class="bc-table bc-table-web">
+<thead>
+<tr class="bc-platforms">
+<th></th>
+<th colspan="6"><span>Desktop</span></th>
+</tr>
+<tr class="bc-browsers">
+<th></th>
+<th><span class="bc-head-txt-label bc-head-icon-chrome">Chrome</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-edge">Edge</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-firefox">Firefox</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-ie">Internet Explorer</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-opera">Opera</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-safari">Safari</span></th>
+</tr>
+</thead>
+<tbody><tr>
+<th scope="row"><code>frame-ancestors</code></th>
+<td class="bc-supports-yes"> 40</td>
+<td class="bc-supports-yes"> 15</td>
+<td class="bc-supports-yes bc-has-history"> 33
+<section class="bc-history" id="sect1"><dl>
+<dt class="bc-supports-yes bc-supports"> 33
+</dt>
+<dd> Before Firefox 58, <code>frame-ancestors</code> is ignored in <code>Content-Security-Policy-Report-Only</code>.</dd>
+</dl></section>
+</td>
+<td class="bc-supports-no"> No</td>
+<td class="bc-supports-yes"> 26</td>
+<td class="bc-supports-yes"> 10</td>
+</tr></tbody>
+</table>
+<table class="bc-table bc-table-web">
+<thead>
+<tr class="bc-platforms">
+<th></th>
+<th colspan="6"><span>Mobile</span></th>
+</tr>
+<tr class="bc-browsers">
+<th></th>
+<th><span class="bc-head-txt-label bc-head-icon-webview_android">Android webview</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-chrome_android">Chrome for Android</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-firefox_android">Firefox for Android</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-opera_android">Opera for Android</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-safari_ios">Safari on iOS</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-samsunginternet_android">Samsung Internet</span></th>
+</tr>
+</thead>
+<tbody><tr>
+<th scope="row"><code>frame-ancestors</code></th>
+<td> ? </td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes bc-has-history"> 33
+<section class="bc-history" id="sect2"><dl>
+<dt class="bc-supports-yes bc-supports"> 33
+</dt>
+<dd> Before Firefox for Android 58, <code>frame-ancestors</code> is ignored in <code>Content-Security-Policy-Report-Only</code>.</dd>
+</dl></section>
+</td>
+<td> ? </td>
+<td class="bc-supports-yes"> 9.3</td>
+<td class="bc-supports-yes"> Yes</td>
+</tr></tbody>
+</table>
+</div> <h2 id="See_also">See also</h2> <ul> <li><a href="../content-security-policy"><code>Content-Security-Policy</code></a></li> <li><a href="../x-frame-options"><code>X-Frame-Options</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors$edit" class="_attribution-link">Edit this page on MDN</a>
+  </p>
+</div>
+<div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2020 Mozilla and individual contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/frame-ancestors</a>
+  </p>
+</div>

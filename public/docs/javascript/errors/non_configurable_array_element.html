@@ -1,0 +1,45 @@
+<h1>TypeError: can't delete non-configurable array element</h1> <p>The JavaScript exception "can't delete non-configurable array element" occurs when it was attempted to <a href="../global_objects/array/length#shortening_an_array">shorten the length</a> of an array, but one of the array's elements is <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#properties">non-configurable</a>.</p>
+<h2 id="message">Message</h2>
+<pre data-language="js">TypeError<span class="token operator">:</span> can't <span class="token keyword">delete</span> non<span class="token operator">-</span>configurable array <span class="token function">element</span> <span class="token punctuation">(</span>Firefox<span class="token punctuation">)</span>
+TypeError<span class="token operator">:</span> Cannot <span class="token keyword">delete</span> property <span class="token string">'2'</span> <span class="token keyword">of</span> <span class="token punctuation">[</span>object Array<span class="token punctuation">]</span> <span class="token punctuation">(</span>Chrome<span class="token punctuation">)</span>
+</pre>
+<h2 id="error_type">Error type</h2>
+<p><a href="../global_objects/typeerror"><code>TypeError</code></a></p>
+<h2 id="what_went_wrong">What went wrong?</h2>
+<p>It was attempted to <a href="../global_objects/array/length#shortening_an_array">shorten the length</a> of an array, but one of the array's elements is <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#properties">non-configurable</a>. When shortening an array, the elements beyond the new array length will be deleted, which failed in this situation.</p> <p>The <code>configurable</code> attribute controls whether the property can be deleted from the object and whether its attributes (other than <code>writable</code>) can be changed.</p> <p>Usually, properties in an object created by an <a href="../global_objects/array#syntax">array initializer</a> are configurable. However, for example, when using <a href="../global_objects/object/defineproperty"><code>Object.defineProperty()</code></a>, the property isn't configurable by default.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="non-configurable_properties_created_by_object.defineproperty">Non-configurable properties created by <code>Object.defineProperty</code>
+</h3>
+<p>The <a href="../global_objects/object/defineproperty"><code>Object.defineProperty()</code></a> creates non-configurable properties by default if you haven't specified them as configurable.</p> <pre data-language="js"><span class="token keyword">var</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>value<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>value<span class="token operator">:</span> <span class="token string">"1"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+arr<span class="token punctuation">.</span>length <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token comment">// TypeError: can't delete non-configurable array element</span>
+</pre> <p>You will need to set the elements as configurable, if you intend to shorten the array. </p> <pre data-language="js"><span class="token keyword">var</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>value<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> configurable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>arr<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>value<span class="token operator">:</span> <span class="token string">"1"</span><span class="token punctuation">,</span> configurable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+arr<span class="token punctuation">.</span>length <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="seal-ed_arrays">
+<code>Seal</code>-ed Arrays</h3>
+<p>The <a href="../global_objects/object/seal"><code>Object.seal()</code></a> function marks all existing elements as non-configurable.</p> <pre data-language="js"><span class="token keyword">var</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">seal</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+arr<span class="token punctuation">.</span>length <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token comment">// TypeError: can't delete non-configurable array element</span>
+</pre> <p>You either need to remove the <a href="../global_objects/object/seal"><code>Object.seal()</code></a> call, or make a copy of it. In case of a copy, shortening the copy of the array does not modify the original array length.</p> <pre data-language="js"><span class="token keyword">var</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">seal</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Copy the initial array to shorten the copy</span>
+<span class="token keyword">var</span> copy <span class="token operator">=</span> Array<span class="token punctuation">.</span><span class="token function">from</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+copy<span class="token punctuation">.</span>length <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token comment">// arr.length == 3</span>
+</pre>
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#properties">[[Configurable]]</a> </li> <li><a href="../global_objects/array/length"><code>Array.length</code></a></li> <li><a href="../global_objects/object/defineproperty"><code>Object.defineProperty()</code></a></li> <li><a href="../global_objects/object/seal"><code>Object.seal()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Non_configurable_array_element" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Non_configurable_array_element</a>
+  </p>
+</div>

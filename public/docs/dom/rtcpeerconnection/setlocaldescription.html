@@ -1,0 +1,146 @@
+<h1>RTCPeerConnection.setLocalDescription()</h1>
+
+ <p>The <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> method <a href="setlocaldescription"><code>setLocalDescription()</code></a> changes the local description associated with the connection. This description specifies the properties of the local end of the connection, including the media format. The method takes a single parameter—the session description—and it returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which is fulfilled once the description has been changed, asynchronously.</p> <p>If <code>setLocalDescription()</code> is called while a connection is already in place, it means renegotiation is underway (possibly to adapt to changing network conditions). Because descriptions will be exchanged until the two peers agree on a configuration, the description submitted by calling <code>setLocalDescription()</code> does not immediately take effect. Instead, the current connection configuration remains in place until negotiation is complete. Only then does the agreed-upon configuration take effect.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">aPromise <span class="token operator">=</span> RTCPeerConnection<span class="token punctuation">.</span><span class="token function">setLocalDescription</span><span class="token punctuation">(</span>sessionDescription<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+pc<span class="token punctuation">.</span><span class="token function">setLocalDescription</span><span class="token punctuation">(</span>sessionDescription<span class="token punctuation">,</span> successCallback<span class="token punctuation">,</span> errorCallback<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    This deprecated <span class="token constant">API</span> should no longer be used<span class="token punctuation">,</span> but will probably still work<span class="token punctuation">.</span>
+    
+
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code>sessionDescription</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An <a class="page-not-created"><code>RTCSessionDescriptionInit</code></a> or <a href="../rtcsessiondescription"><code>RTCSessionDescription</code></a> which specifies the configuration to be applied to the local end of the connection. If the description is omitted, the WebRTC runtime tries to automatically do the right thing.</dd> </dl> <h4 id="implicit_description">Implicit description</h4> <p>If you don't explicity provide a session description, the WebRTC runtime will try to handle it correctly. If the signaling state is one of <code>stable</code>, <code>have-local-offer</code>, or <code>have-remote-pranswer</code>, the WebRTC runtime automatically creates a new offer and sets that as the new local description. Otherwise, <code>setLocalDescription()</code> creates an answer, which becomes the new local description.</p> <h4 id="type_of_the_description_parameter">Type of the description parameter</h4> <p>The description is of type <code>RTCSessionDescriptionInit</code>, which is a serialized version of a <a href="../rtcsessiondescription"><code>RTCSessionDescription</code></a> browser object. They're interchangeable:</p> <pre data-language="js">myPeerConnection<span class="token punctuation">.</span><span class="token function">createOffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">offer</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> myPeerConnection<span class="token punctuation">.</span><span class="token function">setLocalDescription</span><span class="token punctuation">(</span>offer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>This is equivalent to:</p> <pre data-language="js">myPeerConnection<span class="token punctuation">.</span><span class="token function">createOffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">offer</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> myPeerConnection<span class="token punctuation">.</span><span class="token function">setLocalDescription</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">RTCSessionDescription</span><span class="token punctuation">(</span>offer<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>For this reason, the <a href="../rtcsessiondescription/rtcsessiondescription"><code>RTCSessionDescription()</code></a> constructor is deprecated.</p>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which is fulfilled once the value of <a href="localdescription"><code>RTCPeerConnection.localDescription</code></a> is successfully changed or rejected if the change cannot be applied (for example, if the specified description is incompatible with one or both of the peers on the connection). The promise's fulfillment handler receives no input parameters.</p> <div class="note notecard"> <p>The process of changing descriptions actually involves intermediary steps handled by the WebRTC layer to ensure that an active connection can be changed without losing the connection if the change does not succeed. See <a href="#">Pending and current descriptions</a> in <a href="../webrtc_api/connectivity">WebRTC connectivity</a> for more details on this process.</p> </div>
+<h3 id="deprecated_parameters">Deprecated parameters</h3>
+<p>In older code and documentation, you may see a callback-based version of this function used. This has been deprecated and its use is <strong>strongly</strong> discouraged, as it will be removed in the future. You should update any existing code to use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>-based version of <code>setLocalDescription()</code> instead. The parameters for the older form of <code>setLocalDescription()</code> are described below, to aid in updating existing code.</p> <dl> <dt>
+<code>successCallback</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>A JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function"><code>Function</code></a> which accepts no input parameters to be called once the description has been successfully set. At that time, the offer can be sent to a remote peer via the signaling server.</dd> <dt>
+<code>errorCallback</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>A function matching the signature <code>RTCPeerConnectionErrorCallback</code> which gets called if the description can't be set. It is passed a single <a href="../domexception"><code>DOMException</code></a> object explaining why the request failed.</dd> </dl> <p>This deprecated form of the method returns instantaneously without waiting for the actual setting to be done: in case of success, the <code>successCallback</code> will be called; in case of failure, the <code>errorCallback</code> will be called.</p>
+<h3 id="deprecated_exceptions">Deprecated exceptions</h3>
+<p>When using the deprecated callback-based version of <code>setLocalDescription()</code>, the following exceptions may occur:</p> <dl> <dt>
+<code>InvalidStateError</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>The connection's <a href="signalingstate"><code>signalingState</code></a> is <code>"closed"</code>, indicating that the connection is not currently open, so negotiation cannot take place.</dd> <dt>
+<code>InvalidSessionDescriptionError</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>The <a href="../rtcsessiondescription"><code>RTCSessionDescription</code></a> specified by the <code>sessionDescription</code> parameter is invalid.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="implicit_descriptions">Implicit descriptions</h3>
+<p>One of the advantages of the parameter-free form of <code>setLocalDescription()</code> is that it lets you simplify your negotiation code substantially. This is all your <a href="negotiationneeded_event"><code>negotiationneeded</code></a> event handler needs to look like, for the most part. Just add the signaling server code, which here is represented by the call to <code>signalRemotePeer()</code>.</p> <pre data-language="js">pc<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"negotiationneeded"</span><span class="token punctuation">,</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">await</span> pc<span class="token punctuation">.</span><span class="token function">setLocalDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">signalRemotePeer</span><span class="token punctuation">(</span><span class="token punctuation">{</span> description<span class="token operator">:</span> pc<span class="token punctuation">.</span>localDescription <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>Other than error handling, that's about it!</p>
+<h3 id="providing_your_own_offer_or_answer">Providing your own offer or answer</h3>
+<p>The example below shows the implementation of a handler for the <code><a href="negotiationneeded_event">negotiationneeded</a></code> event that explicitly creates an offer, rather than letting <code>setLocalDescription()</code> do it.</p> <pre data-language="js"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">handleNegotiationNeededEvent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> offer <span class="token operator">=</span> <span class="token keyword">await</span> pc<span class="token punctuation">.</span><span class="token function">createOffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    pc<span class="token punctuation">.</span><span class="token function">setLocalDescription</span><span class="token punctuation">(</span>offer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">signalRemotePeer</span><span class="token punctuation">(</span><span class="token punctuation">{</span> description<span class="token operator">:</span> pc<span class="token punctuation">.</span>localDescription <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">reportError</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre> <p>This begins by creating an offer by calling <a href="createoffer"><code>createOffer()</code></a>; when that succeeds, we call <code>setLocalDescription()</code>. We can then send the newly-created offer along to the other peer using the signaling server, which here is done by calling a function called <code>signalRemotePeer()</code>.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-peerconnection-setlocaldescription" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCPeerConnection.setLocalDescription()' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>setLocalDescription</code></th>
+<td class="bc-supports-yes">
+<div>51</div>
+<div>Promise-based version.</div>
+<div>24</div>
+</td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes">
+<div>22</div>
+<div>Firefox does not support descriptions of type <code>pranswer</code>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>51</div>
+<div>Promise-based version.</div>
+<div>Yes</div>
+</td>
+<td class="bc-supports-yes">
+<div>51</div>
+<div>Promise-based version.</div>
+<div>Yes</div>
+</td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Promise-based version and unprefixed.</div>
+<div>5.0-6.0</div>
+<div>Promise-based version.</div>
+</td>
+</tr>
+<tr>
+<th><code>optional_description</code></th>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webrtc_api">WebRTC API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/setLocalDescription" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/setLocalDescription</a>
+  </p>
+</div>

@@ -1,0 +1,71 @@
+<h1>FileSystemFlags.exclusive</h1>
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div> <p>The <code>exclusive</code> property on the <a href="../filesystemflags"><code>FileSystemFlags</code></a> dictionary is used in tandem with the create property to determine whether or not it's acceptable to require that the file not already exist when the reference to it is created by calling <a href="../filesystemdirectoryentry/getfile"><code>FileSystemDirectoryEntry.getFile()</code></a> or <a href="../filesystemdirectoryentry/getdirectory"><code>FileSystemDirectoryEntry.getDirectory()</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">fileSystemFlags<span class="token punctuation">.</span>exclusive <span class="token operator">=</span> booleanValue
+</pre>
+<h3 id="values">Values</h3>
+
+<p>The table below describes the result of each possible combination of these flags depending on whether or not the target file or directory path already exists.</p>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th colspan="2" scope="col">Option values</th> <th rowspan="2" scope="col">File/directory condition</th> <th rowspan="2" scope="col">Result</th> </tr> <tr> <th scope="col"><a href="create"><code>create</code></a></th> <th scope="col"><a href="exclusive"><code>exclusive</code></a></th> </tr> </thead> <tbody> <tr> <td><code>false</code></td> <td>n/a<sup>[1]</sup>
+</td> <td>Path exists and matches the desired type (depending on whether the function called is <code>getFile()</code> or <code>getDirectory()</code>
+</td> <td>The <code>successCallback</code> is called with a <a href="../filesystemfileentry"><code>FileSystemFileEntry</code></a> if <code>getFile()</code> was called or a <a href="../filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a> if <code>getDirectory()</code> was called.</td> </tr> <tr> <td><code>false</code></td> <td>n/a<sup>[1]</sup>
+</td> <td>Path exists but doesn't match the desired type</td> <td>The <code>errorCallback</code> is called with an appropriate error code (if the callback was provided).</td> </tr> <tr> <td><code>true</code></td> <td><code>false</code></td> <td>Path exists</td> <td>The existing file or directory is removed and replaced with a new one, then the <code>successCallback</code> is called with a <a href="../filesystemfileentry"><code>FileSystemFileEntry</code></a> or a <a href="../filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a>, as appropriate.</td> </tr> <tr> <td><code>true</code></td> <td><code>false</code></td> <td>Path doesn't exist</td> <td>The file or directory is created, then a <a href="../filesystemfileentry"><code>FileSystemFileEntry</code></a> or a <a href="../filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a> is passed to the <code>successCallback</code>, as appropriate.</td> </tr> <tr> <td><code>true</code></td> <td><code>true</code></td> <td>Path exists</td> <td>The <code>errorCallback</code> is called with an appropriate error, such as <code>FileError.PATH_EXISTS_ERR</code>.</td> </tr> <tr> <td><code>true</code></td> <td><code>true</code></td> <td>Path doesn't exist</td> <td>The file or directory is created, then a <a href="../filesystemfileentry"><code>FileSystemFileEntry</code></a> or a <a href="../filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a> is passed to the <code>successCallback</code>, as appropriate.</td> </tr> </tbody> </table></div>
+<p>[1] When <code>create</code> is <code>false</code>, the value of <code>exclusive</code> is irrelevant and ignored.</p>
+
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://wicg.github.io/entries-api/#dom-filesystemflags-exclusive" hreflang="en" rel=" noopener">File and Directory Entries API<br><small>The definition of 'FileSystemFlags' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>exclusive</code></th>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>50</div>
+<div>For security reasons, Firefox does not support creating files. This option has no effect.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes">
+<div>50</div>
+<div>For security reasons, Firefox does not support creating files. This option has no effect.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../file_and_directory_entries_api">File and Directory Entries API</a></li> <li><a href="../file_and_directory_entries_api/introduction">Introduction to the File System API</a></li> <li><a href="../filesystemflags"><code>FileSystemFlags</code></a></li> <li>
+<a href="../filesystemdirectoryentry/getfile"><code>FileSystemDirectoryEntry.getFile()</code></a> and <a href="../filesystemdirectoryentry/getdirectory"><code>FileSystemDirectoryEntry.getDirectory()</code></a>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFlags/exclusive" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFlags/exclusive</a>
+  </p>
+</div>

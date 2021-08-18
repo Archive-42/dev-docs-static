@@ -1,0 +1,157 @@
+<h1>AudioWorkletGlobalScope</h1>
+
+ <p>The <code>AudioWorkletGlobalScope</code> interface of the <a href="web_audio_api">Web Audio API</a> represents a global execution context for user-supplied code, which defines custom <a href="audioworkletprocessor"><code>AudioWorkletProcessor</code></a>-derived classes. Each <a href="baseaudiocontext"><code>BaseAudioContext</code></a> has a single <a href="audioworklet"><code>AudioWorklet</code></a> available under the <a href="baseaudiocontext/audioworklet"><code>audioWorklet</code></a> property, which runs its code in a single <code>AudioWorkletGlobalScope</code>.</p> <p>As the global execution context is shared across the current <code>BaseAudioContext</code>, it's possible to define any other variables and perform any actions allowed in worklets — apart from defining <code>AudioWorkletProcessor</code>-derived classes.</p>
+<h2 id="properties">Properties</h2>
+<dl> <dt>
+<a class="page-not-created"><code>currentFrame</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns an integer that represents the ever-increasing current sample-frame of the audio block being processed. It is incremented by 128 (the size of a render quantum) after the processing of each audio block.</dd> <dt>
+<a class="page-not-created"><code>currentTime</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a double that represents the ever-increasing context time of the audio block being processed. It is equal to the <a href="baseaudiocontext/currenttime"><code>currentTime</code></a> property of the <a href="baseaudiocontext"><code>BaseAudioContext</code></a> the worklet belongs to.</dd> <dt>
+<a class="page-not-created"><code>sampleRate</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a float that represents the sample rate of the associated <a href="baseaudiocontext"><code>BaseAudioContext</code></a>.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="audioworkletglobalscope/registerprocessor"><code>registerProcessor()</code></a></dt> <dd>Registers a class derived from the <a href="audioworkletprocessor"><code>AudioWorkletProcessor</code></a> interface. The class can then be used by creating an <a href="audioworkletnode"><code>AudioWorkletNode</code></a>, providing its registered name.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>In this example we output all global properties into the console in the constructor of a custom <a href="audioworkletprocessor"><code>AudioWorkletProcessor</code></a>.</p> <p>First we need to define the processor, and register it. Note that this should be done in a separate file.</p> <pre data-language="js"><span class="token comment">// test-processor.js</span>
+<span class="token keyword">class</span> <span class="token class-name">TestProcessor</span> <span class="token keyword">extends</span> <span class="token class-name">AudioWorkletProcessor</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token comment">// current sample-frame and time at the moment of instantiation</span>
+    <span class="token comment">// to see values change, you can put these two lines in process method</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>currentFrame<span class="token punctuation">)</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>currentTime<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// the process method is required - output silence,</span>
+  <span class="token comment">// which the outputs are already filled with</span>
+  <span class="token function">process</span> <span class="token punctuation">(</span><span class="token parameter">inputs<span class="token punctuation">,</span> outputs<span class="token punctuation">,</span> parameters</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// the sample rate is not going to change ever,</span>
+<span class="token comment">// because it's a read-only property of a BaseAudioContext</span>
+<span class="token comment">// and is set only during its instantiation</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>sampleRate<span class="token punctuation">)</span>
+
+<span class="token comment">// you can declare any variables and use them in your processors</span>
+<span class="token comment">// for example it may be an ArrayBuffer with a wavetable</span>
+<span class="token keyword">const</span> usefulVariable <span class="token operator">=</span> <span class="token number">42</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>usefulVariable<span class="token punctuation">)</span>
+
+<span class="token function">registerProcessor</span><span class="token punctuation">(</span><span class="token string">'test-processor'</span><span class="token punctuation">,</span> TestProcessor<span class="token punctuation">)</span>
+</pre> <p>Next, in our main scripts file we'll load the processor, create an instance of <code>AudioWorkletNode</code> — passing the name of the processor to it — and connect the node to an audio graph. We should see the output of <code>console.log</code> calls in the console:</p> <pre data-language="js"><span class="token keyword">const</span> audioContext <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">await</span> audioContext<span class="token punctuation">.</span>audioWorklet<span class="token punctuation">.</span><span class="token function">addModule</span><span class="token punctuation">(</span><span class="token string">'test-processor.js'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> testNode <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioWorkletNode</span><span class="token punctuation">(</span>audioContext<span class="token punctuation">,</span> <span class="token string">'test-processor'</span><span class="token punctuation">)</span>
+testNode<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>audioContext<span class="token punctuation">.</span>destination<span class="token punctuation">)</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://webaudio.github.io/web-audio-api/#audioworkletglobalscope" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'AudioWorkletGlobalScope' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>AudioWorkletGlobalScope</code></th>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+<tr>
+<th><code>currentFrame</code></th>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+<tr>
+<th><code>currentTime</code></th>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+<tr>
+<th><code>registerProcessor</code></th>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+<tr>
+<th><code>sampleRate</code></th>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="web_audio_api">Web Audio API</a></li> <li><a href="web_audio_api/using_web_audio_api">Using the Web Audio API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioWorkletGlobalScope" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/AudioWorkletGlobalScope</a>
+  </p>
+</div>

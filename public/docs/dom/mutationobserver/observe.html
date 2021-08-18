@@ -1,0 +1,87 @@
+<h1>MutationObserver.observe()</h1> <p>The <a href="../mutationobserver"><code>MutationObserver</code></a> method <code><strong>observe()</strong></code> configures the <code>MutationObserver</code> callback to begin receiving notifications of changes to the DOM that match the given options. Depending on the configuration, the observer may watch a single <a href="../node"><code>Node</code></a> in the DOM tree, or that node and some or all of its descendant nodes.</p> <p>To stop the <code>MutationObserver</code> (so that none of its callbacks will be triggered any longer), call <a href="disconnect"><code>MutationObserver.disconnect()</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">mutationObserver<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> options<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>target</var></code></dt> <dd>A DOM <a href="../node"><code>Node</code></a> (which may be an <a href="../element"><code>Element</code></a>) within the DOM tree to watch for changes, or to be the root of a subtree of nodes to be watched.</dd> <dt><code><var>options</var></code></dt> <dd>A <a href="../mutationobserverinit"><code>MutationObserverInit</code></a> object providing options that describe which DOM mutations should be reported to <code><var>mutationObserver</var></code>’s <code><var>callback</var></code>. At a minimum, one of <code>childList</code>, <code>attributes</code>, and/or <code>characterData</code> must be <code>true</code> when you call <a href="observe"><code>observe()</code></a>. Otherwise, a <code>TypeError</code> exception will be thrown.</dd> <dd>Options are as follows: <dl> <dt>
+<a href="../mutationobserverinit/subtree"><code>subtree</code></a> <span class="badge inline optional">Optional</span>
+</dt> <dd>Set to <code>true</code> to extend monitoring to the entire subtree of nodes rooted at <code>target</code>. All of the other <code>MutationObserverInit</code> properties are then extended to all of the nodes in the subtree instead of applying solely to the <code>target</code> node. The default value is <code>false</code>.</dd> <dt>
+<a href="../mutationobserverinit/childlist"><code>childList</code></a> <span class="badge inline optional">Optional</span> </dt> <dd>Set to <code>true</code> to monitor the target node (and, if <code>subtree</code> is <code>true</code>, its descendants) for the addition of new child nodes or removal of existing child nodes. The default value is <code>false</code>.</dd> <dt>
+<a href="../mutationobserverinit/attributes"><code>attributes</code></a> <span class="badge inline optional">Optional</span> </dt> <dd>Set to <code>true</code> to watch for changes to the value of attributes on the node or nodes being monitored. The default value is <code>true</code> if either of <code>attributeFilter</code> or <code>attributeOldValue</code> is specified, otherwise the default value is <code>false</code>.</dd> <dt>
+<a href="../mutationobserverinit/attributefilter"><code>attributeFilter</code></a> <span class="badge inline optional">Optional</span>
+</dt> <dd>An array of specific attribute names to be monitored. If this property isn't included, changes to all attributes cause mutation notifications.</dd> <dt>
+<a href="../mutationobserverinit/attributeoldvalue"><code>attributeOldValue</code></a> <span class="badge inline optional">Optional</span>
+</dt> <dd>Set to <code>true</code> to record the previous value of any attribute that changes when monitoring the node or nodes for attribute changes; see <a href="#">Monitoring attribute values</a> in <a href="../mutationobserver">MutationObserver</a> for details on watching for attribute changes and value recording. The default value is <code>false</code>.</dd> <dt>
+<a href="../mutationobserverinit/characterdata"><code>characterData</code></a> <span class="badge inline optional">Optional</span>
+</dt> <dd>Set to <code>true</code> to monitor the specified target node (and, if <code>subtree</code> is <code>true</code>, its descendants) for changes to the character data contained within the node or nodes. The default value is <code>true</code> if <code>characterDataOldValue</code> is specified, otherwise the default value is <code>false</code>.</dd> <dt>
+<a href="../mutationobserverinit/characterdataoldvalue"><code>characterDataOldValue</code></a> <span class="badge inline optional">Optional</span>
+</dt> <dd>Set to <code>true</code> to record the previous value of a node's text whenever the text changes on nodes being monitored. For details and an example, see <a href="#">Monitoring text content changes</a> in <a href="../mutationobserver">MutationObserver</a>. The default value is <code>false</code>.</dd> </dl> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p><code>undefined</code>.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError"><code>TypeError</code></a></dt> <dd>Thrown in any of the following circumstances: <ul> <li>The <code><var>options</var></code> are configured such that nothing will actually be monitored. <br> (For example, if <a href="../mutationobserverinit/childlist"><code>MutationObserverInit.childList</code></a>, <a href="../mutationobserverinit/attributes"><code>MutationObserverInit.attributes</code></a>, and <a href="../mutationobserverinit/characterdata"><code>MutationObserverInit.characterData</code></a> are all <code>false</code>.) </li> <li>The value of <code><var>options.</var>attributes</code> is <code>false</code> (indicating that attribute changes are not to be monitored), but <code>attributeOldValue</code> is <code>true</code> and/or <code>attributeFilter</code> is present.</li> <li>The <a class="page-not-created"><code>characterDataOldValue</code></a> option is <code>true</code> but <a href="../mutationobserverinit/characterdata"><code>MutationObserverInit.characterData</code></a> is <code>false</code> (indicating that character changes are not to be monitored).</li> </ul> </dd> </dl>
+<h2 id="usage_notes">Usage notes</h2>
+<h3 id="reusing_mutationobservers">Reusing MutationObservers</h3>
+<p>You can call <code>observe()</code> multiple times on the same <code>MutationObserver</code> to watch for changes to different parts of the DOM tree and/or different types of changes. There are some caveats to note:</p> <ul> <li>If you call <code>observe()</code> on a node that's already being observed by the same <code>MutationObserver</code>, all existing observers are automatically removed from all targets being observed before the new observer is activated.</li> <li>If the same <code>MutationObserver</code> is not already in use on the target, then the existing observers are left alone and the new one is added.</li> </ul>
+<h3 id="observation_follows_nodes_when_disconnected">Observation follows nodes when disconnected</h3>
+<p>Mutation observers are intended to let you be able to watch the desired set of nodes over time, even if the direct connections between those nodes are severed. If you begin watching a subtree of nodes, and a portion of that subtree is detached and moved elsewhere in the DOM, you continue to watch the detached segment of nodes, receiving the same callbacks as before the nodes were detached from the original subtree.</p> <p>In other words, until you've been notified that nodes are being split off from your monitored subtree, you'll get notifications of changes to that split-off subtree and its nodes. This prevents you from missing changes that occur after the connection is severed and before you have a chance to specifically begin monitoring the moved node or subtree for changes.</p> <p>Theoretically, this means that if you keep track of the <a href="../mutationrecord"><code>MutationRecord</code></a> objects describing the changes that occur, you should be able to "undo" the changes, rewinding the DOM back to its initial state.</p>
+<h2 id="example">Example</h2>
+<p>In this example, we demonstrate how to call the method <code><strong>observe()</strong></code> on an instance of <a href="../mutationobserver"><code>MutationObserver</code></a>, once it has been set up, passing it a target element and a <a href="../mutationobserverinit"><code>MutationObserverInit</code></a> options object.</p> <pre data-language="js"><span class="token comment">// identify an element to observe</span>
+<span class="token keyword">const</span> elementToObserve <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"#targetElementId"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// create a new instance of `MutationObserver` named `observer`,</span>
+<span class="token comment">// passing it a callback function</span>
+<span class="token keyword">const</span> observer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MutationObserver</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'callback that runs when observer is triggered'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// call `observe()` on that MutationObserver instance,</span>
+<span class="token comment">// passing it the element to observe, and the options object</span>
+observer<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span>elementToObserve<span class="token punctuation">,</span> <span class="token punctuation">{</span>subtree<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> childList<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://dom.spec.whatwg.org/#dom-mutationobserver-observe" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'MutationObserver.observe()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>observe</code></th>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver/observe" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver/observe</a>
+  </p>
+</div>

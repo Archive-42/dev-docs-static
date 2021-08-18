@@ -1,0 +1,118 @@
+<h1>Window.scrollY</h1> <p>The read-only <code><strong>scrollY</strong></code> property of the <a href="../window"><code>Window</code></a> interface returns the number of pixels that the document is currently scrolled vertically. This value is subpixel precise in modern browsers, meaning that it isn't necessarily a whole number. You can get the number of pixels the document is scrolled horizontally from the <a href="scrollx"><code>scrollX</code></a> property.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> y <span class="token operator">=</span> window<span class="token punctuation">.</span>scrollY</pre>
+<h3 id="value">Value</h3>
+<p>In practice, the returned value is a double-precision floating-point value indicating the number of pixels the document is currently scrolled vertically from the origin, where a positive value means the content is scrolled to upward. If the document is rendered on a subpixel-precise device, then the returned value is also subpixel-precise and may contain a decimal component. If the document isn't scrolled at all up or down, then <code>scrollY</code> is 0.</p> <div class="note notecard"> <p>If you need an integer value, you can use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round"><code>Math.round()</code></a> to round it off. </p> </div> <p>In more technical terms, <code>scrollY</code> returns the Y coordinate of the top edge of the current <a href="https://developer.mozilla.org/en-US/docs/Glossary/Viewport">viewport</a>. If there is no viewport, the returned value is 0.</p>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token comment">// make sure and go down to the second page</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>scrollY<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  window<span class="token punctuation">.</span><span class="token function">scroll</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// reset the scroll position to the top left of the document.</span>
+<span class="token punctuation">}</span>
+
+window<span class="token punctuation">.</span><span class="token function">scrollByPages</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="notes">Notes</h2>
+<p>Use this property to check that the document hasn't already been scrolled when using relative scroll functions such as <a href="scrollby"><code>scrollBy()</code></a>, <a href="scrollbylines"><code>scrollByLines()</code></a>, or <a href="scrollbypages"><code>scrollByPages()</code></a>.</p> <p>The <code>pageYOffset</code> property is an alias for the <code>scrollY</code> property:</p> <pre data-language="js">window<span class="token punctuation">.</span>pageYOffset <span class="token operator">===</span> window<span class="token punctuation">.</span>scrollY<span class="token punctuation">;</span> <span class="token comment">// always true</span></pre> <p>For cross-browser compatibility, use <code>window.pageYOffset</code> instead of <code>window.scrollY</code>. <strong>Additionally</strong>, older versions of Internet Explorer (&lt; 9) do not support either property and must be worked around by checking other non-standard properties. A fully compatible example:</p> <pre data-language="js"><span class="token keyword">var</span> supportPageOffset <span class="token operator">=</span> window<span class="token punctuation">.</span>pageXOffset <span class="token operator">!==</span> <span class="token keyword">undefined</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> isCSS1Compat <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span>compatMode <span class="token operator">||</span> <span class="token string">""</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">"CSS1Compat"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> x <span class="token operator">=</span> supportPageOffset <span class="token operator">?</span> window<span class="token punctuation">.</span>pageXOffset <span class="token operator">:</span> isCSS1Compat <span class="token operator">?</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>scrollLeft <span class="token operator">:</span> document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>scrollLeft<span class="token punctuation">;</span>
+<span class="token keyword">var</span> y <span class="token operator">=</span> supportPageOffset <span class="token operator">?</span> window<span class="token punctuation">.</span>pageYOffset <span class="token operator">:</span> isCSS1Compat <span class="token operator">?</span> document<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>scrollTop <span class="token operator">:</span> document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>scrollTop<span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/cssom-view/#dom-window-scrolly" hreflang="en" rel=" noopener">CSS Object Model (CSSOM) View Module<br><small>The definition of 'window.scrollY' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>scrollY</code></th>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>1</div>
+</td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>12</div>
+</td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>1</div>
+</td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes">
+<div>9.6</div>
+<div>4</div>
+</td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>1</div>
+</td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>1</div>
+</td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>18</div>
+</td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>4</div>
+</td>
+<td class="bc-supports-yes">
+<div>10.1</div>
+<div>10.1</div>
+</td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>1</div>
+</td>
+<td class="bc-supports-yes">
+<div>1.0</div>
+<div>1.0</div>
+</td>
+</tr>
+<tr>
+<th><code>subpixel_precision</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="scrollx"><code>window.scrollX</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollY" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Window/scrollY</a>
+  </p>
+</div>

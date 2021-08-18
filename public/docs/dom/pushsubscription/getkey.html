@@ -1,0 +1,91 @@
+<h1>PushSubscription.getKey()</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <code>getKey()</code> method of the <a href="../pushsubscription"><code>PushSubscription</code></a> interface returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> representing a client public key, which can then be sent to a server and used in encrypting push message data.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> key <span class="token operator">=</span> subscription<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>name</dt> <dd>A <a href="../domstring"><code>DOMString</code></a> representing the encryption method used to generate a client key. The value can be: <ul> <li>
+<code>p256dh</code>: An <a href="https://en.wikipedia.org/wiki/Elliptic_curve_Diffie%E2%80%93Hellman" rel=" noopener">Elliptic curve Diffie–Hellman</a> public key on the P-256 curve (that is, the NIST secp256r1 elliptic curve). The resulting key is an uncompressed point in ANSI X9.62 format.</li> <li>
+<code>auth</code>: An authentication secret, as described in<span class="h1"> <a href="https://datatracker.ietf.org/doc/html/draft-ietf-webpush-encryption-08" rel=" noopener">Message Encryption for Web Push</a>.</span>
+</li> </ul> </dd> </dl>
+<h3 id="returns">Returns</h3>
+<p>An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a>.</p>
+<h2 id="example">Example</h2>
+<pre data-language="js">reg<span class="token punctuation">.</span>pushManager<span class="token punctuation">.</span><span class="token function">getSubscription</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">subscription</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Enable any UI which subscribes / unsubscribes from</span>
+  <span class="token comment">// push messages.</span>
+
+  subBtn<span class="token punctuation">.</span>disabled <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>subscription<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Not yet subscribed to Push'</span><span class="token punctuation">)</span>
+    <span class="token comment">// We aren't subscribed to push, so set UI</span>
+    <span class="token comment">// to allow the user to enable push</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Set your UI to show they have subscribed for</span>
+  <span class="token comment">// push messages</span>
+  subBtn<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'Unsubscribe from Push Messaging'</span><span class="token punctuation">;</span>
+  isPushEnabled <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// initialize status, which includes setting UI elements for subscribed status</span>
+  <span class="token comment">// and updating Subscribers list via push</span>
+  <span class="token keyword">var</span> endpoint <span class="token operator">=</span> subscription<span class="token punctuation">.</span>endpoint<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> key <span class="token operator">=</span> subscription<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token string">'p256dh'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> auth <span class="token operator">=</span> subscription<span class="token punctuation">.</span><span class="token function">getKey</span><span class="token punctuation">(</span><span class="token string">'auth'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token operator">...</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/push-api/" hreflang="en" rel=" noopener">Push API</a></td> <td><span class="spec-wd">Working Draft</span></td> <td>This is the Push API spec, but note that <code>getKey()</code> is not currently specified in here. It is currently Firefox-only experimental.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getKey</code></th>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PushSubscription/getKey" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PushSubscription/getKey</a>
+  </p>
+</div>

@@ -1,0 +1,78 @@
+<h1>FileSystemDirectoryEntry.createReader()</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <a href="../filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a> interface's method <code><strong>createReader</strong></code><code>()</code> returns a <a href="../filesystemdirectoryreader"><code>FileSystemDirectoryReader</code></a> object which can be used to read the entries in the directory.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">directoryReader <span class="token operator">=</span> FileSystemDirectoryEntry<span class="token punctuation">.</span><span class="token function">createReader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<p>None.</p>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="../filesystemdirectoryreader"><code>FileSystemDirectoryReader</code></a> object which can be used to read the directory's entries.</p>
+<h2 id="example">Example</h2>
+<p>This example creates a method called <code>readDirectory()</code>, which fetches all of the entries in the specified <a href="../filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a> and returns them in an array.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">readDirectory</span><span class="token punctuation">(</span><span class="token parameter">directory</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> dirReader <span class="token operator">=</span> directory<span class="token punctuation">.</span><span class="token function">createReader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> entries <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">let</span> <span class="token function-variable function">getEntries</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    dirReader<span class="token punctuation">.</span><span class="token function">readEntries</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">results</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>results<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        entries <span class="token operator">=</span> entries<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span><span class="token function">toArray</span><span class="token punctuation">(</span>results<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">getEntries</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">/* handle error -- error is a FileError object */</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token function">getEntries</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> entries<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>This works by creating an internal function, <code>getEntries()</code>, which calls itself recursively to get all the entries in the directory, concatenating each batch to the array. Each iteration, <a href="../filesystemdirectoryreader/readentries"><code>readEntries()</code></a> is called to get more entries. When it returns an empty array, the end of the directory has been reached, and the recursion ends. Once control is returned to <code>readDirectory()</code>, the array is returned to the caller.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://wicg.github.io/entries-api/#dom-filesystemdirectoryentry-createreader" hreflang="en" rel=" noopener">File and Directory Entries API<br><small>The definition of 'createReader()' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>createReader</code></th>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../file_and_directory_entries_api">File and Directory Entries API</a></li> <li><a href="../file_and_directory_entries_api/introduction">Introduction to the File System API</a></li> <li><a href="../filesystemdirectoryreader"><code>FileSystemDirectoryReader</code></a></li> <li><a href="../filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a></li> <li><a href="../filesystemfileentry"><code>FileSystemFileEntry</code></a></li> <li><a href="../filesystementry"><code>FileSystemEntry</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryEntry/createReader" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryEntry/createReader</a>
+  </p>
+</div>

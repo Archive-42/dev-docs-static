@@ -1,0 +1,179 @@
+<h1>JSON</h1> <p>The <code>JSON</code> object contains methods for parsing <a href="https://json.org/" rel=" noopener">JavaScript Object Notation</a> (<a href="https://developer.mozilla.org/en-US/docs/Glossary/JSON">JSON</a>) and converting values to JSON. It can't be called or constructed, and aside from its two method properties, it has no interesting functionality of its own.</p>
+<h2 id="description">Description</h2>
+<h3 id="javascript_and_json_differences">JavaScript and JSON differences</h3>
+<p>JSON is a syntax for serializing objects, arrays, numbers, strings, booleans, and <a href="null"><code>null</code></a>. It is based upon JavaScript syntax but is distinct from it: some JavaScript is <em>not</em> JSON.</p> <dl> <dt><strong>Objects and Arrays</strong></dt> <dd>Property names must be double-quoted strings; <a href="../trailing_commas">trailing commas</a> are forbidden.</dd> <dt><strong>Numbers</strong></dt> <dd>Leading zeros are prohibited. A decimal point must be followed by at least one digit. <code>NaN</code> and <code>Infinity</code> are unsupported.</dd> <dt><strong>Any JSON text is a valid JavaScript expression...</strong></dt> <dd>...But only in JavaScript engines that have implemented the <a href="https://github.com/tc39/proposal-json-superset" rel=" noopener">proposal to make all JSON text valid ECMA-262</a>. In engines that haven't implemented the proposal, U+2028 LINE SEPARATOR and U+2029 PARAGRAPH SEPARATOR are allowed in string literals and property keys in JSON; but their use in these features in JavaScript string literals is a <a href="syntaxerror"><code>SyntaxError</code></a>.</dd> </dl> <p>Consider this example where <a href="json/parse"><code>JSON.parse()</code></a> parses the string as JSON and <a href="eval"><code>Global_Objects/eval</code></a> executes the string as JavaScript:</p> <pre data-language="js"><span class="token keyword">let</span> code <span class="token operator">=</span> <span class="token string">'"\u2028\u2029"'</span>
+<span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>code<span class="token punctuation">)</span>  <span class="token comment">// evaluates to "\u2028\u2029" in all engines</span>
+<span class="token function">eval</span><span class="token punctuation">(</span>code<span class="token punctuation">)</span>        <span class="token comment">// throws a SyntaxError in old engines</span>
+</pre> <p>Other differences include allowing only double-quoted strings and having no provisions for <a href="undefined"><code>undefined</code></a> or comments. For those who wish to use a more human-friendly configuration format based on JSON, there is <a href="https://json5.org/" rel=" noopener">JSON5</a>, used by the Babel compiler, and the more commonly used <a href="https://en.wikipedia.org/wiki/YAML" rel=" noopener">YAML</a>.</p>
+<h3 id="full_json_syntax">Full JSON syntax</h3>
+<p>The full JSON syntax is as follows:</p> <pre data-language="js"><span class="token constant">JSON</span> <span class="token operator">=</span> <span class="token keyword">null</span>
+    or <span class="token boolean">true</span> or <span class="token boolean">false</span>
+    or JSONNumber
+    or JSONString
+    or JSONObject
+    or JSONArray
+
+JSONNumber <span class="token operator">=</span> <span class="token operator">-</span> PositiveNumber
+          or PositiveNumber
+PositiveNumber <span class="token operator">=</span> DecimalNumber
+              or DecimalNumber <span class="token punctuation">.</span> Digits
+              or DecimalNumber <span class="token punctuation">.</span> Digits ExponentPart
+              or DecimalNumber ExponentPart
+DecimalNumber <span class="token operator">=</span> <span class="token number">0</span>
+             or OneToNine Digits
+ExponentPart <span class="token operator">=</span> e Exponent
+            or <span class="token constant">E</span> Exponent
+Exponent <span class="token operator">=</span> Digits
+        or <span class="token operator">+</span> Digits
+        or <span class="token operator">-</span> Digits
+Digits <span class="token operator">=</span> Digit
+      or Digits Digit
+Digit <span class="token operator">=</span> <span class="token number">0</span> through <span class="token number">9</span>
+OneToNine <span class="token operator">=</span> <span class="token number">1</span> through <span class="token number">9</span>
+
+JSONString <span class="token operator">=</span> <span class="token string">""</span>
+          or <span class="token string">" StringCharacters "</span>
+StringCharacters <span class="token operator">=</span> StringCharacter
+                or StringCharacters StringCharacter
+StringCharacter <span class="token operator">=</span> any character
+                  except " or \ or <span class="token constant">U</span><span class="token operator">+</span><span class="token number">0000</span> through <span class="token constant">U</span><span class="token operator">+</span><span class="token number">001</span>F
+               or EscapeSequence
+EscapeSequence <span class="token operator">=</span> \" or \<span class="token operator">/</span> or \\ or \b or \f or \n or \r or \t
+              or \u HexDigit HexDigit HexDigit HexDigit
+HexDigit <span class="token operator">=</span> <span class="token number">0</span> through <span class="token number">9</span>
+        or <span class="token constant">A</span> through <span class="token constant">F</span>
+        or a through f
+
+JSONObject <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+          or <span class="token punctuation">{</span> Members <span class="token punctuation">}</span>
+Members <span class="token operator">=</span> JSONString <span class="token operator">:</span> <span class="token constant">JSON</span>
+       or Members <span class="token punctuation">,</span> JSONString <span class="token operator">:</span> <span class="token constant">JSON</span>
+
+JSONArray <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token punctuation">]</span>
+         or <span class="token punctuation">[</span> ArrayElements <span class="token punctuation">]</span>
+ArrayElements <span class="token operator">=</span> <span class="token constant">JSON</span>
+             or ArrayElements <span class="token punctuation">,</span> <span class="token constant">JSON</span>
+</pre> <p>Insignificant <a href="https://developer.mozilla.org/en-US/docs/Glossary/Whitespace">whitespace</a> may be present anywhere except within a <code><var>JSONNumber</var></code> (numbers must contain no whitespace) or <code><var>JSONString</var></code> (where it is interpreted as the corresponding character in the string, or would cause an error). The tab character (<a href="https://unicode-table.com/en/0009/" rel=" noopener">U+0009</a>), carriage return (<a href="https://unicode-table.com/en/000D/" rel=" noopener">U+000D</a>), line feed (<a href="https://unicode-table.com/en/000A/" rel=" noopener">U+000A</a>), and space (<a href="https://unicode-table.com/en/0020/" rel=" noopener">U+0020</a>) characters are the only valid whitespace characters.</p>
+<h2 id="static_methods">Static methods</h2>
+<dl> <dt><a href="json/parse"><code>JSON.parse(<var>text</var>[, <var>reviver</var>])</code></a></dt> <dd>Parse the string <code><var>text</var></code> as JSON, optionally transform the produced value and its properties, and return the value. Any violations of the JSON syntax, including those pertaining to the differences between JavaScript and JSON, cause a <a href="syntaxerror"><code>SyntaxError</code></a> to be thrown. The <code><var>reviver</var></code> option allows for interpreting what the <code><var>replacer</var></code> has used to stand in for other datatypes.</dd> <dt><a href="json/stringify"><code>JSON.stringify(<var>value</var>[,
+    <var>replacer</var>[, <var>space</var>]])</code></a></dt> <dd>Return a JSON string corresponding to the specified value, optionally including only certain properties or replacing property values in a user-defined manner. By default, all instances of <a href="undefined"><code>undefined</code></a> are replaced with <a href="null"><code>null</code></a>, and other unsupported native data types are censored. The <code><var>replacer</var></code> option allows for specifying other behavior.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="example_json">Example JSON</h3>
+<pre data-language="json"><span class="token punctuation">{</span>
+  <span class="token property">"browsers"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token property">"firefox"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+      <span class="token property">"name"</span><span class="token operator">:</span> <span class="token string">"Firefox"</span><span class="token punctuation">,</span>
+      <span class="token property">"pref_url"</span><span class="token operator">:</span> <span class="token string">"about:config"</span><span class="token punctuation">,</span>
+      <span class="token property">"releases"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+        <span class="token property">"1"</span><span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token property">"release_date"</span><span class="token operator">:</span> <span class="token string">"2004-11-09"</span><span class="token punctuation">,</span>
+          <span class="token property">"status"</span><span class="token operator">:</span> <span class="token string">"retired"</span><span class="token punctuation">,</span>
+          <span class="token property">"engine"</span><span class="token operator">:</span> <span class="token string">"Gecko"</span><span class="token punctuation">,</span>
+          <span class="token property">"engine_version"</span><span class="token operator">:</span> <span class="token string">"1.7"</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-json-object">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-json-object</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>JSON</code></th>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>10.5</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>json_superset</code></th>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+<tr>
+<th><code>parse</code></th>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>10.5</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>stringify</code></th>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>10.5</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="date/tojson"><code>Date.prototype.toJSON()</code></a></li> <li>
+<a href="http://www.jsondiff.com/" rel=" noopener">JSON Diff</a> checker</li> <li><a href="https://jsonbeautifier.org/" rel=" noopener">JSON Beautifier/editor</a></li> <li><a href="http://jsonparser.org/" rel=" noopener">JSON Parser</a></li> <li>
+<a href="https://tools.learningcontainer.com/json-validator/" rel=" noopener">JSON Validator</a> </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON</a>
+  </p>
+</div>

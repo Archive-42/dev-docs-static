@@ -1,0 +1,76 @@
+<h1>If-Match</h1> <p>The <code>If-Match</code> HTTP request header makes the request conditional. For <a href="../methods/get"><code>GET</code></a> and <a href="../methods/head"><code>HEAD</code></a> methods, the server will send back the requested resource only if it matches one of the listed <code>ETags</code>. For <a href="../methods/put"><code>PUT</code></a> and other non-safe methods, it will only upload the resource in this case.</p> <p>The comparison with the stored <a href="etag"><code>ETag</code></a> uses the <em>strong comparison algorithm</em>, meaning two files are considered identical byte to byte only. If a listed <code>ETag</code> has the <code>W/</code> prefix indicating a weak entity tag, it will never match under this comparison algorithm.</p> <p>There are two common use cases:</p> <ul> <li>For <a href="../methods/get"><code>GET</code></a> and <a href="../methods/head"><code>HEAD</code></a> methods, used in combination with a <a href="range"><code>Range</code></a> header, it can guarantee that the new ranges requested comes from the same resource than the previous one. If it doesn't match, then a <a href="../status/416"><code>416</code></a> (Range Not Satisfiable) response is returned.</li> <li>For other methods, and in particular for <a href="../methods/put"><code>PUT</code></a>, <code>If-Match</code> can be used to prevent the <a href="https://www.w3.org/1999/04/Editing/#3.1">lost update problem</a>. It can check if the modification of a resource that the user wants to upload will not override another change that has been done since the original resource was fetched. If the request cannot be fulfilled, the <a href="../status/412"><code>412</code></a> (Precondition Failed) response is returned.</li> </ul> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Header type</th> <td><a href="https://developer.mozilla.org/en-US/docs/Glossary/Request_header">Request header</a></td> </tr> <tr> <th scope="row"><a href="https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name">Forbidden header name</a></th> <td>no</td> </tr> </tbody> </table></div> <h2 id="Syntax">Syntax</h2> <pre class="syntaxbox notranslate">If-Match: &lt;etag_value&gt;
+If-Match: &lt;etag_value&gt;, &lt;etag_value&gt;, …
+</pre> <h2 id="Directives">Directives</h2> <dl> <dt>&lt;etag_value&gt;</dt> <dd>Entity tags uniquely representing the requested resources. They are a string of ASCII characters placed between double quotes (like <code>"675af34563dc-tr34"</code>). They may be prefixed by <code>W/</code> to indicate that they are "weak", i.e. that they represent the resource semantically, but not byte-for-byte. However, in an <code>If-Match</code> header, weak entity tags will never match.</dd> <dt><code>*</code></dt> <dd>The asterisk is a special value representing any resource.</dd> </dl> <h2 id="Examples">Examples</h2> <pre class="notranslate">If-Match: "bfc13a64729c4290ef5b2c2730249c88ca92d82d"
+
+If-Match: "67ab43", "54ed21", "7892dd"
+
+If-Match: *
+</pre> <h2 id="Specifications">Specifications</h2> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Title</th> </tr> </thead> <tbody> <tr> <td><a href="https://tools.ietf.org/html/rfc7232#section-3.1">RFC 7232, section 3.1: If-Match</a></td> <td>Hypertext Transfer Protocol (HTTP/1.1): Conditional Requests</td> </tr> </tbody> </table></div> <h2 id="Browser_compatibility">Browser compatibility<a class="bc-github-link" href="https://github.com/mdn/browser-compat-data">Update compatibility data on GitHub</a>
+</h2>  <div class="_table">
+<table class="bc-table bc-table-web">
+<thead>
+<tr class="bc-platforms">
+<th></th>
+<th colspan="6"><span>Desktop</span></th>
+</tr>
+<tr class="bc-browsers">
+<th></th>
+<th><span class="bc-head-txt-label bc-head-icon-chrome">Chrome</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-edge">Edge</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-firefox">Firefox</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-ie">Internet Explorer</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-opera">Opera</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-safari">Safari</span></th>
+</tr>
+</thead>
+<tbody><tr>
+<th scope="row"><code>If-Match</code></th>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> 12</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+</tr></tbody>
+</table>
+<table class="bc-table bc-table-web">
+<thead>
+<tr class="bc-platforms">
+<th></th>
+<th colspan="6"><span>Mobile</span></th>
+</tr>
+<tr class="bc-browsers">
+<th></th>
+<th><span class="bc-head-txt-label bc-head-icon-webview_android">Android webview</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-chrome_android">Chrome for Android</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-firefox_android">Firefox for Android</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-opera_android">Opera for Android</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-safari_ios">Safari on iOS</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-samsunginternet_android">Samsung Internet</span></th>
+</tr>
+</thead>
+<tbody><tr>
+<th scope="row"><code>If-Match</code></th>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+</tr></tbody>
+</table>
+</div> <h2 id="See_also">See also</h2> <ul> <li><a href="etag"><code>ETag</code></a></li> <li><a href="if-unmodified-since"><code>If-Unmodified-Since</code></a></li> <li><a href="if-modified-since"><code>If-Modified-Since</code></a></li> <li><a href="if-none-match"><code>If-None-Match</code></a></li> <li>
+<a href="../status/416"><code>416</code></a><code> Range Not Satisfiable</code>
+</li> <li>
+<a href="../status/412"><code>412</code></a><code> Precondition Failed</code>
+</li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Match$edit" class="_attribution-link">Edit this page on MDN</a>
+  </p>
+</div>
+<div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2020 Mozilla and individual contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Match" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/If-Match</a>
+  </p>
+</div>

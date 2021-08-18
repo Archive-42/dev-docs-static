@@ -1,0 +1,78 @@
+<h1>PaymentRequest.prototype.id</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <code>id</code> read-only attribute of the <a href="../paymentrequest"><code>PaymentRequest</code></a> interface returns a unique identifier for a particular <a href="../paymentrequest"><code>PaymentRequest</code></a> instance.</p> <p>When constructing an instance of the <a href="../paymentrequest"><code>PaymentRequest</code></a>, you are able to supply an custom id via <a class="page-not-created"><code>PaymentDetailsInit</code></a> dictionary's <code>id</code> member. If none is provided, the browser automatically sets the id value to a UUID.</p>
+<h2 id="example">Example</h2>
+<p>This example shows how to give a <a href="../paymentrequest"><code>PaymentRequest</code></a> instance a custom id. </p> <pre data-language="js"><span class="token keyword">const</span> details <span class="token operator">=</span> <span class="token punctuation">{</span>
+  id<span class="token operator">:</span> <span class="token string">"super-store-order-123-12312"</span><span class="token punctuation">,</span>
+  total<span class="token operator">:</span> <span class="token punctuation">{</span>
+    label<span class="token operator">:</span> <span class="token string">"Total due"</span><span class="token punctuation">,</span>
+    amount<span class="token operator">:</span> <span class="token punctuation">{</span> currency<span class="token operator">:</span> <span class="token string">"USD"</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token string">"65.00"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PaymentRequest</span><span class="token punctuation">(</span>methodData<span class="token punctuation">,</span> details<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>request<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// super-store-order-123-12312</span>
+</pre> <p>The <code>id</code> is then also available in the <a href="../paymentresponse"><code>PaymentResponse</code></a> returned from the <code>show()</code> method, but under the <code>requestId</code> attribute.</p> <pre data-language="js"><span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> request<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>response<span class="token punctuation">.</span>requestId <span class="token operator">===</span> request<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// And in serialized form too</span>
+<span class="token keyword">const</span> json <span class="token operator">=</span> response<span class="token punctuation">.</span><span class="token function">toJSON</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>json<span class="token punctuation">.</span>requestId<span class="token punctuation">,</span>response<span class="token punctuation">.</span>requestId<span class="token punctuation">,</span> request<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> id <span class="token operator">=</span> paymentRequest<span class="token punctuation">.</span>id</pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../domstring"><code>DOMString</code></a>.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/payment-request/#dom-paymentrequest-id" hreflang="en" rel=" noopener">Payment Request API<br><small>The definition of 'id' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>id</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/id" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/id</a>
+  </p>
+</div>

@@ -1,0 +1,79 @@
+<h1>OscillatorNode.setPeriodicWave()</h1>
+
+ <p>The <code>setPeriodicWave()</code> method of the <a href="../oscillatornode"><code>OscillatorNode</code></a> interface is used to point to a <a href="../periodicwave"><code>PeriodicWave</code></a> defining a periodic waveform that can be used to shape the oscillator's output, when <a href="type"><code>type</code></a> is <code>custom</code>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">OscillatorNode<span class="token punctuation">.</span><span class="token function">setPeriodicWave</span><span class="token punctuation">(</span>wave<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>wave</code></dt> <dd>A <a href="../periodicwave"><code>PeriodicWave</code></a> object representing the waveform to use as the shape of the oscillator's output.</dd> </dl>
+<h3 id="returns">Returns</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"><code>undefined</code></a></p>
+<h2 id="example">Example</h2>
+<p>The following example illustrates simple usage of <code>createPeriodicWave()</code>, recreating a sine wave from a periodic wave.</p> <pre data-language="js"><span class="token keyword">var</span> real <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Float32Array</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> imag <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Float32Array</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> ac <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> osc <span class="token operator">=</span> ac<span class="token punctuation">.</span><span class="token function">createOscillator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+real<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+imag<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+real<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+imag<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> wave <span class="token operator">=</span> ac<span class="token punctuation">.</span><span class="token function">createPeriodicWave</span><span class="token punctuation">(</span>real<span class="token punctuation">,</span> imag<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+osc<span class="token punctuation">.</span><span class="token function">setPeriodicWave</span><span class="token punctuation">(</span>wave<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+osc<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>ac<span class="token punctuation">.</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+osc<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+osc<span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>This works because a sound that contains only a fundamental tone is by definition a sine wave.<br> <br> Here, we create a <a href="../periodicwave"><code>PeriodicWave</code></a> with two values. The first value is the DC offset, which is the value at which the oscillator starts. 0 is good here, because we want to start the curve at the middle of the [-1.0; 1.0] range. </p> <p>The second and subsequent values are sine and cosine components. You can think of it as the result of a Fourier transform, where you get frequency domain values from time domain value. Here, with <code>createPeriodicWave()</code>, you specify the frequencies, and the browser performs a an inverse Fourier transform to get a time domain buffer for the frequency of the oscillator. Here, we only set one component at full volume (1.0) on the fundamental tone, so we get a sine wave.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://webaudio.github.io/web-audio-api/#dom-oscillatornode-setperiodicwave" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'setPeriodicWave' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>setPeriodicWave</code></th>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../web_audio_api/using_web_audio_api">Using the Web Audio API</a> </li> <li>
+<a href="../baseaudiocontext/createperiodicwave">AudioContext.createPeriodicWave</a> </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode/setPeriodicWave" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/OscillatorNode/setPeriodicWave</a>
+  </p>
+</div>

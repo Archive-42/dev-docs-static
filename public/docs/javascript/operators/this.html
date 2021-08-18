@@ -1,0 +1,347 @@
+<h1>this</h1> <p>A <code>this</code> behaves a little differently in JavaScript compared to other languages. It also has some differences between <a href="../strict_mode">strict mode</a> and non-strict mode.</p> <p>In most cases, the value of <code>this</code> is determined by how a function is called (runtime binding). It can't be set by assignment during execution, and it may be different each time the function is called. ES5 introduced the <a href="../global_objects/function/bind"><code>bind()</code></a> method to <a href="#The_bind_method">set the value of a function's <code>this</code> regardless of how it's called</a>, and ES2015 introduced <a href="../functions/arrow_functions">arrow functions</a> which don't provide their own <code>this</code> binding (it retains the <code>this</code> value of the enclosing lexical context).</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/expressions-this.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">this</span></pre>
+<h3 id="value">Value</h3>
+<p>A property of an execution context (global, function or eval) that, in non–strict mode, is always a reference to an object and in strict mode can be any value.</p>
+<h2 id="description">Description</h2>
+<h3 id="global_context">Global context</h3>
+<p>In the global execution context (outside of any function), <code>this</code> refers to the global object whether in strict mode or not.</p> <pre data-language="js"><span class="token comment">// In web browsers, the window object is also the global object:</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span> <span class="token operator">===</span> window<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+
+a <span class="token operator">=</span> <span class="token number">37</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 37</span>
+
+<span class="token keyword">this</span><span class="token punctuation">.</span>b <span class="token operator">=</span> <span class="token string">"MDN"</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>b<span class="token punctuation">)</span>  <span class="token comment">// "MDN"</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span>         <span class="token comment">// "MDN"</span>
+</pre> <div class="notecard note"> <p><strong>Note:</strong> You can always easily get the global object using the global <a href="../global_objects/globalthis"><code>globalThis</code></a> property, regardless of the current context in which your code is running.</p> </div>
+<h3 id="function_context">Function context</h3>
+<p>Inside a function, the value of <code>this</code> depends on how the function is called.</p> <p>Since the following code is not in <a href="../strict_mode">strict mode</a>, and because the value of <code>this</code> is not set by the call, <code>this</code> will default to the global object, which is <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window"><code>window</code></a> in a browser.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">f1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// In a browser:</span>
+<span class="token function">f1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> window<span class="token punctuation">;</span> <span class="token comment">// true</span>
+
+<span class="token comment">// In Node:</span>
+<span class="token function">f1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> globalThis<span class="token punctuation">;</span> <span class="token comment">// true</span></pre> <p>In strict mode, however, if the value of <code>this</code> is not set when entering an execution context, it remains as <code>undefined</code>, as shown in the following example:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">f2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token string">'use strict'</span><span class="token punctuation">;</span> <span class="token comment">// see strict mode</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">f2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token keyword">undefined</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+</pre> <div class="note notecard"> <p><strong>Note:</strong> In the second example, <code>this</code> should be <a href="../global_objects/undefined"><code>undefined</code></a>, because <code>f2</code> was called directly and not as a method or property of an object (e.g. <code>window.f2()</code>). This feature wasn't implemented in some browsers when they first started to support <a href="../strict_mode">strict mode</a>. As a result, they incorrectly returned the <code>window</code> object.</p>
+</div> <p>To set the value of <code>this</code> to a particular value when calling a function, use <a href="../global_objects/function/call"><code>call()</code></a>, or <a href="../global_objects/function/apply"><code>apply()</code></a> as in the examples below.</p>
+<h3 id="class_context">Class context</h3>
+<p>The behavior of <code>this</code> in <a href="../classes">classes</a> and functions is similar, since classes are functions under the hood. But there are some differences and caveats.</p> <p>Within a class constructor, <code>this</code> is a regular object. All non-static methods within the class are added to the prototype of <code>this</code>:</p> <pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">Example</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> proto <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">getPrototypeOf</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Object<span class="token punctuation">.</span><span class="token function">getOwnPropertyNames</span><span class="token punctuation">(</span>proto<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">first</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token function">second</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token keyword">static</span> <span class="token function">third</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">new</span> <span class="token class-name">Example</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ['constructor', 'first', 'second']</span>
+</pre> <div class="notecard note"> <p><strong>Note:</strong> Static methods are not properties of <code>this</code>. They are properties of the class itself.</p> </div>
+<h3 id="derived_classes">Derived classes</h3>
+<p>Unlike base class constructors, derived constructors have no initial <code>this</code> binding. Calling <a href="super"><code>super()</code></a> creates a <code>this</code> binding within the constructor and essentially has the effect of evaluating the following line of code, where Base is the inherited class:</p> <pre data-language="js"><span class="token keyword">this</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Base</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <div class="notecard warning"> <p><strong>Warning:</strong> Referring to <code>this</code> before calling <code>super()</code> will throw an error.</p> </div> <p>Derived classes must not return before calling <code>super()</code>, unless they return an <code>Object</code> or have no constructor at all.</p> <pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">Base</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Good</span> <span class="token keyword">extends</span> <span class="token class-name">Base</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">AlsoGood</span> <span class="token keyword">extends</span> <span class="token class-name">Base</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">{</span>a<span class="token operator">:</span> <span class="token number">5</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">Bad</span> <span class="token keyword">extends</span> <span class="token class-name">Base</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">new</span> <span class="token class-name">Good</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">new</span> <span class="token class-name">AlsoGood</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">new</span> <span class="token class-name">Bad</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ReferenceError</span></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="this_in_function_contexts">this in function contexts</h3>
+<pre data-language="js"><span class="token comment">// An object can be passed as the first argument to call or apply and this will be bound to it.</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>a<span class="token operator">:</span> <span class="token string">'Custom'</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// We declare a variable and the variable is assigned to the global window as its property.</span>
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token string">'Global'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">whatsThis</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>a<span class="token punctuation">;</span>  <span class="token comment">// The value of this is dependent on how the function is called</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">whatsThis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// 'Global' as this in the function isn't set, so it defaults to the global/window object</span>
+<span class="token function">whatsThis</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 'Custom' as this in the function is set to obj</span>
+<span class="token function">whatsThis</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 'Custom' as this in the function is set to obj</span>
+</pre>
+<h3 id="this_and_object_conversion">this and object conversion</h3>
+<pre data-language="js"><span class="token keyword">function</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token parameter">c<span class="token punctuation">,</span> d</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>a <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>b <span class="token operator">+</span> c <span class="token operator">+</span> d<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span>a<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span> b<span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// The first parameter is the object to use as</span>
+<span class="token comment">// 'this', subsequent parameters are passed as</span>
+<span class="token comment">// arguments in the function call</span>
+<span class="token function">add</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 16</span>
+
+<span class="token comment">// The first parameter is the object to use as</span>
+<span class="token comment">// 'this', the second is an array whose</span>
+<span class="token comment">// members are used as the arguments in the function call</span>
+<span class="token function">add</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 34</span>
+</pre> <p>Note that in non–strict mode, with <code>call</code> and <code>apply</code>, if the value passed as <code>this</code> is not an object, an attempt will be made to convert it to an object. Values <code>null</code> and <code>undefined</code> become the global object. Primitives like <code>7</code> or <code>'foo'</code> will be converted to an Object using the related constructor, so the primitive number <code>7</code> is converted to an object as if by <code>new Number(7)</code> and the string <code>'foo'</code> to an object as if by <code>new String('foo')</code>, e.g.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">bar</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// [object Number]</span>
+<span class="token function">bar</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [object String]</span>
+<span class="token function">bar</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">undefined</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [object global]</span>
+</pre>
+<h3 id="the_bind_method">The <code>bind</code> method</h3>
+<p>ECMAScript 5 introduced <a href="../global_objects/function/bind"><code>Function.prototype.bind()</code></a>. Calling <code>f.bind(someObject)</code> creates a new function with the same body and scope as <code>f</code>, but where <code>this</code> occurs in the original function, in the new function it is permanently bound to the first argument of <code>bind</code>, regardless of how the function is being used.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>a<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> g <span class="token operator">=</span> <span class="token function">f</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token punctuation">{</span>a<span class="token operator">:</span> <span class="token string">'azerty'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">g</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// azerty</span>
+
+<span class="token keyword">var</span> h <span class="token operator">=</span> <span class="token function">g</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token punctuation">{</span>a<span class="token operator">:</span> <span class="token string">'yoo'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// bind only works once!</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">h</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// azerty</span>
+
+<span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span>a<span class="token operator">:</span> <span class="token number">37</span><span class="token punctuation">,</span> f<span class="token operator">:</span> f<span class="token punctuation">,</span> g<span class="token operator">:</span> g<span class="token punctuation">,</span> h<span class="token operator">:</span> h<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span>a<span class="token punctuation">,</span> o<span class="token punctuation">.</span><span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> o<span class="token punctuation">.</span><span class="token function">g</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> o<span class="token punctuation">.</span><span class="token function">h</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 37,37, azerty, azerty</span>
+</pre>
+<h3 id="arrow_functions">Arrow functions</h3>
+<p>In <a href="../functions/arrow_functions">arrow functions</a>, <code>this</code> retains the value of the enclosing lexical context's <code>this</code>. In global code, it will be set to the global object:</p> <pre data-language="js"><span class="token keyword">var</span> globalObject <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> globalObject<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span></pre> <div class="note notecard"> <p><strong>Note:</strong> If <code>this</code> arg is passed to <code>call</code>, <code>bind</code>, or <code>apply</code> on invocation of an arrow function it will be ignored. You can still prepend arguments to the call, but the first argument (<code>thisArg</code>) should be set to <code>null</code>.</p> </div> <pre data-language="js"><span class="token comment">// Call as a method of an object</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>func<span class="token operator">:</span> foo<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span><span class="token function">func</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> globalObject<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+
+<span class="token comment">// Attempt to set this using call</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">foo</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token operator">===</span> globalObject<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+
+<span class="token comment">// Attempt to set this using bind</span>
+foo <span class="token operator">=</span> <span class="token function">foo</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> globalObject<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span></pre> <p>No matter what, <code>foo</code>'s <code>this</code> is set to what it was when it was created (in the example above, the global object). The same applies to arrow functions created inside other functions: their <code>this</code> remains that of the enclosing lexical context.</p> <pre data-language="js"><span class="token comment">// Create obj with a method bar that returns a function that</span>
+<span class="token comment">// returns its this. The returned function is created as</span>
+<span class="token comment">// an arrow function, so its this is permanently bound to the</span>
+<span class="token comment">// this of its enclosing function. The value of bar can be set</span>
+<span class="token comment">// in the call, which in turn sets the value of the</span>
+<span class="token comment">// returned function.</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">bar</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> x<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Call bar as a method of obj, setting its this to obj</span>
+<span class="token comment">// Assign a reference to the returned function to fn</span>
+<span class="token keyword">var</span> fn <span class="token operator">=</span> obj<span class="token punctuation">.</span><span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Call fn without setting this, would normally default</span>
+<span class="token comment">// to the global object or undefined in strict mode</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">fn</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> obj<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+
+<span class="token comment">// But caution if you reference the method of obj without calling it</span>
+<span class="token keyword">var</span> fn2 <span class="token operator">=</span> obj<span class="token punctuation">.</span>bar<span class="token punctuation">;</span>
+<span class="token comment">// Calling the arrow function's this from inside the bar method()</span>
+<span class="token comment">// will now return window, because it follows the this from fn2.</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">fn2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> window<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+</pre> <p>In the above, the function (call it anonymous function A) assigned to <code>obj.bar</code> returns another function (call it anonymous function B) that is created as an arrow function. As a result, function B's <code>this</code> is permanently set to the <code>this</code> of <code>obj.bar</code> (function A) when called. When the returned function (function B) is called, its <code>this</code> will always be what it was set to initially. In the above code example, function B's <code>this</code> is set to function A's <code>this</code> which is <code>obj</code>, so it remains set to <code>obj</code> even when called in a manner that would normally set its <code>this</code> to <code>undefined</code> or the global object (or any other method as in the previous example in the global execution context).</p>
+<h3 id="as_an_object_method">As an object method</h3>
+<p>When a function is called as a method of an object, its <code>this</code> is set to the object the method is called on.</p> <p>In the following example, when <code>o.f()</code> is invoked, inside the function <code>this</code> is bound to the <code>o</code> object.</p> <pre data-language="js"><span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span>
+  prop<span class="token operator">:</span> <span class="token number">37</span><span class="token punctuation">,</span>
+  <span class="token function-variable function">f</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>prop<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span><span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 37</span>
+</pre> <p>Note that this behavior is not at all affected by how or where the function was defined. In the previous example, we defined the function inline as the <code>f</code> member during the definition of <code>o</code>. However, we could have just as easily defined the function first and later attached it to <code>o.f</code>. Doing so results in the same behavior:</p> <pre data-language="js"><span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span>prop<span class="token operator">:</span> <span class="token number">37</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">independent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>prop<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+o<span class="token punctuation">.</span>f <span class="token operator">=</span> independent<span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span><span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 37</span>
+</pre> <p>This demonstrates that it matters only that the function was invoked from the <code>f</code> member of <code>o</code>.</p> <p>Similarly, the <code>this</code> binding is only affected by the most immediate member reference. In the following example, when we invoke the function, we call it as a method <code>g</code> of the object <code>o.b</code>. This time during execution, <code>this</code> inside the function will refer to <code>o.b</code>. The fact that the object is itself a member of <code>o</code> has no consequence; the most immediate reference is all that matters.</p> <pre data-language="js">o<span class="token punctuation">.</span>b <span class="token operator">=</span> <span class="token punctuation">{</span>g<span class="token operator">:</span> independent<span class="token punctuation">,</span> prop<span class="token operator">:</span> <span class="token number">42</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span>b<span class="token punctuation">.</span><span class="token function">g</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 42</span>
+</pre> <h4 id="this_on_the_objects_prototype_chain">
+<code>this</code> on the object's prototype chain</h4> <p>The same notion holds true for methods defined somewhere on the object's prototype chain. If the method is on an object's prototype chain, <code>this</code> refers to the object the method was called on, as if the method were on the object.</p> <pre data-language="js"><span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token function-variable function">f</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>a <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>b<span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> p <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>o<span class="token punctuation">)</span><span class="token punctuation">;</span>
+p<span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+p<span class="token punctuation">.</span>b <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>p<span class="token punctuation">.</span><span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 5</span>
+</pre> <p>In this example, the object assigned to the variable <code>p</code> doesn't have its own <code>f</code> property, it inherits it from its prototype. But it doesn't matter that the lookup for <code>f</code> eventually finds a member with that name on <code>o</code>; the lookup began as a reference to <code>p.f</code>, so <code>this</code> inside the function takes the value of the object referred to as <code>p</code>. That is, since <code>f</code> is called as a method of <code>p</code>, its <code>this</code> refers to <code>p</code>. This is an interesting feature of JavaScript's prototype inheritance.</p> <h4 id="this_with_a_getter_or_setter">
+<code>this</code> with a getter or setter</h4> <p>Again, the same notion holds true when a function is invoked from a getter or a setter. A function used as getter or setter has its <code>this</code> bound to the object from which the property is being set or gotten.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>a <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>b <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>c<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token punctuation">{</span>
+  a<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">,</span>
+  b<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>
+  c<span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">,</span>
+  <span class="token keyword">get</span> <span class="token function">average</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>a <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>b <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>c<span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">3</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>o<span class="token punctuation">,</span> <span class="token string">'sum'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    get<span class="token operator">:</span> sum<span class="token punctuation">,</span> enumerable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> configurable<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span>average<span class="token punctuation">,</span> o<span class="token punctuation">.</span>sum<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 2, 6</span>
+</pre>
+<h3 id="as_a_constructor">As a constructor</h3>
+<p>When a function is used as a constructor (with the <a href="new"><code>new</code></a> keyword), its <code>this</code> is bound to the new object being constructed.</p> <div class="note notecard"> <p><strong>Note:</strong> While the default for a constructor is to return the object referenced by <code>this</code>, it can instead return some other object (if the return value isn't an object, then the <code>this</code> object is returned).</p> </div> <pre data-language="js"><span class="token comment">/*
+ * Constructors work like this:
+ *
+ * function MyConstructor(){
+ *   // Actual function body code goes here.
+ *   // Create properties on |this| as
+ *   // desired by assigning to them.  E.g.,
+ *   this.fum = "nom";
+ *   // et cetera...
+ *
+ *   // If the function has a return statement that
+ *   // returns an object, that object will be the
+ *   // result of the |new| expression.  Otherwise,
+ *   // the result of the expression is the object
+ *   // currently bound to |this|
+ *   // (i.e., the common case most usually seen).
+ * }
+ */</span>
+
+<span class="token keyword">function</span> <span class="token constant">C</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token number">37</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">C</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 37</span>
+
+<span class="token keyword">function</span> <span class="token constant">C2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token number">37</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>a<span class="token operator">:</span> <span class="token number">38</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+o <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">C2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>o<span class="token punctuation">.</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 38</span>
+</pre> <p>In the last example (<code>C2</code>), because an object was returned during construction, the new object that <code>this</code> was bound to gets discarded. (This essentially makes the statement "<code>this.a = 37;</code>" dead code. It's not exactly dead because it gets executed, but it can be eliminated with no outside effects.)</p>
+<h3 id="as_a_dom_event_handler">As a DOM event handler</h3>
+<p>When a function is used as an event handler, its <code>this</code> is set to the element on which the listener is placed (some browsers do not follow this convention for listeners added dynamically with methods other than <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener"><code>addEventListener()</code></a>).</p> <pre data-language="js"><span class="token comment">// When called as a listener, turns the related element blue</span>
+<span class="token keyword">function</span> <span class="token function">bluify</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Always true</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span> <span class="token operator">===</span> e<span class="token punctuation">.</span>currentTarget<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// true when currentTarget and target are the same object</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span> <span class="token operator">===</span> e<span class="token punctuation">.</span>target<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>backgroundColor <span class="token operator">=</span> <span class="token string">'#A5D9F3'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Get a list of every element in the document</span>
+<span class="token keyword">var</span> elements <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">'*'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Add bluify as a click listener so when the</span>
+<span class="token comment">// element is clicked on, it turns blue</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> elements<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  elements<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> bluify<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h3 id="in_an_inline_event_handler">In an inline event handler</h3>
+<p>When the code is called from an inline <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers">on-event handler</a>, its <code>this</code> is set to the DOM element on which the listener is placed:</p> <pre data-language="js"><span class="token operator">&lt;</span>button onclick<span class="token operator">=</span><span class="token string">"alert(this.tagName.toLowerCase());"</span><span class="token operator">&gt;</span>
+  Show <span class="token keyword">this</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+</pre> <p>The above alert shows <code>button</code>. Note however that only the outer code has its <code>this</code> set this way:</p> <pre data-language="js"><span class="token operator">&lt;</span>button onclick<span class="token operator">=</span><span class="token string">"alert((function() { return this; })());"</span><span class="token operator">&gt;</span>
+  Show inner <span class="token keyword">this</span>
+<span class="token operator">&lt;</span><span class="token operator">/</span>button<span class="token operator">&gt;</span>
+</pre> <p>In this case, the inner function's <code>this</code> isn't set so it returns the global/window object (i.e. the default object in non–strict mode where <code>this</code> isn't set by the call).</p>
+<h3 id="this_in_classes">this in classes</h3>
+<p>Just like with regular functions, the value of <code>this</code> within methods depends on how they are called. Sometimes it is useful to override this behavior so that <code>this</code> within classes always refers to the class instance. To achieve this, bind the class methods in the constructor:</p> <pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">Car</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Bind sayBye but not sayHi to show the difference</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>sayBye <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">sayBye</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Hello from </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">sayBye</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Bye from </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">get</span> <span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'Ferrari'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Bird</span> <span class="token punctuation">{</span>
+  <span class="token keyword">get</span> <span class="token function">name</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'Tweety'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> car <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Car</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> bird <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Bird</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// The value of 'this' in methods depends on their caller</span>
+car<span class="token punctuation">.</span><span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Hello from Ferrari</span>
+bird<span class="token punctuation">.</span>sayHi <span class="token operator">=</span> car<span class="token punctuation">.</span>sayHi<span class="token punctuation">;</span>
+bird<span class="token punctuation">.</span><span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Hello from Tweety</span>
+
+<span class="token comment">// For bound methods, 'this' doesn't depend on the caller</span>
+bird<span class="token punctuation">.</span>sayBye <span class="token operator">=</span> car<span class="token punctuation">.</span>sayBye<span class="token punctuation">;</span>
+bird<span class="token punctuation">.</span><span class="token function">sayBye</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Bye from Ferrari</span></pre> <div class="notecard note"> <p><strong>Note:</strong> Classes are always strict mode code. Calling methods with an undefined <code>this</code> will throw an error.</p> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> </tr> </thead> <tbody> <tr> <td><a href="https://tc39.es/ecma262/#sec-this-keyword" hreflang="en" rel=" noopener">ECMAScript (ECMA-262)<br><small>The definition of 'The this keyword' in that specification.</small></a></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>this</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>9.5</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../strict_mode">Strict mode</a></li> <li><a href="https://dmitripavlutin.com/gentle-explanation-of-this-in-javascript/" rel=" noopener">Gentle explanation of 'this' keyword in JavaScript</a></li> <li>Getting the global context: <a href="../global_objects/globalthis"><code>globalThis</code></a>
+</li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this</a>
+  </p>
+</div>

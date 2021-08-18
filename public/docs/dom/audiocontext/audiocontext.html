@@ -1,0 +1,144 @@
+<h1>AudioContext()</h1> <p>The <code>AudioContext()</code> constructor creates a new <a href="../audiocontext"><code>AudioContext</code></a> object which represents an audio-processing graph, built from audio modules linked together, each represented by an <a href="../audionode"><code>AudioNode</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> audioCtx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> audioCtx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code>options</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An object based on the <a href="../audiocontextoptions"><code>AudioContextOptions</code></a> dictionary that contains zero or more optional properties to configure the new context. Available properties are as follows: <dl> <dt>
+<a href="../audiocontextoptions/latencyhint"><code>latencyHint</code></a> <span class="badge inline optional">Optional</span>
+</dt> <dd>The type of playback that the context will be used for, as a value from the <a href="../audiocontextlatencycategory"><code>AudioContextLatencyCategory</code></a> enum or a double-precision floating-point value indicating the preferred maximum latency of the context in seconds. The user agent may or may not choose to meet this request; check the value of <a href="baselatency"><code>AudioContext.baseLatency</code></a> to determine the true latency after creating the context.</dd> <dt>
+<a href="../audiocontextoptions/samplerate"><code>sampleRate</code></a> <span class="badge inline optional">Optional</span>
+</dt> <dd>The <a href="../baseaudiocontext/samplerate"><code>sampleRate</code></a> to be used by the <code>AudioContext</code>, specified in samples per second. The value may be any value supported by <a href="../audiobuffer"><code>AudioBuffer</code></a>. If not specified, the preferred sample rate for the context's output device is used by default.</dd> </dl>
+</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The newly constructed <a href="../audiocontext"><code>AudioContext</code></a> instance.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>NotSupportedError</code></dt> <dd>The specified <code>sampleRate</code> isn't supported by the context.</dd> </dl>
+<h2 id="usage_notes">Usage notes</h2>
+<p>The specification doesn't go into a lot of detail about things like how many audio contexts a user agent should support, or minimum or maximum latency requirements (if any), so these details can vary from browser to browser. Be sure to check the values if they matter to you.</p> <p>In particular, the specification doesn't indicate a maximum or minimum number of audio contexts that must be able to be open at the same time, so this is left up to the browser implementations to decide.</p>
+<h3 id="google_chrome">Google Chrome</h3>
+<h4 id="per-tab_audio_context_limitation_in_chrome">Per-tab audio context limitation in Chrome</h4> <p>Prior to version 66 Google Chrome only supported up to six audio contexts <em>per tab</em> at a time.</p> <h4 id="non-standard_exceptions_in_chrome">Non-standard exceptions in Chrome</h4> <p>If the value of the <a href="../audiocontextoptions/latencyhint"><code>latencyHint</code></a> property isn't valid, Chrome throws a <code>TypeError</code> exception with the message "The provided value '...' is not a valid enum value of type AudioContextLatencyCategory".</p>
+<h2 id="example">Example</h2>
+<p>This example creates a new <a href="../audiocontext"><code>AudioContext</code></a> for interactive audio (optimizing for latency) and a sample rate of 44.1kHz.</p> <pre data-language="js"><span class="token keyword">var</span> AudioContext <span class="token operator">=</span> window<span class="token punctuation">.</span>AudioContext <span class="token operator">||</span> window<span class="token punctuation">.</span>webkitAudioContext<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> audioCtx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  latencyHint<span class="token operator">:</span> <span class="token string">'interactive'</span><span class="token punctuation">,</span>
+  sampleRate<span class="token operator">:</span> <span class="token number">44100</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td>
+<a href="https://webaudio.github.io/web-audio-api/#dom-audiocontext-audiocontext" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'AudioContext()' in that specification.</small></a> </td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>AudioContext</code></th>
+<td class="bc-supports-yes">
+<div>35</div>
+<div>["Prior to Chrome 66, each tab is limited to 6 audio contexts in Chrome; attempting to create more will throw a <code>DOMException</code>. For details see <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Per-tab_audio_context_limitation_in_Chrome">Per-tab audio context limitation in Chrome</a>.", "If <code>latencyHint</code> isn't valid, Chrome throws a <code>TypeError</code> exception. See <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Non-standard_exceptions_in_Chrome">Non-standard exceptions in Chrome</a> for details."]</div>
+<div>14-57</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>22</div>
+<div>["Prior to Opera 53, each tab is limited to 6 audio contexts in Opera; attempting to create more will throw a <code>DOMException</code>. For details see <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Per-tab_audio_context_limitation_in_Chrome">Per-tab audio context limitation in Chrome</a>.", "If <code>latencyHint</code> isn't valid, Opera throws a <code>TypeError</code> exception. See <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Non-standard_exceptions_in_Chrome">Non-standard exceptions in Chrome</a> for details."]</div>
+<div>15-44</div>
+</td>
+<td class="bc-supports-yes">
+<div>14.1</div>
+<div>6</div>
+</td>
+<td class="bc-supports-yes">
+<div>37</div>
+<div>["Prior to WebView 66, each tab is limited to 6 audio contexts in WebView; attempting to create more will throw a <code>DOMException</code>. For details see <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Per-tab_audio_context_limitation_in_Chrome">Per-tab audio context limitation in Chrome</a>.", "If <code>latencyHint</code> isn't valid, WebView throws a <code>TypeError</code> exception. See <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Non-standard_exceptions_in_Chrome">Non-standard exceptions in Chrome</a> for details."]</div>
+<div>≤37-57</div>
+</td>
+<td class="bc-supports-yes">
+<div>35</div>
+<div>["Prior to Chrome 66, each tab is limited to 6 audio contexts in Chrome; attempting to create more will throw a <code>DOMException</code>. For details see <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Per-tab_audio_context_limitation_in_Chrome">Per-tab audio context limitation in Chrome</a>.", "If <code>latencyHint</code> isn't valid, Chrome throws a <code>TypeError</code> exception. See <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Non-standard_exceptions_in_Chrome">Non-standard exceptions in Chrome</a> for details."]</div>
+<div>18-57</div>
+</td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes">
+<div>22</div>
+<div>["Prior to Opera Android 47, each tab is limited to 6 audio contexts in Opera; attempting to create more will throw a <code>DOMException</code>. For details see <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Per-tab_audio_context_limitation_in_Chrome">Per-tab audio context limitation in Chrome</a>.", "If <code>latencyHint</code> isn't valid, Opera throws a <code>TypeError</code> exception. See <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Non-standard_exceptions_in_Chrome">Non-standard exceptions in Chrome</a> for details."]</div>
+<div>14-43</div>
+</td>
+<td class="bc-supports-yes">
+<div>14.5</div>
+<div>6</div>
+</td>
+<td class="bc-supports-yes">
+<div>3.0</div>
+<div>["Prior to Samsung Internet 9.0, each tab is limited to 6 audio contexts in Samsung Internet; attempting to create more will throw a <code>DOMException</code>. For details see <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Per-tab_audio_context_limitation_in_Chrome">Per-tab audio context limitation in Chrome</a>.", "If <code>latencyHint</code> isn't valid, Samsung Internet throws a <code>TypeError</code> exception. See <a href="https://developer.mozilla.org/docs/Web/API/AudioContext/AudioContext#Non-standard_exceptions_in_Chrome">Non-standard exceptions in Chrome</a> for details."]</div>
+<div>1.0-7.0</div>
+</td>
+</tr>
+<tr>
+<th><code>latencyHint</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>sampleRate</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../offlineaudiocontext/offlineaudiocontext"><code>new
+    OfflineAudioContext()</code></a> constructor</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/AudioContext" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/AudioContext</a>
+  </p>
+</div>

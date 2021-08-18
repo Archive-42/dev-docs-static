@@ -1,0 +1,84 @@
+<h1>XRInputSourceArray.entries()</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <a href="../xrinputsourcearray"><code>XRInputSourceArray</code></a> interface's <code><strong>entries()</strong></code> method returns a JavaScript <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols">iterator</a></code> which can then be used to iterate over the key/value pairs in the input source array. Each item in the array is an <a href="../xrinputsource"><code>XRInputSource</code></a> object.</p> <p>Most frequently, you will use this in tandem with statements such as <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of">for...of</a></code>. </p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">let</span> inputSourceIterator <span class="token operator">=</span> xrInputSourceArray<span class="token punctuation">.</span><span class="token function">entries</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> entry <span class="token keyword">of</span> xrInputSourceArray<span class="token punctuation">.</span><span class="token function">entries</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">/* ... */</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<p>None.</p>
+<h3 id="return_value">Return value</h3>
+<p>An <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols">iterator</a></code> which can be used to walk through the list of <code>XRInputSource</code> objects included in the input source array.</p>
+<h2 id="examples">Examples</h2>
+<p>This example snippet gets the list of inputs for a session and tries to handle each type of input device it supports using.</p> <pre data-language="js"><span class="token keyword">let</span> sources <span class="token operator">=</span> xrSession<span class="token punctuation">.</span>inputSources<span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> input <span class="token keyword">of</span> sources<span class="token punctuation">.</span><span class="token function">entries</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>input<span class="token punctuation">.</span>gamepad<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">checkGamepad</span><span class="token punctuation">(</span>input<span class="token punctuation">.</span>gamepad<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>input<span class="token punctuation">.</span>targetRayMode <span class="token operator">===</span> <span class="token string">"tracked-pointer"</span> <span class="token operator">&amp;&amp;</span>
+        input<span class="token punctuation">.</span>handedness <span class="token operator">===</span> player<span class="token punctuation">.</span>handedness<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">/* Handle main hand controller */</span>
+      <span class="token function">handleMainHandInput</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token comment">/* Handle other inputs */</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre> <p>For each input in the llist, gamepad inputs are dispatched to a <code>checkGamepad()</code> with the input's <a href="../gamepad"><code>Gamepad</code></a> object, taken from its <a class="page-not-created"><code>gamepad</code></a> property, as an input</p> <p>For other devices, we look for <code>tracked-pointer</code> devices in the player's main hand, dispatching those to a <code>handleMainHandInput()</code> method.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td>
+<a href="https://immersive-web.github.io/webxr/#xrinputsourcearray" hreflang="en" rel=" noopener">WebXR Device API<br><small>The definition of 'XRInputSourceArray' in that specification.</small></a><sup><a href="#spec-iterables">1</a></sup>
+</td> <td><span class="spec-wd">Working Draft</span></td> <td>
+<code>XRInputSourceArray</code> interface</td> </tr> </tbody> </table></div> <p><a id="spec-iterables">[1]</a> See <a href="https://developer.mozilla.org/en-US/docs/MDN/Contribute/Howto/Write_an_API_reference/Information_contained_in_a_WebIDL_file#iterator-like_methods">Iterator-like methods</a> in <a href="https://developer.mozilla.org/en-US/docs/MDN/Contribute/Howto/Write_an_API_reference/Information_contained_in_a_WebIDL_file">Information contained in a WebIDL file</a> for information on how an <code>iterable</code> declaration in an interface definition causes <code>entries()</code>, <code>forEach()</code>, <code>keys()</code>, and <code>values()</code> methods to be exposed from objects that implement the interface.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>entries</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XRInputSourceArray/entries" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XRInputSourceArray/entries</a>
+  </p>
+</div>

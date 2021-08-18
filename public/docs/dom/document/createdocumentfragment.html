@@ -1,0 +1,80 @@
+<h1>Document.createDocumentFragment()</h1>
+
+ <p>Creates a new empty <a href="../documentfragment"><code>DocumentFragment</code></a> into which DOM nodes can be added to build an offscreen DOM tree.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> fragment <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createDocumentFragment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>A newly created, empty, <a href="../documentfragment"><code>DocumentFragment</code></a> object, which is ready to have nodes inserted into it.</p>
+<h2 id="usage_notes">Usage notes</h2>
+<p><code>DocumentFragment</code>s are DOM <a href="../node"><code>Node</code></a> objects which are never part of the main DOM tree. The usual use case is to create the document fragment, append elements to the document fragment and then append the document fragment to the DOM tree. In the DOM tree, the document fragment is replaced by all its children.</p> <p>Since the document fragment is <em>in memory</em> and not part of the main DOM tree, appending children to it does not cause page <a href="https://developers.google.com/speed/articles/reflow?csw=1" rel=" noopener">reflow</a> (computation of element's position and geometry). Historically, using document fragments could result in <a href="http://ejohn.org/blog/dom-documentfragments/" rel=" noopener">better performance</a>.</p> <p>You can also use the <code>DocumentFragment</code> constructor to create a new fragment:</p> <pre data-language="js"><span class="token keyword">let</span> fragment <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DocumentFragment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="example">Example</h2>
+<p>This example creates a list of major web browsers in a <code>DocumentFragment</code>, then adds the new DOM subtree to the document to be displayed.</p>
+<h3 id="html">HTML</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>ul<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span></pre>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js"><span class="token keyword">var</span> element  <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'ul'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// assuming ul exists</span>
+<span class="token keyword">var</span> fragment <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createDocumentFragment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> browsers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Firefox'</span><span class="token punctuation">,</span> <span class="token string">'Chrome'</span><span class="token punctuation">,</span> <span class="token string">'Opera'</span><span class="token punctuation">,</span>
+    <span class="token string">'Safari'</span><span class="token punctuation">,</span> <span class="token string">'Internet Explorer'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+browsers<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">browser</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> li <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    li<span class="token punctuation">.</span>textContent <span class="token operator">=</span> browser<span class="token punctuation">;</span>
+    fragment<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>li<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+element<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>fragment<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="result">Result</h3>
+<p><iframe class="sample-code-frame" id="frame_Example" width="600" height="140" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Document/createDocumentFragment/_samples_/Example" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://dom.spec.whatwg.org/#dom-document-createdocumentfragment" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'Document.createDocumentFragment()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition in the DOM 1 specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>createDocumentFragment</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../domimplementation/createdocument"><code>document.implementation.createDocument()</code></a></li> <li><a href="../documentfragment"><code>documentFragment</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createDocumentFragment" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Document/createDocumentFragment</a>
+  </p>
+</div>

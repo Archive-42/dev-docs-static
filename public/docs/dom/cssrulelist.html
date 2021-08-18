@@ -1,0 +1,101 @@
+<h1>CSSRuleList</h1>
+
+ <p>A <code>CSSRuleList</code> is an (indirect-modify only) array-like object containing an ordered collection of <code><a href="cssrule">CSSRule</a></code> objects.</p>
+<h2 id="syntax">Description</h2>
+<p>Each <code>CSSRule</code> can be accessed as <code><var>rules</var>.item(<var>index</var>),</code> or <code><var>rules</var>[<var>index</var>]</code>, where <code><var>rules</var></code> is an object implementing the <code>CSSRuleList</code> interface (such as <code><a href="cssstylesheet">CSSStylesheet</a>.cssRules</code>), and <code><var>index</var></code> is the 0-based index of the rule, in the order as it appears in the style sheet CSS. The number of rules in the list is <code><var>rules</var>.length</code>.</p> <p>Note that being <em>indirect-modify</em> (<a href="https://www.w3.org/TR/cssom/#cssstylesheet" rel=" noopener">changeable</a> but <a href="https://www.w3.org/TR/cssom/#cssrulelist" rel=" noopener">only having</a> read-methods), rules are <strong>NOT</strong> added or removed from the list directly, but instead here, only via its parent stylesheet. In fact, <a href="cssstylesheet/insertrule"><code>.insertRule()</code></a> and <a href="cssstylesheet/deleterule"><code>.deleteRule()</code></a> are not even methods of CSSRuleList, but only of <a href="cssstylesheet"><code>CSSStyleSheet</code></a>. If however, for some reason the list does need to be modified but has no parent stylesheet (perhaps being a <em><a href="https://www.w3.org/TR/cssom/#cssstylesheet" rel=" noopener">livecopy</a></em> of a list that does), it cannot just be assigned one (as it has <a href="https://www.w3.org/TR/cssom/#cssrulelist" rel=" noopener">no such property</a>), and neither can it be assigned to one (as stylesheet.css<code>Rules </code>is <a href="https://www.w3.org/TR/cssom/#cssstylesheet" rel=" noopener">read-only</a>), but it must unfortunately be <strong>inserted</strong> into one, rule by rule, and unless combining lists, after any existing list therein is deleted, rule by rule.</p>
+<h2 id="example">Examples</h2>
+<h3 id="simple_usage">Simple usage</h3>
+<pre data-language="js"><span class="token comment">// get the first style sheet’s first rule</span>
+<span class="token keyword">var</span> first_rule <span class="token operator">=</span> document<span class="token punctuation">.</span>styleSheets<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>cssRules<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="cssrulelist_implementations">CSSRuleList implementations</h3>
+<p>There are multiple properties in the CSSOM that will return a <code>CSSRuleList</code>. They are:</p> <ul> <li>
+<a href="cssstylesheet"><code>CSSStyleSheet</code></a> property <a href="cssstylesheet/cssrules"><code>cssRules</code></a>
+</li> <li>
+<a href="cssmediarule"><code>CSSMediaRule</code></a> property <a class="page-not-created"><code>cssRules</code></a>
+</li> <li>
+<a href="csskeyframesrule"><code>CSSKeyframesRule</code></a> property <a href="csskeyframesrule/cssrules"><code>cssRules</code></a>
+</li> <li>
+<a class="page-not-created"><code>CSSMozDocumentRule</code></a> property <a class="page-not-created"><code>cssRules</code></a>
+</li> </ul>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/cssom/#the-cssrulelist-interface" hreflang="en" rel=" noopener">CSS Object Model (CSSOM)<br><small>The definition of 'CSSRuleList' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>CSSRuleList</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>item</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>length</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><code><a href="cssrule">CSSRule</a></code></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSRuleList" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/CSSRuleList</a>
+  </p>
+</div>

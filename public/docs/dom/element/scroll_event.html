@@ -1,0 +1,75 @@
+<h1>Element: scroll event</h1>
+
+ <p>The <code>scroll</code> event fires an element has been scrolled.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>No</td> </tr> <tr> <th scope="row">Cancelable</th> <td>No</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../event"><code>Event</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td><a href="../globaleventhandlers/onscroll"><code>onscroll</code></a></td> </tr> </tbody> </table></div> <div class="notecard note"> <p><strong>Note:</strong> In iOS UIWebViews, <code>scroll</code> events are not fired while scrolling is taking place; they are only fired after the scrolling has completed. See <a href="https://github.com/twbs/bootstrap/issues/16202" rel=" noopener">Bootstrap issue #16202</a>. Safari and WKWebViews are not affected by this bug.</p> </div>
+<h2 id="examples">Examples</h2>
+<h3 id="scroll_event_throttling">Scroll event throttling</h3>
+<p>Since <code>scroll</code> events can fire at a high rate, the event handler shouldn't execute computationally expensive operations such as DOM modifications. Instead, it is recommended to throttle the event using <a href="../window/requestanimationframe"><code>requestAnimationFrame()</code></a>, <a href="../windoworworkerglobalscope/settimeout"><code>setTimeout()</code></a>, or a <a href="../customevent"><code>CustomEvent</code></a>, as follows.</p> <p>Note, however, that input events and animation frames are fired at about the same rate, and therefore the optimization below is often unnecessary. This example optimizes the <code>scroll</code> event for <code>requestAnimationFrame</code>.</p> <pre data-language="js"><span class="token comment">// Reference: http://www.html5rocks.com/en/tutorials/speed/animations/</span>
+
+<span class="token keyword">let</span> last_known_scroll_position <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> ticking <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">doSomething</span><span class="token punctuation">(</span><span class="token parameter">scroll_pos</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Do something with the scroll position</span>
+<span class="token punctuation">}</span>
+
+window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'scroll'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  last_known_scroll_position <span class="token operator">=</span> window<span class="token punctuation">.</span>scrollY<span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>ticking<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    window<span class="token punctuation">.</span><span class="token function">requestAnimationFrame</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">doSomething</span><span class="token punctuation">(</span>last_known_scroll_position<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      ticking <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    ticking <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <div class="notecard note"> <p><strong>Note</strong>: You can find more examples on the <a class="page-not-created"><code>resize</code></a> event page.</p> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/cssom-view/#scrolling-events" hreflang="en" rel=" noopener">CSS Object Model (CSSOM) View Module</a></td> <td><span class="spec-wd">Working Draft</span></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>scroll_event</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>Document: <a href="../document/scroll_event"><code>scroll</code></a> event</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll_event</a>
+  </p>
+</div>

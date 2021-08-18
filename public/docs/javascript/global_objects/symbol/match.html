@@ -1,0 +1,69 @@
+<h1>Symbol.match</h1> <p>The <code><strong>Symbol.match</strong></code> well-known symbol specifies the matching of a regular expression against a string. This function is called by the <a href="../string/match"><code>String.prototype.match()</code></a> method.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/symbol-match.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="description">Description</h2>
+<p>This function is also used to identify if objects have the behavior of regular expressions. For example, the methods <a href="../string/startswith"><code>String.prototype.startsWith()</code></a>, <a href="../string/endswith"><code>String.prototype.endsWith()</code></a> and <a href="../string/includes"><code>String.prototype.includes()</code></a>, check if their first argument is a regular expression and will throw a <a href="../typeerror"><code>TypeError</code></a> if they are. Now, if the <code>match</code> symbol is set to <code>false</code> (or a <a href="https://developer.mozilla.org/en-US/docs/Glossary/Falsy">Falsy</a> value), it indicates that the object is not intended to be used as a regular expression object.</p> 
+<div class="_table"><table class="standard-table"> <thead> <tr> <th class="header" colspan="2">Property attributes of <code>Symbol.match</code>
+</th> </tr> </thead> <tbody> <tr> <td>Writable</td> <td>no</td> </tr> <tr> <td>Enumerable</td> <td>no</td> </tr> <tr> <td>Configurable</td> <td>no</td> </tr> </tbody> </table></div>
+
+<h2 id="examples">Examples</h2>
+<h3 id="disabling_the_isregexp_check">Disabling the <code>isRegExp</code> check</h3>
+<p>The following code will throw a <a href="../typeerror"><code>TypeError</code></a>:</p> <pre data-language="js"><span class="token string">'/bar/'</span><span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">bar</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Throws TypeError, as /bar/ is a regular expression</span>
+<span class="token comment">// and Symbol.match is not modified.</span></pre> <p>However, if you set <code>Symbol.match</code> to <code>false</code>, the <code>isRegExp</code> check (that uses the <code>match</code> property) will indicate that the object is not a regular expression object. The methods <code>startsWith</code> and <code>endsWith</code> won't throw a <code>TypeError</code> as a consequence.</p> <pre data-language="js"><span class="token keyword">var</span> re <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">foo</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">;</span>
+re<span class="token punctuation">[</span>Symbol<span class="token punctuation">.</span>match<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token string">'/foo/'</span><span class="token punctuation">.</span><span class="token function">startsWith</span><span class="token punctuation">(</span>re<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+<span class="token string">'/baz/'</span><span class="token punctuation">.</span><span class="token function">endsWith</span><span class="token punctuation">(</span>re<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// false</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-symbol.match">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-symbol.match</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>match</code></th>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="replace"><code>Symbol.replace</code></a></li> <li><a href="search"><code>Symbol.search</code></a></li> <li><a href="split"><code>Symbol.split</code></a></li> <li><a href="../regexp/@@match"><code>RegExp.prototype[@@match]()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/match" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/match</a>
+  </p>
+</div>

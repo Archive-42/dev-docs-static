@@ -1,0 +1,106 @@
+<h1>SharedArrayBuffer.prototype.slice()</h1> <p>The <code>SharedArrayBuffer.prototype.slice()</code> method returns a new <a href="../sharedarraybuffer"><code>SharedArrayBuffer</code></a> whose contents are a copy of this <code>SharedArrayBuffer</code>'s bytes from begin, inclusive, up to end, exclusive. If either begin or end is negative, it refers to an index from the end of the array, as opposed to from the beginning. This method has the same algorithm as <a href="../array/slice"><code>Array.prototype.slice()</code></a>.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/sharedarraybuffer-slice.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">slice</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">slice</span><span class="token punctuation">(</span>begin<span class="token punctuation">)</span>
+<span class="token function">slice</span><span class="token punctuation">(</span>begin<span class="token punctuation">,</span> end<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code><var>begin</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>Zero-based index at which to begin extraction.</p> <p>A negative index can be used, indicating an offset from the end of the sequence. <code>slice(-2)</code> extracts the last two elements in the sequence.</p> <p>If <code><var>begin</var></code> is undefined, <code>slice</code> begins from index <code>0</code>.</p> </dd> <dt>
+<code><var>end</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>Zero-based index <em>before</em> which to end extraction. <code>slice</code> extracts up to but not including <code><var>end</var></code>.</p> <p>For example, <code>slice(1,4)</code> extracts the second element through the fourth element (elements indexed 1, 2, and 3).</p> <p>A negative index can be used, indicating an offset from the end of the sequence. <code>slice(2,-1)</code> extracts the third element through the second-to-last element in the sequence.</p> <p>If <code><var>end</var></code> is omitted, <code>slice</code> extracts through the end of the sequence (<code>sab.byteLength</code>).</p> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A new <a href="../sharedarraybuffer"><code>SharedArrayBuffer</code></a> containing the extracted elements.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_slice">Using slice()</h3>
+<pre data-language="js"><span class="token keyword">var</span> sab <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SharedArrayBuffer</span><span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+sab<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// SharedArrayBuffer { byteLength: 1024 }</span>
+sab<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// SharedArrayBuffer { byteLength: 1022 }</span>
+sab<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// SharedArrayBuffer { byteLength: 2 }</span>
+sab<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// SharedArrayBuffer { byteLength: 1 }</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-sharedarraybuffer.prototype.slice">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-sharedarraybuffer.prototype.slice</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>slice</code></th>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>60-63</div>
+<div>Chrome disabled SharedArrayBuffer on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This was a temporary removal while mitigations were put in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>16-17</div>
+<div>Support was removed to mitigate <a href="https://blogs.windows.com/msedgedev/2018/01/03/speculative-execution-mitigations-microsoft-edge-internet-explorer">speculative execution side-channel attacks (Windows blog)</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.1-11</div></td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled SharedArrayBuffer on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>89</div>
+<div>
+<code>SharedArrayBuffer</code> is gated behind COOP/COEP. For more detail, read <a href="https://web.dev/coop-coep/">Making your website "cross-origin isolated" using COOP and COEP</a>.</div>
+<div>60-63</div>
+<div>Chrome disabled SharedArrayBuffer on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.3-11</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Chrome disabled SharedArrayBuffer on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../sharedarraybuffer"><code>SharedArrayBuffer</code></a></li> <li><a href="../array/slice"><code>Array.prototype.slice()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer/slice" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SharedArrayBuffer/slice</a>
+  </p>
+</div>

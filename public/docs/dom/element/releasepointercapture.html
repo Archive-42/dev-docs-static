@@ -1,0 +1,103 @@
+<h1>Element.releasePointerCapture()</h1> <p>The <code><strong>releasePointerCapture()</strong></code> method of the <a href="../element"><code>Element</code></a> interface releases (stops) <em>pointer capture</em> that was previously set for a specific (<a href="../pointerevent"><code>PointerEvent</code></a>) <em>pointer</em>.</p> <p>See the <a href="setpointercapture"><code>Element.setPointerCapture()</code></a> method for a description of <em>pointer capture</em> and how to set it for a particular element.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">targetElement<span class="token punctuation">.</span><span class="token function">releasePointerCapture</span><span class="token punctuation">(</span>pointerId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>pointerId</code></dt> <dd>The <a href="../pointerevent/pointerid"><code>pointerId</code></a> of a <a href="../pointerevent"><code>PointerEvent</code></a> object.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>This method returns <code>undefined</code>.</p>
+<h3 id="exceptions">Exceptions</h3>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Exception</th> <th scope="col">Explanation</th> </tr> </thead> <tbody> <tr> <td><code>InvalidPointerId</code></td> <td>pointerId does not match any of the active pointers.</td> </tr> </tbody> </table></div>
+<h2 id="example">Example</h2>
+<p>This example sets pointer capture on a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a> when you press down on it. This lets you slide the element horizontally, even when you pointer moves outside of its boundaries.</p>
+<h3 id="html">HTML</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>slider<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>SLIDE ME<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></pre>
+<h3 id="css">CSS</h3>
+<pre data-language="css"><span class="token selector">div</span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 140px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 50px<span class="token punctuation">;</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+  <span class="token property">align-items</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">justify-content</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> #fbe<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js"><span class="token keyword">function</span> <span class="token function">beginSliding</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  slider<span class="token punctuation">.</span>onpointermove <span class="token operator">=</span> slide<span class="token punctuation">;</span>
+  slider<span class="token punctuation">.</span><span class="token function">setPointerCapture</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>pointerId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">stopSliding</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  slider<span class="token punctuation">.</span>onpointermove <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  slider<span class="token punctuation">.</span><span class="token function">releasePointerCapture</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>pointerId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">slide</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  slider<span class="token punctuation">.</span>style<span class="token punctuation">.</span>transform <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">translate(</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>e<span class="token punctuation">.</span>clientX <span class="token operator">-</span> <span class="token number">70</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">px)</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> slider <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'slider'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+slider<span class="token punctuation">.</span>onpointerdown <span class="token operator">=</span> beginSliding<span class="token punctuation">;</span>
+slider<span class="token punctuation">.</span>onpointerup <span class="token operator">=</span> stopSliding<span class="token punctuation">;</span>
+</pre>
+<h3 id="result">Result</h3>
+<p><iframe class="sample-code-frame" id="frame_Example" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Element/releasePointerCapture/_samples_/Example" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.w3.org/TR/pointerevents2/#dom-element-releasepointercapture" hreflang="en" rel=" noopener">Pointer Events – Level 2<br><small>The definition of 'releasePointerCapture' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Non-stable version.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/pointerevents1/#widl-Element-releasePointerCapture-void-long-pointerId" hreflang="en" rel=" noopener">Pointer Events<br><small>The definition of 'releasePointerCapture' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>releasePointerCapture</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>10</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>41</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="setpointercapture"><code>Element.setPointerCapture()</code></a></li> <li><a href="../pointer_events"><code>Pointer Events</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/releasePointerCapture" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/releasePointerCapture</a>
+  </p>
+</div>

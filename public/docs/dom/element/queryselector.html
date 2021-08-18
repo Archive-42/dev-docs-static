@@ -1,0 +1,97 @@
+<h1>Element.querySelector()</h1> <p>The <code><strong>querySelector()</strong></code> method of the <a href="../element"><code>Element</code></a> interface returns the first element that is a descendant of the element on which it is invoked that matches the specified group of selectors.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">element <span class="token operator">=</span> baseElement<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span>selectors<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>selectors</code></dt> <dd>A group of <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors">selectors</a> to match the descendant elements of the <a href="../element"><code>Element</code></a> <code>baseElement</code> against; this must be valid CSS syntax, or a <code>SyntaxError</code> exception will occur. The first element found which matches this group of selectors is returned.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The first descendant element of <code>baseElement</code> which matches the specified group of <code>selectors</code>. The entire hierarchy of elements is considered when matching, including those outside the set of elements including <code>baseElement</code> and its descendants; in other words, <code>selectors</code> is first applied to the whole document, not the <code>baseElement</code>, to generate an initial list of potential elements. The resulting elements are then examined to see if they are descendants of <code>baseElement</code>. The first match of those remaining elements is returned by the <code>querySelector()</code> method.</p> <p>If no matches are found, the returned value is <code>null</code>.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>SyntaxError</code></dt> <dd>The specified <code>selectors</code> are invalid.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>Let's consider a few examples.</p>
+<h3 id="find_a_specific_element_with_specific_values_of_an_attribute">Find a specific element with specific values of an attribute</h3>
+<p>In this first example, the first <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style"><code>&lt;style&gt;</code></a> element which either has no type or has type "text/css" in the HTML document body is returned:</p> <pre data-language="js"><span class="token keyword">var</span> el <span class="token operator">=</span> document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"style[type='text/css'], style:not([type])"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="the_entire_hierarchy_counts">The entire hierarchy counts</h3>
+<p>This example demonstrates that the hierarchy of the entire document is considered when applying <code>selectors</code>, so that levels outside the specified <code>baseElement</code> are still considered when locating matches.</p> <h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h5</span><span class="token punctuation">&gt;</span></span>Original content<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h5</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>
+    inside paragraph
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>inside span<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+    inside paragraph
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h5</span><span class="token punctuation">&gt;</span></span>Output<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h5</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>output<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></pre> <h4 id="javascript">JavaScript</h4> <pre data-language="js"><span class="token keyword">var</span> baseElement <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"output"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span>
+  <span class="token punctuation">(</span>baseElement<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"div span"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML<span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <h4 id="result">Result</h4> <p>The result looks like this:</p> <p><iframe class="sample-code-frame" id="frame_The_entire_hierarchy_counts" width="600" height="160" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Element/querySelector/_samples_/The_entire_hierarchy_counts" loading="lazy"></iframe></p> <p>Notice how the <code>"div span"</code> selector still successfully matches the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span"><code>&lt;span&gt;</code></a> element, even though the <code>baseElement</code>'s child nodes do not include the <a class="page-not-created"><code>div</code></a> element (it is still part of the specified selector).</p>
+<h3 id="more_examples">More examples</h3>
+<p>See <a href="../document/queryselector"><code>Document.querySelector()</code></a> for additional examples of the proper format for the <code>selectors</code>.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td>
+<a href="https://dom.spec.whatwg.org/#dom-parentnode-queryselectorall" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'querySelector()' in that specification.</small></a> </td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> <tr> <td>
+<a href="https://dev.w3.org/2006/webapi/selectors-api2/#queryselectorall" hreflang="en" rel=" noopener">Selectors API Level 2<br><small>The definition of 'querySelectorAll()' in that specification.</small></a> </td> <td><span class="spec-obsolete">Obsolete</span></td> <td></td> </tr> <tr> <td>
+<a href="https://www.w3.org/TR/selectors-api/#queryselectorall" hreflang="en" rel=" noopener">Selectors API Level 1<br><small>The definition of 'querySelectorAll()' in that specification.</small></a> </td> <td><span class="spec-obsolete">Obsolete</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>querySelector</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes">
+<div>9</div>
+<div>8</div>
+<div>
+<code>querySelector()</code> is supported, but only for CSS 2.1 selectors.</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>3.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../document_object_model/locating_dom_elements_using_selectors">Locating DOM elements using selectors</a></li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors">Attribute selectors</a> in the CSS Guide</li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors/Attribute_selectors">Attribute selectors</a> in the MDN Learning Area</li> <li><a href="queryselectorall"><code>Element.querySelectorAll()</code></a></li> <li>
+<a href="../document/queryselector"><code>Document.querySelector()</code></a> and <a href="../document/queryselectorall"><code>Document.querySelectorAll()</code></a>
+</li> <li>
+<a href="../documentfragment/queryselector"><code>DocumentFragment.querySelector()</code></a> and <a href="../documentfragment/queryselectorall"><code>DocumentFragment.querySelectorAll()</code></a>
+</li> <li>
+<a href="../parentnode/queryselector"><code>ParentNode.querySelector()</code></a> and <a href="../parentnode/queryselectorall"><code>ParentNode.querySelectorAll()</code></a>
+</li> <li><a href="https://developer.mozilla.org/en-US/docs/Code_snippets/QuerySelector">Code snippets for querySelector</a></li> <li>Other methods that take selectors: <a href="closest"><code>element.closest()</code></a> and <a href="matches"><code>element.matches()</code></a>.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelector" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelector</a>
+  </p>
+</div>

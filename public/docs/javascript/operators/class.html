@@ -1,0 +1,95 @@
+<h1>class expression</h1> <p>The <strong>class expression</strong> is one way to define a class in ECMAScript 2015. Similar to <a href="function">function expressions</a>, class expressions can be named or unnamed. If named, the name of the class is local to the class body only. </p> <p>JavaScript classes use prototype-based inheritance.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/expressions-classexpression.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">const</span> MyClass <span class="token operator">=</span> <span class="token keyword">class</span> <span class="token punctuation">[</span>className<span class="token punctuation">]</span> <span class="token punctuation">[</span><span class="token keyword">extends</span> <span class="token class-name">otherClassName</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>
+    <span class="token comment">// class body</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="description">Description</h2>
+<p>A class expression has a similar syntax to a <a href="../statements/class">class declaration (statement)</a>. As with <code>class</code> statements, the body of a <code>class</code> expression is executed in <a href="../strict_mode">strict mode</a>.</p> <p>There are several differences between class expressions and <a href="../statements/class">class statements</a>, however:</p> <ul> <li>Class expressions may omit the class name ("binding identifier"), which is not possible with <a href="../statements/class">class statements</a>.</li> <li>Class expressions allow you to redefine (re-declare) classes <strong>without throwing</strong> a <a href="../global_objects/syntaxerror"><code>SyntaxError</code></a>. This is not the case with <a href="../statements/class">class statements</a>.</li> </ul> <p>The <code>constructor</code> method is optional. Classes generated with class expressions will always respond to <a href="typeof"><code>typeof</code></a> with the value "<code>function</code>".</p> <pre data-language="js"><span class="token string">'use strict'</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> Foo <span class="token operator">=</span> <span class="token keyword">class</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>  <span class="token comment">// constructor property is optional</span>
+Foo <span class="token operator">=</span> <span class="token keyword">class</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>      <span class="token comment">// Re-declaration is allowed</span>
+
+<span class="token keyword">typeof</span> Foo<span class="token punctuation">;</span>             <span class="token comment">// returns "function"</span>
+<span class="token keyword">typeof</span> <span class="token keyword">class</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>        <span class="token comment">// returns "function"</span>
+
+Foo <span class="token keyword">instanceof</span> <span class="token class-name">Object</span><span class="token punctuation">;</span>   <span class="token comment">// true</span>
+Foo <span class="token keyword">instanceof</span> <span class="token class-name">Function</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+<span class="token keyword">class</span> <span class="token class-name">Foo</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>            <span class="token comment">// Throws SyntaxError (class declarations do not allow re-declaration)</span>
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="a_simple_class_expression">A simple class expression</h3>
+<p>This is just a simple anonymous class expression which you can refer to using the variable <code>Foo</code>.</p> <pre data-language="js"><span class="token keyword">const</span> Foo <span class="token operator">=</span> <span class="token keyword">class</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'Hello World!'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+instance<span class="token punctuation">.</span><span class="token function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// "Hello World!"</span>
+Foo<span class="token punctuation">.</span>name<span class="token punctuation">;</span>        <span class="token comment">// "Foo"</span>
+</pre>
+<h3 id="named_class_expressions">Named class expressions</h3>
+<p>If you want to refer to the current class inside the class body, you can create a <em>named class expression</em>. The name is only visible within the scope of the class expression itself.</p> <pre data-language="js"><span class="token keyword">const</span> Foo <span class="token operator">=</span> <span class="token keyword">class</span> <span class="token class-name">NamedFoo</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+  <span class="token function">whoIsThere</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> NamedFoo<span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">const</span> bar <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+bar<span class="token punctuation">.</span><span class="token function">whoIsThere</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// "NamedFoo"</span>
+NamedFoo<span class="token punctuation">.</span>name<span class="token punctuation">;</span>     <span class="token comment">// ReferenceError: NamedFoo is not defined</span>
+Foo<span class="token punctuation">.</span>name<span class="token punctuation">;</span>          <span class="token comment">// "NamedFoo"</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-class-definitions">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-class-definitions</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>class</code></th>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="function">function expression</a></li> <li><a href="../statements/class">class declaration</a></li> <li><a href="../classes">Classes</a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/class" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/class</a>
+  </p>
+</div>

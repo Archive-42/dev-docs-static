@@ -1,0 +1,85 @@
+<h1>XRWebGLLayer.getViewport()</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <a href="../xrwebgllayer"><code>XRWebGLLayer</code></a> interface's <code><strong>getViewport()</strong></code> method returns the <a href="../xrviewport"><code>XRViewport</code></a> that should be used to render the specified <a href="../xrview"><code>XRView</code></a> into the WebGL layer. For WebXR devices which use a single framebuffer for both the left and right eyes, the returned viewport represents the region of the framebuffer into which the scene should be rendered for the eye represented by the view.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">let</span> viewport <span class="token operator">=</span> xrWebGLLayer<span class="token punctuation">.</span><span class="token function">getViewport</span><span class="token punctuation">(</span>view<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>view</code></dt> <dd>An <a href="../xrview"><code>XRView</code></a> object indicating the view for which the viewport is to be returned.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="../xrviewport"><code>XRViewport</code></a> object representing the viewport which will restrict drawing to the portion of the layer corresponding to the specified <code>view</code>. </p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>InvalidStateError</code></dt> <dd>Either the specified <code>view</code> is not in an active <a href="../xrframe"><code>XRFrame</code></a> or that <code>XRFrame</code> and the <a href="../xrwebgllayer"><code>XRWebGLLayer</code></a> are not part of the same <a href="../xrsession">WebXR session</a>.</dd> </dl>
+<h2 id="example">Example</h2>
+<p>This example demonstrates in part what the callback for the <a href="../xrsession/requestanimationframe"><code>requestAnimationFrame()</code></a> function might look like, using <code>getViewport()</code> to get the viewport so that drawing can be constrained to the area set aside for the eye whose viewpoint is currently being rendered.</p> <p>This works because the set of views returned by an <a href="../xrviewerpose"><code>XRViewerPose</code></a> each represent one eye's perspective on the scene. Since the framebuffer is split in half, one half for each eye, setting the WebGL viewport to match the WebXR layer's viewport will ensure that when rendering the scene for the current eye's pose, it is rendered into the correct half of the framebuffer.</p> <p><strong>&lt;&lt;&lt;--- add link to appropriate section in the Cameras and views article ---&gt;&gt;&gt;</strong></p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">drawFrame</span><span class="token punctuation">(</span><span class="token parameter">time<span class="token punctuation">,</span> frame</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> session <span class="token operator">=</span> frame<span class="token punctuation">.</span>session<span class="token punctuation">;</span>
+
+  <span class="token keyword">let</span> pose <span class="token operator">=</span> frame<span class="token punctuation">.</span><span class="token function">getViewerPose</span><span class="token punctuation">(</span>mainReferenceSpace<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>pose<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> glLayer <span class="token operator">=</span> session<span class="token punctuation">.</span>renderState<span class="token punctuation">.</span>baseLayer<span class="token punctuation">;</span>
+    gl<span class="token punctuation">.</span><span class="token function">bindFramebuffer</span><span class="token punctuation">(</span>gl<span class="token punctuation">.</span><span class="token constant">FRAMEBUFFER</span><span class="token punctuation">,</span> glLayer<span class="token punctuation">.</span>framebuffer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    gl<span class="token punctuation">.</span><span class="token function">clearColor</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    gl<span class="token punctuation">.</span><span class="token function">clearDepth</span><span class="token punctuation">(</span><span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    gl<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span>gl<span class="token punctuation">.</span><span class="token constant">COLOR_BUFFER_BIT</span><span class="token punctuation">,</span> gl<span class="token punctuation">.</span><span class="token constant">DEPTH_COLOR_BIT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> view <span class="token keyword">of</span> pose<span class="token punctuation">.</span>views<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">let</span> viewport <span class="token operator">=</span> glLayer<span class="token punctuation">.</span><span class="token function">getViewport</span><span class="token punctuation">(</span>view<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      gl<span class="token punctuation">.</span><span class="token function">viewport</span><span class="token punctuation">(</span>viewport<span class="token punctuation">.</span>x<span class="token punctuation">,</span> viewport<span class="token punctuation">.</span>y<span class="token punctuation">,</span> viewport<span class="token punctuation">.</span>width<span class="token punctuation">,</span> viewport<span class="token punctuation">.</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">/* Render the scene now */</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td> <a href="https://immersive-web.github.io/webxr/#dom-xrwebgllayer-getviewport" hreflang="en" rel=" noopener">WebXR Device API<br><small>The definition of 'XRWebGLLayer.getViewport()' in that specification.</small></a> </td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getViewport</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webxr_device_api">WebXR Device API</a></li> <li><a class="page-not-created"><code>WebGLLayerInit</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XRWebGLLayer/getViewport" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XRWebGLLayer/getViewport</a>
+  </p>
+</div>

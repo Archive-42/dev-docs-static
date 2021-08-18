@@ -1,0 +1,86 @@
+<h1>Path2D()</h1> <div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div> <p>The <code><strong>Path2D()</strong></code> constructor returns a newly instantiated <code>Path2D</code> object, optionally with another path as an argument (creates a copy), or optionally with a string consisting of <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths">SVG path</a> data.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">new</span> <span class="token class-name">Path2D</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">new</span> <span class="token class-name">Path2D</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">new</span> <span class="token class-name">Path2D</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code>path</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>When invoked with another <code>Path2D</code> object, a copy of the <code>path</code> argument is created.</dd> <dt>
+<code>d</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>When invoked with a string consisting of <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths">SVG path</a> data, a new path is created from that description.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="creating_and_copying_paths">Creating and copying paths</h3>
+<p>This example creates and copies a <code>Path2D</code> path.</p> <pre data-language="js"><span class="token keyword">const</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ctx <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> path1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Path2D</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+path1<span class="token punctuation">.</span><span class="token function">rect</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> path2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Path2D</span><span class="token punctuation">(</span>path1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+path2<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span><span class="token number">220</span><span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+path2<span class="token punctuation">.</span><span class="token function">arc</span><span class="token punctuation">(</span><span class="token number">170</span><span class="token punctuation">,</span> <span class="token number">60</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token constant">PI</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+ctx<span class="token punctuation">.</span><span class="token function">stroke</span><span class="token punctuation">(</span>path2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p><iframe class="sample-code-frame" id="frame_Creating_and_copying_paths" width="700" height="180" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Path2D/Path2D/_samples_/Creating_and_copying_paths" loading="lazy"></iframe></p>
+<h3 id="using_svg_paths">Using SVG paths</h3>
+<p>This example creates a <code>Path2D</code> path using <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Paths">SVG path data</a>. The path will move to point (<code>M10 10</code>) and then move horizontally 80 points to the right (<code>h 80</code>), then 80 points down (<code>v 80</code>), then 80 points to the left (<code>h -80</code>), and then back to the start (<code>Z</code>).</p> <pre data-language="js"><span class="token keyword">const</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ctx <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Path2D</span><span class="token punctuation">(</span><span class="token string">'M10 10 h 80 v 80 h -80 Z'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span>p<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p><iframe class="sample-code-frame" id="frame_Using_SVG_paths" width="700" height="180" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Path2D/Path2D/_samples_/Using_SVG_paths" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#dom-path2d" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'Path2D()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>Path2D</code></th>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes">
+<div>14</div>
+<div>Before Edge 79, the constructor for <code>Path2D</code> objects does not support invocation with a string consisting of SVG path data.</div>
+</td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../path2d"><code>Path2D</code></a>, the interface this constructor belongs to</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Path2D/Path2D" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Path2D/Path2D</a>
+  </p>
+</div>

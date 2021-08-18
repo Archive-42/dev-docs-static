@@ -1,0 +1,78 @@
+<h1>ServiceWorkerGlobalScope: pushsubscriptionchange event</h1> <p>The <code>pushsubscriptionchange</code> event is sent to the <a href="../serviceworkerglobalscope">global scope</a> of a <a href="../serviceworker"><code>ServiceWorker</code></a> to indicate a change in push subscription that was triggered outside the application's control. This may occur if the subscription was refreshed by the browser, but it may also happen if the subscription has been revoked or lost.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>No</td> </tr> <tr> <th scope="row">Cancelable</th> <td>No</td> </tr> <tr> <th scope="row">Interface</th> <td><a class="page-not-created"><code>PushSubscriptionChangeEvent</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td><a href="onpushsubscriptionchange"><code>onpushsubscriptionchange</code></a></td> </tr> </tbody> </table></div>
+<h2 id="usage_notes">Usage notes</h2>
+<p>Although examples demonstrating how to share subscription related information with the application server tend to use <a href="../windoworworkerglobalscope/fetch"><code>fetch()</code></a>, this is not necessarily the best choice for real-world use, since it will not work if the app is offline, for example.</p> <p>Consider using another method to synchronize subscription information between your service worker and the app server, or make sure your code using <code>fetch()</code> is robust enough to handle cases where attempts to exchange data fail.</p> <div class="notecard note"> <p><strong>Note:</strong> In earlier drafts of the specification, this event was defined to be sent when a <a href="../pushsubscription"><code>PushSubscription</code></a> has expired.</p> </div>
+<h2 id="examples">Examples</h2>
+<p>This example, run in the context of a service worker, listens for a <code>pushsubscriptionchange</code> event and re-subscribes to the lapsed subscription.</p> <pre data-language="js">self<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"pushsubscriptionchange"</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  event<span class="token punctuation">.</span><span class="token function">waitUntil</span><span class="token punctuation">(</span>swRegistration<span class="token punctuation">.</span>pushManager<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>oldSubscription<span class="token punctuation">.</span>options<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">subscription</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">"register"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        method<span class="token operator">:</span> <span class="token string">"post"</span><span class="token punctuation">,</span>
+        headers<span class="token operator">:</span> <span class="token punctuation">{</span>
+          <span class="token string">"Content-type"</span><span class="token operator">:</span> <span class="token string">"application/json"</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        body<span class="token operator">:</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+          endpoint<span class="token operator">:</span> subscription<span class="token punctuation">.</span>endpoint
+        <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>When a <code>pushsubscriptionchange</code> event arrives, indicating that the subscription has expired, we resubscribe by calling the push manager's <a href="../pushmanager/subscribe"><code>subscribe()</code></a> method. When the returned promise is resolved, we receive the new subscription. This is delivered to the app server using a <a href="../windoworworkerglobalscope/fetch"><code>fetch()</code></a> call to post a <a href="https://developer.mozilla.org/en-US/docs/Glossary/JSON">JSON</a> formatted rendition of the subscription's <a href="../pushsubscription/endpoint"><code>endpoint</code></a> to the app server.</p> <p>You can also use the <a href="onpushsubscriptionchange"><code>onpushsubscriptionchange</code></a> event handler property to set up the event handler:</p> <pre data-language="js">self<span class="token punctuation">.</span><span class="token function-variable function">onpushsubscriptionchange</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  event<span class="token punctuation">.</span><span class="token function">waitUntil</span><span class="token punctuation">(</span>swRegistration<span class="token punctuation">.</span>pushManager<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>oldSubscription<span class="token punctuation">.</span>options<span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">subscription</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token comment">/* ... */</span>
+    <span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/push-api/#the-pushsubscriptionchange-event" hreflang="en" rel=" noopener">Push API<br><small>The definition of 'pushsubscriptionchange' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>pushsubscriptionchange_event</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../push_api">Using the Push API</a></li> <li>
+<a href="onpushsubscriptionchange"><code>onpushsubscriptionchange</code></a> event handler property</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/pushsubscriptionchange_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/pushsubscriptionchange_event</a>
+  </p>
+</div>

@@ -1,0 +1,88 @@
+<h1>CustomEvent()</h1>
+
+ <p>The <code><strong>CustomEvent()</strong></code> constructor creates a new <a href="../customevent"><code>CustomEvent</code></a>.</p> 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="../web_workers_api">Web Workers</a>.</p> </div>
+
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"> event <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CustomEvent</span><span class="token punctuation">(</span>typeArg<span class="token punctuation">,</span> customEventInit<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>typeArg</code></dt> <dd>A <a href="../domstring"><code>DOMString</code></a> representing the name of the event.</dd> <dt>
+<code>customEventInit</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A <code>CustomEventInit</code> dictionary, having the following fields: <ul> <li>
+<code>"detail"</code>, optional and defaulting to <code>null</code>, of type any, that is an event-dependent value associated with the event.</li> </ul> <div class="note notecard"> <p><var>The <code>CustomEventInit</code></var><var> dictionary also accepts fields from the <a href="../event/event"><code>EventInit</code></a> dictionary.</var></p> </div> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A new <code>CustomEvent</code> object of the specified type, with any other properties configured according to the <code>CustomEventInit</code> dictionary (if one was provided).</p>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token comment">// add an appropriate event listener</span>
+obj<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"cat"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token function">process</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>detail<span class="token punctuation">)</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// create and dispatch the event</span>
+<span class="token keyword">var</span> event <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">CustomEvent</span><span class="token punctuation">(</span><span class="token string">"cat"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  detail<span class="token operator">:</span> <span class="token punctuation">{</span>
+    hazcheeseburger<span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+obj<span class="token punctuation">.</span><span class="token function">dispatchEvent</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Additional examples can be found at <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events">Creating and triggering events</a>.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://dom.spec.whatwg.org/#dom-customevent-customevent" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'CustomEvent()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>CustomEvent</code></th>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.6</div></td>
+<td class="bc-supports-yes"><div>6.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>6.1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="polyfill">Polyfill</h2>
+<p>You can polyfill the <code>CustomEvent()</code> constructor functionality in Internet Explorer 9 and higher with the following code:</p> <pre data-language="js"><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token keyword">typeof</span> window<span class="token punctuation">.</span>CustomEvent <span class="token operator">===</span> <span class="token string">"function"</span> <span class="token punctuation">)</span> <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">function</span> <span class="token function">CustomEvent</span> <span class="token punctuation">(</span> <span class="token parameter">event<span class="token punctuation">,</span> params</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    params <span class="token operator">=</span> params <span class="token operator">||</span> <span class="token punctuation">{</span> bubbles<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> cancelable<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> detail<span class="token operator">:</span> <span class="token keyword">null</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> evt <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createEvent</span><span class="token punctuation">(</span> <span class="token string">'CustomEvent'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    evt<span class="token punctuation">.</span><span class="token function">initCustomEvent</span><span class="token punctuation">(</span> event<span class="token punctuation">,</span> params<span class="token punctuation">.</span>bubbles<span class="token punctuation">,</span> params<span class="token punctuation">.</span>cancelable<span class="token punctuation">,</span> params<span class="token punctuation">.</span>detail <span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> evt<span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+
+  window<span class="token punctuation">.</span>CustomEvent <span class="token operator">=</span> CustomEvent<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Internet Explorer &gt;= 9 adds a CustomEvent object to the window, but with correct implementations, this is a function.</p>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../customevent"><code>CustomEvent</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_events">Creating and triggering events</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent</a>
+  </p>
+</div>

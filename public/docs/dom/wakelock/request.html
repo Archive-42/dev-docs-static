@@ -1,0 +1,79 @@
+<h1>WakeLock.request()</h1>
+<div class="notecard draft"> <strong id="draft">Draft</strong> <p>This page is not complete.</p> </div>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div> <p class="summary">The <code>request()</code> method of the <a href="../wakelock"><code>WakeLock</code></a> interface returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves with a <a href="../wakelocksentinel"><code>WakeLockSentinel</code></a> object, which allows control over screen dimming and locking.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> wakeLock <span class="token operator">=</span> navigator<span class="token punctuation">.</span>wakeLock<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span>type<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><em>type</em></dt> <dd>Options are as follows: <ul> <li>
+<code>'screen'</code>: Requests a screen wake lock. Prevents devices from dimming or locking the screen.</li> </ul> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves with a <a href="../wakelocksentinel"><code>WakeLockSentinel</code></a> object. </p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>NotAllowedError</code></dt> <dd>Thrown when wake lock is not available, which can happen because: <ul> <li>Document is not allowed to use screen wake lock due to screen-wake-lock policy.</li> <li>Document is not fully active.</li> <li>Document is hidden.</li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">User Agent</a> could not acquire platform's wake lock.</li> </ul> </dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>The following asynchronous function requests a <a href="../wakelocksentinel"><code>WakeLockSentinel</code></a> object. The <code>request()</code> method is wrapped in a <code>try...catch</code> statement to account for if the browser refuses the request for any reason.</p> <pre data-language="js"><span class="token keyword">const</span> <span class="token function-variable function">requestWakeLock</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">const</span> wakeLock <span class="token operator">=</span> <span class="token keyword">await</span> navigator<span class="token punctuation">.</span>wakeLock<span class="token punctuation">.</span><span class="token function">request</span><span class="token punctuation">(</span><span class="token string">'screen'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// The wake lock request fails - usually system-related, such as low battery.</span>
+
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>err<span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>err<span class="token punctuation">.</span>message<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">requestWakeLock</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/screen-wake-lock/#the-request-method" hreflang="en" rel=" noopener">Screen Wake Lock API<br><small>The definition of 'request()' in that specification.</small></a></td> <td><span class="spec-ed">Editor's Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>request</code></th>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../wakelock"><code>WakeLock</code></a></li> <li><a href="../navigator/wakelock"><code>Navigator.wakeLock</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WakeLock/request" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/WakeLock/request</a>
+  </p>
+</div>

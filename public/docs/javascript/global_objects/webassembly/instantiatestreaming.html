@@ -1,0 +1,74 @@
+<h1>WebAssembly.instantiateStreaming()</h1> <p>The <code>WebAssembly.instantiateStreaming()</code> function compiles and instantiates a WebAssembly module directly from a streamed underlying source. This is the most efficient, optimized way to load wasm code.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">WebAssembly<span class="token punctuation">.</span><span class="token function">instantiateStreaming</span><span class="token punctuation">(</span>source<span class="token punctuation">,</span> importObject<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><em>source</em></dt> <dd>A <a href="https://developer.mozilla.org/en-US/docs/Web/API/Response"><code>Response</code></a> object or a promise that will fulfill with one, representing the underlying source of a .wasm module you want to stream, compile, and instantiate.</dd> <dt>
+<em>importObject</em> <span class="badge inline optional">Optional</span>
+</dt> <dd>An object containing the values to be imported into the newly-created <code>Instance</code>, such as functions or <a href="memory"><code>WebAssembly.Memory</code></a> objects. There must be one matching property for each declared import of the compiled module or else a <code><a href="linkerror">WebAssembly.LinkError</a></code> is thrown.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <code>Promise</code> that resolves to a <code>ResultObject</code> which contains two fields:</p> <ul> <li>
+<code>module</code>: A <a href="module"><code>WebAssembly.Module</code></a> object representing the compiled WebAssembly module. This <code>Module</code> can be instantiated again or shared via <a href="https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage">postMessage()</a>.</li> <li>
+<code>instance</code>: A <a href="instance"><code>WebAssembly.Instance</code></a> object that contains all the <a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Exported_functions">Exported WebAssembly functions</a>.</li> </ul>
+<h3 id="exceptions">Exceptions</h3>
+<ul> <li>If either of the parameters are not of the correct type or structure, a <a href="../typeerror"><code>TypeError</code></a> is thrown.</li> <li>If the operation fails, the promise rejects with a <a href="compileerror"><code>WebAssembly.CompileError</code></a>, <a href="linkerror"><code>WebAssembly.LinkError</code></a>, or <a href="runtimeerror"><code>WebAssembly.RuntimeError</code></a>, depending on the cause of the failure.</li> </ul>
+<h2 id="examples">Examples</h2>
+<h3 id="instantiating_streaming">Instantiating streaming</h3>
+<p>The following example (see our <a href="https://github.com/mdn/webassembly-examples/blob/master/js-api-examples/instantiate-streaming.html" rel=" noopener">instantiate-streaming.html</a> demo on GitHub, and <a href="https://mdn.github.io/webassembly-examples/js-api-examples/instantiate-streaming.html" rel=" noopener">view it live</a> also) directly streams a .wasm module from an underlying source then compiles and instantiates it, the promise fulfilling with a <code>ResultObject</code>. Because the <code>instantiateStreaming()</code> function accepts a promise for a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Response"><code>Response</code></a> object, you can directly pass it a <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/fetch"><code>WindowOrWorkerGlobalScope.fetch()</code></a> call, and it will pass the response into the function when it fulfills.</p> <pre data-language="js"><span class="token keyword">var</span> importObject <span class="token operator">=</span> <span class="token punctuation">{</span> imports<span class="token operator">:</span> <span class="token punctuation">{</span> <span class="token function-variable function">imported_func</span><span class="token operator">:</span> <span class="token parameter">arg</span> <span class="token operator">=&gt;</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arg<span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+WebAssembly<span class="token punctuation">.</span><span class="token function">instantiateStreaming</span><span class="token punctuation">(</span><span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'simple.wasm'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> importObject<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">obj</span> <span class="token operator">=&gt;</span> obj<span class="token punctuation">.</span>instance<span class="token punctuation">.</span>exports<span class="token punctuation">.</span><span class="token function">exported_func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>The <code>ResultObject</code>'s instance member is then accessed, and the contained exported function invoked.</p> <div class="notecard note"> <p><strong>Note:</strong> For this to work, <code>.wasm</code> files should be returned with an <code>application/wasm</code> MIME type by the server.</p> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://webassembly.github.io/spec/web-api/#dom-webassembly-instantiatestreaming">WebAssembly Web API (WebAssembly Web API)<br> <small>#dom-webassembly-instantiatestreaming</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>instantiateStreaming</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="https://developer.mozilla.org/en-US/docs/WebAssembly">WebAssembly</a> overview page</li> <li><a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Concepts">WebAssembly concepts</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Using_the_JavaScript_API">Using the WebAssembly JavaScript API</a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/instantiateStreaming" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/instantiateStreaming</a>
+  </p>
+</div>

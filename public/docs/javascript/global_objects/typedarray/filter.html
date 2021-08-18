@@ -1,0 +1,89 @@
+<h1>TypedArray.prototype.filter()</h1> <p>The <code>filter()</code> method creates a new typed array with all elements that pass the test implemented by the provided function. This method has the same algorithm as <a href="../array/filter"><code>Array.prototype.filter()</code></a>. <em>TypedArray</em> is one of the <a href="../typedarray#typedarray_objects">typed array types</a> here.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/typedarray-filter.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token comment">// Arrow function</span>
+<span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">element</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span> <span class="token punctuation">)</span>
+<span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">element<span class="token punctuation">,</span> index</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span> <span class="token punctuation">)</span>
+<span class="token function">filter</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">element<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span> <span class="token punctuation">)</span>
+
+<span class="token comment">// Callback function</span>
+<span class="token function">filter</span><span class="token punctuation">(</span>callbackFn<span class="token punctuation">)</span>
+<span class="token function">filter</span><span class="token punctuation">(</span>callbackFn<span class="token punctuation">,</span> thisArg<span class="token punctuation">)</span>
+
+<span class="token comment">// Inline callback function</span>
+<span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">callbackFn</span><span class="token punctuation">(</span><span class="token parameter">element</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">callbackFn</span><span class="token punctuation">(</span><span class="token parameter">element<span class="token punctuation">,</span> index</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">callbackFn</span><span class="token punctuation">(</span><span class="token parameter">element<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">filter</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">callbackFn</span><span class="token punctuation">(</span><span class="token parameter">element<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> thisArg<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>callbackFn</var></code></dt> <dd>Function to test each element of the typed array. Invoked with arguments <code>(<var>element</var>, <var>index</var>, <var>array</var>)</code>. Return <code>true</code> to keep the element, <code>false</code> otherwise.</dd> <dt>
+<code><var>thisArg</var></code><span class="badge inline optional">Optional</span>
+</dt> <dd>Value to use as <code>this</code> when executing <code><var>callbackFn</var></code>. </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A new typed array with the elements that pass the test.</p>
+<h2 id="description">Description</h2>
+<p>The <code>filter()</code> method calls a provided <code><var>callbackFn</var></code> function once for each element in a typed array, and constructs a new typed array of all the values for which <code><var>callbackFn</var></code> returns <a href="https://developer.mozilla.org/en-US/docs/Glossary/Truthy">a value that coerces to <code>true</code></a>. <code><var>callbackFn</var></code> is invoked only for indexes of the typed array which have assigned values; it is not invoked for indexes which have been deleted or which have never been assigned values. Typed array elements which do not pass the <code><var>callbackFn</var></code> test are skipped, and are not included in the new typed array.</p> <p><code><var>callbackFn</var></code> is invoked with three arguments:</p> <ol> <li>the value of the element</li> <li>the index of the element</li> <li>the typed array object being traversed</li> </ol> <p>If a <code><var>thisArg</var></code> parameter is provided to <code>filter()</code>, it will be passed to <code><var>callbackFn</var></code> when invoked, for use as its <code>this</code> value. Otherwise, the value <code>undefined</code> will be passed for use as its <code>this</code> value. The <code>this</code> value ultimately observable by <code><var>callbackFn</var></code> is determined according to <a href="../../operators/this">the usual rules for determining the <code>this</code> seen by a function</a>.</p> <p><code>filter()</code> does not mutate the typed array on which it is called.</p> <p>The range of elements processed by <code>filter()</code> is set before the first invocation of <code><var>callbackFn</var></code>. Elements which are appended to the typed array after the call to <code>filter()</code> begins will not be visited by <code><var>callbackFn</var></code>. If existing elements of the typed array are changed, or deleted, their value as passed to <code><var>callbackFn</var></code> will be the value at the time <code>filter()</code> visits them; elements that are deleted are not visited.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="filtering_out_all_small_values">Filtering out all small values</h3>
+<p>The following example uses <code>filter()</code> to create a filtered typed array that has all elements with values less than 10 removed.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">isBigEnough</span><span class="token punctuation">(</span><span class="token parameter">element<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> element <span class="token operator">&gt;=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">130</span><span class="token punctuation">,</span> <span class="token number">44</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span>isBigEnough<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Uint8Array [ 12, 130, 44 ]</span>
+</pre>
+<h3 id="filtering_typed_array_elements_using_arrow_functions">Filtering typed array elements using arrow functions</h3>
+<p><a href="../../functions/arrow_functions">Arrow functions</a> provide a shorter syntax for the same test.</p> <pre data-language="js"><span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">12</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">130</span><span class="token punctuation">,</span> <span class="token number">44</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">filter</span><span class="token punctuation">(</span><span class="token parameter">elem</span> <span class="token operator">=&gt;</span> elem <span class="token operator">&gt;=</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Uint8Array [ 12, 130, 44 ]</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="#">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-%typedarray%.prototype.filter</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>filter</code></th>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>9.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>9.3</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="every"><code>TypedArray.prototype.every()</code></a></li> <li><a href="some"><code>TypedArray.prototype.some()</code></a></li> <li><a href="../array/filter"><code>Array.prototype.filter()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray/filter" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray/filter</a>
+  </p>
+</div>

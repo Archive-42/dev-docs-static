@@ -1,0 +1,217 @@
+<h1>PluginArray</h1>
+
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div>
+ <p>The <code>PluginArray</code> interface is used to store a list of <a href="plugin"><code>Plugin</code></a> objects describing the available <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/Plugins">plugins</a>; it's returned by the <a href="navigatorplugins/plugins"><code>navigator.plugins</code></a> property. The <code>PluginArray</code> is not a JavaScript array, but has the <code>length</code> property and supports accessing individual items using bracket notation (<code>plugins[2]</code>), as well as via <code>item(<var>index</var>)</code> and <code>namedItem(<em>"name"</em>)</code> methods.</p> <div class="note notecard"> <p><strong>Note</strong>: Own properties of <code>PluginArray</code> objects are no longer enumerable in the latest browser versions.</p> </div>
+<h2 id="properties">Properties</h2>
+<dl> <dt>
+<a class="page-not-created"><code>PluginArray.length</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>The number of plugins in the array.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a class="page-not-created"><code>PluginArray.item</code></a></dt> <dd>Returns the <a href="plugin"><code>Plugin</code></a> at the specified index into the array.</dd> <dt><a class="page-not-created"><code>PluginArray.namedItem</code></a></dt> <dd>Returns the <a href="plugin"><code>Plugin</code></a> with the specified name.</dd> <dt><a class="page-not-created"><code>PluginArray.refresh</code></a></dt> <dd>Refreshes all plugins on the current page, optionally reloading documents.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>The following example function returns the version of the Shockwave Flash plugin.</p> <pre data-language="js"><span class="token keyword">var</span> pluginsLength <span class="token operator">=</span> navigator<span class="token punctuation">.</span>plugins<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> pluginsLength <span class="token operator">+</span> <span class="token string">" Plugin(s)&lt;br&gt;"</span>
+  <span class="token operator">+</span> <span class="token string">'&lt;table id="pluginTable"&gt;&lt;thead&gt;'</span>
+  <span class="token operator">+</span><span class="token string">'&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Filename&lt;/th&gt;&lt;th&gt;description&lt;/th&gt;&lt;th&gt;version&lt;/th&gt;&lt;/tr&gt;'</span>
+  <span class="token operator">+</span><span class="token string">'&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> table <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'pluginTable'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> pluginsLength<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> newRow <span class="token operator">=</span> table<span class="token punctuation">.</span><span class="token function">insertRow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  newRow<span class="token punctuation">.</span><span class="token function">insertCell</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>textContent <span class="token operator">=</span> navigator<span class="token punctuation">.</span>plugins<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+  newRow<span class="token punctuation">.</span><span class="token function">insertCell</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>textContent <span class="token operator">=</span> navigator<span class="token punctuation">.</span>plugins<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>filename<span class="token punctuation">;</span>
+  newRow<span class="token punctuation">.</span><span class="token function">insertCell</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>textContent <span class="token operator">=</span> navigator<span class="token punctuation">.</span>plugins<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>description<span class="token punctuation">;</span>
+  newRow<span class="token punctuation">.</span><span class="token function">insertCell</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>textContent <span class="token operator">=</span> navigator<span class="token punctuation">.</span>plugins<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>version<span class="token operator">?</span>navigator<span class="token punctuation">.</span>plugins<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>version<span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>The following example displays information about the installed plugin(s).</p> <pre data-language="js"><span class="token keyword">var</span> pluginsLength <span class="token operator">=</span> navigator<span class="token punctuation">.</span>plugins<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>
+  pluginsLength<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">" Plugin(s)&lt;br&gt;"</span> <span class="token operator">+</span>
+  <span class="token string">"Name | Filename | description&lt;br&gt;"</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> pluginsLength<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>
+    navigator<span class="token punctuation">.</span>plugins<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>name <span class="token operator">+</span>
+    <span class="token string">" | "</span> <span class="token operator">+</span>
+    navigator<span class="token punctuation">.</span>plugins<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>filename <span class="token operator">+</span>
+    <span class="token string">" | "</span> <span class="token operator">+</span>
+    navigator<span class="token punctuation">.</span>plugins<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>description <span class="token operator">+</span>
+    <span class="token string">" | "</span> <span class="token operator">+</span>
+    navigator<span class="token punctuation">.</span>plugins<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>version <span class="token operator">+</span>
+    <span class="token string">"&lt;br&gt;"</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#pluginarray" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'PluginArray' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>PluginArray</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>item</code></th>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Since Chrome 59, method parameters are required instead of optional.</div>
+</td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>Since Edge 79, method parameters are required instead of optional.</div>
+</td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes">
+<div>≤12.1</div>
+<div>Since Opera 46, method parameters are required instead of optional.</div>
+</td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Since WebView 59, method parameters are required instead of optional.</div>
+</td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>Since Chrome 59, method parameters are required instead of optional.</div>
+</td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>≤12.1</div>
+<div>Since Opera Android 43, method parameters are required instead of optional.</div>
+</td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes">
+<div>1.0</div>
+<div>Since Samsung Internet 7.0, method parameters are required instead of optional.</div>
+</td>
+</tr>
+<tr>
+<th><code>length</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>namedItem</code></th>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Since Chrome 59, method parameters are required instead of optional.</div>
+</td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>Since Edge 79, method parameters are required instead of optional.</div>
+</td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes">
+<div>≤12.1</div>
+<div>Since Opera 46, method parameters are required instead of optional.</div>
+</td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Since WebView 59, method parameters are required instead of optional.</div>
+</td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>Since Chrome 59, method parameters are required instead of optional.</div>
+</td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>≤12.1</div>
+<div>Since Opera Android 43, method parameters are required instead of optional.</div>
+</td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes">
+<div>1.0</div>
+<div>Since Samsung Internet 7.0, method parameters are required instead of optional.</div>
+</td>
+</tr>
+<tr>
+<th><code>refresh</code></th>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Since Chrome 59, method parameters are required instead of optional.</div>
+</td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>Since Edge 79, method parameters are required instead of optional.</div>
+</td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes">
+<div>≤12.1</div>
+<div>Since Opera 46, method parameters are required instead of optional.</div>
+</td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Since WebView 59, method parameters are required instead of optional.</div>
+</td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>Since Chrome 59, method parameters are required instead of optional.</div>
+</td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>≤12.1</div>
+<div>Since Opera Android 43, method parameters are required instead of optional.</div>
+</td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>1.0</div>
+<div>Since Samsung Internet 7.0, method parameters are required instead of optional.</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+ <p>In addition to listing each plugin as a pseudo-array by zero-indexed numeric properties, Firefox provides properties that are the plugin name directly on the PluginArray object.</p>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PluginArray" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PluginArray</a>
+  </p>
+</div>

@@ -1,0 +1,178 @@
+<h1>Clipboard</h1>
+
+ <p>The <code>Clipboard</code> interface implements the <a href="clipboard_api">Clipboard API</a>, providing—if the user grants permission—both read and write access to the contents of the system clipboard. The Clipboard API can be used to implement cut, copy, and paste features within a web application.</p> <p>The system clipboard is exposed through the global <a href="navigator/clipboard"><code>Navigator.clipboard</code></a> property.</p> <p>Calls to the methods of the <code>Clipboard</code> object will not succeed if the user hasn't granted the needed permissions using the <a href="permissions_api">Permissions API</a> and the <code>"clipboard-read"</code> or <code>"clipboard-write"</code> permission as appropriate.</p> <div class="note notecard"> <p><strong>Note:</strong> In reality, at this time browser requirements for access to the clipboard vary significantly. Please see the section <a href="#clipboard_availability">Clipboard availability</a> for details.</p> </div> <p>All of the Clipboard API methods operate asynchronously; they return a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which is resolved once the clipboard access has been completed. The promise is rejected if clipboard access is denied.</p> <div class="notecard note"> <p>The <strong>clipboard </strong>is a data buffer that is used for short-term, data storage and/or data transfers, this can be between documents or applications<br> It is usually implemented as an anonymous, temporary <a href="https://en.wikipedia.org/wiki/Data_buffer" rel=" noopener">data buffer</a>, sometimes called the paste buffer, that can be accessed from most or all programs within the environment via defined <a href="https://en.wikipedia.org/wiki/Application_programming_interface" rel=" noopener">programming interfaces</a>.</p> <p>A typical application accesses clipboard functionality by mapping <a href="https://en.wikipedia.org/wiki/User_input" rel=" noopener">user input</a> such as <a href="https://en.wikipedia.org/wiki/Keybinding" rel=" noopener">keybindings</a>, <a href="https://en.wikipedia.org/wiki/Menu_(computing)" rel=" noopener">menu selections</a>, etc. to these interfaces.</p> </div>
+<h2 id="methods">Methods</h2>
+<p><em><code>Clipboard</code> is based on the <a href="eventtarget"><code>EventTarget</code></a> interface, and includes its methods.</em></p> <dl> <dt><a href="clipboard/read"><code>read()</code></a></dt> <dd>Requests arbitrary data (such as images) from the clipboard, returning a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>. When the data has been retrieved, the promise is resolved with a <a href="datatransfer"><code>DataTransfer</code></a> object that provides the data.</dd> <dt><a href="clipboard/readtext"><code>readText()</code></a></dt> <dd>Requests text from the system clipboard; returns a <code>Promise</code> which is resolved with a <a href="domstring"><code>DOMString</code></a> containing the clipboard's text once it's available.</dd> <dt><a href="clipboard/write"><code>write()</code></a></dt> <dd>Writes arbitrary data to the system clipboard. This asynchronous operation signals that it's finished by resolving the returned <code>Promise</code>.</dd> <dt><a href="clipboard/writetext"><code>writeText()</code></a></dt> <dd>Writes text to the system clipboard, returning a <code>Promise</code> which is resolved once the text is fully copied into the clipboard.</dd> </dl>
+<h2 id="clipboard_availability">Clipboard availability</h2>
+<p>The asynchronous clipboard API is a relatively recent addition, and the process of implementing it in browsers is not yet complete. Due to both potential security concerns and technical complexities, the process of integrating this API is happening gradually in most browsers.</p> <p>For example, Firefox does not yet support the <code>"clipboard-read"</code> and <code>"clipboard-write"</code> permissions, so access to the methods that access and change the contents of the clipboard are restricted in other ways.</p> <p>For WebExtensions, you can request the clipboardRead and clipboardWrite permissions to be able to use clipboard.readText() and clipboard.writeText(). Content scripts applied on HTTP sites do not have access to the clipboard object. See <a href="https://blog.mozilla.org/addons/2018/08/31/extensions-in-firefox-63/" rel=" noopener">extensions in Firefox 63</a>.</p> <p>In addition, <a href="clipboard/read"><code>read()</code></a> and <a href="clipboard/write"><code>write()</code></a> are disabled by default and require changing a preference to enable them. Check the compatibility tables for each method before using it.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/clipboard-apis/#clipboard-interface" hreflang="en" rel=" noopener">Clipboard API and events<br><small>The definition of 'Clipboard' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>Clipboard</code></th>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>13.1</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>13.4</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+<tr>
+<th><code>read</code></th>
+<td class="bc-supports-yes">
+<div>86</div>
+<div>From version 86, the <code>text/html</code> MIME type is supported.</div>
+<div>76</div>
+<div>From version 76, the <code>image/png</code> MIME type is supported.</div>
+<div>66</div>
+<div>Images are not supported.</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>87</div>
+<div>Firefox only supports reading the clipboard in browser extensions, using the <code>"clipboardRead"</code> extension permission.</div>
+<div>63-87</div>
+<div>["This method returns a <code>DataTransfer</code> object instead of an array of <code>ClipboardItem</code> objects.", "Firefox only supports reading the clipboard in browser extensions, using the <code>\"clipboardRead\"</code> extension permission."]</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>13.1</div></td>
+<td class="bc-supports-yes">
+<div>84</div>
+<div>From version 84, the <code>image/png</code> MIME type is supported.</div>
+<div>66</div>
+<div>Images are not supported.</div>
+</td>
+<td class="bc-supports-yes">
+<div>86</div>
+<div>From version 86, the <code>text/html</code> MIME type is supported.</div>
+<div>84</div>
+<div>From version 84, the <code>image/png</code> MIME type is supported.</div>
+<div>66</div>
+<div>Images are not supported.</div>
+</td>
+<td class="bc-supports-yes">
+<div>87</div>
+<div>Firefox only supports reading the clipboard in browser extensions, using the <code>"clipboardRead"</code> extension permission.</div>
+<div>63-87</div>
+<div>["This method returns a <code>DataTransfer</code> object instead of an array of <code>ClipboardItem</code> objects.", "Firefox only supports reading the clipboard in browser extensions, using the <code>\"clipboardRead\"</code> extension permission."]</div>
+</td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>13.4</div></td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr>
+<tr>
+<th><code>readText</code></th>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>63</div>
+<div>Firefox only supports reading the clipboard in browser extensions, using the <code>"clipboardRead"</code> extension permission.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>13.1</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes">
+<div>63</div>
+<div>Firefox only supports reading the clipboard in browser extensions, using the <code>"clipboardRead"</code> extension permission.</div>
+</td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>13.4</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+<tr>
+<th><code>write</code></th>
+<td class="bc-supports-yes">
+<div>66</div>
+<div>From version 76, the <code>image/png</code> MIME type is supported.</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>87</div>
+<div>Writing to the clipboard is available without permission in secure contexts and browser extensions, but only from user-initiated event callbacks. Browser extensions with the <code>"clipboardWrite"</code> permission can write to the clipboard at any time.</div>
+<div>63</div>
+<div>["This method accepts a <code>DataTransfer</code> object instead of an array of <code>ClipboardItem</code> objects.", "Writing to the clipboard is available without permission in secure contexts and browser extensions, but only from user-initiated event callbacks. Browser extensions with the <code>\"clipboardWrite\"</code> permission can write to the clipboard at any time."]</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>13.1</div></td>
+<td class="bc-supports-yes">
+<div>66</div>
+<div>From version 84, the <code>image/png</code> MIME type is supported.</div>
+</td>
+<td class="bc-supports-yes">
+<div>66</div>
+<div>From version 84, the <code>image/png</code> MIME type is supported.</div>
+</td>
+<td class="bc-supports-yes">
+<div>87</div>
+<div>Writing to the clipboard is available without permission in secure contexts and browser extensions, but only from user-initiated event callbacks. Browser extensions with the <code>"clipboardWrite"</code> permission can write to the clipboard at any time.</div>
+<div>63</div>
+<div>["This method accepts a <code>DataTransfer</code> object instead of an array of <code>ClipboardItem</code> objects.", "Writing to the clipboard is available without permission in secure contexts and browser extensions, but only from user-initiated event callbacks. Browser extensions with the <code>\"clipboardWrite\"</code> permission can write to the clipboard at any time."]</div>
+</td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>13.4</div></td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr>
+<tr>
+<th><code>writeText</code></th>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>63</div>
+<div>Writing to the clipboard is available without permission in secure contexts and browser extensions, but only from user-initiated event callbacks. Browser extensions with the <code>"clipboardWrite"</code> permission can write to the clipboard at any time.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>13.1</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes">
+<div>63</div>
+<div>Writing to the clipboard is available without permission in secure contexts and browser extensions, but only from user-initiated event callbacks. Browser extensions with the <code>"clipboardWrite"</code> permission can write to the clipboard at any time.</div>
+</td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>13.4</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="document/execcommand"><code>Document.execCommand()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Clipboard" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Clipboard</a>
+  </p>
+</div>

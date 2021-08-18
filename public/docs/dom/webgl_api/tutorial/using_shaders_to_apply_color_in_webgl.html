@@ -1,0 +1,83 @@
+<h1>Using shaders to apply color in WebGL</h1>
+ <ul class="prev-next"> <li><a class="button minimal" href="adding_2d_content_to_a_webgl_context">« Previous</a></li> <li><a class="button minimal" href="animating_objects_with_webgl">Next »</a></li> </ul>
+ <p>Having created a square plane in the <a href="adding_2d_content_to_a_webgl_context">previous demonstration</a>, the next obvious step is to add a splash of color to it. We can do this by revising the shaders.</p> <div class="notecard note"> <p>This example uses the glMatrix library to perform its matrix and vertex math. You'll need to include it if you create your own project based on this code. Our sample loads a copy from a CDN in our HTML's <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head"><code>&lt;head&gt;</code></a>.</p> </div>
+<h2 id="applying_color_to_the_vertices">Applying color to the vertices</h2>
+<p>In WebGL objects are built using sets of vertices, each of which has a position and a color. By default, all other pixels' colors (and all its other attributes, including position) are computed using interpolation, automatically creating smooth gradients. Previously, our vertex shader didn't apply any specific colors to the vertices. Between this and the fragment shader assigning the fixed color of white to each pixel, the entire square was rendered as solid white.</p> <p>Let's say we want to render a gradient in which each corner of the square is a different color: red, blue, green, and white. The first thing to do is to establish these colors for the four vertices. To do this, we first need to create an array of vertex colors, then store it into a WebGL buffer. We'll do that by adding the following code to our <code>initBuffers()</code> function:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">initBuffers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  <span class="token operator">...</span>
+  <span class="token keyword">const</span> colors <span class="token operator">=</span> <span class="token punctuation">[</span>
+    <span class="token number">1.0</span><span class="token punctuation">,</span>  <span class="token number">1.0</span><span class="token punctuation">,</span>  <span class="token number">1.0</span><span class="token punctuation">,</span>  <span class="token number">1.0</span><span class="token punctuation">,</span>    <span class="token comment">// white</span>
+    <span class="token number">1.0</span><span class="token punctuation">,</span>  <span class="token number">0.0</span><span class="token punctuation">,</span>  <span class="token number">0.0</span><span class="token punctuation">,</span>  <span class="token number">1.0</span><span class="token punctuation">,</span>    <span class="token comment">// red</span>
+    <span class="token number">0.0</span><span class="token punctuation">,</span>  <span class="token number">1.0</span><span class="token punctuation">,</span>  <span class="token number">0.0</span><span class="token punctuation">,</span>  <span class="token number">1.0</span><span class="token punctuation">,</span>    <span class="token comment">// green</span>
+    <span class="token number">0.0</span><span class="token punctuation">,</span>  <span class="token number">0.0</span><span class="token punctuation">,</span>  <span class="token number">1.0</span><span class="token punctuation">,</span>  <span class="token number">1.0</span><span class="token punctuation">,</span>    <span class="token comment">// blue</span>
+  <span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">const</span> colorBuffer <span class="token operator">=</span> gl<span class="token punctuation">.</span><span class="token function">createBuffer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  gl<span class="token punctuation">.</span><span class="token function">bindBuffer</span><span class="token punctuation">(</span>gl<span class="token punctuation">.</span><span class="token constant">ARRAY_BUFFER</span><span class="token punctuation">,</span> colorBuffer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  gl<span class="token punctuation">.</span><span class="token function">bufferData</span><span class="token punctuation">(</span>gl<span class="token punctuation">.</span><span class="token constant">ARRAY_BUFFER</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">Float32Array</span><span class="token punctuation">(</span>colors<span class="token punctuation">)</span><span class="token punctuation">,</span> gl<span class="token punctuation">.</span><span class="token constant">STATIC_DRAW</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    position<span class="token operator">:</span> positionBuffer<span class="token punctuation">,</span>
+    color<span class="token operator">:</span> colorBuffer<span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>This code starts by creating a JavaScript array containing four 4-value vectors, one for each vertex color. Then a new WebGL buffer is allocated to store these colors, and the array is converted into floats and stored into the buffer.</p> <p>To use these colors, the vertex shader needs to be updated to pull the appropriate color from the color buffer:</p> <pre data-language="js">  <span class="token keyword">const</span> vsSource <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+    attribute vec4 aVertexPosition;
+    attribute vec4 aVertexColor;
+
+    uniform mat4 uModelViewMatrix;
+    uniform mat4 uProjectionMatrix;
+
+    varying lowp vec4 vColor;
+
+    void main(void) {
+      gl_Position = uProjectionMatrix * uModelViewMatrix * aVertexPosition;
+      vColor = aVertexColor;
+    }
+  </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+</pre> <p>The key difference here is that for each vertex, we pass its color using a <code>varying</code> to the fragment shader.</p>
+<h2 id="coloring_the_fragments">Coloring the fragments</h2>
+<p>As a refresher, here's what our fragment shader looked like previously:</p> <pre data-language="js">  <span class="token keyword">const</span> fsSource <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+    void main() {
+      gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+    }
+  </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+</pre> <p>In order to pick up the interpolated color for each pixel, we need to change this to fetch the value from the <code>vColor</code> varying:</p> <pre data-language="js">  <span class="token keyword">const</span> fsSource <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+    varying lowp vec4 vColor;
+
+    void main(void) {
+      gl_FragColor = vColor;
+    }
+  </span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+</pre> <p>Each fragment receives the interpolated color based on its position relative to the vertex positions instead of a fixed value.</p>
+<h2 id="drawing_using_the_colors">Drawing using the colors</h2>
+<p>Next, it's necessary to add code to look up the attribute location for the colors and setup that attribute for the shader program:</p> <pre data-language="js">  <span class="token keyword">const</span> programInfo <span class="token operator">=</span> <span class="token punctuation">{</span>
+    program<span class="token operator">:</span> shaderProgram<span class="token punctuation">,</span>
+    attribLocations<span class="token operator">:</span> <span class="token punctuation">{</span>
+      vertexPosition<span class="token operator">:</span> gl<span class="token punctuation">.</span><span class="token function">getAttribLocation</span><span class="token punctuation">(</span>shaderProgram<span class="token punctuation">,</span> <span class="token string">'aVertexPosition'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      vertexColor<span class="token operator">:</span> gl<span class="token punctuation">.</span><span class="token function">getAttribLocation</span><span class="token punctuation">(</span>shaderProgram<span class="token punctuation">,</span> <span class="token string">'aVertexColor'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token operator">...</span></pre> <p>Then, <code>drawScene()</code> can have the following added to it so it actually uses these colors when drawing the square:</p> <pre data-language="js">  <span class="token comment">// Tell WebGL how to pull out the colors from the color buffer</span>
+  <span class="token comment">// into the vertexColor attribute.</span>
+  <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> numComponents <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> type <span class="token operator">=</span> gl<span class="token punctuation">.</span><span class="token constant">FLOAT</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> normalize <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> stride <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> offset <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    gl<span class="token punctuation">.</span><span class="token function">bindBuffer</span><span class="token punctuation">(</span>gl<span class="token punctuation">.</span><span class="token constant">ARRAY_BUFFER</span><span class="token punctuation">,</span> buffers<span class="token punctuation">.</span>color<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    gl<span class="token punctuation">.</span><span class="token function">vertexAttribPointer</span><span class="token punctuation">(</span>
+        programInfo<span class="token punctuation">.</span>attribLocations<span class="token punctuation">.</span>vertexColor<span class="token punctuation">,</span>
+        numComponents<span class="token punctuation">,</span>
+        type<span class="token punctuation">,</span>
+        normalize<span class="token punctuation">,</span>
+        stride<span class="token punctuation">,</span>
+        offset<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    gl<span class="token punctuation">.</span><span class="token function">enableVertexAttribArray</span><span class="token punctuation">(</span>
+        programInfo<span class="token punctuation">.</span>attribLocations<span class="token punctuation">.</span>vertexColor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+</pre> <p><iframe width="670" height="510" src="https://mdn.github.io/webgl-examples/tutorial/sample3/index.html" loading="lazy"></iframe></p> <p><a href="https://github.com/mdn/webgl-examples/tree/gh-pages/tutorial/sample3" rel=" noopener">View the complete code</a> | <a href="https://mdn.github.io/webgl-examples/tutorial/sample3/" rel=" noopener">Open this demo on a new page</a></p> 
+<ul class="prev-next"> <li><a class="button minimal" href="adding_2d_content_to_a_webgl_context">« Previous</a></li> <li><a class="button minimal" href="animating_objects_with_webgl">Next »</a></li> </ul>
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Using_shaders_to_apply_color_in_WebGL" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API/Tutorial/Using_shaders_to_apply_color_in_WebGL</a>
+  </p>
+</div>

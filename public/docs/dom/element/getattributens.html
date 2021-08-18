@@ -1,0 +1,104 @@
+<h1>Element.getAttributeNS()</h1> <p>The <code>getAttributeNS()</code> method of the <a href="../element"><code>Element</code></a> interface returns the string value of the attribute with the specified namespace and name. If the named attribute does not exist, the value returned will either be <code>null</code> or <code>""</code> (the empty string); see <a href="#notes">Notes</a> for details.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">attrVal <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">getAttributeNS</span><span class="token punctuation">(</span>namespace<span class="token punctuation">,</span> name<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>namespace</code></dt> <dd>The namespace in which to look for the specified attribute.</dd> <dt><code>name</code></dt> <dd>The name of the attribute to look for.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The string value of the specified attribute. If the attribute doesn't exist, the result is <code>null</code>.</p> <div class="note notecard">
+<strong>Note:</strong> Earlier versions of the DOM specification had this method described as returning an empty string for non-existent attributes, but it was not typically implemented this way since null makes more sense. The DOM4 specification now says this method should return null for non-existent attributes.</div>
+<h2 id="examples">Examples</h2>
+<p>The following SVG document reads the value of the <code>foo</code> attribute in a custom namespace.</p> <pre data-language="xml"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2000/svg<span class="token punctuation">"</span></span>
+    <span class="token attr-name"><span class="token namespace">xmlns:</span>test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.example.com/2014/test<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>40<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>40<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>circle</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>target<span class="token punctuation">"</span></span> <span class="token attr-name">cx</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>12<span class="token punctuation">"</span></span> <span class="token attr-name">cy</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>12<span class="token punctuation">"</span></span> <span class="token attr-name">r</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>10<span class="token punctuation">"</span></span> <span class="token attr-name">stroke</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#444<span class="token punctuation">"</span></span>
+      <span class="token attr-name">stroke-width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>none<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">test:</span>foo</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Hello namespaced attribute!<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    var ns = 'http://www.example.com/2014/test';
+    var circle = document.getElementById( 'target' );
+
+    console.log( 'attribute test:foo: "' + circle.getAttributeNS( ns, 'foo' ) + '"' );
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">&gt;</span></span>
+</pre> <p>In an HTML5 document the attribute has to be accessed with <code>test:foo</code> since namespaces are not supported.</p> <pre data-language="html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">xmlns</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.w3.org/2000/svg<span class="token punctuation">"</span></span>
+    <span class="token attr-name"><span class="token namespace">xmlns:</span>test</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://www.example.com/2014/test<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>40<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>40<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>circle</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>target<span class="token punctuation">"</span></span> <span class="token attr-name">cx</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>12<span class="token punctuation">"</span></span> <span class="token attr-name">cy</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>12<span class="token punctuation">"</span></span> <span class="token attr-name">r</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>10<span class="token punctuation">"</span></span> <span class="token attr-name">stroke</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#444<span class="token punctuation">"</span></span> <span class="token attr-name">stroke-width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span>
+      <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>none<span class="token punctuation">"</span></span> <span class="token attr-name"><span class="token namespace">test:</span>foo</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Foo value<span class="token punctuation">"</span></span><span class="token punctuation">/&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+  <span class="token keyword">var</span> ns <span class="token operator">=</span> <span class="token string">'http://www.example.com/2014/test'</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> circle <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span> <span class="token string">'target'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Attribute value: '</span> <span class="token operator">+</span> circle<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'test:foo'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></pre>
+<h2 id="notes">Notes</h2>
+<p>Namespaces are only supported in XML documents. HTML5 documents have to use <code>getAttribute()</code> instead.</p> <p><code>getAttributeNS()</code> differs from <a href="getattribute"><code>getAttribute()</code></a> in that it allows you to further specify the requested attribute as being part of a particular namespace, as in the example above, where the attribute is part of the fictional "specialspace" namespace on Mozilla.</p> <p>Prior to the DOM4 specification, this method was specified to return an empty string rather than null for non-existent attributes. However, most browsers instead returned null. Starting with DOM4, the specification now says to return null. However, some older browsers return an empty string. For that reason, you should use <a href="hasattributens"><code>hasAttributeNS()</code></a> to check for an attribute's existence prior to calling <code>getAttributeNS()</code> if it is possible that the requested attribute does not exist on the specified element.</p> 
+<p>DOM methods dealing with element's attributes:</p> <div class="_table"><table class="standard-table"> <thead> <tr> <th>Not namespace-aware, most commonly used methods</th> <th>Namespace-aware variants (DOM Level 2)</th> <th>DOM Level 1 methods for dealing with <code>Attr</code> nodes directly (seldom used)</th> <th>DOM Level 2 namespace-aware methods for dealing with <code>Attr</code> nodes directly (seldom used)</th> </tr> </thead> <tbody> <tr> <td>
+<a href="setattribute"><code>setAttribute</code></a> (DOM 1)</td> <td><a href="setattributens"><code>setAttributeNS</code></a></td> <td><a href="setattributenode"><code>setAttributeNode</code></a></td> <td><a href="setattributenodens"><code>setAttributeNodeNS</code></a></td> </tr> <tr> <td>
+<a href="getattribute"><code>getAttribute</code></a> (DOM 1)</td> <td><a href="getattributens"><code>getAttributeNS</code></a></td> <td><a href="getattributenode"><code>getAttributeNode</code></a></td> <td><a href="getattributenodens"><code>getAttributeNodeNS</code></a></td> </tr> <tr> <td>
+<a href="hasattribute"><code>hasAttribute</code></a> (DOM 2)</td> <td><a href="hasattributens"><code>hasAttributeNS</code></a></td> <td>-</td> <td>-</td> </tr> <tr> <td>
+<a href="removeattribute"><code>removeAttribute</code></a> (DOM 1)</td> <td><a href="removeattributens"><code>removeAttributeNS</code></a></td> <td><a href="removeattributenode"><code>removeAttributeNode</code></a></td> <td>-</td> </tr> </tbody> </table></div>
+
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://dom.spec.whatwg.org/#dom-element-getattributens" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'Element.getAttributeNS()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/DOM-Level-3-Core/#ID-ElGetAttrNS" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 3 Core Specification<br><small>The definition of 'Element.getAttributeNS()' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>Specifies that a <code>NOT_SUPPORTED_ERR</code> exception is thrown if the UA does not support the <code>"XML"</code> feature. Also specifies that <code>null</code> must be passed to have no namespace.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/DOM-Level-2-Core/#ID-ElGetAttrNS" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 2 Core Specification<br><small>The definition of 'Element.getAttributeNS()' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getAttributeNS</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Starting in Firefox 13, <code>null</code> is always returned instead of the empty string, as per the DOM4 specification. Previously, there were cases in which an empty string could be returned.</div>
+</td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Starting in Firefox 13, <code>null</code> is always returned instead of the empty string, as per the DOM4 specification. Previously, there were cases in which an empty string could be returned.</div>
+</td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/Code_snippets/getAttributeNS">Code snippets:getAttributeNS</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getAttributeNS" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/getAttributeNS</a>
+  </p>
+</div>

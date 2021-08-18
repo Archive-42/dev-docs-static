@@ -1,0 +1,282 @@
+<h1>Intl.DateTimeFormat</h1> <p>The <code>Intl.DateTimeFormat</code> object enables language-sensitive date and time formatting.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/intl-datetimeformat.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="datetimeformat/datetimeformat"><code>Intl.DateTimeFormat()</code></a></dt> <dd>Creates a new <code>Intl.DateTimeFormat</code> object.</dd> </dl>
+<h2 id="static_methods">Static methods</h2>
+<dl> <dt><a href="datetimeformat/supportedlocalesof"><code>Intl.DateTimeFormat.supportedLocalesOf()</code></a></dt> <dd>Returns an array containing those of the provided locales that are supported without having to fall back to the runtime's default locale.</dd> </dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl> <dt><a href="datetimeformat/format"><code>Intl.DateTimeFormat.prototype.format()</code></a></dt> <dd>Getter function that formats a date according to the locale and formatting options of this <a href="datetimeformat"><code>DateTimeFormat</code></a> object.</dd> <dt><a href="datetimeformat/formattoparts"><code>Intl.DateTimeFormat.prototype.formatToParts()</code></a></dt> <dd>Returns an <a href="../array"><code>Array</code></a> of objects representing the date string in parts that can be used for custom locale-aware formatting.</dd> <dt><a href="datetimeformat/resolvedoptions"><code>Intl.DateTimeFormat.prototype.resolvedOptions()</code></a></dt> <dd>Returns a new object with properties reflecting the locale and formatting options computed during initialization of the object.</dd> <dt><a href="datetimeformat/formatrange"><code>Intl.DateTimeFormat.prototype.formatRange()</code></a></dt> <dd>This method receives two <a href="../date">Dates</a> and formats the date range in the most concise way based on the locale and options provided when instantiating <a href="datetimeformat"><code>DateTimeFormat</code></a>.</dd> <dt><a href="datetimeformat/formatrangetoparts"><code>Intl.DateTimeFormat.prototype.formatRangeToParts()</code></a></dt> <dd>This method receives two <a href="../date">Dates</a> and returns an Array of objects containing the locale-specific tokens representing each part of the formatted date range.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="using_datetimeformat">Using DateTimeFormat</h3>
+<p>In basic use without specifying a locale, <code>DateTimeFormat</code> uses the default locale and default options.</p> <pre data-language="js"><span class="token keyword">var</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>Date<span class="token punctuation">.</span><span class="token constant">UTC</span><span class="token punctuation">(</span><span class="token number">2012</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// toLocaleString without arguments depends on the implementation,</span>
+<span class="token comment">// the default locale, and the default time zone</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>DateTimeFormat</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → "12/19/2012" if run with en-US locale (language) and time zone America/Los_Angeles (UTC-0800)</span>
+</pre>
+<h3 id="using_locales">Using locales</h3>
+<p>This example shows some of the variations in localized date and time formats. In order to get the format of the language used in the user interface of your application, make sure to specify that language (and possibly some fallback languages) using the <code>locales</code> argument:</p> <pre data-language="js"><span class="token keyword">var</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>Date<span class="token punctuation">.</span><span class="token constant">UTC</span><span class="token punctuation">(</span><span class="token number">2012</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Results below use the time zone of America/Los_Angeles (UTC-0800, Pacific Standard Time)</span>
+
+<span class="token comment">// US English uses month-day-year order</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>DateTimeFormat</span><span class="token punctuation">(</span><span class="token string">'en-US'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → "12/19/2012"</span>
+
+<span class="token comment">// British English uses day-month-year order</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>DateTimeFormat</span><span class="token punctuation">(</span><span class="token string">'en-GB'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → "19/12/2012"</span>
+
+<span class="token comment">// Korean uses year-month-day order</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>DateTimeFormat</span><span class="token punctuation">(</span><span class="token string">'ko-KR'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → "2012. 12. 19."</span>
+
+<span class="token comment">// Arabic in most Arabic speaking countries uses real Arabic digits</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>DateTimeFormat</span><span class="token punctuation">(</span><span class="token string">'ar-EG'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → "١٩‏/١٢‏/٢٠١٢"</span>
+
+<span class="token comment">// for Japanese, applications may want to use the Japanese calendar,</span>
+<span class="token comment">// where 2012 was the year 24 of the Heisei era</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>DateTimeFormat</span><span class="token punctuation">(</span><span class="token string">'ja-JP-u-ca-japanese'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → "24/12/19"</span>
+
+<span class="token comment">// when requesting a language that may not be supported, such as</span>
+<span class="token comment">// Balinese, include a fallback language, in this case Indonesian</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>DateTimeFormat</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'ban'</span><span class="token punctuation">,</span> <span class="token string">'id'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → "19/12/2012"</span>
+</pre>
+<h3 id="using_options">Using options</h3>
+<p>The date and time formats can be customized using the <code>options</code> argument:</p> <pre data-language="js"><span class="token keyword">var</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>Date<span class="token punctuation">.</span><span class="token constant">UTC</span><span class="token punctuation">(</span><span class="token number">2012</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// request a weekday along with a long date</span>
+<span class="token keyword">var</span> options <span class="token operator">=</span> <span class="token punctuation">{</span> weekday<span class="token operator">:</span> <span class="token string">'long'</span><span class="token punctuation">,</span> year<span class="token operator">:</span> <span class="token string">'numeric'</span><span class="token punctuation">,</span> month<span class="token operator">:</span> <span class="token string">'long'</span><span class="token punctuation">,</span> day<span class="token operator">:</span> <span class="token string">'numeric'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>DateTimeFormat</span><span class="token punctuation">(</span><span class="token string">'de-DE'</span><span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → "Donnerstag, 20. Dezember 2012"</span>
+
+<span class="token comment">// an application may want to use UTC and make that visible</span>
+options<span class="token punctuation">.</span>timeZone <span class="token operator">=</span> <span class="token string">'UTC'</span><span class="token punctuation">;</span>
+options<span class="token punctuation">.</span>timeZoneName <span class="token operator">=</span> <span class="token string">'short'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>DateTimeFormat</span><span class="token punctuation">(</span><span class="token string">'en-US'</span><span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → "Thursday, December 20, 2012, GMT"</span>
+
+<span class="token comment">// sometimes you want to be more precise</span>
+options <span class="token operator">=</span> <span class="token punctuation">{</span>
+  hour<span class="token operator">:</span> <span class="token string">'numeric'</span><span class="token punctuation">,</span> minute<span class="token operator">:</span> <span class="token string">'numeric'</span><span class="token punctuation">,</span> second<span class="token operator">:</span> <span class="token string">'numeric'</span><span class="token punctuation">,</span>
+  timeZone<span class="token operator">:</span> <span class="token string">'Australia/Sydney'</span><span class="token punctuation">,</span>
+  timeZoneName<span class="token operator">:</span> <span class="token string">'short'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>DateTimeFormat</span><span class="token punctuation">(</span><span class="token string">'en-AU'</span><span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → "2:00:00 pm AEDT"</span>
+
+<span class="token comment">// sometimes you want to be very precise</span>
+options<span class="token punctuation">.</span>fractionalSecondDigits <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span> <span class="token comment">//number digits for fraction-of-seconds</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>DateTimeFormat</span><span class="token punctuation">(</span><span class="token string">'en-AU'</span><span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → "2:00:00.200 pm AEDT"</span>
+
+<span class="token comment">// sometimes even the US needs 24-hour time</span>
+options <span class="token operator">=</span> <span class="token punctuation">{</span>
+  year<span class="token operator">:</span> <span class="token string">'numeric'</span><span class="token punctuation">,</span> month<span class="token operator">:</span> <span class="token string">'numeric'</span><span class="token punctuation">,</span> day<span class="token operator">:</span> <span class="token string">'numeric'</span><span class="token punctuation">,</span>
+  hour<span class="token operator">:</span> <span class="token string">'numeric'</span><span class="token punctuation">,</span> minute<span class="token operator">:</span> <span class="token string">'numeric'</span><span class="token punctuation">,</span> second<span class="token operator">:</span> <span class="token string">'numeric'</span><span class="token punctuation">,</span>
+  hour12<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+  timeZone<span class="token operator">:</span> <span class="token string">'America/Los_Angeles'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>DateTimeFormat</span><span class="token punctuation">(</span><span class="token string">'en-US'</span><span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → "12/19/2012, 19:00:00"</span>
+
+<span class="token comment">// to specify options but use the browser's default locale, use 'default'</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>DateTimeFormat</span><span class="token punctuation">(</span><span class="token string">'default'</span><span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → "12/19/2012, 19:00:00"</span>
+
+<span class="token comment">// sometimes it's helpful to include the period of the day</span>
+options <span class="token operator">=</span> <span class="token punctuation">{</span>hour<span class="token operator">:</span> <span class="token string">"numeric"</span><span class="token punctuation">,</span> dayPeriod<span class="token operator">:</span> <span class="token string">"short"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>DateTimeFormat</span><span class="token punctuation">(</span><span class="token string">'en-US'</span><span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">format</span><span class="token punctuation">(</span>date<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → 10 at night</span>
+</pre> <p>The used calendar and numbering formats can also be set independently via <code>options</code> arguments:</p> <pre data-language="js"><span class="token keyword">var</span> options <span class="token operator">=</span> <span class="token punctuation">{</span>calendar<span class="token operator">:</span> <span class="token string">'chinese'</span><span class="token punctuation">,</span> numberingSystem<span class="token operator">:</span> <span class="token string">'arab'</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> dateFormat <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>DateTimeFormat</span><span class="token punctuation">(</span><span class="token string">'default'</span><span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> usedOptions <span class="token operator">=</span> dateFormat<span class="token punctuation">.</span><span class="token function">resolvedOptions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>usedOptions<span class="token punctuation">.</span>calendar<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → "chinese"</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>usedOptions<span class="token punctuation">.</span>numberingSystem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → "arab"</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>usedOptions<span class="token punctuation">.</span>timeZone<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// → "America/New_York" (the users default timezone)</span>
+</pre>
+<h2 id="polyfill">Polyfill</h2>
+<p><a href="https://formatjs.io/docs/polyfills/intl-datetimeformat" rel=" noopener">formatjs Intl.DateTimeFormat polyfill</a></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma402/#datetimeformat-objects">ECMAScript Internationalization API Specification (ECMAScript Internationalization API)<br> <small>#datetimeformat-objects</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>DateTimeFormat</code></th>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>DateTimeFormat</code></th>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>format</code></th>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>formatRange</code></th>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>formatRangeToParts</code></th>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>formatToParts</code></th>
+<td class="bc-supports-yes">
+<div>57</div>
+<div>Before version 71, <code>formatToParts()</code> returned an object with an incorrectly cased type key of <code>dayperiod</code>. Version 71 and later use the specification defined <code>dayPeriod</code>. See <a href="https://crbug.com/865351">Chromium bug 865351</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>Before version 58, <code>formatToParts()</code> returned an object with an incorrectly cased type key of <code>dayperiod</code>. Version 58 and later use the specification defined <code>dayPeriod</code>. See <a href="https://crbug.com/865351">Chromium bug 865351</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>57</div>
+<div>Before version 71, <code>formatToParts()</code> returned an object with an incorrectly cased type key of <code>dayperiod</code>. Version 71 and later use the specification defined <code>dayPeriod</code>. See <a href="https://crbug.com/865351">Chromium bug 865351</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>57</div>
+<div>Before version 71, <code>formatToParts()</code> returned an object with an incorrectly cased type key of <code>dayperiod</code>. Version 71 and later use the specification defined <code>dayPeriod</code>. See <a href="https://crbug.com/865351">Chromium bug 865351</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Before version 50, <code>formatToParts()</code> returned an object with an incorrectly cased type key of <code>dayperiod</code>. Version 50 and later use the specification defined <code>dayPeriod</code>. See <a href="https://crbug.com/865351">Chromium bug 865351</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>7.0</div>
+<div>Before version 71, <code>formatToParts()</code> returned an object with an incorrectly cased type key of <code>dayperiod</code>. Version 71 and later use the specification defined <code>dayPeriod</code>. See <a href="https://crbug.com/865351">Chromium bug 865351</a>.</div>
+</td>
+</tr>
+<tr>
+<th><code>resolvedOptions</code></th>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>supportedLocalesOf</code></th>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+</tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../intl"><code>Intl</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat</a>
+  </p>
+</div>

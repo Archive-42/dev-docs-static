@@ -1,0 +1,70 @@
+<h1>OES_standard_derivatives</h1> <p>The <code><strong>OES_standard_derivatives</strong></code> extension is part of the <a href="webgl_api">WebGL API</a> and adds the GLSL derivative functions <code>dFdx</code>, <code>dFdy</code>, and <code>fwidth</code>.</p> <p>WebGL extensions are available using the <a href="webglrenderingcontext/getextension"><code>WebGLRenderingContext.getExtension()</code></a> method. For more information, see also <a href="webgl_api/using_extensions">Using Extensions</a> in the <a href="webgl_api/tutorial">WebGL tutorial</a>.</p> <div class="note notecard"> <p><strong>Availability:</strong> This extension is only available to <a href="webglrenderingcontext">WebGL1</a> contexts. In <a href="webgl2renderingcontext">WebGL2</a>, the functionality of this extension is available on the WebGL2 context by default. In WebGL 2, the constant is available as <code>gl.FRAGMENT_SHADER_DERIVATIVE_HINT</code> and it requires GLSL <code>#version 300 es</code>.</p> </div>
+<h2 id="constants">Constants</h2>
+<p>This extension exposes one new constant, which can be used in the <a href="webglrenderingcontext/hint"><code>hint()</code></a> and <a href="webglrenderingcontext/getparameter"><code>getParameter()</code></a> methods.</p> <dl> <dt><code>ext.FRAGMENT_SHADER_DERIVATIVE_HINT_OES</code></dt> <dd>A <a href="webgl_api/types"><code>WebGL_API.Types</code></a> indicating the accuracy of the derivative calculation for the GLSL built-in functions: <code>dFdx</code>, <code>dFdy</code>, and <code>fwidth</code>.</dd> </dl>
+<h2 id="glsl_built-in_functions">GLSL built-in functions</h2>
+<p>The following new functions can be used in GLSL shader code, if this extension is enabled:</p> <pre data-language="cpp">genType <span class="token function">dFdx</span><span class="token punctuation">(</span>genType<span class="token punctuation">)</span>
+genType <span class="token function">dFdy</span><span class="token punctuation">(</span>genType<span class="token punctuation">)</span>
+genType <span class="token function">fwidth</span><span class="token punctuation">(</span>genType<span class="token punctuation">)</span>
+</pre>
+<h2 id="examples">Examples</h2>
+<p>Enabling the extensions:</p> <pre data-language="js">gl<span class="token punctuation">.</span><span class="token function">getExtension</span><span class="token punctuation">(</span><span class="token string">'OES_standard_derivatives'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gl<span class="token punctuation">.</span><span class="token function">getExtension</span><span class="token punctuation">(</span><span class="token string">'EXT_shader_texture_lod'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Shader code that avoids artifacts when wrapping texture coordinates:</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>x-shader/x-fragment<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+#extension GL_EXT_shader_texture_lod <span class="token operator">:</span> enable
+#extension GL_OES_standard_derivatives <span class="token operator">:</span> enable
+
+uniform sampler2D myTexture<span class="token punctuation">;</span>
+varying vec2 texcoord<span class="token punctuation">;</span>
+
+<span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  gl_FragColor <span class="token operator">=</span> <span class="token function">texture2DGradEXT</span><span class="token punctuation">(</span>myTexture<span class="token punctuation">,</span> <span class="token function">mod</span><span class="token punctuation">(</span>texcoord<span class="token punctuation">,</span> <span class="token function">vec2</span><span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                                  <span class="token function">dFdx</span><span class="token punctuation">(</span>texcoord<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">dFdy</span><span class="token punctuation">(</span>texcoord<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.khronos.org/registry/webgl/extensions/OES_standard_derivatives/" hreflang="en" rel=" noopener">OES_standard_derivatives<br><small>The definition of 'OES_standard_derivatives' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>OES_standard_derivatives</code></th>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table> 
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="webglrenderingcontext/getextension"><code>WebGLRenderingContext.getExtension()</code></a></li> <li><a href="ext_shader_texture_lod"><code>EXT_shader_texture_lod</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/OES_standard_derivatives" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/OES_standard_derivatives</a>
+  </p>
+</div>

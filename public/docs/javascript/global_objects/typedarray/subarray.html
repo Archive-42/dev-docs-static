@@ -1,0 +1,81 @@
+<h1>TypedArray.prototype.subarray()</h1> <p>The <code>subarray()</code> method returns a new <em>TypedArray</em> on the same <a href="../arraybuffer"><code>ArrayBuffer</code></a> store and with the same element types as for this <em>TypedArray</em> object. The begin offset is <strong>inclusive</strong> and the end offset is <strong>exclusive</strong>. <em>TypedArray</em> is one of the <a href="../typedarray#typedarray_objects">typed array types</a>.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/typedarray-subarray.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">subarray</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">subarray</span><span class="token punctuation">(</span>begin<span class="token punctuation">)</span>
+<span class="token function">subarray</span><span class="token punctuation">(</span>begin<span class="token punctuation">,</span> end<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code><var>begin</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>Element to begin at. The offset is inclusive. The whole array will be included in the new view if this value is not specified.</dd> <dt>
+<code><var>end</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>Element to end at. The offset is exclusive. If not specified, all elements from the one specified by <code><var>begin</var></code> to the end of the array are included in the new view.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A new <a href="../typedarray"><code>TypedArray</code></a> object.</p>
+<h2 id="description">Description</h2>
+<p>The range specified by <code><var>begin</var></code> and <code><var>end</var></code> is clamped to the valid index range for the current array; if the computed length of the new array would be negative, it's clamped to zero. If either <code><var>begin</var></code> or <code><var>end</var></code> is negative, it refers to an index from the end of the array instead of from the beginning.</p> <p>Also note that this is creating a new view on the existing buffer; changes to the new object's contents will impact the original object and vice versa.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_the_subarray_method">Using the subarray() method</h3>
+<pre data-language="js"><span class="token keyword">var</span> buffer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayBuffer</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> uint8 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span>buffer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+uint8<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>uint8<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Uint8Array [ 1, 2, 3, 0, 0, 0, 0, 0 ]</span>
+
+<span class="token keyword">var</span> sub <span class="token operator">=</span> uint8<span class="token punctuation">.</span><span class="token function">subarray</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>sub<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// Uint8Array [ 1, 2, 3, 0 ]</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="#">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-%typedarray%.prototype.subarray</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>subarray</code></th>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>11.6</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">JavaScript typed arrays</a></li> <li><a href="../typedarray"><code>TypedArray</code></a></li> <li><a href="../arraybuffer"><code>ArrayBuffer</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray/subarray" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypedArray/subarray</a>
+  </p>
+</div>

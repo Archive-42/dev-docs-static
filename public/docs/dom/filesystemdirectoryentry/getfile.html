@@ -1,0 +1,111 @@
+<h1>FileSystemDirectoryEntry.getFile()</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <a href="../filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a> interface's method <code><strong>getFile</strong></code><code>()</code> returns a <a href="../filesystemfileentry"><code>FileSystemFileEntry</code></a> object corresponding to a file contained somewhere within the directory subtree rooted at the directory on which it's called.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">FileSystemDirectoryEntry<span class="token punctuation">.</span><span class="token function">getFile</span><span class="token punctuation">(</span><span class="token punctuation">[</span>path<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">,</span> options<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">,</span> successCallback<span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token punctuation">,</span> errorCallback<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code>path</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A <a href="../usvstring"><code>USVString</code></a> specifying the path, relative to the directory on which the method is called, describing which file's entry to return.</dd> <dt>
+<code>options</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An object based on the <a href="../filesystemflags"><code>FileSystemFlags</code></a> dictionary, which allows you to specify whether or not to create the entry if it's missing and if it's an error if the file already exists. These options are currently not useful in Web contexts.</dd> <dt>
+<code>successCallback</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A method to be called once the <a href="../filesystemfileentry"><code>FileSystemFileEntry</code></a> has been created. The method receives a single parameter: the <code>FileSystemFileEntry</code> object representing the file in question.</dd> <dt>
+<code>errorCallback</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A method to be called if an error occurs. Receives as its sole input parameter a <a href="../fileerror"><code>FileError</code></a> object describing the error which occurred.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"><code>undefined</code></a>.</p>
+<h3 id="errors">Errors</h3>
+<p>If an error occurs and an <code>errorCallback</code> was specified, it gets called with a single parameter: a <a href="../fileerror"><code>FileError</code></a> object describing the error. The {domxref("FileError.code")}} specifies what type of error occurred, as follows:</p> <dl> <dt><code>FileError.NOT_FOUND_ERR</code></dt> <dd>The <code>create</code> option was not specified (or was specified as <code>false</code>), and the file doesn't exist.</dd> <dt><code>FileError.PATH_EXISTS_ERR</code></dt> <dd>The <code>create</code> and <code>exclusive</code> options were both <code>true</code>, indicating that the file should be created but must not already exist, but the file does in fact already exist.</dd> <dt><code>FileError.SECURITY_ERR</code></dt> <dd>The request to access the file was denied for security reasons.</dd> <dt><code>FileError.TYPE_MISMATCH_ERR</code></dt> <dd>The path specified is not a file; it's probably a directory, but might be an unsupported file descriptor such as a pipe; this depends on the user agent to some extent.</dd> </dl>
+<h2 id="filesystemflags">FileSystemFlags</h2>
+<p>The <code>options</code> parameter is an object which is based on the <a href="../filesystemflags"><code>FileSystemFlags</code></a> dictionary; it provides flags which make it possible to adjust the behavior of the <code>getFile()</code> method.</p> 
+<dl> <dt>
+<a href="../filesystemflags/create"><code>create</code></a> <span class="badge inline optional">Optional</span>
+</dt> <dd>If this property is <code>true</code>, and the requested file or directory doesn't exist, the user agent should create it. The default is <code>false</code>. The parent directory must already exist.</dd> <dt>
+<a href="../filesystemflags/exclusive"><code>exclusive</code></a> <span class="badge inline optional">Optional</span>
+</dt> <dd>If <code>true</code>, and the <code>create</code> option is also <code>true</code>, the file must not exist prior to issuing the call. Instead, it must be possible for it to be created newly at call time. The default is <code>false</code>.</dd> </dl>
+<h3 id="values_and_results">Values and results</h3>
+<p>The table below describes the result of each possible combination of these flags depending on whether or not the target file or directory path already exists.</p>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th colspan="2" scope="col">Option values</th> <th rowspan="2" scope="col">File/directory condition</th> <th rowspan="2" scope="col">Result</th> </tr> <tr> <th scope="col"><a href="../filesystemflags/create"><code>create</code></a></th> <th scope="col"><a href="../filesystemflags/exclusive"><code>exclusive</code></a></th> </tr> </thead> <tbody> <tr> <td><code>false</code></td> <td>n/a<sup>[1]</sup>
+</td> <td>Path exists and matches the desired type (depending on whether the function called is <code>getFile()</code> or <code>getDirectory()</code>
+</td> <td>The <code>successCallback</code> is called with a <a href="../filesystemfileentry"><code>FileSystemFileEntry</code></a> if <code>getFile()</code> was called or a <a href="../filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a> if <code>getDirectory()</code> was called.</td> </tr> <tr> <td><code>false</code></td> <td>n/a<sup>[1]</sup>
+</td> <td>Path exists but doesn't match the desired type</td> <td>The <code>errorCallback</code> is called with an appropriate error code (if the callback was provided).</td> </tr> <tr> <td><code>true</code></td> <td><code>false</code></td> <td>Path exists</td> <td>The existing file or directory is removed and replaced with a new one, then the <code>successCallback</code> is called with a <a href="../filesystemfileentry"><code>FileSystemFileEntry</code></a> or a <a href="../filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a>, as appropriate.</td> </tr> <tr> <td><code>true</code></td> <td><code>false</code></td> <td>Path doesn't exist</td> <td>The file or directory is created, then a <a href="../filesystemfileentry"><code>FileSystemFileEntry</code></a> or a <a href="../filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a> is passed to the <code>successCallback</code>, as appropriate.</td> </tr> <tr> <td><code>true</code></td> <td><code>true</code></td> <td>Path exists</td> <td>The <code>errorCallback</code> is called with an appropriate error, such as <code>FileError.PATH_EXISTS_ERR</code>.</td> </tr> <tr> <td><code>true</code></td> <td><code>true</code></td> <td>Path doesn't exist</td> <td>The file or directory is created, then a <a href="../filesystemfileentry"><code>FileSystemFileEntry</code></a> or a <a href="../filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a> is passed to the <code>successCallback</code>, as appropriate.</td> </tr> </tbody> </table></div>
+<p>[1] When <code>create</code> is <code>false</code>, the value of <code>exclusive</code> is irrelevant and ignored.</p>
+
+<h2 id="example">Example</h2>
+<p>In this example, a function is presented whose job it is to locate within a user's app data directory a JSON file containing a user dictionary for a specified language, then load that dictionary.</p> <pre data-language="js"><span class="token keyword">let</span> dictionary <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">loadDictionaryForLanguage</span><span class="token punctuation">(</span><span class="token parameter">appDataDirEntry<span class="token punctuation">,</span> lang</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  dictionary <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+
+  appDataDirEntry<span class="token punctuation">.</span><span class="token function">getDirectory</span><span class="token punctuation">(</span><span class="token string">"Dictionaries"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">dirEntry</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    dirEntry<span class="token punctuation">.</span><span class="token function">getFile</span><span class="token punctuation">(</span>lang <span class="token operator">+</span> <span class="token string">"-dict.json"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">fileEntry</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      fileEntry<span class="token punctuation">.</span><span class="token function">file</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">dictFile</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> reader <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileReader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        reader<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"loadend"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          dictionary <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>reader<span class="token punctuation">.</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        reader<span class="token punctuation">.</span><span class="token function">readAsText</span><span class="token punctuation">(</span>dictFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>The <code>loadDictionaryForLanguage()</code> function starts by using <code>getDirectory()</code> to obtain the <a href="../filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a> object representing a subfolder named "Dictionaries" located inside the specified app data directory. The success callback for this takes the resulting directory entry object and calls <a href="getfile"><code>getFile()</code></a> to get a <a href="../filesystemfileentry"><code>FileSystemFileEntry</code></a> object representing the dictionary file; the success callback for this, in turn, creates a new <a href="../filereader"><code>FileReader</code></a> and uses it to load the contents of the file. When that is loaded successfully (as indicated by the <code><a href="../xmlhttprequest/loadend_event">loadend</a></code> event being fired), the loaded text is passed into <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse"><code>JSON.parse()</code></a> to be reconstituted into a JavaScript object.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://wicg.github.io/entries-api/#dom-filesystemdirectoryentry-getfile" hreflang="en" rel=" noopener">File and Directory Entries API<br><small>The definition of 'getFile()' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getFile</code></th>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>50</div>
+<div>In Firefox, the <code>errorCallback</code>'s input parameter is a <code><a href="https://developer.mozilla.org/docs/Web/API/DOMException">DOMException</a></code> rather than a <code><a href="https://developer.mozilla.org/docs/Web/API/FileError">FileError</a></code> object.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>50</div>
+<div>In Firefox, the <code>errorCallback</code>'s input parameter is a <code><a href="https://developer.mozilla.org/docs/Web/API/DOMException">DOMException</a></code> rather than a <code><a href="https://developer.mozilla.org/docs/Web/API/FileError">FileError</a></code> object.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../file_and_directory_entries_api">File and Directory Entries API</a></li> <li><a href="../file_and_directory_entries_api/introduction">Introduction to the File System API</a></li> <li><a href="../filesystemfileentry"><code>FileSystemFileEntry</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryEntry/getFile" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryEntry/getFile</a>
+  </p>
+</div>

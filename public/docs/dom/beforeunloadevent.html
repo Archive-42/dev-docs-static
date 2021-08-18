@@ -1,0 +1,84 @@
+<h1>BeforeUnloadEvent</h1>
+
+ <p>The <code>beforeunload</code> event is fired when the window, the document and its resources are about to be unloaded.</p> <p>When a non-empty string is assigned to the <code>returnValue</code> Event property, a dialog box appears, asking the users for confirmation to leave the page (see example below). When no value is provided, the event is processed silently. Some implementations only show the dialog box if the frame or any embedded frame receives a user gesture or user interaction. See <a href="#browser_compatibility">Browser compatibility</a> for more information.</p> <iframe class="inheritance-diagram-frame" id="frame_inheritance_diagram" width="600" height="120" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/BeforeUnloadEvent/_samples_/inheritance_diagram" loading="lazy"></iframe> <div class="_table"><table class="properties"> <tbody> <tr> <td>Bubbles</td> <td>No</td> </tr> <tr> <td>Cancelable</td> <td>Yes</td> </tr> <tr> <td>Target objects</td> <td>defaultView</td> </tr> <tr> <td>Interface</td> <td><a href="event"><code>Event</code></a></td> </tr> </tbody> </table></div>
+<h2 id="examples">Examples</h2>
+<pre data-language="js">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"beforeunload"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span> <span class="token parameter">event</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  event<span class="token punctuation">.</span>returnValue <span class="token operator">=</span> <span class="token string">"\o/"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// is equivalent to</span>
+window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"beforeunload"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span> <span class="token parameter">event</span> <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>WebKit-derived browsers don't follow the spec for the dialog box. An almost-cross-browser working example would be close to the below example.</p> <pre data-language="js">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"beforeunload"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> confirmationMessage <span class="token operator">=</span> <span class="token string">"\o/"</span><span class="token punctuation">;</span>
+
+  <span class="token punctuation">(</span>e <span class="token operator">||</span> window<span class="token punctuation">.</span>event<span class="token punctuation">)</span><span class="token punctuation">.</span>returnValue <span class="token operator">=</span> confirmationMessage<span class="token punctuation">;</span>     <span class="token comment">// Gecko + IE</span>
+  <span class="token keyword">return</span> confirmationMessage<span class="token punctuation">;</span>                                <span class="token comment">/* Safari, Chrome, and other
+                                                              * WebKit-derived browsers */</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#the-beforeunloadevent-interface" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'BeforeUnloadEvent' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>BeforeUnloadEvent</code></th>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>user_interaction</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><code><a href="window/domcontentloaded_event">DOMContentLoaded</a></code></li> <li><code><a href="document/readystatechange_event">readystatechange</a></code></li> <li><code><a href="window/load_event">load</a></code></li> <li><code><a href="window/beforeunload_event">beforeunload</a></code></li> <li><code><a href="window/unload_event">unload</a></code></li> <li><a href="https://www.whatwg.org/specs/web-apps/current-work/#prompt-to-unload-a-document" rel=" noopener">Unloading Documents — Prompt to unload a document</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/BeforeUnloadEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/BeforeUnloadEvent</a>
+  </p>
+</div>

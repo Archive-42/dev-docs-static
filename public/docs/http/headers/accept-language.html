@@ -1,0 +1,78 @@
+<h1>Accept-Language</h1> <p>The <code>Accept-Language</code> request HTTP header advertises which languages the client is able to understand, and which locale variant is preferred. (By languages, we mean natural languages, such as English, and not programming languages.) Using <a href="../content_negotiation">content negotiation</a>, the server then selects one of the proposals, uses it and informs the client of its choice with the <a href="content-language"><code>Content-Language</code></a> response header. Browsers set adequate values for this header according to their user interface language and even if a user can change it, this happens rarely (and is frowned upon as it leads to fingerprinting).</p> <p>This header is a hint to be used when the server has no way of determining the language via another way, like a specific URL, that is controlled by an explicit user decision. It is recommended that the server never overrides an explicit decision. The content of the <code>Accept-Language</code> is often out of the control of the user (like when traveling and using an Internet Cafe in a different country); the user may also want to visit a page in another language than the locale of their user interface.</p> <p>If the server cannot serve any matching language, it can theoretically send back a <a href="../status/406"><code>406</code></a> (Not Acceptable) error code. But, for a better user experience, this is rarely done and more common way is to ignore the <code>Accept-Language</code> header in this case.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Header type</th> <td><a href="https://developer.mozilla.org/en-US/docs/Glossary/Request_header">Request header</a></td> </tr> <tr> <th scope="row"><a href="https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name">Forbidden header name</a></th> <td>no</td> </tr> <tr> <th scope="row"><a href="https://developer.mozilla.org/en-US/docs/Glossary/CORS-safelisted_request_header">CORS-safelisted request header</a></th> <td>yes, with the additional restriction that values can only be <code>0-9</code>, <code>A-Z</code>, <code>a-z</code>, space or <code>*,-.;=</code>.</td> </tr> </tbody> </table></div> <h2 id="Syntax">Syntax</h2> <pre class="syntaxbox notranslate">Accept-Language: &lt;language&gt;
+Accept-Language: *
+
+// Multiple types, weighted with the <a href="https://developer.mozilla.org/en-US/docs/Glossary/quality_values">quality value</a> syntax:
+Accept-Language: fr-CH, fr;q=0.9, en;q=0.8, de;q=0.7, *;q=0.5</pre> <h2 id="Directives">Directives</h2> <dl> <dt><code>&lt;language&gt;</code></dt> <dd> <p>A language tag (which is sometimes referred to as a "locale identifier"). This consists of a 2-3 letter base language tag representing the language, optionally followed by additional subtags separated by <code>'-'</code>. The most common extra information is the country or region variant (like <code>'en-US'</code> or <code>'fr-CA'</code>) or the type of alphabet to use (like <code>'sr-Latn'</code>). Other variants like the type of orthography (<code>'de-DE-1996'</code>) are usually not used in the context of this header.</p> </dd> <dt><code>*</code></dt> <dd>Any language; <code>'*'</code> is used as a wildcard.</dd> <dt>
+<code>;q=</code> (q-factor weighting)</dt> <dd>Any value placed in an order of preference expressed using a relative <a href="https://developer.mozilla.org/en-US/docs/Glossary/Quality_values">quality value</a> called <em>weight</em>.</dd> </dl> <h2 id="Examples">Examples</h2> <pre class="notranslate">Accept-Language: de
+
+Accept-Language: de-CH
+
+Accept-Language: en-US,en;q=0.5
+</pre> <h2 id="Specifications">Specifications</h2> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Title</th> </tr> </thead> <tbody> <tr> <td><a href="https://tools.ietf.org/html/rfc7231#section-5.3.5">RFC 7231, section 5.3.5: Accept-Language</a></td> <td>Hypertext Transfer Protocol (HTTP/1.1): Semantics and Context</td> </tr> <tr> <td><a href="https://tools.ietf.org/html/bcp47">BCP 47</a></td> <td>Tags for the Identification of Language</td> </tr> </tbody> </table></div> <h2 id="Browser_compatibility">Browser compatibility<a class="bc-github-link" href="https://github.com/mdn/browser-compat-data">Update compatibility data on GitHub</a>
+</h2>  <div class="_table">
+<table class="bc-table bc-table-web">
+<thead>
+<tr class="bc-platforms">
+<th></th>
+<th colspan="6"><span>Desktop</span></th>
+</tr>
+<tr class="bc-browsers">
+<th></th>
+<th><span class="bc-head-txt-label bc-head-icon-chrome">Chrome</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-edge">Edge</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-firefox">Firefox</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-ie">Internet Explorer</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-opera">Opera</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-safari">Safari</span></th>
+</tr>
+</thead>
+<tbody><tr>
+<th scope="row"><code>Accept-Language</code></th>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> 12</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+</tr></tbody>
+</table>
+<table class="bc-table bc-table-web">
+<thead>
+<tr class="bc-platforms">
+<th></th>
+<th colspan="6"><span>Mobile</span></th>
+</tr>
+<tr class="bc-browsers">
+<th></th>
+<th><span class="bc-head-txt-label bc-head-icon-webview_android">Android webview</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-chrome_android">Chrome for Android</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-firefox_android">Firefox for Android</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-opera_android">Opera for Android</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-safari_ios">Safari on iOS</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-samsunginternet_android">Samsung Internet</span></th>
+</tr>
+</thead>
+<tbody><tr>
+<th scope="row"><code>Accept-Language</code></th>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+</tr></tbody>
+</table>
+</div> <h2 id="See_also">See also</h2> <ul> <li>HTTP <a href="../content_negotiation">content negotiation</a>
+</li> <li>Header with the result of the content negotiation: <a href="content-language"><code>Content-Language</code></a>
+</li> <li>Other similar headers: <a href="te"><code>TE</code></a>, <a href="accept-encoding"><code>Accept-Encoding</code></a>, <a href="accept-charset"><code>Accept-Charset</code></a>, <a href="accept"><code>Accept</code></a>
+</li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language$edit" class="_attribution-link">Edit this page on MDN</a>
+  </p>
+</div>
+<div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2020 Mozilla and individual contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language</a>
+  </p>
+</div>

@@ -1,0 +1,75 @@
+<h1>DocumentTimeline.DocumentTimeline()</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <code>DocumentTimeline()</code> constructor of the <a href="../web_animations_api">Web Animations API</a> creates a new instance of the <a href="../documenttimeline"><code>DocumentTimeline</code></a> object associated with the active document of the current browsing context.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> sharedTimeline <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DocumentTimeline</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>options</dt> <dd>An object specifying options for the new timeline. Currently the only supported option is the <code>originTime</code> member which specifies the zero time for the <code>documentTimeline</code> as a real number of milliseconds relative to the <a href="../performancetiming/navigationstart"><code>navigationStart</code></a> moment of the active document for the current browsing context.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>We could share a single <code>documentTimeline</code> among multiple animations, thus allowing us to manipulate just that group of animations via their shared timeline. This bit of code would start all the cats animating 500 milliseconds into their animations:</p> <pre data-language="js"><span class="token keyword">var</span> cats <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">'.sharedTimelineCat'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+cats <span class="token operator">=</span> <span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>cats<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> sharedTimeline <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DocumentTimeline</span><span class="token punctuation">(</span><span class="token punctuation">{</span> originTime<span class="token operator">:</span> <span class="token number">500</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+cats<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">cat</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> catKeyframes <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">KeyframeEffect</span><span class="token punctuation">(</span>cat<span class="token punctuation">,</span> keyframes<span class="token punctuation">,</span> timing<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> catAnimation <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Animation</span><span class="token punctuation">(</span>catKeyframes<span class="token punctuation">,</span> sharedTimeline<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  catAnimation<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://drafts.csswg.org/web-animations-1/#dom-documenttimeline-documenttimeline" hreflang="en" rel=" noopener">Web Animations<br><small>The definition of 'DocumentTimeline()' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Editor's draft.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>DocumentTimeline</code></th>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes">
+<div>75</div>
+<div>63-75</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>70</div></td>
+<td class="bc-supports-yes"><div>13.1</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>63-79</div>
+</td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>13.4</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../web_animations_api">Web Animations API</a></li> <li><a href="../animationtimeline"><code>AnimationTimeline</code></a></li> <li><a href="../documenttimeline"><code>DocumentTimeline</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/DocumentTimeline/DocumentTimeline" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/DocumentTimeline/DocumentTimeline</a>
+  </p>
+</div>

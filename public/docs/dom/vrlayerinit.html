@@ -1,0 +1,175 @@
+<h1>VRLayerInit</h1>
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div> <p>The <code>VRLayerInit</code> interface (dictionary) of the <a href="webvr_api">WebVR API</a> represents a content layer (an <a href="htmlcanvaselement"><code>HTMLCanvasElement</code></a> or <a href="offscreencanvas"><code>OffscreenCanvas</code></a>) that you want to present in a VR display.</p> <p>You can retrieve <code>VRLayerInit</code> objects using <a href="vrdisplay/getlayers"><code>VRDisplay.getLayers()</code></a>, and present them using the <a href="vrdisplay/requestpresent"><code>VRDisplay.requestPresent()</code></a> method.</p>
+<h2 id="properties">Properties</h2>
+<dl> <dt><a href="vrlayerinit/leftbounds"><code>VRLayerInit.leftBounds</code></a></dt> <dd>Defines the left texture bounds of the canvas whose contents will be presented by the <a href="vrdisplay"><code>VRDisplay</code></a>.</dd> <dt><a href="vrlayerinit/rightbounds"><code>VRLayerInit.rightBounds</code></a></dt> <dd>Defines the right texture bounds of the canvas whose contents will be presented by the <a href="vrdisplay"><code>VRDisplay</code></a>.</dd> <dt><a href="vrlayerinit/source"><code>VRLayerInit.source</code></a></dt> <dd>Defines the canvas whose contents will be presented by the <a href="vrdisplay"><code>VRDisplay</code></a> when <a href="vrdisplay/submitframe"><code>VRDisplay.submitFrame()</code></a> is called.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token comment">// currently returns an empty array</span>
+<span class="token keyword">var</span> layers <span class="token operator">=</span> vrDisplay<span class="token punctuation">.</span><span class="token function">getLayers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span>navigator<span class="token punctuation">.</span>getVRDisplays<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'WebVR 1.1 supported'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// Then get the displays attached to the computer</span>
+  navigator<span class="token punctuation">.</span><span class="token function">getVRDisplays</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">displays</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// If a display is available, use it to present the scene</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>displays<span class="token punctuation">.</span>length <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      vrDisplay <span class="token operator">=</span> displays<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Display found'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// Starting the presentation when the button is clicked: It can only be called in response to a user gesture</span>
+      btn<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        vrDisplay<span class="token punctuation">.</span><span class="token function">requestPresent</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">{</span> source<span class="token operator">:</span> canvas <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Presenting to WebVR display'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+          <span class="token comment">// Here it returns an array of VRLayerInit objects</span>
+          <span class="token keyword">var</span> layers <span class="token operator">=</span> vrDisplay<span class="token punctuation">.</span><span class="token function">getLayers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+          <span class="token operator">...</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p><a href="vrlayerinit"><code>VRLayerInit</code></a> objects look something like this:</p> <pre data-language="js"><span class="token punctuation">{</span>
+  leftBounds <span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token operator">...</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  rightBounds<span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token operator">...</span> <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  source<span class="token operator">:</span> canvasReference
+<span class="token punctuation">}</span></pre> <div class="note notecard"> <p><strong>Note</strong>: The <code>canvasReference</code> refers to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas"><code>&lt;canvas&gt;</code></a> element itself, not the WebGL context associated with the canvas. The other two members are arrays</p> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://immersive-web.github.io/webvr/spec/1.1/#interface-vrlayerinit" hreflang="en" rel=" noopener">WebVR 1.1<br><small>The definition of 'VRLayerInit' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>VRLayerInit</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>≤18-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>leftBounds</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>≤18-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>rightBounds</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>≤18-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+<tr>
+<th><code>source</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>≤18-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="webvr_api">WebVR API homepage</a></li> <li>
+<a href="https://mixedreality.mozilla.org/" rel=" noopener">https://mixedreality.mozilla.org/</a> — demos, downloads, and other resources from the Mozilla VR team.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/VRLayerInit" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/VRLayerInit</a>
+  </p>
+</div>

@@ -1,0 +1,142 @@
+<h1>Function.prototype.apply()</h1> <p>The <code><strong>apply()</strong></code> method calls a function with a given <code>this</code> value, and <code>arguments</code> provided as an array (or an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections#working_with_array-like_objects">array-like object</a>).</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/function-apply.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">apply</span><span class="token punctuation">(</span>thisArg<span class="token punctuation">)</span>
+<span class="token function">apply</span><span class="token punctuation">(</span>thisArg<span class="token punctuation">,</span> argsArray<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>thisArg</var></code></dt> <dd> <p>The value of <code>this</code> provided for the call to <code><var>func</var></code>.</p> <p>Note that <code>this</code> may not be the actual value seen by the method: if the method is a function in <a href="../../strict_mode">non-strict mode</a> code, <a href="../null"><code>null</code></a> and <a href="../undefined"><code>undefined</code></a> will be replaced with the global object, and primitive values will be boxed. This argument is required.</p> </dd> <dt>
+<code><var>argsArray</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>An array-like object, specifying the arguments with which <code><var>func</var></code> should be called, or <a href="../null"><code>null</code></a> or <a href="../undefined"><code>undefined</code></a> if no arguments should be provided to the function.</p> <p>Starting with ECMAScript 5 these arguments can be a generic array-like object instead of an array. See below for <a href="#browser_compatibility">browser compatibility</a> information.</p> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The result of calling the function with the specified <code><strong>this</strong></code> value and arguments.</p>
+<h2 id="description">Description</h2>
+<div class="note notecard"> <p><strong>Note:</strong> While the syntax of this function is almost identical to that of <a href="call"><code>call()</code></a>, the fundamental difference is that <code>call()</code> accepts an <strong>argument list</strong>, while <code>apply()</code> accepts a <strong>single array of arguments</strong>.</p> </div> <div class="note notecard"> <p><strong>Note:</strong> When the first argument is undefined or null a similar outcome can be achieved using the array <a href="../../operators/spread_syntax">spread syntax</a>.</p> </div> <p>You can assign a different <code>this</code> object when calling an existing function. <code>this</code> refers to the current object (the calling object). With <code>apply</code>, you can write a method once, and then inherit it in another object, without having to rewrite the method for the new object.</p> <p><code>apply</code> is very similar to <a href="call"><code>call()</code></a>, except for the type of arguments it supports. You use an arguments array instead of a list of arguments (parameters). With <code>apply</code>, you can also use an array literal, for example, <code><var>func</var>.apply(this, ['eat', 'bananas'])</code>, or an <a href="../array"><code>Array</code></a> object, for example, <code><var>func</var>.apply(this, new Array('eat', 'bananas'))</code>.</p> <p>You can also use <a href="../../functions/arguments"><code>arguments</code></a> for the <code><var>argsArray</var></code> parameter. <a href="../../functions/arguments"><code>arguments</code></a> is a local variable of a function. It can be used for all unspecified arguments of the called object. Thus, you do not have to know the arguments of the called object when you use the <code>apply</code> method. You can use <code>arguments</code> to pass all the arguments to the called object. The called object is then responsible for handling the arguments.</p> <p>Since ECMAScript 5<sup>th</sup> Edition, you can also use any kind of object which is array-like. In practice, this means it's going to have a <code>length</code> property, and integer ("index") properties in the range <code>(0..length - 1)</code>. For example, you could use a <a href="https://developer.mozilla.org/en-US/docs/Web/API/NodeList"><code>NodeList</code></a>, or a custom object like <code>{ 'length': 2, '0': 'eat', '1': 'bananas' }</code>.</p> <div class="note notecard"> <p><strong>Note:</strong> Many older browsers—including Chrome &lt;17 and Internet Explorer &lt;9—don't accept array-like objects, and will throw an exception.</p> </div>
+<h2 id="examples">Examples</h2>
+<h3 id="using_apply_to_append_an_array_to_another">Using apply to append an array to another</h3>
+<p>You can use <code>push</code> to append an element to an array. And, because <code>push</code> accepts a variable number of arguments, you can also push multiple elements at once.</p> <p>But, if you pass an array to <code>push</code>, it will actually add that array as a single element, instead of adding the elements individually. So you end up with an array inside an array.</p> <p>What if that is not what you want? <code>concat</code> does have the desired behavior in this case, but it does not append to the <em>existing</em> array—it instead creates and returns a new array.</p> <p>But you wanted to append to the existing array... So what now? Write a loop? Surely not?</p> <p><code>apply</code> to the rescue!</p> <pre data-language="js"><span class="token keyword">const</span> array <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> elements <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+array<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>array<span class="token punctuation">,</span> elements<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span>array<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ["a", "b", 0, 1, 2]</span>
+</pre>
+<h3 id="using_apply_and_built-in_functions">Using apply and built-in functions</h3>
+<p>Clever usage of <code>apply</code> allows you to use built-in functions for some tasks that would probably have otherwise been written by looping over the array values.</p> <p>As an example, here are <code>Math.max</code>/<code>Math.min</code>, used to find out the maximum/minimum value in an array.</p> <pre data-language="js"><span class="token comment">// min/max number in an array</span>
+<span class="token keyword">const</span> numbers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">// using Math.min/Math.max apply</span>
+<span class="token keyword">let</span> max <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> numbers<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// This about equal to Math.max(numbers[0], ...)</span>
+<span class="token comment">// or Math.max(5, 6, ...)</span>
+
+<span class="token keyword">let</span> min <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> numbers<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// vs. simple loop based algorithm</span>
+max <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">Infinity</span><span class="token punctuation">,</span> min <span class="token operator">=</span> <span class="token operator">+</span><span class="token number">Infinity</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> numbers<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>numbers<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&gt;</span> max<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    max <span class="token operator">=</span> numbers<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>numbers<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">&lt;</span> min<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    min <span class="token operator">=</span> numbers<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre> <p>But beware: by using <code>apply</code> this way, you run the risk of exceeding the JavaScript engine's argument length limit. The consequences of applying a function with too many arguments (that is, more than tens of thousands of arguments) varies across engines. (The JavaScriptCore engine has hard-coded <a href="https://bugs.webkit.org/show_bug.cgi?id=80797" rel=" noopener">argument limit of 65536</a>.</p> <p>This is because the limit (and indeed, even the nature of any excessively-large-stack behavior) is unspecified. Some engines will throw an exception. More perniciously, others will arbitrarily limit the number of arguments actually passed to the applied function. To illustrate this latter case: if such an engine had a limit of four arguments (actual limits are of course significantly higher), it would be as if the arguments <code>5, 6, 2, 3</code> had been passed to <code>apply</code> in the examples above, rather than the full array.</p> <p>If your value array might grow into the tens of thousands, use a hybrid strategy: apply your function to chunks of the array at a time:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">minOfArray</span><span class="token punctuation">(</span><span class="token parameter">arr</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> min <span class="token operator">=</span> <span class="token number">Infinity</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> <span class="token constant">QUANTUM</span> <span class="token operator">=</span> <span class="token number">32768</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> len <span class="token operator">=</span> arr<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i <span class="token operator">&lt;</span> len<span class="token punctuation">;</span> i <span class="token operator">+=</span> <span class="token constant">QUANTUM</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> submin <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span>
+                                arr<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>i<span class="token operator">+</span><span class="token constant">QUANTUM</span><span class="token punctuation">,</span> len<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    min <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>submin<span class="token punctuation">,</span> min<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">return</span> min<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> min <span class="token operator">=</span> <span class="token function">minOfArray</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="using_apply_to_chain_constructors">Using apply to chain constructors</h3>
+<p>You can use <code>apply</code> to chain <a href="../../operators/new">constructors</a> for an object (similar to Java).</p> <p>In the following example we will create a global <a href="../function"><code>Function</code></a> method called <code>construct</code>, which will enable you to use an array-like object with a constructor instead of an arguments list.</p> <pre data-language="js"><span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">construct</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">aArgs</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> oNew <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>oNew<span class="token punctuation">,</span> aArgs<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> oNew<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre> <p>Example usage:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">MyConstructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> nProp <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> nProp <span class="token operator">&lt;</span> arguments<span class="token punctuation">.</span>length<span class="token punctuation">;</span> nProp<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">[</span><span class="token string">'property'</span> <span class="token operator">+</span> nProp<span class="token punctuation">]</span> <span class="token operator">=</span> arguments<span class="token punctuation">[</span>nProp<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> myArray <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token string">'Hello world!'</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> myInstance <span class="token operator">=</span> MyConstructor<span class="token punctuation">.</span><span class="token function">construct</span><span class="token punctuation">(</span>myArray<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myInstance<span class="token punctuation">.</span>property1<span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment">// logs 'Hello world!'</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myInstance <span class="token keyword">instanceof</span> <span class="token class-name">MyConstructor</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// logs 'true'</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myInstance<span class="token punctuation">.</span>constructor<span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// logs 'MyConstructor'</span>
+</pre> <div class="note notecard"> <p><strong>Note:</strong> This non-native <code>Function.construct</code> method will not work with some native constructors; like <a href="../date"><code>Date</code></a>, for example. In these cases you have to use the <a href="bind"><code>Function.prototype.bind</code></a> method.</p> <p>For example, imagine having an array like the following, to be used with <a href="../date"><code>Date</code></a> constructor: <code>[2012, 11, 4]</code>; in this case you have to write something like: <code>new (Function.prototype.bind.apply(Date, [null].concat([2012, 11, 4])))()</code>.</p> <p>This is not the best way to do things, and probably not to be used in any production environment.</p> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> </tr> </thead> <tbody> <tr> <td><a href="https://tc39.es/ecma262/#sec-function.prototype.apply" hreflang="en" rel=" noopener">ECMAScript (ECMA-262)<br><small>The definition of 'Function.prototype.apply' in that specification.</small></a></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>apply</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5.5</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>generic_arrays_as_arguments</code></th>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../../functions/arguments"><code>arguments</code></a> object</li> <li><a href="bind"><code>Function.prototype.bind()</code></a></li> <li><a href="call"><code>Function.prototype.call()</code></a></li> <li><a href="../../functions">Functions and function scope</a></li> <li><a href="../reflect/apply"><code>Reflect.apply()</code></a></li> <li><a href="../../operators/spread_syntax">Spread syntax</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply</a>
+  </p>
+</div>

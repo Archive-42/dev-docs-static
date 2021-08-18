@@ -1,0 +1,71 @@
+<h1>Intl.Locale.prototype.minimize()</h1> <p>The <code>Intl.Locale.prototype.minimize()</code> method attempts to remove information about the locale that would be added by calling <a href="maximize"><code>Locale.maximize()</code></a>.</p> <iframe class="interactive" width="100%" height="692" src="https://interactive-examples.mdn.mozilla.net/pages/js/intl-locale-prototype-minimize.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe>  <h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">minimize</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="../locale"><code>Locale</code></a> instance whose <code>baseName</code> property returns the result of the <a href="https://www.unicode.org/reports/tr35/#Likely_Subtags" rel=" noopener">Remove Likely Subtags</a> algorithm executed against <em><a href="basename"><code>locale.baseName</code></a></em>.</p>
+<h2 id="description">Description</h2>
+<p>This method carries out the reverse of <a href="maximize"><code>maximize()</code></a>, removing any language, script, or region subtags from the locale language identifier (essentially the contents of <code>baseName</code>). This is useful when there are superfluous subtags in the language identifier; for instance, "en-Latn" can be simplified to "en", since "Latn" is the only script used to write English. <code>minimize()</code> only affects the main subtags that comprise the <a href="https://www.unicode.org/reports/tr35/#Language_Locale_Field_Definitions" rel=" noopener">language identifier</a>: language, script, and region subtags. Other subtags after the "-u" in the locale identifier are called extension subtags and are not affected by the <code>minimize()</code> method. Examples of these subtags include <a href="hourcycle"><code>Locale.hourCycle</code></a>, <a href="calendar"><code>Locale.calendar</code></a>, and <a href="numeric"><code>Locale.numeric</code></a>.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_minimize">Using minimize</h3>
+<pre data-language="js"><span class="token keyword">let</span> myLocale <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Intl<span class="token punctuation">.</span>Locale</span><span class="token punctuation">(</span><span class="token string">"fr-Latn-FR"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>hourCycle<span class="token operator">:</span> <span class="token string">"h24"</span><span class="token punctuation">,</span> calendar<span class="token operator">:</span> <span class="token string">"gregory"</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myLocale<span class="token punctuation">.</span>baseName<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Prints "fr-Latn-FR"</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myLocale<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Prints "fr-Latn-FR-u-ca-gregory-hc-h24"</span>
+
+<span class="token keyword">let</span> myLocMinimized <span class="token operator">=</span> myLocale<span class="token punctuation">.</span><span class="token function">minimize</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Prints "fr", since French is only written in the Latin script</span>
+<span class="token comment">// and is most likely to be spoken in France.</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myLocMinimized<span class="token punctuation">.</span>baseName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Prints "fr-u-ca-gregory-hc-h24".</span>
+<span class="token comment">// Note that the extension tags (after "-u") remain unchanged.</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myLocMinimized<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma402/#sec-Intl.Locale.prototype.minimize">ECMAScript Internationalization API Specification (ECMAScript Internationalization API)<br> <small>#sec-Intl.Locale.prototype.minimize</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>minimize</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../locale"><code>Intl.Locale</code></a></li> <li><a href="basename"><code>Intl.Locale.baseName</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/minimize" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/Locale/minimize</a>
+  </p>
+</div>

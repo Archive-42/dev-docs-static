@@ -1,0 +1,110 @@
+<h1>URLSearchParams.set()</h1>
+
+ <p>The <code>set()</code> method of the <a href="../urlsearchparams"><code>URLSearchParams</code></a> interface sets the value associated with a given search parameter to the given value. If there were several matching values, this method deletes the others. If the search parameter doesn't exist, this method creates it.</p> 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="../web_workers_api">Web Workers</a>.</p> </div>
+
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">URLSearchParams<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> value<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>name</var></code></dt> <dd>The name of the parameter to set.</dd> <dt><code><var>value</var></code></dt> <dd>The value of the parameter to set.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>Void.</p>
+<h2 id="examples">Examples</h2>
+<p>Let's start with a simple example:</p> <pre data-language="js"><span class="token keyword">let</span> url <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span><span class="token string">'https://example.com?foo=1&amp;bar=2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> params <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">URLSearchParams</span><span class="token punctuation">(</span>url<span class="token punctuation">.</span>search<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//Add a third parameter.</span>
+params<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span><span class="token string">'baz'</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+params<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// "foo=1&amp;bar=2&amp;baz=3"</span>
+
+</pre> <p>Below is a real-life example demonstrating how to create a <a href="../url"><code>URL</code></a> and set some search parameters.</p> <p>You can copy and paste the example in a code environment like Codepen, JSFiddle, or the <a href="https://developer.mozilla.org/en-US/docs/Tools/Web_Console/The_command_line_interpreter">multi-line JavaScript interpreter in Firefox</a>.</p> <ul> <li>line #41: Comment out this line to stop dumping the search parameters to the console (<code>debug()</code>).</li> <li>line #43: Dumps the generated object and its string representation to the console (<code>info()</code>).</li> <li>line #44: Tries to automatically open a new window/tab with the generated URL (when uncommented).</li> </ul> <pre id="genurl" data-language="js"><span class="token string">'use strict'</span>
+
+<span class="token keyword">function</span> <span class="token function">genURL</span><span class="token punctuation">(</span><span class="token parameter">rExp<span class="token punctuation">,</span> aText<span class="token punctuation">,</span> bDebug<span class="token operator">=</span><span class="token boolean">false</span></span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+	<span class="token keyword">let</span> theURL
+
+	theURL<span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span><span class="token string">'https://regexr.com'</span><span class="token punctuation">)</span>
+	theURL<span class="token punctuation">.</span>searchParams<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span> <span class="token string">'expression'</span><span class="token punctuation">,</span> rExp<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span>
+	theURL<span class="token punctuation">.</span>searchParams<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span> <span class="token string">'tool'</span><span class="token punctuation">,</span> <span class="token string">'replace'</span> <span class="token punctuation">)</span>
+	theURL<span class="token punctuation">.</span>searchParams<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span> <span class="token string">'input'</span><span class="token punctuation">,</span> <span class="token string">'\u2911\u20dc'</span> <span class="token punctuation">)</span><span class="token comment">// ⤑⃜</span>
+	theURL<span class="token punctuation">.</span>searchParams<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span> <span class="token string">'text'</span><span class="token punctuation">,</span> aText<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">'\n'</span><span class="token punctuation">)</span> <span class="token punctuation">)</span>
+	<span class="token keyword">if</span><span class="token punctuation">(</span> bDebug <span class="token punctuation">)</span><span class="token punctuation">{</span>
+		<span class="token comment">// Display the key/value pairs</span>
+		<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> pair <span class="token keyword">of</span> theURL<span class="token punctuation">.</span>searchParams<span class="token punctuation">.</span><span class="token function">entries</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+			console<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span>pair<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">' = \''</span> <span class="token operator">+</span> pair<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">'\''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+		<span class="token punctuation">}</span>
+		console<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span>theURL<span class="token punctuation">)</span>
+	<span class="token punctuation">}</span>
+	<span class="token keyword">return</span> theURL
+<span class="token punctuation">}</span>
+<span class="token keyword">var</span> url <span class="token operator">=</span> <span class="token function">genURL</span><span class="token punctuation">(</span>
+	<span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">(^\s*\/\/|\s*[^:]\/\/).*\s*$|\s*\/\*(.|\n)+?\*\/\s*$</span><span class="token regex-delimiter">/</span><span class="token regex-flags">gm</span></span>	<span class="token comment">// single/multi-line comments</span>
+	<span class="token comment">// /(^\s*\/\/.*|\s*[^:]\/\/.*)/g								// single-line comments</span>
+	<span class="token punctuation">,</span><span class="token punctuation">[</span>
+		<span class="token string">"These should work:"</span><span class="token punctuation">,</span>
+		<span class="token string">""</span><span class="token punctuation">,</span>
+		<span class="token string">"// eslint-disable-next-line no-unused-vars"</span><span class="token punctuation">,</span>
+		<span class="token string">"lockPref(	'keyword.URL',\t\t'https://duckduckgo.com/html/?q=!+'	)\t//      test"</span><span class="token punctuation">,</span>
+		<span class="token string">"/*"</span><span class="token punctuation">,</span>
+		<span class="token string">"	* bla bla    "</span><span class="token punctuation">,</span>
+		<span class="token string">"*/"</span><span class="token punctuation">,</span>
+		<span class="token string">""</span><span class="token punctuation">,</span>
+		<span class="token string">"/* bla bla */"</span><span class="token punctuation">,</span>
+		<span class="token string">""</span><span class="token punctuation">,</span>
+		<span class="token string">"// bla bla "</span><span class="token punctuation">,</span>
+		<span class="token string">""</span><span class="token punctuation">,</span>
+		<span class="token string">"These shouldn\'t work:"</span><span class="token punctuation">,</span>
+		<span class="token string">"console.log(\"http://foo.co.uk/\")"</span><span class="token punctuation">,</span>
+		<span class="token string">"var url = \"http://regexr.com/foo.html?q=bar\""</span><span class="token punctuation">,</span>
+		<span class="token string">"alert(\"https://mediatemple.net\")"</span><span class="token punctuation">,</span>
+	<span class="token punctuation">]</span>
+	<span class="token punctuation">,</span> <span class="token boolean">true</span>
+<span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">info</span><span class="token punctuation">(</span> url<span class="token punctuation">,</span> url<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">)</span>
+<span class="token comment">// window.open( url, 'regex_site' )</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://url.spec.whatwg.org/#dom-urlsearchparams-set" hreflang="en" rel=" noopener">URL<br><small>The definition of 'set()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>set</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table> 
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/set" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/set</a>
+  </p>
+</div>

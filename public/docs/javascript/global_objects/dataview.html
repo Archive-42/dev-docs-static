@@ -1,0 +1,466 @@
+<h1>DataView</h1> <p>The <code>DataView</code> view provides a low-level interface for reading and writing multiple number types in a binary <a href="arraybuffer"><code>ArrayBuffer</code></a>, without having to care about the platform's <a href="https://developer.mozilla.org/en-US/docs/Glossary/Endianness">endianness</a>.</p>
+<h2 id="description">Description</h2>
+<h3 id="endianness">Endianness</h3>
+<p>Multi-byte number formats are represented in memory differently depending on machine architecture — see <a href="https://developer.mozilla.org/en-US/docs/Glossary/Endianness">Endianness</a> for an explanation. <code>DataView</code> accessors provide explicit control of how data is accessed, regardless of the executing computer's endianness.</p> <pre data-language="js"><span class="token keyword">var</span> littleEndian <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> buffer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayBuffer</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">new</span> <span class="token class-name">DataView</span><span class="token punctuation">(</span>buffer<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setInt16</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">256</span><span class="token punctuation">,</span> <span class="token boolean">true</span> <span class="token comment">/* littleEndian */</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// Int16Array uses the platform's endianness.</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Int16Array</span><span class="token punctuation">(</span>buffer<span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">===</span> <span class="token number">256</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>littleEndian<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true or false</span>
+</pre>
+<h3 id="64-bit_integer_values">64-bit Integer Values</h3>
+<p>Some browsers don’t have support for <a href="dataview/setbigint64"><code>DataView.prototype.setBigInt64()</code></a> and <a href="dataview/setbiguint64"><code>DataView.prototype.setBigUint64()</code></a>. So to enable 64-bit operations in your code that will work across browsers, you could implement your own <code>getUint64()</code> function, to obtain values with precision up to <a href="number/max_safe_integer"><code>Number.MAX_SAFE_INTEGER</code></a> — which could suffice for certain cases.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">getUint64</span><span class="token punctuation">(</span><span class="token parameter">dataview<span class="token punctuation">,</span> byteOffset<span class="token punctuation">,</span> littleEndian</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// split 64-bit number into two 32-bit (4-byte) parts</span>
+  <span class="token keyword">const</span> left <span class="token operator">=</span>  dataview<span class="token punctuation">.</span><span class="token function">getUint32</span><span class="token punctuation">(</span>byteOffset<span class="token punctuation">,</span> littleEndian<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> right <span class="token operator">=</span> dataview<span class="token punctuation">.</span><span class="token function">getUint32</span><span class="token punctuation">(</span>byteOffset<span class="token operator">+</span><span class="token number">4</span><span class="token punctuation">,</span> littleEndian<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// combine the two 32-bit values</span>
+  <span class="token keyword">const</span> combined <span class="token operator">=</span> littleEndian<span class="token operator">?</span> left <span class="token operator">+</span> <span class="token number">2</span><span class="token operator">**</span><span class="token number">32</span><span class="token operator">*</span>right <span class="token operator">:</span> <span class="token number">2</span><span class="token operator">**</span><span class="token number">32</span><span class="token operator">*</span>left <span class="token operator">+</span> right<span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Number<span class="token punctuation">.</span><span class="token function">isSafeInteger</span><span class="token punctuation">(</span>combined<span class="token punctuation">)</span><span class="token punctuation">)</span>
+    console<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span>combined<span class="token punctuation">,</span> <span class="token string">'exceeds MAX_SAFE_INTEGER. Precision may be lost'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> combined<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>Alternatively, if you need full 64-bit range, you can create a <a href="bigint"><code>BigInt</code></a>. Further, although native BigInts are much faster than user-land library equivalents, BigInts will always be much slower than 32-bit integers in JavaScript due to the nature of their variable size.</p> <pre data-language="js"><span class="token keyword">const</span> BigInt <span class="token operator">=</span> window<span class="token punctuation">.</span>BigInt<span class="token punctuation">,</span> bigThirtyTwo <span class="token operator">=</span> <span class="token function">BigInt</span><span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">,</span> bigZero <span class="token operator">=</span> <span class="token function">BigInt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">getUint64BigInt</span><span class="token punctuation">(</span><span class="token parameter">dataview<span class="token punctuation">,</span> byteOffset<span class="token punctuation">,</span> littleEndian</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// split 64-bit number into two 32-bit (4-byte) parts</span>
+  <span class="token keyword">const</span> left <span class="token operator">=</span> <span class="token function">BigInt</span><span class="token punctuation">(</span>dataview<span class="token punctuation">.</span><span class="token function">getUint32</span><span class="token punctuation">(</span>byteOffset<span class="token operator">|</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">!</span><span class="token operator">!</span>littleEndian<span class="token punctuation">)</span><span class="token operator">&gt;&gt;&gt;</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> right <span class="token operator">=</span> <span class="token function">BigInt</span><span class="token punctuation">(</span>dataview<span class="token punctuation">.</span><span class="token function">getUint32</span><span class="token punctuation">(</span><span class="token punctuation">(</span>byteOffset<span class="token operator">|</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">4</span><span class="token operator">|</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">!</span><span class="token operator">!</span>littleEndian<span class="token punctuation">)</span><span class="token operator">&gt;&gt;&gt;</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// combine the two 32-bit values and return</span>
+  <span class="token keyword">return</span> littleEndian <span class="token operator">?</span> <span class="token punctuation">(</span>right<span class="token operator">&lt;&lt;</span>bigThirtyTwo<span class="token punctuation">)</span><span class="token operator">|</span>left <span class="token operator">:</span> <span class="token punctuation">(</span>left<span class="token operator">&lt;&lt;</span>bigThirtyTwo<span class="token punctuation">)</span><span class="token operator">|</span>right<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="dataview/dataview"><code>DataView()</code></a></dt> <dd>Creates a new <code>DataView</code> object.</dd> </dl>
+<h2 id="instance_properties">Instance properties</h2>
+<dl> <dt><a href="dataview/buffer"><code>DataView.prototype.buffer</code></a></dt> <dd>The <a href="arraybuffer"><code>ArrayBuffer</code></a> referenced by this view. Fixed at construction time and thus <strong>read only.</strong>
+</dd> <dt><a href="dataview/bytelength"><code>DataView.prototype.byteLength</code></a></dt> <dd>The length (in bytes) of this view from the start of its <a href="arraybuffer"><code>ArrayBuffer</code></a>. Fixed at construction time and thus <strong>read only.</strong>
+</dd> <dt><a href="dataview/byteoffset"><code>DataView.prototype.byteOffset</code></a></dt> <dd>The offset (in bytes) of this view from the start of its <a href="arraybuffer"><code>ArrayBuffer</code></a>. Fixed at construction time and thus <strong>read only.</strong>
+</dd> </dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl> <dt><a href="dataview/getint8"><code>DataView.prototype.getInt8()</code></a></dt> <dd>Gets a signed 8-bit integer (byte) at the specified byte offset from the start of the view.</dd> <dt><a href="dataview/getuint8"><code>DataView.prototype.getUint8()</code></a></dt> <dd>Gets an unsigned 8-bit integer (unsigned byte) at the specified byte offset from the start of the view.</dd> <dt><a href="dataview/getint16"><code>DataView.prototype.getInt16()</code></a></dt> <dd>Gets a signed 16-bit integer (short) at the specified byte offset from the start of the view.</dd> <dt><a href="dataview/getuint16"><code>DataView.prototype.getUint16()</code></a></dt> <dd>Gets an unsigned 16-bit integer (unsigned short) at the specified byte offset from the start of the view.</dd> <dt><a href="dataview/getint32"><code>DataView.prototype.getInt32()</code></a></dt> <dd>Gets a signed 32-bit integer (long) at the specified byte offset from the start of the view.</dd> <dt><a href="dataview/getuint32"><code>DataView.prototype.getUint32()</code></a></dt> <dd>Gets an unsigned 32-bit integer (unsigned long) at the specified byte offset from the start of the view.</dd> <dt><a href="dataview/getfloat32"><code>DataView.prototype.getFloat32()</code></a></dt> <dd>Gets a signed 32-bit float (float) at the specified byte offset from the start of the view.</dd> <dt><a href="dataview/getfloat64"><code>DataView.prototype.getFloat64()</code></a></dt> <dd>Gets a signed 64-bit float (double) at the specified byte offset from the start of the view.</dd> <dt><a href="dataview/getbigint64"><code>DataView.prototype.getBigInt64()</code></a></dt> <dd>Gets a signed 64-bit integer (long long) at the specified byte offset from the start of the view.</dd> <dt><a href="dataview/getbiguint64"><code>DataView.prototype.getBigUint64()</code></a></dt> <dd>Gets an unsigned 64-bit integer (unsigned long long) at the specified byte offset from the start of the view.</dd> <dt><a href="dataview/setint8"><code>DataView.prototype.setInt8()</code></a></dt> <dd>Stores a signed 8-bit integer (byte) value at the specified byte offset from the start of the view.</dd> <dt><a href="dataview/setuint8"><code>DataView.prototype.setUint8()</code></a></dt> <dd>Stores an unsigned 8-bit integer (unsigned byte) value at the specified byte offset from the start of the view.</dd> <dt><a href="dataview/setint16"><code>DataView.prototype.setInt16()</code></a></dt> <dd>Stores a signed 16-bit integer (short) value at the specified byte offset from the start of the view.</dd> <dt><a href="dataview/setuint16"><code>DataView.prototype.setUint16()</code></a></dt> <dd>Stores an unsigned 16-bit integer (unsigned short) value at the specified byte offset from the start of the view.</dd> <dt><a href="dataview/setint32"><code>DataView.prototype.setInt32()</code></a></dt> <dd>Stores a signed 32-bit integer (long) value at the specified byte offset from the start of the view.</dd> <dt><a href="dataview/setuint32"><code>DataView.prototype.setUint32()</code></a></dt> <dd>Stores an unsigned 32-bit integer (unsigned long) value at the specified byte offset from the start of the view.</dd> <dt><a href="dataview/setfloat32"><code>DataView.prototype.setFloat32()</code></a></dt> <dd>Stores a signed 32-bit float (float) value at the specified byte offset from the start of the view.</dd> <dt><a href="dataview/setfloat64"><code>DataView.prototype.setFloat64()</code></a></dt> <dd>Stores a signed 64-bit float (double) value at the specified byte offset from the start of the view.</dd> <dt><a href="dataview/setbigint64"><code>DataView.prototype.setBigInt64()</code></a></dt> <dd>Stores a signed 64-bit integer (long long) value at the specified byte offset from the start of the view.</dd> <dt><a href="dataview/setbiguint64"><code>DataView.prototype.setBigUint64()</code></a></dt> <dd>Stores an unsigned 64-bit integer (unsigned long long) value at the specified byte offset from the start of the view.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="using_dataview">Using DataView</h3>
+<pre data-language="js"><span class="token keyword">var</span> buffer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayBuffer</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> view <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DataView</span><span class="token punctuation">(</span>buffer<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+view<span class="token punctuation">.</span><span class="token function">setInt16</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+view<span class="token punctuation">.</span><span class="token function">getInt16</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 42</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-dataview-objects">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-dataview-objects</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>DataView</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>DataView</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>buffer</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>byteLength</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>byteOffset</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>getBigInt64</code></th>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+<tr>
+<th><code>getBigUint64</code></th>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+<tr>
+<th><code>getFloat32</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>getFloat64</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>getInt16</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>getInt32</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>getInt8</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>getUint16</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>getUint32</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>getUint8</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>setBigInt64</code></th>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+<tr>
+<th><code>setBigUint64</code></th>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+<tr>
+<th><code>setFloat32</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>setFloat64</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>setInt16</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>setInt32</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>setInt8</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>setUint16</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>setUint32</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>setUint8</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="https://github.com/jDataView/jDataView" rel=" noopener">jDataView</a>: JavaScript library that polyfills and extends the <code>DataView</code> API to all browsers and Node.js.</li> <li><a href="arraybuffer"><code>ArrayBuffer</code></a></li> <li><a href="sharedarraybuffer"><code>SharedArrayBuffer</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView</a>
+  </p>
+</div>

@@ -1,0 +1,66 @@
+<h1>WindowEventHandlers.onpopstate</h1> <p>The <code>onpopstate</code> property of the <a href="../windoweventhandlers"><code>WindowEventHandlers</code></a> mixin is the <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a> for processing <code><a href="../window/popstate_event">popstate</a></code> events on the window.</p> <p>A <code>popstate</code> event is dispatched to the window each time the active history entry changes between two history entries for the same document. If the activated history entry was created by a call to <code>history.pushState()</code>, or was affected by a call to <code>history.replaceState()</code>, the <code>popstate</code> event's <code>state</code> property contains a copy of the history entry's state object.</p> <div class="note notecard"> <p><strong>Note</strong>: Calling <code>history.pushState()</code> or <code>history.replaceState()</code> won't trigger a <code>popstate</code> event. The <code>popstate</code> event is only triggered by performing a browser action, such as clicking on the back button (or calling <code>history.back()</code> in JavaScript), when navigating between two history entries for the same document.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">window<span class="token punctuation">.</span>onpopstate <span class="token operator">=</span> funcRef<span class="token punctuation">;</span>
+</pre> <ul> <li>
+<code>funcRef</code> is a handler function.</li> </ul>
+<h2 id="the_popstate_event">Examples</h2>
+<p>For example, a page at <code>http://example.com/example.html</code> running the following code will generate alerts as indicated:</p> <pre data-language="js">window<span class="token punctuation">.</span><span class="token function-variable function">onpopstate</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"location: "</span> <span class="token operator">+</span> document<span class="token punctuation">.</span>location <span class="token operator">+</span> <span class="token string">", state: "</span> <span class="token operator">+</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>state<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+history<span class="token punctuation">.</span><span class="token function">pushState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>page<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">"title 1"</span><span class="token punctuation">,</span> <span class="token string">"?page=1"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+history<span class="token punctuation">.</span><span class="token function">pushState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>page<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">"title 2"</span><span class="token punctuation">,</span> <span class="token string">"?page=2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+history<span class="token punctuation">.</span><span class="token function">replaceState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>page<span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">"title 3"</span><span class="token punctuation">,</span> <span class="token string">"?page=3"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+history<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// alerts "location: http://example.com/example.html?page=1, state: {"page":1}"</span>
+history<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// alerts "location: http://example.com/example.html, state: null</span>
+history<span class="token punctuation">.</span><span class="token function">go</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// alerts "location: http://example.com/example.html?page=3, state: {"page":3}</span>
+</pre> <p>Note that even though the original history entry (for <code>http://example.com/example.html</code>) has no state object associated with it, a <code>popstate</code> event is still fired, when we activate that entry after the second call to <code>history.back()</code>.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-window-onpopstate" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'onpopstate' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onpopstate</code></th>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>11.5</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11.5</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../window/history"><code>window.history</code></a></li> <li><a href="../history_api">Manipulating the browser history</a></li> <li><a href="../history_api/example">Ajax navigation example</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onpopstate" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onpopstate</a>
+  </p>
+</div>

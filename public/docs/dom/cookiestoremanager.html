@@ -1,0 +1,103 @@
+<h1>CookieStoreManager</h1>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div> <p class="summary">The <code>CookieStoreManager</code> interface of the <a class="page-not-created"><code>Cookie Store</code></a> API allows service workers to subscribe to events for cookie changes. By using the <a href="cookiestoremanager/subscribe"><code>subscribe()</code></a> method a particular service worker registration can indicate that it is interested in change events.</p> <p>A <code>CookieStoreManager</code> has an associated <a href="serviceworkerregistration"><code>ServiceWorkerRegistration</code></a>. Each service worker registration has a cookie change subscription list, which is a list of cookie change subscriptions each containing a name and url. The methods in this interface allow the service worker to add and remove subscriptions from this list, and to get a list of all subscriptions.</p> <p>To get a <code>CookieStoreManager</code>, call <a class="page-not-created"><code>ServiceWorkerRegistration.cookies</code></a>.</p>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="cookiestoremanager/getsubscriptions"><code>CookieStoreManager.getSubscriptions()</code></a></dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>promise</code></a> which resolves to a list of the cookie change subscriptions for this service worker registration.</dd> <dt><a href="cookiestoremanager/subscribe"><code>CookieStoreManager.subscribe()</code></a></dt> <dd>Subscribes to changes to cookies. It returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>promise</code></a> which resolves when the subscription is successful.</dd> <dt><a href="cookiestoremanager/unsubscribe"><code>CookieStoreManager.unsubscribe()</code></a></dt> <dd>Unsubscribes the registered service worker from changes to cookies. It returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>promise</code></a> which resolves when the operation is successful.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>In this example the <a href="serviceworkerregistration"><code>ServiceWorkerRegistration</code></a> represented by <code>registration</code> is subscribing to change events on the cookie named <code>"cookie1"</code> with a scope of <code>"/path1"</code>.</p> <pre data-language="js"><span class="token keyword">const</span> subscriptions <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token string">'cookie1'</span><span class="token punctuation">,</span> url<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">/path1</span><span class="token template-punctuation string">`</span></span> <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">await</span> registration<span class="token punctuation">.</span>cookies<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span>subscriptions<span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>If the <a href="serviceworkerregistration"><code>ServiceWorkerRegistration</code></a> has subscribed to any cookies then <a href="cookiestoremanager/getsubscriptions"><code>getSubscriptions()</code></a> will return a list of cookies represented by objects in the same format as used for the original subscription.</p> <pre data-language="js"><span class="token keyword">const</span> subscriptions <span class="token operator">=</span> <span class="token keyword">await</span> registration<span class="token punctuation">.</span>cookies<span class="token punctuation">.</span><span class="token function">getSubscriptions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://wicg.github.io/cookie-store/#CookieStoreManager" hreflang="en" rel=" noopener">Cookie Store API<br><small>The definition of 'CookieStoreManager' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>CookieStoreManager</code></th>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>getSubscriptions</code></th>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>subscribe</code></th>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>unsubscribe</code></th>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/CookieStoreManager" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/CookieStoreManager</a>
+  </p>
+</div>

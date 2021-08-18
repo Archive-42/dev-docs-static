@@ -1,0 +1,92 @@
+<h1>Element.onfullscreenchange</h1> <p>The <a href="../element"><code>Element</code></a> interface's <code><strong>onfullscreenchange</strong></code> property is an event handler for the <code><a href="../document/fullscreenchange_event">fullscreenchange</a></code> event that is fired when the element has transitioned into or out of full-screen mode.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">targetDocument<span class="token punctuation">.</span>onfullscreenchange <span class="token operator">=</span> fullscreenChangeHandler<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>An event handler for the <code><a href="../document/fullscreenchange_event">fullscreenchange</a></code> event, indicating that the element has changed in or out of full-screen mode.</p>
+<h2 id="example">Example</h2>
+<p>This example establishes a <code>fullscreenchange</code> event handler, <code>handleFullscreenChange()</code>. This function determines which element it was called on by checking the value of <a href="../event/target"><code>event.target</code></a>, then compares the document's <a href="../document/fullscreenelement"><code>fullscreenElement</code></a> value to the element to see if they're the same node.</p> <p>This gives us a value, <code>isFullscreen</code>, which we pass into a function called <code>adjustMyControls()</code>, which we imagine to be a function that makes adjustments to the app's user interface to present itself optimally when it's in full-screen mode versus being displayed in a window.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">toggleFullscreen</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> elem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"video"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  elem<span class="token punctuation">.</span>onfullscreenchange <span class="token operator">=</span> handleFullscreenChange<span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>document<span class="token punctuation">.</span>fullscreenElement<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    elem<span class="token punctuation">.</span><span class="token function">requestFullscreen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">err</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token function">alert</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Error attempting to enable full-screen mode: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>err<span class="token punctuation">.</span>message<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> (</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>err<span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">)</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    document<span class="token punctuation">.</span><span class="token function">exitFullscreen</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">handleFullscreenChange</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> elem <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> isFullscreen <span class="token operator">=</span> document<span class="token punctuation">.</span>fullscreenElement <span class="token operator">===</span> elem<span class="token punctuation">;</span>
+
+  <span class="token function">adjustMyControls</span><span class="token punctuation">(</span>isFullscreen<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://fullscreen.spec.whatwg.org/#handler-document-onfullscreenchange" hreflang="en" rel=" noopener">Fullscreen API<br><small>The definition of 'onfullscreenchange' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onfullscreenchange</code></th>
+<td class="bc-supports-yes">
+<div>71</div>
+<div>57</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>64</div>
+<div>10</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>71</div>
+<div>57</div>
+</td>
+<td class="bc-supports-yes">
+<div>71</div>
+<div>57</div>
+</td>
+<td class="bc-supports-yes">
+<div>64</div>
+<div>10</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../fullscreen_api">Fullscreen API </a></li> <li>
+<a href="../fullscreen_api/guide">Guide to the Fullscreen API</a> </li> <li><code><a href="../document/fullscreenchange_event">fullscreenchange</a></code></li> <li><a href="onfullscreenerror"><code>Element.onfullscreenerror</code></a></li> <li>The <a href="../document"><code>Document</code></a> equivalent: <a href="../document/onfullscreenchange"><code>onfullscreenchange</code></a>.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/onfullscreenchange" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/onfullscreenchange</a>
+  </p>
+</div>

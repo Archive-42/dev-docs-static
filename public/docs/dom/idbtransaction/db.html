@@ -1,0 +1,108 @@
+<h1>IDBTransaction.db</h1>
+
+  <p>The <code>db</code> read-only property of the <a href="../idbtransaction"><code>IDBTransaction</code></a> interface returns the database connection with which this transaction is associated.</p> 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="../web_workers_api">Web Workers</a>.</p> </div>
+ <h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> myDatabase <span class="token operator">=</span> transaction<span class="token punctuation">.</span>db<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p><span style="line-height: 1.5;">An <a href="../idbdatabase"><code>IDBDatabase</code></a> object.</span></p>
+<h2 id="example">Example</h2>
+<p>In the following code snippet, we open a read/write transaction on our database and add some data to an object store. Note also the functions attached to transaction event handlers to report on the outcome of the transaction opening in the event of success or failure. At the end, we return the associated database connection using <code>db</code>. For a full working example, see our <a href="https://github.com/mdn/to-do-notifications/" style="line-height: 1.5;" rel=" noopener">To-do Notifications</a><span style="line-height: 1.5;"> app (</span><a href="https://mdn.github.io/to-do-notifications/" style="line-height: 1.5;" rel=" noopener">view example live</a><span style="line-height: 1.5;">.)</span></p> <pre data-language="js"><span class="token comment">// Let us open our database</span>
+<span class="token keyword">var</span> DBOpenRequest <span class="token operator">=</span> window<span class="token punctuation">.</span>indexedDB<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"toDoList"</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+DBOpenRequest<span class="token punctuation">.</span><span class="token function-variable function">onsuccess</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  note<span class="token punctuation">.</span>innerHTML <span class="token operator">+=</span> <span class="token string">'&lt;li&gt;Database initialised.&lt;/li&gt;'</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// store the result of opening the database in the db variable.</span>
+  <span class="token comment">// This is used a lot below</span>
+  db <span class="token operator">=</span> DBOpenRequest<span class="token punctuation">.</span>result<span class="token punctuation">;</span>
+
+  <span class="token comment">// Run the addData() function to add the data to the database</span>
+  <span class="token function">addData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">addData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Create a new object ready for being inserted into the IDB</span>
+  <span class="token keyword">var</span> newItem <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token punctuation">{</span> taskTitle<span class="token operator">:</span> <span class="token string">"Walk dog"</span><span class="token punctuation">,</span> hours<span class="token operator">:</span> <span class="token number">19</span><span class="token punctuation">,</span> minutes<span class="token operator">:</span> <span class="token number">30</span><span class="token punctuation">,</span> day<span class="token operator">:</span> <span class="token number">24</span><span class="token punctuation">,</span> month<span class="token operator">:</span> <span class="token string">"December"</span><span class="token punctuation">,</span> year<span class="token operator">:</span> <span class="token number">2013</span><span class="token punctuation">,</span> notified<span class="token operator">:</span> <span class="token string">"no"</span> <span class="token punctuation">}</span> <span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// open a read/write db transaction, ready for adding the data</span>
+  <span class="token keyword">var</span> transaction <span class="token operator">=</span> db<span class="token punctuation">.</span><span class="token function">transaction</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">"toDoList"</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">"readwrite"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// report on the success of opening the transaction</span>
+  transaction<span class="token punctuation">.</span><span class="token function-variable function">oncomplete</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    note<span class="token punctuation">.</span>innerHTML <span class="token operator">+=</span> <span class="token string">'&lt;li&gt;Transaction completed: database modification finished.&lt;/li&gt;'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  transaction<span class="token punctuation">.</span><span class="token function-variable function">onerror</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    note<span class="token punctuation">.</span>innerHTML <span class="token operator">+=</span> <span class="token string">'&lt;li&gt;Transaction not opened due to error. Duplicate items not allowed.&lt;/li&gt;'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// create an object store on the transaction</span>
+  <span class="token keyword">var</span> objectStore <span class="token operator">=</span> transaction<span class="token punctuation">.</span><span class="token function">objectStore</span><span class="token punctuation">(</span><span class="token string">"toDoList"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// add our newItem object to the object store</span>
+  <span class="token keyword">var</span> objectStoreRequest <span class="token operator">=</span> objectStore<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>newItem<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  objectStoreRequest<span class="token punctuation">.</span><span class="token function-variable function">onsuccess</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// report the success of the request (this does not mean the item</span>
+    <span class="token comment">// has been stored successfully in the DB - for that you need transaction.onsuccess)</span>
+    note<span class="token punctuation">.</span>innerHTML <span class="token operator">+=</span> <span class="token string">'&lt;li&gt;Request successful.&lt;/li&gt;'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Return the database (IDBDatabase) connection with which this transaction is associated</span>
+  transaction<span class="token punctuation">.</span>db<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbtransaction-db" hreflang="en" rel=" noopener">Indexed Database API 2.0<br><small>The definition of 'db' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/IndexedDB/#dom-idbtransaction-db" hreflang="en" rel=" noopener">Indexed Database API 2.0<br><small>The definition of 'db' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>db</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../indexeddb_api/using_indexeddb">Using IndexedDB</a></li> <li>Starting transactions: <a href="../idbdatabase"><code>IDBDatabase</code></a>
+</li> <li>Using transactions: <a href="../idbtransaction"><code>IDBTransaction</code></a>
+</li> <li>Setting a range of keys: <a href="../idbkeyrange"><code>IDBKeyRange</code></a>
+</li> <li>Retrieving and making changes to your data: <a href="../idbobjectstore"><code>IDBObjectStore</code></a>
+</li> <li>Using cursors: <a href="../idbcursor"><code>IDBCursor</code></a>
+</li> <li>Reference example: <a href="https://github.com/mdn/to-do-notifications/tree/gh-pages" rel=" noopener">To-do Notifications</a> (<a href="https://mdn.github.io/to-do-notifications/" rel=" noopener">view example live</a>.)</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction/db" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBTransaction/db</a>
+  </p>
+</div>

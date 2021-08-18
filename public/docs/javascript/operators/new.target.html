@@ -1,0 +1,87 @@
+<h1>new.target</h1> <p>The <code>new.target</code> pseudo-property lets you detect whether a function or constructor was called using the <a href="new">new</a> operator. In constructors and functions invoked using the <a href="new">new</a> operator, <code>new.target</code> returns a reference to the constructor or function. In normal function calls, <code>new.target</code> is <a href="../global_objects/undefined"><code>undefined</code></a>.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/expressions-newtarget.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">new</span><span class="token punctuation">.</span>target</pre>
+<h2 id="description">Description</h2>
+<p>The <code>new.target</code> syntax consists of the keyword <code>new</code>, a dot, and the identifier <code>target</code>. Normally, the left-hand side of the dot is the object on which property access is performed, but here, <code>new</code> is not an object.</p> <p>The <code>new.target</code> pseudo-property is available in all functions.</p> <p>In class constructors, it refers to the constructed class.</p> <p>In ordinary functions, it refers to the function itself, assuming it was invoked via the <a href="new">new</a> operator; otherwise <code>new.target</code> is <a href="../global_objects/undefined"><code>undefined</code></a>.</p> <p>In <a href="../functions/arrow_functions">arrow functions</a>, <code>new.target</code> is inherited from the surrounding scope.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="new.target_in_function_calls">new.target in function calls</h3>
+<p>In normal function calls (as opposed to constructor function calls), <code>new.target</code> is <a href="../global_objects/undefined"><code>undefined</code></a>. This lets you detect whether a function was called with <a href="new">new</a> as a constructor. </p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">new</span><span class="token punctuation">.</span>target<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">throw</span> <span class="token string">'Foo() must be called with new'</span> <span class="token punctuation">}</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Foo instantiated with new'</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">new</span> <span class="token class-name">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// logs "Foo instantiated with new"</span>
+<span class="token function">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span>      <span class="token comment">// throws "Foo() must be called with new"</span>
+</pre>
+<h3 id="new.target_in_constructors">new.target in constructors</h3>
+<p>In class constructors, <code>new.target</code> refers to the constructor that was directly invoked by <code>new</code>. This is also the case if the constructor is in a parent class and was delegated from a child constructor.</p> <pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">A</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span><span class="token punctuation">.</span>target<span class="token punctuation">.</span>name<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">B</span> <span class="token keyword">extends</span> <span class="token class-name">A</span> <span class="token punctuation">{</span> <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// logs "A"</span>
+<span class="token keyword">let</span> b <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">B</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// logs "B"</span>
+
+<span class="token keyword">class</span> <span class="token class-name">C</span> <span class="token punctuation">{</span> <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span><span class="token punctuation">.</span>target<span class="token punctuation">)</span>  <span class="token punctuation">}</span> <span class="token punctuation">}</span>
+<span class="token keyword">class</span> <span class="token class-name">D</span> <span class="token keyword">extends</span> <span class="token class-name">C</span> <span class="token punctuation">{</span> <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token punctuation">}</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> c <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">C</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// logs class C{constructor(){console.log(new.target);}}</span>
+<span class="token keyword">let</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">D</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// logs class D extends C{constructor(){super();}}</span></pre> <p class="summary">Thus from the above example of class <code>C</code> and <code>D</code>, it seems that <code>new.target</code> points to the class definition of class which is initialized. For example, when <code>d</code> was initialized using <code>new D()</code>, the class definition of <code>D</code> was printed; and similarly, in case of <code>c</code>, the class <code>C</code> was printed.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-built-in-function-objects">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-built-in-function-objects</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>new.target</code></th>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../functions">Functions</a></li> <li><a href="../classes">Classes</a></li> <li>
+<code><a href="new">new</a></code> </li> <li>
+<code><a href="this">this</a></code> </li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new.target" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new.target</a>
+  </p>
+</div>

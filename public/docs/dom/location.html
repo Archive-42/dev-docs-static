@@ -1,0 +1,384 @@
+<h1>Location</h1> <p>The <code>Location</code> interface represents the location (URL) of the object it is linked to. Changes done on it are reflected on the object it relates to. Both the <a href="document"><code>Document</code></a> and <a href="window"><code>Window</code></a> interface have such a linked <code>Location</code>, accessible via <a href="document/location"><code>Document.location</code></a> and <a href="window/location"><code>Window.location</code></a> respectively.</p>
+<h2 id="anatomy_of_location">Anatomy Of Location</h2>
+<h3 id="html">HTML</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>href<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>origin<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>protocol<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>http:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>//<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>host<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hostname<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>example.org<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>port<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>8888<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>pathname<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>/foo/bar<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>search<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>?q=baz<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hash<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>#bang<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span></pre>
+<h3 id="css">CSS</h3>
+<pre data-language="css"><span class="token selector">html, body</span> <span class="token punctuation">{</span><span class="token property">height</span><span class="token punctuation">:</span>100%<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token selector">html</span> <span class="token punctuation">{</span><span class="token property">display</span><span class="token punctuation">:</span>table<span class="token punctuation">;</span> <span class="token property">width</span><span class="token punctuation">:</span>100%<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token selector">body</span> <span class="token punctuation">{</span><span class="token property">display</span><span class="token punctuation">:</span>table-cell<span class="token punctuation">;</span> <span class="token property">text-align</span><span class="token punctuation">:</span>center<span class="token punctuation">;</span> <span class="token property">vertical-align</span><span class="token punctuation">:</span>middle<span class="token punctuation">;</span> <span class="token property">font-family</span><span class="token punctuation">:</span>georgia<span class="token punctuation">;</span> <span class="token property">font-size</span><span class="token punctuation">:</span>230%<span class="token punctuation">;</span> <span class="token property">line-height</span><span class="token punctuation">:</span>1em<span class="token punctuation">;</span> <span class="token property">white-space</span><span class="token punctuation">:</span>nowrap<span class="token punctuation">;</span><span class="token punctuation">}</span>
+
+<span class="token selector">[title]</span> <span class="token punctuation">{</span><span class="token property">position</span><span class="token punctuation">:</span>relative<span class="token punctuation">;</span> <span class="token property">display</span><span class="token punctuation">:</span>inline-block<span class="token punctuation">;</span> <span class="token property">box-sizing</span><span class="token punctuation">:</span>border-box<span class="token punctuation">;</span> <span class="token comment">/*border-bottom:.5em solid;*/</span> <span class="token property">line-height</span><span class="token punctuation">:</span>2em<span class="token punctuation">;</span> <span class="token property">cursor</span><span class="token punctuation">:</span>pointer<span class="token punctuation">;</span><span class="token punctuation">}</span>
+
+<span class="token selector">[title]:before</span> <span class="token punctuation">{</span><span class="token property">content</span><span class="token punctuation">:</span><span class="token function">attr</span><span class="token punctuation">(</span>title<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token property">font-family</span><span class="token punctuation">:</span>monospace<span class="token punctuation">;</span> <span class="token property">position</span><span class="token punctuation">:</span>absolute<span class="token punctuation">;</span> <span class="token property">top</span><span class="token punctuation">:</span>100%<span class="token punctuation">;</span> <span class="token property">width</span><span class="token punctuation">:</span>100%<span class="token punctuation">;</span> <span class="token property">left</span><span class="token punctuation">:</span>50%<span class="token punctuation">;</span> <span class="token property">margin-left</span><span class="token punctuation">:</span>-50%<span class="token punctuation">;</span> <span class="token property">font-size</span><span class="token punctuation">:</span>40%<span class="token punctuation">;</span> <span class="token property">line-height</span><span class="token punctuation">:</span>1.5<span class="token punctuation">;</span> <span class="token property">background</span><span class="token punctuation">:</span>black<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token selector">[title]:hover:before,
+:target:before</span> <span class="token punctuation">{</span><span class="token property">background</span><span class="token punctuation">:</span>black<span class="token punctuation">;</span> <span class="token property">color</span><span class="token punctuation">:</span>yellow<span class="token punctuation">;</span><span class="token punctuation">}</span>
+
+<span class="token selector">[title] [title]:before</span> <span class="token punctuation">{</span><span class="token property">margin-top</span><span class="token punctuation">:</span>1.5em<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token selector">[title] [title] [title]:before</span> <span class="token punctuation">{</span><span class="token property">margin-top</span><span class="token punctuation">:</span>3em<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token selector">[title] [title] [title] [title]:before</span> <span class="token punctuation">{</span><span class="token property">margin-top</span><span class="token punctuation">:</span>4.5em<span class="token punctuation">;</span><span class="token punctuation">}</span>
+
+<span class="token selector">[title]:hover,
+:target</span> <span class="token punctuation">{</span><span class="token property">position</span><span class="token punctuation">:</span>relative<span class="token punctuation">;</span> <span class="token property">z-index</span><span class="token punctuation">:</span>1<span class="token punctuation">;</span> <span class="token property">outline</span><span class="token punctuation">:</span>50em solid <span class="token function">rgba</span><span class="token punctuation">(</span>255<span class="token punctuation">,</span>255<span class="token punctuation">,</span>255<span class="token punctuation">,</span>.8<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token punctuation">}</span></pre>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js"><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">'[title][id]'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">node</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  node<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    e<span class="token punctuation">.</span><span class="token function">stopPropagation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    window<span class="token punctuation">.</span>location<span class="token punctuation">.</span>hash <span class="token operator">=</span> <span class="token string">'#'</span> <span class="token operator">+</span> e<span class="token punctuation">.</span>target<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'id'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">'[title]:not([id])'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">node</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  node<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    e<span class="token punctuation">.</span><span class="token function">stopPropagation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    window<span class="token punctuation">.</span>location<span class="token punctuation">.</span>hash <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="result">Result</h3>
+<p><iframe class="sample-code-frame" id="frame_Anatomy_Of_Location" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Location/_samples_/Anatomy_Of_Location" loading="lazy"></iframe></p>
+<h2 id="properties">Properties</h2>
+<dl> <dt><a href="location/ancestororigins"><code>Location.ancestorOrigins</code></a></dt> <dd>Is a static <a href="domstringlist"><code>DOMStringList</code></a> containing, in reverse order, the origins of all ancestor browsing contexts of the document associated with the given <code>Location</code> object.</dd> <dt><a href="location/href"><code>Location.href</code></a></dt> <dd>Is a stringifier that returns a <a href="usvstring"><code>USVString</code></a> containing the entire URL. If changed, the associated document navigates to the new page. It can be set from a different origin than the associated document.</dd> <dt><a href="location/protocol"><code>Location.protocol</code></a></dt> <dd>Is a <a href="usvstring"><code>USVString</code></a> containing the protocol scheme of the URL, including the final <code>':'</code>.</dd> <dt><a href="location/host"><code>Location.host</code></a></dt> <dd>Is a <a href="usvstring"><code>USVString</code></a> containing the host, that is the <em>hostname</em>, a <code>':'</code>, and the <em>port</em> of the URL.</dd> <dt><a href="location/hostname"><code>Location.hostname</code></a></dt> <dd>Is a <a href="usvstring"><code>USVString</code></a> containing the domain of the URL.</dd> <dt><a href="location/port"><code>Location.port</code></a></dt> <dd>Is a <a href="usvstring"><code>USVString</code></a> containing the port number of the URL.</dd> <dt><a href="location/pathname"><code>Location.pathname</code></a></dt> <dd>Is a <a href="usvstring"><code>USVString</code></a> containing an initial <code>'/'</code> followed by the path of the URL, not including the query string or fragment.</dd> <dt><a href="location/search"><code>Location.search</code></a></dt> <dd>Is a <a href="usvstring"><code>USVString</code></a> containing a <code>'?'</code> followed by the parameters or "querystring" of the URL. Modern browsers provide <a href="urlsearchparams/get#example">URLSearchParams</a> and <a href="url/searchparams#example">URL.searchParams</a> to make it easy to parse out the parameters from the querystring.</dd> <dt><a href="location/hash"><code>Location.hash</code></a></dt> <dd>Is a <a href="usvstring"><code>USVString</code></a> containing a <code>'#'</code> followed by the fragment identifier of the URL.</dd> <dt>
+<a href="location/origin"><code>Location.origin</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="usvstring"><code>USVString</code></a> containing the canonical form of the origin of the specific location.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="location/assign"><code>Location.assign()</code></a></dt> <dd>Loads the resource at the URL provided in parameter.</dd> <dt><a href="location/reload"><code>Location.reload()</code></a></dt> <dd>Reloads the current URL, like the Refresh button.</dd> <dt><a href="location/replace"><code>Location.replace()</code></a></dt> <dd>Replaces the current resource with the one at the provided URL (redirects to the provided URL). The difference from the <code>assign()</code> method and setting the <code>href</code> property is that after using <code>replace()</code> the current page will not be saved in session <a href="history"><code>History</code></a>, meaning the user won't be able to use the <em>back</em> button to navigate to it.</dd> <dt><a href="location/tostring"><code>Location.toString()</code></a></dt> <dd>Returns a <a href="usvstring"><code>USVString</code></a> containing the whole URL. It is a synonym for <a href="htmlanchorelement/href"><code>HTMLAnchorElement.href</code></a>, though it can't be used to modify the value.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token comment">// Create anchor element and use href property for the purpose of this example</span>
+<span class="token comment">// A more correct alternative is to browse to the URL and use document.location or window.location</span>
+<span class="token keyword">var</span> url <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+url<span class="token punctuation">.</span>href <span class="token operator">=</span> <span class="token string">'https://developer.mozilla.org:8080/en-US/search?q=URL#search-results-close-container'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>url<span class="token punctuation">.</span>href<span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// https://developer.mozilla.org:8080/en-US/search?q=URL#search-results-close-container</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>url<span class="token punctuation">.</span>protocol<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// https:</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>url<span class="token punctuation">.</span>host<span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// developer.mozilla.org:8080</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>url<span class="token punctuation">.</span>hostname<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// developer.mozilla.org</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>url<span class="token punctuation">.</span>port<span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// 8080</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>url<span class="token punctuation">.</span>pathname<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// /en-US/search</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>url<span class="token punctuation">.</span>search<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// ?q=URL</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>url<span class="token punctuation">.</span>hash<span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// #search-results-close-container</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>url<span class="token punctuation">.</span>origin<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// https://developer.mozilla.org:8080</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://html.spec.whatwg.org/multipage/browsers.html#the-location-interface" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'Location' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>Location</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>ancestorOrigins</code></th>
+<td class="bc-supports-yes"><div>20</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>assign</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5.5</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>hash</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>host</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>hostname</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>href</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>origin</code></th>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>21</div>
+<div>Before Firefox 49, results for URL using the blob scheme incorrectly returned null.</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>Intranet sites are set to Compatibility View, which will emulate IE7 and omit <code>window.location.origin</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>21</div>
+<div>Before Firefox 49, results for URL using the blob scheme incorrectly returned null.</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>password</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>26-45</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>26-45</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>pathname</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Before Firefox 53, the <code>pathname</code> property returned wrong parts of the URL. For example, for a URL of http://z.com/x?a=true&amp;b=false, <code>pathname</code> would return "/x?a=true&amp;b=false" rather than "/x".</div>
+</td>
+<td class="bc-supports-yes">
+<div>3</div>
+<div>Internet Explorer does not provide the leading slash character in the <code>pathname</code> (<code>docs/Web/API/Location</code> instead of <code>/docs/Web/API/Location</code>).</div>
+</td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Before Firefox 53, the <code>pathname</code> property returned wrong parts of the URL. For example, for a URL of http://z.com/x?a=true&amp;b=false, <code>pathname</code> would return "/x?a=true&amp;b=false" rather than "/x".</div>
+</td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>port</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>protocol</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>reload</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>Before Edge 79, if a page added to <em>Trusted Sites</em> contains a cross-origin iframe, then calling <code>reload()</code> from within the iframe reloads the trusted page (in other words, the top page reloads, not the iframe).</div>
+</td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>5.5</div>
+<div>If a page added to <em>Trusted Sites</em> contains a cross-origin iframe, then calling <code>reload()</code> from within the iframe reloads the trusted page (in other words, the top page reloads, not the iframe).</div>
+</td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>replace</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5.5</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>search</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Before Firefox 53, the <code>search</code> property returned wrong parts of the URL. For example, for a URL of http://z.com/x?a=true&amp;b=false, <code>search</code> would return "", rather than "?a=true&amp;b=false".</div>
+</td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Before Firefox 53, the <code>search</code> property returned wrong parts of the URL. For example, for a URL of http://z.com/x?a=true&amp;b=false, <code>search</code> would return "", rather than "?a=true&amp;b=false".</div>
+</td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>toString</code></th>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>Intranet sites are set to Compatibility View, which will emulate IE7 and omit <code>window.location.toString</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>username</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>26-45</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>26-45</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>Two methods creating such an object: <a href="window/location"><code>Window.location</code></a> and <a href="document/location"><code>Document.location</code></a>.</li> <li>URL related interfaces: <a href="url"><code>URL</code></a>, <a href="urlsearchparams"><code>URLSearchParams</code></a> and <a class="page-not-created"><code>HTMLHyperlinkElementUtils</code></a>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Location" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Location</a>
+  </p>
+</div>

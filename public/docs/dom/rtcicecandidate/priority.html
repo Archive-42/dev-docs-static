@@ -1,0 +1,70 @@
+<h1>RTCIceCandidate.priority</h1> <p>The <strong><a href="../rtcicecandidate"><code>RTCIceCandidate</code></a></strong> interface's read-only <code>priority</code> property specifies the candidate's priority according to the remote peer; the higher this value is, the better the remote peer considers the candidate to be.</p> <p>As is the case with most of <code>RTCIceCandidate</code>'s properties, the value of <code>priority</code> is extracted from the <code>candidate</code> a-line string specified when creating the <code>RTCIceCandidate</code>. The a-line string is obtained either from the <a href="../rtcicecandidateinit"><code>RTCIceCandidateInit</code></a> property <a href="../rtcicecandidateinit/candidate"><code>candidate</code></a> or from an a-line string passed into <a href="../rtcpeerconnection/addicecandidate"><code>RTCPeerConnection.addIceCandidate()</code></a> instead of an <code>RTCIceCandidate</code>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> priority <span class="token operator">=</span> RTCIceCandidate<span class="token punctuation">.</span>priority<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>A long, unsigned integer value indicating the priority of the candidate according to the remote peer. The larger this value is, the more preferable the remote peer considers this candidate to be.</p> <p><code>priority</code> is initialized to <code>null</code> if it is not specified in the <code>candidate</code>, or if the <code>candidate</code> string can't be parsed properly.</p> <div class="note notecard"> <p><strong>Note:</strong> If <code>priority</code> is <code>null</code>, passing the candidate to <a href="../rtcpeerconnection/addicecandidate"><code>addIceCandidate()</code></a> will fail, throwing an <code>OperationError</code> exception. This applies only if the candidate implements the <code>priority</code> property.</p> </div>
+<h2 id="usage_notes">Usage notes</h2>
+<p>Consider this <a href="https://developer.mozilla.org/en-US/docs/Glossary/SDP">SDP</a> attribute line (a-line) which describes an ICE candidate:</p> <pre class="notranslate">a=candidate:4234997325 1 udp 2043278322 192.168.0.56 44323 typ host</pre> <p>The priority is the number after the protocol, so it's the fourth field in the candidate string. In this example, the priority is 2043278322.</p>
+<h2 id="example">Example</h2>
+<p>This candidate examines the <code>priority</code> of the candidate and, if it's greater than the priority of a previously-seen candidate, remembers the candidate for later use. </p> <pre data-language="js"><span class="token keyword">var</span> bestCandidate <span class="token operator">=</span> <span class="token punctuation">{</span>
+  candidate<span class="token operator">:</span> <span class="token string">""</span><span class="token punctuation">,</span>
+  sdpMid<span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  sdpMLineIndex<span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">,</span>
+  priority<span class="token operator">:</span> <span class="token number">0</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">handleCandidate</span><span class="token punctuation">(</span><span class="token parameter">candidateString</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> candidate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RTCIceCandidate</span><span class="token punctuation">(</span>candidateString<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>candidate<span class="token punctuation">.</span>priority <span class="token operator">&gt;</span> bestCandidate<span class="token punctuation">.</span>priority<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    bestCandidate <span class="token operator">=</span> candidate<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcicecandidate-priority" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCIceCandidate.priority' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>priority</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCIceCandidate/priority" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCIceCandidate/priority</a>
+  </p>
+</div>

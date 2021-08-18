@@ -1,0 +1,111 @@
+<h1>class</h1> <p>The <strong>class declaration</strong> creates a new class with a given name using prototype-based inheritance.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/statement-class.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <div class="noinclude"> <p>You can also define a class using a <a href="../operators/class">class expression</a>. But unlike a class expression, a class declaration doesn't allow an existing class to be declared again and will throw a <a href="../global_objects/syntaxerror"><code>SyntaxError</code></a> if attempted. </p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">name</span> <span class="token punctuation">[</span><span class="token keyword">extends</span> <span class="token class-name">otherName</span><span class="token punctuation">]</span> <span class="token punctuation">{</span>
+  <span class="token comment">// class body</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="description">Description</h2>
+<p>The class body of a class declaration is executed in <a href="../strict_mode">strict mode</a>. The <code>constructor</code> method is optional.</p> <p>Class declarations are not <a href="https://developer.mozilla.org/en-US/docs/Glossary/Hoisting">hoisted</a> (unlike <a href="function">function declarations</a>).</p>
+<h2 id="examples">Examples</h2>
+<h3 id="a_simple_class_declaration">A simple class declaration</h3>
+<p>In the following example, we first define a class named <code>Polygon</code>, then extend it to create a class named <code>Square</code>.</p> <p>Note that <code>super()</code>, used in the <code>constructor</code>, can only be used in constructors, and <em>must</em> be called <em>before</em> the <code>this</code> keyword can be used.</p> <pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">Polygon</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">height<span class="token punctuation">,</span> width</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'Polygon'</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>height <span class="token operator">=</span> height<span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>width <span class="token operator">=</span> width<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Square</span> <span class="token keyword">extends</span> <span class="token class-name">Polygon</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">length</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>length<span class="token punctuation">,</span> length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'Square'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre>
+<h3 id="attempting_to_declare_a_class_twice">Attempting to declare a class twice</h3>
+<p>Re-declaring a class using the class declaration throws a <a href="../global_objects/syntaxerror"><code>SyntaxError</code></a>. </p> <pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">Foo</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">Foo</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">// Uncaught SyntaxError: Identifier 'Foo' has already been declared</span>
+</pre> <p>The same error is thrown when a class has been defined before using the class expression.</p> <pre data-language="js"><span class="token keyword">let</span> Foo <span class="token operator">=</span> <span class="token keyword">class</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">class</span> <span class="token class-name">Foo</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">// Uncaught SyntaxError: Identifier 'Foo' has already been declared</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-class-definitions">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-class-definitions</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>class</code></th>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>42-49</div>
+<div>Strict mode is required.</div>
+<div>42-49</div>
+</td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>36</div>
+<div>29-36</div>
+<div>Strict mode is required.</div>
+<div>29-36</div>
+</td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>42-49</div>
+<div>Strict mode is required.</div>
+</td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>42-49</div>
+<div>Strict mode is required.</div>
+<div>42-49</div>
+</td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes">
+<div>36</div>
+<div>29-36</div>
+<div>Strict mode is required.</div>
+<div>29-36</div>
+</td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes">
+<div>5.0</div>
+<div>4.0-5.0</div>
+<div>Strict mode is required.</div>
+</td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="function"><code>function</code> declaration</a></li> <li><a href="../operators/class"><code>class</code> expression</a></li> <li><a href="../classes">Classes</a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/class" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/class</a>
+  </p>
+</div>

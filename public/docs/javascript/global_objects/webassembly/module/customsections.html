@@ -1,0 +1,82 @@
+<h1>WebAssembly.Module.customSections()</h1> <p>The <code>WebAssembly.customSections()</code> function returns a copy of the contents of all custom sections in the given module with the given string name. </p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">WebAssembly<span class="token punctuation">.</span>Module<span class="token punctuation">.</span><span class="token function">customSections</span><span class="token punctuation">(</span>module<span class="token punctuation">,</span> sectionName<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><em>module</em></dt> <dd>The <a href="../module"><code>WebAssembly.Module</code></a> object whose custom sections are being considered.</dd> <dt><em>sectionName</em></dt> <dd>The string name of the desired custom section.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A (possibly empty) array containing <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> copies of the contents of all custom sections matching <code>sectionName</code>.</p>
+<h3 id="exceptions">Exceptions</h3>
+<p>If <code>module</code> is not a <a href="../module"><code>WebAssembly.Module</code></a> object instance, a <a href="../../typeerror"><code>TypeError</code></a> is thrown.</p>
+<h2 id="description">Description</h2>
+<p>A wasm module is comprised of a sequence of <strong>sections</strong>. Most of these sections are fully specified and validated by the wasm spec, but modules can also contain <strong>custom sections</strong> that are ignored and skipped over during validation. (Read <a href="https://github.com/WebAssembly/design/blob/master/BinaryEncoding.md#high-level-structure" rel=" noopener">High level structure</a> for information on section structures, and how normal sections ("known sections") and custom sections are distinguished.)</p> <p>This provides developers with a way to include custom data inside wasm modules for other purposes, for example the <a href="https://github.com/WebAssembly/design/blob/master/BinaryEncoding.md#name-section" rel=" noopener">name custom section</a>, which allows developers to provide names for all the functions and locals in the module (like "symbols" in a native build).</p> <p>Note that the WebAssembly text format currently doesn't have a syntax specified for adding new custom sections; you can however add a name section to your wasm during conversion from text format over to .wasm. The wast2wasm command available as part of the <a href="https://github.com/webassembly/wabt" rel=" noopener">wabt tool</a> has a <code>--debug-names</code> option — specify this during conversion to get a .wasm with a names custom section, for example:</p> <pre data-language="bash">wast2wasm simple-name-section.was -o simple-name-section.wasm --debug-names</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="using_customsections">Using customSections</h3>
+<p>The following example (see the custom-section.html <a href="https://github.com/mdn/webassembly-examples/blob/master/other-examples/custom-section.html" rel=" noopener">source</a> and <a href="https://mdn.github.io/webassembly-examples/other-examples/custom-section.html" rel=" noopener">live example</a>) compiles the loaded simple-name-section.wasm byte code.</p> <p>We then do a check using <code>WebAssembly.Module.customSections</code>, looking to see whether the module instance contains a "name" custom section by checking that its <code>length</code> is more than 0. Since there is a "name" section in the example, an <code>ArrayBuffer</code> object is returned.</p> <pre data-language="js">WebAssembly<span class="token punctuation">.</span><span class="token function">compileStreaming</span><span class="token punctuation">(</span><span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'simple-name-section.wasm'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">mod</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> nameSections <span class="token operator">=</span> WebAssembly<span class="token punctuation">.</span>Module<span class="token punctuation">.</span><span class="token function">customSections</span><span class="token punctuation">(</span>mod<span class="token punctuation">,</span> <span class="token string">"name"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>nameSections<span class="token punctuation">.</span>length <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Module contains a name section"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>nameSections<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://webassembly.github.io/spec/js-api/#dom-module-customsections">WebAssembly JavaScript Interface (WebAssembly JavaScript Interface)<br> <small>#dom-module-customsections</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>customSections</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="https://developer.mozilla.org/en-US/docs/WebAssembly">WebAssembly</a> overview page</li> <li><a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Concepts">WebAssembly concepts</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Using_the_JavaScript_API">Using the WebAssembly JavaScript API</a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Module/customSections" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Module/customSections</a>
+  </p>
+</div>

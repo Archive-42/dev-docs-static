@@ -1,0 +1,82 @@
+<h1>Date.now()</h1> <p>The static <code>Date.now()</code> method returns the number of milliseconds elapsed since January 1, 1970 00:00:00 UTC.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/date-now.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js">Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="../number"><code>Number</code></a> representing the milliseconds elapsed since the UNIX epoch.</p>
+<h2 id="polyfill">Polyfill</h2>
+<p>This method was standardized in ECMA-262 5<sup>th</sup> edition. Engines which have not been updated to support this method can work around the absence of this method using the following shim:</p> <pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Date<span class="token punctuation">.</span>now<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  Date<span class="token punctuation">.</span><span class="token function-variable function">now</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="reduced_time_precision">Reduced time precision</h3>
+<p>To offer protection against timing attacks and fingerprinting, the precision of <code>Date.now()</code> might get rounded depending on browser settings.<br> In Firefox, the <code>privacy.reduceTimerPrecision</code> preference is enabled by default and defaults to 20µs in Firefox 59; in 60 it will be 2ms.</p> <pre data-language="js"><span class="token comment">// reduced time precision (2ms) in Firefox 60</span>
+Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment">// 1519211809934</span>
+<span class="token comment">// 1519211810362</span>
+<span class="token comment">// 1519211811670</span>
+<span class="token comment">// ...</span>
+
+<span class="token comment">// reduced time precision with `privacy.resistFingerprinting` enabled</span>
+Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 1519129853500</span>
+<span class="token comment">// 1519129858900</span>
+<span class="token comment">// 1519129864400</span>
+<span class="token comment">// ...</span>
+</pre> <p>In Firefox, you can also enable <code>privacy.resistFingerprinting</code>, the precision will be 100ms or the value of <code>privacy.resistFingerprinting.reduceTimerPrecision.microseconds</code>, whichever is larger.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-date.now">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-date.now</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>now</code></th>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>10.5</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance/now"><code>Performance.now()</code></a> — provides timestamps with sub-millisecond resolution for use in measuring web page performance</li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Console/time"><code>console.time()</code></a> / <a href="https://developer.mozilla.org/en-US/docs/Web/API/Console/timeEnd"><code>console.timeEnd()</code></a>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now</a>
+  </p>
+</div>

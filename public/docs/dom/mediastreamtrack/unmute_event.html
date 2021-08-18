@@ -1,0 +1,68 @@
+<h1>MediaStreamTrack: unmute event</h1> <p>The <code><strong>unmute</strong></code> event is sent to a <a href="../mediastreamtrack"><code>MediaStreamTrack</code></a> when the track's source is once again able to provide media data after a period of not being able to do so. This ends the <a href="muted"><code>muted</code></a> state that began with the <a href="mute_event"><code>mute</code></a> event.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>No</td> </tr> <tr> <th scope="row">Cancelable</th> <td>No</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../event"><code>Event</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td><a href="onunmute"><code>onunmute</code></a></td> </tr> </tbody> </table></div> <div class="note notecard"> <p><strong>Note:</strong> The condition that most people think of as "muted" (that is, a user-controllable way to silence a track) is actually managed using the <a href="enabled"><code>MediaStreamTrack.enabled</code></a> property, for which there are no events.</p> </div>
+<h2 id="examples">Examples</h2>
+<p>In this example, event handlers are established for the <a href="mute_event"><code>mute</code></a> and <code>unmute</code> events in order to detect when the media is not flowing from the source for the <a href="../mediastreamtrack"><code>MediaStreamTrack</code></a> stored in the variable <code>musicTrack</code>.</p> <pre data-language="js">musicTrack<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"mute"</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"timeline-widget"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>backgroundColor <span class="token operator">=</span> <span class="token string">"#aaa"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+musicTrack<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"unmute"</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+ document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"timeline-widget"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>backgroundColor <span class="token operator">=</span> <span class="token string">"#fff"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>With these event handlers in place, when the track <code>musicTrack</code> enters its <a href="muted"><code>muted</code></a> state, the element with the ID <code>timeline-widget</code> gets its background color changed to <code>#aaa</code>. When the track exits the muted state—detected by the arrival of an <code>unmuted</code> event—the background color is restored to white.</p> <p>You can also use the <a href="onunmute"><code>onunmute</code></a> event handler property to set up a handler for this event; similarly, the <a href="onmute"><code>onmute</code></a> event handler is available for setting up a handler for the <code>mute</code> event. The following example shows this:</p> <pre data-language="js">musicTrack<span class="token punctuation">.</span><span class="token function-variable function">onmute</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"timeline-widget"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>backgroundColor <span class="token operator">=</span> <span class="token string">"#aaa"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+musicTrack<span class="token punctuation">.</span>mute <span class="token operator">=</span> event <span class="token operator">=</span> <span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+  document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"timeline-widget"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>backgroundColor <span class="token operator">=</span> <span class="token string">"#fff"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/mediacapture-main/#event-mediastreamtrack-unmute" hreflang="en" rel=" noopener">Media Capture and Streams<br><small>The definition of 'unmute' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>unmute_event</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="onunmute"><code>onunmute</code></a> event handler property</li> <li>
+<a href="mute_event"><code>mute</code></a> event</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/unmute_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/unmute_event</a>
+  </p>
+</div>

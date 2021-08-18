@@ -1,0 +1,75 @@
+<h1>RTCErrorEvent.error</h1>
+
+ <p>The read-only <a href="../rtcerrorevent"><code>RTCErrorEvent</code></a> property <code><strong>error</strong></code> contains an <a href="../rtcerror"><code>RTCError</code></a> object describing the details of the error which the event is announcing.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">let</span> errorInfo <span class="token operator">=</span> rtcErrorEvent<span class="token punctuation">.</span>error<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>An <a href="../rtcerror"><code>RTCError</code></a> object whose properties provide details about the error which has occurred in the context of a <a href="https://developer.mozilla.org/en-US/docs/Glossary/WebRTC">WebRTC</a> operation. Since <code>RTCError</code> is based upon <a href="../domexception"><code>DOMException</code></a>, it includes those properties. Additional properties defined by <code>RTCError</code> are:</p> <p>{{page("/en-US/docs/Web/API/RTCError", "property-list")}}</p>
+<h2 id="examples">Examples</h2>
+<p>In this example, a handler is established for an <a href="../rtcdatachannel"><code>RTCDataChannel</code></a>'s <a href="../rtcdatachannel/error_event"><code>error</code></a> event.</p> <pre data-language="js">dataChannel<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"error"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> error <span class="token operator">=</span> event<span class="token punctuation">.</span>error<span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>error<span class="token punctuation">.</span>errorDetail <span class="token operator">===</span> <span class="token string">"sdp-syntax-error"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> errLine <span class="token operator">=</span> error<span class="token punctuation">.</span>sdpLineNumber<span class="token punctuation">;</span>
+    <span class="token keyword">let</span> errMessage <span class="token operator">=</span> error<span class="token punctuation">.</span>message<span class="token punctuation">;</span>
+
+    <span class="token keyword">let</span> alertMessage <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">A syntax error occurred interpreting line </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>errLine<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> of the SDP: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>errMessage<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+    <span class="token function">showMyAlertMessage</span><span class="token punctuation">(</span><span class="token string">"Data Channel Error"</span><span class="token punctuation">,</span> alertMessage<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token function">terminateMyConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>If the error is an SDP syntax error—indicated by its <a href="../rtcerror/errordetail"><code>errorDetail</code></a> property being <code>sdp-syntax-error</code>—, a message string is constructed to present the error message and the line number within the SDP at which the error occurred. This message is then displayed using a function called <code>showMyAlertMessage()</code>, which stands in for whatever output mechanism this code might use.</p> <p>Any other error is treated as terminal, causing a <code>terminateMyConnection()</code> function to be called.</p> <p>The above example uses <a href="../eventtarget/addeventlistener"><code>addEventListener()</code></a> to add the handler for <code>error</code> events. You can also use the <code>RTCDataChannel</code> object's <a href="../rtcdatachannel/onerror"><code>onerror</code></a> event handler property, like this:</p> <pre data-language="js">dataChannel<span class="token punctuation">.</span><span class="token function-variable function">onerror</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> error <span class="token operator">=</span> event<span class="token punctuation">.</span>error<span class="token punctuation">;</span>
+
+  <span class="token comment">/* and so forth */</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td>
+<a href="https://w3c.github.io/webrtc-pc/#dom-rtcerrorevent-error" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCErrorEvent.error' in that specification.</small></a> </td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>error</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCErrorEvent/error" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCErrorEvent/error</a>
+  </p>
+</div>

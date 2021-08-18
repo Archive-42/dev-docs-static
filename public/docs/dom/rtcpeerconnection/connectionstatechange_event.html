@@ -1,0 +1,80 @@
+<h1>RTCPeerConnection: connectionstatechange event</h1> <p>The <code>connectionstatechange</code> event is sent to the <a href="ontrack"><code>ontrack</code></a> event handler on an <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> object after a new track has been added to an <a href="../rtcrtpreceiver"><code>RTCRtpReceiver</code></a> which is part of the connection. The new connection state can be found in <a href="connectionstate"><code>connectionState</code></a>, and is one of the strings in the <a class="page-not-created"><code>RTCPeerConnectionState</code></a> enumerated type.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>No</td> </tr> <tr> <th scope="row">Cancelable</th> <td>No</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../event"><code>Event</code></a></td> </tr> <tr> <th scope="row">Event handler</th> <td><a href="onconnectionstatechange"><code>onconnectionstatechange</code></a></td> </tr> </tbody> </table></div>
+<h2 id="examples">Examples</h2>
+<p>For an <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a>, <code>pc</code>, this example sets up a handler for <code>connectionstatechange</code> messages to handle changes to the connectivity of the WebRTC session. It calls an app-defined function called <code>setOnlineStatus()</code> to update a status display.</p> <pre data-language="js">pc<span class="token punctuation">.</span><span class="token function-variable function">onconnectionstatechange</span> <span class="token operator">=</span> <span class="token parameter">ev</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">switch</span><span class="token punctuation">(</span>pc<span class="token punctuation">.</span>connectionState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">"new"</span><span class="token operator">:</span>
+    <span class="token keyword">case</span> <span class="token string">"checking"</span><span class="token operator">:</span>
+      <span class="token function">setOnlineStatus</span><span class="token punctuation">(</span><span class="token string">"Connecting..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"connected"</span><span class="token operator">:</span>
+      <span class="token function">setOnlineStatus</span><span class="token punctuation">(</span><span class="token string">"Online"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"disconnected"</span><span class="token operator">:</span>
+      <span class="token function">setOnlineStatus</span><span class="token punctuation">(</span><span class="token string">"Disconnecting..."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"closed"</span><span class="token operator">:</span>
+      <span class="token function">setOnlineStatus</span><span class="token punctuation">(</span><span class="token string">"Offline"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"failed"</span><span class="token operator">:</span>
+      <span class="token function">setOnlineStatus</span><span class="token punctuation">(</span><span class="token string">"Error"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token operator">:</span>
+      <span class="token function">setOnlineStatus</span><span class="token punctuation">(</span><span class="token string">"Unknown"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre> <p>You can also create a handler for <code>connectionstatechange</code> by using <a href="../eventtarget/addeventlistener"><code>addEventListener()</code></a>:</p> <pre data-language="js">pc<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"connectionstatechange"</span><span class="token punctuation">,</span> <span class="token parameter">ev</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">switch</span><span class="token punctuation">(</span>pc<span class="token punctuation">.</span>connectionState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* ... */</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#event-connectionstatechange" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'connectionstatechange' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>connectionstatechange_event</code></th>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webrtc_api">WebRTC API</a></li> <li><a href="../webrtc_api/connectivity">WebRTC connectivity</a></li> <li><a href="../webrtc_api/session_lifetime">Lifetime of a WebRTC session</a></li> <li><a class="page-not-created"><code>RTCPeerConnectionState</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/connectionstatechange_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/connectionstatechange_event</a>
+  </p>
+</div>

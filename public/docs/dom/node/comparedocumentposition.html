@@ -1,0 +1,72 @@
+<h1>Node.compareDocumentPosition()</h1> <p>The <code><strong>Node.compareDocumentPosition()</strong></code> method reports the position of the given node relative to another node in any document — not just the given node’s document.</p> <p>The return value is a <a href="https://en.wikipedia.org/wiki/Mask_(computing)" rel=" noopener">bitmask</a> of the following values:</p> <div class="_table"><table> <thead> <tr> <th scope="col">Name</th> <th scope="col">Value</th> </tr> </thead> <tbody> <tr> <td><code>DOCUMENT_POSITION_DISCONNECTED</code></td> <td>1</td> </tr> <tr> <td><code>DOCUMENT_POSITION_PRECEDING</code></td> <td>2</td> </tr> <tr> <td><code>DOCUMENT_POSITION_FOLLOWING</code></td> <td>4</td> </tr> <tr> <td><code>DOCUMENT_POSITION_CONTAINS</code></td> <td>8</td> </tr> <tr> <td><code>DOCUMENT_POSITION_CONTAINED_BY</code></td> <td>16</td> </tr> <tr> <td><code>DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC</code></td> <td>32</td> </tr> </tbody> </table></div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">compareMask <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token function">compareDocumentPosition</span><span class="token punctuation">(</span>otherNode<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>otherNode</code></dt> <dd>The other <code>Node</code> with which to compare the first <em><code>node</code></em>’s document position.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>An integer value whose bits represent the <code>otherNode</code>'s relationship to the calling <code>node</code>.</p> <p>More than one bit is set if multiple scenarios apply. For example, if <code>otherNode</code> is located earlier in the document <strong><em>and</em></strong> contains the <code>node</code> on which <code>compareDocumentPosition()</code> was called, then both the <code>DOCUMENT_POSITION_CONTAINS</code> and <code>DOCUMENT_POSITION_PRECEDING</code> bits would be set, producing a value of 10 (<code>0x0A</code>).</p>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token keyword">const</span> head <span class="token operator">=</span> document<span class="token punctuation">.</span>head<span class="token punctuation">;</span>
+<span class="token keyword">const</span> body <span class="token operator">=</span> document<span class="token punctuation">.</span>body<span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>head<span class="token punctuation">.</span><span class="token function">compareDocumentPosition</span><span class="token punctuation">(</span>body<span class="token punctuation">)</span> <span class="token operator">&amp;</span> Node<span class="token punctuation">.</span><span class="token constant">DOCUMENT_POSITION_FOLLOWING</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Well-formed document'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'&lt;head&gt; is not before &lt;body&gt;'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <div class="note notecard"> <p><strong>Note:</strong> Because the result returned by <code>compareDocumentPosition()</code> is a bitmask, the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators">bitwise AND operator</a> must be used for meaningful results.</p> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td>
+<a href="https://dom.spec.whatwg.org/#dom-node-comparedocumentposition" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'Node.compareDocumentPosition()' in that specification.</small></a> </td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> <tr> <td>
+<a href="https://www.w3.org/TR/DOM-Level-3-Core/core.html#Node3-compareDocumentPosition" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 3 Core Specification<br><small>The definition of 'Node.compareDocumentPosition()' in that specification.</small></a> </td> <td><span class="spec-obsolete">Obsolete</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>compareDocumentPosition</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes">
+<div>9</div>
+<div>Only supports <code>contains</code> for elements</div>
+</td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><code><a href="contains">Node.contains()</a></code></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/compareDocumentPosition" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Node/compareDocumentPosition</a>
+  </p>
+</div>

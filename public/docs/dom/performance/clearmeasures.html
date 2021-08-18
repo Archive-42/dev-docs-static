@@ -1,0 +1,96 @@
+<h1>performance.clearMeasures()</h1> <p>The <code>clearMeasures()</code> method removes the <em>named measure</em> from the browser's performance entry buffer. If the method is called with no arguments, all <a href="../performanceentry"><code>performance entries</code></a> with an <a href="../performanceentry/entrytype"><code>entry type</code></a> of "<code>measure</code>" will be removed from the performance entry buffer.</p> 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="../web_workers_api">Web Workers</a>.</p> </div>
+
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">performance<span class="token punctuation">.</span><span class="token function">clearMeasures</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+performance<span class="token punctuation">.</span><span class="token function">clearMeasures</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="arguments">Arguments</h3>
+<dl> <dt>name <span class="badge inline optional">Optional</span>
+</dt> <dd>A <a href="../domstring"><code>DOMString</code></a> representing the name of the timestamp. If this argument is omitted, all <a href="../performanceentry"><code>performance entries</code></a> with an <a href="../performanceentry/entrytype"><code>entry type</code></a> of "<code>measure</code>" will be removed.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<dl> <dt>void</dt>  </dl>
+<h2 id="example">Example</h2>
+<p>The following example shows both uses of the <code>clearMeasures()</code> method.</p> <pre data-language="js"><span class="token comment">// Create a small helper to show how many PerformanceMeasure entries there are.</span>
+<span class="token keyword">function</span> <span class="token function">logMeasureCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>
+    <span class="token string">"Found this many entries: "</span> <span class="token operator">+</span> performance<span class="token punctuation">.</span><span class="token function">getEntriesByType</span><span class="token punctuation">(</span><span class="token string">"measure"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>length
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Create a bunch of measures.</span>
+performance<span class="token punctuation">.</span><span class="token function">measure</span><span class="token punctuation">(</span><span class="token string">"from navigation"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+performance<span class="token punctuation">.</span><span class="token function">mark</span><span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+performance<span class="token punctuation">.</span><span class="token function">measure</span><span class="token punctuation">(</span><span class="token string">"from mark a"</span><span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+performance<span class="token punctuation">.</span><span class="token function">measure</span><span class="token punctuation">(</span><span class="token string">"from navigation"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+performance<span class="token punctuation">.</span><span class="token function">measure</span><span class="token punctuation">(</span><span class="token string">"from mark a"</span><span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+performance<span class="token punctuation">.</span><span class="token function">mark</span><span class="token punctuation">(</span><span class="token string">"b"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+performance<span class="token punctuation">.</span><span class="token function">measure</span><span class="token punctuation">(</span><span class="token string">"between a and b"</span><span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">logMeasureCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// "Found this many entries: 5"</span>
+
+<span class="token comment">// Delete just the "from navigation" PerformanceMeasure entries.</span>
+performance<span class="token punctuation">.</span><span class="token function">clearMeasures</span><span class="token punctuation">(</span><span class="token string">"from navigation"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">logMeasureCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// "Found this many entries: 3"</span>
+
+<span class="token comment">// Delete all of the PerformanceMeasure entries.</span>
+performance<span class="token punctuation">.</span><span class="token function">clearMeasures</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">logMeasureCount</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// "Found this many entries: 0"</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/user-timing/#dom-performance-clearmeasures" hreflang="en" rel=" noopener">User Timing Level 2<br><small>The definition of 'clearMeasures()' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Clarifies <code>clearMeasures()</code>.</td> </tr> <tr> <td>
+<a href="https://www.w3.org/TR/user-timing/#dom-performance-clearmeasures" hreflang="en" rel=" noopener">User Timing<br><small>The definition of 'clearMeasures()' in that specification.</small></a> </td> <td><span class="spec-rec">Recommendation</span></td> <td>Basic definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>clearMeasures</code></th>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>25-29</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>25-29</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>2.0</div>
+<div>1.5-2.0</div>
+</td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Performance/clearMeasures" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Performance/clearMeasures</a>
+  </p>
+</div>

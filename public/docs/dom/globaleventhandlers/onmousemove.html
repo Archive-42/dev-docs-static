@@ -1,0 +1,97 @@
+<h1>GlobalEventHandlers.onmousemove</h1> <p>The <code><strong>onmousemove</strong></code> property of the <a href="../globaleventhandlers"><code>GlobalEventHandlers</code></a> mixin is an <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a> that processes <code><a href="../element/mousemove_event">mousemove</a></code> events.</p> <p>The <code>mousemove</code> event fires when the user moves the mouse.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">target<span class="token punctuation">.</span>onmousemove <span class="token operator">=</span> functionRef<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p><code>functionRef</code> is a function name or a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function">function expression</a>. The function receives a <a href="../mouseevent"><code>MouseEvent</code></a> object as its sole argument.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="tooltips">Tooltips</h3>
+<p>This example creates link tooltips that follow your mouse. It uses the <code>onmousemove</code>, <a href="onmouseover"><code>onmouseover</code></a>, and <a href="onmouseout"><code>onmouseout</code></a> event handlers.</p> <h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span> <span class="token attr-name">data-tooltip</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>First link<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>See a tooltip here <span class="token entity named-entity">&amp;hellip;</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span> <span class="token attr-name">data-tooltip</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Second link<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token entity named-entity">&amp;hellip;</span> or here!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre> <h4 id="css">CSS</h4> <pre data-language="css"><span class="token selector">.tooltip</span> <span class="token punctuation">{</span>
+  <span class="token property">position</span><span class="token punctuation">:</span> absolute<span class="token punctuation">;</span>
+  <span class="token property">z-index</span><span class="token punctuation">:</span> 9999<span class="token punctuation">;</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 6px<span class="token punctuation">;</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> #ffd<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px #886 solid<span class="token punctuation">;</span>
+  <span class="token property">border-radius</span><span class="token punctuation">:</span> 5px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <h4 id="javascript">JavaScript</h4> <pre data-language="js"><span class="token keyword">const</span> tooltip <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> node <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  node<span class="token punctuation">.</span>className <span class="token operator">=</span> <span class="token string">'tooltip'</span><span class="token punctuation">;</span>
+  node<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'hidden'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>node<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">follow</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    node<span class="token punctuation">.</span>style<span class="token punctuation">.</span>left <span class="token operator">=</span> event<span class="token punctuation">.</span>clientX <span class="token operator">+</span> <span class="token number">20</span> <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+    node<span class="token punctuation">.</span>style<span class="token punctuation">.</span>top <span class="token operator">=</span> event<span class="token punctuation">.</span>clientY <span class="token operator">+</span> <span class="token number">10</span> <span class="token operator">+</span> <span class="token string">'px'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">show</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    node<span class="token punctuation">.</span>textContent <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>dataset<span class="token punctuation">.</span>tooltip<span class="token punctuation">;</span>
+    node<span class="token punctuation">.</span><span class="token function">removeAttribute</span><span class="token punctuation">(</span><span class="token string">'hidden'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">hide</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    node<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'hidden'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> links <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+links<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">link</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  link<span class="token punctuation">.</span>onmouseover <span class="token operator">=</span> tooltip<span class="token punctuation">.</span>show<span class="token punctuation">;</span>
+  link<span class="token punctuation">.</span>onmousemove <span class="token operator">=</span> tooltip<span class="token punctuation">.</span>follow<span class="token punctuation">;</span>
+  link<span class="token punctuation">.</span>onmouseout <span class="token operator">=</span> tooltip<span class="token punctuation">.</span>hide<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <h4 id="result">Result</h4> <p><iframe class="sample-code-frame" id="frame_Tooltips" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/GlobalEventHandlers/onmousemove/_samples_/Tooltips" loading="lazy"></iframe></p>
+<h3 id="draggable_elements">Draggable elements</h3>
+<p>We also have an example available showing the use of the <code>onmousemove</code> event handler with draggable objects — <a href="https://mdn.mozillademos.org/files/5031/draggable_elements.html" rel=" noopener">view the example in action</a>.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td>
+<a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onmousemove" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'onmousemove' in that specification.</small></a> </td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onmousemove</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<code><a href="../element/mousemove_event">mousemove</a></code> event</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onmousemove" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onmousemove</a>
+  </p>
+</div>

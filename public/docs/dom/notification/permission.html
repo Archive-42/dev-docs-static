@@ -1,0 +1,90 @@
+<h1>Notification.permission</h1>
+
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="../web_workers_api">Web Workers</a>.</p> </div>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <code>permission</code> read-only property of the <a href="../notification"><code>Notification</code></a> interface indicates the current permission granted by the user for the current origin to display web notifications.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> permission <span class="token operator">=</span> Notification<span class="token punctuation">.</span>permission<span class="token punctuation">;</span></pre>
+<h3 id="return_value">Value</h3>
+<p>A <a href="../domstring"><code>DOMString</code></a> representing the current permission. The value can be:</p> <ul> <li>
+<code>granted</code>: The user has explicitly granted permission for the current origin to display system notifications.</li> <li>
+<code>denied</code>: The user has explicitly denied permission for the current origin to display system notifications.</li> <li>
+<code>default</code>: The user decision is unknown; in this case the application will act as if permission was <code>denied</code>.</li> </ul>
+<h2 id="examples">Examples</h2>
+<p>The following snippet could be used if you wanted to first check whether notifications are supported, then check if permission has been granted for the current origin to send notifications, then request permission if required, before then sending a notification. </p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">notifyMe</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Let's check if the browser supports notifications</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token punctuation">(</span><span class="token string">"Notification"</span> <span class="token keyword">in</span> window<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"This browser does not support desktop notification"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Let's check whether notification permissions have alredy been granted</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>Notification<span class="token punctuation">.</span>permission <span class="token operator">===</span> <span class="token string">"granted"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// If it's okay let's create a notification</span>
+    <span class="token keyword">var</span> notification <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Notification</span><span class="token punctuation">(</span><span class="token string">"Hi there!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Otherwise, we need to ask the user for permission</span>
+  <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>Notification<span class="token punctuation">.</span>permission <span class="token operator">!==</span> <span class="token string">'denied'</span> <span class="token operator">||</span> Notification<span class="token punctuation">.</span>permission <span class="token operator">===</span> <span class="token string">"default"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    Notification<span class="token punctuation">.</span><span class="token function">requestPermission</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">permission</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// If the user accepts, let's create a notification</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>permission <span class="token operator">===</span> <span class="token string">"granted"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> notification <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Notification</span><span class="token punctuation">(</span><span class="token string">"Hi there!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// At last, if the user has denied notifications, and you</span>
+  <span class="token comment">// want to be respectful there is no need to bother them any more.</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td>
+<a href="https://notifications.spec.whatwg.org/#dom-notification-permission" hreflang="en" rel=" noopener">Notifications API<br><small>The definition of 'permission' in that specification.</small></a> </td> <td><span class="spec-living">Living Standard</span></td> <td>Living standard</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>permission</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../notifications_api">Notifications API</a></li> <li><a href="../notifications_api/using_the_notifications_api">Using the Notifications API</a></li> <li><a href="../permissions_api">Permissions API</a></li> <li><a href="../permissions_api/using_the_permissions_api">Using the Permissions API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Notification/permission" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Notification/permission</a>
+  </p>
+</div>

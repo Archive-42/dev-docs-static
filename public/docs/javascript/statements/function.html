@@ -1,0 +1,136 @@
+<h1>function declaration</h1> <p>The <strong>function declaration</strong> (function statement) defines a function with the specified parameters.</p> <p>You can also define functions using the <a href="../global_objects/function"><code>Function</code></a> constructor and a <a href="../operators/function">function expression</a>.</p> <iframe class="interactive" width="100%" height="410" src="https://interactive-examples.mdn.mozilla.net/pages/js/statement-function.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">function</span> <span class="token function">name</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">[</span>param<span class="token punctuation">[</span><span class="token punctuation">,</span> param<span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token operator">...</span><span class="token punctuation">,</span> param<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token punctuation">[</span>statements<span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</pre> <dl> <dt><code><var>name</var></code></dt> <dd>The function name.</dd> <dt>
+<code><var>param</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>The name of an argument to be passed to the function. Maximum number of arguments varies in different engines.</dd> <dt>
+<code><var>statements</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>The statements which comprise the body of the function.</dd> </dl>
+<h2 id="description">Description</h2>
+<p>A function created with a function declaration is a <code>Function</code> object and has all the properties, methods and behavior of <code>Function</code> objects. See <a href="../global_objects/function"><code>Function</code></a> for detailed information on functions.</p> <p>A function can also be created using an expression (see <a href="../operators/function">function expression</a>).</p> <p>By default, functions return <code>undefined</code>. To return any other value, the function must have a <a href="return"><code>return</code></a> statement that specifies the value to return.</p>
+<h3 id="conditionally_created_functions">Conditionally created functions</h3>
+<p>Functions can be conditionally declared, that is, a function statement can be nested within an <code>if</code> statement, however the results are inconsistent across implementations and therefore this pattern should not be used in production code. For conditional function creation, use function expressions instead.</p> <pre data-language="js"><span class="token keyword">var</span> hoisted <span class="token operator">=</span> <span class="token string">"foo"</span> <span class="token keyword">in</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">'foo' name </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>hoisted <span class="token operator">?</span> <span class="token string">"is"</span> <span class="token operator">:</span> <span class="token string">"is not"</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> hoisted. typeof foo is </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">typeof</span> foo<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// In Chrome:</span>
+<span class="token comment">// 'foo' name is hoisted. typeof foo is undefined</span>
+<span class="token comment">//</span>
+<span class="token comment">// In Firefox:</span>
+<span class="token comment">// 'foo' name is hoisted. typeof foo is undefined</span>
+<span class="token comment">//</span>
+<span class="token comment">// In Edge:</span>
+<span class="token comment">// 'foo' name is not hoisted. typeof foo is undefined</span>
+<span class="token comment">//</span>
+<span class="token comment">// In Safari:</span>
+<span class="token comment">// 'foo' name is hoisted. typeof foo is function</span>
+</pre> <p>The results are exactly the same for a condition that evaluates to true</p> <pre data-language="js"><span class="token keyword">var</span> hoisted <span class="token operator">=</span> <span class="token string">"foo"</span> <span class="token keyword">in</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">'foo' name </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>hoisted <span class="token operator">?</span> <span class="token string">"is"</span> <span class="token operator">:</span> <span class="token string">"is not"</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> hoisted. typeof foo is </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">typeof</span> foo<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">function</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// In Chrome:</span>
+<span class="token comment">// 'foo' name is hoisted. typeof foo is undefined</span>
+<span class="token comment">//</span>
+<span class="token comment">// In Firefox:</span>
+<span class="token comment">// 'foo' name is hoisted. typeof foo is undefined</span>
+<span class="token comment">//</span>
+<span class="token comment">// In Edge:</span>
+<span class="token comment">// 'foo' name is not hoisted. typeof foo is undefined</span>
+<span class="token comment">//</span>
+<span class="token comment">// In Safari:</span>
+<span class="token comment">// 'foo' name is hoisted. typeof foo is function</span>
+</pre>
+<h3 id="function_declaration_hoisting">Function declaration hoisting</h3>
+<p>Function declarations in JavaScript are hoisted to the top of the enclosing function or global scope. You can use the function before you declared it:</p> <pre data-language="js"><span class="token function">hoisted</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// logs "foo"</span>
+
+<span class="token keyword">function</span> <span class="token function">hoisted</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>Note that <a href="../operators/function">function expressions</a> are not hoisted:</p> <pre data-language="js"><span class="token function">notHoisted</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// TypeError: notHoisted is not a function</span>
+
+<span class="token keyword">var</span> <span class="token function-variable function">notHoisted</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'bar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="using_function">Using function</h3>
+<p>The following code declares a function that returns the total amount of sales, when given the number of units sold of products <code>a</code>, <code>b</code>, and <code>c</code>.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">calc_sales</span><span class="token punctuation">(</span><span class="token parameter">units_a<span class="token punctuation">,</span> units_b<span class="token punctuation">,</span> units_c</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">return</span> units_a <span class="token operator">*</span> <span class="token number">79</span> <span class="token operator">+</span> units_b <span class="token operator">*</span> <span class="token number">129</span> <span class="token operator">+</span> units_c <span class="token operator">*</span> <span class="token number">699</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-function-definitions">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-function-definitions</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>function</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>trailing_comma_in_parameters</code></th>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../global_objects/function"><code>Function</code></a></li> <li><a href="../operators/function">function expression</a></li> <li><a href="function*">function* statement</a></li> <li><a href="../operators/function*">function* expression</a></li> <li><a href="../functions/arrow_functions">Arrow functions</a></li> <li><a href="../global_objects/generatorfunction"><code>GeneratorFunction</code></a></li> <li><a href="async_function">async function</a></li> <li><a href="../operators/async_function">async function expression</a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function</a>
+  </p>
+</div>

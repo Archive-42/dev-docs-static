@@ -1,0 +1,420 @@
+<h1>SubtleCrypto.wrapKey()</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <code><strong>wrapKey()</strong></code> method of the <a href="../subtlecrypto"><code>SubtleCrypto</code></a> interface "wraps" a key. This means that it exports the key in an external, portable format, then encrypts the exported key. Wrapping a key helps protect it in untrusted environments, such as inside an otherwise unprotected data store or in transmission over an unprotected network.</p> <p>As with <code><a href="exportkey">SubtleCrypto.exportKey()</a></code>, you specify an <a href="importkey#supported_formats">export format</a> for the key. To export a key, it must have <a href="../cryptokey"><code>CryptoKey.extractable</code></a> set to <code>true</code>.</p> <p>But because <code>wrapKey()</code> also encrypts the key to be imported, you also need to pass in the key that must be used to encrypt it. This is sometimes called the "wrapping key".</p> <p>The inverse of <code>wrapKey()</code> is <a href="unwrapkey"><code>SubtleCrypto.unwrapKey()</code></a>: while <code>wrapKey</code> is composed of export + encrypt, <code>unwrapKey</code> is composed of import + decrypt.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">const</span> result <span class="token operator">=</span> crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">wrapKey</span><span class="token punctuation">(</span>
+    format<span class="token punctuation">,</span>
+    key<span class="token punctuation">,</span>
+    wrappingKey<span class="token punctuation">,</span>
+    wrapAlgo
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<ul> <li>
+<em><code>format</code></em> is a string describing the data format in which the key will be exported before it is encrypted. It can be one of the following: <ul> <li>
+<code>raw</code>: <a href="importkey#raw">Raw</a> format.</li> <li>
+<code>pkcs8</code>: <a href="importkey#pkcs_8">PKCS #8</a> format. </li> <li>
+<code>spki</code>: <a href="importkey#subjectpublickeyinfo">SubjectPublicKeyInfo</a> format.</li> <li>
+<code>jwk</code>: <a href="importkey#json_web_key">JSON Web Key</a> format.</li> </ul> </li> <li>
+<code><em>key</em></code> is the <a href="../cryptokey"><code>CryptoKey</code></a> to wrap.</li> <li>
+<code><em>wrappingkey</em></code> is the <a href="../cryptokey"><code>CryptoKey</code></a> used to encrypt the exported key. The key must have the <code>wrapKey</code> usage set.</li> <li>
+<code><em>wrapAlgo</em></code> is an object specifying the <a href="encrypt#supported_algorithms">algorithm</a> to be used to encrypt the exported key, and any required extra parameters: <ul> <li>To use <a href="encrypt#rsa-oaep">RSA-OAEP</a>, pass an <a href="../rsaoaepparams"><code>RsaOaepParams</code></a> object.</li> <li>To use <a href="encrypt#aes-ctr">AES-CTR</a>, pass an <a href="../aesctrparams"><code>AesCtrParams</code></a> object.</li> <li>To use <a href="encrypt#aes-cbc">AES-CBC</a>, pass an <a href="../aescbcparams"><code>AesCbcParams</code></a> object.</li> <li>To use <a href="encrypt#aes-gcm">AES-GCM</a>, pass an <a href="../aesgcmparams"><code>AesGcmParams</code></a> object.</li> <li>To use <a href="#AES-KW">AES-KW</a>, pass the string <code>"AES-KW"</code>, or an object of the form <code>{ "name": "AES-KW }</code>.</li> </ul> </li> </ul>
+<h3 id="return_value">Return value</h3>
+<ul> <li>
+<code><em>result</em></code> is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that fulfills with an <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer">ArrayBuffer</a></code> containing the encrypted exported key.</li> </ul>
+<h3 id="exceptions">Exceptions</h3>
+<p>The promise is rejected when one of the following exceptions is encountered:</p> <dl> <dt><a href="../domexception#exception-invalidaccesserror"><code>InvalidAccessError</code></a></dt> <dd>Raised when the wrapping key is not a key for the requested wrap algorithm.</dd> <dt><a href="../domexception#exception-notsupported"><code>NotSupported</code></a></dt> <dd>Raised when trying to use an algorithm that is either unknown or isn't suitable for encryption or wrapping.</dd> <dt><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError"><code>TypeError</code></a></dt> <dd>Raised when trying to use an invalid format.</dd> </dl>
+<h2 id="supported_algorithms">Supported algorithms</h2>
+<p>All <a href="encrypt#supported_algorithms">algorithms that are usable for encryption</a> are also usable for key wrapping, as long as the key has the "wrapKey" usage set. For key wrapping you have the additional option of AES-KW.</p>
+<h3 id="aes-kw">AES-KW</h3>
+<p>AES-KW is a way to use the AES cipher for key wrapping.</p> <p>One advantage of using AES-KW over another AES mode such as AES-GCM is that AES-KW does not require an initialization vector. To use AES-KW, the input must be a multiple of 64 bits.</p> <p>AES-KW is specified in <a href="https://datatracker.ietf.org/doc/html/rfc3394" rel=" noopener">RFC 3394</a>.</p>
+<h2 id="examples">Examples</h2>
+<div class="notecard note"> <p><strong>Note</strong>: You can <a href="https://mdn.github.io/dom-examples/web-crypto/wrap-key/index.html" rel=" noopener">try the working examples</a> out on GitHub.</p> </div>
+<h3 id="raw_wrap">
+<span class="highlight-span">Raw wrap</span> </h3>
+<p>This example wraps an AES key. It uses "raw" as the export format and AES-KW, with a password-derived key, to encrypt it. <a href="https://github.com/mdn/dom-examples/blob/master/web-crypto/wrap-key/raw.js" rel="noopener">See the complete code on GitHub.</a></p> <pre data-language="js"><span class="token keyword">let</span> salt<span class="token punctuation">;</span>
+
+<span class="token comment">/*
+Get some key material to use as input to the deriveKey method.
+The key material is a password supplied by the user.
+*/</span>
+<span class="token keyword">function</span> <span class="token function">getKeyMaterial</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> password <span class="token operator">=</span> window<span class="token punctuation">.</span><span class="token function">prompt</span><span class="token punctuation">(</span><span class="token string">"Enter your password"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> enc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TextEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">importKey</span><span class="token punctuation">(</span>
+    <span class="token string">"raw"</span><span class="token punctuation">,</span>
+    enc<span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span>password<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>name<span class="token operator">:</span> <span class="token string">"PBKDF2"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token string">"deriveBits"</span><span class="token punctuation">,</span> <span class="token string">"deriveKey"</span><span class="token punctuation">]</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/*
+Given some key material and some random salt
+derive an AES-KW key using PBKDF2.
+*/</span>
+<span class="token keyword">function</span> <span class="token function">getKey</span><span class="token punctuation">(</span><span class="token parameter">keyMaterial<span class="token punctuation">,</span> salt</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">deriveKey</span><span class="token punctuation">(</span>
+    <span class="token punctuation">{</span>
+      <span class="token string">"name"</span><span class="token operator">:</span> <span class="token string">"PBKDF2"</span><span class="token punctuation">,</span>
+      salt<span class="token operator">:</span> salt<span class="token punctuation">,</span>
+      <span class="token string">"iterations"</span><span class="token operator">:</span> <span class="token number">100000</span><span class="token punctuation">,</span>
+      <span class="token string">"hash"</span><span class="token operator">:</span> <span class="token string">"SHA-256"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    keyMaterial<span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"name"</span><span class="token operator">:</span> <span class="token string">"AES-KW"</span><span class="token punctuation">,</span> <span class="token string">"length"</span><span class="token operator">:</span> <span class="token number">256</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span> <span class="token string">"wrapKey"</span><span class="token punctuation">,</span> <span class="token string">"unwrapKey"</span> <span class="token punctuation">]</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/*
+Wrap the given key.
+*/</span>
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">wrapCryptoKey</span><span class="token punctuation">(</span><span class="token parameter">keyToWrap</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// get the key encryption key</span>
+  <span class="token keyword">const</span> keyMaterial <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">getKeyMaterial</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  salt <span class="token operator">=</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span><span class="token function">getRandomValues</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> wrappingKey <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">getKey</span><span class="token punctuation">(</span>keyMaterial<span class="token punctuation">,</span> salt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">wrapKey</span><span class="token punctuation">(</span>
+    <span class="token string">"raw"</span><span class="token punctuation">,</span>
+    keyToWrap<span class="token punctuation">,</span>
+    wrappingKey<span class="token punctuation">,</span>
+    <span class="token string">"AES-KW"</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">/*
+Generate an encrypt/decrypt secret key,
+then wrap it.
+*/</span>
+window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">generateKey</span><span class="token punctuation">(</span>
+  <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">"AES-GCM"</span><span class="token punctuation">,</span>
+    length<span class="token operator">:</span> <span class="token number">256</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">"encrypt"</span><span class="token punctuation">,</span> <span class="token string">"decrypt"</span><span class="token punctuation">]</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">secretKey</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">wrapCryptoKey</span><span class="token punctuation">(</span>secretKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">wrappedKey</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>wrappedKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</pre>
+<h3 id="pkcs_8_wrap"><span class="highlight-span">PKCS #8 wrap</span></h3>
+<p>This example wraps an RSA private signing key. It uses "pkcs8" as the export format and AES-GCM, with a password-derived key, to encrypt it. <a href="https://github.com/mdn/dom-examples/blob/master/web-crypto/wrap-key/pkcs8.js" rel="noopener">See the complete code on GitHub.</a></p> <pre data-language="js"><span class="token keyword">let</span> salt<span class="token punctuation">;</span>
+<span class="token keyword">let</span> iv<span class="token punctuation">;</span>
+
+<span class="token comment">/*
+Get some key material to use as input to the deriveKey method.
+The key material is a password supplied by the user.
+*/</span>
+<span class="token keyword">function</span> <span class="token function">getKeyMaterial</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> password <span class="token operator">=</span> window<span class="token punctuation">.</span><span class="token function">prompt</span><span class="token punctuation">(</span><span class="token string">"Enter your password"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> enc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TextEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">importKey</span><span class="token punctuation">(</span>
+    <span class="token string">"raw"</span><span class="token punctuation">,</span>
+    enc<span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span>password<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>name<span class="token operator">:</span> <span class="token string">"PBKDF2"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token string">"deriveBits"</span><span class="token punctuation">,</span> <span class="token string">"deriveKey"</span><span class="token punctuation">]</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/*
+Given some key material and some random salt
+derive an AES-GCM key using PBKDF2.
+*/</span>
+<span class="token keyword">function</span> <span class="token function">getKey</span><span class="token punctuation">(</span><span class="token parameter">keyMaterial<span class="token punctuation">,</span> salt</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">deriveKey</span><span class="token punctuation">(</span>
+    <span class="token punctuation">{</span>
+      <span class="token string">"name"</span><span class="token operator">:</span> <span class="token string">"PBKDF2"</span><span class="token punctuation">,</span>
+      salt<span class="token operator">:</span> salt<span class="token punctuation">,</span>
+      <span class="token string">"iterations"</span><span class="token operator">:</span> <span class="token number">100000</span><span class="token punctuation">,</span>
+      <span class="token string">"hash"</span><span class="token operator">:</span> <span class="token string">"SHA-256"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    keyMaterial<span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"name"</span><span class="token operator">:</span> <span class="token string">"AES-GCM"</span><span class="token punctuation">,</span> <span class="token string">"length"</span><span class="token operator">:</span> <span class="token number">256</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span> <span class="token string">"wrapKey"</span><span class="token punctuation">,</span> <span class="token string">"unwrapKey"</span> <span class="token punctuation">]</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/*
+Wrap the given key.
+*/</span>
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">wrapCryptoKey</span><span class="token punctuation">(</span><span class="token parameter">keyToWrap</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// get the key encryption key</span>
+  <span class="token keyword">const</span> keyMaterial <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">getKeyMaterial</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  salt <span class="token operator">=</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span><span class="token function">getRandomValues</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> wrappingKey <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">getKey</span><span class="token punctuation">(</span>keyMaterial<span class="token punctuation">,</span> salt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  iv <span class="token operator">=</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span><span class="token function">getRandomValues</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">wrapKey</span><span class="token punctuation">(</span>
+    <span class="token string">"pkcs8"</span><span class="token punctuation">,</span>
+    keyToWrap<span class="token punctuation">,</span>
+    wrappingKey<span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      name<span class="token operator">:</span> <span class="token string">"AES-GCM"</span><span class="token punctuation">,</span>
+      iv<span class="token operator">:</span> iv
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">/*
+Generate a sign/verify key pair,
+then wrap the private key.
+*/</span>
+window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">generateKey</span><span class="token punctuation">(</span>
+  <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">"RSA-PSS"</span><span class="token punctuation">,</span>
+    <span class="token comment">// Consider using a 4096-bit key for systems that require long-term security</span>
+    modulusLength<span class="token operator">:</span> <span class="token number">2048</span><span class="token punctuation">,</span>
+    publicExponent<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    hash<span class="token operator">:</span> <span class="token string">"SHA-256"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">"sign"</span><span class="token punctuation">,</span> <span class="token string">"verify"</span><span class="token punctuation">]</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">keyPair</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">wrapCryptoKey</span><span class="token punctuation">(</span>keyPair<span class="token punctuation">.</span>privateKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">wrappedKey</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>wrappedKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</pre>
+<h3 id="subjectpublickeyinfo_wrap"><span class="highlight-span">SubjectPublicKeyInfo wrap</span></h3>
+<p>This example wraps an RSA public encryption key. It uses "spki" as the export format and AES-CBC, with a password-derived key, to encrypt it. <a href="https://github.com/mdn/dom-examples/blob/master/web-crypto/wrap-key/spki.js" rel="noopener">See the complete code on GitHub.</a></p> <pre data-language="js"><span class="token keyword">let</span> salt<span class="token punctuation">;</span>
+<span class="token keyword">let</span> iv<span class="token punctuation">;</span>
+
+<span class="token comment">/*
+Get some key material to use as input to the deriveKey method.
+The key material is a password supplied by the user.
+*/</span>
+<span class="token keyword">function</span> <span class="token function">getKeyMaterial</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> password <span class="token operator">=</span> window<span class="token punctuation">.</span><span class="token function">prompt</span><span class="token punctuation">(</span><span class="token string">"Enter your password"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> enc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TextEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">importKey</span><span class="token punctuation">(</span>
+    <span class="token string">"raw"</span><span class="token punctuation">,</span>
+    enc<span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span>password<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>name<span class="token operator">:</span> <span class="token string">"PBKDF2"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token string">"deriveBits"</span><span class="token punctuation">,</span> <span class="token string">"deriveKey"</span><span class="token punctuation">]</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/*
+Given some key material and some random salt
+derive an AES-CBC key using PBKDF2.
+*/</span>
+<span class="token keyword">function</span> <span class="token function">getKey</span><span class="token punctuation">(</span><span class="token parameter">keyMaterial<span class="token punctuation">,</span> salt</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">deriveKey</span><span class="token punctuation">(</span>
+    <span class="token punctuation">{</span>
+      <span class="token string">"name"</span><span class="token operator">:</span> <span class="token string">"PBKDF2"</span><span class="token punctuation">,</span>
+      salt<span class="token operator">:</span> salt<span class="token punctuation">,</span>
+      <span class="token string">"iterations"</span><span class="token operator">:</span> <span class="token number">100000</span><span class="token punctuation">,</span>
+      <span class="token string">"hash"</span><span class="token operator">:</span> <span class="token string">"SHA-256"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    keyMaterial<span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"name"</span><span class="token operator">:</span> <span class="token string">"AES-CBC"</span><span class="token punctuation">,</span> <span class="token string">"length"</span><span class="token operator">:</span> <span class="token number">256</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span> <span class="token string">"wrapKey"</span><span class="token punctuation">,</span> <span class="token string">"unwrapKey"</span> <span class="token punctuation">]</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/*
+Wrap the given key.
+*/</span>
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">wrapCryptoKey</span><span class="token punctuation">(</span><span class="token parameter">keyToWrap</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// get the key encryption key</span>
+  <span class="token keyword">const</span> keyMaterial <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">getKeyMaterial</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  salt <span class="token operator">=</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span><span class="token function">getRandomValues</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> wrappingKey <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">getKey</span><span class="token punctuation">(</span>keyMaterial<span class="token punctuation">,</span> salt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  iv <span class="token operator">=</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span><span class="token function">getRandomValues</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">wrapKey</span><span class="token punctuation">(</span>
+    <span class="token string">"spki"</span><span class="token punctuation">,</span>
+    keyToWrap<span class="token punctuation">,</span>
+    wrappingKey<span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      name<span class="token operator">:</span> <span class="token string">"AES-CBC"</span><span class="token punctuation">,</span>
+      iv<span class="token operator">:</span> iv
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token comment">/*
+Generate an encrypt/decrypt key pair,
+then wrap it.
+*/</span>
+window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">generateKey</span><span class="token punctuation">(</span>
+  <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">"RSA-OAEP"</span><span class="token punctuation">,</span>
+    <span class="token comment">// Consider using a 4096-bit key for systems that require long-term security</span>
+    modulusLength<span class="token operator">:</span> <span class="token number">2048</span><span class="token punctuation">,</span>
+    publicExponent<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    hash<span class="token operator">:</span> <span class="token string">"SHA-256"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">"encrypt"</span><span class="token punctuation">,</span> <span class="token string">"decrypt"</span><span class="token punctuation">]</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">keyPair</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">wrapCryptoKey</span><span class="token punctuation">(</span>keyPair<span class="token punctuation">.</span>publicKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">wrappedKey</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>wrappedKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</pre>
+<h3 id="json_web_key_import"><span class="highlight-span">JSON Web Key import</span></h3>
+<p>This code wraps an ECDSA private signing key. It uses "jwk" as the export format and AES-GCM, with a password-derived key, to encrypt it. <a href="https://github.com/mdn/dom-examples/blob/master/web-crypto/wrap-key/jwk.js" rel="noopener">See the complete code on GitHub.</a></p> <pre data-language="js"><span class="token keyword">let</span> salt<span class="token punctuation">;</span>
+<span class="token keyword">let</span> iv<span class="token punctuation">;</span>
+
+<span class="token comment">/*
+Get some key material to use as input to the deriveKey method.
+The key material is a password supplied by the user.
+*/</span>
+<span class="token keyword">function</span> <span class="token function">getKeyMaterial</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> password <span class="token operator">=</span> window<span class="token punctuation">.</span><span class="token function">prompt</span><span class="token punctuation">(</span><span class="token string">"Enter your password"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> enc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">TextEncoder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">importKey</span><span class="token punctuation">(</span>
+    <span class="token string">"raw"</span><span class="token punctuation">,</span>
+    enc<span class="token punctuation">.</span><span class="token function">encode</span><span class="token punctuation">(</span>password<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>name<span class="token operator">:</span> <span class="token string">"PBKDF2"</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token boolean">false</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span><span class="token string">"deriveBits"</span><span class="token punctuation">,</span> <span class="token string">"deriveKey"</span><span class="token punctuation">]</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/*
+Given some key material and some random salt
+derive an AES-GCM key using PBKDF2.
+*/</span>
+<span class="token keyword">function</span> <span class="token function">getKey</span><span class="token punctuation">(</span><span class="token parameter">keyMaterial<span class="token punctuation">,</span> salt</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">deriveKey</span><span class="token punctuation">(</span>
+    <span class="token punctuation">{</span>
+      <span class="token string">"name"</span><span class="token operator">:</span> <span class="token string">"PBKDF2"</span><span class="token punctuation">,</span>
+      salt<span class="token operator">:</span> salt<span class="token punctuation">,</span>
+      <span class="token string">"iterations"</span><span class="token operator">:</span> <span class="token number">100000</span><span class="token punctuation">,</span>
+      <span class="token string">"hash"</span><span class="token operator">:</span> <span class="token string">"SHA-256"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    keyMaterial<span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> <span class="token string">"name"</span><span class="token operator">:</span> <span class="token string">"AES-GCM"</span><span class="token punctuation">,</span> <span class="token string">"length"</span><span class="token operator">:</span> <span class="token number">256</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token boolean">true</span><span class="token punctuation">,</span>
+    <span class="token punctuation">[</span> <span class="token string">"wrapKey"</span><span class="token punctuation">,</span> <span class="token string">"unwrapKey"</span> <span class="token punctuation">]</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/*
+Wrap the given key.
+*/</span>
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">wrapCryptoKey</span><span class="token punctuation">(</span><span class="token parameter">keyToWrap</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// get the key encryption key</span>
+  <span class="token keyword">const</span> keyMaterial <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">getKeyMaterial</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  salt <span class="token operator">=</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span><span class="token function">getRandomValues</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> wrappingKey <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">getKey</span><span class="token punctuation">(</span>keyMaterial<span class="token punctuation">,</span> salt<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  iv <span class="token operator">=</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span><span class="token function">getRandomValues</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">return</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">wrapKey</span><span class="token punctuation">(</span>
+    <span class="token string">"jwk"</span><span class="token punctuation">,</span>
+    keyToWrap<span class="token punctuation">,</span>
+    wrappingKey<span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      name<span class="token operator">:</span> <span class="token string">"AES-GCM"</span><span class="token punctuation">,</span>
+      iv<span class="token operator">:</span> iv
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/*
+Generate a sign/verify key pair,
+then wrap the private key
+*/</span>
+window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">generateKey</span><span class="token punctuation">(</span>
+  <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">"ECDSA"</span><span class="token punctuation">,</span>
+    namedCurve<span class="token operator">:</span> <span class="token string">"P-384"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token boolean">true</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token string">"sign"</span><span class="token punctuation">,</span> <span class="token string">"verify"</span><span class="token punctuation">]</span>
+<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">keyPair</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">wrapCryptoKey</span><span class="token punctuation">(</span>keyPair<span class="token punctuation">.</span>privateKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">wrappedKey</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>wrappedKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.w3.org/TR/WebCryptoAPI/#dfn-SubtleCrypto-method-wrapKey" hreflang="en" rel=" noopener">Web Cryptography API<br><small>The definition of 'SubtleCrypto.wrapKey()' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>wrapKey</code></th>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>Not supported: AES-CTR.</div>
+</td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>Returns <code>KeyOperation</code> instead of <code>Promise</code>
+</div>
+</td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li> <code><a href="exportkey">SubtleCrypto.exportKey()</a></code> </li> <li>
+<a href="https://datatracker.ietf.org/doc/html/rfc5208" rel="noopener">PKCS #8 format</a>.</li> <li>
+<a href="https://datatracker.ietf.org/doc/html/rfc5280#section-4.1" rel="noopener">SubjectPublicKeyInfo format</a>.</li> <li>
+<a href="https://datatracker.ietf.org/doc/html/rfc7517" rel="noopener">JSON Web Key format</a>.</li> <li>
+<a href="https://datatracker.ietf.org/doc/html/rfc3394" rel=" noopener">AES-KW specification</a>.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/wrapKey" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/wrapKey</a>
+  </p>
+</div>

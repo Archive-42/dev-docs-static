@@ -1,0 +1,119 @@
+<h1>Object.prototype.__proto__</h1>
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div> <div class="notecard warning"> <p><strong>Warning:</strong> Changing the <code>[[Prototype]]</code> of an object is, by the nature of how modern JavaScript engines optimize property accesses, a very slow operation, in <strong><em>every</em></strong> browser and JavaScript engine. The effects on the performance of altering inheritance are subtle and far-flung, and are not limited to the time spent in <code>obj.__proto__ = ...</code> statements, but may extend to <strong><em>any</em></strong> code that has access to <strong><em>any</em></strong> object whose <code>[[Prototype]]</code> has been altered. If you care about performance you should avoid setting the <code>[[Prototype]]</code> of an object. Instead, create a new object with the desired <code>[[Prototype]]</code> using <a href="create"><code>Object.create()</code></a>.</p> </div> <div class="notecard warning"> <p><strong>Warning:</strong> While <code>Object.prototype.__proto__</code> is supported today in most browsers, its existence and exact behavior has only been standardized in the ECMAScript 2015 specification as a legacy feature to ensure compatibility for web browsers. For better support, use <a href="getprototypeof"><code>Object.getPrototypeOf()</code></a> instead.</p> </div>  <p>The <code>__proto__</code> property of <a href="../object"><code>Object.prototype</code></a> is an accessor property (a getter function and a setter function) that exposes the internal <code>[[Prototype]]</code> (either an object or <a href="../null"><code>null</code></a>) of the object through which it is accessed.</p> <p>The use of <code>__proto__</code> is controversial and discouraged. It was never originally included in the ECMAScript language spec, but modern browsers implemented it anyway. Only recently was the <code>__proto__</code> property standardized by the ECMAScript 2015 specification for compatibility with web browsers, so it will be supported into the future. It is deprecated in favor of <a href="getprototypeof"><code>Object.getPrototypeOf</code></a>/<a href="../reflect/getprototypeof"><code>Reflect.getPrototypeOf</code></a> and <a href="setprototypeof"><code>Object.setPrototypeOf</code></a>/<a href="../reflect/setprototypeof"><code>Reflect.setPrototypeOf</code></a> (though still, setting the <code>[[Prototype]]</code> of an object is a slow operation that should be avoided if performance is a concern).</p> <p>The <code>__proto__</code> property can also be used in an object literal definition to set the object <code>[[Prototype]]</code> on creation, as an alternative to <a href="create"><code>Object.create()</code></a>. See: <a href="../../operators/object_initializer">object initializer / literal syntax</a>.</p>
+<h2 id="description">Description</h2>
+<p>The <code>__proto__</code> getter function exposes the value of the internal <code>[[Prototype]]</code> of an object. For objects created using an object literal, this value is <a href="../object"><code>Object.prototype</code></a>. For objects created using array literals, this value is <a class="page-not-created"><code>Array.prototype</code></a>. For functions, this value is <a href="../function"><code>Function.prototype</code></a>. For objects created using <code>new fun</code>, where <code>fun</code> is one of the built-in constructor functions provided by JavaScript (<a href="../array"><code>Array</code></a>, <a href="../boolean"><code>Boolean</code></a>, <a href="../date"><code>Date</code></a>, <a href="../number"><code>Number</code></a>, <a href="../object"><code>Object</code></a>, <a href="../string"><code>String</code></a>, and so on — including new constructors added as JavaScript evolves), this value is always <code>fun.prototype</code>. For objects created using <code>new fun</code>, where <code>fun</code> is a function defined in a script, this value is the value of <code>fun.prototype</code>. (That is, if the constructor didn't return an other object explicitly, or the <code>fun.prototype</code> has been reassigned since the instance was created.)</p> <p>The <code>__proto__</code> setter allows the <code>[[Prototype]]</code> of an object to be mutated. The object must be extensible according to <a href="isextensible"><code>Object.isExtensible()</code></a>: if it is not, a <a href="../typeerror"><code>TypeError</code></a> is thrown. The value provided must be an object or <a href="../null"><code>null</code></a>. Providing any other value will do nothing.</p> <p>To understand how prototypes are used for inheritance, see guide article <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">Inheritance and the prototype chain</a>.</p> <p>The <code>__proto__</code> property is a simple accessor property on <a href="../object"><code>Object.prototype</code></a> consisting of a getter and setter function. A property access for <code>__proto__</code> that eventually consults <a href="../object"><code>Object.prototype</code></a> will find this property, but an access that does not consult <a href="../object"><code>Object.prototype</code></a> will not. If some other <code>__proto__</code> property is found before <a href="../object"><code>Object.prototype</code></a> is consulted, that property will hide the one found on <a href="../object"><code>Object.prototype</code></a>.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using___proto__">Using __proto__</h3>
+<pre data-language="js"><span class="token keyword">function</span> <span class="token function">Circle</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">const</span> shape <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> circle <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Circle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Set the object prototype.</span>
+<span class="token comment">// DEPRECATED. This is for example purposes only. DO NOT DO THIS in real code.</span>
+shape<span class="token punctuation">.</span>__proto__ <span class="token operator">=</span> circle<span class="token punctuation">;</span>
+
+<span class="token comment">// Get the object prototype</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>shape<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> Circle<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// false</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">ShapeA</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ShapeB <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'aaa'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">ShapeA</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>__proto__ <span class="token operator">=</span> ShapeB<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> shapea <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ShapeA</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+shapea<span class="token punctuation">.</span><span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// aaa</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">ShapeA</span><span class="token punctuation">.</span>prototype <span class="token operator">===</span> shapea<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+
+<span class="token comment">// or</span>
+<span class="token keyword">const</span> <span class="token function-variable function">ShapeC</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ShapeD <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> shapeC <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ShapeC</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+shapeC<span class="token punctuation">.</span>__proto__ <span class="token operator">=</span> ShapeD<span class="token punctuation">;</span>
+shapeC<span class="token punctuation">.</span><span class="token function">a</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// a</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">ShapeC</span><span class="token punctuation">.</span>prototype <span class="token operator">===</span> shapeC<span class="token punctuation">.</span>__proto__<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// false</span>
+
+<span class="token comment">// or</span>
+<span class="token keyword">function</span> <span class="token function">Test</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token class-name">Test</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">myname</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'myname'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Test</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">.</span>__proto__ <span class="token operator">===</span> <span class="token class-name">Test</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+a<span class="token punctuation">.</span><span class="token function">myname</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// myname</span>
+
+<span class="token comment">// or</span>
+<span class="token keyword">const</span> <span class="token function-variable function">fn</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+fn<span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">myname</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'myname'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+    __proto__<span class="token operator">:</span> fn<span class="token punctuation">.</span>prototype
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+obj<span class="token punctuation">.</span><span class="token function">myname</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// myname</span>
+
+ </pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-additional-properties-of-the-object.prototype-object">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-additional-properties-of-the-object.prototype-object</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>proto</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>10.5</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="isprototypeof"><code>Object.prototype.isPrototypeOf()</code></a></li> <li><a href="getprototypeof"><code>Object.getPrototypeOf()</code></a></li> <li><a href="setprototypeof"><code>Object.setPrototypeOf()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/proto</a>
+  </p>
+</div>

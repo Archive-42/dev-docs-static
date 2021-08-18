@@ -1,0 +1,84 @@
+<h1>Document.write()</h1> <p>The <code>Document.write()</code> method writes a string of text to a document stream opened by <a href="open"><code>document.open()</code></a>.</p> <div class="note notecard">
+<strong>Note</strong>: Because <code>document.write()</code> writes to the document <strong>stream</strong>, calling <code>document.write()</code> on a closed (loaded) document automatically calls <code>document.open()</code>, <a href="open#notes">which will clear the document</a>.</div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>markup<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><var>markup</var></dt> <dd>A string containing the text to be written to the document.</dd> </dl>
+<h3 id="example">Example</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Write example<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+    <span class="token keyword">function</span> <span class="token function">newContent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      document<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;h1&gt;Out with the old, in with the new!&lt;/h1&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      document<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span> <span class="token attr-name">onload</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>newContent();<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Some original document content.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span>
+</pre> <p><iframe class="sample-code-frame" id="frame_Syntax" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Document/write/_samples_/Syntax" loading="lazy"></iframe></p>
+<h2 id="notes">Notes</h2>
+<p>The text you write is parsed into the document's structure model. In the example above, the <code>h1</code> element becomes a node in the document.</p> <p>Writing to a document that has already loaded without calling <a href="open"><code>document.open()</code></a> will automatically call <code>document.open()</code>. After writing, call <a href="close"><code>document.close()</code></a> to tell the browser to finish loading the page.</p> <p>If the <code>document.write()</code> call is embedded within an inline HTML <code>&lt;script&gt;</code> tag, then it will not call <code>document.open()</code>. For example:</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+  document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;h1&gt;Main title&lt;/h1&gt;"</span><span class="token punctuation">)</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</pre> <div class="note notecard">
+<strong>Note</strong>: <code>document.write()</code> and <a href="writeln"><code>document.writeln</code></a> <a href="https://developer.mozilla.org/en-US/docs/Archive/Web/Writing_JavaScript_for_HTML">do not work in XHTML documents</a> (you'll get an "Operation is not supported" [<code>NS_ERROR_DOM_NOT_SUPPORTED_ERR</code>] error in the error console). This happens when opening a local file with the .xhtml file extension or for any document served with an <code>application/xhtml+xml</code> <a href="https://developer.mozilla.org/en-US/docs/Glossary/MIME_type">MIME type</a>. More information is available in the <a href="https://www.w3.org/MarkUp/2004/xhtml-faq#docwrite" rel=" noopener">W3C XHTML FAQ</a>.</div> <div class="note notecard">
+<strong>Note</strong>: Using <code>document.write()</code> in <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-defer">deferred</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attr-async">asynchronous</a> scripts will be ignored and you'll get a message like "A call to <code>document.write()</code> from an asynchronously-loaded external script was ignored" in the error console.</div> <div class="note notecard">
+<strong>Note</strong>: In Edge only, calling <code>document.write()</code> more than once in an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a> causes the error "SCRIPT70: Permission denied".</div> <div class="note notecard">
+<strong>Note</strong>: Starting with version 55, Chrome will not execute <code>&lt;script&gt;</code> elements injected via <code>document.write()</code> when specific conditions are met. For more information, refer to <a href="https://developers.google.com/web/updates/2016/08/removing-document-write" rel=" noopener">Intervening against document.write()</a>.</div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#dom-document-write" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'document.write(...)' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-75233634" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 2 HTML Specification<br><small>The definition of 'document.write(...)' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>write</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../element/innerhtml"><code>element.innerHTML</code></a></li> <li><a href="createelement"><code>document.createElement()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/write" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Document/write</a>
+  </p>
+</div>

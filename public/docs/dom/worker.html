@@ -1,0 +1,181 @@
+<h1>Worker</h1> <p>The <code>Worker</code> interface of the <a href="web_workers_api">Web Workers API</a> represents a background task that can be created via script, which can send messages back to its creator. Creating a worker is done by calling the <code>Worker("path/to/worker/script")</code> constructor.</p> <p>Workers may themselves spawn new workers, as long as those workers are hosted at the same <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">origin</a> as the parent page. (Note: <a href="https://bugs.webkit.org/show_bug.cgi?id=22723" rel=" noopener">nested workers are not yet implemented in WebKit</a>).</p> <p><a href="web_workers_api/functions_and_classes_available_to_workers">Not all interfaces and functions are available</a> to scripts inside a <code>Worker</code>. Workers may use <a href="xmlhttprequest"><code>XMLHttpRequest</code></a> for network communication, but its <code>responseXML</code> and <code>channel</code> attributes are always <code>null</code>. (<code><a href="fetch_api">fetch</a></code> is also available, with no such restrictions.)</p>
+<h2 id="constructors">Constructors</h2>
+<dl> <dt><a href="worker/worker"><code>Worker()</code></a></dt> <dd>Creates a dedicated web worker that executes the script at the specified URL. This also works for <a href="blob">Blob URLs</a>.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<p><em>Inherits properties from its parent, <a href="eventtarget"><code>EventTarget</code></a>, and implements properties from <a href="abstractworker"><code>AbstractWorker</code></a>.</em></p>
+<h3 id="event_handlers">Event handlers</h3>
+<dl> <dt><a href="abstractworker/onerror"><code>AbstractWorker.onerror</code></a></dt> <dd>An <a href="eventlistener"><code>EventListener</code></a> called whenever an <a href="errorevent"><code>ErrorEvent</code></a> of type <code>error</code> bubbles through to the worker. This is inherited from <a href="abstractworker"><code>AbstractWorker</code></a>.</dd> <dt><a href="worker/onmessage"><code>Worker.onmessage</code></a></dt> <dd>An <a href="eventlistener"><code>EventListener</code></a> called whenever a <a href="messageevent"><code>MessageEvent</code></a> of type <code>message</code> bubbles through the worker — i.e. when a message is sent to the parent document from the worker via <a href="dedicatedworkerglobalscope/postmessage"><code>DedicatedWorkerGlobalScope.postMessage</code></a>. The message is stored in the event's <a href="messageevent/data"><code>data</code></a> property.</dd> <dt><a href="worker/onmessageerror"><code>Worker.onmessageerror</code></a></dt> <dd>Is an <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a> representing the code to be called when the <code><a href="window/messageerror_event">messageerror</a></code> event is raised.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<p><em>Inherits methods from its parent, <a href="eventtarget"><code>EventTarget</code></a>, and implements methods from <a href="abstractworker"><code>AbstractWorker</code></a>.</em></p> <dl> <dt><a href="worker/postmessage"><code>Worker.postMessage()</code></a></dt> <dd>Sends a message — consisting of any JavaScript object — to the worker's inner scope.</dd> <dt><a href="worker/terminate"><code>Worker.terminate()</code></a></dt> <dd>Immediately terminates the worker. This does not let worker finish its operations; it is halted at once. <code><a href="serviceworker">ServiceWorker</a></code> instances do not support this method.</dd> </dl>
+<h2 id="events">Events</h2>
+<dl> <dt><code><a href="worker/message_event">message</a></code></dt> <dd>Fires when the worker's parent receives a message from that worker.<br> Also available via the <code><a href="worker/onmessage">onmessage</a></code> property.</dd> <dt><code><a href="worker/messageerror_event">messageerror</a></code></dt> <dd>Fires when a <code>Worker</code> object receives a message that can't be <a href="web_workers_api/structured_clone_algorithm">deserialized</a>.<br> Also available via the <code><a href="worker/onmessageerror">onmessageerror</a></code> property.</dd> <dt><code><a href="window/rejectionhandled_event">rejectionhandled</a></code></dt> <dd>Fires every time a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> rejects, regardless of whether or not there is a handler to catch the rejection.<br> Also available through the <code><a href="windoweventhandlers/onrejectionhandled">onrejectionhandled</a></code> event handler property.</dd> <dt><code><a href="window/unhandledrejection_event">unhandledrejection</a></code></dt> <dd>Fires when a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> rejects with no handler to catch the rejection.<br> Also available using the <code><a href="windoweventhandlers/onunhandledrejection">onunhandledrejection</a></code> event handler property.</dd> </dl>
+<h2 id="example">Example</h2>
+<p>The following code snippet creates a <a href="worker"><code>Worker</code></a> object using the <a href="worker/worker"><code>Worker()</code></a> constructor, then uses the worker object:</p> <pre data-language="js"><span class="token keyword">var</span> myWorker <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Worker</span><span class="token punctuation">(</span><span class="token string">'/worker.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> first <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'input#number1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> second <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'input#number2'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+first<span class="token punctuation">.</span><span class="token function-variable function">onchange</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  myWorker<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span><span class="token punctuation">[</span>first<span class="token punctuation">.</span>value<span class="token punctuation">,</span> second<span class="token punctuation">.</span>value<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Message posted to worker'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>For a full example, see our <a href="https://github.com/mdn/simple-web-worker" rel=" noopener">Basic dedicated worker example</a> (<a href="https://mdn.github.io/simple-web-worker/" rel=" noopener">run dedicated worker</a>).</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#worker" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'Worker' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>Worker</code></th>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10.6</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>Worker</code></th>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10.6</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>message_event</code></th>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10.6</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11.5</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>messageerror_event</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>onmessage</code></th>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10.6</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>onmessageerror</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>postMessage</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes">
+<div>10</div>
+<div>Internet Explorer does not support <code>Transferable</code> objects.</div>
+</td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>terminate</code></th>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10.6</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+</tbody>
+</table>
+<p>Support varies for different types of workers. See each worker type's page for specifics.</p> 
+
+<h3 id="cross-origin_worker_error_behavior">Cross-origin worker error behavior</h3>
+<p>In early versions of the spec, loading a cross-origin worker script threw a <code>SecurityError</code>. Nowadays, an <code><a href="element/error_event">error</a></code> event is thrown instead. Find out how to deal with this in <em><a href="https://github.com/mdn/kuma/issues/7647" rel=" noopener">Loading cross-origin worker now fires error event instead of throwing; worker in sandboxed iframe no longer allowed</a></em>.</p>
+<h2 id="see_also">See also</h2>
+<ul> <li><a class="internal" href="web_workers_api/using_web_workers">Using Web Workers</a></li> <li><a href="web_workers_api/functions_and_classes_available_to_workers">Functions and classes available to Web Workers</a></li> <li>Other kind of workers: <a href="sharedworker"><code>SharedWorker</code></a> and <a href="service_worker_api">Service Worker</a>.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Worker" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Worker</a>
+  </p>
+</div>

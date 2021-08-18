@@ -1,0 +1,394 @@
+<h1>DataTransfer</h1> <p>The <code><strong>DataTransfer</strong></code> object is used to hold the data that is being dragged during a drag and drop operation. It may hold one or more data items, each of one or more data types. For more information about drag and drop, see <a href="html_drag_and_drop_api">HTML Drag and Drop API</a>.</p> <p>This object is available from the <a href="dragevent/datatransfer"><code>dataTransfer</code></a> property of all <a href="dragevent"><code>drag events</code></a>.</p>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="datatransfer/datatransfer"><code>DataTransfer()</code></a></dt> <dd>Creates and returns a new <code>DataTransfer</code> object.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<h3 id="standard_properties">Standard properties</h3>
+<dl> <dt><a href="datatransfer/dropeffect"><code>DataTransfer.dropEffect</code></a></dt> <dd>Gets the type of drag-and-drop operation currently selected or sets the operation to a new type. The value must be <code>none</code>, <code>copy</code>, <code>link</code> or <code>move</code>.</dd> <dt><a href="datatransfer/effectallowed"><code>DataTransfer.effectAllowed</code></a></dt> <dd>Provides all of the types of operations that are possible. Must be one of <code>none</code>, <code>copy</code>, <code>copyLink</code>, <code>copyMove</code>, <code>link</code>, <code>linkMove</code>, <code>move</code>, <code>all</code> or <code>uninitialized</code>.</dd> <dt><a href="datatransfer/files"><code>DataTransfer.files</code></a></dt> <dd>Contains a list of all the local files available on the data transfer. If the drag operation doesn't involve dragging files, this property is an empty list.</dd> <dt>
+<a href="datatransfer/items"><code>DataTransfer.items</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Gives a <a href="datatransferitemlist"><code>DataTransferItemList</code></a> object which is a list of all of the drag data.</dd> <dt>
+<a href="datatransfer/types"><code>DataTransfer.types</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>An array of <a href="domstring"><code>strings</code></a> giving the formats that were set in the <code><a href="document/dragstart_event">dragstart</a></code> event.</dd> </dl>
+<h3 id="gecko_properties">Gecko properties</h3>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <div class="note notecard">
+<strong>Note:</strong> All of the properties in this section are Gecko-specific.</div> <dl> <dt><a href="datatransfer/mozcursor"><code>DataTransfer.mozCursor</code></a></dt> <dd>Gives the drag cursor's state. This is primarily used to control the cursor during tab drags.</dd> <dt>
+<a href="datatransfer/mozsourcenode"><code>DataTransfer.mozSourceNode</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>The <a href="node"><code>Node</code></a> over which the mouse cursor was located when the button was pressed to initiate the drag operation. This value is <code>null</code> for external drags or if the caller can't access the node.</dd> <dt>
+<a href="datatransfer/mozusercancelled"><code>DataTransfer.mozUserCancelled</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>This property applies only to the <code>dragend</code> event, and is <code>true</code> if the user canceled the drag operation by pressing escape. It will be <code>false</code> in all other cases, including if the drag failed for any other reason, for instance due to a drop over an invalid location.</dd> </dl>
+<h3 id="deprecated_properties">Deprecated properties</h3>
+<dl> <dt>
+<a href="datatransfer/mozitemcount"><code>DataTransfer.mozItemCount</code></a> <span class="badge inline readonly">Read only </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>Gives the number of items in the drag operation. Removed in Firefox 71.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<h3 id="standard_methods">Standard methods</h3>
+<dl> <dt><a href="datatransfer/cleardata"><code>DataTransfer.clearData()</code></a></dt> <dd>Remove the data associated with a given type. The type argument is optional. If the type is empty or not specified, the data associated with all types is removed. If data for the specified type does not exist, or the data transfer contains no data, this method will have no effect.</dd> <dt><a href="datatransfer/getdata"><code>DataTransfer.getData()</code></a></dt> <dd>Retrieves the data for a given type, or an empty string if data for that type does not exist or the data transfer contains no data.</dd> <dt><a href="datatransfer/setdata"><code>DataTransfer.setData()</code></a></dt> <dd>Set the data for a given type. If data for the type does not exist, it is added at the end, such that the last item in the types list will be the new format. If data for the type already exists, the existing data is replaced in the same position.</dd> <dt><a href="datatransfer/setdragimage"><code>DataTransfer.setDragImage()</code></a></dt> <dd>Set the image to be used for dragging if a custom one is desired.</dd> </dl>
+<h3 id="gecko_methods">Gecko methods</h3>
+
+<div class="notecard warning"> <strong id="non-standard">Non-standard</strong> <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p> </div>
+ <div class="note notecard">
+<strong>Note:</strong> All of the methods in this section are Gecko-specific.</div> <dl> <dt><a href="datatransfer/addelement"><code>DataTransfer.addElement()</code></a></dt> <dd>Sets the drag source to the given element.</dd> </dl>
+<h3 id="deprecated_methods">Deprecated methods</h3>
+<dl> <dt>
+<a href="datatransfer/mozcleardataat"><code>DataTransfer.mozClearDataAt()</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>Removes the data associated with the given format for an item at the specified index. The index is in the range from zero to the number of items minus one. Removed in Firefox 71.</dd> <dt>
+<a href="datatransfer/mozgetdataat"><code>DataTransfer.mozGetDataAt()</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>Retrieves the data associated with the given format for an item at the specified index, or null if it does not exist. The index should be in the range from zero to the number of items minus one. Removed in Firefox 71.</dd> <dt>
+<a href="datatransfer/mozsetdataat"><code>DataTransfer.mozSetDataAt()</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>A data transfer may store multiple items, each at a given zero-based index. <code>mozSetDataAt()</code> may only be called with an index argument less than <code>mozItemCount</code> in which case an existing item is modified, or equal to <code>mozItemCount</code> in which case a new item is added, and the <code>mozItemCount</code> is incremented by one. Removed in Firefox 71.</dd> <dt>
+<a href="datatransfer/moztypesat"><code>DataTransfer.mozTypesAt()</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>Holds a list of the format types of the data that is stored for an item at the specified index. If the index is not in the range from 0 to the number of items minus one, an empty string list is returned. Removed in Firefox 71.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>Every method and property listed in this document has its own reference page and each reference page either directly includes an example of the interface or has a link to an example.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/interaction.html#datatransfer" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'DataTransfer' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>
+<code>mozCursor</code>, <code>mozItemCount</code>, <code>mozSourceNode</code>, <code>mozUserCancelled</code>, <code>addElement()</code>, <code>mozClearDataAt()</code>, <code>mozGetDataAt()</code>, <code>mozSetDataAt()</code> and <code>mozTypesAt</code> are Gecko specific.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/html51/editing.html#the-datatransfer-interface" hreflang="en" rel=" noopener">HTML 5.1<br><small>The definition of 'DataTransfer' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Not included in W3C HTML5 <span class="spec-rec">Recommendation</span>
+</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>DataTransfer</code></th>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>3.5</div>
+<div>As of Firefox 52, the <a href="https://developer.mozilla.org/docs/Web/API/DataTransfer/types"><code>DataTransfer.types</code></a> property returns a frozen array of <a href="https://developer.mozilla.org/docs/Web/API/DOMString"><code>DOMString</code></a>s as per spec, rather than a <a href="https://developer.mozilla.org/docs/Web/API/DOMStringList"><code>DOMStringList</code></a>.</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>As of Firefox 52, the <a href="https://developer.mozilla.org/docs/Web/API/DataTransfer/types"><code>DataTransfer.types</code></a> property returns a frozen array of <a href="https://developer.mozilla.org/docs/Web/API/DOMString"><code>DOMString</code></a>s as per spec, rather than a <a href="https://developer.mozilla.org/docs/Web/API/DOMStringList"><code>DOMStringList</code></a>.</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>DataTransfer</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>addElement</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>clearData</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>dropEffect</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>effectAllowed</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>files</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.6</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>getData</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>items</code></th>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>mozClearDataAt</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>3.5-71</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>4-79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>mozCursor</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>mozGetDataAt</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>3.5-71</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>4-79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>mozItemCount</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>3.5-71</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>4-79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>mozSetDataAt</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>3.5-71</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>4-79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>mozSourceNode</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>mozTypesAt</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>3.5-71</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>4-79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>mozUserCancelled</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>setData</code></th>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>setDragImage</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>types</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes">
+<div>10</div>
+<div>["The property returns a <a href="https://developer.mozilla.org/docs/Web/API/DOMStringList"><code>DOMStringList</code></a>.", "<code>Text</code> is returned instead of <code>text/plain</code>"]</div>
+</td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>As of Opera 12, <code>Text</code> is returned instead of <code>text/plain</code>
+</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="html_drag_and_drop_api">Drag and drop</a></li> <li><a href="html_drag_and_drop_api/drag_operations">Drag Operations</a></li> <li><a href="html_drag_and_drop_api/recommended_drag_types">Recommended Drag Types</a></li> <li><a href="html_drag_and_drop_api/multiple_items">Dragging and Dropping Multiple Items</a></li> <li><a href="https://codepen.io/tech_query/pen/MqGgap" rel=" noopener">DataTransfer test - Paste or Drag</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer</a>
+  </p>
+</div>

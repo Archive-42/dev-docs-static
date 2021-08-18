@@ -1,0 +1,86 @@
+<h1>XMLHttpRequest.readyState</h1>
+
+ <p>The <strong>XMLHttpRequest.readyState</strong> property returns the state an XMLHttpRequest client is in. An <abbr title="XMLHttpRequest">XHR</abbr> client exists in one of the following states:</p> <div class="_table"><table class="standard-table"> <tbody> <tr> <th class="header">Value</th> <th class="header">State</th> <th class="header">Description</th> </tr> <tr> <td><code>0</code></td> <td><code>UNSENT</code></td> <td>Client has been created. <code>open()</code> not called yet.</td> </tr> <tr> <td><code>1</code></td> <td><code>OPENED</code></td> <td>
+<code>open()</code> has been called.</td> </tr> <tr> <td><code>2</code></td> <td><code>HEADERS_RECEIVED</code></td> <td>
+<code>send()</code> has been called, and headers and status are available.</td> </tr> <tr> <td><code>3</code></td> <td><code>LOADING</code></td> <td>Downloading; <code>responseText</code> holds partial data.</td> </tr> <tr> <td><code>4</code></td> <td><code>DONE</code></td> <td>The operation is complete.</td> </tr> </tbody> </table></div> <dl> <dt>UNSENT</dt> <dd>The XMLHttpRequest client has been created, but the open() method hasn't been called yet.</dd> <dt>OPENED</dt> <dd>open() method has been invoked. During this state, the request headers can be set using the <a href="setrequestheader">setRequestHeader()</a> method and the <a href="send">send()</a> method can be called which will initiate the fetch.</dd> <dt>HEADERS_RECEIVED</dt> <dd>send() has been called and the response headers have been received.</dd> <dt>LOADING</dt> <dd>Response's body is being received. If <code><a href="responsetype">responseType</a></code> is "text" or empty string, <code><a href="responsetext">responseText</a></code> will have the partial text response as it loads.</dd> <dt>DONE</dt> <dd>The fetch operation is complete. This could mean that either the data transfer has been completed successfully or failed.</dd> </dl> <div class="note notecard"> <p>The state names are different in versions of Internet Explorer earlier than 11. Instead of <code>UNSENT</code>, <code>OPENED</code>,<code> HEADERS_RECEIVED</code>,<code> LOADING</code> and <code>DONE</code>, the names <code>READYSTATE_UNINITIALIZED</code> (0), <code>READYSTATE_LOADING</code> (1), <code>READYSTATE_LOADED</code> (2), <code>READYSTATE_INTERACTIVE</code> (3) and <code>READYSTATE_COMPLETE</code> (4) are used.</p> </div>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token keyword">var</span> xhr <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'UNSENT'</span><span class="token punctuation">,</span> xhr<span class="token punctuation">.</span>readyState<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// readyState will be 0</span>
+
+xhr<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'GET'</span><span class="token punctuation">,</span> <span class="token string">'/api'</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'OPENED'</span><span class="token punctuation">,</span> xhr<span class="token punctuation">.</span>readyState<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// readyState will be 1</span>
+
+xhr<span class="token punctuation">.</span><span class="token function-variable function">onprogress</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'LOADING'</span><span class="token punctuation">,</span> xhr<span class="token punctuation">.</span>readyState<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// readyState will be 3</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+xhr<span class="token punctuation">.</span><span class="token function-variable function">onload</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'DONE'</span><span class="token punctuation">,</span> xhr<span class="token punctuation">.</span>readyState<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// readyState will be 4</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+xhr<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://xhr.spec.whatwg.org/#states" hreflang="en" rel=" noopener">XMLHttpRequest</a></td> <td><span class="spec-living">Living Standard</span></td> <td>WHATWG living standard</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>readyState</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>constants</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readyState</a>
+  </p>
+</div>

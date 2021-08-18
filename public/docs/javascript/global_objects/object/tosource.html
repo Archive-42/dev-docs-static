@@ -1,0 +1,112 @@
+<h1>Object.prototype.toSource()</h1> <div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div> <p>The <code>toSource()</code> method returns a string representing the source code of the object.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">toSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre>
+<h3 id="return_value">Return value</h3>
+<p>A string representing the source code of the object.</p>
+<h2 id="description">Description</h2>
+<p>The <code>toSource()</code> method returns the following values:</p> <ul> <li>For the built-in <a href="../object"><code>Object</code></a> object, <code>toSource()</code> returns the following string indicating that the source code is not available: <pre data-language="js"><span class="token keyword">function</span> <span class="token function">Object</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">[</span>native code<span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</pre> </li> <li>For instances of <a href="../object"><code>Object</code></a>, <code>toSource()</code> returns a string representing the source code.</li> </ul> <p>You can call <code>toSource()</code> while debugging to examine the contents of an object.</p>
+<h3 id="overriding_the_tosource_method">Overriding the toSource() method</h3>
+<p>It is safe for objects to override the <code>toSource()</code> method. For example:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">Person</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">Person</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">toSource</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">Person_toSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token string">'new Person('</span> <span class="token operator">+</span> <span class="token function">uneval</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">')'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Person</span><span class="token punctuation">(</span><span class="token string">'Joe'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ---&gt; new Person("Joe")</span>
+</pre>
+<h3 id="built-in_tosource_methods">Built-in toSource() methods</h3>
+<p>Each core JavaScript type has its own <code>toSource()</code> method. These objects are:</p> <ul> <li>
+<a href="../array/tosource"><code>Array.prototype.toSource()</code></a> — <a href="../array"><code>Array</code></a> object.</li> <li>
+<a href="../boolean/tosource"><code>Boolean.prototype.toSource()</code></a> — <a href="../boolean"><code>Boolean</code></a> object.</li> <li>
+<a href="../date/tosource"><code>Date.prototype.toSource()</code></a> — <a href="../date"><code>Date</code></a> object.</li> <li>
+<a href="../function/tosource"><code>Function.prototype.toSource()</code></a> — <a href="../function"><code>Function</code></a> object.</li> <li>
+<a href="../number/tosource"><code>Number.prototype.toSource()</code></a> — <a href="../number"><code>Number</code></a> object.</li> <li>
+<a href="../regexp/tosource"><code>RegExp.prototype.toSource()</code></a> — <a href="../regexp"><code>RegExp</code></a> object.</li> <li>
+<a href="../string/tosource"><code>String.prototype.toSource()</code></a> — <a href="../string"><code>String</code></a> object.</li> <li>
+<a href="../symbol/tosource"><code>Symbol.prototype.toSource()</code></a> — <a href="../symbol"><code>Symbol</code></a> object.</li> <li>
+<code>Math.toSource()</code> — Returns the String "Math".</li> </ul>
+<h3 id="limitations_on_cyclical_objects">Limitations on cyclical objects</h3>
+<p>In the case of objects that contain references to themselves, e.g. a cyclically linked list or a tree that can be traversed both ways, <code>toSource()</code> will not recreate the self-reference, as of Firefox 24. For example:</p> <pre data-language="js"><span class="token keyword">var</span> obj1 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> obj2 <span class="token operator">=</span> <span class="token punctuation">{</span> a<span class="token operator">:</span> obj1 <span class="token punctuation">}</span><span class="token punctuation">;</span>
+obj1<span class="token punctuation">.</span>b <span class="token operator">=</span> obj2<span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Cyclical: '</span> <span class="token operator">+</span> <span class="token punctuation">(</span>obj1<span class="token punctuation">.</span>b<span class="token punctuation">.</span>a <span class="token operator">==</span> obj1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> objSource <span class="token operator">=</span> obj1<span class="token punctuation">.</span><span class="token function">toSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// returns "({b:{a:{}}})"</span>
+
+obj1 <span class="token operator">=</span> <span class="token function">eval</span><span class="token punctuation">(</span>objSource<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Cyclical: '</span> <span class="token operator">+</span> <span class="token punctuation">(</span>obj1<span class="token punctuation">.</span>b<span class="token punctuation">.</span>a <span class="token operator">==</span> obj1<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>If a cyclical structure is employed and <code>toSource()</code> is needed, the object must provide an override to <code>toSource()</code>, either using a reference to a constructor or providing an anonymous function.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_tosource">Using toSource()</h3>
+<p>The following code defines the <code>Dog</code> object type and creates <code>theDog</code>, an object of type <code>Dog</code>:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">Dog</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> breed<span class="token punctuation">,</span> color<span class="token punctuation">,</span> sex</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name<span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>breed <span class="token operator">=</span> breed<span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>color <span class="token operator">=</span> color<span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>sex <span class="token operator">=</span> sex<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+theDog <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Dog</span><span class="token punctuation">(</span><span class="token string">'Gabby'</span><span class="token punctuation">,</span> <span class="token string">'Lab'</span><span class="token punctuation">,</span> <span class="token string">'chocolate'</span><span class="token punctuation">,</span> <span class="token string">'female'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>Calling the <code>toSource()</code> method of <code>theDog</code> displays the JavaScript source that defines the object:</p> <pre data-language="js">theDog<span class="token punctuation">.</span><span class="token function">toSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// returns ({name:"Gabby", breed:"Lab", color:"chocolate", sex:"female"})</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<p>Not part of any standard.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>toSource</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>1-74</div>
+<div>Starting in Firefox 74, <code>toSource()</code> is no longer available for use by web content. It is still allowed for internal and privileged code.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="tostring"><code>Object.prototype.toString()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toSource" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toSource</a>
+  </p>
+</div>

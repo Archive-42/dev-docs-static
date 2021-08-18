@@ -1,0 +1,93 @@
+<h1>HTMLOrForeignElement.dataset</h1> <p>The <code>dataset</code> read-only property of the <a href="../htmlorforeignelement"><code>HTMLOrForeignElement</code></a> mixin provides read/write access to <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*">custom data attributes</a> (<code>data-<var>*</var></code>) on elements. It exposes a map of strings (<a href="../domstringmap"><code>DOMStringMap</code></a>) with an entry for each <code>data-*</code> attribute.</p> <div class="notecard note"> <p>The <code>dataset</code> property itself can be read, but not directly written. Instead, all writes must be to the individual properties within the <code>dataset</code>, which in turn represent the data attributes.</p> </div> <p>An HTML <code>data-*</code><var> attribute</var> and its corresponding DOM <code>dataset.<var>property</var></code> modify their shared name according to where they are read or written:</p> <dl> <dt>In HTML</dt> <dd>The attribute name begins with <code>data-</code>. It can contain only letters, numbers, dashes (<code>-</code>), periods (<code>.</code>), colons (<code>:</code>), and underscores (<code>_</code>). Any ASCII capital letters (<code>A</code> to <code>Z</code>) are ignored and converted to lowercase.</dd> <dt>In JavaScript</dt> <dd>The property name of a custom data attribute is the same as the HTML attribute without the <code>data-</code> prefix, and removes single dashes (<code>-</code>) for when to capitalize the property’s “camelCased” name.</dd> </dl> <p>In addition to the information below, you'll find a how-to guide for using HTML data attributes in our article <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes"><em>Using data attributes</em>.</a></p>
+<h3 id="name_conversion">Name conversion</h3>
+<dl> <dt>
+<code>dash-style</code> to <code>camelCase</code> conversion</dt> <dd> <p>A custom data attribute name is transformed to a key for the <a href="../domstringmap"><code>DOMStringMap</code></a> entry by the following:</p> <ol> <li>Remove the prefix <code>data-</code> (including the dash);</li> <li>For any dash (<code>U+002D</code>) followed by an ASCII lowercase letter <code>a</code> to <code>z</code>, remove the dash and uppercase the letter;</li> <li>Other characters (including other dashes) are left unchanged.</li> </ol> </dd> <dt>
+<code>camelCase</code> to <code>dash-style</code> conversion</dt> <dd> <p>The opposite transformation, which maps a key to an attribute name, uses the following:</p> <ol> <li>
+<strong>Restriction:</strong> Before transformation, a dash <em>must not</em> be immediately followed by an ASCII lowercase letter <code>a</code> to <code>z</code>;</li> <li>Add the <code>data-</code> prefix;</li> <li>Add a dash before any ASCII uppercase letter <code>A</code> to <code>Z</code>, then lowercase the letter;</li> <li>Other characters are left unchanged.</li> </ol> </dd> </dl> <p>For example, a <code>data-abc-def</code> attribute corresponds to <code>dataset.abcDef</code>.</p>
+<h3 id="accessing_values">Accessing values</h3>
+<ul> <li>Attributes can be set and read by the camelCase name/key as an object property of the dataset: <code><var>element</var>.dataset.<var>keyname</var></code>
+</li> <li>Attributes can also be set and read using bracket syntax: <code><var>element</var>.dataset['<var>keyname</var>']</code>
+</li> <li>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in"><code>in</code> operator</a> can check if a given attribute exists: <code>'keyname' in element.dataset</code>
+</li> </ul>
+<h3 id="setting_values">Setting values</h3>
+<ul> <li>When the attribute is set, its value is always converted to a string. <div class="notecard note"> <p><strong>For example:</strong> <code>element.dataset.example = null</code> is converted into <code>data-example="null"</code>.</p> </div> </li> <li>To remove an attribute, you can use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete"><code>delete</code> operator</a>: <code>delete element.dataset.<em>keyname</em></code>
+</li> </ul>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">const</span> dataAttrMap <span class="token operator">=</span> element<span class="token punctuation">.</span>dataset
+</pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../domstringmap"><code>DOMStringMap</code></a>.</p>
+<h2 id="examples">Examples</h2>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>user<span class="token punctuation">"</span></span> <span class="token attr-name">data-id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1234567890<span class="token punctuation">"</span></span> <span class="token attr-name">data-user</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>johndoe<span class="token punctuation">"</span></span> <span class="token attr-name">data-date-of-birth</span><span class="token punctuation">&gt;</span></span>John Doe<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></pre> <pre data-language="js"><span class="token keyword">const</span> el <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#user'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// el.id === 'user'</span>
+<span class="token comment">// el.dataset.id === '1234567890'</span>
+<span class="token comment">// el.dataset.user === 'johndoe'</span>
+<span class="token comment">// el.dataset.dateOfBirth === ''</span>
+
+<span class="token comment">// set a data attribute</span>
+el<span class="token punctuation">.</span>dataset<span class="token punctuation">.</span>dateOfBirth <span class="token operator">=</span> <span class="token string">'1960-10-03'</span><span class="token punctuation">;</span>
+<span class="token comment">// Result: el.dataset.dateOfBirth === '1960-10-03'</span>
+
+<span class="token keyword">delete</span> el<span class="token punctuation">.</span>dataset<span class="token punctuation">.</span>dateOfBirth<span class="token punctuation">;</span>
+<span class="token comment">// Result: el.dataset.dateOfBirth === undefined</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">'someDataAttr'</span> <span class="token keyword">in</span> el<span class="token punctuation">.</span>dataset <span class="token operator">===</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  el<span class="token punctuation">.</span>dataset<span class="token punctuation">.</span>someDataAttr <span class="token operator">=</span> <span class="token string">'mydata'</span><span class="token punctuation">;</span>
+  <span class="token comment">// Result: 'someDataAttr' in el.dataset === true</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://html.spec.whatwg.org/multipage/dom.html#dom-dataset" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'HTMLElement.dataset' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>No change from latest snapshot, <a href="https://www.w3.org/TR/html51/" hreflang="en" rel=" noopener">HTML 5.1</a>
+</td> </tr> <tr> <td><a href="https://www.w3.org/TR/html51/dom.html#dom-dataset" hreflang="en" rel=" noopener">HTML 5.1<br><small>The definition of 'HTMLElement.dataset' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Snapshot of <a href="https://html.spec.whatwg.org/multipage/" hreflang="en" rel=" noopener">HTML Living Standard</a>, no change from <a href="https://www.w3.org/TR/html52/" hreflang="en" rel=" noopener">HTML5</a>
+</td> </tr> <tr> <td><a href="https://www.w3.org/TR/html52/dom.html#dom-dataset" hreflang="en" rel=" noopener">HTML5<br><small>The definition of 'HTMLElement.dataset' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Snapshot of <a href="https://html.spec.whatwg.org/multipage/" hreflang="en" rel=" noopener">HTML Living Standard</a>, initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>dataset</code></th>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The HTML <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/data-*"><code>data-*</code></a> class of global attributes.</li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Howto/Use_data_attributes">Using data attributes</a> </li> <li>
+<a href="../element/getattribute"><code>Element.getAttribute()</code></a> and <a href="../element/setattribute"><code>Element.setAttribute()</code></a>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/dataset" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLOrForeignElement/dataset</a>
+  </p>
+</div>

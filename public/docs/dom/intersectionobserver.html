@@ -1,0 +1,214 @@
+<h1>IntersectionObserver</h1> <p>The <code><strong>IntersectionObserver</strong></code> interface of the <a href="intersection_observer_api">Intersection Observer API</a> provides a way to asynchronously observe changes in the intersection of a target element with an ancestor element or with a top-level document's <a href="https://developer.mozilla.org/en-US/docs/Glossary/Viewport">viewport</a>. The ancestor element or viewport is referred to as the root.</p> <p>When an <code>IntersectionObserver</code> is created, it's configured to watch for given ratios of visibility within the root. The configuration cannot be changed once the <code>IntersectionObserver</code> is created, so a given observer object is only useful for watching for specific changes in degree of visibility; however, you can watch multiple target elements with the same observer.</p>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="intersectionobserver/intersectionobserver"><code>IntersectionObserver.IntersectionObserver()</code></a></dt> <dd>Creates a new <code>IntersectionObserver</code> object which will execute a specified callback function when it detects that a target element's visibility has crossed one or more thresholds.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<dl> <dt>
+<a href="intersectionobserver/root"><code>IntersectionObserver.root</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>The <a href="element"><code>Element</code></a> or <a href="document"><code>Document</code></a> whose bounds are used as the bounding box when testing for intersection. If no <code>root</code> value was passed to the constructor or its value is <code>null</code>, the top-level document's viewport is used.</dd> <dt>
+<a href="intersectionobserver/rootmargin"><code>IntersectionObserver.rootMargin</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>An offset rectangle applied to the root's <a href="https://developer.mozilla.org/en-US/docs/Glossary/bounding_box">bounding box</a> when calculating intersections, effectively shrinking or growing the root for calculation purposes. The value returned by this property may not be the same as the one specified when calling the constructor as it may be changed to match internal requirements. Each offset can be expressed in pixels (<code>px</code>) or as a percentage (<code>%</code>). The default is "0px 0px 0px 0px".</dd> <dt>
+<a href="intersectionobserver/thresholds"><code>IntersectionObserver.thresholds</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A list of thresholds, sorted in increasing numeric order, where each threshold is a ratio of intersection area to bounding box area of an observed target. Notifications for a target are generated when any of the thresholds are crossed for that target. If no value was passed to the constructor, 0 is used.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="intersectionobserver/disconnect"><code>IntersectionObserver.disconnect()</code></a></dt> <dd>Stops the <code>IntersectionObserver</code> object from observing any target.</dd> <dt><a href="intersectionobserver/observe"><code>IntersectionObserver.observe()</code></a></dt> <dd>Tells the <code>IntersectionObserver</code> a target element to observe.</dd> <dt><a href="intersectionobserver/takerecords"><code>IntersectionObserver.takeRecords()</code></a></dt> <dd>Returns an array of <a href="intersectionobserverentry"><code>IntersectionObserverEntry</code></a> objects for all observed targets.</dd> <dt><a href="intersectionobserver/unobserve"><code>IntersectionObserver.unobserve()</code></a></dt> <dd>Tells the <code>IntersectionObserver</code> to stop observing a particular target element.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token keyword">var</span> intersectionObserver <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">IntersectionObserver</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">entries</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// If intersectionRatio is 0, the target is out of view</span>
+  <span class="token comment">// and we do not need to do anything.</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>entries<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>intersectionRatio <span class="token operator">&lt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+  <span class="token function">loadItems</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Loaded new items'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// start observing</span>
+intersectionObserver<span class="token punctuation">.</span><span class="token function">observe</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.scrollerFooter'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/IntersectionObserver/#intersection-observer-interface" hreflang="en" rel=" noopener">Intersection Observer<br><small>The definition of 'IntersectionObserver' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>IntersectionObserver</code></th>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>12.2</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>IntersectionObserver</code></th>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes"><div>12.2</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>disconnect</code></th>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes">
+<div>15</div>
+<div>Available since <a href="https://developer.microsoft.com/microsoft-edge/platform/status/intersectionobserver/">Windows Insider Preview Build 14986</a>
+</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes"><div>12.2</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>observe</code></th>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes"><div>12.2</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>root</code></th>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes"><div>12.2</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>rootMargin</code></th>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes">
+<div>12.1</div>
+<div>
+<code>rootMargin</code> does not work with <code>&lt;iframe&gt;</code>s.</div>
+</td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>12.2</div>
+<div>
+<code>rootMargin</code> does not work with <code>&lt;iframe&gt;</code>s.</div>
+</td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>takeRecords</code></th>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes">
+<div>15</div>
+<div>Available since <a href="https://developer.microsoft.com/microsoft-edge/platform/status/intersectionobserver/">Windows Insider Preview Build 14986</a>
+</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes"><div>12.2</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>thresholds</code></th>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes"><div>12.2</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>unobserve</code></th>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes">
+<div>15</div>
+<div>Available since <a href="https://developer.microsoft.com/microsoft-edge/platform/status/intersectionobserver/">Windows Insider Preview Build 14986</a>
+</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes"><div>12.2</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+</tbody>
+</table> 
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="mutationobserver"><code>MutationObserver</code></a></li> <li><a href="performanceobserver"><code>PerformanceObserver</code></a></li> <li><a href="resizeobserver"><code>ResizeObserver</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver</a>
+  </p>
+</div>

@@ -1,0 +1,49 @@
+<h1>ReferenceError: deprecated caller or arguments usage</h1> <p>The JavaScript <a href="../strict_mode">strict mode</a>-only exception "deprecated caller or arguments usage" occurs when the deprecated <a href="../global_objects/function/caller"><code>Function.caller</code></a> or <a href="../global_objects/function/arguments"><code>Function.arguments</code></a> properties are used.</p>
+<h2 id="message">Message</h2>
+<pre data-language="js">TypeError<span class="token operator">:</span> <span class="token string">'arguments'</span><span class="token punctuation">,</span> <span class="token string">'callee'</span> and <span class="token string">'caller'</span> are restricted <span class="token keyword">function</span> properties and cannot be accessed <span class="token keyword">in</span> <span class="token keyword">this</span> <span class="token function">context</span> <span class="token punctuation">(</span>Edge<span class="token punctuation">)</span>
+Warning<span class="token operator">:</span> ReferenceError<span class="token operator">:</span> deprecated caller <span class="token function">usage</span> <span class="token punctuation">(</span>Firefox<span class="token punctuation">)</span>
+Warning<span class="token operator">:</span> ReferenceError<span class="token operator">:</span> deprecated arguments <span class="token function">usage</span> <span class="token punctuation">(</span>Firefox<span class="token punctuation">)</span>
+TypeError<span class="token operator">:</span> <span class="token string">'callee'</span> and <span class="token string">'caller'</span> cannot be accessed <span class="token keyword">in</span> strict mode<span class="token punctuation">.</span> <span class="token punctuation">(</span>Safari<span class="token punctuation">)</span>
+</pre>
+<h2 id="error_type">Error type</h2>
+<p>A strict-mode-only warning that a <a href="../global_objects/referenceerror"><code>ReferenceError</code></a> occurred. JavaScript execution won't be halted.</p>
+<h2 id="what_went_wrong">What went wrong?</h2>
+<p>In <a href="../strict_mode">strict mode</a>, the <a href="../global_objects/function/caller"><code>Function.caller</code></a> or <a href="../global_objects/function/arguments"><code>Function.arguments</code></a> properties are used and shouldn't be. They are deprecated, because they leak the function caller, are non-standard, hard to optimize and potentially a performance-harmful feature.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="deprecated_function.caller_or_arguments.callee.caller">Deprecated <code>function.caller</code> or <code>arguments.callee.caller</code>
+</h3>
+<p><a href="../global_objects/function/caller"><code>Function.caller</code></a> and <code><a href="../functions/arguments/callee">arguments.callee.caller</a></code> are deprecated (see the reference articles for more information).</p> <pre data-language="js"><span class="token string">'use strict'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">myFunc</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>myFunc<span class="token punctuation">.</span>caller <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'The function was called from the top!'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'This function\'s caller was '</span> <span class="token operator">+</span> myFunc<span class="token punctuation">.</span>caller<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">myFunc</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Warning: ReferenceError: deprecated caller usage</span>
+<span class="token comment">// "The function was called from the top!"</span></pre>
+<h3 id="function.arguments"><code>Function.arguments</code></h3>
+<p><a href="../global_objects/function/arguments"><code>Function.arguments</code></a> is deprecated (see the reference article for more information).</p> <pre data-language="js"><span class="token string">'use strict'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token parameter">n</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token function">g</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">g</span><span class="token punctuation">(</span><span class="token parameter">n</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'before: '</span> <span class="token operator">+</span> g<span class="token punctuation">.</span>arguments<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token function">f</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'after: '</span> <span class="token operator">+</span> g<span class="token punctuation">.</span>arguments<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">f</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'returned: '</span> <span class="token operator">+</span> g<span class="token punctuation">.</span>arguments<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Warning: ReferenceError: deprecated arguments usage</span>
+</pre>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Deprecated_and_obsolete_features">Deprecated and obsolete features</a></li> <li><a href="../strict_mode">Strict mode</a></li> <li><a href="../global_objects/function/arguments"><code>Function.arguments</code></a></li> <li>
+<a href="../global_objects/function/caller"><code>Function.caller</code></a> and <code><a href="../functions/arguments/callee">arguments.callee.caller</a></code> </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Deprecated_caller_or_arguments_usage" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Deprecated_caller_or_arguments_usage</a>
+  </p>
+</div>

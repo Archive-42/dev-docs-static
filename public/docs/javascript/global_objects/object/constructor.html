@@ -1,0 +1,169 @@
+<h1>Object.prototype.constructor</h1> <p>The <code>constructor</code> property returns a reference to the <a href="../object"><code>Object</code></a> constructor function that created the instance object. Note that the value of this property is a reference to <em>the function itself</em>, not a string containing the function's name.</p> <p>The value is only read-only for primitive values such as <code>1</code>, <code>true</code>, and <code>"test"</code>.</p>
+<h2 id="description">Description</h2>
+<p>All objects (with the exception of objects created with <code>Object.create(null)</code>) will have a <code>constructor</code> property. Objects created without the explicit use of a constructor function (such as object- and array-literals) will have a <code>constructor</code> property that points to the Fundamental Object constructor type for that object.</p> <pre data-language="js"><span class="token keyword">let</span> o <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+o<span class="token punctuation">.</span>constructor <span class="token operator">===</span> Object <span class="token comment">// true</span>
+
+<span class="token keyword">let</span> o <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Object</span>
+o<span class="token punctuation">.</span>constructor <span class="token operator">===</span> Object <span class="token comment">// true</span>
+
+<span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+a<span class="token punctuation">.</span>constructor <span class="token operator">===</span> Array <span class="token comment">// true</span>
+
+<span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Array</span>
+a<span class="token punctuation">.</span>constructor <span class="token operator">===</span> Array <span class="token comment">// true</span>
+
+<span class="token keyword">let</span> n <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Number</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+n<span class="token punctuation">.</span>constructor <span class="token operator">===</span> Number <span class="token comment">// true</span>
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="displaying_the_constructor_of_an_object">Displaying the constructor of an object</h3>
+<p>The following example creates a constructor (<code>Tree</code>) and an object of that type (<code>theTree</code>). The example then displays the <code>constructor</code> property for the object <code>theTree</code>.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">Tree</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> theTree <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Tree</span><span class="token punctuation">(</span><span class="token string">'Redwood'</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'theTree.constructor is '</span> <span class="token operator">+</span> theTree<span class="token punctuation">.</span>constructor<span class="token punctuation">)</span>
+</pre> <p>This example displays the following output:</p> <pre data-language="js">theTree<span class="token punctuation">.</span>constructor is <span class="token keyword">function</span> <span class="token function">Tree</span><span class="token punctuation">(</span><span class="token parameter">name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> name
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="changing_the_constructor_of_an_object">Changing the constructor of an object</h3>
+<p>One can assign the <code>constructor</code> property for any value except <code>null</code> and <code>undefined</code> since those don't have a corresponding constructor function (like <code>String</code>, <code>Number</code>, <code>Boolean</code> etc.), but values which are primitives won't keep the change (with no exception thrown). This is due to the same mechanism, which allows one to set any property on primitive values (except <code>null</code> and <code>undefined</code>) with no effect. Namely whenever one uses such a primitive as an object an instance of the corresponding constructor is created and discarded right after the statement was executed.</p> <pre data-language="js"><span class="token keyword">let</span> val <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+val<span class="token punctuation">.</span>constructor <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">//TypeError: var is null</span>
+
+val <span class="token operator">=</span> <span class="token string">'abc'</span><span class="token punctuation">;</span>
+val<span class="token punctuation">.</span>constructor <span class="token operator">=</span> Number<span class="token punctuation">;</span> <span class="token comment">//val.constructor === String</span>
+
+val<span class="token punctuation">.</span>foo <span class="token operator">=</span> <span class="token string">'bar'</span><span class="token punctuation">;</span> <span class="token comment">//An implicit instance of String('abc') was created and assigned the prop foo</span>
+val<span class="token punctuation">.</span>foo <span class="token operator">===</span> <span class="token keyword">undefined</span><span class="token punctuation">;</span> <span class="token comment">//true, since a new instance of String('abc') was created for this comparison, which doesn't have the foo property</span></pre> <p>So basically one can change the value of the <code>constructor</code> property for anything, except the primitives mentioned above, <strong>note that changing the </strong><code>constructor</code><strong> property does not affect the instanceof operator</strong>:</p> <pre data-language="js"><span class="token keyword">let</span> a <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+a<span class="token punctuation">.</span>constructor <span class="token operator">=</span> String
+a<span class="token punctuation">.</span>constructor <span class="token operator">===</span> String <span class="token comment">// true</span>
+a <span class="token keyword">instanceof</span> <span class="token class-name">String</span> <span class="token comment">//false</span>
+a <span class="token keyword">instanceof</span> <span class="token class-name">Array</span> <span class="token comment">//true</span>
+
+a <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Foo</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+a<span class="token punctuation">.</span>constructor <span class="token operator">=</span> <span class="token string">'bar'</span>
+a<span class="token punctuation">.</span>constructor <span class="token operator">===</span> <span class="token string">'bar'</span> <span class="token comment">// true</span>
+
+<span class="token comment">//etc.</span></pre> <p>If the object is sealed/frozen then the change has no effect and no exception is thrown:</p> <pre data-language="js"><span class="token keyword">let</span> a <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">seal</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+a<span class="token punctuation">.</span>constructor <span class="token operator">=</span> Number<span class="token punctuation">;</span>
+a<span class="token punctuation">.</span>constructor <span class="token operator">===</span> Object<span class="token punctuation">;</span> <span class="token comment">//true</span></pre>
+<h3 id="changing_the_constructor_of_a_function">Changing the constructor of a function</h3>
+<p>Mostly this property is used for defining a function as a <strong>function-constructor</strong> with further calling it with <strong>new</strong> and prototype-inherits chain.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">Parent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span>
+<span class="token class-name">Parent</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">parentMethod</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">parentMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">Child</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token function">Parent</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token comment">// Make sure everything is initialized properly</span>
+<span class="token punctuation">}</span>
+<span class="token class-name">Child</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token class-name">Parent</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span> <span class="token comment">// re-define child prototype to Parent prototype</span>
+
+<span class="token class-name">Child</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>constructor <span class="token operator">=</span> Child <span class="token comment">// return original constructor to Child</span></pre> <p>But when do we need to perform the last line here? Unfortunately, the answer is: <em>it depends</em>.</p> <p>Let's try to define the cases in which re-assignment of the original constructor will play a major role, and when it will be one superfluous line of code.</p> <p>Take the following case: the object has the <code>create()</code> method to create itself.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">Parent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">CreatedConstructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token function">Parent</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">CreatedConstructor</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token class-name">Parent</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span>
+
+<span class="token class-name">CreatedConstructor</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">create</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">this<span class="token punctuation">.</span>constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">new</span> <span class="token class-name">CreatedConstructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// TypeError undefined is not a function since constructor === Parent</span></pre> <p>In the example above the exception will be shown since the constructor links to Parent.</p> <p>To avoid this, just assign the necessary constructor you are going to use.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">Parent</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">CreatedConstructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/* ... */</span> <span class="token punctuation">}</span>
+
+<span class="token class-name">CreatedConstructor</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token class-name">Parent</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span>
+<span class="token class-name">CreatedConstructor</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>constructor <span class="token operator">=</span> CreatedConstructor <span class="token comment">// sets the correct constructor for future use</span>
+
+<span class="token class-name">CreatedConstructor</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">create</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">this<span class="token punctuation">.</span>constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">new</span> <span class="token class-name">CreatedConstructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// it's pretty fine</span></pre> <p>Ok, now it's pretty clear why changing the constructor can be useful.</p> <p>Let's consider one more case.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">ParentWithStatic</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+ParentWithStatic<span class="token punctuation">.</span>startPosition <span class="token operator">=</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span> y<span class="token operator">:</span><span class="token number">0</span> <span class="token punctuation">}</span> <span class="token comment">// Static member property</span>
+ParentWithStatic<span class="token punctuation">.</span><span class="token function-variable function">getStartPosition</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">getStartPosition</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>startPosition
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">Child</span><span class="token punctuation">(</span><span class="token parameter">x<span class="token punctuation">,</span> y</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>position <span class="token operator">=</span> <span class="token punctuation">{</span>
+    x<span class="token operator">:</span> x<span class="token punctuation">,</span>
+    y<span class="token operator">:</span> y
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+Child <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>Child<span class="token punctuation">,</span> ParentWithStatic<span class="token punctuation">)</span>  <span class="token comment">// copies over the static members from ParentWithStatic to Child</span>
+<span class="token class-name">Child</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token class-name">ParentWithStatic</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span>
+<span class="token class-name">Child</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>constructor <span class="token operator">=</span> Child
+
+<span class="token class-name">Child</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">getOffsetByInitialPosition</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token function">getOffsetByInitialPosition</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> position <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>position
+  <span class="token keyword">let</span> startPosition <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>constructor<span class="token punctuation">.</span><span class="token function">getStartPosition</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// error undefined is not a function, since the constructor is Child</span>
+
+  <span class="token keyword">return</span> <span class="token punctuation">{</span>
+    offsetX<span class="token operator">:</span> startPosition<span class="token punctuation">.</span>x <span class="token operator">-</span> position<span class="token punctuation">.</span>x<span class="token punctuation">,</span>
+    offsetY<span class="token operator">:</span> startPosition<span class="token punctuation">.</span>y <span class="token operator">-</span> position<span class="token punctuation">.</span>y
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre> <p>For this example we need either to stay parent constructor to continue to work properly or reassign static properties to child's constructor:</p> <pre data-language="js"><span class="token operator">...</span>
+Child <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>Child<span class="token punctuation">,</span> ParentWithStatic<span class="token punctuation">)</span> <span class="token comment">// Notice that we assign it before we create(...) a prototype below</span>
+<span class="token class-name">Child</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token class-name">ParentWithStatic</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span>
+<span class="token operator">...</span>
+</pre> <p>or assign parent constructor identifier to a separate property on the Child constructor function and access it via that property:</p> <pre data-language="js"><span class="token operator">...</span>
+Child<span class="token punctuation">.</span>parentConstructor <span class="token operator">=</span> ParentWithStatic
+<span class="token class-name">Child</span><span class="token punctuation">.</span>prototype <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token class-name">ParentWithStatic</span><span class="token punctuation">.</span>prototype<span class="token punctuation">)</span>
+<span class="token operator">...</span>
+   <span class="token keyword">let</span> startPosition <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>constructor<span class="token punctuation">.</span>parentConstructor<span class="token punctuation">.</span><span class="token function">getStartPosition</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token operator">...</span>
+</pre> <div class="notecard note"> <p><strong>Note:</strong> Manually updating or setting the constructor can lead to different and sometimes confusing consequences. To prevent this, just define the role of <code>constructor</code> in each specific case. In most cases, <code>constructor</code> is not used and reassignment of it is not necessary.</p> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> </tr> </thead> <tbody> <tr> <td><a href="https://tc39.es/ecma262/#sec-object.prototype.constructor" hreflang="en" rel=" noopener">ECMAScript (ECMA-262)<br><small>The definition of 'Object.prototype.constructor' in that specification.</small></a></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>constructor</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../../statements/class">Class declaration</a></li> <li><a href="../../classes/constructor">Class constructor</a></li> <li>Glossary: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Constructor">constructor</a>
+</li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/constructor</a>
+  </p>
+</div>

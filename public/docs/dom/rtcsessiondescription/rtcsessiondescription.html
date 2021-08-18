@@ -1,0 +1,74 @@
+<h1>RTCSessionDescription()</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div>
+ <p>The <code>RTCSessionDescription()</code> constructor creates a new <a href="../rtcsessiondescription"><code>RTCSessionDescription</code></a> with its properties initialized as described in the specified object.</p> <div class="note notecard"> <p>This constructor has been deprecated because <a href="../rtcpeerconnection/setlocaldescription"><code>RTCPeerConnection.setLocalDescription()</code></a> and other methods which take SDP as input now directly accept an object conforming to the <code>RTCSessionDescriptionInit</code> dictionary, so you don't have to instantiate an <code>RTCSessionDescription</code> yourself.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"> sessionDescription <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RTCSessionDescription</span><span class="token punctuation">(</span>rtcSessionDescriptionInit<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="values">Values</h3>
+<dl> <dt>
+<code>rtcSessionDescriptionInit</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An object providing the default values for the session description; the object conforms to the <code>RTCSessionDescriptionInit</code> dictionary. That dictionary has the following properties: <dl> <dt><code>type</code></dt> <dd>
+<strong>Required.</strong> A string which is a member of the <code>RTCSdpType</code> enum; it must have one of the following values: <p>This enum defines strings that describe the current state of the session description, as used in the <a href="type"><code>type</code></a> property. The session description's type will be specified using one of these values.</p>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Value</th> <th scope="col">Description</th> </tr> </thead> <tbody> <tr> <td><code>answer</code></td> <td>The SDP contained in the <a href="sdp"><code>sdp</code></a> property is the definitive choice in the exchange. In other words, this session description describes the agreed-upon configuration, and is being sent to finalize negotiation.</td> </tr> <tr> <td><code>offer</code></td> <td>The session description object describes the initial proposal in an offer/answer exchange. The session negotiation process begins with an offer being sent from the caller to the callee.</td> </tr> <tr> <td><code>pranswer</code></td> <td>The session description object describes a provisional answer; that is, a response to a previous offer that is not the final answer. It is usually employed by legacy hardware.</td> </tr> <tr> <td><code>rollback</code></td> <td>This special type with an empty session description is used to roll back to the previous stable state.</td> </tr> </tbody> </table></div> </dd> <dt><code>sdp</code></dt> <dd>A string containing a <a href="https://developer.mozilla.org/en-US/docs/Glossary/SDP">SDP</a> message describing the session. This value is an empty string (<code>""</code>) by default and may not be <code>null</code>.</dd> </dl> </dd> </dl>
+<h2 id="example">Example</h2>
+<p>This example uses the constructor to convert an SDP offer into an <code>RTCSessionDescription</code> object.</p> <div class="note notecard"> <p>This is no longer necessary, however; <a href="../rtcpeerconnection/setlocaldescription"><code>RTCPeerConnection.setLocalDescription()</code></a> and other methods which take SDP as input now directly accept an object conforming to the <code>RTCSessionDescriptionInit</code> dictionary, so you don't have to instantiate an <code>RTCSessionDescription</code> yourself.</p> </div> <pre data-language="js">navigator<span class="token punctuation">.</span><span class="token function">getUserMedia</span><span class="token punctuation">(</span><span class="token punctuation">{</span>video<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">stream</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  pc<span class="token punctuation">.</span><span class="token function">onaddstream</span><span class="token punctuation">(</span><span class="token punctuation">{</span>stream<span class="token operator">:</span> stream<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// Adding a local stream won't trigger the onaddstream callback</span>
+  pc<span class="token punctuation">.</span><span class="token function">addStream</span><span class="token punctuation">(</span>stream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  pc<span class="token punctuation">.</span><span class="token function">createOffer</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">offer</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    pc<span class="token punctuation">.</span><span class="token function">setLocalDescription</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">RTCSessionDescription</span><span class="token punctuation">(</span>offer<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// send the offer to a server to be forwarded to the friend you're calling.</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#widl-ctor-RTCSessionDescription--RTCSessionDescriptionInit-descriptionInitDict" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCSessionDescription()' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>RTCSessionDescription</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/WebRTC_API">WebRTC API</a></li> <li><a href="../rtcsessiondescription"><code>RTCSessionDescription</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCSessionDescription/RTCSessionDescription" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCSessionDescription/RTCSessionDescription</a>
+  </p>
+</div>

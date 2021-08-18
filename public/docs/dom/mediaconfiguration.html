@@ -1,0 +1,49 @@
+<h1>MediaConfiguration</h1> <p>The <code>MediaConfiguration</code> <a href="mediacapabilities"><code>MediaCapabilities</code></a> dictionary of the <a href="mediacapabilities">Media Capabilities API</a> describes how media and audio files must be configured, or defined, to be passed as a parameter of the <a href="mediacapabilities/encodinginfo"><code>MediaCapabilities.encodingInfo()</code></a> and <a href="mediacapabilities/encodinginfo"><code>MediaCapabilities.encodingInfo()</code></a> methods.</p>
+<h2 id="properties">Properties</h2>
+<p>A valid configuration includes a valid encoding configuration type or decoding configuration type and a valid <a href="audioconfiguration">audio configuration</a> or <a href="videoconfiguration">video configuration</a>. If you plan on querying <a href="mediaencodingconfiguration">encoding</a> information, set the media type to record or transmission.</p> <p>For <a href="mediadecodingconfiguration">decoding</a>, set the type to <code>file</code> or <code>media-source</code>.</p> <p>If the media is an audio file, the <a href="audioconfiguration">audio configuration</a> must include a valid audio MIME type as <code>contentType</code>, the number of channels, the bitrate, and the sample rate. <a href="videoconfiguration">Video configurations</a> mush include a valid video MIME type as contentType, the bitrate, and framerate, along with the width and the height of the video file. All of these must be present, as in the examples below, or a TypeError will occur.</p> <p>A valid media decoding configuration, to be submitted as the parameter for <a href="mediacapabilities/decodinginfo"><code>mediaCapabilities.decodingInfo()</code></a> method, has it's `type` set as:</p> <ul> <li>
+<strong>file</strong>: For plain playback file.</li> <li>
+<strong>media-source</strong>: For <a href="mediasource">media source</a> files.</li> </ul> <p>A valid media encoding configuration, to be submitted as the parameter for <a href="mediacapabilities/encodinginfo"><code>mediaCapabilities.encodingInfo()</code></a> method, has it's `type` set as:</p> <ul> <li>
+<strong>record</strong>: For <a href="mediarecorder">recording media</a>.</li> <li>
+<strong>transmission</strong>: For media to be electronically transmitted.</li> </ul> <p>A valid <a href="audioconfiguration">audio configuration</a> includes:</p> <ul> <li>
+<strong>contentType</strong>: Valid audio MIME type.</li> <li>
+<strong>channels</strong>: Number of channels used by the audio track.</li> <li>
+<strong>bitrate</strong>: Number of bits used to encode one second of the audio file.</li> <li>
+<strong>samplerate</strong>: Number of audio samples making up one second of the audio file.</li> </ul> <p>A valid <a href="videoconfiguration">video configuration</a> includes:</p> <ul> <li>
+<strong>contentType</strong>: Valid video MIME type.</li> <li>
+<strong>width</strong>: Width of the video.</li> <li>
+<strong>height</strong>: Height of the video.</li> <li>
+<strong>bitrate</strong>: Number of bits used to encode one second of the video file.</li> <li>
+<strong>framerate</strong>: Number of frames making up one second of video playback.</li> </ul>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token comment">//Create a video configuration to be tested</span>
+<span class="token keyword">const</span> videoDecoderConfig <span class="token operator">=</span> <span class="token punctuation">{</span>
+  type <span class="token operator">:</span> <span class="token string">'file'</span><span class="token punctuation">,</span> <span class="token comment">// 'record', 'transmission', or 'media-source'</span>
+  video <span class="token operator">:</span> <span class="token punctuation">{</span>
+    contentType <span class="token operator">:</span> <span class="token string">"video/webm;codecs=vp8"</span><span class="token punctuation">,</span> <span class="token comment">// valid content type</span>
+    width <span class="token operator">:</span> <span class="token number">800</span><span class="token punctuation">,</span>     <span class="token comment">// width of the video</span>
+    height <span class="token operator">:</span> <span class="token number">600</span><span class="token punctuation">,</span>    <span class="token comment">// height of the video</span>
+    bitrate <span class="token operator">:</span> <span class="token number">10000</span><span class="token punctuation">,</span> <span class="token comment">// number of bits used to encode 1s of video</span>
+    framerate <span class="token operator">:</span> <span class="token number">30</span>   <span class="token comment">// number of frames making up that 1s.</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> audioEncoderConfig <span class="token operator">=</span> <span class="token punctuation">{</span>
+  type <span class="token operator">:</span> <span class="token string">'file'</span><span class="token punctuation">,</span> <span class="token comment">// 'record', 'transmission', or 'media-source'</span>
+  audio <span class="token operator">:</span> <span class="token punctuation">{</span>
+    contentType <span class="token operator">:</span> <span class="token string">"audio/ogg"</span><span class="token punctuation">,</span> <span class="token comment">// valid content type</span>
+    channels <span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span>     <span class="token comment">// audio channels used by the track</span>
+    bitrate <span class="token operator">:</span> <span class="token number">132700</span><span class="token punctuation">,</span> <span class="token comment">// number of bits used to encode 1s of audio</span>
+    samplerate <span class="token operator">:</span> <span class="token number">5200</span> <span class="token comment">// number of audio samples making up that 1s.</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/media-capabilities/#mediaconfiguration" hreflang="en" rel=" noopener">Media Capabilities<br><small>The definition of 'MediaConfiguration' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<div class="notecard warning"><p>No compatibility data found for <code>api.MediaConfiguration</code>.<br><a href="#on-github">Check for problems with this page</a> or contribute missing data to <a href="https://github.com/mdn/browser-compat-data">mdn/browser-compat-data</a>.</p></div>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="mediadecodingconfiguration"><code>MediaDecodingConfiguration</code></a></li> <li><a href="mediaencodingconfiguration"><code>MediaEncodingConfiguration</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaConfiguration" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaConfiguration</a>
+  </p>
+</div>

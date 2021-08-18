@@ -1,0 +1,186 @@
+<h1>system</h1> <p>The <code>system</code> descriptor specifies the algorithm to be used for converting the integer value of a counter to a string representation. It is used in a <a href="../@counter-style"><code>@counter-style</code></a> to define the behavior of the defined style.</p> <p>If the algorithm specified in the <code>system</code> descriptor is unable to construct the representation for a particular counter value, then that value's representation will be constructed using the fallback system provided.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="css"><span class="token comment">/* Keyword values */</span>
+<span class="token property">system</span><span class="token punctuation">:</span> cyclic<span class="token punctuation">;</span>
+<span class="token property">system</span><span class="token punctuation">:</span> numeric<span class="token punctuation">;</span>
+<span class="token property">system</span><span class="token punctuation">:</span> alphabetic<span class="token punctuation">;</span>
+<span class="token property">system</span><span class="token punctuation">:</span> symbolic<span class="token punctuation">;</span>
+<span class="token property">system</span><span class="token punctuation">:</span> additive<span class="token punctuation">;</span>
+<span class="token property">system</span><span class="token punctuation">:</span> fixed<span class="token punctuation">;</span>
+
+<span class="token comment">/* Combined values */</span>
+<span class="token property">system</span><span class="token punctuation">:</span> fixed 3<span class="token punctuation">;</span>
+<span class="token property">system</span><span class="token punctuation">:</span> extends decimal<span class="token punctuation">;</span>
+</pre> <p>This may take one of three forms:</p> <ul> <li>One of the keyword values <code>cyclic</code>, <code>numeric</code>, <code>alphabetic</code>, <code>symbolic</code>, <code>additive</code>, or <code>fixed</code>.</li> <li>The keyword value <code>fixed</code> along with an integer.</li> <li>The keyword value or <code>extends</code> along with a <a href="../@counter-style"><code>@counter-style</code></a> name.</li> </ul> <dl> <dt> <div class="brush: css"><code>cyclic</code></div> </dt> <dd>Cycles through the list of symbols provided. Once the end of the list of symbols is reached, it will loop back to the beginning and start over. This system is useful for simple bullet styles with just one symbol, or for styles having multiple symbols. At least one symbol must be specified in the <code>symbols</code> descriptor, or the counter style is not valid.</dd> <dt><code>fixed</code></dt> <dd>Defines a finite set of symbols are specified. Once the system has looped through all the specified symbols, it will fall back. This system is useful in cases where the counter values are finite. At least one symbol must be specified in the <code>symbols</code> descriptor or the counter style is not valid. Also an optional <a href="../integer"><code>&lt;integer&gt;</code></a> can be specified after the system, as the value of the first symbol. If this integer is omitted, value of the first integer is taken as <code>1</code>.</dd> <dt><code>symbolic</code></dt> <dd>Cycles through the provided list of symbols. On each successive pass through the cycle, the symbols used for the counter representation are doubled, tripled, and so on. For example, if the original symbols provided were "◽" and "◾", on each successive pass, they will become "◽◽" and "◾◾", "◽◽◽" and "◾◾◾" and so on. At least one symbol must be specified in the <code>symbols</code> descriptor or the counter style is not valid. This counter system works for positive counter values only.</dd> <dt><code>alphabetic</code></dt> <dd>Interprets the specified symbols as digits, to an alphabetic numbering system. If the characters <code>"a"</code> to <code>"z"</code> are specified as symbols in a counter style, with the <code>alphabetic</code> system, then the first 26 counter representations will be <code>"a"</code>, <code>"b"</code> upto <code>"z"</code>. Until this point, the behavior is the same as that of the <code>symbolic</code> system, described above. However, after <code>"z"</code>, it will continue as <code>"aa"</code>, <code>"ab"</code>, <code>"ac"</code>…<br> <br> The <code>symbols</code> descriptor must contain at least two symbols or the counter style is not valid. The first counter symbol provided in the <code>symbols</code> descriptor is interpreted as <code>1</code>, the next as <code>2</code>, and so on. This system is also defined strictly over positive counter values.</dd> <dt><code>numeric</code></dt> <dd>Interprets the counter symbols as digits in a <a href="https://en.wikipedia.org/wiki/Positional_notation" rel=" noopener">place-value numbering system</a>. The numeric system is similar to the <code>alphabetic</code> system, described above. The main difference is that in the <code>alphabetic</code> system, the first counter symbol given in the <code>symbols</code> descriptor is interpreted as <code>1</code>, the next as <code>2</code>, and so on. However, in the numeric system, the first counter symbol is interpreted as 0, the next as <code>1</code>, then <code>2</code>, and so on.<br> <br> At least two counter symbols must be specified in the <code>symbols</code> descriptor or the counter style is not valid.</dd> <dt><code>additive</code></dt> <dd>Used to represent "sign-value" numbering systems, such as Roman numerals, which rather than reuse digits in different positions to obtain different values, define additional digits for larger values. The value of a number in such a system can be found out by adding the digits in the number.<br> <br> An additional descriptor called <code>additive-symbols</code> must be specified with at least one <em>additive tuple</em>, or else the counter style rule will not be valid. An additive tuple is similar to a composite counter symbol, which is made up of two parts: a normal counter symbol and a non-negative integer weight. The additive tuples must be specified in the descending order of their weights or the system is invalid.</dd> <dt><code>extends</code></dt> <dd>Allows authors to use the algorithm of another counter style, but alter its other aspects. If a counter style rule is using the <code>extends</code> system, any unspecified descriptors, and their values will be taken from the extended counter style specified. If the specified counter style name in extends, is not a currently defined counter style name, it will instead extend from the decimal counter style.<br> <br> It must not contain a <code>symbols</code> or <code>additive-symbols</code> descriptor, or else the counter style rule is invalid. If one or more counter styles definitions form a cycle with their extends values, the browser will treat all the participating counter styles as extending from the decimal style.</dd> </dl>
+<h2 id="formal_definition">Formal definition</h2>
+
+<div class="_table"><table class="properties"><tbody>
+<tr>
+<th scope="row">Related <a href="../at-rule">at-rule</a>
+</th>
+<td><a href="../@counter-style"><code>@counter-style</code></a></td>
+</tr>
+<tr>
+<th scope="row"><a href="../initial_value">Initial value</a></th>
+<td><code>symbolic</code></td>
+</tr>
+<tr>
+<th scope="row"><a href="../computed_value">Computed value</a></th>
+<td>as specified</td>
+</tr>
+</tbody></table></div>
+
+<h2 id="formal_syntax">Formal syntax</h2>
+<pre class="notranslate">cyclic <a href="../value_definition_syntax#single_bar">|</a> numeric <a href="../value_definition_syntax#single_bar">|</a> alphabetic <a href="../value_definition_syntax#single_bar">|</a> symbolic <a href="../value_definition_syntax#single_bar">|</a> additive <a href="../value_definition_syntax#single_bar">|</a> <a href="../value_definition_syntax#brackets">[</a> fixed <a href="../integer">&lt;integer&gt;</a><a href="../value_definition_syntax#question_mark_()">?</a> <a href="../value_definition_syntax#brackets">]</a> <a href="../value_definition_syntax#single_bar">|</a> <a href="../value_definition_syntax#brackets">[</a> extends <a href="#counter-style-name">&lt;counter-style-name&gt;</a> <a href="../value_definition_syntax#brackets">]</a><p>where <br><span id="counter-style-name">&lt;counter-style-name&gt;</span> = <a href="../custom-ident">&lt;custom-ident&gt;</a></p></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="cyclic_counter">Cyclic counter</h3>
+<p>If your browser supports it, this example will render a list like this:<br> ◉ One<br> ◉ Two<br> ◉ Three</p> <h4 id="css">CSS</h4> <pre data-language="css"><span class="token atrule"><span class="token rule">@counter-style</span> fisheye</span> <span class="token punctuation">{</span>
+ <span class="token property">system</span><span class="token punctuation">:</span> cyclic<span class="token punctuation">;</span>
+ <span class="token property">symbols</span><span class="token punctuation">:</span> ◉<span class="token punctuation">;</span>
+ <span class="token property">suffix</span><span class="token punctuation">:</span> <span class="token string">" "</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">ul</span> <span class="token punctuation">{</span>
+ <span class="token property">list-style</span><span class="token punctuation">:</span> fisheye<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <h4 id="result">Result</h4> <p><iframe class="sample-code-frame" id="frame_Cyclic_counter" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/@counter-style/system/_samples_/Cyclic_counter" loading="lazy"></iframe></p>
+<h3 id="fixed_counter">Fixed counter</h3>
+<p>If your browser supports it, this example will render a list like this:<br> ➀ One<br> ➁ Two<br> ➂ Three<br> 4 Four<br> 5 Five</p> <h4 id="css_2">CSS</h4> <pre data-language="css"><span class="token atrule"><span class="token rule">@counter-style</span> circled-digits</span> <span class="token punctuation">{</span>
+ <span class="token property">system</span><span class="token punctuation">:</span> fixed<span class="token punctuation">;</span>
+ <span class="token property">symbols</span><span class="token punctuation">:</span> ➀ ➁ ➂<span class="token punctuation">;</span>
+ <span class="token property">suffix</span><span class="token punctuation">:</span> <span class="token string">' '</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">ul</span> <span class="token punctuation">{</span>
+ <span class="token property">list-style</span><span class="token punctuation">:</span> circled-digits<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <h4 id="result_2">Result</h4> <p><iframe class="sample-code-frame" id="frame_Fixed_counter" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/@counter-style/system/_samples_/Fixed_counter" loading="lazy"></iframe></p>
+<h3 id="symbolic_counter">Symbolic counter</h3>
+<p>If your browser supports it, this example will render a list like this:<br> a. One<br> b. Two<br> c. Three<br> aa. Four<br> bb. Five<br> cc. Six<br> aaa. Seven<br> bbb. Eight</p> <h4 id="css_3">CSS</h4> <pre data-language="css"><span class="token atrule"><span class="token rule">@counter-style</span> abc</span> <span class="token punctuation">{</span>
+ <span class="token property">system</span><span class="token punctuation">:</span> symbolic<span class="token punctuation">;</span>
+ <span class="token property">symbols</span><span class="token punctuation">:</span> a b c<span class="token punctuation">;</span>
+ <span class="token property">suffix</span><span class="token punctuation">:</span> <span class="token string">". "</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">ul</span> <span class="token punctuation">{</span>
+ <span class="token property">list-style</span><span class="token punctuation">:</span> abc<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <h4 id="result_3">Result</h4> <p><iframe class="sample-code-frame" id="frame_Symbolic_counter" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/@counter-style/system/_samples_/Symbolic_counter" loading="lazy"></iframe></p>
+<h3 id="alphabetic_counter">Alphabetic counter</h3>
+<p>If your browser supports it, this example will render a list like this:<br> a. One<br> b. Two<br> c. Three<br> aa. Four<br> ab. Five<br> ac. Six<br> ba. Seven<br> bb. Seven</p> <h4 id="css_4">CSS</h4> <pre data-language="css"><span class="token atrule"><span class="token rule">@counter-style</span> abc</span> <span class="token punctuation">{</span>
+ <span class="token property">system</span><span class="token punctuation">:</span> alphabetic<span class="token punctuation">;</span>
+ <span class="token property">symbols</span><span class="token punctuation">:</span> a b c<span class="token punctuation">;</span>
+ <span class="token property">suffix</span><span class="token punctuation">:</span> <span class="token string">". "</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">ul</span> <span class="token punctuation">{</span>
+ <span class="token property">list-style</span><span class="token punctuation">:</span> abc<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <h4 id="result_4">Result</h4> <p><iframe class="sample-code-frame" id="frame_Alphabetic_counter" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/@counter-style/system/_samples_/Alphabetic_counter" loading="lazy"></iframe></p>
+<h3 id="numeric_counter">Numeric counter</h3>
+<p>If your browser supports it, this example will render a list like this:</p> <p> b. One<br> c. Two<br> ba. Three<br> bb. Four<br> bc. Five<br> ca. Six<br> cb. Seven<br> cc. Eight<br> <br> The first symbol provided in the <code>symbols</code> descriptor is interpreted as <code>0</code> here.</p> <h4 id="css_5">CSS<br> </h4> <pre data-language="css"><span class="token atrule"><span class="token rule">@counter-style</span> abc</span> <span class="token punctuation">{</span>
+ <span class="token property">system</span><span class="token punctuation">:</span> numeric<span class="token punctuation">;</span>
+ <span class="token property">symbols</span><span class="token punctuation">:</span> a b c<span class="token punctuation">;</span>
+ <span class="token property">suffix</span><span class="token punctuation">:</span> <span class="token string">". "</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">ul</span> <span class="token punctuation">{</span>
+ <span class="token property">list-style</span><span class="token punctuation">:</span> abc<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <h4 id="result_5">Result</h4> <p><iframe class="sample-code-frame" id="frame_Numeric_counter" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/@counter-style/system/_samples_/Numeric_counter" loading="lazy"></iframe></p>
+<h3 id="numeric_counter_with_numeric_symbols">Numeric counter with numeric symbols</h3>
+<p>As shown in the following example, if digits from <code>0</code> to <code>9</code> are specified as symbols, this counter style will render symbols same as the decimal counter style.</p> <h4 id="css_6">CSS</h4> <pre data-language="css"><span class="token atrule"><span class="token rule">@counter-style</span> numbers</span> <span class="token punctuation">{</span>
+ <span class="token property">system</span><span class="token punctuation">:</span> numeric<span class="token punctuation">;</span>
+ <span class="token property">symbols</span><span class="token punctuation">:</span> <span class="token string">"0"</span> <span class="token string">"1"</span> <span class="token string">"2"</span> <span class="token string">"3"</span> <span class="token string">"4"</span> <span class="token string">"5"</span> <span class="token string">"6"</span> <span class="token string">"7"</span> <span class="token string">"8"</span> <span class="token string">"9"</span><span class="token punctuation">;</span>
+ <span class="token property">suffix</span><span class="token punctuation">:</span> <span class="token string">"."</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">ul</span> <span class="token punctuation">{</span>
+ <span class="token property">list-style</span><span class="token punctuation">:</span> numbers<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <h4 id="result_6">Result</h4> <p><iframe class="sample-code-frame" id="frame_Numeric_counter_with_numeric_symbols" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/@counter-style/system/_samples_/Numeric_counter_with_numeric_symbols" loading="lazy"></iframe></p>
+<h3 id="additive_counter">Additive counter</h3>
+<p>This example renders a list using Roman numerals. Notice that a <code>range</code> is specified. This is because the representation will produce correct Roman numerals only until the counter value of <code>3999</code>. Once outside of the range, the rest of the counter representations will be based on the <code>decimal</code> style, which is the fall back. If you need to represent counter values as Roman numerals, you could use either one of the predefined counter styles, <code>upper-roman</code> or <code>lower-roman</code>, rather than recreating the rule yourself.</p> <h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>list<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>One<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>Two<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>Three<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>Four<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>Five<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+</pre> <h4 id="css_7">CSS</h4> <pre data-language="css"><span class="token atrule"><span class="token rule">@counter-style</span> upper-roman</span> <span class="token punctuation">{</span>
+ <span class="token property">system</span><span class="token punctuation">:</span> additive<span class="token punctuation">;</span>
+ <span class="token property">range</span><span class="token punctuation">:</span> 1 3999<span class="token punctuation">;</span>
+ <span class="token property">additive-symbols</span><span class="token punctuation">:</span> 1000 M<span class="token punctuation">,</span> 900 CM<span class="token punctuation">,</span> 500 D<span class="token punctuation">,</span> 400 CD<span class="token punctuation">,</span> 100 C<span class="token punctuation">,</span> 90 XC<span class="token punctuation">,</span> 50 L<span class="token punctuation">,</span> 40 XL<span class="token punctuation">,</span> 10 X<span class="token punctuation">,</span> 9 IX<span class="token punctuation">,</span> 5 V<span class="token punctuation">,</span> 4 IV<span class="token punctuation">,</span> 1 I<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">ul</span> <span class="token punctuation">{</span>
+ <span class="token property">list-style</span><span class="token punctuation">:</span> upper-roman<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <h4 id="result_7">Result</h4> <p><iframe class="sample-code-frame" id="frame_Additive_counter" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/@counter-style/system/_samples_/Additive_counter" loading="lazy"></iframe></p>
+<h3 id="extends_example">Extends example</h3>
+<p>This example will use the algorithm, symbols, and other properties of the <code>lower-alpha</code> counter style, but will remove the period (<code>'.'</code>) after the counter representation, and enclose the characters in parenthesis; like <code>(a)</code>, <code>(b)</code>, etc.</p> <h4 id="html_2">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>list<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>One<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>Two<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>Three<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>Four<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>Five<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+</pre> <h4 id="css_8">CSS</h4> <pre data-language="css"><span class="token atrule"><span class="token rule">@counter-style</span> alpha-modified</span> <span class="token punctuation">{</span>
+ <span class="token property">system</span><span class="token punctuation">:</span> extends lower-alpha<span class="token punctuation">;</span>
+ <span class="token property">prefix</span><span class="token punctuation">:</span> <span class="token string">"("</span><span class="token punctuation">;</span>
+ <span class="token property">suffix</span><span class="token punctuation">:</span> <span class="token string">") "</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">ul</span> <span class="token punctuation">{</span>
+ <span class="token property">list-style</span><span class="token punctuation">:</span> alpha-modified<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <h4 id="result_8">Result</h4> <p><iframe class="sample-code-frame" id="frame_Extends_example" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/@counter-style/system/_samples_/Extends_example" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/css-counter-styles-3/#counter-style-system" hreflang="en" rel=" noopener">CSS Counter Styles Level 3<br><small>The definition of 'system' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>system</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../list-style"><code>list-style</code></a>, <a href="../list-style-image"><code>list-style-image</code></a>, <a href="../list-style-position"><code>list-style-position</code></a>
+</li> <li>
+<a href="../symbols()"><code>symbols()</code></a>, the functional notation creating anonymous counter styles.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@counter-style/system" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/@counter-style/system</a>
+  </p>
+</div>

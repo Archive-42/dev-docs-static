@@ -1,0 +1,80 @@
+<h1>Window: unhandledrejection event</h1> <p>The <code>unhandledrejection</code> event is sent to the global scope of a script when a JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that has no rejection handler is rejected; typically, this is the <a href="../window"><code>window</code></a>, but may also be a <a href="../worker"><code>Worker</code></a>. This is useful for debugging and for providing fallback error handling for unexpected situations.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>No</td> </tr> <tr> <th scope="row">Cancelable</th> <td>Yes</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../promiserejectionevent"><code>PromiseRejectionEvent</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td><a href="../windoweventhandlers/onunhandledrejection"><code>onunhandledrejection</code></a></td> </tr> </tbody> </table></div>
+<h2 id="usage_notes">Usage notes</h2>
+<p>Allowing the <code>unhandledrejection</code> event to bubble will eventually result in an error message being output to the console. You can prevent this by calling <a href="../event/preventdefault"><code>preventDefault()</code></a> on the <a href="../promiserejectionevent"><code>PromiseRejectionEvent</code></a>; see <a href="#preventing_default_handling">Preventing default handling</a> below for an example.</p>
+<h2 id="examples">Examples</h2>
+<p>Here we have a few examples showing ways you can make use of the <code>unhandledrejection</code> event. The event includes two useful pieces of information:</p> <dl> <dt><code>promise</code></dt> <dd>The actual <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which was rejected with no handler available to deal with the rejection.</dd> <dt><code>reason</code></dt> <dd>The reason that would have been passed into the rejection handler if one had existed. See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch"><code>catch()</code></a> for details.</dd> </dl>
+<h3 id="basic_error_logging">Basic error logging</h3>
+<p>This example logs information about the unhandled promise rejection to the console.</p> <pre data-language="js">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"unhandledrejection"</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">UNHANDLED PROMISE REJECTION: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>event<span class="token punctuation">.</span>reason<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>You can also use the <a href="../windoweventhandlers/onunhandledrejection"><code>onunhandledrejection</code></a> event handler property to set up the event listener:</p> <pre data-language="js">window<span class="token punctuation">.</span><span class="token function-variable function">onunhandledrejection</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">warn</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">UNHANDLED PROMISE REJECTION: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>event<span class="token punctuation">.</span>reason<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="preventing_default_handling">Preventing default handling</h3>
+<p>Many environments (such as <a href="https://developer.mozilla.org/en-US/docs/Glossary/Node.js">Node.js</a>) report unhandled promise rejections to the console by default. You can prevent that from happening by adding a handler for <code>unhandledrejection</code> events that—in addition to any other tasks you wish to perform—calls <a href="../event/preventdefault"><code>preventDefault()</code></a> to cancel the event, preventing it from bubbling up to be handled by the runtime's logging code. This works because <code>unhandledrejection</code> is cancelable.</p> <pre data-language="js">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'unhandledrejection'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...your code here to handle the unhandled rejection...</span>
+
+  <span class="token comment">// Prevent the default handling (such as outputting the</span>
+  <span class="token comment">// error to the console)</span>
+
+  event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#unhandled-promise-rejections" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'unhandledrejection' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>unhandledrejection_event</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>69</div>
+<div>68</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises#promise_rejection_events">Promise rejection events</a> in <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises">Using Promises</a>
+</li> <li>
+<a href="../windoweventhandlers/onunhandledrejection"><code>onunhandledrejection</code></a> event handler property<sup><a href="#seealso-footnote-1">1</a></sup>
+</li> <li>
+<a href="rejectionhandled_event"><code>rejectionhandled</code></a> event</li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a></li> </ul> <p><a id="seealso-footnote-1">[1]</a> The corresponding event handler property is defined on the <a href="../windoweventhandlers"><code>WindowEventHandlers</code></a> mixin, which is available on both the <a href="../window"><code>Window</code></a> interface and all types of <a href="../worker"><code>Worker</code></a> interfaces.</p>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/unhandledrejection_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Window/unhandledrejection_event</a>
+  </p>
+</div>

@@ -1,0 +1,274 @@
+<h1>BackgroundFetchRegistration</h1> <p class="summary">The <code>BackgroundFetchRegistration</code> interface of the <a href="background_fetch_api">Background Fetch API</a> represents an individual background fetch.</p> <p>A <code>BackgroundFetchRegistration</code> instance is returned by the <a href="backgroundfetchmanager/fetch"><code>BackgroundFetchManager.fetch()</code></a> or <a href="backgroundfetchmanager/get"><code>BackgroundFetchManager.get()</code></a> methods, and therefore there has no constructor.</p>
+<h2 id="properties">Properties</h2>
+<p>The following properties are available synchronously, as convenience properties copied from those in the <code>BackgroundFetchRegistration</code> instance.</p> <dl> <dt>
+<a href="backgroundfetchregistration/id"><code>BackgroundFetchRegistration.id</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="domstring"><code>string</code></a> containing the background fetch's ID.</dd> <dt>
+<a href="backgroundfetchregistration/uploadtotal"><code>BackgroundFetchRegistration.uploadTotal</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number"><code>number</code></a> containing the total number of bytes to be uploaded.</dd> <dt>
+<a href="backgroundfetchregistration/uploaded"><code>BackgroundFetchRegistration.uploaded</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number"><code>number</code></a> containing the size in bytes successfully sent, initially <code>0</code>.</dd> <dt>
+<a href="backgroundfetchregistration/downloadtotal"><code>BackgroundFetchRegistration.downloadTotal</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number"><code>number</code></a> containing the total size in bytes of this download. This is the value set when the background fetch was registered, or <code>0</code>.</dd> <dt>
+<a href="backgroundfetchregistration/downloaded"><code>BackgroundFetchRegistration.downloaded</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number"><code>number</code></a> containing the size in bytes that has been downloaded, initially <code>0</code>.</dd> <dt>
+<a href="backgroundfetchregistration/result"><code>BackgroundFetchRegistration.result</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns an empty string initially, on completion either the string <code>"success"</code> or <code>"failure"</code>.</dd> <dt>
+<a href="backgroundfetchregistration/failurereason"><code>BackgroundFetchRegistration.failureReason</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>One of the following strings: <dl> <dt><code>""</code></dt> <dd>The background fetch has not completed, or was successful.</dd> <dt><code>"aborted"</code></dt> <dd>The operation was cancelled by the user, or <a href="backgroundfetchregistration/abort"><code>abort()</code></a> was called.</dd> <dt><code>"bad-status"</code></dt> <dd>A response had a not-ok status (a status outside the range 200-299).</dd> <dt><code>"fetch-error"</code></dt> <dd>A fetch failed for other reasons, for example CORS, or a network failure.</dd> <dt><code>"quota-exceeded"</code></dt> <dd>Storage quota was reached during the operation.</dd> <dt><code>"download-total-exceeded"</code></dt> <dd>The provided <code>downloadTotal</code> was exceeded. This value was set when the background fetch was registered.</dd> </dl> </dd> <dt>
+<a href="backgroundfetchregistration/recordsavailable"><code>BackgroundFetchRegistration.recordsAvailable</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>boolean</code></a> indicating whether the <code>recordsAvailable</code> flag is set.</dd> </dl>
+<h3 id="event_handlers">Event handlers</h3>
+<dl> <dt><a href="backgroundfetchregistration/onprogress"><code>BackgroundFetchRegistration.onprogress</code></a></dt> <dd>Fired when there is a change to any of the following properties: <ul> <li><code>uploaded</code></li> <li><code>downloaded</code></li> <li><code>result</code></li> <li><code>failureReason</code></li> </ul> </dd> </dl>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="backgroundfetchregistration/abort"><code>BackgroundFetchRegistration.abort()</code></a></dt> <dd>Aborts the background fetch. Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves with <code>true</code> if the fetch was successfully aborted.</dd> <dt><a href="backgroundfetchregistration/match"><code>BackgroundFetchRegistration.match()</code></a></dt> <dd>Returns a single <a href="backgroundfetchrecord"><code>BackgroundFetchRecord</code></a> object which is the first match for the arguments.</dd> <dt><a href="backgroundfetchregistration/matchall"><code>BackgroundFetchRegistration.matchAll()</code></a></dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves with an array of <a href="backgroundfetchrecord"><code>BackgroundFetchRecord</code></a> objects containing requests and responses.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>The following code creates a <code>BackGroundFetchRegistration</code> as <code>bgFetch</code>, with an <code>id</code> of <code>"my-fetch"</code>.</p> <pre data-language="js">navigator<span class="token punctuation">.</span>serviceWorker<span class="token punctuation">.</span>ready<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">swReg</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> bgFetch <span class="token operator">=</span> <span class="token keyword">await</span> swReg<span class="token punctuation">.</span>backgroundFetch<span class="token punctuation">.</span><span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'my-fetch'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'/ep-5.mp3'</span><span class="token punctuation">,</span> <span class="token string">'ep-5-artwork.jpg'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    title<span class="token operator">:</span> <span class="token string">'Episode 5: Interesting things.'</span><span class="token punctuation">,</span>
+    icons<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+      sizes<span class="token operator">:</span> <span class="token string">'300x300'</span><span class="token punctuation">,</span>
+      src<span class="token operator">:</span> <span class="token string">'/ep-5-icon.png'</span><span class="token punctuation">,</span>
+      type<span class="token operator">:</span> <span class="token string">'image/png'</span><span class="token punctuation">,</span>
+    <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    downloadTotal<span class="token operator">:</span> <span class="token number">60</span> <span class="token operator">*</span> <span class="token number">1024</span> <span class="token operator">*</span> <span class="token number">1024</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>Logging the <a href="backgroundfetchregistration/id"><code>id</code></a> to the console returns <code>"my-fetch"</code>.</p> <pre data-language="js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>bgFetch<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// "my-fetch"</span></pre> <p>The <a href="backgroundfetchregistration/match"><code>match()</code></a> method can be used to find a particular <a href="backgroundfetchrecord"><code>BackgroundFetchRecord</code></a> from those that are part of the registration.</p> <pre data-language="js">bgFetch<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span><span class="token string">'/ep-5.mp3'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">record</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>record<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'No record found'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Here's the request</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span> record<span class="token punctuation">.</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> record<span class="token punctuation">.</span>responseReady<span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">And here's the response</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://wicg.github.io/background-fetch/#background-fetch-registration" hreflang="en" rel=" noopener">Background Fetch<br><small>The definition of 'BackgroundFetchRegistration' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>BackgroundFetchRegistration</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>abort</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>downloaded</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>downloadTotal</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>failureReason</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>id</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>match</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>matchAll</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>onprogress</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>recordsAvailable</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>result</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>uploaded</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>uploadTotal</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/BackgroundFetchRegistration" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/BackgroundFetchRegistration</a>
+  </p>
+</div>

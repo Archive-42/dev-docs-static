@@ -1,0 +1,254 @@
+<h1>RTCDtlsTransport</h1>
+<h2 id="properties">Properties</h2>
+
+ <p>The <code>RTCDtlsTransport</code> interface provides access to information about the Datagram Transport Layer Security (<strong><a href="https://developer.mozilla.org/en-US/docs/Glossary/DTLS">DTLS</a></strong>) transport over which a <a href="rtcpeerconnection"><code>RTCPeerConnection</code></a>'s <a href="https://developer.mozilla.org/en-US/docs/Glossary/RTP">RTP</a> and <a href="https://developer.mozilla.org/en-US/docs/Glossary/RTCP">RTCP</a> packets are sent and received by its <a href="rtcrtpsender"><code>RTCRtpSender</code></a> and <a href="rtcrtpreceiver"><code>RTCRtpReceiver</code></a> objects.</p> <p>A DTLS transport is also used to provide information about <a href="https://developer.mozilla.org/en-US/docs/Glossary/SCTP">SCTP</a> packets transmitted and received by an connection's <a href="rtcdatachannel">data channels</a>.</p> <p>Features of the DTLS transport include the addition of security to the underlying transport; the <code>RTCDtlsTransport</code> interface can be used to obtain information about the underlying transport and the security added to it by the DTLS layer.</p>  <iframe class="inheritance-diagram-frame" id="frame_inheritance_diagram" width="600" height="70" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/RTCDtlsTransport/_samples_/inheritance_diagram" loading="lazy"></iframe> <dl>
+<dt>
+<a href="rtcdtlstransport/icetransport"><code>iceTransport</code></a> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span> undefined</dt>
+<dd>The read-only <code>RTCDtlsTransport</code> property <code><strong>iceTransport</strong></code> contains a reference to the underlying <code>RTCIceTransport</code>.</dd>
+<dt>
+<a href="rtcdtlstransport/state"><code>state</code></a> undefined</dt>
+<dd><code>WebRTC</code></dd>
+<h2 id="Methods">Methods</h2>
+<p><em>This interface has no methods.</em></p>
+
+</dl>
+<h2 id="description">Description</h2>
+<h3 id="allocation_of_dtls_transports">Allocation of DTLS transports</h3>
+<p><code>RTCDtlsTransport</code> objects are created when an app calls either <a href="rtcpeerconnection/setlocaldescription"><code>setLocalDescription()</code></a> or <a href="rtcpeerconnection/setremotedescription"><code>setRemoteDescription()</code></a>. The number of DTLS transports created and how they're used depends on the bundling mode used when creating the <a href="rtcpeerconnection"><code>RTCPeerConnection</code></a>.</p> <p>Whether bundling is used depends on what the other endpoint is able to negotiate. All browsers support bundling, so when both endpoints are browsers, you can rest assured that bundling will be used.</p> <p>Some non-browser legacy endpoints, however, may not support bundle. To be able to negotiate with such endpoints (or to exclude them entirely), the <a href="rtcconfiguration"><code>RTCConfiguration</code></a> property <a href="rtcconfiguration/bundlepolicy"><code>bundlePolicy</code></a> may be provided when creating the connection. The <code>bundlePolicy</code> <a href="rtcpeerconnection#rtcbundlepolicy_enum">lets you control</a> how to negotiate with these legacy endpoints. The default policy is <code>"balanced"</code>, which provides a balance between performance and compatibility.</p> <p>For example, to create the connection using the highest level of bundling:</p> <pre data-language="js"><span class="token keyword">const</span> rtcConfig <span class="token operator">=</span> <span class="token punctuation">{</span>
+  bundlePolicy<span class="token operator">:</span> <span class="token string">"max-bundle"</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> pc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RTCPeerConnection</span><span class="token punctuation">(</span>rtcConfig<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p><a href="https://webrtcstandards.info/sdp-bundle/" rel=" noopener">Bundling</a> lets you use one <code>RTCDtlsTransport</code> to carry the data for multiple higher-level transports, such as multiple <a href="rtcrtptransceiver"><code>RTCRtpTransceiver</code></a>s.</p> <h4 id="when_not_using_bundle">When not using BUNDLE</h4> <p>When the connection is created without using BUNDLE, each RTP or RTCP component of each <a href="rtcrtptransceiver"><code>RTCRtpTransceiver</code></a> has its own <code>RTCDtlsTransport</code>; that is, every <a href="rtcrtpsender"><code>RTCRtpSender</code></a> and <a href="rtcrtpreceiver"><code>RTCRtpReceiver</code></a>, has its own transport, and all <a href="rtcdatachannel"><code>RTCDataChannel</code></a> objects share a transport dedicated to SCTP.</p> <h4 id="when_using_bundle">When using BUNDLE</h4> <p>When the connection is using BUNDLE, each <code>RTCDtlsTransport</code> object represents a group of <a href="rtcrtptransceiver"><code>RTCRtpTransceiver</code></a> objects. If the connection was created using <code>max-compat</code> mode, each transport is responsible for handling all of the communications for a given type of media (audio, video, or data channel). Thus, a connection that has any number of audio and video channels will always have exactly one DTLS transport for audio and one for video communications.</p> <p>Because transports are established early in the negotiation process, it's likely that it won't be known until after they're created whether or not the remote peer supports bundling or not. For this reason, you'll sometimes see separate transports created at first, one for each track, then see them get bundled up once it's known that bundling is possible. If your code accesses <a href="rtcrtpsender"><code>RTCRtpSender</code></a>s and/or <a href="rtcrtpreceiver"><code>RTCRtpReceiver</code></a>s directly, you may encounter situations where they're initially separate, then half or more of them get closed and the senders and receivers updated to refer to the appropriate remaining <code>RTCDtlsTransport</code> objects.</p>
+<h3 id="data_channels">Data channels</h3>
+<p><a href="rtcdatachannel"><code>RTCDataChannel</code></a>s use <a href="https://developer.mozilla.org/en-US/docs/Glossary/SCTP">SCTP</a> to communicate. All of a peer connection's data channels share a single <a href="rtcsctptransport"><code>RTCSctpTransport</code></a>, found in the connection's <a href="rtcpeerconnection/sctp"><code>sctp</code></a> property.</p> <p>You can, in turn, identify the <code>RTCDtlsTransport</code> used to securely encapsulate the data channels' SCTP communications by looking at the <code>RTCSctpTransport</code> object's <a class="page-not-created"><code>transport</code></a> property.</p>
+<h2 id="examples">Examples</h2>
+<p>This example presents a function, <code>tallySenders()</code>, which iterates over an <code>RTCPeerConnection</code>'s <a href="rtcrtpsender"><code>RTCRtpSender</code></a>s, tallying up how many of them are in various states. The function returns an object containing properties whose values indicate how many of the senders are in each state.</p> <pre data-language="js"><span class="token keyword">let</span> pc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RTCPeerConnection</span><span class="token punctuation">(</span><span class="token punctuation">{</span> bundlePolicy<span class="token operator">:</span> <span class="token string">"max-bundle"</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* ... */</span>
+
+<span class="token keyword">function</span> <span class="token function">tallySenders</span><span class="token punctuation">(</span><span class="token parameter">pc</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> results <span class="token operator">=</span> <span class="token punctuation">{</span>
+    transportMissing<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    connectionPending<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    connected<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    closed<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    failed<span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">,</span>
+    unknown<span class="token operator">:</span> <span class="token number">0</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">let</span> senderList <span class="token operator">=</span> pc<span class="token punctuation">.</span><span class="token function">getSenders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  senderList<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">sender</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> transport <span class="token operator">=</span> sender<span class="token punctuation">.</span>transport<span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>transport<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      results<span class="token punctuation">.</span>transportMissing<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token keyword">switch</span><span class="token punctuation">(</span>transport<span class="token punctuation">.</span>state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">case</span> <span class="token string">"new"</span><span class="token operator">:</span>
+        <span class="token keyword">case</span> <span class="token string">"connecting"</span><span class="token operator">:</span>
+          results<span class="token punctuation">.</span>connectionPending<span class="token operator">++</span><span class="token punctuation">;</span>
+          <span class="token keyword">break</span><span class="token punctuation">;</span>
+       <span class="token keyword">case</span> <span class="token string">"connected"</span><span class="token operator">:</span>
+          results<span class="token punctuation">.</span>connected<span class="token operator">++</span><span class="token punctuation">;</span>
+          <span class="token keyword">break</span><span class="token punctuation">;</span>
+       <span class="token keyword">case</span> <span class="token string">"closed"</span><span class="token operator">:</span>
+          results<span class="token punctuation">.</span>closed<span class="token operator">++</span><span class="token punctuation">;</span>
+          <span class="token keyword">break</span><span class="token punctuation">;</span>
+       <span class="token keyword">case</span> <span class="token string">"failed"</span><span class="token operator">:</span>
+          results<span class="token punctuation">.</span>failed<span class="token operator">++</span><span class="token punctuation">;</span>
+          <span class="token keyword">break</span><span class="token punctuation">;</span>
+       <span class="token keyword">default</span><span class="token operator">:</span>
+          results<span class="token punctuation">.</span>unknown<span class="token operator">++</span><span class="token punctuation">;</span>
+          <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> results<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>Note that in this code, the <code>new</code> and <code>connecting</code> states are being treated as a single <code>connectionPending</code> status in the returned object.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcdtlstransport" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCDtlsTransport' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>RTCDtlsTransport</code></th>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1307996">bug 1307996</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1307996">bug 1307996</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>getRemoteCertificates</code></th>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1307996">bug 1307996</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1307996">bug 1307996</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>iceTransport</code></th>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1307996">bug 1307996</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1307996">bug 1307996</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>onerror</code></th>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1307996">bug 1307996</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1307996">bug 1307996</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>onstatechange</code></th>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1307996">bug 1307996</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1307996">bug 1307996</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>state</code></th>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1307996">bug 1307996</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1307996">bug 1307996</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>statechange_event</code></th>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1307996">bug 1307996</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1307996">bug 1307996</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="rtcrtpsender/transport"><code>RTCRtpSender.transport</code></a> and <a href="rtcrtpreceiver/transport"><code>RTCRtpReceiver.transport</code></a>
+</li> <li><a class="page-not-created"><code>RTCSctpTransport.transport</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCDtlsTransport" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCDtlsTransport</a>
+  </p>
+</div>

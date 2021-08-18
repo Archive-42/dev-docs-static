@@ -1,0 +1,253 @@
+<h1>user-select</h1> <p>The <code><strong>user-select</strong></code> <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> property controls whether the user can select text. This doesn't have any effect on content loaded as part of a browser's user interface (its <a href="https://developer.mozilla.org/en-US/docs/Glossary/Chrome">chrome</a>), except in textboxes.</p> <pre data-language="css"><span class="token comment">/* Keyword values */</span>
+<span class="token property">user-select</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token property">user-select</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+<span class="token property">user-select</span><span class="token punctuation">:</span> text<span class="token punctuation">;</span>
+<span class="token property">user-select</span><span class="token punctuation">:</span> contain<span class="token punctuation">;</span>
+<span class="token property">user-select</span><span class="token punctuation">:</span> all<span class="token punctuation">;</span>
+
+<span class="token comment">/* Global values */</span>
+<span class="token property">user-select</span><span class="token punctuation">:</span> inherit<span class="token punctuation">;</span>
+<span class="token property">user-select</span><span class="token punctuation">:</span> initial<span class="token punctuation">;</span>
+<span class="token property">user-select</span><span class="token punctuation">:</span> unset<span class="token punctuation">;</span>
+
+<span class="token comment">/* Mozilla-specific values */</span>
+<span class="token property">-moz-user-select</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token property">-moz-user-select</span><span class="token punctuation">:</span> text<span class="token punctuation">;</span>
+<span class="token property">-moz-user-select</span><span class="token punctuation">:</span> all<span class="token punctuation">;</span>
+
+<span class="token comment">/* WebKit-specific values */</span>
+<span class="token property">-webkit-user-select</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token property">-webkit-user-select</span><span class="token punctuation">:</span> text<span class="token punctuation">;</span>
+<span class="token property">-webkit-user-select</span><span class="token punctuation">:</span> all<span class="token punctuation">;</span> <span class="token comment">/* Doesn't work in Safari; use only
+                             "none" or "text", or else it will
+                             allow typing in the &lt;html&gt; container */</span>
+
+<span class="token comment">/* Microsoft-specific values */</span>
+<span class="token property">-ms-user-select</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token property">-ms-user-select</span><span class="token punctuation">:</span> text<span class="token punctuation">;</span>
+<span class="token property">-ms-user-select</span><span class="token punctuation">:</span> element<span class="token punctuation">;</span>
+</pre> <div class="notecard note"> <p><strong>Note</strong>: <code>user-select</code> is not an inherited property, though the initial <code>auto</code> value makes it behave like it is inherited most of the time. WebKit/Chromium-based browsers <em>do</em> implement the property as inherited, which violates the behavior described in the spec, and this will bring some issues. Until now, Chromium chooses to <a href="https://chromium.googlesource.com/chromium/src/+/b01af0b296ecb855aac95c4ed335d188e6eac2de" rel="noopener">fix the issues</a>, make the final behavior meets the specifications.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<dl> <dt><code>none</code></dt> <dd>The text of the element and its sub-elements is not selectable. Note that the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Selection"><code>Selection</code></a> object can contain these elements.</dd> <dt><code>auto</code></dt> <dd> <p>The used value of <code>auto</code> is determined as follows:</p> <ul> <li>On the <code>::before</code> and <code>::after</code> pseudo elements, the used value is <code>none</code>
+</li> <li>If the element is an editable element, the used value is <code>contain</code>
+</li> <li>Otherwise, if the used value of <code>user-select</code> on the parent of this element is <code>all</code>, the used value is <code>all</code>
+</li> <li>Otherwise, if the used value of <code>user-select</code> on the parent of this element is <code>none</code>, the used value is <code>none</code>
+</li> <li>Otherwise, the used value is <code>text</code>
+</li> </ul> </dd> <dt><code>text</code></dt> <dd>The text can be selected by the user.</dd> <dt><code>all</code></dt> <dd>The content of the element shall be selected atomically: If a selection would contain part of the element, then the selection must contain the entire element including all its descendants. If a double-click or context-click occurred in sub-elements, the highest ancestor with this value will be selected.</dd> <dt><code>contain</code></dt> <dd>Enables selection to start within the element; however, the selection will be contained by the bounds of that element.</dd> <dt>
+<code>element</code><span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized.   </span> (IE-specific alias)</dt> <dd>Same as <code>contain</code>. Supported only in Internet Explorer.</dd> </dl> <div class="note notecard"> <p><strong>Note:</strong> CSS UI 4 <a href="https://github.com/w3c/csswg-drafts/commit/3f1d9db96fad8d9fc787d3ed66e2d5ad8cfadd05" rel=" noopener">renames <code>user-select: element</code> to <code>contain</code></a>.</p> </div>
+<h2 id="formal_definition">Formal definition</h2>
+
+<div class="_table"><table class="properties"><tbody>
+<tr>
+<th scope="row"><a href="initial_value">Initial value</a></th>
+<td><code>auto</code></td>
+</tr>
+<tr>
+<th scope="row">Applies to</th>
+<td>all elements</td>
+</tr>
+<tr>
+<th scope="row"><a href="inheritance">Inherited</a></th>
+<td>no</td>
+</tr>
+<tr>
+<th scope="row"><a href="computed_value">Computed value</a></th>
+<td>as specified</td>
+</tr>
+<tr>
+<th scope="row">Animation type</th>
+<td>discrete</td>
+</tr>
+</tbody></table></div>
+
+<h2 id="formal_syntax">Formal syntax</h2>
+<pre class="notranslate">auto <a href="value_definition_syntax#single_bar">|</a> text <a href="value_definition_syntax#single_bar">|</a> none <a href="value_definition_syntax#single_bar">|</a> contain <a href="value_definition_syntax#single_bar">|</a> all</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="html">HTML</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>You should be able to select this text.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>unselectable<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Hey, you can't select this text!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>all<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Clicking once will select all of this text.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+</pre>
+<h3 id="css">CSS</h3>
+<pre data-language="css"><span class="token selector">.unselectable</span> <span class="token punctuation">{</span>
+  <span class="token property">-moz-user-select</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+  <span class="token property">-webkit-user-select</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+  <span class="token property">-ms-user-select</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+  <span class="token property">user-select</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.all</span> <span class="token punctuation">{</span>
+  <span class="token property">-moz-user-select</span><span class="token punctuation">:</span> all<span class="token punctuation">;</span>
+  <span class="token property">-webkit-user-select</span><span class="token punctuation">:</span> all<span class="token punctuation">;</span>
+  <span class="token property">-ms-user-select</span><span class="token punctuation">:</span> all<span class="token punctuation">;</span>
+  <span class="token property">user-select</span><span class="token punctuation">:</span> all<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="result">Result</h3>
+<p><iframe class="sample-code-frame" id="frame_Examples" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/user-select/_samples_/Examples" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/css-ui-4/#propdef-user-select" hreflang="en" rel=" noopener">CSS Basic User Interface Module Level 4<br><small>The definition of 'user-select' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition. Also defines <code>-webkit-user-select</code> as a deprecated alias of <code>user-select</code>.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>user-select</code></th>
+<td class="bc-supports-yes">
+<div>54</div>
+<div>1</div>
+</td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>12</div>
+</td>
+<td class="bc-supports-yes">
+<div>69</div>
+<div>49</div>
+<div>1</div>
+<div>44</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes">
+<div>3</div>
+<div>2-3</div>
+</td>
+<td class="bc-supports-yes">
+<div>54</div>
+<div>≤37</div>
+</td>
+<td class="bc-supports-yes">
+<div>54</div>
+<div>18</div>
+</td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>4</div>
+<div>44</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>1.0</div>
+</td>
+</tr>
+<tr>
+<th><code>all</code></th>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>auto</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>contain</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>12-79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>none</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>21</div>
+<div>1-65</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>21</div>
+<div>4-65</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>text</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes">
+<div>2</div>
+<div>Allows typing in the <code>&lt;html&gt;</code> container.</div>
+</td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes">
+<div>3</div>
+<div>Allows typing in the <code>&lt;html&gt;</code> container.</div>
+</td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="::selection"><code>::selection</code></a> pseudo-element</li> <li>The JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/API/Selection"><code>Selection</code></a> object</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/user-select" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/user-select</a>
+  </p>
+</div>

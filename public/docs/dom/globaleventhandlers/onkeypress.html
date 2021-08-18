@@ -1,0 +1,111 @@
+<h1>GlobalEventHandlers.onkeypress</h1> <div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div> <p>The <code><strong>onkeypress</strong></code> property of the <a href="../globaleventhandlers"><code>GlobalEventHandlers</code></a> mixin is an <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a> that processes <code><a href="../document/keypress_event">keypress</a></code> events.</p> <p>The <code>keypress</code> event <em>should</em> fire when the user presses a key on the keyboard. However, in practice browsers do not fire <code>keypress</code> events for certain keys.</p> <div class="notecard warning"> <p>The <code>onkeypress</code> event handler has been deprecated. You may want to use <a href="onkeydown"><code>onkeydown</code></a> instead.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">target<span class="token punctuation">.</span>onkeypress <span class="token operator">=</span> functionRef<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p><code>functionRef</code> is a function name or a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function">function expression</a>. The function receives a <a href="../keyboardevent"><code>KeyboardEvent</code></a> object as its sole argument.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="basic_example">Basic example</h3>
+<p>This example logs the <a href="../keyboardevent/code"><code>KeyboardEvent.code</code></a> value whenever you press a key inside the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> element.</p> <h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>log<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre> <h4 id="javascript">JavaScript</h4> <pre data-language="js"><span class="token keyword">const</span> input <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'input'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> log <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'log'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+input<span class="token punctuation">.</span>onkeypress <span class="token operator">=</span> logKey<span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">logKey</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  log<span class="token punctuation">.</span>textContent <span class="token operator">+=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>e<span class="token punctuation">.</span>code<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <h4 id="result">Result</h4> <p><iframe class="sample-code-frame" id="frame_Basic_example" width="700" height="200" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/GlobalEventHandlers/onkeypress/_samples_/Basic_example" loading="lazy"></iframe></p>
+<h3 id="filter_keys_with_a_regular_expression">Filter keys with a regular expression</h3>
+<p>This example filters the characters typed into a form field using a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">regular expression</a>. </p> <h4 id="html_2">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>Enter numbers only:
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span></pre> <h4 id="javascript_2">JavaScript</h4> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">numbersOnly</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> event<span class="token punctuation">.</span>charCode <span class="token operator">===</span> <span class="token number">0</span> <span class="token operator">||</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\d</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>String<span class="token punctuation">.</span><span class="token function">fromCharCode</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>charCode<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> input <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'input'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+input<span class="token punctuation">.</span>onkeypress <span class="token operator">=</span> numbersOnly<span class="token punctuation">;</span>
+
+<span class="token comment">// Prevent pasting (since pasted content might include non-number characters)</span>
+input<span class="token punctuation">.</span><span class="token function-variable function">onpaste</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token boolean">false</span><span class="token punctuation">;</span></pre> <h4 id="result_2">Result</h4> <p><iframe class="sample-code-frame" id="frame_Filter_keys_with_a_regular_expression" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/GlobalEventHandlers/onkeypress/_samples_/Filter_keys_with_a_regular_expression" loading="lazy"></iframe></p>
+<h3 id="capture_the_typing_of_a_hidden_word">Capture the typing of a hidden word</h3>
+<p>The following JavaScript function will do something after the user types the word "exit" in any point of a page.</p> <pre data-language="js"><span class="token comment">/* Type the word "exit" in any point of your page... */</span>
+
+<span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> sSecret <span class="token operator">=</span> <span class="token comment">/* Choose your hidden word...: */</span> <span class="token string">"exit"</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> nOffset <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+  document<span class="token punctuation">.</span><span class="token function-variable function">onkeypress</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">oPEvt</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> oEvent <span class="token operator">=</span> oPEvt <span class="token operator">||</span> window<span class="token punctuation">.</span>event<span class="token punctuation">,</span>
+        nChr <span class="token operator">=</span> oEvent<span class="token punctuation">.</span>charCode<span class="token punctuation">,</span>
+        sNodeType <span class="token operator">=</span> oEvent<span class="token punctuation">.</span>target<span class="token punctuation">.</span>nodeName<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>nChr <span class="token operator">===</span> <span class="token number">0</span> <span class="token operator">||</span>
+        oEvent<span class="token punctuation">.</span>target<span class="token punctuation">.</span>contentEditable<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">"TRUE"</span> <span class="token operator">||</span>
+        sNodeType <span class="token operator">===</span> <span class="token string">"TEXTAREA"</span> <span class="token operator">||</span>
+        sNodeType <span class="token operator">===</span> <span class="token string">"INPUT"</span> <span class="token operator">&amp;&amp;</span> oEvent<span class="token punctuation">.</span>target<span class="token punctuation">.</span>type<span class="token punctuation">.</span><span class="token function">toUpperCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token string">"TEXT"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>nChr <span class="token operator">!==</span> sSecret<span class="token punctuation">.</span><span class="token function">charCodeAt</span><span class="token punctuation">(</span>nOffset<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      nOffset <span class="token operator">=</span> nChr <span class="token operator">===</span> sSecret<span class="token punctuation">.</span><span class="token function">charCodeAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">?</span> <span class="token number">1</span> <span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>nOffset <span class="token operator">&lt;</span> sSecret<span class="token punctuation">.</span>length <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      nOffset<span class="token operator">++</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      nOffset <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+      <span class="token comment">/* Do something here... */</span>
+      <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Yes!!!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      location<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span><span class="token string">"https://developer.mozilla.org/"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <div class="notecard note"> <p><strong>Note:</strong> A more complete framework for capturing the typing of hidden words is <a href="https://github.com/madmurphy/spell.js/" rel=" noopener">available on GitHub</a>.</p> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td>
+<a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onkeypress" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'onkeypress' in that specification.</small></a> </td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onkeypress</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table> 
+ <ul> <li>The <code>keypress</code> event is no longer fired for <a href="../keyboardevent/keycode#non-printable_keys_(function_keys)">non-printable keys</a> (see <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=968056" rel=" noopener">bug 968056</a> for Firefox 65's implementation of this), except for the <kbd>Enter</kbd> key, and the <kbd>Shift</kbd> + <kbd>Enter</kbd> and <kbd>Ctrl</kbd> + <kbd>Enter</kbd> key combinations (these were kept for cross-browser compatibility purposes).</li> </ul> <h2 id="see_also">See also</h2>
+<ul> <li>
+<code><a href="../document/keypress_event">keypress</a></code> event</li> <li>Related event handlers <ul> <li><a href="onkeydown"><code>GlobalEventHandlers.onkeydown</code></a></li> <li><a href="onkeyup"><code>GlobalEventHandlers.onkeyup</code></a></li> </ul> </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeypress" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onkeypress</a>
+  </p>
+</div>

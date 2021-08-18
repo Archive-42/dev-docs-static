@@ -1,0 +1,216 @@
+<h1>History API</h1> <p>The DOM <a href="window"><code>Window</code></a> object provides access to the browser's session history (not to be confused for <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/history">WebExtensions history</a>) through the <a href="window/history"><code>history</code></a> object. It exposes useful methods and properties that let you navigate back and forth through the user's history, and manipulate the contents of the history stack.</p>
+<h2 id="concepts_and_usage">Concepts and usage</h2>
+<p>Moving backward and forward through the user's history is done using the <a href="history/back"><code>back()</code></a>, <a href="history/forward"><code>forward()</code></a>, and <a href="history/go"><code>go()</code></a> methods.</p>
+<h3 id="moving_forward_and_backward">Moving forward and backward</h3>
+<p>To move backward through history:</p> <pre data-language="js">window<span class="token punctuation">.</span>history<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre> <p>This acts exactly as if the user clicked on the <kbd><strong>Back</strong></kbd> button in their browser toolbar.</p> <p>Similarly, you can move forward (as if the user clicked the <kbd><strong>Forward</strong></kbd> button), like this:</p> <pre data-language="js">window<span class="token punctuation">.</span>history<span class="token punctuation">.</span><span class="token function">forward</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre>
+<h3 id="moving_to_a_specific_point_in_history">Moving to a specific point in history</h3>
+<p>You can use the <a href="history/go"><code>go()</code></a> method to load a specific page from session history, identified by its relative position to the current page. (The current page's relative position is <code>0</code>.)</p> <p>To move back one page (the equivalent of calling <a href="history/back"><code>back()</code></a>):</p> <pre data-language="js">window<span class="token punctuation">.</span>history<span class="token punctuation">.</span><span class="token function">go</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>
+</pre> <p>To move forward a page, just like calling <a href="history/forward"><code>forward()</code></a>:</p> <pre data-language="js">window<span class="token punctuation">.</span>history<span class="token punctuation">.</span><span class="token function">go</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+</pre> <p>Similarly, you can move forward 2 pages by passing <code>2</code>, and so forth.</p> <p>Another use for the <code>go()</code> method is to refresh the current page by either passing <code>0</code>, or by invoking it without an argument:</p> <pre data-language="js"><span class="token comment">// The following statements</span>
+<span class="token comment">// both have the effect of</span>
+<span class="token comment">// refreshing the page</span>
+window<span class="token punctuation">.</span>history<span class="token punctuation">.</span><span class="token function">go</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
+window<span class="token punctuation">.</span>history<span class="token punctuation">.</span><span class="token function">go</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre> <p>You can determine the number of pages in the history stack by looking at the value of the <code>length</code> property:</p> <pre data-language="js"><span class="token keyword">let</span> numberOfEntries <span class="token operator">=</span> window<span class="token punctuation">.</span>history<span class="token punctuation">.</span>length
+</pre>
+<h2 id="interfaces">Interfaces</h2>
+<dl> <dt><a href="history"><code>History</code></a></dt> <dd>Allows manipulation of the browser <em>session history</em> (that is, the pages visited in the tab or frame that the current page is loaded in).</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>The following example assigns a listener to the <code>onpopstate</code> property. And then illustrates some of the methods of the history object to add, replace, and move within the browser history for the current tab.</p> <pre data-language="js">window<span class="token punctuation">.</span><span class="token function-variable function">onpopstate</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">alert</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">location: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>document<span class="token punctuation">.</span>location<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">, state: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>state<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+history<span class="token punctuation">.</span><span class="token function">pushState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>page<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">"title 1"</span><span class="token punctuation">,</span> <span class="token string">"?page=1"</span><span class="token punctuation">)</span>
+history<span class="token punctuation">.</span><span class="token function">pushState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>page<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">"title 2"</span><span class="token punctuation">,</span> <span class="token string">"?page=2"</span><span class="token punctuation">)</span>
+history<span class="token punctuation">.</span><span class="token function">replaceState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>page<span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">"title 3"</span><span class="token punctuation">,</span> <span class="token string">"?page=3"</span><span class="token punctuation">)</span>
+history<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// alerts "location: http://example.com/example.html?page=1, state: {"page":1}"</span>
+history<span class="token punctuation">.</span><span class="token function">back</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// alerts "location: http://example.com/example.html, state: null"</span>
+history<span class="token punctuation">.</span><span class="token function">go</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>  <span class="token comment">// alerts "location: http://example.com/example.html?page=3, state: {"page":3}"</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://html.spec.whatwg.org/multipage/browsers.html#history" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'History' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>No change from <a href="https://www.w3.org/TR/html52/" hreflang="en" rel=" noopener">HTML5</a>.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/html52/browsers.html#history" hreflang="en" rel=" noopener">HTML5<br><small>The definition of 'History' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>History_API</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>back</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>forward</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>go</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>length</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>pushState</code></th>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Until Firefox 5, the passed object is serialized using JSON. Starting in Firefox 6, the object is serialized using <a href="https://developer.mozilla.org/docs/DOM/The_structured_clone_algorithm">the structured clone algorithm</a>. This allows a wider variety of objects to be safely passed.</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>11.5</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Until Firefox 5, the passed object is serialized using JSON. Starting in Firefox 6, the object is serialized using <a href="https://developer.mozilla.org/docs/DOM/The_structured_clone_algorithm">the structured clone algorithm</a>. This allows a wider variety of objects to be safely passed.</div>
+</td>
+<td class="bc-supports-yes"><div>11.5</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>replaceState</code></th>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Until Firefox 5, the passed object is serialized using JSON. Starting in Firefox 6, the object is serialized using <a href="https://developer.mozilla.org/docs/DOM/The_structured_clone_algorithm">the structured clone algorithm</a>. This allows a wider variety of objects to be safely passed.</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>11.5</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Until Firefox 5, the passed object is serialized using JSON. Starting in Firefox 6, the object is serialized using <a href="https://developer.mozilla.org/docs/DOM/The_structured_clone_algorithm">the structured clone algorithm</a>. This allows a wider variety of objects to be safely passed.</div>
+</td>
+<td class="bc-supports-yes"><div>11.5</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>scrollRestoration</code></th>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>state</code></th>
+<td class="bc-supports-yes"><div>19</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<h3 id="references">References</h3>
+<ul> <li><a href="window/history"><code>window.history</code></a></li> <li><a href="windoweventhandlers/onpopstate"><code>WindowEventHandlers.onpopstate</code></a></li> </ul>
+<h3 id="guides">Guides</h3>
+<ul> <li><a href="history_api/working_with_the_history_api">Working with the History API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/History_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/History_API</a>
+  </p>
+</div>

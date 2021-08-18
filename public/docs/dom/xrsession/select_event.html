@@ -1,0 +1,70 @@
+<h1>XRSession: select event</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The WebXR event <code><strong>select</strong></code> is sent to an <a href="../xrsession"><code>XRSession</code></a> when one of the session's input sources has completed a <a href="../webxr_device_api/inputs#primary_actions">primary action</a>. Examples of comon kinds of primary action are users pressing triggers or buttons, tapping a touchpad, speaking a command, or performing a recognizable gesture when using a video tracking system or handheld controller with an accelerometer.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>Yes</td> </tr> <tr> <th scope="row">Cancelable</th> <td>No</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../xrinputsourceevent"><code>XRInputSourceEvent</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td><a href="onselect"><code>onselect</code></a></td> </tr> </tbody> </table></div> <p>For details on how the <a href="selectstart_event"><code>selectstart</code></a>, <a href="select_event"><code>select</code></a>, and <a href="selectend_event"><code>selectend</code></a> events work, and how you should react to them, see <a href="../webxr_device_api/inputs#primary_actions">Primary actions</a> in <a href="../webxr_device_api/inputs">Inputs and input sources</a>.</p>
+<h2 id="examples">Examples</h2>
+<p>The following example uses <a href="../eventtarget/addeventlistener"><code>addEventListener()</code></a> to set up a handler for the <code>select</code> event. The handler fetches the pose representing the target ray for <code>tracked-pointer</code> inputs and sends the pose's transform to a function called <code>myHandleSelectWithRay()</code>.</p> <pre data-language="js">xrSession<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"select"</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>inputSource<span class="token punctuation">.</span>targetRayMode <span class="token operator">==</span> <span class="token string">"tracked-pointer"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> targetRayPose <span class="token operator">=</span> event<span class="token punctuation">.</span>frame<span class="token punctuation">.</span><span class="token function">getPose</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>inputSource<span class="token punctuation">.</span>targetRaySpace<span class="token punctuation">,</span>
+                              myRefSpace<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>targetRayPose<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">myHandleSelectWithRay</span><span class="token punctuation">(</span>targetRayPose<span class="token punctuation">.</span>transform<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>You can of course also set up a handler for <code>select</code> events by setting the <a href="../xrsession"><code>XRSession</code></a> object's <a href="onselect"><code>onselect</code></a> event handler property to a function that handles the event:</p> <pre data-language="js">xrSession<span class="token punctuation">.</span><span class="token function-variable function">onselect</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>inputSource<span class="token punctuation">.</span>targetRayMode <span class="token operator">==</span> <span class="token string">"tracked-pointer"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> targetRayPose <span class="token operator">=</span> event<span class="token punctuation">.</span>frame<span class="token punctuation">.</span><span class="token function">getPose</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>inputSource<span class="token punctuation">.</span>targetRaySpace<span class="token punctuation">,</span>
+                              myRefSpace<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>targetRayPose<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">myHandleSelectWithRay</span><span class="token punctuation">(</span>targetRayPose<span class="token punctuation">.</span>transform<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://immersive-web.github.io/webxr/#eventdef-xrsession-select" hreflang="en" rel=" noopener">WebXR Device API<br><small>The definition of 'select event' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>select_event</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr></tbody>
+</table>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XRSession/select_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XRSession/select_event</a>
+  </p>
+</div>

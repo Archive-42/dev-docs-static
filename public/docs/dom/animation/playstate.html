@@ -1,0 +1,113 @@
+<h1>Animation.playState</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <code><strong>Animation</strong></code><code>.playState</code> property of the <a href="../web_animations_api">Web Animations API</a> returns and sets an enumerated value describing the playback state of an animation.</p> <div class="note notecard"> <p>This property is read-only for CSS Animations and Transitions.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> currentPlayState <span class="token operator">=</span> Animation<span class="token punctuation">.</span>playState<span class="token punctuation">;</span>
+
+Animation<span class="token punctuation">.</span>playState <span class="token operator">=</span> newState<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<dl> <dt><code>idle</code></dt> <dd>The current time of the animation is unresolved and there are no pending tasks.</dd> <dt><code>running</code></dt> <dd>The animation is running.</dd> <dt><code>paused</code></dt> <dd>The animation was suspended and the <a href="currenttime"><code>Animation.currentTime</code></a> property is not updating.</dd> <dt><code>finished</code></dt> <dd>The animation has reached one of its boundaries and the <a href="currenttime"><code>Animation.currentTime</code></a> property is not updating.</dd> </dl> <p>Previously, Web Animations defined a <code><strong>pending</strong></code> value to indicate that some asynchronous operation such as initiating playback was yet to complete. This is now indicated by the separate <a href="pending"><code>Animation.pending</code></a> property.</p>
+<h2 id="example">Example</h2>
+<p>In the <a href="https://codepen.io/rachelnabors/pen/PNYGZQ?editors=0010" rel=" noopener">Growing/Shrinking Alice Game</a> example, players can get an ending with <a href="https://codepen.io/rachelnabors/pen/EPJdJx?editors=0010" rel=" noopener">Alice crying into a pool of tears</a>. In the game, for performance reasons, the tears should only be animating when they're visible. So they must be paused as soon as they are animated like so:</p> <pre data-language="js"><span class="token comment">// Setting up the tear animations</span>
+
+tears<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">el</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  el<span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span>
+    tearsFalling<span class="token punctuation">,</span>
+    <span class="token punctuation">{</span>
+      delay<span class="token operator">:</span> <span class="token function">getRandomMsRange</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1000</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">// randomized for each tear</span>
+      duration<span class="token operator">:</span> <span class="token function">getRandomMsRange</span><span class="token punctuation">(</span><span class="token number">2000</span><span class="token punctuation">,</span> <span class="token number">6000</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">// randomized for each tear</span>
+      iterations<span class="token operator">:</span> <span class="token number">Infinity</span><span class="token punctuation">,</span>
+      easing<span class="token operator">:</span> <span class="token string">'cubic-bezier(0.6, 0.04, 0.98, 0.335)'</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  el<span class="token punctuation">.</span><span class="token function">pause</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Play the tears falling when the ending needs to be shown.</span>
+
+tears<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">el</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  el<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Reset the crying tears animations and pause them.</span>
+
+tears<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">el</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  el<span class="token punctuation">.</span><span class="token function">pause</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  el<span class="token punctuation">.</span>currentTime <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://drafts.csswg.org/web-animations-1/#play-state" hreflang="en" rel=" noopener">Web Animations<br><small>The definition of 'playState' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>playState</code></th>
+<td class="bc-supports-yes">
+<div>39</div>
+<div>Before Chrome 50/Opera 37, this property returned <code>idle</code> for an animation that had not yet started. Starting with Chrome 50/Opera 37, it shows <code>paused</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>Prior to Firefox 59, this property returned <code>pending</code> for Animations with incomplete asynchronous operations but as of Firefox 59 this is indicated by the separate <a href="https://developer.mozilla.org/docs/Web/API/Animation/pending"><code>Animation.pending</code></a> property. This reflects recent changes to the specification.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>26</div>
+<div>Before Chrome 50/Opera 37, this property returned <code>idle</code> for an animation that had not yet started. Starting with Chrome 50/Opera 37, it shows <code>paused</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>13.1</div></td>
+<td class="bc-supports-yes">
+<div>39</div>
+<div>Before Chrome 50/Opera 37, this property returned <code>idle</code> for an animation that had not yet started. Starting with Chrome 50/Opera 37, it shows <code>paused</code>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>39</div>
+<div>Before Chrome 50/Opera 37, this property returned <code>idle</code> for an animation that had not yet started. Starting with Chrome 50/Opera 37, it shows <code>paused</code>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>Prior to Firefox 59, this property returned <code>pending</code> for Animations with incomplete asynchronous operations but as of Firefox 59 this is indicated by the separate <a href="https://developer.mozilla.org/docs/Web/API/Animation/pending"><code>Animation.pending</code></a> property. This reflects recent changes to the specification.</div>
+</td>
+<td class="bc-supports-yes">
+<div>26</div>
+<div>Before Chrome 50/Opera 37, this property returned <code>idle</code> for an animation that had not yet started. Starting with Chrome 50/Opera 37, it shows <code>paused</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>13.4</div></td>
+<td class="bc-supports-yes">
+<div>4.0</div>
+<div>Before Samsung Internet 5.0/Opera 37, this property returned <code>idle</code> for an animation that had not yet started. Starting with Samsung Internet 5.0/Opera 37, it shows <code>paused</code>.</div>
+</td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../web_animations_api">Web Animations API</a></li> <li>
+<a href="../animation"><code>Animation</code></a> for other methods and properties you can use to control web page animation.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Animation/playState" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Animation/playState</a>
+  </p>
+</div>

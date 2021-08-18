@@ -1,0 +1,238 @@
+<h1>DynamicsCompressorNode</h1>
+
+  <p>The <code>DynamicsCompressorNode</code> interface provides a compression effect, which lowers the volume of the loudest parts of the signal in order to help prevent clipping and distortion that can occur when multiple sounds are played and multiplexed together at once. This is often used in musical production and game audio. <code>DynamicsCompressorNode</code> is an <a href="audionode"><code>AudioNode</code></a> that has exactly one input and one output; it is created using the <a href="baseaudiocontext/createdynamicscompressor"><code>BaseAudioContext.createDynamicsCompressor</code></a> method.</p>  <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Number of inputs</th> <td><code>1</code></td> </tr> <tr> <th scope="row">Number of outputs</th> <td><code>1</code></td> </tr> <tr> <th scope="row">Channel count mode</th> <td><code>"clamped-max"</code></td> </tr> <tr> <th scope="row">Channel count</th> <td><code>2</code></td> </tr> <tr> <th scope="row">Channel interpretation</th> <td><code>"speakers"</code></td> </tr> </tbody> </table></div>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="dynamicscompressornode/dynamicscompressornode"><code>DynamicsCompressorNode()</code></a></dt> <dd>Creates a new instance of an <code>DynamicsCompressorNode</code> object.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<p><em>Inherits properties from its parent, <a href="audionode"><code>AudioNode</code></a></em>.</p> <dl> <dt>
+<a href="dynamicscompressornode/threshold"><code>DynamicsCompressorNode.threshold</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Is a <a href="audioparam#k-rate">k-rate</a> <a href="audioparam"><code>AudioParam</code></a> representing the decibel value above which the compression will start taking effect.</dd> <dt>
+<a href="dynamicscompressornode/knee"><code>DynamicsCompressorNode.knee</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Is a <a href="audioparam#k-rate">k-rate</a> <a href="audioparam"><code>AudioParam</code></a> containing a decibel value representing the range above the threshold where the curve smoothly transitions to the compressed portion.</dd> <dt>
+<a href="dynamicscompressornode/ratio"><code>DynamicsCompressorNode.ratio</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Is a <a href="audioparam#k-rate">k-rate</a> <a href="audioparam"><code>AudioParam</code></a> representing the amount of change, in dB, needed in the input for a 1 dB change in the output.</dd> <dt>
+<a href="dynamicscompressornode/reduction"><code>DynamicsCompressorNode.reduction</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Is a <code>float</code> representing the amount of gain reduction currently applied by the compressor to the signal.</dd> <dt>
+<a href="dynamicscompressornode/attack"><code>DynamicsCompressorNode.attack</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Is a <a href="audioparam#k-rate">k-rate</a> <a href="audioparam"><code>AudioParam</code></a> representing the amount of time, in seconds, required to reduce the gain by 10 dB.</dd> <dt>
+<a href="dynamicscompressornode/release"><code>DynamicsCompressorNode.release</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Is a <a href="audioparam#k-rate">k-rate</a> <a href="audioparam"><code>AudioParam</code></a> representing the amount of time, in seconds, required to increase the gain by 10 dB.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<p><em>No specific methods; inherits methods from its parent, <a href="audionode"><code>AudioNode</code></a></em>.</p>
+<h2 id="example">Example</h2>
+
+<p>The below code demonstrates a simple usage of <code>createDynamicsCompressor()</code> to add compression to an audio track. For a more complete example, have a look at our <a href="https://mdn.github.io/webaudio-examples/compressor-example/" rel=" noopener">basic Compressor example</a> (<a href="https://github.com/mdn/webaudio-examples/tree/master/compressor-example" rel=" noopener">view the source code</a>).</p>
+<pre data-language="js"><span class="token comment">// Create a MediaElementAudioSourceNode</span>
+<span class="token comment">// Feed the HTMLMediaElement into it</span>
+<span class="token keyword">var</span> source <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createMediaElementSource</span><span class="token punctuation">(</span>myAudio<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Create a compressor node</span>
+<span class="token keyword">var</span> compressor <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createDynamicsCompressor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+compressor<span class="token punctuation">.</span>threshold<span class="token punctuation">.</span><span class="token function">setValueAtTime</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">50</span><span class="token punctuation">,</span> audioCtx<span class="token punctuation">.</span>currentTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+compressor<span class="token punctuation">.</span>knee<span class="token punctuation">.</span><span class="token function">setValueAtTime</span><span class="token punctuation">(</span><span class="token number">40</span><span class="token punctuation">,</span> audioCtx<span class="token punctuation">.</span>currentTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+compressor<span class="token punctuation">.</span>ratio<span class="token punctuation">.</span><span class="token function">setValueAtTime</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span> audioCtx<span class="token punctuation">.</span>currentTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+compressor<span class="token punctuation">.</span>attack<span class="token punctuation">.</span><span class="token function">setValueAtTime</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> audioCtx<span class="token punctuation">.</span>currentTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+compressor<span class="token punctuation">.</span>release<span class="token punctuation">.</span><span class="token function">setValueAtTime</span><span class="token punctuation">(</span><span class="token number">0.25</span><span class="token punctuation">,</span> audioCtx<span class="token punctuation">.</span>currentTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// connect the AudioBufferSourceNode to the destination</span>
+source<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>audioCtx<span class="token punctuation">.</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+button<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> active <span class="token operator">=</span> button<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'data-active'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>active <span class="token operator">==</span> <span class="token string">'false'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    button<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'data-active'</span><span class="token punctuation">,</span> <span class="token string">'true'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    button<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'Remove compression'</span><span class="token punctuation">;</span>
+
+    source<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span>audioCtx<span class="token punctuation">.</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    source<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>compressor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    compressor<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>audioCtx<span class="token punctuation">.</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>active <span class="token operator">==</span> <span class="token string">'true'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    button<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'data-active'</span><span class="token punctuation">,</span> <span class="token string">'false'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    button<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'Add compression'</span><span class="token punctuation">;</span>
+
+    source<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span>compressor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    compressor<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span>audioCtx<span class="token punctuation">.</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    source<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>audioCtx<span class="token punctuation">.</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre>
+
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://webaudio.github.io/web-audio-api/#dynamicscompressornode" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'DynamicsCompressorNode' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>DynamicsCompressorNode</code></th>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>DynamicsCompressorNode</code></th>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Before Chrome 59, the default values were not supported.</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Before version 59, the default values were not supported.</div>
+</td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Before Chrome 59, the default values were not supported.</div>
+</td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Before Samsung Internet 7.0, the default values were not supported.</div>
+</td>
+</tr>
+<tr>
+<th><code>attack</code></th>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>knee</code></th>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>ratio</code></th>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>reduction</code></th>
+<td class="bc-supports-yes">
+<div>14</div>
+<div>Before version 52, this was an <code>AudioParam.</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes">
+<div>≤37</div>
+<div>Before version 52, this was an <code>AudioParam.</code>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>Before version 52, this was an <code>AudioParam.</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes">
+<div>1.0</div>
+<div>Before Samsung Internet 6.0, this was an <code>AudioParam.</code>.</div>
+</td>
+</tr>
+<tr>
+<th><code>release</code></th>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>threshold</code></th>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="web_audio_api/using_web_audio_api">Using the Web Audio API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/DynamicsCompressorNode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/DynamicsCompressorNode</a>
+  </p>
+</div>

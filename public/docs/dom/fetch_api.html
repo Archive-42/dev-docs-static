@@ -1,0 +1,125 @@
+<h1>Fetch API</h1> <p class="summary">The Fetch API provides an interface for fetching resources (including across the network). It will seem familiar to anyone who has used <a href="xmlhttprequest"><code>XMLHttpRequest</code></a>, but the new API provides a more powerful and flexible feature set.</p> 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="web_workers_api">Web Workers</a>.</p> </div>
+
+<h2 id="concepts_and_usage">Concepts and usage</h2>
+<p>Fetch provides a generic definition of <a href="request"><code>Request</code></a> and <a href="response"><code>Response</code></a> objects (and other things involved with network requests). This will allow them to be used wherever they are needed in the future, whether it’s for service workers, Cache API, and other similar things that handle or modify requests and responses, or any kind of use case that might require you to generate your responses programmatically (that is, the use of computer program or personal programming instructions).</p> <p>It also defines related concepts such as CORS and the HTTP Origin header semantics, supplanting their separate definitions elsewhere.</p> <p>For making a request and fetching a resource, use the <a href="windoworworkerglobalscope/fetch"><code>WindowOrWorkerGlobalScope.fetch()</code></a> method. It is implemented in multiple interfaces, specifically <a href="window"><code>Window</code></a> and <a href="workerglobalscope"><code>WorkerGlobalScope</code></a>. This makes it available in pretty much any context you might want to fetch resources in.</p> <p>The <code>fetch()</code> method takes one mandatory argument, the path to the resource you want to fetch. It returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to the <a href="response"><code>Response</code></a> to that request — as soon as the server responds with headers — <strong>even if the server response is an HTTP error status</strong>. You can also optionally pass in an <code>init</code> options object as the second argument (see <a href="request"><code>Request</code></a>).</p> <p>Once a <a href="response"><code>Response</code></a> is retrieved, there are a number of methods available to define what the body content is and how it should be handled (see <a href="body"><code>Body</code></a>).</p> <p>You can create a request and response directly using the <a href="request/request"><code>Request()</code></a> and <a href="response/response"><code>Response()</code></a> constructors, but it's uncommon to do this directly. Instead, these are more likely to be created as results of other API actions (for example, <a href="fetchevent/respondwith"><code>FetchEvent.respondWith()</code></a> from service workers).</p>
+<h3 id="differences_from_jquery">Differences from jQuery</h3>
+<p>The <code>fetch</code> specification differs from <code>jQuery.ajax()</code> in three main ways:</p> <ul> <li>The Promise returned from <code>fetch()</code> <strong>won’t reject on HTTP error status</strong> even if the response is an HTTP <code>404</code> or <code>500</code>. Instead, it will resolve normally (with <code>ok</code> status set to <code>false</code>), and it will only reject on network failure or if anything prevented the request from completing.</li> <li>
+<code>fetch()</code> <strong>won’t send cross-origin cookies</strong> unless you set the <em>credentials</em> <a href="windoworworkerglobalscope/fetch#parameters">init option</a> (to <code>include</code>). <ul> <li>In <a href="https://github.com/whatwg/fetch/pull/585" rel="nofollow noopener">April 2018</a>, the spec changed the default credentials policy to <code>'same-origin'</code>. The following browsers shipped an outdated native fetch, and were updated in these versions: Firefox 61.0b13, Safari 12, Chrome 68.</li> <li>If you are targeting older versions of these browsers, be sure to include <code>credentials: 'same-origin'</code> <a href="windoworworkerglobalscope/fetch#parameters">init option</a> on all api requests that may be affected by cookies/user login state.</li> </ul> </li> </ul> <div class="notecard note"> <strong id="note">Note</strong> <p>Find out more about using the Fetch API features in <a href="fetch_api/using_fetch">Using Fetch</a>, and study concepts in <a href="fetch_api/basic_concepts">Fetch basic concepts</a>.</p> </div>
+<h3 id="aborting_a_fetch">Aborting a fetch</h3>
+<p>Browsers have started to add experimental support for the <a href="abortcontroller"><code>AbortController</code></a> and <a href="abortsignal"><code>AbortSignal</code></a> interfaces (aka The Abort API), which allow operations like Fetch and XHR to be aborted if they have not already completed. See the interface pages for more details.</p>
+<h2 id="fetch_interfaces">Fetch Interfaces</h2>
+<dl> <dt><a href="windoworworkerglobalscope/fetch"><code>WindowOrWorkerGlobalScope.fetch()</code></a></dt> <dd>The <code>fetch()</code> method used to fetch a resource.</dd> <dt><a href="headers"><code>Headers</code></a></dt> <dd>Represents response/request headers, allowing you to query them and take different actions depending on the results.</dd> <dt><a href="request"><code>Request</code></a></dt> <dd>Represents a resource request.</dd> <dt><a href="response"><code>Response</code></a></dt> <dd>Represents the response to a request.</dd> </dl>
+<h2 id="fetch_mixin">Fetch mixin</h2>
+<dl> <dt><a href="body"><code>Body</code></a></dt> <dd>Provides methods relating to the body of the response/request, allowing you to declare what its content type is and how it should be handled.</dd> </dl>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://fetch.spec.whatwg.org/" hreflang="en" rel=" noopener">Fetch</a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>Fetch_API</code></th>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>blob_data_support</code></th>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>referrerpolicy</code></th>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>signal</code></th>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+<tr>
+<th><code>streaming_response_body</code></th>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="fetch_api/using_fetch">Using Fetch</a></li> <li><a href="service_worker_api">ServiceWorker API</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">HTTP access control (CORS)</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP">HTTP</a></li> <li><a href="https://github.com/github/fetch" rel=" noopener">Fetch polyfill</a></li> <li><a href="fetch_api/basic_concepts">Fetch basic concepts</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API</a>
+  </p>
+</div>

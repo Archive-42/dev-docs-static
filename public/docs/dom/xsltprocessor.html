@@ -1,0 +1,277 @@
+<h1>XSLTProcessor</h1>
+<div class="notecard warning"> <strong id="non-standard">Non-standard</strong> <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p> </div>
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div> <p>An <code>XSLTProcessor</code> applies an <a href="https://developer.mozilla.org/en-US/docs/Web/XSLT">XSLT</a> stylesheet transformation to an XML document to produce a new XML document as output. It has methods to load the XSLT stylesheet, to manipulate <code>&lt;xsl:param&gt;</code> parameter values, and to apply the transformation to documents.</p>
+<h2 id="syntax">Syntax</h2>
+<p>The constructor has no parameters.</p> <pre data-language="js"><span class="token keyword">new</span> <span class="token class-name">XSLTProcessor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre>
+<h2 id="methods">Methods</h2>
+<dl> <dt> <code><a href="https://developer.mozilla.org/en-US/docs/Mozilla/WebIDL_bindings#Throws">[Throws]</a> void </code><a class="page-not-created"><code>XSLTProcessor.importStylesheet</code></a><code>(</code><a href="node"><code>Node</code></a><code> styleSheet)</code> </dt> <dd>Imports the XSLT stylesheet. If the given node is a document node, you can pass in a full XSL Transform or a <a href="https://www.w3.org/TR/xslt#result-element-stylesheet" rel=" noopener">literal result element transform</a>; otherwise, it must be an <code>&lt;xsl:stylesheet&gt;</code> or <code>&lt;xsl:transform&gt;</code> element.</dd> <dt> <code><a href="https://developer.mozilla.org/en-US/docs/Mozilla/WebIDL_bindings#Throws">[Throws]</a> </code><a href="documentfragment"><code>DocumentFragment</code></a> <a class="page-not-created"><code>XSLTProcessor.transformToFragment</code></a><code>(</code><a href="node"><code>Node</code></a><code> source, </code><a href="document"><code>Document</code></a><code> owner)</code> </dt> <dd>Transforms the node source by applying the stylesheet imported using the <a class="page-not-created"><code>XSLTProcessor.importStylesheet()</code></a> function. The owner document of the resulting document fragment is the owner node.</dd> <dt>
+<code><a href="https://developer.mozilla.org/en-US/docs/Mozilla/WebIDL_bindings#Throws">[Throws]</a></code> <a href="document"><code>Document</code></a> <a class="page-not-created"><code>XSLTProcessor.transformToDocument</code></a><code>(</code><a href="node"><code>Node</code></a><code> source)</code> </dt> <dd> <p>Transforms the node source applying the stylesheet given importing using the <a class="page-not-created"><code>XSLTProcessor.importStylesheet()</code></a> function.</p> <p>The resultant object depends on the <a href="https://www.w3.org/TR/xslt#output" rel=" noopener">output method</a> of the stylesheet:</p> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Output method</th> <th scope="col">Result type</th> </tr> </thead> <tbody> <tr> <td><code>html</code></td> <td><a href="htmldocument"><code>HTMLDocument</code></a></td> </tr> <tr> <td><code>xml</code></td> <td><a href="xmldocument"><code>XMLDocument</code></a></td> </tr> <tr> <td><code>text</code></td> <td>
+<a href="xmldocument"><code>XMLDocument</code></a> with a single root element <code>&lt;transformiix:result&gt;</code> with the text as a child</td> </tr> </tbody> </table></div> </dd> <dt> <code><a href="https://developer.mozilla.org/en-US/docs/Mozilla/WebIDL_bindings#Throws">[Throws]</a> void </code><a class="page-not-created"><code>XSLTProcessor.setParameter</code></a><code>(</code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a><code> namespaceURI, </code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a><code> localName, any value)</code> </dt> <dd>Sets a parameter in the XSLT stylesheet that was imported. (Sets the value of an <code>&lt;xsl:param&gt;</code>.) A null value for <code>namespaceURI</code> is treated the same as an empty string.</dd> <dt> <code><a href="https://developer.mozilla.org/en-US/docs/Mozilla/WebIDL_bindings#Throws">[Throws]</a> any </code><a class="page-not-created"><code>XSLTProcessor.getParameter</code></a><code>(</code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a><code> namespaceURI, </code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a><code> localName)</code> </dt> <dd>Gets the value of a parameter from the XSLT stylesheet. A null value for <code>namespaceURI</code> is treated the same as an empty string.</dd> <dt> <code><a href="https://developer.mozilla.org/en-US/docs/Mozilla/WebIDL_bindings#Throws">[Throws]</a> void </code><a class="page-not-created"><code>XSLTProcessor.removeParameter</code></a><code>(</code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a><code> namespaceURI, </code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a><code> localName)</code> </dt> <dd>Removes the parameter if it was previously set. This will make the <code>XSLTProcessor</code> use the default value for the parameter as specified in the stylesheet. A null value for <code>namespaceURI</code> is treated the same as an empty string.</dd> <dt>
+<code>void </code><a class="page-not-created"><code>XSLTProcessor.clearParameters()</code></a>
+</dt> <dd>Removes all set parameters from the <code>XSLTProcessor</code>. The <code>XSLTProcessor</code> will then use the defaults specified in the XSLT stylesheet.</dd> <dt>
+<code>void </code><a class="page-not-created"><code>XSLTProcessor.reset()</code></a>
+</dt> <dd>Removes all parameters and stylesheets from the <code>XSLTProcessor</code>.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<h3 id="non-web-exposed_properties">Non-Web-exposed properties</h3>
+<p>The following properties are <a href="https://developer.mozilla.org/en-US/docs/Mozilla/WebIDL_bindings#ChromeOnly"><code>[ChromeOnly]</code></a> and not exposed to Web content:</p> <dl> <dt> <code><a href="https://developer.mozilla.org/en-US/docs/Mozilla/WebIDL_bindings#ChromeOnly">[ChromeOnly]</a> attribute unsigned long </code><a class="page-not-created"><code>XSLTProcessor.flags</code></a> </dt> <dd> <p>Flags that tweak the behavior of the processor. Not reset by calling <a class="page-not-created"><code>XSLTProcessor.reset()</code></a>. Default value: <code>0</code></p> <p>Possible values are:</p> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Name</th> <th scope="col">Value</th> <th scope="col">Effect</th> </tr> </thead> <tbody> <tr> <td>(None)</td> <td><code>0</code></td> <td>None</td> </tr> <tr> <td><code>DISABLE_ALL_LOADS</code></td> <td><code>1</code></td> <td>Disable loading external documents (via e.g. <code>&lt;xsl:import&gt;</code> and <code>document()</code>)</td> </tr> </tbody> </table></div> </dd> </dl>
+<h2 id="examples">Examples</h2>
+<ol> <li><a href="https://developer.mozilla.org/en-US/docs/Web/XSLT/XSLT_JS_interface_in_Gecko/Basic_Example">Basic example</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/XSLT/XSLT_JS_interface_in_Gecko/Advanced_Example">Advanced example</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/XSLT/XSLT_JS_interface_in_Gecko/JavaScript_XSLT_Bindings">Additional example</a></li> </ol>
+<h2 id="specifications">Specifications</h2>
+<p><em>Not part of any specification.</em> This is a proprietary interface that originated in Gecko.</p>
+<h2 id="gecko_idl">Gecko IDL</h2>
+<ul> <li>
+<code><a rel="custom noopener" href="https://dxr.mozilla.org/mozilla-central/source/dom/webidl/XSLTProcessor.webidl">XSLTProcessor.webidl</a></code> </li> <li>
+<code><a rel="custom noopener" href="https://dxr.mozilla.org/mozilla-central/source/dom/xslt/nsIXSLTProcessor.idl">nsIXSLTProcessor.idl</a></code> </li> </ul>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>XSLTProcessor</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>3.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>clearParameters</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>3.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>getParameter</code></th>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Chrome only supports string values.</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>≤12.1</div>
+<div>Opera only supports string values.</div>
+</td>
+<td class="bc-supports-yes"><div>3.1</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Chrome only supports string values.</div>
+</td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>Chrome only supports string values.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes">
+<div>≤12.1</div>
+<div>Opera only supports string values.</div>
+</td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes">
+<div>1.0</div>
+<div>Samsung Internet only supports string values.</div>
+</td>
+</tr>
+<tr>
+<th><code>importStylesheet</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>3.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>removeParameter</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>3.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>reset</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>3.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>setParameter</code></th>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Chrome only supports string values.</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>≤12.1</div>
+<div>Opera only supports string values.</div>
+</td>
+<td class="bc-supports-yes"><div>3.1</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Chrome only supports string values.</div>
+</td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>Chrome only supports string values.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes">
+<div>≤12.1</div>
+<div>Opera only supports string values.</div>
+</td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes">
+<div>1.0</div>
+<div>Samsung Internet only supports string values.</div>
+</td>
+</tr>
+<tr>
+<th><code>transformToDocument</code></th>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Chrome returns <code>null</code>if an error occurs.</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Firefox throws an exception if an error occurs.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>≤12.1</div>
+<div>Opera returns <code>null</code>if an error occurs.</div>
+</td>
+<td class="bc-supports-yes"><div>3.1</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Chrome returns <code>null</code>if an error occurs.</div>
+</td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>Chrome returns <code>null</code>if an error occurs.</div>
+</td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Firefox throws an exception if an error occurs.</div>
+</td>
+<td class="bc-supports-yes">
+<div>≤12.1</div>
+<div>Opera returns <code>null</code>if an error occurs.</div>
+</td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes">
+<div>1.0</div>
+<div>Samsung Internet returns <code>null</code>if an error occurs.</div>
+</td>
+</tr>
+<tr>
+<th><code>transformToFragment</code></th>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Chrome returns <code>null</code>if an error occurs.</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Firefox throws an exception if an error occurs.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>≤12.1</div>
+<div>Opera returns <code>null</code>if an error occurs.</div>
+</td>
+<td class="bc-supports-yes"><div>3.1</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Chrome returns <code>null</code>if an error occurs.</div>
+</td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>Chrome returns <code>null</code>if an error occurs.</div>
+</td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Firefox throws an exception if an error occurs.</div>
+</td>
+<td class="bc-supports-yes">
+<div>≤12.1</div>
+<div>Opera returns <code>null</code>if an error occurs.</div>
+</td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes">
+<div>1.0</div>
+<div>Samsung Internet returns <code>null</code>if an error occurs.</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://developer.mozilla.org/en-US/docs/Web/XSLT/Using_the_Mozilla_JavaScript_interface_to_XSL_Transformations">Using the Mozilla JavaScript interface to XSL Transformations</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XSLTProcessor" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XSLTProcessor</a>
+  </p>
+</div>

@@ -1,0 +1,96 @@
+<h1>PublicKeyCredentialCreationOptions.extensions</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p><code>extensions</code>, an optional property of the <a href="../publickeycredentialcreationoptions"><code>PublicKeyCredentialCreationOptions</code></a> dictionary, is an object providing the client extensions and their input values.</p> <p>Extensions are values requesting additional processing by the client and by the authenticator. For instance, extensions may be used for:</p> <ul> <li>backward compatibility with the legacy FIDO JS API,</li> <li>knowing the user verification process,</li> <li>etc.</li> </ul> <div class="notecard note"> <p><strong>Note:</strong> An analogous option exists for the fetching operation (<a href="../credentialscontainer/get"><code>navigators.credentials.get()</code></a>), see <a href="../publickeycredentialrequestoptions/extensions"><code>PublicKeyCredentialRequestOptions.extensions</code></a>.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">extensions <span class="token operator">=</span> publicKeyCredentialCreationOptions<span class="token punctuation">.</span>extensions</pre>
+<h3 id="value">Value</h3>
+<p>An object with various keys and values.</p> <p>Here is the current (as of March 2019) list of potential extensions which may be used during the registration operation.</p> <div class="notecard warning"> <p><strong>Warning!</strong> As of June 2020, only <code>appId</code> (used during creation with <a href="../publickeycredentialrequestoptions/extensions"><code>PublicKeyCredentialRequestOptions.extensions</code></a>) is supported by <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=818303" rel=" noopener">Chrome</a> and <a href="https://docs.microsoft.com/en-us/microsoft-edge/dev-guide/windows-integration/web-authentication#api-surface" rel=" noopener">Edge</a>. Firefox does not seem to <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1370728" rel=" noopener">support any extension</a>. Also Chrome doesn't plan to support any other extension in <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=1097972" rel="noopener">future</a></p> </div> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Extension identifier</th> <th scope="col">Type</th> <th scope="col">Description</th> </tr> </thead> <tbody> <tr> <td><code>authnSel</code></td> <td>Array of <a href="../buffersource"><code>BufferSource</code></a>
+</td> <td>Authenticator selection. Restricts the list of authenticator models which may be used. If no matching authenticator is available, the credential is still generated with another available authenticator.</td> </tr> <tr> <td><code>exts</code></td> <td>Boolean</td> <td>Supported extensions. If <code>true</code>, the client outputs an array of strings containing the extensions which are supported by the authenticator.</td> </tr> <tr> <td><code>uvi</code></td> <td>Boolean</td> <td>User verification index. If <code>true</code>, the client outputs an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> which contains a value uniquely identifying a user verification data record. In other words, this may be used server side to check if the current operation is based on the same biometric data that the previous authentication.</td> </tr> <tr> <td><code>loc</code></td> <td>Boolean</td> <td>Location. If <code>true</code>, the client outputs a <a href="../geolocationcoordinates"><code>GeolocationCoordinates</code></a> object representing the geolocation of the authenticator.</td> </tr> <tr> <td><code>uvm</code></td> <td>Boolean</td> <td>User verification method. If <code>true</code>, the client outputs an array of arrays with 3 values containing information about how the user was verified (e.g. fingerprint, pin, pattern), how the key is protected, how the matcher (tool used for the authentication operation) is protected.</td> </tr> <tr> <td><code>biometricPerfBounds</code></td> <td>Object with two numerical properties: <code>FAR</code> and <code>FRR</code>
+</td> <td>Biometric authenticator performance bounds. The client must not use any authenticator with false acceptance rate (FAR) and false rejection rate (FRR) below the inputs. The client outputs <code>true</code> if this was taken into account.</td> </tr> </tbody> </table></div> <div class="notecard note"> <p><strong>Note:</strong> Extensions are optional and different browsers may recognize different extensions. All extensions are optional for the client to process them: if a browser does not know a given extension, that will not cause any failure, the extension will not be processed.</p> </div>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token keyword">var</span> publicKey <span class="token operator">=</span> <span class="token punctuation">{</span>
+  extensions<span class="token operator">:</span><span class="token punctuation">{</span>
+    uvi<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+    loc<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    uvm<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    exts<span class="token operator">:</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  challenge<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token number">26</span><span class="token punctuation">)</span> <span class="token comment">/* this actually is given from the server */</span><span class="token punctuation">,</span>
+  rp<span class="token operator">:</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">"Example CORP"</span><span class="token punctuation">,</span>
+    id  <span class="token operator">:</span> <span class="token string">"login.example.com"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  user<span class="token operator">:</span> <span class="token punctuation">{</span>
+    id<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token number">26</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">/* To be changed for each user */</span>
+    name<span class="token operator">:</span> <span class="token string">"jdoe@example.com"</span><span class="token punctuation">,</span>
+    displayName<span class="token operator">:</span> <span class="token string">"John Doe"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  pubKeyCredParams<span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token punctuation">{</span>
+    type<span class="token operator">:</span> <span class="token string">"public-key"</span><span class="token punctuation">,</span>
+    alg<span class="token operator">:</span> <span class="token operator">-</span><span class="token number">7</span> <span class="token punctuation">}</span> <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+navigator<span class="token punctuation">.</span>credentials<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span> publicKey <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">newCredentialInfo</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// myBuffer will contain the result of any of the processing of the extensions</span>
+    <span class="token keyword">var</span> myBuffer <span class="token operator">=</span> newCredentialInfo<span class="token punctuation">.</span><span class="token function">getClientExtensionResults</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// send attestation response and client extensions</span>
+    <span class="token comment">// to the server to proceed with the registration</span>
+    <span class="token comment">// of the credential</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td> <a href="https://w3c.github.io/webauthn/#dom-publickeycredentialrequestoptions-extensions" hreflang="en" rel=" noopener">Web Authentication: An API for accessing Public Key Credentials Level 1<br><small>The definition of 'extensions' in that specification.</small></a> </td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>extensions</code></th>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../publickeycredential/getclientextensionresults"><code>PublicKeyCredential.getClientExtensionResults()</code></a></li> <li><a href="https://w3c.github.io/webauthn/#sctn-defined-extensions" rel=" noopener">The list of all of the extensions defined in the specification</a></li> <li>
+<a href="../publickeycredentialrequestoptions/extensions"><code>PublicKeyCredentialRequestOptions.extensions</code></a>, the analogous option property used when fetching a credential</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialCreationOptions/extensions" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredentialCreationOptions/extensions</a>
+  </p>
+</div>

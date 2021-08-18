@@ -1,0 +1,71 @@
+<h1>Date.prototype.getTimezoneOffset()</h1> <p>The <code>getTimezoneOffset()</code> method returns the difference, in minutes, between a date as evaluated in the UTC time zone, and the same date as evaluated in the local time zone.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/date-gettimezoneoffset.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">getTimezoneOffset</span><span class="token punctuation">(</span><span class="token punctuation">)</span></pre>
+<h3 id="return_value">Return value</h3>
+<p>The difference, in minutes, between <var>date</var>, as evaluated in the UTC time zone, and as evaluated in the local time zone.</p>
+<h2 id="description">Description</h2>
+<p><code><var>date</var>.getTimezoneOffset()</code> returns the difference, in minutes, between <var>date</var> as evaluated in the UTC time zone, and <var>date</var> as evaluated in the local time zone — that is, the time zone of the host system in which the browser is being used (if the code is run from the Web in a browser), or otherwise the host system of whatever JavaScript runtime (for example, a Node.js environment) the code is executed in.</p>
+<h3 id="negative_values_and_positive_values">Negative values and positive values</h3>
+<p>The number of minutes returned by <code>getTimezoneOffset()</code> is positive if the local time zone is behind UTC, and negative if the local time zone is ahead of UTC. For example, for UTC+10, <code>-600</code> will be returned.</p> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="row">Current time zone</th> <th scope="col">UTC-8</th> <th scope="col">UTC</th> <th scope="col">UTC+3</th> </tr> </thead> <tbody> <tr> <th scope="row">Return Value</th> <td>480</td> <td>0</td> <td>-180</td> </tr> </tbody> </table></div>
+<h3 id="varied_results_in_daylight_saving_time_dst_time_zones">Varied results in Daylight Saving Time (DST) time zones</h3>
+<p>In a time zone that annually shifts in and out of Daylight Saving Time (DST), the number of minutes returned by calling <code>getTimezoneOffset()</code> can vary.</p> <p>Consider a given local time zone and a date <var>date1</var> that are both in DST, and consider <var>minutes</var>, the number of minutes returned by calling <code><var>date1</var>.getTimezoneOffset()</code>; then:</p> <ul> <li>If the local time zone is currently in DST, but a given date <var>date2</var> is <em>not</em> in DST, then the number of minutes returned by <code><var>date2</var>.getTimezoneOffset()</code> is <var>minutes</var> ± 60.</li> <li>If the local time zone is <em>not</em> currently in DST, but a given date <var>date3</var> is in DST, then the number of minutes returned by <code><var>date3</var>.getTimezoneOffset()</code> is <var>minutes</var> ± 60.</li> </ul> <p>In a time zone that doesn’t annually shift in and out of Daylight Saving Time (DST), the number of minutes returned by calling <code>getTimezoneOffset()</code> always returns the same number of minutes, regardless of the <var>date</var> instance it’s called from.</p> <div class="notecard note"> <p><strong>Note:</strong> The above description is a simplification. In implementations, the <a href="https://en.wikipedia.org/wiki/Daylight_saving_time#IANA_time_zone_database" rel=" noopener">IANA time zone database</a> (tzdata) is used for precisely determining the effect of DST on the calculation of the time-zone difference.</p> </div>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token comment">// Create a Date instance for the current time</span>
+<span class="token keyword">let</span> currentLocalDate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Create a Date instance for 03:24 GMT-0200 on May 1st in 2016</span>
+<span class="token keyword">let</span> laborDay2016at0324GMTminus2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token string">'May 1, 2016 03:24:00 GMT-0200'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+currentLocalDate<span class="token punctuation">.</span><span class="token function">getTimezoneOffset</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> laborDay2016at0324GMTminus2<span class="token punctuation">.</span><span class="token function">getTimezoneOffset</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// true, always, in any timezone that doesn't annually shift in and out of DST</span>
+<span class="token comment">// false, sometimes, in any timezone that annually shifts in and out of DST</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-date.prototype.gettimezoneoffset">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-date.prototype.gettimezoneoffset</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getTimezoneOffset</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../date"><code>Date</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset</a>
+  </p>
+</div>

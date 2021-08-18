@@ -1,0 +1,101 @@
+<h1>CanvasRenderingContext2D.fillStyle</h1> <p>The <code><strong>CanvasRenderingContext2D</strong></code><code>.fillStyle</code> property of the <a href="../canvas_api">Canvas 2D API</a> specifies the color, gradient, or pattern to use inside shapes. The default style is <code>#000</code> (black).</p> <div class="note notecard"> <p>For more examples of fill and stroke styles, see <a href="../canvas_api/tutorial/applying_styles_and_colors">Applying styles and color</a> in the <a href="../canvas_api/tutorial">Canvas tutorial</a>.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">ctx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> color<span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> gradient<span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> pattern<span class="token punctuation">;</span>
+</pre>
+<h3 id="options">Options</h3>
+<dl> <dt><code>color</code></dt> <dd>A <a href="../domstring"><code>DOMString</code></a> parsed as <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value"><code>&lt;color&gt;</code></a> value.</dd> <dt><code>gradient</code></dt> <dd>A <a href="../canvasgradient"><code>CanvasGradient</code></a> object (a linear or radial gradient).</dd> <dt><code>pattern</code></dt> <dd>A <a href="../canvaspattern"><code>CanvasPattern</code></a> object (a repeating image).</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="changing_the_fill_color_of_a_shape">Changing the fill color of a shape</h3>
+<p>This example applies a blue fill color to a rectangle.</p> <h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>canvas<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">&gt;</span></span>
+</pre> <h4 id="javascript">JavaScript</h4> <pre data-language="js"><span class="token keyword">const</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ctx <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+ctx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> <span class="token string">'blue'</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">fillRect</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <h4 id="result">Result</h4> <p><iframe class="sample-code-frame" id="frame_Changing_the_fill_color_of_a_shape" width="700" height="160" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle/_samples_/Changing_the_fill_color_of_a_shape" loading="lazy"></iframe></p>
+<h3 id="creating_multiple_fill_colors_using_loops">Creating multiple fill colors using loops</h3>
+<p>In this example, we use two <code>for</code> loops to draw a grid of rectangles, each having a different fill color. To achieve this, we use the two variables <code>i</code> and <code>j</code> to generate a unique RGB color for each square, and only modify the red and green values. (The blue channel has a fixed value.) By modifying the channels, you can generate all kinds of palettes.</p> <pre data-language="js"><span class="token keyword">const</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ctx <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">6</span><span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> j <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> j <span class="token operator">&lt;</span> <span class="token number">6</span><span class="token punctuation">;</span> j<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ctx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">rgb(
+        </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token number">255</span> <span class="token operator">-</span> <span class="token number">42.5</span> <span class="token operator">*</span> i<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">,
+        </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token number">255</span> <span class="token operator">-</span> <span class="token number">42.5</span> <span class="token operator">*</span> j<span class="token punctuation">)</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">,
+        0)</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+    ctx<span class="token punctuation">.</span><span class="token function">fillRect</span><span class="token punctuation">(</span>j <span class="token operator">*</span> <span class="token number">25</span><span class="token punctuation">,</span> i <span class="token operator">*</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre> <p>The result looks like this:</p> 
+<div class="_table"><table class="sample-code-table">
+<thead><tr>
+<th scope="col">Screenshot</th>
+<th scope="col">Live sample</th>
+</tr></thead>
+<tbody><tr>
+<td><img alt="" class="internal" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAL4AAAC+CAMAAAC8qkWvAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAHtQTFRF////VP8AVKkA/ykAKX4AKdQAKVQA9/f3+/v7zMzM1CkAfikAftQAqX4A1H4A1KkAVCkAqVQAKSkAVH4Afn4AqSkAVNQA/1QAqakAVFQAKakA/6kAKf8A1FQAfv8AflQA1NQA//8A/34A1P8Aqf8A/9QAqdQAfqkA4uLihhE7PAAAAoZJREFUeNrt3cly2zAQhGFkxSirs+9xEmfh+z9hbBLUwaUGlFQl6qH/tlTlgw6f2oOh5AtLIYQQQsgJUqdpZ55pio5+qua5Ikp9TRDlz6G/8m+Rv6tJsoMPH/5B/leVHyofVL6pvFG5owIfPnz48OHDhw8fPnz48OHDhw//hvEvVL6oPFV5ovJJ5YEKfG9+zA9bfuN12w/z9qPbfk3dfti3X3O3H7lnv9t+VDYPm4fNw+Zh87B52Dz/YfaX0Q9XfrSfHj/gw4eflf9d5afKW5XHKs9UXqnAhw8fPnz4G+LHGk/+nqf5dX7Y8hee4tflFa78lddtP7zbv3xK/vzHqbb8Vn/eo1t7R7e2/o1nf9R+dW+/dtpfpsu5/e7mWV7i3H5veNrR9m6/brT99Wgz+6fZPP7t13H7n1UeqfxSealyrvJQZXjVXePLD/jw4cOHDx8+fPjw4f8tv8wPW37j9dsv3u2XTbdfvGe/9Gc/vNsfbJ7i3X7Zdvvh3n5/88xv8JbKa5XbKi9U3qmcqRzdviv/yM3j2345ZvM4tz+46prPftn07GfePKUNvym/tB/NL85Hd8Rfzkbm9uHDhw8fPnz48OHD/3f8/W+e/APQ6/z5+0r5qHJP5b3KXZX7Ks9V9jzFj+UVrvyV122/eLd/+ZT89v5c+Y3XObph3f7g6Nq3H93hcZ/90dFd3qHx5hkeXev2o3/ZWoYr6+YJ68vWEe2Xknf2w33vx/hDg/lVt98+m4fN0/vEmXbzrB8Ksm6eSP5lcfSJ033zHDH78OHfXP71xGmiOH/KNwt8Q37k0B/+B3momza76au6u3GO9oWz5vB3b+0d9pOjZzzFbeFznFBCCCFkc/kN0Ay+rk8fjJ0AAAAASUVORK5CYII=" loading="lazy"></td>
+<td><iframe class="sample-code-frame" id="frame_Creating_multiple_fill_colors_using_loops" width="160" height="160" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle/_samples_/Creating_multiple_fill_colors_using_loops" loading="lazy"></iframe></td>
+</tr></tbody>
+</table></div>
+
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/scripting.html#dom-context-2d-fillstyle" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'CanvasRenderingContext2D.fillStyle' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>fillStyle</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h3 id="webkitblink-specific_note">WebKit/Blink-specific note</h3>
+<p>In WebKit- and Blink-based browsers, the non-standard and deprecated method <code>ctx.setFillColor()</code> is implemented in addition to this property.</p> <pre data-language="js"><span class="token function">setFillColor</span><span class="token punctuation">(</span>color<span class="token punctuation">,</span> optional alpha<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">setFillColor</span><span class="token punctuation">(</span>grayLevel<span class="token punctuation">,</span> optional alpha<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">setFillColor</span><span class="token punctuation">(</span>r<span class="token punctuation">,</span> g<span class="token punctuation">,</span> b<span class="token punctuation">,</span> a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">setFillColor</span><span class="token punctuation">(</span>c<span class="token punctuation">,</span> m<span class="token punctuation">,</span> y<span class="token punctuation">,</span> k<span class="token punctuation">,</span> a<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../canvas_api">Canvas API</a></li> <li>The interface defining this property: <a href="../canvasrenderingcontext2d"><code>CanvasRenderingContext2D</code></a>
+</li> <li>Values used by this property: <ul> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value"><code>&lt;color&gt;</code></a> CSS data type</li> <li>
+<a href="../canvasgradient"><code>CanvasGradient</code></a> object</li> <li>
+<a href="../canvaspattern"><code>CanvasPattern</code></a> object</li> </ul> </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillStyle</a>
+  </p>
+</div>

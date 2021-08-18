@@ -1,0 +1,178 @@
+<h1>File and Directory Entries API</h1>
+
+<div class="notecard warning"> <strong id="non-standard">Non-standard</strong> <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p> </div>
+ <p>The File and Directory Entries API simulates a local file system that web apps can navigate within and access files in. You can develop apps which read, write, and create files and/or directories in a virtual, sandboxed file system.</p> <div class="note notecard"> <p>Because this is a non-standard API, whose specification is not currently on a standards track, it's important to keep in mind that not all browsers implement it, and those that do may implement only small portions of it. Check the <a href="#browser_compatibility">Browser compatibility</a> section for details.</p> </div> <p>Two very similar APIs exist depending on whether you desire asynchronous or synchronous behavior. The synchronous API is intended to be used inside a <a href="worker"><code>Worker</code></a> and will return the values you desire. The asynchronous API will not block and functions and the API will not return values; instead, you will need to supply a callback function to handle the response whenever it arrives.</p> <div class="warning notecard"> <p>The Firefox implementation of the File and Directory Entries API is very limited; there is no support for creating files. Only for accessing files which are selected by the user in a file <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> element (see <a href="htmlinputelement"><code>HTMLInputElement</code></a> as well) or when a file or directory is provided to the Web site or app using <a href="html_drag_and_drop_api">drag and drop</a>. Firefox also does not implement the synchronous API. Check the browser compatibility for any part of the API you use carefully, and see <a href="file_and_directory_entries_api/firefox_support">File and Directory Entries API support in Firefox</a> for more details.</p> </div>
+<h2 id="getting_access_to_a_file_system">Getting access to a file system</h2>
+<p>There are two ways to get access to file systems defined in the current specification draft:</p> <ul> <li>When handling a <code><a href="document/drop_event">drop</a></code> event for drag and drop, you can call <a href="datatransferitem/webkitgetasentry"><code>DataTransferItem.webkitGetAsEntry()</code></a> to get the <a href="filesystementry"><code>FileSystemEntry</code></a> for a dropped item. If the result isn't <code>null</code>, then it's a dropped file or directory, and you can use file system calls to work with it.</li> <li>The <a href="htmlinputelement/webkitentries"><code>HTMLInputElement.webkitEntries</code></a> property lets you access the <a href="filesystemfileentry"><code>FileSystemFileEntry</code></a> objects for the currently selected files, but only if they are dragged-and-dropped onto the file chooser (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1326031" rel=" noopener">bug 1326031</a>). If <a href="htmlinputelement/webkitdirectory"><code>HTMLInputElement.webkitdirectory</code></a> is <code>true</code>, the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> element is instead a directory picker, and you get <a href="filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a> objects for each selected directory.</li> </ul>
+<h2 id="asynchronous_api">Asynchronous API</h2>
+<p>The asynchronous API should be used for most operations, to prevent file system accesses from blocking the entire browser if used on the main thread. It includes the following interfaces:</p> <dl> <dt><a href="filesystem"><code>FileSystem</code></a></dt> <dd>Represents a file system.</dd> <dt><a href="filesystementry"><code>FileSystemEntry</code></a></dt> <dd>The basic interface representing a single entry in a file system. This is implemented by other interfaces which represent files or directories.</dd> <dt><a href="filesystemfileentry"><code>FileSystemFileEntry</code></a></dt> <dd>Represents a single file in a file system.</dd> <dt><a href="filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a></dt> <dd>Represents a single directory in a file system.</dd> <dt><a href="filesystemdirectoryreader"><code>FileSystemDirectoryReader</code></a></dt> <dd>Created by calling <a href="filesystemdirectoryentry/createreader"><code>FileSystemDirectoryEntry.createReader()</code></a>, this interface provides the functionality which lets you read the contents of a directory.</dd> <dt><a href="filesystemflags"><code>FileSystemFlags</code></a></dt> <dd>Defines a set of values which are used when specifying option flags when calling certain methods in the <a href="file_and_directory_entries_api">File and Directory Entries API</a>.</dd> <dt>
+<a href="fileerror"><code>FileError</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>Represents an error which is generated by asynchronous file system calls.</dd> </dl> <p>There are also two global functions (which are not part of the specification at this time and are implemented only by Google Chrome). They're available on the <a href="window"><code>Window</code></a> object and implemented in <a href="localfilesystem"><code>LocalFileSystem</code></a>: <code>requestFileSystem()</code> and <code>resolveLocalFileSystemURL()</code>.</p>
+<h2 id="synchronous_api">Synchronous API</h2>
+<p>The synchronous API is should only be used in <a href="worker"><code>Worker</code></a>s; these calls block until they're finished executing, and return the results instead of using callbacks. Using them on the main thread will block the browser, which is naughty. The interfaces below otherwise mirror the ones from the asynchronous API.</p> <dl> <dt><a href="filesystemsync"><code>FileSystemSync</code></a></dt> <dd>Represents a file system.</dd> <dt><a href="filesystementrysync"><code>FileSystemEntrySync</code></a></dt> <dd>The basic interface representing a single entry in a file system. This is implemented by other interfaces which represent files or directories.</dd> <dt><a class="page-not-created"><code>FileSystemFileEntrySync</code></a></dt> <dd>Represents a single file in a file system.</dd> <dt><a class="page-not-created"><code>FileSystemDirectoryEntrySync</code></a></dt> <dd>Represents a single directory in a file system.</dd> <dt><a class="page-not-created"><code>FileSystemDirectoryReaderSync</code></a></dt> <dd>Created by calling <a class="page-not-created"><code>FileSystemDirectoryEntrySync.createReader()</code></a>, this interface provides the functionality which lets you read the contents of a directory.</dd> <dt>
+<a href="fileexception"><code>FileException</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>Represents an error which is generated by synchronous file system calls.</dd> </dl> <p>There are also two global functions (which are not part of the specification at this time and are implemented only by Google Chrome). They're available on the <a href="worker"><code>Worker</code></a> object and implemented in <a href="localfilesystemsync"><code>LocalFileSystemSync</code></a>: <code>requestFileSystemSync()</code> and <code>resolveLocalFileSystemSyncURL()</code>.</p>
+<h2 id="other_interfaces">Other Interfaces</h2>
+<dl> <dt><a href="localfilesystem"><code>LocalFileSystem</code></a></dt> <dd>Gives you access to a sandboxed file system.</dd> <dt><a href="localfilesystemsync"><code>LocalFileSystemSync</code></a></dt> <dt><a href="lockedfile"><code>LockedFile</code></a></dt> <dd>Provides tools to deal with a given file with all the necessary locks.</dd> <dt>
+<a href="metadata"><code>Metadata</code></a><span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt>  </dl>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://wicg.github.io/entries-api/" hreflang="en" rel=" noopener">File and Directory Entries API</a></td> <td><span class="spec-draft">Draft</span></td> <td>Draft of proposed API</td> </tr> </tbody> </table></div> <p>This API has no official W3C or WHATWG specification.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>File_and_Directory_Entries_API</code></th>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>name</code></th>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>root</code></th>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>File_and_Directory_Entries_API</code></th>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes">
+<div>≤18</div>
+<div>Edge only supports this API in drag-and-drop scenarios using the the <code><a href="https://developer.mozilla.org/docs/Web/API/DataTransferItem/webkitGetAsEntry">DataTransferItem.webkitGetAsEntry()</a></code> method. It's not available for use in file or folder picker panels (such as when you use an <code><a href="https://developer.mozilla.org/docs/Web/HTML/Element/input">&lt;input&gt;</a></code> element with the <code><a href="https://developer.mozilla.org/docs/Web/API/HTMLInputElement/webkitdirectory">HTMLInputElement.webkitdirectory</a></code> attribute.</div>
+</td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>name</code></th>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>root</code></th>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+</tbody>
+</table>
+<p>BCD tables only load in the browser</p>
+
+
+<h3 id="filesystemsync_property">FileSystemSync property</h3>
+<p>BCD tables only load in the browser</p>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="file_and_directory_entries_api/introduction">Introduction to the File and Directory Entries API</a></li> <li><a href="file_and_directory_entries_api/firefox_support">File and Directory Entries API support in Firefox</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/File_and_Directory_Entries_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/File_and_Directory_Entries_API</a>
+  </p>
+</div>

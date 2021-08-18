@@ -1,0 +1,95 @@
+<h1>DynamicsCompressorNode.release</h1>
+
+  <p>The <code>release</code> property of the <a href="../dynamicscompressornode"><code>DynamicsCompressorNode</code></a> interface Is a <a href="../audioparam#k-rate">k-rate</a> <a href="../audioparam"><code>AudioParam</code></a> representing the amount of time, in seconds, required to increase the gain by 10 dB. It defines how quick the signal is adapted when its volume is reduced.</p> <p>The <code>release</code> property's default value is <code>0.25</code> and it can be set between <code>0</code> and <code>1</code>.</p> <h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> audioCtx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> compressor <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createDynamicsCompressor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+compressor<span class="token punctuation">.</span>release<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token number">0.25</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>An <a href="../audioparam"><code>AudioParam</code></a>.</p> <div class="note notecard"> <p><strong>Note</strong>: Though the <a href="../audioparam"><code>AudioParam</code></a> returned is read-only, the value it represents is not.</p> </div>
+<h2 id="example">Example</h2>
+
+<p>The below code demonstrates a simple usage of <code>createDynamicsCompressor()</code> to add compression to an audio track. For a more complete example, have a look at our <a href="https://mdn.github.io/webaudio-examples/compressor-example/" rel=" noopener">basic Compressor example</a> (<a href="https://github.com/mdn/webaudio-examples/tree/master/compressor-example" rel=" noopener">view the source code</a>).</p>
+<pre data-language="js"><span class="token comment">// Create a MediaElementAudioSourceNode</span>
+<span class="token comment">// Feed the HTMLMediaElement into it</span>
+<span class="token keyword">var</span> source <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createMediaElementSource</span><span class="token punctuation">(</span>myAudio<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Create a compressor node</span>
+<span class="token keyword">var</span> compressor <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createDynamicsCompressor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+compressor<span class="token punctuation">.</span>threshold<span class="token punctuation">.</span><span class="token function">setValueAtTime</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">50</span><span class="token punctuation">,</span> audioCtx<span class="token punctuation">.</span>currentTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+compressor<span class="token punctuation">.</span>knee<span class="token punctuation">.</span><span class="token function">setValueAtTime</span><span class="token punctuation">(</span><span class="token number">40</span><span class="token punctuation">,</span> audioCtx<span class="token punctuation">.</span>currentTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+compressor<span class="token punctuation">.</span>ratio<span class="token punctuation">.</span><span class="token function">setValueAtTime</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span> audioCtx<span class="token punctuation">.</span>currentTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+compressor<span class="token punctuation">.</span>attack<span class="token punctuation">.</span><span class="token function">setValueAtTime</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> audioCtx<span class="token punctuation">.</span>currentTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+compressor<span class="token punctuation">.</span>release<span class="token punctuation">.</span><span class="token function">setValueAtTime</span><span class="token punctuation">(</span><span class="token number">0.25</span><span class="token punctuation">,</span> audioCtx<span class="token punctuation">.</span>currentTime<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// connect the AudioBufferSourceNode to the destination</span>
+source<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>audioCtx<span class="token punctuation">.</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+button<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> active <span class="token operator">=</span> button<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'data-active'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>active <span class="token operator">==</span> <span class="token string">'false'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    button<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'data-active'</span><span class="token punctuation">,</span> <span class="token string">'true'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    button<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'Remove compression'</span><span class="token punctuation">;</span>
+
+    source<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span>audioCtx<span class="token punctuation">.</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    source<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>compressor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    compressor<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>audioCtx<span class="token punctuation">.</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span><span class="token punctuation">(</span>active <span class="token operator">==</span> <span class="token string">'true'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    button<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'data-active'</span><span class="token punctuation">,</span> <span class="token string">'false'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    button<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'Add compression'</span><span class="token punctuation">;</span>
+
+    source<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span>compressor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    compressor<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span>audioCtx<span class="token punctuation">.</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    source<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>audioCtx<span class="token punctuation">.</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre>
+
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://webaudio.github.io/web-audio-api/#dom-dynamicscompressornode-release" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'release' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>release</code></th>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../web_audio_api/using_web_audio_api">Using the Web Audio API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/DynamicsCompressorNode/release" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/DynamicsCompressorNode/release</a>
+  </p>
+</div>

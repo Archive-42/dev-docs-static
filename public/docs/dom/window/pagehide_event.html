@@ -1,0 +1,67 @@
+<h1>Window: pagehide event</h1> <p>The <code>pagehide</code> event is sent to a <a href="../window"><code>Window</code></a> when the browser hides the current page in the process of presenting a different page from the session's history. For example, when the user clicks the browser's Back button, the current page receives a <code>pagehide</code> event before the previous page is shown.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>No</td> </tr> <tr> <th scope="row">Cancelable</th> <td>No</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../pagetransitionevent"><code>PageTransitionEvent</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td><a class="page-not-created"><code>onpagehide</code></a></td> </tr> </tbody> </table></div>
+<h2 id="usage_notes">Usage notes</h2>
+<p>Like the <a href="unload_event"><code>unload</code></a> and <a href="beforeunload_event"><code>beforeunload</code></a> events, this event is not reliably fired by browsers, especially on mobile. For example, the <code>pagehide</code> event is not fired at all in the following scenario:</p> <ol> <li>A mobile user visits your page.</li> <li>The user then switches to a different app.</li> <li>Later, the user closes the browser from the app manager.</li> </ol> <p>However, unlike the <code>unload</code> and <code>beforeunload</code> events, this event is compatible with the <a href="https://web.dev/bfcache/" rel=" noopener">back/forward cache</a> (bfcache), so adding a listener to this event will not prevent the page from being included in the bfcache.</p> <p>The best event to use to signal the end of a user's session is the <a href="../document/visibilitychange_event"><code>visibilitychange</code></a> event. In browsers that don't support <code>visibilitychange</code> the <code>pagehide</code> event is the next-best alternative.</p> <p>If you're specifically trying to detect page unload events, the <code>pagehide</code> event is the best option.</p> <p>See the <a href="https://developers.google.com/web/updates/2018/07/page-lifecycle-api" rel=" noopener">Page Lifecycle API</a> guide for more information about how this event relates to other events in the page lifecycle.</p>
+<h2 id="examples">Examples</h2>
+<p>In this example, an event handler is established to watch for <code>pagehide</code> events and to perform special handling if the page is being persisted for possible reuse.</p> <pre data-language="js">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"pagehide"</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>persisted<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* the page isn't being discarded, so it can be reused later */</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>This can also be written using the <a class="page-not-created"><code>onpagehide</code></a> event handler property on the <a href="../window"><code>Window</code></a>:</p> <pre data-language="js">window<span class="token punctuation">.</span><span class="token function-variable function">onpagehide</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>persisted<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">/* the page isn't being discarded, so it can be reused later */</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#event-pagehide" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'pagehide' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial specification.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/html52/browsers.html#event-pagehide" hreflang="en" rel=" noopener">HTML5<br><small>The definition of 'pagehide' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>pagehide_event</code></th>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The <a href="pageshow_event"><code>pageshow</code></a> event.</li> <li>
+<a href="https://developers.google.com/web/updates/2018/07/page-lifecycle-api#developer-recommendations-for-each-state" rel=" noopener">Page Lifecycle API</a> gives best-practices guidance on handling page lifecyle behavior in your web applications.</li> <li>
+<a href="https://github.com/GoogleChromeLabs/page-lifecycle" rel=" noopener">PageLifecycle.js</a>: a JavaScript library that deals with cross-browser inconsistencies in page lifecyle behavior.</li> <li>
+<a href="https://web.dev/bfcache/" rel=" noopener">Back/forward cache</a> explains what the back/forward cache is, and its implications for various page lifecycle events.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/pagehide_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Window/pagehide_event</a>
+  </p>
+</div>

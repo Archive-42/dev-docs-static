@@ -1,0 +1,142 @@
+<h1>static</h1> <p>The <code><strong>static</strong></code> keyword defines a static method or property for a class. Neither static methods nor static properties can be called on instances of the class. Instead, they're called on the class itself.</p> <p>Static methods are often utility functions, such as functions to create or clone objects, whereas static properties are useful for caches, fixed-configuration, or any other data you don't need to be replicated across instances.</p> <p>Note that the examples throughout this article use <a href="public_class_fields">public class fields</a> (including static public class fields), which are not yet part of the ECMAScript specification, but are instead specified in a <a href="https://tc39.es/proposal-class-fields/" rel=" noopener">Public and private instance fields</a> proposal at <a href="https://tc39.es/" rel=" noopener">TC39</a>.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/classes-static.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">static</span> <span class="token function">methodName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span>
+<span class="token keyword">static</span> propertyName <span class="token punctuation">[</span><span class="token operator">=</span> value<span class="token punctuation">]</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="using_static_members_in_classes">Using static members in classes</h3>
+<p>The following example demonstrates several things:</p> <ol> <li>How a static member (method or property) is defined on a class.</li> <li>That a class with a static member can be sub-classed.</li> <li>How a static member can and cannot be called.</li> </ol> <pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">Triple</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> customName <span class="token operator">=</span> <span class="token string">'Tripler'</span><span class="token punctuation">;</span>
+  <span class="token keyword">static</span> description <span class="token operator">=</span> <span class="token string">'I triple any number you provide'</span><span class="token punctuation">;</span>
+  <span class="token keyword">static</span> <span class="token function">calculate</span><span class="token punctuation">(</span><span class="token parameter">n <span class="token operator">=</span> <span class="token number">1</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> n <span class="token operator">*</span> <span class="token number">3</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">SquaredTriple</span> <span class="token keyword">extends</span> <span class="token class-name">Triple</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> longDescription<span class="token punctuation">;</span>
+  <span class="token keyword">static</span> description <span class="token operator">=</span> <span class="token string">'I square the triple of any number you provide'</span><span class="token punctuation">;</span>
+  <span class="token keyword">static</span> <span class="token function">calculate</span><span class="token punctuation">(</span><span class="token parameter">n</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">calculate</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">calculate</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Triple<span class="token punctuation">.</span>description<span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// 'I triple any number you provide'</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Triple<span class="token punctuation">.</span><span class="token function">calculate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// 3</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Triple<span class="token punctuation">.</span><span class="token function">calculate</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// 18</span>
+
+<span class="token keyword">const</span> tp <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Triple</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>SquaredTriple<span class="token punctuation">.</span><span class="token function">calculate</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">// 81 (not affected by parent's instantiation)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>SquaredTriple<span class="token punctuation">.</span>description<span class="token punctuation">)</span><span class="token punctuation">;</span>     <span class="token comment">// 'I square the triple of any number you provide'</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>SquaredTriple<span class="token punctuation">.</span>longDescription<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// undefined</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>SquaredTriple<span class="token punctuation">.</span>customName<span class="token punctuation">)</span><span class="token punctuation">;</span>      <span class="token comment">// 'Tripler'</span>
+
+<span class="token comment">// This throws because calculate() is a static member, not an instance member.</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>tp<span class="token punctuation">.</span><span class="token function">calculate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment">// 'tp.calculate is not a function'</span>
+</pre>
+<h3 id="calling_static_members_from_another_static_method">Calling static members from another static method</h3>
+<p>In order to call a static method or property within another static method of the same class, you can use the <code><a href="../operators/this">this</a></code> keyword.</p> <pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">StaticMethodCall</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> staticProperty <span class="token operator">=</span> <span class="token string">'static property'</span><span class="token punctuation">;</span>
+  <span class="token keyword">static</span> <span class="token function">staticMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'Static method and '</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>staticProperty <span class="token operator">+</span> <span class="token string">' has been called'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">static</span> <span class="token function">anotherStaticMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">staticMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">' from another static method'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+StaticMethodCall<span class="token punctuation">.</span><span class="token function">staticMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 'Static method and static property has been called'</span>
+
+StaticMethodCall<span class="token punctuation">.</span><span class="token function">anotherStaticMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 'Static method and static property has been called from another static method'</span></pre>
+<h3 id="calling_static_members_from_a_class_constructor_and_other_methods">Calling static members from a class constructor and other methods</h3>
+<p>Static members are not directly accessible using the <a href="../operators/this"><code>this</code></a> keyword from non-static methods. You need to call them using the class name: <code>CLASSNAME.STATIC_METHOD_NAME()</code> / <code>CLASSNAME.STATIC_PROPERTY_NAME</code> or by calling the method as a property of the <code>constructor</code>: <code>this.constructor.STATIC_METHOD_NAME() </code> / <code>this.constructor.STATIC_PROPERTY_NAME</code></p> <pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">StaticMethodCall</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>StaticMethodCall<span class="token punctuation">.</span>staticProperty<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 'static property'</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>constructor<span class="token punctuation">.</span>staticProperty<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 'static property'</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>StaticMethodCall<span class="token punctuation">.</span><span class="token function">staticMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 'static method has been called.'</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>constructor<span class="token punctuation">.</span><span class="token function">staticMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 'static method has been called.'</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">static</span> staticProperty <span class="token operator">=</span> <span class="token string">'static property'</span><span class="token punctuation">;</span>
+  <span class="token keyword">static</span> <span class="token function">staticMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'static method has been called.'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> </tr> </thead> <tbody> <tr> <td><a href="https://tc39.es/ecma262/#sec-class-definitions" hreflang="en" rel=" noopener">ECMAScript (ECMA-262)<br><small>The definition of 'Class definitions' in that specification.</small></a></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>static</code></th>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>42-49</div>
+<div>Strict mode is required.</div>
+<div>42-49</div>
+</td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>36</div>
+<div>29-36</div>
+<div>Strict mode is required.</div>
+<div>29-36</div>
+</td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>42-49</div>
+<div>Strict mode is required.</div>
+</td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>42-49</div>
+<div>Strict mode is required.</div>
+<div>42-49</div>
+</td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes">
+<div>36</div>
+<div>29-36</div>
+<div>Strict mode is required.</div>
+<div>29-36</div>
+</td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes">
+<div>5.0</div>
+<div>4.0-5.0</div>
+<div>Strict mode is required.</div>
+</td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../operators/class"><code>class</code> expression</a></li> <li><a href="../statements/class"><code>class</code> declaration</a></li> <li><a href="../classes">Classes</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/static</a>
+  </p>
+</div>

@@ -1,0 +1,208 @@
+<h1>MessageEvent</h1> <p>The <code><strong>MessageEvent</strong></code> interface represents a message received by a target object.</p> <p>This is used to represent messages in:</p> <ul> <li>
+<a href="server-sent_events">Server-sent events</a> (see <a href="eventsource/onmessage"><code>EventSource.onmessage</code></a>).</li> <li>
+<a href="websockets_api">Web sockets</a> (see the <code>onmessage</code> property of the <a href="websocket">WebSocket</a> interface).</li> <li>Cross-document messaging (see <a href="window/postmessage"><code>Window.postMessage()</code></a> and <a class="page-not-created"><code>Window.onmessage</code></a>).</li> <li>
+<a href="channel_messaging_api">Channel messaging</a> (see <a href="messageport/postmessage"><code>MessagePort.postMessage()</code></a> and <a href="messageport/onmessage"><code>MessagePort.onmessage</code></a>).</li> <li>Cross-worker/document messaging (see the above two entries, but also <a href="worker/postmessage"><code>Worker.postMessage()</code></a>, <a href="worker/onmessage"><code>Worker.onmessage</code></a>, <a href="serviceworkerglobalscope/onmessage"><code>ServiceWorkerGlobalScope.onmessage</code></a>, etc.)</li> <li>
+<a href="broadcast_channel_api">Broadcast channels</a> (see <a href="broadcastchannel/postmessage"><code>Broadcastchannel.postMessage()</code></a>) and <a href="broadcastchannel/onmessage"><code>BroadcastChannel.onmessage</code></a>).</li> <li>WebRTC data channels (see <a href="rtcdatachannel/onmessage"><code>RTCDataChannel.onmessage</code></a>).</li> </ul> <p>The action triggered by this event is defined in a function set as the event handler for the relevant <code><a href="broadcastchannel/message_event">message</a></code> event (e.g. using an <code>onmessage</code> handler as listed above).</p> 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="web_workers_api">Web Workers</a>.</p> </div>
+<br> <iframe class="inheritance-diagram-frame" id="frame_inheritance_diagram" width="600" height="80" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/MessageEvent/_samples_/inheritance_diagram" loading="lazy"></iframe>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="messageevent/messageevent"><code>MessageEvent()</code></a></dt> <dd>Creates a new <code>MessageEvent</code>.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<p><em>This interface also inherits properties from its parent, <a href="event"><code>Event</code></a>.</em></p> <dl> <dt>
+<a href="messageevent/data"><code>MessageEvent.data</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>The data sent by the message emitter.</dd> <dt>
+<a href="messageevent/origin"><code>MessageEvent.origin</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="usvstring"><code>USVString</code></a> representing the origin of the message emitter.</dd> <dt>
+<a href="messageevent/lasteventid"><code>MessageEvent.lastEventId</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="domstring"><code>DOMString</code></a> representing a unique ID for the event.</dd> <dt>
+<a href="messageevent/source"><code>MessageEvent.source</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A <code>MessageEventSource</code> (which can be a <a class="page-not-created"><code>WindowProxy</code></a>, <a href="messageport"><code>MessagePort</code></a>, or <a href="serviceworker"><code>ServiceWorker</code></a> object) representing the message emitter.</dd> <dt>
+<a href="messageevent/ports"><code>MessageEvent.ports</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>An array of <a href="messageport"><code>MessagePort</code></a> objects representing the ports associated with the channel the message is being sent through (where appropriate, e.g. in channel messaging or when sending a message to a shared worker).</dd> </dl>
+<h2 id="methods">Methods</h2>
+<p><em>This interface also inherits methods from its parent, <a href="event"><code>Event</code></a>.</em></p> <dl> <dt>
+<a class="page-not-created"><code>initMessageEvent()</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>Initializes a message event. <strong>Do not use this anymore</strong> — <strong>use the <a href="messageevent/messageevent"><code>MessageEvent()</code></a> constructor instead.</strong>
+</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>In our <a href="https://github.com/mdn/simple-shared-worker" rel=" noopener">Basic shared worker example</a> (<a href="https://mdn.github.io/simple-shared-worker/" rel=" noopener">run shared worker</a>), we have two HTML pages, each of which uses some JavaScript to perform a simple calculation. The different scripts are using the same worker file to perform the calculation — they can both access it, even if their pages are running inside different windows.</p> <p>The following code snippet shows creation of a <a href="sharedworker"><code>SharedWorker</code></a> object using the <a href="sharedworker/sharedworker"><code>SharedWorker()</code></a> constructor. Both scripts contain this:</p> <pre data-language="js"><span class="token keyword">var</span> myWorker <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SharedWorker</span><span class="token punctuation">(</span><span class="token string">'worker.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>Both scripts then access the worker through a <a href="messageport"><code>MessagePort</code></a> object created using the <a href="sharedworker/port"><code>SharedWorker.port</code></a> property. If the onmessage event is attached using addEventListener, the port is manually started using its <code>start()</code> method:</p> <pre data-language="js">myWorker<span class="token punctuation">.</span>port<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>When the port is started, both scripts post messages to the worker and handle messages sent from it using <code>port.postMessage()</code> and <code>port.onmessage</code>, respectively:</p> <pre data-language="js">first<span class="token punctuation">.</span><span class="token function-variable function">onchange</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  myWorker<span class="token punctuation">.</span>port<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span><span class="token punctuation">[</span>first<span class="token punctuation">.</span>value<span class="token punctuation">,</span>second<span class="token punctuation">.</span>value<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Message posted to worker'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+second<span class="token punctuation">.</span><span class="token function-variable function">onchange</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  myWorker<span class="token punctuation">.</span>port<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span><span class="token punctuation">[</span>first<span class="token punctuation">.</span>value<span class="token punctuation">,</span>second<span class="token punctuation">.</span>value<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Message posted to worker'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+myWorker<span class="token punctuation">.</span>port<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  result1<span class="token punctuation">.</span>textContent <span class="token operator">=</span> e<span class="token punctuation">.</span>data<span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Message received from worker'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>Inside the worker we use the <a href="sharedworkerglobalscope/onconnect"><code>SharedWorkerGlobalScope.onconnect</code></a> handler to connect to the same port discussed above. The ports associated with that worker are accessible in the <code><a href="sharedworkerglobalscope/connect_event">connect</a></code> event's <code>ports</code> property — we then use <a href="messageport"><code>MessagePort</code></a> <code>start()</code> method to start the port, and the <code>onmessage</code> handler to deal with messages sent from the main threads.</p> <pre data-language="js"><span class="token function-variable function">onconnect</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> port <span class="token operator">=</span> e<span class="token punctuation">.</span>ports<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  port<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'message'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> workerResult <span class="token operator">=</span> <span class="token string">'Result: '</span> <span class="token operator">+</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> e<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    port<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span>workerResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  port<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Required when using addEventListener. Otherwise called implicitly by onmessage setter.</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#messageevent" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'MessageEvent' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>MessageEvent</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>10.6</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>MessageEvent</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>data</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>initMessageEvent</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>lastEventId</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>origin</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>ports</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>source</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="extendablemessageevent"><code>ExtendableMessageEvent</code></a> — similar to this interface but used in interfaces that needs to give more flexibility to authors.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MessageEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MessageEvent</a>
+  </p>
+</div>

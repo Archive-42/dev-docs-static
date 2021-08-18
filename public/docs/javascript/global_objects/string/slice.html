@@ -1,0 +1,84 @@
+<h1>String.prototype.slice()</h1> <p>The <code>slice()</code> method extracts a section of a string and returns it as a new string, without modifying the original string.</p> <iframe class="interactive" width="100%" height="692" src="https://interactive-examples.mdn.mozilla.net/pages/js/string-slice.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">slice</span><span class="token punctuation">(</span>beginIndex<span class="token punctuation">)</span>
+<span class="token function">slice</span><span class="token punctuation">(</span>beginIndex<span class="token punctuation">,</span> endIndex<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>beginIndex</var></code></dt> <dd> <p>The zero-based index at which to begin extraction. If negative, it is treated as <code><var>str</var>.length + <var>beginIndex</var></code>. (For example, if <code><var>beginIndex</var></code> is <code>-3</code>, it is treated as <code><var>str</var>.length - 3</code>.) If <code><var>beginIndex</var></code> is not a number after <a href="../number"><code>Number(<var>beginIndex</var>)</code></a>, it is treated as <code>0</code>.</p> <p>If <code><var>beginIndex</var></code> is greater than or equal to <code><var>str</var>.length</code>, an empty string is returned.</p> </dd> <dt>
+<code><var>endIndex</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>The zero-based index <em>before</em> which to end extraction. The character at this index will not be included.</p> <p>If <code><var>endIndex</var></code> is omitted or undefined, or greater than <code><var>str</var>.length</code>, <code>slice()</code> extracts to the end of the string. If negative, it is treated as <code><var>str</var>.length + <var>endIndex</var></code>. (For example, if <code><var>endIndex</var></code> is <code>-3</code>, it is treated as <code><var>str</var>.length - 3</code>.) If it is not undefined, and <code>Number(<var>endIndex</var>)</code> is not positive, an empty string is returned.</p> <p>If <code><var>endIndex</var></code> is specified, <code><var>endIndex</var></code> should be greater than <code><var>beginIndex</var></code>, otherwise an empty string is returned. (For example, <code>slice(-3, 0)</code>, <code>slice(-1, -3)</code>, or <code>slice(3, 1)</code> returns <code>""</code>.)</p> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A new string containing the extracted section of the string.</p>
+<h2 id="description">Description</h2>
+<p><code>slice()</code> extracts the text from one string and returns a new string. Changes to the text in one string do not affect the other string.</p> <p><code>slice()</code> extracts up to but not including <code><var>endIndex</var></code>. <code><var>str</var>.slice(1, 4)</code> extracts the second character through the fourth character (characters indexed <code>1</code>, <code>2</code>, and <code>3</code>).</p> <p>As an example, <code><var>str</var>.slice(2, -1)</code> extracts the third character through the second to last character in the string.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_slice_to_create_a_new_string">Using <code>slice()</code> to create a new string</h3>
+<p>The following example uses <code>slice()</code> to create a new string.</p> <pre data-language="js"><span class="token keyword">let</span> str1 <span class="token operator">=</span> <span class="token string">'The morning is upon us.'</span><span class="token punctuation">,</span> <span class="token comment">// the length of str1 is 23.</span>
+    str2 <span class="token operator">=</span> str1<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    str3 <span class="token operator">=</span> str1<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    str4 <span class="token operator">=</span> str1<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    str5 <span class="token operator">=</span> str1<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str2<span class="token punctuation">)</span>  <span class="token comment">// OUTPUT: he morn</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str3<span class="token punctuation">)</span>  <span class="token comment">// OUTPUT: morning is upon u</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str4<span class="token punctuation">)</span>  <span class="token comment">// OUTPUT: is upon us.</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str5<span class="token punctuation">)</span>  <span class="token comment">// OUTPUT: ""</span>
+</pre>
+<h3 id="using_slice_with_negative_indexes">Using <code>slice()</code> with negative indexes</h3>
+<p>The following example uses <code>slice()</code> with negative indexes.</p> <pre data-language="js"><span class="token keyword">let</span> str <span class="token operator">=</span> <span class="token string">'The morning is upon us.'</span>
+str<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">)</span>      <span class="token comment">// returns 'us.'</span>
+str<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>  <span class="token comment">// returns 'us'</span>
+str<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>   <span class="token comment">// returns 'The morning is upon us'</span>
+</pre> <p>This example counts backwards from the end of the string by <code>11</code> to find the start index and forwards from the start of the string by <code>16</code> to find the end index.</p> <pre data-language="js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">11</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// =&gt; "is u"</span></pre> <p>Here it counts forwards from the start by <code>11</code> to find the start index and backwards from the end by <code>7</code> to find the end index.</p> <pre data-language="js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">11</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">7</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// =&gt; " is u"</span></pre> <p>These arguments count backwards from the end by <code>5</code> to find the start index and backwards from the end by <code>1</code> to find the end index.</p> <pre data-language="js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>str<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// =&gt; "n us"</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-string.prototype.slice">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-string.prototype.slice</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>slice</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="substr"><code>String.prototype.substr()</code></a></li> <li><a href="substring"><code>String.prototype.substring()</code></a></li> <li><a href="../array/slice"><code>Array.prototype.slice()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/slice</a>
+  </p>
+</div>

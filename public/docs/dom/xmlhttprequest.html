@@ -1,0 +1,613 @@
+<h1>XMLHttpRequest</h1> <p><code>XMLHttpRequest</code> (XHR) objects are used to interact with servers. You can retrieve data from a URL without having to do a full page refresh. This enables a Web page to update just part of a page without disrupting what the user is doing. <code>XMLHttpRequest</code> is used heavily in <a href="https://developer.mozilla.org/en-US/docs/Glossary/AJAX">AJAX</a> programming.</p>  <iframe class="inheritance-diagram-frame" id="frame_inheritance_diagram" width="650" height="70" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/XMLHttpRequest/_samples_/inheritance_diagram" loading="lazy"></iframe> <p>Despite its name, <code>XMLHttpRequest</code> can be used to retrieve any type of data, not just XML.</p> <p>If your communication needs to involve receiving event data or message data from a server, consider using <a href="server-sent_events">server-sent events</a> through the <a href="eventsource"><code>EventSource</code></a> interface. For full-duplex communication, <a href="websockets_api">WebSockets</a> may be a better choice.</p> 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="web_workers_api">Web Workers</a>.</p> </div>
+ <div class="notecard note"> <strong id="note">Note</strong> <p>Not supported in service workers.</p> </div>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="xmlhttprequest/xmlhttprequest"><code>XMLHttpRequest()</code></a></dt> <dd>The constructor initializes an <code>XMLHttpRequest</code>. It must be called before any other method calls.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<p><em>This interface also inherits properties of <a href="xmlhttprequesteventtarget"><code>XMLHttpRequestEventTarget</code></a> and of <a href="eventtarget"><code>EventTarget</code></a>.</em></p> <dl> <dt id="xmlhttprequest-onreadystatechange"><a href="xmlhttprequest/onreadystatechange"><code>XMLHttpRequest.onreadystatechange</code></a></dt> <dd>An <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a> that is called whenever the <code>readyState</code> attribute changes.</dd> <dt id="xmlhttprequest-readystate">
+<a href="xmlhttprequest/readystate"><code>XMLHttpRequest.readyState</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns an <code>unsigned short</code>, the state of the request.</dd> <dt>
+<a href="xmlhttprequest/response"><code>XMLHttpRequest.response</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a>, <a href="blob"><code>Blob</code></a>, <a href="document"><code>Document</code></a>, JavaScript object, or a <a href="domstring"><code>DOMString</code></a>, depending on the value of <a href="xmlhttprequest/responsetype"><code>XMLHttpRequest.responseType</code></a>, that contains the response entity body.</dd> <dt id="xmlhttprequest-responsetext">
+<a href="xmlhttprequest/responsetext"><code>XMLHttpRequest.responseText</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="domstring"><code>DOMString</code></a> that contains the response to the request as text, or <code>null</code> if the request was unsuccessful or has not yet been sent.</dd> <dt id="xmlhttprequest-responsetype"><a href="xmlhttprequest/responsetype"><code>XMLHttpRequest.responseType</code></a></dt> <dd>Is an enumerated value that defines the response type.</dd> <dt id="xmlhttprequest-responseurl">
+<a href="xmlhttprequest/responseurl"><code>XMLHttpRequest.responseURL</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the serialized URL of the response or the empty string if the URL is null.</dd> <dt id="xmlhttprequest-responsexml">
+<a href="xmlhttprequest/responsexml"><code>XMLHttpRequest.responseXML</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="document"><code>Document</code></a> containing the response to the request, or <code>null</code> if the request was unsuccessful, has not yet been sent, or cannot be parsed as XML or HTML. Not available in workers.</dd> <dt id="xmlhttprequest-status">
+<a href="xmlhttprequest/status"><code>XMLHttpRequest.status</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns an <code>unsigned short</code> with the status of the response of the request.</dd> <dt id="xmlhttprequest-statustext">
+<a href="xmlhttprequest/statustext"><code>XMLHttpRequest.statusText</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="domstring"><code>DOMString</code></a> containing the response string returned by the HTTP server. Unlike <a href="xmlhttprequest/status"><code>XMLHttpRequest.status</code></a>, this includes the entire text of the response message ("<code>200 OK</code>", for example). <div class="notecard note"> <strong id="note_2">Note</strong> <p>According to the HTTP/2 specification (<a href="https://http2.github.io/http2-spec/#rfc.section.8.1.2.4" rel=" noopener">8.1.2.4</a> <a href="https://http2.github.io/http2-spec/#HttpResponse" rel=" noopener">Response Pseudo-Header Fields</a>), HTTP/2 does not define a way to carry the version or reason phrase that is included in an HTTP/1.1 status line.</p> </div> </dd> <dt id="xmlhttprequest-timeout"><a href="xmlhttprequest/timeout"><code>XMLHttpRequest.timeout</code></a></dt> <dd>Is an <code>unsigned long</code> representing the number of milliseconds a request can take before automatically being terminated.</dd> <dt id="xmlhttprequesteventtarget-ontimeout"><a class="page-not-created"><code>XMLHttpRequestEventTarget.ontimeout</code></a></dt> <dd>Is an <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a> that is called whenever the request times out. </dd> <dt id="xmlhttprequest-upload">
+<a href="xmlhttprequest/upload"><code>XMLHttpRequest.upload</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Is an <a class="page-not-created"><code>XMLHttpRequestUpload</code></a>, representing the upload process.</dd> <dt id="xmlhttprequest-withcredentials"><a href="xmlhttprequest/withcredentials"><code>XMLHttpRequest.withCredentials</code></a></dt> <dd>Is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> that indicates whether or not cross-site <code>Access-Control</code> requests should be made using credentials such as cookies or authorization headers.</dd> </dl>
+<h3 id="non-standard_properties">Non-standard properties</h3>
+<dl> <dt>
+<a href="xmlhttprequest/channel"><code>XMLHttpRequest.channel</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>The channel used by the object when performing the request.</dd> <dt>
+<a href="xmlhttprequest/mozanon"><code>XMLHttpRequest.mozAnon</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>Is a boolean. If true, the request will be sent without cookie and authentication headers.</dd> <dt>
+<a href="xmlhttprequest/mozsystem"><code>XMLHttpRequest.mozSystem</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>Is a boolean. If true, the same origin policy will not be enforced on the request.</dd> <dt><a href="xmlhttprequest/mozbackgroundrequest"><code>XMLHttpRequest.mozBackgroundRequest</code></a></dt> <dd>Is a boolean. It indicates whether or not the object represents a background service request.</dd> <dt>
+<a href="xmlhttprequest/mozresponsearraybuffer"><code>XMLHttpRequest.mozResponseArrayBuffer</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span> <span class="badge inline readonly">Read only </span>
+</dt> <dd>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a>. The response to the request, as a JavaScript typed array.</dd> <dt>
+<a href="xmlhttprequest/multipart"><code>XMLHttpRequest.multipart</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>
+<strong>This Gecko-only feature, a boolean, was removed in Firefox/Gecko 22.</strong> Please use <a href="server-sent_events">Server-Sent Events</a>, <a href="websockets_api">Web Sockets</a>, or <code>responseText</code> from progress events instead.</dd> </dl>
+<h3 id="event_handlers">Event handlers</h3>
+<p><code>onreadystatechange</code> as a property of the <code>XMLHttpRequest</code> instance is supported in all browsers.</p> <p>Since then, a number of additional event handlers have been implemented in various browsers (<code>onload</code>, <code>onerror</code>, <code>onprogress</code>, etc.). See <a href="xmlhttprequest/using_xmlhttprequest">Using XMLHttpRequest</a>.</p> <p>More recent browsers, including Firefox, also support listening to the <code>XMLHttpRequest</code> events via standard <a href="eventtarget/addeventlistener"><code>addEventListener()</code></a> APIs in addition to setting <code>on*</code> properties to a handler function.</p>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="xmlhttprequest/abort"><code>XMLHttpRequest.abort()</code></a></dt> <dd>Aborts the request if it has already been sent.</dd> <dt><a href="xmlhttprequest/getallresponseheaders"><code>XMLHttpRequest.getAllResponseHeaders()</code></a></dt> <dd>Returns all the response headers, separated by <a href="https://developer.mozilla.org/en-US/docs/Glossary/CRLF">CRLF</a>, as a string, or <code>null</code> if no response has been received.</dd> <dt><a href="xmlhttprequest/getresponseheader"><code>XMLHttpRequest.getResponseHeader()</code></a></dt> <dd>Returns the string containing the text of the specified header, or <code>null</code> if either the response has not yet been received or the header doesn't exist in the response.</dd> <dt><a href="xmlhttprequest/open"><code>XMLHttpRequest.open()</code></a></dt> <dd>Initializes a request.</dd> <dt><a href="xmlhttprequest/overridemimetype"><code>XMLHttpRequest.overrideMimeType()</code></a></dt> <dd>Overrides the MIME type returned by the server.</dd> <dt><a href="xmlhttprequest/send"><code>XMLHttpRequest.send()</code></a></dt> <dd>Sends the request. If the request is asynchronous (which is the default), this method returns as soon as the request is sent.</dd> <dt><a href="xmlhttprequest/setrequestheader"><code>XMLHttpRequest.setRequestHeader()</code></a></dt> <dd>Sets the value of an HTTP request header. You must call <code>setRequestHeader()</code>after <a href="#open"><code>open()</code></a>, but before <code>send()</code>.</dd> </dl>
+<h2 id="events">Events</h2>
+<dl> <dt><a href="xmlhttprequest/abort_event"><code>abort</code></a></dt> <dd>Fired when a request has been aborted, for example because the program called <a href="xmlhttprequest/abort"><code>XMLHttpRequest.abort()</code></a>.<br> Also available via the <a href="xmlhttprequesteventtarget/onabort"><code>onabort</code></a> property.</dd> <dt><a href="xmlhttprequest/error_event"><code>error</code></a></dt> <dd>Fired when the request encountered an error.<br> Also available via the <a href="xmlhttprequesteventtarget/onerror"><code>onerror</code></a> property.</dd> <dt><a href="xmlhttprequest/load_event"><code>load</code></a></dt> <dd>Fired when an <a href="xmlhttprequest"><code>XMLHttpRequest</code></a> transaction completes successfully.<br> Also available via the <a href="xmlhttprequesteventtarget/onload"><code>onload</code></a> property.</dd> <dt><a href="xmlhttprequest/loadend_event"><code>loadend</code></a></dt> <dd>Fired when a request has completed, whether successfully (after <a href="xmlhttprequest/load_event"><code>load</code></a>) or unsuccessfully (after <a href="xmlhttprequest/abort_event"><code>abort</code></a> or <a href="xmlhttprequest/error_event"><code>error</code></a>).<br> Also available via the <a class="page-not-created"><code>onloadend</code></a> property.</dd> <dt><a href="xmlhttprequest/loadstart_event"><code>loadstart</code></a></dt> <dd>Fired when a request has started to load data.<br> Also available via the <a href="xmlhttprequesteventtarget/onloadstart"><code>onloadstart</code></a> property.</dd> <dt><a href="xmlhttprequest/progress_event"><code>progress</code></a></dt> <dd>Fired periodically when a request receives more data.<br> Also available via the <a href="xmlhttprequesteventtarget/onprogress"><code>onprogress</code></a> property.</dd> <dt><a href="xmlhttprequest/timeout_event"><code>timeout</code></a></dt> <dd>Fired when progress is terminated due to preset time expiring.<br> Also available via the <a class="page-not-created"><code>ontimeout</code></a> property.</dd> </dl>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://xhr.spec.whatwg.org/" hreflang="en" rel=" noopener">XMLHttpRequest</a></td> <td><span class="spec-living">Living Standard</span></td> <td>Live standard, latest version</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>XMLHttpRequest</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>7</div>
+<div>5</div>
+<div>Implemented via <code>ActiveXObject('Microsoft.XMLHTTP')</code>
+</div>
+</td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>XMLHttpRequest</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>abort</code></th>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>abort_event</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>error_event</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>getAllResponseHeaders</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Starting from Firefox 49, empty headers are returned as empty strings in case the preference <code>network.http.keep_empty_response_headers_as_empty_string</code> is set to <code>true</code>, defaulting to <code>false</code>. Before Firefox 49 empty headers had been ignored. Since Firefox 50 the preference defaults to <code>true</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Starting from Firefox 49, empty headers are returned as empty strings in case the preference <code>network.http.keep_empty_response_headers_as_empty_string</code> is set to <code>true</code>, defaulting to <code>false</code>. Before Firefox 49 empty headers had been ignored. Since Firefox 50 the preference defaults to <code>true</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>getResponseHeader</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Starting from Firefox 49, empty headers are returned as empty strings in case the preference <code>network.http.keep_empty_response_headers_as_empty_string</code> is set to <code>true</code>, defaulting to <code>false</code>. Before Firefox 49 empty headers had been ignored. Since Firefox 50 the preference defaults to <code>true</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Starting from Firefox 49, empty headers are returned as empty strings in case the preference <code>network.http.keep_empty_response_headers_as_empty_string</code> is set to <code>true</code>, defaulting to <code>false</code>. Before Firefox 49 empty headers had been ignored. Since Firefox 50 the preference defaults to <code>true</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>load_event</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>loadend_event</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>loadstart_event</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>onreadystatechange</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>open</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Starting in Firefox 30, synchronous requests on the main thread have been deprecated due to their negative impact on performance and the user experience. Therefore, the <code>async</code> parameter may not be <code>false</code> except in a <code>Worker</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Starting in Firefox 30, synchronous requests on the main thread have been deprecated due to their negative impact on performance and the user experience. Therefore, the <code>async</code> parameter may not be <code>false</code> except in a <code>Worker</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>overrideMimeType</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>5</div>
+<div>Implemented via <code>ActiveXObject</code>
+</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>progress_event</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>readyState</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>response</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>11.6</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>responseText</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>5</div>
+<div>Before Internet Explorer 10, the value of <code>XMLHttpRequest.responseText</code> could be read only once the request was complete.</div>
+</td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>responseType</code></th>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-no">
+<div>12-15</div>
+<div>18</div>
+</td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>responseURL</code></th>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>32</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>32</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>responseXML</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Prior to Firefox 51, an error parsing the received data added a <code>&lt;parsererror&gt;</code> node to the top of the <code>Document</code> and then returned the <code>Document</code> in whatever state it happens to be in. This was inconsistent with the specification. Starting with Firefox 51, this scenario now correctly returns <code>null</code> as per the spec.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Prior to Firefox 51, an error parsing the received data added a <code>&lt;parsererror&gt;</code> node to the top of the <code>Document</code> and then returned the <code>Document</code> in whatever state it happens to be in. This was inconsistent with the specification. Starting with Firefox 51, this scenario now correctly returns <code>null</code> as per the spec.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>send</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>setRequestHeader</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>status</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>7</div>
+<div>Internet Explorer version 5 and 6 supported ajax calls using <code>ActiveXObject()</code>
+</div>
+</td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>statusText</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>7</div>
+<div>Internet Explorer version 5 and 6 supported ajax calls using <code>ActiveXObject()</code>
+</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>timeout</code></th>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes">
+<div>17</div>
+<div>12-16</div>
+</td>
+<td class="bc-supports-yes"><div>6.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>12-16</div>
+</td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+</tr>
+<tr>
+<th><code>timeout_event</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>upload</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>withCredentials</code></th>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>3.5</div>
+<div>Starting with Firefox 11, it's no longer supported to use the <code>withCredentials</code> attribute when performing synchronous requests. Attempting to do so throws an <code>NS_ERROR_DOM_INVALID_ACCESS_ERR</code> exception.</div>
+</td>
+<td class="bc-supports-yes">
+<div>10</div>
+<div>Internet Explorer versions 8 and 9 supported cross-domain requests (CORS) using <a href="https://developer.mozilla.org/docs/Web/API/XDomainRequest"><code>XDomainRequest</code></a>.</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Starting with Firefox 11, it's no longer supported to use the <code>withCredentials</code> attribute when performing synchronous requests. Attempting to do so throws an <code>NS_ERROR_DOM_INVALID_ACCESS_ERR</code> exception.</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>worker_support</code></th>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>3.5</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>10</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>10.6</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>5.1</div>
+<div>Not supported in service workers.</div>
+</td>
+<td class="bc-supports-yes">
+<div>1.0</div>
+<div>Not supported in service workers.</div>
+</td>
+</tr>
+</tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="xmlserializer"><code>XMLSerializer</code></a>: Serializing a DOM tree into XML</li> <li>MDN tutorials covering <code>XMLHttpRequest</code>: <ul> <li><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX/Getting_Started">Ajax — Getting Started</a></li> <li><a href="xmlhttprequest/using_xmlhttprequest">Using XMLHttpRequest</a></li> <li><a href="xmlhttprequest/html_in_xmlhttprequest">HTML in XMLHttpRequest</a></li> <li><a href="fetch_api">Fetch API</a></li> </ul> </li> <li><a href="https://www.html5rocks.com/en/tutorials/file/xhr2/" rel=" noopener">HTML5 Rocks — New Tricks in XMLHttpRequest2</a></li> <li>Feature-Policy directive <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/sync-xhr"><code>sync-xhr</code></a>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest</a>
+  </p>
+</div>

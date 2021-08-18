@@ -1,0 +1,87 @@
+<h1>Element.insertAdjacentHTML()</h1> <p>The <code>insertAdjacentHTML()</code> method of the <a href="../element"><code>Element</code></a> interface parses the specified text as HTML or XML and inserts the resulting nodes into the DOM tree at a specified position. It does not reparse the element it is being used on, and thus it does not corrupt the existing elements inside that element. This avoids the extra step of serialization, making it much faster than direct <a href="innerhtml"><code>innerHTML</code></a> manipulation.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">element<span class="token punctuation">.</span><span class="token function">insertAdjacentHTML</span><span class="token punctuation">(</span>position<span class="token punctuation">,</span> text<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>position</code></dt> <dd>A <a href="../domstring"><code>DOMString</code></a> representing the position relative to the <code>element</code>; must be one of the following strings: <ul> <li>
+<code style="color: red;">'beforebegin'</code>: Before the <code>element</code> itself.</li> <li>
+<code style="color: green;">'afterbegin'</code>: Just inside the <code>element</code>, before its first child.</li> <li>
+<code style="color: blue;">'beforeend'</code>: Just inside the <code>element</code>, after its last child.</li> <li>
+<code style="color: magenta;">'afterend'</code>: After the <code>element</code> itself.</li> </ul> </dd> <dt><code>text</code></dt> <dd>The string to be parsed as HTML or XML and inserted into the tree.</dd> </dl>
+<h3 id="visualization_of_position_names">Visualization of position names</h3>
+<pre class="notranslate">&lt;!-- <strong>beforebegin</strong> --&gt;
+&lt;p&gt;
+  &lt;!-- <strong>afterbegin</strong> --&gt;
+  foo
+  &lt;!-- <strong>beforeend</strong> --&gt;
+&lt;/p&gt;
+&lt;!-- <strong>afterend</strong> --&gt;</pre> <div class="note notecard">
+<strong>Note:</strong> The <code>beforebegin</code> and <code>afterend</code> positions work only if the node is in the DOM tree and has a parent element.</div>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token comment">// &lt;div id="one"&gt;one&lt;/div&gt;</span>
+<span class="token keyword">var</span> d1 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'one'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+d1<span class="token punctuation">.</span><span class="token function">insertAdjacentHTML</span><span class="token punctuation">(</span><span class="token string">'afterend'</span><span class="token punctuation">,</span> <span class="token string">'&lt;div id="two"&gt;two&lt;/div&gt;'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// At this point, the new structure is:</span>
+<span class="token comment">// &lt;div id="one"&gt;one&lt;/div&gt;&lt;div id="two"&gt;two&lt;/div&gt;</span></pre>
+<h2 id="notes">Notes</h2>
+<h3 id="security_considerations">Security considerations</h3>
+<p>When inserting HTML into a page by using <code>insertAdjacentHTML()</code>, be careful not to use user input that hasn't been escaped.</p> <p>It is not recommended you use <code>insertAdjacentHTML()</code> when inserting plain text; instead, use the <a href="../node/textcontent"><code>Node.textContent</code></a> property or the <a href="insertadjacenttext"><code>Element.insertAdjacentText()</code></a> method. This doesn't interpret the passed content as HTML, but instead inserts it as raw text.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/DOM-Parsing/#dom-element-insertadjacenthtml" hreflang="en" rel=" noopener">DOM Parsing and Serialization<br><small>The definition of 'Element.insertAdjacentHTML()' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>insertAdjacentHTML</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>17</div>
+<div>12-17</div>
+<div>Only supported for <a href="https://developer.mozilla.org/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>, not all <code>Element</code> objects, such as <a href="https://developer.mozilla.org/docs/Web/API/SVGElement"><code>SVGElement</code></a>.</div>
+</td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>["Before Internet Explorer 10, throws an \"Invalid target element for this operation.\" error when called on a <code>&lt;table&gt;</code>, <code>&lt;tbody&gt;</code>, <code>&lt;thead&gt;</code>, or <code>&lt;tr&gt;</code> element.", "Only supported for <a href="https://developer.mozilla.org/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>, not all <code>Element</code> objects, such as <a href="https://developer.mozilla.org/docs/Web/API/SVGElement"><code>SVGElement</code></a>."]</div>
+</td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="insertadjacentelement"><code>Element.insertAdjacentElement()</code></a></li> <li><a href="insertadjacenttext"><code>Element.insertAdjacentText()</code></a></li> <li>
+<a href="../xmlserializer"><code>XMLSerializer</code></a>: Construct a DOM representation of XML text</li> <li>
+<a href="https://hacks.mozilla.org/2011/11/insertadjacenthtml-enables-faster-html-snippet-injection/" rel=" noopener">hacks.mozilla.org guest post</a><span class="external"> by Henri Sivonen including benchmark showing that insertAdjacentHTML can be way faster in some cases.</span>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentHTML</a>
+  </p>
+</div>

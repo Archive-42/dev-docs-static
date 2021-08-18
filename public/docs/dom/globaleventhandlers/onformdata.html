@@ -1,0 +1,87 @@
+<h1>GlobalEventHandlers.onformdata</h1> <p>The <code><strong>onformdata</strong></code> property of the <a href="../globaleventhandlers"><code>GlobalEventHandlers</code></a> mixin is the <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a> for processing <code><a href="https://developer.mozilla.org/en-US/docs/Web/Events/formdata">formdata</a></code> events, fired after the entry list representing the form's data is constructed. This happens when the form is submitted, but can also be triggered by the invocation of a <a href="../formdata/formdata"><code>FormData()</code></a> constructor. <code>onformdata</code> is available on <a href="../htmlformelement"><code>HTMLFormElement</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">target<span class="token punctuation">.</span>onformdata <span class="token operator">=</span> functionRef<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p><code>functionRef</code> is a function name or a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/function">function expression</a>. The function receives a <a href="../formdataevent"><code>FormDataEvent</code></a> object as its sole argument.</p>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token comment">// grab reference to form</span>
+
+<span class="token keyword">const</span> formElem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'form'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// submit handler</span>
+
+formElem<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'submit'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// on form submission, prevent default</span>
+  e<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// construct a FormData object, which fires the formdata event</span>
+  <span class="token keyword">new</span> <span class="token class-name">FormData</span><span class="token punctuation">(</span>formElem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// formdata handler to retrieve data</span>
+
+formElem<span class="token punctuation">.</span><span class="token function-variable function">onformdata</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'formdata fired'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Get the form data from the event object</span>
+  <span class="token keyword">let</span> data <span class="token operator">=</span> e<span class="token punctuation">.</span>formData<span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> value <span class="token keyword">of</span> data<span class="token punctuation">.</span><span class="token function">values</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// submit the data via XHR</span>
+  <span class="token keyword">var</span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  request<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"POST"</span><span class="token punctuation">,</span> <span class="token string">"/formHandler"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  request<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td>
+<a href="https://html.spec.whatwg.org/multipage/webappapis.html#handler-onformdata" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'onformdata' in that specification.</small></a> </td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onformdata</code></th>
+<td class="bc-supports-yes"><div>77</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>77</div></td>
+<td class="bc-supports-yes"><div>77</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../htmlformelement/formdata_event"><code>formdata</code> event</a></li> <li><a href="../formdataevent"><code>FormDataEvent</code></a></li> <li> <p><a href="../formdata/using_formdata_objects">Using FormData Objects</a></p> </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onformdata" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onformdata</a>
+  </p>
+</div>

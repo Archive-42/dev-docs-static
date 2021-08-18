@@ -1,0 +1,269 @@
+<h1>touch-action</h1>
+
+ <p>The <code>touch-action</code> CSS property sets how an element's region can be manipulated by a touchscreen user (for example, by zooming features built into the browser).</p> <pre data-language="css"><span class="token comment">/* Keyword values */</span>
+<span class="token property">touch-action</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+<span class="token property">touch-action</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token property">touch-action</span><span class="token punctuation">:</span> pan-x<span class="token punctuation">;</span>
+<span class="token property">touch-action</span><span class="token punctuation">:</span> pan-left<span class="token punctuation">;</span>
+<span class="token property">touch-action</span><span class="token punctuation">:</span> pan-right<span class="token punctuation">;</span>
+<span class="token property">touch-action</span><span class="token punctuation">:</span> pan-y<span class="token punctuation">;</span>
+<span class="token property">touch-action</span><span class="token punctuation">:</span> pan-up<span class="token punctuation">;</span>
+<span class="token property">touch-action</span><span class="token punctuation">:</span> pan-down<span class="token punctuation">;</span>
+<span class="token property">touch-action</span><span class="token punctuation">:</span> pinch-zoom<span class="token punctuation">;</span>
+<span class="token property">touch-action</span><span class="token punctuation">:</span> manipulation<span class="token punctuation">;</span>
+
+<span class="token comment">/* Global values */</span>
+<span class="token property">touch-action</span><span class="token punctuation">:</span> inherit<span class="token punctuation">;</span>
+<span class="token property">touch-action</span><span class="token punctuation">:</span> initial<span class="token punctuation">;</span>
+<span class="token property">touch-action</span><span class="token punctuation">:</span> unset<span class="token punctuation">;</span>
+</pre> <p>By default, panning (scrolling) and pinching gestures are handled exclusively by the browser. An application using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events">Pointer events</a> will receive a <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/pointercancel_event"><code>pointercancel</code></a> event when the browser starts handling a touch gesture. By explicitly specifying which gestures should be handled by the browser, an application can supply its own behavior in <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/pointermove_event"><code>pointermove</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/pointerup_event"><code>pointerup</code></a> listeners for the remaining gestures. Applications using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Touch_events">Touch events</a> disable the browser handling of gestures by calling <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault"><code>preventDefault()</code></a>, but should also use <code>touch-action</code> to ensure the browser knows the intent of the application before any event listeners have been invoked.</p> <p>When a gesture is started, the browser intersects the <code>touch-action</code> values of the touched element and its ancestors, up to the one that implements the gesture (in other words, the first containing scrolling element). This means that in practice, <code>touch-action</code> is typically applied only to top-level elements which have some custom behavior, without needing to specify <code>touch-action</code> explicitly on any of that element's descendants.</p> <div class="notecard note"> <p>After a gesture starts, changes to <code>touch-action</code> will not have any impact on the behavior of the current gesture.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<p>The <code>touch-action</code> property may be specified as either:</p> <ul> <li>One of the keywords <code><a href="#auto">auto</a></code>, <code><a href="#none">none</a></code>, <code><a href="#manipulation">manipulation</a></code>, <em>or</em>
+</li> <li>One of the keywords <code><a href="#pan-x">pan-x</a></code>, <code><a href="#pan-keywords">pan-left</a></code>, <code><a href="#pan-keywords">pan-right</a></code>, and/or one of the keywords <code><a href="#pan-y">pan-y</a></code>, <code><a href="#pan-keywords">pan-up</a></code>, <code><a href="#pan-keywords">pan-down</a></code>, plus optionally the keyword <code><a href="#pinch-zoom">pinch-zoom</a></code>.</li> </ul>
+<h3 id="values">Values</h3>
+<dl> <dt id="auto"><code>auto</code></dt> <dd>Enable browser handling of all panning and zooming gestures.</dd> <dt id="none"><code>none</code></dt> <dd>Disable browser handling of all panning and zooming gestures.</dd> <dt id="pan-x"><code>pan-x</code></dt> <dd>Enable single-finger horizontal panning gestures. May be combined with <strong>pan-y</strong>, <strong>pan-up</strong>, <strong>pan-down</strong> and/or <strong>pinch-zoom</strong>.</dd> <dt id="pan-y"><code>pan-y</code></dt> <dd>Enable single-finger vertical panning gestures. May be combined with <strong>pan-x</strong>, <strong>pan-left</strong>, <strong>pan-right</strong> and/or <strong>pinch-zoom</strong>.</dd> <dt id="manipulation"><code>manipulation</code></dt> <dd>Enable panning and pinch zoom gestures, but disable additional non-standard gestures such as double-tap to zoom. Disabling double-tap to zoom removes the need for browsers to delay the generation of <strong>click</strong> events when the user taps the screen. This is an alias for "<strong>pan-x pan-y pinch-zoom</strong>" (which, for compatibility, is itself still valid).</dd> <dt id="pan-keywords">
+<code>pan-left</code>, <code>pan-right</code>, <code>pan-up</code>, <code>pan-down</code> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt> <dd>Enable single-finger gestures that begin by scrolling in the given direction(s). Once scrolling has started, the direction may still be reversed. Note that scrolling "up" (<strong>pan-up</strong>) means that the user is dragging their finger downward on the screen surface, and likewise <strong>pan-left</strong> means the user is dragging their finger to the right. Multiple directions may be combined except when there is a simpler representation (for example, <strong>"pan-left pan-right</strong>" is invalid since "<strong>pan-x</strong>" is simpler, but "<strong>pan-left pan-down</strong>" is valid).</dd> <dt id="pinch-zoom"><code>pinch-zoom</code></dt> <dd>Enable multi-finger panning and zooming of the page. This may be combined with any of the <strong>pan-</strong> values.</dd> </dl>
+<h2 id="accessibility_concerns">Accessibility concerns</h2>
+<p>A declaration of <code>touch-action: none;</code> may inhibit operating a browser's zooming capabilities. This will prevent people experiencing low vision conditions from being able to read and understand page content.</p> <ul> <li><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable#guideline_1.4_make_it_easier_for_users_to_see_and_hear_content_including_separating_foreground_from_background">MDN Understanding WCAG, Guideline 1.4 explanations</a></li> <li><a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-scale.html" rel=" noopener">Understanding Success Criterion 1.4.4 | Understanding WCAG 2.0</a></li> </ul>
+<h2 id="formal_definition">Formal definition</h2>
+
+<div class="_table"><table class="properties"><tbody>
+<tr>
+<th scope="row"><a href="initial_value">Initial value</a></th>
+<td><code>auto</code></td>
+</tr>
+<tr>
+<th scope="row">Applies to</th>
+<td>all elements except: non-replaced inline elements, table rows, row groups, table columns, and column groups</td>
+</tr>
+<tr>
+<th scope="row"><a href="inheritance">Inherited</a></th>
+<td>no</td>
+</tr>
+<tr>
+<th scope="row"><a href="computed_value">Computed value</a></th>
+<td>as specified</td>
+</tr>
+<tr>
+<th scope="row">Animation type</th>
+<td>discrete</td>
+</tr>
+</tbody></table></div>
+
+<h2 id="formal_syntax">Formal syntax</h2>
+<pre class="notranslate">auto <a href="value_definition_syntax#single_bar">|</a> none <a href="value_definition_syntax#single_bar">|</a> <a href="value_definition_syntax#brackets">[</a> <a href="value_definition_syntax#brackets">[</a> pan-x <a href="value_definition_syntax#single_bar">|</a> pan-left <a href="value_definition_syntax#single_bar">|</a> pan-right <a href="value_definition_syntax#brackets">]</a> <a href="value_definition_syntax#double_bar">||</a> <a href="value_definition_syntax#brackets">[</a> pan-y <a href="value_definition_syntax#single_bar">|</a> pan-up <a href="value_definition_syntax#single_bar">|</a> pan-down <a href="value_definition_syntax#brackets">]</a> <a href="value_definition_syntax#double_bar">||</a> pinch-zoom <a href="value_definition_syntax#brackets">]</a> <a href="value_definition_syntax#single_bar">|</a> manipulation</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="disabling_all_gestures">Disabling all gestures</h3>
+<p>The most common usage is to disable all gestures on an element (and its non-scrollable descendants) that provides its own dragging and zooming behavior – such as a map or game surface.</p> <h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>map<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></pre> <h4 id="css">CSS</h4> <pre data-language="css"><span class="token selector">#map</span> <span class="token punctuation">{</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 150vh<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 70vw<span class="token punctuation">;</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> <span class="token function">linear-gradient</span><span class="token punctuation">(</span>blue<span class="token punctuation">,</span> green<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token property">touch-action</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <h4 id="result">Result</h4> <p><iframe class="sample-code-frame" id="frame_Disabling_all_gestures" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/touch-action/_samples_/Disabling_all_gestures" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://compat.spec.whatwg.org/#touch-action" hreflang="en" rel=" noopener">Compatibility Standard<br><small>The definition of 'touch-action' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Added <code>pinch-zoom</code> property value.</td> </tr> <tr> <td><a href="https://w3c.github.io/pointerevents/#the-touch-action-css-property" hreflang="en" rel=" noopener">Pointer Events – Level 3<br><small>The definition of 'touch-action' in that specification.</small></a></td> <td><span class="spec-ed">Editor's Draft</span></td> <td>Added <code>pan-left</code>, <code>pan-right</code>, <code>pan-up</code>, <code>pan-down</code> property values.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/pointerevents2/#the-touch-action-css-property" hreflang="en" rel=" noopener">Pointer Events – Level 2<br><small>The definition of 'touch-action' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Latest recommendation.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/pointerevents1/#the-touch-action-css-property" hreflang="en" rel=" noopener">Pointer Events<br><small>The definition of 'touch-action' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>touch-action</code></th>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Not applicable to Firefox platforms that support neither pointer nor touch events.</div>
+<div>29</div>
+<div>Not applicable to Firefox platforms that support neither pointer nor touch events.</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>10</div>
+</td>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>29</div>
+</td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>9.3</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>axis-pan</code></th>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Not applicable to Firefox platforms that support neither pointer nor touch events.</div>
+<div>29</div>
+<div>Not applicable to Firefox platforms that support neither pointer nor touch events.</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>10</div>
+</td>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>29</div>
+</td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>double-tap-zoom</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>12-79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>10</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>manipulation</code></th>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Not applicable to Firefox platforms that support neither pointer nor touch events.</div>
+<div>29</div>
+<div>Not applicable to Firefox platforms that support neither pointer nor touch events.</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>10</div>
+</td>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>29</div>
+</td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>9.3</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>none</code></th>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Not applicable to Firefox platforms that support neither pointer nor touch events.</div>
+<div>29</div>
+<div>Not applicable to Firefox platforms that support neither pointer nor touch events.</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>10</div>
+</td>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>29</div>
+</td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>pinch-zoom</code></th>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>85</div>
+<div>Not applicable to Firefox platforms that support neither pointer nor touch events.</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>10</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes">
+<div>85</div>
+<div>Not applicable to Firefox platforms that support neither pointer nor touch events.</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>unidirectional-pan</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1285685">bug 1285685</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1285685">bug 1285685</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a class="page-not-created"><code>pointer-events</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events"><code>Pointer Events</code></a></li> <li>WebKit Blog <a href="https://webkit.org/blog/5610/more-responsive-tapping-on-ios/" rel="bookmark noopener">More Responsive Tapping on iOS</a>
+</li> <li>Google Developers Blog <a href="https://developers.google.com/web/updates/2017/01/scrolling-intervention" rel=" noopener">Making touch scrolling fast by default</a>
+</li> <li><a href="css_scroll_snap">Scroll Snap</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action</a>
+  </p>
+</div>

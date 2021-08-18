@@ -1,0 +1,71 @@
+<h1>Body.blob()</h1> <p>The <code>blob()</code> method of the <a href="../body"><code>Body</code></a> mixin takes a <a href="../response"><code>Response</code></a> stream and reads it to completion. It returns a promise that resolves with a <a href="../blob"><code>Blob</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">response<span class="token punctuation">.</span><span class="token function">blob</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">myBlob</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// do something with myBlob</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<p>None.</p> <div class="note notecard">
+<strong>Note:</strong> If the <a href="../response"><code>Response</code></a> has a <a href="../response/type"><code>Response.type</code></a> of <code>"opaque"</code>, the resulting <a href="../blob"><code>Blob</code></a> will have a <a href="../blob/size"><code>Blob.size</code></a> of <code>0</code> and a <a href="../blob/type"><code>Blob.type</code></a> of empty string <code>""</code>, which renders it <em>useless</em> for methods like <a href="../url/createobjecturl"><code>URL.createObjectURL</code></a>.</div>
+<h3 id="return_value">Return value</h3>
+<p>A promise that resolves with a <a href="../blob"><code>Blob</code></a>.</p>
+<h2 id="example">Example</h2>
+<p>In our <a href="https://github.com/mdn/fetch-examples/tree/master/fetch-request" rel=" noopener">fetch request example</a> (run <a href="https://mdn.github.io/fetch-examples/fetch-request/" rel=" noopener">fetch request live</a>), we create a new request using the <a href="../request/request"><code>Request()</code></a> constructor, then use it to fetch a JPG. When the fetch is successful, we read a <a href="../blob"><code>Blob</code></a> out of the response using <code>blob()</code>, put it into an object URL using <a href="../url/createobjecturl"><code>URL.createObjectURL</code></a>, and then set that URL as the source of an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img"><code>&lt;img&gt;</code></a> element to display the image.</p> <pre data-language="js"><span class="token keyword">var</span> myImage <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> myRequest <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Request</span><span class="token punctuation">(</span><span class="token string">'flowers.jpg'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">fetch</span><span class="token punctuation">(</span>myRequest<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">response</span> <span class="token operator">=&gt;</span> response<span class="token punctuation">.</span><span class="token function">blob</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">myBlob</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> objectURL <span class="token operator">=</span> <span class="token constant">URL</span><span class="token punctuation">.</span><span class="token function">createObjectURL</span><span class="token punctuation">(</span>myBlob<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  myImage<span class="token punctuation">.</span>src <span class="token operator">=</span> objectURL<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://fetch.spec.whatwg.org/#dom-body-blob" hreflang="en" rel=" noopener">Fetch<br><small>The definition of 'blob()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>blob</code></th>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../service_worker_api">ServiceWorker API</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">HTTP access control (CORS)</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP">HTTP</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Body/blob" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Body/blob</a>
+  </p>
+</div>

@@ -1,0 +1,66 @@
+<h1>RTCPeerConnection: datachannel event</h1>
+
+ <p>A <code>datachannel</code> event is sent to an <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> instance when an <a href="../rtcdatachannel"><code>RTCDataChannel</code></a> has been added to the connection, as a result of the remote peer calling <a href="createdatachannel"><code>RTCPeerConnection.createDataChannel()</code></a>.</p> <div class="note notecard"> <p><strong>Note:</strong> This event is <em>not</em> dispatched when the local end of the connection creates the channel.</p> </div> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>No</td> </tr> <tr> <th scope="row">Cancelable</th> <td>No</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../rtcdatachannelevent"><code>RTCDataChannelEvent</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td><a href="ondatachannel"><code>ondatachannel</code></a></td> </tr> </tbody> </table></div>
+<h2 id="examples">Examples</h2>
+<p>This example sets up a function that handles <code>datachannel</code> events by gathering the information needed to communicate with the newly added <a href="../rtcdatachannel"><code>RTCDataChannel</code></a> and by adding event handlers for the events that occur on that channel.</p> <pre data-language="js">pc<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"datachannel"</span><span class="token punctuation">,</span> <span class="token parameter">ev</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  receiveChannel <span class="token operator">=</span> ev<span class="token punctuation">.</span>channel<span class="token punctuation">;</span>
+  receiveChannel<span class="token punctuation">.</span>onmessage <span class="token operator">=</span> myHandleMessage<span class="token punctuation">;</span>
+  receiveChannel<span class="token punctuation">.</span>onopen <span class="token operator">=</span> myHandleOpen<span class="token punctuation">;</span>
+  receiveChannel<span class="token punctuation">.</span>onclose <span class="token operator">=</span> myHandleClose<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p><code>receiveChannel</code> is set to the value of the event's <a href="../rtcdatachannelevent/channel"><code>channel</code></a> property, which specifies the <code>RTCDataChannel</code> object representing the data channel linking the remote peer to the local one.</p> <p>This same code can also instead use the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> interface's <a href="ondatachannel"><code>ondatachannel</code></a> event handler property, like this:</p> <pre data-language="js">pc<span class="token punctuation">.</span><span class="token function-variable function">ondatachannel</span> <span class="token operator">=</span> <span class="token parameter">ev</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  receiveChannel <span class="token operator">=</span> ev<span class="token punctuation">.</span>channel<span class="token punctuation">;</span>
+  receiveChannel<span class="token punctuation">.</span>onmessage <span class="token operator">=</span> myHandleMessage<span class="token punctuation">;</span>
+  receiveChannel<span class="token punctuation">.</span>onopen <span class="token operator">=</span> myHandleOpen<span class="token punctuation">;</span>
+  receiveChannel<span class="token punctuation">.</span>onclose <span class="token operator">=</span> myHandleClose<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#event-datachannel" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'datachannel' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Basic definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>datachannel_event</code></th>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webrtc_api">WebRTC API</a></li> <li><a href="../webrtc_api/using_data_channels">Using WebRTC data channels</a></li> <li><a href="../webrtc_api/simple_rtcdatachannel_sample">A simple RTCDataChannel sample</a></li> <li><a href="../rtcdatachannelevent"><code>RTCDataChannelEvent</code></a></li> <li><a href="ondatachannel"><code>RTCPeerConnection.ondatachannel</code></a></li> <li><a href="createdatachannel"><code>RTCPeerConnection.createDataChannel()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/datachannel_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/datachannel_event</a>
+  </p>
+</div>

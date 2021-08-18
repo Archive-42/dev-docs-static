@@ -1,0 +1,85 @@
+<h1>block</h1> <p>A <strong>block statement</strong> (or <strong>compound statement</strong> in other languages) is used to group zero or more statements. The block is delimited by a pair of braces ("curly brackets") and may optionally be <a href="label">labelled</a>:</p> <iframe class="interactive" width="100%" height="692" src="https://interactive-examples.mdn.mozilla.net/pages/js/statement-block.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<h3 id="block_statement">Block Statement</h3>
+<pre data-language="js"><span class="token punctuation">{</span>
+  StatementList
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="labelled_block_statement">Labelled Block Statement</h3>
+<pre data-language="js">LabelIdentifier<span class="token operator">:</span> <span class="token punctuation">{</span>
+  StatementList
+<span class="token punctuation">}</span>
+</pre> <dl> <dt><code>StatementList</code></dt> <dd>Statements grouped within the block statement.</dd> <dt><code>LabelIdentifier</code></dt> <dd>An optional <a href="label">label</a> for visual identification or as a target for <a href="break"><code>break</code></a>.</dd> </dl>
+<h2 id="description">Description</h2>
+<p>The block statement is often called <strong>compound statement</strong> in other languages. It allows you to use multiple statements where JavaScript expects only one statement. Combining statements into blocks is a common practice in JavaScript. The opposite behavior is possible using an <a href="empty">empty statement</a>, where you provide no statement, although one is required.</p> <p>Blocks are commonly used in association with <a href="if...else"><code>if...else</code></a> and <a href="for"><code>for</code></a> statements.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="block_scoping_rules_with_var_or_function_declaration_in_non-strict_mode">Block scoping rules with var or function declaration in non-strict mode</h3>
+<p>Variables declared with <code>var</code> or created by <a href="function">function declarations</a> in non-strict mode <strong>do not</strong> have block scope. Variables introduced within a block are scoped to the containing function or script, and the effects of setting them persist beyond the block itself. In other words, block statements do not introduce a scope. For example:</p> <pre data-language="js"><span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// logs 2</span>
+</pre> <p>This logs 2 because the <code>var x</code> statement within the block is in the same scope as the <code>var x</code> statement before the block.</p> <p>In non-strict code, function declarations inside blocks behave strangely. Do not use them.</p>
+<h3 id="block_scoping_rules_with_let_const_or_function_declaration_in_strict_mode">Block scoping rules with let, const or function declaration in strict mode</h3>
+<p>By contrast, identifiers declared with <a href="let"><code>let</code></a> and <a href="const"><code>const</code></a> <strong>do have</strong> block scope:</p> <pre data-language="js"><span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// logs 1</span></pre> <p>The <code>x = 2</code> is limited in scope to the block in which it was defined.</p> <p>The same is true of <code>const</code>:</p> <pre data-language="js"><span class="token keyword">const</span> c <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">const</span> c <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// logs 1 and does not throw SyntaxError...</span></pre> <p>Note that the block-scoped <code>const c = 2</code> <em>does not</em> throw a <code>SyntaxError: Identifier 'c' has already been declared</code> because it can be declared uniquely within the block.</p> <p>In <a href="../strict_mode">strict mode</a>, starting with ES2015, functions inside blocks are scoped to that block. Prior to ES2015, block-level functions were forbidden in strict mode.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-block">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-block</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>block</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="while"><code>while</code></a></li> <li><a href="if...else"><code>if...else</code></a></li> <li><a href="let"><code>let</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/block" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/block</a>
+  </p>
+</div>

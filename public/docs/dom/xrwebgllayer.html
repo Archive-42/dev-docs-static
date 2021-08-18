@@ -1,0 +1,217 @@
+<h1>XRWebGLLayer</h1>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div> <p class="summary">The <code>XRWebGLLayer</code> interface of the WebXR Device API provides a linkage between the WebXR device (or simulated XR device, in the case of an inline session) and a WebGL context used to render the scene for display on the device. In particular, it provides access to the WebGL framebuffer and viewport to ease access to the context.</p> <p class="summary">Although <code>XRWebGLLayer</code> is currently the only type of framebuffer layer supported by <a href="webgl_api">WebGL</a>, it's entirely possible that future updates to the WebXR specification may allow for other layer types and corresponding image sources.</p>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="xrwebgllayer/xrwebgllayer"><code>new XRWebGLLayer()</code></a></dt> <dd>Creates and returns a new <code>XRWebGLLayer</code> object for use by the specified <a href="xrsession"><code>XRSession</code></a>, using a particular <a href="webglrenderingcontext"><code>WebGLRenderingContext</code></a> or <a href="webgl2renderingcontext"><code>WebGL2RenderingContext</code></a> as the destination context.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<dl> <dt>
+<a href="xrwebgllayer/antialias"><code>antialias</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A Boolean value indicating whether or not the WebGL context's framebuffer supports anti-aliasing. The specific type of anti-aliasing is determined by the <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent</a>.</dd> <dt>
+<a href="xrwebgllayer/framebuffer"><code>framebuffer</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="webglframebuffer"><code>WebGLFramebuffer</code></a> suitable for passing into the <a href="webglrenderingcontext/bindframebuffer"><code>bindFrameBuffer()</code></a> method.</dd> <dt>
+<a href="xrwebgllayer/framebufferwidth"><code>framebufferWidth</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the width of the <code>XRWebGLLayer</code>'s framebuffer.</dd> <dt>
+<a href="xrwebgllayer/framebufferheight"><code>framebufferHeight</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the height of the layer's framebuffer.</dd> <dt>
+<a href="xrwebgllayer/ignoredepthvalues"><code>ignoreDepthValues</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A Boolean which Indicates whether or not the <a href="en-us/docs/web/api/webxr_device_api/fundamentals#The_WebXR_compositor">WebXR compositor</a> should make use of the contents of the layer's depth buffer while compositing the scene.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="xrwebgllayer/getviewport"><code>getViewport()</code></a></dt> <dd>Returns a new <a href="xrviewport"><code>XRViewport</code></a> instance representing the position, width, and height to which the <a href="webglrenderingcontext/viewport">WebGL context's viewport</a> must be set to contain drawing to the area of the framebuffer designated for the specified view's contents. In this way, for example, the rendering of the left eye's point of view and of the right eye's point of view are each placed into the correct parts of the framebuffer.</dd> </dl>
+<h2 id="static_methods">Static methods</h2>
+<dl> <dt><a href="xrwebgllayer/getnativeframebufferscalefactor"><code>getNativeFramebufferScaleFactor()</code></a></dt> <dd>Returns the scaling factor that can be used to scale the resolution of the recommended WebGL framebuffer resolution to the rendering device's native resolution.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="binding_the_layer_to_a_webgl_context">Binding the layer to a WebGL context</h3>
+<p>This snippet, taken from <a href="webxr_device_api/movement_and_motion#drawing_a_frame">Drawing a frame</a> in <a href="webxr_device_api/movement_and_motion">Movement, orientation, and motion: A WebXR example</a>, shows how the <code>XRWebGLLayer</code> is obtained from the <a href="xrsession"><code>XRSession</code></a> object's rendering state and is then bound as the current rendering WebGL framebuffer by calling the WebGL <a href="webglrenderingcontext/bindframebuffer"><code>bindFrameBuffer()</code></a> function.</p> <pre data-language="js"><span class="token keyword">let</span> glLayer <span class="token operator">=</span> xrSession<span class="token punctuation">.</span>renderState<span class="token punctuation">.</span>baseLayer<span class="token punctuation">;</span>
+gl<span class="token punctuation">.</span><span class="token function">bindFrameBuffer</span><span class="token punctuation">(</span>gl<span class="token punctuation">.</span><span class="token constant">FRAMEBUFFER</span><span class="token punctuation">,</span> glLayer<span class="token punctuation">.</span>framebuffer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="rendering_every_view_in_a_frame">Rendering every view in a frame</h3>
+<p>Each time the GPU is ready to render the scene to the XR device, the XR runtime calls the function you specified when you called the <a href="xrsession"><code>XRSession</code></a> method <a href="xrsession/requestanimationframe"><code>requestAnimationFrame()</code></a> to ask to render the frame.</p> <p>That function receives as input an <a href="xrframe"><code>XRFrame</code></a> which encapsulates the data needed to render the frame. This information includes the pose (an <a href="xrviewerpose"><code>XRViewerPose</code></a> object) that describes the position and facing direction of the viewer within the scene as well as a list of <a href="xrview"><code>XRView</code></a> objects, each representing one perspective on the scene. In current WebXR implementations, there will never be more than two entries in this list: one describing the position and viewing angle of the left eye and another doing the same for the right.</p> <pre data-language="js"><span class="token keyword">let</span> pose <span class="token operator">=</span> xrFrame<span class="token punctuation">.</span><span class="token function">getViewerPose</span><span class="token punctuation">(</span>xrReferenceSpace<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>pose<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> glLayer <span class="token operator">=</span> xrSession<span class="token punctuation">.</span>renderState<span class="token punctuation">.</span>baseLayer<span class="token punctuation">;</span>
+  gl<span class="token punctuation">.</span><span class="token function">bindFrameBuffer</span><span class="token punctuation">(</span>gl<span class="token punctuation">.</span><span class="token constant">FRAMEBUFFER</span><span class="token punctuation">,</span> glLayer<span class="token punctuation">.</span>Framebffer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> view <span class="token keyword">of</span> pose<span class="token punctuation">.</span>views<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> viewport <span class="token operator">=</span> glLayer<span class="token punctuation">.</span><span class="token function">getViewport</span><span class="token punctuation">(</span>view<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    gl<span class="token punctuation">.</span><span class="token function">viewport</span><span class="token punctuation">(</span>viewport<span class="token punctuation">.</span>x<span class="token punctuation">,</span> viewport<span class="token punctuation">.</span>y<span class="token punctuation">,</span> viewport<span class="token punctuation">.</span>width<span class="token punctuation">,</span> viewport<span class="token punctuation">.</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/* Render the view */</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://immersive-web.github.io/webxr/#xrwebgllayer-interface" hreflang="en" rel=" noopener">WebXR Device API<br><small>The definition of 'XRWebGLLayer' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>XRWebGLLayer</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr>
+<tr>
+<th><code>XRWebGLLayer</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr>
+<tr>
+<th><code>antialias</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr>
+<tr>
+<th><code>framebuffer</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr>
+<tr>
+<th><code>framebufferHeight</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr>
+<tr>
+<th><code>framebufferWidth</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr>
+<tr>
+<th><code>getNativeFramebufferScaleFactor</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr>
+<tr>
+<th><code>getViewport</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr>
+<tr>
+<th><code>ignoreDepthValues</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="webxr_device_api">WebXR Device API</a></li> <li><a href="webgl_api/tutorial/getting_started_with_webgl">Getting started with WebGL</a></li> <li>
+<a href="webglrenderingcontext"><code>WebGLRenderingContext</code></a> and <a href="webgl2renderingcontext"><code>WebGL2RenderingContext</code></a>
+</li> <li>
+<a href="webxr_device_api/movement_and_motion#drawing_a_frame">Drawing a frame</a> in <a href="webxr_device_api/movement_and_motion">Movement, orientation, and motion: A WebXR example</a>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XRWebGLLayer" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XRWebGLLayer</a>
+  </p>
+</div>

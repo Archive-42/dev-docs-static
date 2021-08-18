@@ -1,0 +1,134 @@
+<h1>XRPermissionDescriptor</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>User permissions in the <a href="webxr_device_api">WebXR Device API</a> are managed using the <a href="permissions_api">Permissions API</a>. To that end, the <code><strong>XRPermissionDescriptor</strong></code> dictionary is used to describe the WebXR features the app needs to use, as well as those features it would like ot use if permision is granted.</p> <p>The <code>XRPermissionDescriptor</code>'s <a class="page-not-created"><code>name</code></a> must be set to <code>xr</code> in order to direct the Permissions API to correctly handle the request as applying to WebXR.</p>
+<h2 id="properties">Properties</h2>
+<p>In addition to inheriting the properties of the parent interface, <a class="page-not-created"><code>PermissionDescriptor</code></a>, <code>XRPermissionDescriptor</code> provides the following properties.</p> <dl> <dt>
+<a href="xrpermissiondescriptor/mode"><code>mode</code></a> </dt> <dd>An <a href="xrsessionmode"><code>XRSessionMode</code></a> value indicating the XR mode (<code>inline</code>, <code>immersive-vr</code>, or <code>immersive-ar</code>) for which the permissions are requested.</dd> <dt><a href="xrpermissiondescriptor/optionalfeatures"><code>optionalFeatures</code></a></dt> <dd>An array of strings, each specifying the name of a WebXR feature which is requested but not required for the app to function. The available features are the same as those used by <a href="xrsessioninit"><code>XRSessionInit</code></a>; see <a href="xrsessioninit#default_features">Default features</a> in <a href="xrsessioninit">XRSessionInit</a> for further information.</dd> <dt><a href="xrpermissiondescriptor/requiredfeatures"><code>requiredFeatures</code></a></dt> <dd>An array of strings giving the names of the <a href="xrsessioninit#default_features">WebXR features</a> for which permission <em>must</em> be obtained in order to use your app or site.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>The example below demonstrates performing the permission request for an application that requires the <code>local-floor</code> reference space in an <code>immersive-vr</code> environment.</p> <p>If the <a href="permissions_api">Permissions API</a> is found to be available (by checking to see if <a href="navigator/permissions"><code>navigator.permissions</code></a> is defined), its <a href="permissions/query"><code>query()</code></a> method is called, specifying the permission descriptor we've established, <code>xrPermissionDesc</code>.</p> <p>When the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promise</a> resolves, we check the returned status. If permission has been granted, we call a function <code>setupXR()</code> that handles preparing the WebXR environment for use. If permission is conditional based on prompting, we call a function <code>promptAndSetupXR()</code> that would handle asking for permission before enabling and starting up the environment. And for any other returned state—which is almost certainly <code>denied</code>, which is the only other option as of this article's writing—we do nothing, since we can't use WebXR.</p> <p>If the permission request promise is rejected, the error is handled (currently by just dumping it to the console using domxref("console.log()")}}).</p> <p>If the Permissions API isn't available at all, this example assumes that WebXR will report an appropriate error if permission isn't available, and tries to start up the WebXR session using the same <code>setupXR()</code> function called by the <code>granted</code> case.</p> <pre data-language="js"><span class="token keyword">let</span> xrPermissionDesc <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">"xr"</span><span class="token punctuation">,</span>
+  mode<span class="token operator">:</span> <span class="token string">"immersive-vr"</span><span class="token punctuation">,</span>
+  requiredFeatures<span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">"local-floor"</span> <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>navigator<span class="token punctuation">.</span>permissions<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  navigator<span class="token punctuation">.</span>permissions<span class="token punctuation">.</span><span class="token function">query</span><span class="token punctuation">(</span>xrPermissionDesc<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span>state<span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">switch</span><span class="token punctuation">(</span>state<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">case</span> <span class="token string">"granted"</span><span class="token operator">:</span>
+        <span class="token function">setupXR</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token keyword">case</span> <span class="token string">"prompt"</span><span class="token operator">:</span>
+        <span class="token function">promptAndSetupXR</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+      <span class="token keyword">default</span><span class="token operator">:</span>
+        <span class="token comment">/* do nothing otherwise */</span>
+       <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  <span class="token function">setupXR</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://immersive-web.github.io/webxr/#dictdef-xrpermissiondescriptor" hreflang="en" rel=" noopener">WebXR Device API<br><small>The definition of 'XRPermissionDescriptor' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>XRPermissionDescriptor</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>mode</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>optionalFeatures</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>requiredFeatures</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="webxr_device_api/permissions_and_security">Permissions and security for WebXR</a></li> <li><a href="xrpermissionstatus"><code>XRPermissionStatus</code></a></li> <li>
+<a href="navigator/permissions"><code>navigator.permissions</code></a> and <a href="workernavigator/permissions"><code>WorkerNavigator.permissions</code></a>
+</li> <li><a href="permissions"><code>Permissions</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XRPermissionDescriptor" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XRPermissionDescriptor</a>
+  </p>
+</div>

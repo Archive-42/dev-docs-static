@@ -1,0 +1,155 @@
+<h1>AuthenticatorAssertionResponse</h1>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div> <p>The <code><strong>AuthenticatorAssertionResponse</strong></code> interface of the <a href="web_authentication_api">Web Authentication API</a> is returned by <a href="credentialscontainer/get"><code>CredentialsContainer.get()</code></a> when a <a href="publickeycredential"><code>PublicKeyCredential</code></a> is passed, and provides proof to a service that it has a key pair and that the authentication request is valid and approved.</p> <p>This interface inherites from <a href="authenticatorresponse"><code>AuthenticatorResponse</code></a>.</p> <div class="note notecard"> <p><strong>Note:</strong> This interface is restricted to top-level contexts. Use from within an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a> element will not have any effect.</p> </div>
+<h2 id="properties">Properties</h2>
+<dl> <dt>
+<code>AuthenticatorAssertionResponse.clientDataJSON</code> <span class="notecard inline secure">Secure context</span><span class="badge inline readonly">Read only </span>
+</dt> <dd>The client data for the authentication, such as origin and challenge. The <a class="page-not-created"><code>clientDataJSON</code></a> property is inherited from the <a href="authenticatorresponse"><code>AuthenticatorResponse</code></a>.</dd> <dt>
+<a href="authenticatorassertionresponse/authenticatordata"><code>AuthenticatorAssertionResponse.authenticatorData</code></a> <span class="notecard inline secure">Secure context</span><span class="badge inline readonly">Read only </span>
+</dt> <dd>An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> containing information from the authenticator such as the Relying Party ID Hash (rpIdHash), a signature counter, test of user presence and user verification flags, and any extensions processed by the authenticator.</dd> <dt>
+<a href="authenticatorassertionresponse/signature"><code>AuthenticatorAssertionResponse.signature</code></a> <span class="notecard inline secure">Secure context</span><span class="badge inline readonly">Read only </span>
+</dt> <dd>An assertion signature over <a href="authenticatorassertionresponse/authenticatordata"><code>AuthenticatorAssertionResponse.authenticatorData</code></a> and <a href="authenticatorresponse/clientdatajson"><code>AuthenticatorResponse.clientDataJSON</code></a>. The assertion signature is created with the private key of keypair that was created during the <a href="credentialscontainer/create"><code>navigator.credentials.create()</code></a> call and verified using the public key of that same keypair.</dd> <dt>
+<a href="authenticatorassertionresponse/userhandle"><code>AuthenticatorAssertionResponse.userHandle</code></a> <span class="notecard inline secure">Secure context</span><span class="badge inline readonly">Read only </span>
+</dt> <dd>An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> containing an opaque user identifier.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<p>None.</p>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token keyword">var</span> options <span class="token operator">=</span> <span class="token punctuation">{</span>
+  challenge<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token comment">/* bytes sent from the server */</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+navigator<span class="token punctuation">.</span>credentials<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span> <span class="token string">"publicKey"</span><span class="token operator">:</span> options <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">credentialInfoAssertion</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> assertionResponse <span class="token operator">=</span> credentialInfoAssertion<span class="token punctuation">.</span>response<span class="token punctuation">;</span>
+    <span class="token comment">// Do something specific with the response</span>
+
+    <span class="token comment">// send assertion response back to the server</span>
+    <span class="token comment">// to proceed with the control of the credential</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/webauthn/#iface-authenticatorassertionresponse" hreflang="en" rel=" noopener">Web Authentication: An API for accessing Public Key Credentials Level 1<br><small>The definition of 'AuthenticatorAssertionResponse interface' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>AuthenticatorAssertionResponse</code></th>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>60</div>
+<div>Only supports USB U2F tokens.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>70</div></td>
+<td class="bc-supports-yes">
+<div>60</div>
+<div>Only supports USB U2F tokens.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>authenticatorData</code></th>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>60</div>
+<div>Only supports USB U2F tokens.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>70</div></td>
+<td class="bc-supports-yes">
+<div>60</div>
+<div>Only supports USB U2F tokens.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>signature</code></th>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>60</div>
+<div>Only supports USB U2F tokens.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>70</div></td>
+<td class="bc-supports-yes">
+<div>60</div>
+<div>Only supports USB U2F tokens.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>userHandle</code></th>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>60</div>
+<div>Only supports USB U2F tokens.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>70</div></td>
+<td class="bc-supports-yes">
+<div>60</div>
+<div>Only supports USB U2F tokens.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="authenticatorattestationresponse"><code>AuthenticatorAttestationResponse</code></a>: the interface for the type of response given when creating a new credential</li> <li>
+<a href="authenticatorresponse"><code>AuthenticatorResponse</code></a>: the parent interface</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/AuthenticatorAssertionResponse" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/AuthenticatorAssertionResponse</a>
+  </p>
+</div>

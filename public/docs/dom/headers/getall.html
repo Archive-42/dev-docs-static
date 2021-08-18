@@ -1,0 +1,67 @@
+<h1>Headers.getAll()</h1>
+
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div>
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <code>getAll()</code> method of the <a href="../headers"><code>Headers</code></a> interface used to return an array of all the values of a header within a <code>Headers</code> object with a given name; in newer versions of the Fetch spec, it has been deleted, and <a href="get"><code>Headers.get()</code></a> has been updated to fetch <em>all</em> header values instead of only the first one.</p> <p>If the requested header doesn't exist in the <code>Headers</code> object, it returns an empty array.</p> <p>For security reasons, some headers can only be controller by the user agent. These headers include the <a href="https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name">forbidden header names</a> and <a href="https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_response_header_name">forbidden response header names</a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">myHeaders<span class="token punctuation">.</span><span class="token function">getAll</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><em>name</em></dt> <dd>The name of the HTTP header whose values you want to retrieve from the <code>Headers</code> object. If the given name is not the name of an HTTP header, this method throws a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError"><code>TypeError</code></a>.</dd> </dl>
+<h3 id="returns">Returns</h3>
+<p>An <a class="page-not-created"><code>Array</code></a> containing a <a href="../bytestring"><code>ByteString</code></a> sequence representing the values of the retrieved header.</p>
+<h2 id="example">Example</h2>
+<p>Creating an empty <code>Headers</code> object is simple:</p> <pre data-language="js"><span class="token keyword">var</span> myHeaders <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Headers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Currently empty</span></pre> <p>You could add a header to this using <a href="append"><code>Headers.append</code></a>, then retrieve it using <code>getAll()</code>:</p> <pre data-language="js">myHeaders<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'Content-Type'</span><span class="token punctuation">,</span> <span class="token string">'image/jpeg'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+myHeaders<span class="token punctuation">.</span><span class="token function">getAll</span><span class="token punctuation">(</span><span class="token string">'Content-Type'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Returns [ "image/jpeg" ]</span>
+</pre> <p>If the header has multiple values associated with it, the array will contain all the values, in the order they were added to the Headers object:</p> <pre data-language="js">myHeaders<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'Accept-Encoding'</span><span class="token punctuation">,</span> <span class="token string">'deflate'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+myHeaders<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'Accept-Encoding'</span><span class="token punctuation">,</span> <span class="token string">'gzip'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+myHeaders<span class="token punctuation">.</span><span class="token function">getAll</span><span class="token punctuation">(</span><span class="token string">'Accept-Encoding'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Returns [ "deflate", "gzip" ]</span></pre> <div class="note notecard"> <p><strong>Note</strong>: Use <a href="get"><code>Headers.get</code></a> to return only the first value added to the <code>Headers</code> object.</p> </div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getAll</code></th>
+<td class="bc-supports-no"><div>42-60</div></td>
+<td class="bc-supports-no"><div>≤18-79</div></td>
+<td class="bc-supports-no">
+<div>39-52</div>
+<div>34</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>29-47</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>42-60</div></td>
+<td class="bc-supports-no"><div>42-60</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>29-44</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../service_worker_api">ServiceWorker API</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">HTTP access control (CORS)</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP">HTTP</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Headers/getAll" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Headers/getAll</a>
+  </p>
+</div>

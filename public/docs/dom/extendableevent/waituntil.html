@@ -1,0 +1,84 @@
+<h1>ExtendableEvent.waitUntil()</h1> <p>The <code><strong>ExtendableEvent.waitUntil()</strong></code> method tells the event dispatcher that work is ongoing. It can also be used to detect whether that work was successful. In service workers, <code>waitUntil()</code> tells the browser that work is ongoing until the promise settles, and it shouldn't terminate the service worker if it wants that work to complete.</p> <p>The <a href="../serviceworkerglobalscope/install_event"><code>install</code></a> events in <a href="../serviceworkerglobalscope">service workers</a> use <code>waitUntil()</code> to hold the service worker in the <a href="../serviceworkerregistration/installing"><code>installing</code></a> phase until tasks complete. If the promise passed to <code>waitUntil()</code> rejects, the install is considered a failure, and the installing service worker is discarded. This is primarily used to ensure that a service worker is not considered installed until all of the core caches it depends on are successfully populated.</p> <p>The <a href="../serviceworkerglobalscope/activate_event"><code>activate</code></a> events in <a href="../serviceworkerglobalscope">service workers</a> use <code>waitUntil()</code> to buffer functional events such as <code>fetch</code> and <code>push</code> until the promise passed to <code>waitUntil()</code> settles. This gives the service worker time to update database schemas and delete outdated <a href="../cache"><code>caches</code></a>, so other events can rely on a completely upgraded state. </p> <p>The <code>waitUntil()</code> method must be initially called within the event callback, but after that it can be called multiple times, until all the promises passed to it settle.</p> <div class="note notecard"> <p><strong>Note</strong>: The behavior described in the above paragraph was fixed in Firefox 43 (see <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1180274" rel=" noopener">bug 1180274</a>).</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">extendableEvent<span class="token punctuation">.</span><span class="token function">waitUntil</span><span class="token punctuation">(</span>promise<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>.</p>
+<h2 id="example">Example</h2>
+<p>Using <code>waitUntil()</code> within a service worker's <code>install</code> event: </p> <pre data-language="js"><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'install'</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token function-variable function">preCache</span> <span class="token operator">=</span> <span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> cache <span class="token operator">=</span> <span class="token keyword">await</span> caches<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'static-v1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> cache<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+      <span class="token string">'/'</span><span class="token punctuation">,</span>
+      <span class="token string">'/about/'</span><span class="token punctuation">,</span>
+      <span class="token string">'/static/styles.css'</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  event<span class="token punctuation">.</span><span class="token function">waitUntil</span><span class="token punctuation">(</span><span class="token function">preCache</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td>
+<a href="https://w3c.github.io/ServiceWorker/#dom-extendableevent-waituntil" hreflang="en" rel=" noopener">Service Workers<br><small>The definition of 'waitUntil()' in that specification.</small></a> </td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>waitUntil</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>async_waitUntil</code></th>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../service_worker_api/using_service_workers">Using Service Workers</a></li> <li><a href="https://jakearchibald.github.io/isserviceworkerready/" rel=" noopener">Is ServiceWorker ready?</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/ExtendableEvent/waitUntil" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ExtendableEvent/waitUntil</a>
+  </p>
+</div>

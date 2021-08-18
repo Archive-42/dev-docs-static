@@ -1,0 +1,82 @@
+<h1>AudioParam.value</h1>
+
+ <p class="summary">The <a href="../web_audio_api">Web Audio API's</a> <a href="../audioparam"><code>AudioParam</code></a> interface property <code><strong>value</strong></code> gets or sets the value of this <a href="../audioparam"><code>AudioParam</code></a> at the current time. Initially, the value is set to <a href="defaultvalue"><code>AudioParam.defaultValue</code></a>.</p> <p>Setting <code>value</code> has the same effect as calling <a href="setvalueattime"><code>AudioParam.setValueAtTime</code></a> with the time returned by the <code>AudioContext</code>'s <a href="../baseaudiocontext/currenttime"><code>currentTime</code></a> property..</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> curValue <span class="token operator">=</span> audioParam<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+audioParam<span class="token punctuation">.</span>value <span class="token operator">=</span> newValue<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>A floating-point <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number"><code>Number</code></a> indicating the parameter's value as of the current time. This value will be between the values specified by the <a href="minvalue"><code>minValue</code></a> and <a href="maxvalue"><code>maxValue</code></a> properties.</p>
+<h2 id="usage_notes">Usage notes</h2>
+<h3 id="value_precision_and_variation">Value precision and variation</h3>
+<p>The data type used internally to store <code>value</code> is a single-precision (32-bit) floating point number, while JavaScript uses 64-bit double-precision floating point numbers. As a result, the value you read from the <code>value</code> property may not always exactly equal what you set it to.</p> <p>Consider this example:</p> <pre data-language="js"><span class="token keyword">const</span> source <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioBufferSourceNode</span><span class="token punctuation">(</span><span class="token operator">...</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> rate <span class="token operator">=</span> <span class="token number">5.3</span><span class="token punctuation">;</span>
+source<span class="token punctuation">.</span>playbackRate<span class="token punctuation">.</span>value <span class="token operator">=</span> rate<span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>source<span class="token punctuation">.</span>playbackRate<span class="token punctuation">.</span>value <span class="token operator">===</span> rate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>The log output will be <code>false</code>, because the playback rate parameter, <code>rate</code>, was converted to the 32-bit floating-point number closest to 5.3, which yields 5.300000190734863. One solution is to use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/fround"><code>Math.fround()</code></a> method, which returns the single-precision value equivalent to the 64-bit JavaScript value specified—when setting <code>value</code>, like this:</p> <pre class="notranslate">const source = new AudioBufferSourceNode(...);
+const rate = Math.fround(5.3);
+source.playbackRate.value = rate;
+console.log(source.playbackRate.value === rate);</pre> <p>In this case, the log output will be <code>true</code>.</p>
+<h3 id="value_of_a_property_which_is_changing_over_time">Value of a property which is changing over time</h3>
+<p>The <code>value</code> of an <code>AudioParam</code> can either be fixed or can vary over time. This is reflected by the <code>value</code> getter, which returns the value of the parameter as of the audio rendering engine's most recent <strong>render quantum</strong>, or moment at which audio buffers are processed and updated. In addition to processing audio buffers, each render quantum updates the <code>value</code> of each <code>AudioParam</code> as needed given the current time and any established time-based parameter value changes.</p> <p>Upon first creating the parameter, its value is set to its default value, given by <a href="defaultvalue"><code>AudioParam.defaultValue</code></a>. This is the parameter's value at a time of 0.0 seconds, and will remain the parameter's value until the first render quantum in which the value is altered.</p> <p>During each render quantum, the browser does the following things related to managing the value of a parameter:</p> <ul> <li>If the <code>value</code> setter has been used, the parameter's value is changed to the value given.</li> <li>If the current time equals or exceeds the time specified by a previous call to <a href="setvalueattime"><code>setValueAtTime()</code></a>, the <code>value</code> is changed to the value passed into <code>setValueAtTime()</code>.</li> <li>If any gradiated or ramped value changing methods have been called and the current time is within the time range over which the graduated change should occur, the value is updated based on the appropriate algorithm. These ramped or gradiated value-changing methods include <a href="linearramptovalueattime"><code>linearRampToValueAtTime()</code></a>, <a href="settargetattime"><code>setTargetAtTime()</code></a>, and <a href="setvaluecurveattime"><code>setValueCurveAtTime()</code></a>.</li> </ul> <p>Thus, the <code>value</code> of a parameter is maintained to accurately reflect the state of the parameter over time.</p>
+<h2 id="example">Example</h2>
+<p>This example instantly changes the volume of a <a href="../gainnode"><code>GainNode</code></a> to 40%.</p> <pre data-language="js"><span class="token keyword">const</span> audioCtx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> gainNode <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createGain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gainNode<span class="token punctuation">.</span>gain<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token number">0.4</span><span class="token punctuation">;</span>
+<span class="token comment">//which is identical to:</span>
+gainNode<span class="token punctuation">.</span>gain<span class="token punctuation">.</span><span class="token function">setValueAtTime</span><span class="token punctuation">(</span><span class="token number">0.4</span><span class="token punctuation">,</span> audioCtx<span class="token punctuation">.</span>currentTime<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://webaudio.github.io/web-audio-api/#dom-audioparam-value" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'value' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>value</code></th>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>25</div>
+<div>Prior to Firefox 69, <code>value</code> did not take into account scheduled or gradiated changes to the parameter's value; instead, only explicitly set values were returned.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>25</div>
+<div>Firefox for Android does not currently take into account scheduled or gradiated changes to the parameter's value; only the initial value or the most recent explicitly set value is returned.</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+ <p>When changing the gain value of a <a href="../gainnode"><code>GainNode</code></a>, Google Chrome prior to version 64 (January 2018) would perform a smooth interpolation to prevent dezippering. Starting with version 64, the value is changed instantly to bring it in line with the Web Audio spec. See <a href="https://www.chromestatus.com/feature/5287995770929152" rel=" noopener">Chrome Platform Status</a> for details.</p>
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../web_audio_api/using_web_audio_api">Using the Web Audio API</a> </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioParam/value" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/AudioParam/value</a>
+  </p>
+</div>

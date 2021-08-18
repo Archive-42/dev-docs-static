@@ -1,0 +1,115 @@
+<h1>SharedWorker</h1> <p>The <code><strong>SharedWorker</strong></code> interface represents a specific kind of worker that can be <em>accessed</em> from several browsing contexts, such as several windows, iframes or even workers. They implement an interface different than dedicated workers and have a different global scope, <a href="sharedworkerglobalscope"><code>SharedWorkerGlobalScope</code></a>.</p> <div class="note notecard"> <p><strong>Note:</strong> If SharedWorker can be accessed from several browsing contexts, all those browsing contexts must share the exact same origin (same protocol, host and port).</p> </div>
+<h2 id="constructors">Constructors</h2>
+<dl> <dt><a href="sharedworker/sharedworker"><code>SharedWorker()</code></a></dt> <dd>Creates a shared web worker that executes the script at the specified URL.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<p><em>Inherits properties from its parent, <a href="eventtarget"><code>EventTarget</code></a>, and implements properties from <a href="abstractworker"><code>AbstractWorker</code></a>.</em></p> <dl> <dt><a href="abstractworker/onerror"><code>AbstractWorker.onerror</code></a></dt> <dd>Is an <a href="eventlistener"><code>EventListener</code></a> that is called whenever an <a href="errorevent"><code>ErrorEvent</code></a> of type <code>error</code> bubbles through the worker.</dd> <dt>
+<a href="sharedworker/port"><code>SharedWorker.port</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="messageport"><code>MessagePort</code></a> object used to communicate with and control the shared worker.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<p><em>Inherits methods from its parent, <a href="eventtarget"><code>EventTarget</code></a>, and implements methods from <a href="abstractworker"><code>AbstractWorker</code></a>.</em></p>
+<h2 id="example">Example</h2>
+<p>In our <a href="https://github.com/mdn/simple-shared-worker" rel=" noopener">Basic shared worker example</a> (<a href="https://mdn.github.io/simple-shared-worker/" rel=" noopener">run shared worker</a>), we have two HTML pages, each of which uses some JavaScript to perform a simple calculation. The different scripts are using the same worker file to perform the calculation — they can both access it, even if their pages are running inside different windows.</p> <p>The following code snippet shows creation of a <code>SharedWorker</code> object using the <a href="sharedworker/sharedworker"><code>SharedWorker()</code></a> constructor. Both scripts contain this:</p> <pre data-language="js"><span class="token keyword">var</span> myWorker <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SharedWorker</span><span class="token punctuation">(</span><span class="token string">'worker.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>Both scripts then access the worker through a <a href="messageport"><code>MessagePort</code></a> object created using the <a href="sharedworker/port"><code>SharedWorker.port</code></a> property. If the onmessage event is attached using addEventListener, the port is manually started using its <code>start()</code> method:</p> <pre data-language="js">myWorker<span class="token punctuation">.</span>port<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>When the port is started, both scripts post messages to the worker and handle messages sent from it using <code>port.postMessage()</code> and <code>port.onmessage</code>, respectively:</p> <pre data-language="js">first<span class="token punctuation">.</span><span class="token function-variable function">onchange</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  myWorker<span class="token punctuation">.</span>port<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span><span class="token punctuation">[</span>first<span class="token punctuation">.</span>value<span class="token punctuation">,</span>second<span class="token punctuation">.</span>value<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Message posted to worker'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+second<span class="token punctuation">.</span><span class="token function-variable function">onchange</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  myWorker<span class="token punctuation">.</span>port<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span><span class="token punctuation">[</span>first<span class="token punctuation">.</span>value<span class="token punctuation">,</span>second<span class="token punctuation">.</span>value<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Message posted to worker'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+myWorker<span class="token punctuation">.</span>port<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  result1<span class="token punctuation">.</span>textContent <span class="token operator">=</span> e<span class="token punctuation">.</span>data<span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Message received from worker'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>Inside the worker we use the <a href="sharedworkerglobalscope/onconnect"><code>SharedWorkerGlobalScope.onconnect</code></a> handler to connect to the same port discussed above. The ports associated with that worker are accessible in the <code><a href="sharedworkerglobalscope/connect_event">connect</a></code> event's <code>ports</code> property — we then use <a href="messageport"><code>MessagePort</code></a> <code>start()</code> method to start the port, and the <code>onmessage</code> handler to deal with messages sent from the main threads.</p> <pre data-language="js"><span class="token function-variable function">onconnect</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> port <span class="token operator">=</span> e<span class="token punctuation">.</span>ports<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  port<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'message'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> workerResult <span class="token operator">=</span> <span class="token string">'Result: '</span> <span class="token operator">+</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> e<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    port<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span>workerResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  port<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Required when using addEventListener. Otherwise called implicitly by onmessage setter.</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#sharedworker" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'SharedWorker' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>No change from <a href="about:unknown" hreflang="en">Unknown</a>.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>SharedWorker</code></th>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>10.6</div></td>
+<td class="bc-supports-no"><div>5-6.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-no"><div>11-14</div></td>
+<td class="bc-supports-no"><div>5.1-7</div></td>
+<td class="bc-supports-no"><div>4.0-5.0</div></td>
+</tr>
+<tr>
+<th><code>SharedWorker</code></th>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>10.6</div></td>
+<td class="bc-supports-no"><div>5-6.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-no"><div>11-14</div></td>
+<td class="bc-supports-no"><div>5.1-7</div></td>
+<td class="bc-supports-no"><div>4.0-5.0</div></td>
+</tr>
+<tr>
+<th><code>port</code></th>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>10.6</div></td>
+<td class="bc-supports-no"><div>5-6.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-no"><div>11-14</div></td>
+<td class="bc-supports-no"><div>5.1-7</div></td>
+<td class="bc-supports-no"><div>4.0-5.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="worker"><code>Worker</code></a></li> <li><a class="internal" href="web_workers_api/using_web_workers">Using web workers</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/SharedWorker</a>
+  </p>
+</div>

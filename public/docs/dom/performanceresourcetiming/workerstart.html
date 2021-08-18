@@ -1,0 +1,86 @@
+<h1>PerformanceResourceTiming.workerStart</h1> <p>The <code>workerStart</code> read-only property of the <a href="../performanceresourcetiming"><code>PerformanceResourceTiming</code></a> interface returns a <a href="../domhighrestimestamp"><code>DOMHighResTimeStamp</code></a> immediately before dispatching the <a href="../fetchevent"><code>FetchEvent</code></a> if a Service Worker thread is already running, or immediately before starting the Service Worker thread if it is not already running. If the resource is not intercepted by a Service Worker the property will always return 0.</p> 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="../web_workers_api">Web Workers</a>.</p> </div>
+
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">resource<span class="token punctuation">.</span>workerStart<span class="token punctuation">;</span>
+</pre>
+<h3 id="return_value">Value</h3>
+<p>A <a href="../domhighrestimestamp"><code>DOMHighResTimeStamp</code></a>.</p>
+<h2 id="example">Example</h2>
+<p>In the following example, the value of the <code>*Start</code> and <code>*End</code> properties of all "<code>resource</code>" <a href="../performanceentry/entrytype"><code>type</code></a> events are logged.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">print_PerformanceEntries</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Use getEntriesByType() to just get the "resource" events</span>
+  <span class="token keyword">var</span> p <span class="token operator">=</span> performance<span class="token punctuation">.</span><span class="token function">getEntriesByType</span><span class="token punctuation">(</span><span class="token string">"resource"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> p<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">print_start_and_end_properties</span><span class="token punctuation">(</span>p<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">print_start_and_end_properties</span><span class="token punctuation">(</span><span class="token parameter">perfEntry</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Print timestamps of the PerformanceEntry *start and *end properties</span>
+  properties <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"connectStart"</span><span class="token punctuation">,</span> <span class="token string">"connectEnd"</span><span class="token punctuation">,</span>
+                <span class="token string">"domainLookupStart"</span><span class="token punctuation">,</span> <span class="token string">"domainLookupEnd"</span><span class="token punctuation">,</span>
+                <span class="token string">"fetchStart"</span><span class="token punctuation">,</span>
+                <span class="token string">"redirectStart"</span><span class="token punctuation">,</span> <span class="token string">"redirectEnd"</span><span class="token punctuation">,</span>
+                <span class="token string">"requestStart"</span><span class="token punctuation">,</span>
+                <span class="token string">"responseStart"</span><span class="token punctuation">,</span> <span class="token string">"responseEnd"</span><span class="token punctuation">,</span>
+                <span class="token string">"secureConnectionStart"</span><span class="token punctuation">,</span>
+		<span class="token string">"workerStart"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> properties<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// check each property</span>
+    <span class="token keyword">var</span> supported <span class="token operator">=</span> properties<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token keyword">in</span> perfEntry<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>supported<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> value <span class="token operator">=</span> perfEntry<span class="token punctuation">[</span>properties<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"... "</span> <span class="token operator">+</span> properties<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">" = "</span> <span class="token operator">+</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"... "</span> <span class="token operator">+</span> properties<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">" = NOT supported"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.w3.org/TR/resource-timing-2/#dom-performanceresourcetiming-workerstart" hreflang="en" rel=" noopener">Resource Timing Level 2<br><small>The definition of 'workerStart' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>workerStart</code></th>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>32</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>32</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/workerStart" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PerformanceResourceTiming/workerStart</a>
+  </p>
+</div>

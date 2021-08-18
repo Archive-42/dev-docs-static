@@ -1,0 +1,79 @@
+<h1>SpeechSynthesis.onvoiceschanged</h1>
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div> <p>The <code><strong>onvoiceschanged</strong></code> property of the <a href="../speechsynthesis"><code>SpeechSynthesis</code></a> interface represents an event handler that will run when the list of <a href="../speechsynthesisvoice"><code>SpeechSynthesisVoice</code></a> objects that would be returned by the <a href="getvoices"><code>SpeechSynthesis.getVoices()</code></a> method has changed (when the <a href="voiceschanged_event">voiceschanged</a> event fires.)</p> <p>This may occur when speech synthesis is being done on the server-side and the voices list is being determined asynchronously, or when client-side voices are installed/uninstalled while a speech synthesis application is running.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">speechSynthesisInstance<span class="token punctuation">.</span><span class="token function-variable function">onvoiceschanged</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="examples">Examples</h2>
+<p>This could be used to populate a list of voices that the user can choose between when the event fires (see our <a href="https://github.com/mdn/web-speech-api/blob/gh-pages/speak-easy-synthesis/script.js" rel=" noopener">Speak easy synthesis demo</a>.) Note that Firefox doesn't support it at present, and will just return a list of voices when <a href="getvoices"><code>SpeechSynthesis.getVoices()</code></a> is fired. With Chrome however, you have to wait for the event to fire before populating the list, hence the bottom if statement seen below.</p> <pre data-language="js"><span class="token keyword">var</span> synth <span class="token operator">=</span> window<span class="token punctuation">.</span>speechSynthesis<span class="token punctuation">;</span>
+<span class="token keyword">var</span> voices <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">populateVoiceList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  voices <span class="token operator">=</span> synth<span class="token punctuation">.</span><span class="token function">getVoices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> voices<span class="token punctuation">.</span>length <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> option <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'option'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    option<span class="token punctuation">.</span>textContent <span class="token operator">=</span> voices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">' ('</span> <span class="token operator">+</span> voices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lang <span class="token operator">+</span> <span class="token string">')'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span><span class="token punctuation">(</span>voices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>default<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      option<span class="token punctuation">.</span>textContent <span class="token operator">+=</span> <span class="token string">' -- DEFAULT'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    option<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'data-lang'</span><span class="token punctuation">,</span> voices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lang<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    option<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'data-name'</span><span class="token punctuation">,</span> voices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    voiceSelect<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>option<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">populateVoiceList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>speechSynthesis<span class="token punctuation">.</span>onvoiceschanged <span class="token operator">!==</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  speechSynthesis<span class="token punctuation">.</span>onvoiceschanged <span class="token operator">=</span> populateVoiceList<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://wicg.github.io/speech-api/#dom-speechsynthesis-onvoiceschanged" hreflang="en" rel=" noopener">Web Speech API<br><small>The definition of 'onvoiceschanged' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onvoiceschanged</code></th>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../web_speech_api">Web Speech API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis/onvoiceschanged" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis/onvoiceschanged</a>
+  </p>
+</div>

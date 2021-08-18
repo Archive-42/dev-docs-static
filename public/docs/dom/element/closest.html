@@ -1,0 +1,114 @@
+<h1>Element.closest()</h1> <p>The <code><strong>closest()</strong></code> method traverses the <a href="../element"><code>Element</code></a> and its parents (heading toward the document root) until it finds a node that matches the provided selector string. Will return itself or the matching ancestor. If no such element exists, it returns <code>null</code>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> closestElement <span class="token operator">=</span> targetElement<span class="token punctuation">.</span><span class="token function">closest</span><span class="token punctuation">(</span>selectors<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<ul> <li>
+<code><var>selectors</var></code> is a <a href="../domstring"><code>DOMString</code></a> containing a selector list.<br> ex: <code>p:hover, .toto + q</code>
+</li> </ul>
+<h3 id="return_value">Return value</h3>
+<ul> <li>
+<code><var>closestElement</var></code> is the <a href="../element"><code>Element</code></a> which is the closest ancestor of the selected element. It may be <code>null</code>.</li> </ul>
+<h3 id="exceptions">Exceptions</h3>
+<ul> <li>
+<a href="../domexception#exception-syntaxerror"><code>SyntaxError</code></a> is thrown if the <code><var>selectors</var></code> is not a valid selector list string.</li> </ul>
+<h2 id="example">Example</h2>
+<h3 id="html">HTML</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>article</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>div-01<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Here is div-01
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>div-02<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Here is div-02
+      <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>div-03<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Here is div-03<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>article</span><span class="token punctuation">&gt;</span></span></pre>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js"><span class="token keyword">var</span> el <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'div-03'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> r1 <span class="token operator">=</span> el<span class="token punctuation">.</span><span class="token function">closest</span><span class="token punctuation">(</span><span class="token string">"#div-02"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// returns the element with the id=div-02</span>
+
+<span class="token keyword">var</span> r2 <span class="token operator">=</span> el<span class="token punctuation">.</span><span class="token function">closest</span><span class="token punctuation">(</span><span class="token string">"div div"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// returns the closest ancestor which is a div in div, here it is the div-03 itself</span>
+
+<span class="token keyword">var</span> r3 <span class="token operator">=</span> el<span class="token punctuation">.</span><span class="token function">closest</span><span class="token punctuation">(</span><span class="token string">"article &gt; div"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// returns the closest ancestor which is a div and has a parent article, here it is the div-01</span>
+
+<span class="token keyword">var</span> r4 <span class="token operator">=</span> el<span class="token punctuation">.</span><span class="token function">closest</span><span class="token punctuation">(</span><span class="token string">":not(div)"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// returns the closest ancestor which is not a div, here it is the outmost article</span></pre>
+<h2 id="polyfill">Polyfill</h2>
+<p>For browsers that do not support <code>Element.closest()</code>, but carry support for <code>element.matches()</code> (or a prefixed equivalent, meaning IE9+), a polyfill exists:</p> <pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>matches<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>matches <span class="token operator">=</span>
+    <span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>msMatchesSelector <span class="token operator">||</span>
+    <span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>webkitMatchesSelector<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>closest<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">closest</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">s</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> el <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">do</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">matches</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>el<span class="token punctuation">,</span> s<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">return</span> el<span class="token punctuation">;</span>
+      el <span class="token operator">=</span> el<span class="token punctuation">.</span>parentElement <span class="token operator">||</span> el<span class="token punctuation">.</span>parentNode<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span>el <span class="token operator">!==</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> el<span class="token punctuation">.</span>nodeType <span class="token operator">===</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>However, if you really do require IE 8 support, then the following polyfill will do the job very slowly, but eventually. However, it will only support CSS 2.1 selectors in IE 8, and it can cause severe lag spikes in production websites.</p> <pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>Element <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>closest<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">closest</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">s</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> matches <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>document <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>ownerDocument<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        i<span class="token punctuation">,</span>
+        el <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token keyword">do</span> <span class="token punctuation">{</span>
+      i <span class="token operator">=</span> matches<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+      <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">--</span>i <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> matches<span class="token punctuation">.</span><span class="token function">item</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">!==</span> el<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>i <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>el <span class="token operator">=</span> el<span class="token punctuation">.</span>parentElement<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> el<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://dom.spec.whatwg.org/#dom-element-closest" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'Element.closest()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>closest</code></th>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table> 
+ <ul> <li>In Edge 15-18 <code>document.createElement(tagName).closest(tagName)</code> will return <code>null</code> if the element is not first connected (directly or indirectly) to the context object, for example the <a href="../document"><code>Document</code></a> object in the case of the normal DOM.</li> </ul> <h2 id="see_also">See also</h2>
+<ul> <li>The <a href="../element"><code>Element</code></a> interface.</li> <li> <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors">The syntax of Selectors</a> </li> <li> Other methods that take selectors: <a href="queryselector"><code>element.querySelector()</code></a> and <a href="matches"><code>element.matches()</code></a>. </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/closest" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/closest</a>
+  </p>
+</div>

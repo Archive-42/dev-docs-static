@@ -1,0 +1,68 @@
+<h1>MediaStreamTrack.stop()</h1> <p>The <code><strong>MediaStreamTrack.stop()</strong></code> method stops the track.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">track<span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre>
+<h2 id="description">Description</h2>
+<p>Calling <code>stop()</code> tells the <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent</a> that the track's source—whatever that source may be, including files, network streams, or a local camera or microphone—is no longer needed by the <a href="../mediastreamtrack"><code>MediaStreamTrack</code></a>. Since multiple tracks may use the same source (for example, if two tabs are using the device's microphone), the source itself isn't necessarily immediately stopped. It is instead disassociated from the track and the track object is stopped. Once no media tracks are using the source, the source may actually be completely stopped.</p> <p>Immediately after calling <code>stop()</code>, the <a href="readystate"><code>readyState</code></a> property is set to <code>ended</code>.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="stopping_a_video_stream">Stopping a video stream</h3>
+<p>In this example, we see a function which stops a streamed video by calling <code>stop()</code> on every track on a given <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"><code>&lt;video&gt;</code></a>.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">stopStreamedVideo</span><span class="token punctuation">(</span><span class="token parameter">videoElem</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> stream <span class="token operator">=</span> videoElem<span class="token punctuation">.</span>srcObject<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> tracks <span class="token operator">=</span> stream<span class="token punctuation">.</span><span class="token function">getTracks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  tracks<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">track</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    track<span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  videoElem<span class="token punctuation">.</span>srcObject <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>This works by obtaining the video element's stream from its <a href="../htmlmediaelement/srcobject"><code>srcObject</code></a> property. Then the stream's track list is obtained by calling its <a href="../mediastream/gettracks"><code>getTracks()</code></a> method. From there, all that remains to do is to iterate over the track list using <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach"><code>forEach()</code></a> and calling each track's <code>stop()</code> method.</p> <p>Finally, <code>srcObject</code> is set to <code>null</code> to sever the link to the <a href="../mediastream"><code>MediaStream</code></a> object so it can be released.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/mediacapture-main/#dom-mediastreamtrack-stop" hreflang="en" rel=" noopener">Media Capture and Streams<br><small>The definition of 'MediaStreamTrack.stop()' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>stop</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../mediastreamtrack"><code>MediaStreamTrack</code></a>, the interface it belongs to.</li> <li><a href="readystate"><code>MediaStreamTrack.readyState</code></a></li> <li><code><a href="../htmlmediaelement/ended_event">ended</a></code></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/stop" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack/stop</a>
+  </p>
+</div>

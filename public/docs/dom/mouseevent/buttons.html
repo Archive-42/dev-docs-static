@@ -1,0 +1,86 @@
+<h1>MouseEvent.buttons</h1> <p>The <code>MouseEvent.buttons</code> read-only property indicates which buttons are pressed on the mouse (or other input device) when a mouse event is triggered.</p> <p>Each button that can be pressed is represented by a given number (see below). If more than one button is pressed, the button values are added together to produce a new number. For example, if the secondary (<code>2</code>) and auxilary (<code>4</code>) buttons are pressed simultaneously, the value is <code>6</code> (i.e., <code>2 + 4</code>).</p> <div class="note notecard"> <p><strong>Note:</strong> Do not confuse this property with the <a href="button"><code>MouseEvent.button</code></a> property. The <a href="buttons"><code>MouseEvent.buttons</code></a> property indicates the state of buttons pressed during any kind of mouse event, while the <a href="button"><code>MouseEvent.button</code></a> property only guarantees the correct value for mouse events caused by pressing or releasing one or multiple buttons. </p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> buttonsPressed <span class="token operator">=</span> instanceOfMouseEvent<span class="token punctuation">.</span>buttons
+</pre>
+<h3 id="return_value">Return value</h3>
+<p>A number representing one or more buttons. For more than one button pressed simultaneously, the values are combined (e.g., <code>3</code> is primary + secondary). </p> <ul> <li>
+<code>0 </code> : No button or un-initialized</li> <li>
+<code>1 </code> : Primary button (usually the left button)</li> <li>
+<code>2 </code> : Secondary button (usually the right button)</li> <li>
+<code>4 </code> : Auxiliary button (usually the mouse wheel button or middle button)</li> <li>
+<code>8 </code> : 4th button (typically the "Browser Back" button)</li> <li>
+<code>16</code> : 5th button (typically the "Browser Forward" button)</li> </ul>
+<h2 id="example">Example</h2>
+<p>This example logs the <code>buttons</code> property when you trigger a <code><a href="../element/mousedown_event">mousedown</a></code> event.</p>
+<h3 id="html">HTML</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Click anywhere with one or more mouse buttons.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>pre</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>log<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>buttons: <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>pre</span><span class="token punctuation">&gt;</span></span></pre>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js"><span class="token keyword">let</span> log <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createTextNode</span><span class="token punctuation">(</span><span class="token string">'?'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// let log = new Text('?');</span>
+
+<span class="token keyword">function</span> <span class="token function">logButtons</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  log<span class="token punctuation">.</span>data <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>e<span class="token punctuation">.</span>buttons<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> (</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>e<span class="token punctuation">.</span>type<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">)</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>  <span class="token comment">// log.nodeValue= `${e.buttons} (${e.type})`;</span>
+<span class="token punctuation">}</span>
+
+document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'mouseup'</span><span class="token punctuation">,</span> logButtons<span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'mousedown'</span><span class="token punctuation">,</span> logButtons<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// document.addEventListener('mousemove', logButtons);</span>
+
+document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#log'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>log<span class="token punctuation">)</span></pre>
+<h3 id="result">Result</h3>
+<p><iframe class="sample-code-frame" id="frame_Example" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/MouseEvent/buttons/_samples_/Example" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td>
+<a href="https://w3c.github.io/uievents/#dom-mouseevent-buttons" hreflang="en" rel=" noopener">UI Events<br><small>The definition of 'MouseEvent.buttons' in that specification.</small></a> </td> <td><span class="spec-wd">Working Draft</span></td> <td>Current working draft</td> </tr> <tr> <td><a href="https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/#widl-MouseEvent-buttons" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 3 Events Specification<br><small>The definition of 'MouseEvent.buttons' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>buttons</code></th>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Resrictions apply depending on OS.</div>
+</td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h3 id="firefox_notes">Firefox notes</h3>
+<p>Firefox supports the <code>buttons</code> attribute on Windows, Linux (GTK), and macOS with the following restrictions:</p> <ul> <li>Utilities allow customization of button actions. Therefore, <em>primary</em> might not be the left button on the device, <em>secondary</em> might not be the right button, and so on. Moreover, the middle (wheel) button, 4th button, and 5th button might not be assigned a value, even when they are pressed.</li> <li>Single-button devices may emulate additional buttons with combinations of button and keyboard presses.</li> <li>Touch devices may emulate buttons with configurable gestures (e.g., one-finger touch for <em>primary</em>, two-finger touch for <em>secondary</em>, etc.).</li> <li>On Linux (GTK), the 4th button and the 5th button are not supported. In addition, a <code><a href="../element/mouseup_event">mouseup</a></code> event always includes the releasing button information in the <code>buttons</code> value.</li> <li>On Mac OS X 10.5, the <code>buttons</code> attribute always returns <code>0</code> because there is no platform API for implementing this feature.</li> </ul>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../mouseevent"><code>MouseEvent</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons</a>
+  </p>
+</div>

@@ -1,0 +1,80 @@
+<h1>ContactsManager.select()</h1>
+<div class="notecard draft"> <strong id="draft">Draft</strong> <p>This page is not complete.</p> </div>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div> <p class="summary">The <code>select()</code> method of the <a href="../contactsmanager"><code>ContactsManager</code></a> interface returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which, when resolved, presents the user with a contact picker which allows them to select contact(s) they wish to share. This method requires a user gesture for the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> to resolve.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> ContactInfo <span class="token operator">=</span> ContactsManager<span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span>properties<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><em>properties</em></dt> <dd>An array of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>strings</code></a> defining what information to retrieve from a contact. Allowed values are as follows: <ul> <li>
+<code>'name'</code>: The contact's name.</li> <li>
+<code>'tel'</code>: The telephone number(s) of the contact.</li> <li>
+<code>'email'</code>: The email address of the contact.</li> <li>
+<code>'address'</code>: The contact's postal address.</li> <li>
+<code>'icon'</code>: The avatar of the contact.</li> </ul> </dd> <dt>
+<code>options</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>Options are as follows: <ul> <li>
+<code>multiple</code>: A Boolean that allows multiple contacts to be selected. The default is <code>false</code>.</li> </ul> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which resolves on successful contact selection.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>InvalidStateError</code></dt> <dd>The browsing context is not top-level or the contact picker is showing a flag. A flag denotes an already existing contact picker, only one picker can exist at any time.</dd> <dt><code>SecurityError</code></dt> <dd>If the method is not triggered by user interaction.</dd> <dt><code>TypeError</code></dt> <dd>If <code>properties</code> is empty, or if any of the specified properties are not supported.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>The following example sets an array of properties to be retrieved for each contact, as well as setting an options object to allow for multiple contacts to be selected.</p> <p>An asynchronous function is then defined which uses the <code>select()</code> method to present the user with a contact picker interface and handle the chosen results.</p> <pre data-language="js"><span class="token keyword">const</span> props <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'name'</span><span class="token punctuation">,</span> <span class="token string">'email'</span><span class="token punctuation">,</span> <span class="token string">'tel'</span><span class="token punctuation">,</span> <span class="token string">'address'</span><span class="token punctuation">,</span> <span class="token string">'icon'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> opts <span class="token operator">=</span> <span class="token punctuation">{</span>multiple<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">getContacts</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> contacts <span class="token operator">=</span> <span class="token keyword">await</span> navigator<span class="token punctuation">.</span>contacts<span class="token punctuation">.</span><span class="token function">select</span><span class="token punctuation">(</span>props<span class="token punctuation">,</span> opts<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token function">handleResults</span><span class="token punctuation">(</span>contacts<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Handle any errors here.</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre> <p><code>handleResults()</code> is a developer defined function.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://wicg.github.io/contact-api/spec/#contacts-manager-select" hreflang="en" rel=" noopener">Contact Picker API<br><small>The definition of 'select' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>select</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/ContactsManager/select" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ContactsManager/select</a>
+  </p>
+</div>

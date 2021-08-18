@@ -1,0 +1,32 @@
+<h1>TypeError: property "x" is non-configurable and can't be deleted</h1> <p>The JavaScript exception "property is non-configurable and can't be deleted" occurs when it was attempted to delete a property, but that property is <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#properties">non-configurable</a>.</p>
+<h2 id="message">Message</h2>
+<pre data-language="js">TypeError<span class="token operator">:</span> Calling <span class="token keyword">delete</span> on <span class="token string">'x'</span> is not allowed <span class="token keyword">in</span> strict <span class="token function">mode</span> <span class="token punctuation">(</span>Edge<span class="token punctuation">)</span>
+TypeError<span class="token operator">:</span> property <span class="token string">"x"</span> is non<span class="token operator">-</span>configurable and can't be deleted<span class="token punctuation">.</span> <span class="token punctuation">(</span>Firefox<span class="token punctuation">)</span>
+TypeError<span class="token operator">:</span> Cannot <span class="token keyword">delete</span> property <span class="token string">'x'</span> <span class="token keyword">of</span> #<span class="token operator">&lt;</span>Object<span class="token operator">&gt;</span> <span class="token punctuation">(</span>Chrome<span class="token punctuation">)</span>
+</pre>
+<h2 id="error_type">Error type</h2>
+<p><a href="../global_objects/typeerror"><code>TypeError</code></a> in strict mode only.</p>
+<h2 id="what_went_wrong">What went wrong?</h2>
+<p>It was attempted to delete a property, but that property is <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#properties">non-configurable</a>. The <code>configurable</code> attribute controls whether the property can be deleted from the object and whether its attributes (other than <code>writable</code>) can be changed. </p> <p>This error happens only in <a href="../strict_mode">strict mode code</a>. In non-strict code, the operation returns <code>false</code>.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="attempting_to_delete_non-configurable_properties">Attempting to delete non-configurable properties</h3>
+<p>Non-configurable properties are not super common, but they can be created using <a href="../global_objects/object/defineproperty"><code>Object.defineProperty()</code></a> or <a href="../global_objects/object/freeze"><code>Object.freeze()</code></a>.</p> <pre data-language="js"><span class="token string">'use strict'</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">freeze</span><span class="token punctuation">(</span><span class="token punctuation">{</span>name<span class="token operator">:</span> <span class="token string">'Elsa'</span><span class="token punctuation">,</span> score<span class="token operator">:</span> <span class="token number">157</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">delete</span> obj<span class="token punctuation">.</span>score<span class="token punctuation">;</span>  <span class="token comment">// TypeError</span>
+
+<span class="token string">'use strict'</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>value<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">,</span> configurable<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">delete</span> obj<span class="token punctuation">.</span>foo<span class="token punctuation">;</span>  <span class="token comment">// TypeError</span>
+
+<span class="token string">'use strict'</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> frozenArray <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">freeze</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+frozenArray<span class="token punctuation">.</span><span class="token function">pop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// TypeError</span>
+</pre> <p>There are also a few non-configurable properties built into JavaScript. Maybe you tried to delete a mathematical constant.</p> <pre data-language="js"><span class="token string">'use strict'</span><span class="token punctuation">;</span>
+<span class="token keyword">delete</span> Math<span class="token punctuation">.</span><span class="token constant">PI</span><span class="token punctuation">;</span>  <span class="token comment">// TypeError</span></pre>
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../operators/delete">delete operator</a> </li> <li><a href="../global_objects/object/defineproperty"><code>Object.defineProperty()</code></a></li> <li><a href="../global_objects/object/freeze"><code>Object.freeze()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Cant_delete" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Cant_delete</a>
+  </p>
+</div>

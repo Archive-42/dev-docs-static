@@ -1,0 +1,76 @@
+<h1>AudioWorkletGlobalScope.registerProcessor</h1>
+
+ <p>The <code>registerProcessor</code> method of the <a href="../audioworkletglobalscope"><code>AudioWorkletGlobalScope</code></a> interface registers a class constructor derived from <a href="../audioworkletprocessor"><code>AudioWorkletProcessor</code></a> interface under a specified <em>name</em>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">AudioWorkletGlobalScope<span class="token punctuation">.</span><span class="token function">registerProcessor</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> processorCtor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>name</code></dt> <dd>A string representing the name under which the processor will be registered.</dd> <dt><code>processorCtor</code></dt> <dd>The constructor of a class derived from <a href="../audioworkletprocessor"><code>AudioWorkletProcessor</code></a>.</dd> </dl> <div class="notecard note"> <p><strong>Note</strong>: A key-value pair <code>{ <em>name:</em> constructor }</code> is saved internally in the <a href="../audioworkletglobalscope"><code>AudioWorkletGlobalScope</code></a> once the processor is registered. The <em>name</em> is to be referred to when creating an <a href="../audioworkletnode"><code>AudioWorkletNode</code></a> based on the registered processor. A new processor by the given name is internally created and associated with the new node.</p> </div>
+<h3 id="return_value">Return value</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"><code>undefined</code></a></p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>NotSupportedError</code></dt> <dd> <ul> <li>The <em>name</em> is an empty string, or</li> <li>a constructor under the given <em>name</em> is already registered. Registering the same name twice is not allowed.</li> </ul> </dd> <dt><code>TypeError</code></dt> <dd> <ul> <li>The <em>processorCtor</em> is not a callable constructor, or</li> <li>the <a href="../audioworkletprocessor/parameterdescriptors"><code>parameterDescriptors</code></a> property of the constructor exists and doesn't return an array of <a href="../audioparamdescriptor"><code>AudioParamDescriptor</code></a>-based objects.</li> </ul> </dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>In this example we create a custom <code>AudioWorkletNode</code> that outputs silence. </p> <p>First, we need to define a custom <a href="../audioworkletprocessor"><code>AudioWorkletProcessor</code></a> and register it. Note that this should be done in a separate file.</p> <pre data-language="js"><span class="token comment">// test-processor.js</span>
+<span class="token keyword">class</span> <span class="token class-name">TestProcessor</span> <span class="token keyword">extends</span> <span class="token class-name">AudioWorkletProcessor</span> <span class="token punctuation">{</span>
+  <span class="token function">process</span> <span class="token punctuation">(</span><span class="token parameter">inputs<span class="token punctuation">,</span> outputs<span class="token punctuation">,</span> parameters</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token boolean">true</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">registerProcessor</span><span class="token punctuation">(</span><span class="token string">'test-processor'</span><span class="token punctuation">,</span> TestProcessor<span class="token punctuation">)</span>
+</pre> <p>Next, in our main script file we'll load the processor, create an instance of <code>AudioWorkletNode</code> — passing it the processor name that we used when calling <code>registerProcessor</code> — and connect it to an audio graph.</p> <pre data-language="js"><span class="token keyword">const</span> audioContext <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token keyword">await</span> audioContext<span class="token punctuation">.</span>audioWorklet<span class="token punctuation">.</span><span class="token function">addModule</span><span class="token punctuation">(</span><span class="token string">'test-processor.js'</span><span class="token punctuation">)</span>
+<span class="token keyword">const</span> node <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioWorkletNode</span><span class="token punctuation">(</span>audioContext<span class="token punctuation">,</span> <span class="token string">'test-processor'</span><span class="token punctuation">)</span>
+node<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>audioContext<span class="token punctuation">.</span>destination<span class="token punctuation">)</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://webaudio.github.io/web-audio-api/#dom-audioworkletglobalscope-registerprocessor" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'registerProcessor()' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>registerProcessor</code></th>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../web_audio_api/using_web_audio_api">Using the Web Audio API</a> </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioWorkletGlobalScope/registerProcessor" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/AudioWorkletGlobalScope/registerProcessor</a>
+  </p>
+</div>

@@ -1,0 +1,183 @@
+<h1>Private class fields</h1> <p>Class properties are public by default and can be examined or modified outside the class. There is however <a href="https://github.com/tc39/proposal-private-methods" rel=" noopener">a stage 3 proposal</a> to allow defining private class fields using a hash <code>#</code> prefix.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">ClassWithPrivateField</span> <span class="token punctuation">{</span>
+  #privateField
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">ClassWithPrivateMethod</span> <span class="token punctuation">{</span>
+  <span class="token function">#privateMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'hello world'</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">ClassWithPrivateStaticField</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> #<span class="token constant">PRIVATE_STATIC_FIELD</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="private_static_fields">Private static fields</h3>
+<p>Private fields are accessible on the class constructor from inside the class declaration itself.</p> <p>The limitation of static variables being called by only static methods still holds.</p> <pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">ClassWithPrivateStaticField</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> #<span class="token constant">PRIVATE_STATIC_FIELD</span>
+
+  <span class="token keyword">static</span> <span class="token function">publicStaticMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    ClassWithPrivateStaticField<span class="token punctuation">.</span>#<span class="token constant">PRIVATE_STATIC_FIELD</span> <span class="token operator">=</span> <span class="token number">42</span>
+    <span class="token keyword">return</span> ClassWithPrivateStaticField<span class="token punctuation">.</span>#<span class="token constant">PRIVATE_STATIC_FIELD</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+console<span class="token punctuation">.</span><span class="token function">assert</span><span class="token punctuation">(</span>ClassWithPrivateStaticField<span class="token punctuation">.</span><span class="token function">publicStaticMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token number">42</span><span class="token punctuation">)</span></pre> <p>Private static fields are added to the class constructor at class evaluation time.</p> <p>There is a provenance restriction on private static fields. Only the class which defines the private static field can access the field.</p> <p>This can lead to unexpected behavior when using <code>this</code>.</p> <pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">BaseClassWithPrivateStaticField</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> #<span class="token constant">PRIVATE_STATIC_FIELD</span>
+
+  <span class="token keyword">static</span> <span class="token function">basePublicStaticMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>#<span class="token constant">PRIVATE_STATIC_FIELD</span> <span class="token operator">=</span> <span class="token number">42</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>#<span class="token constant">PRIVATE_STATIC_FIELD</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">SubClass</span> <span class="token keyword">extends</span> <span class="token class-name">BaseClassWithPrivateStaticField</span> <span class="token punctuation">{</span> <span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> error <span class="token operator">=</span> <span class="token keyword">null</span>
+
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+  SubClass<span class="token punctuation">.</span><span class="token function">basePublicStaticMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span> error <span class="token operator">=</span> e<span class="token punctuation">}</span>
+
+console<span class="token punctuation">.</span><span class="token function">assert</span><span class="token punctuation">(</span>error <span class="token keyword">instanceof</span> <span class="token class-name">TypeError</span><span class="token punctuation">)</span>
+</pre>
+<h3 id="private_instance_fields">Private instance fields</h3>
+<p>Private instance fields are declared with <strong># names</strong> (pronounced "<em>hash names</em>"), which are identifiers prefixed with <code>#</code>. The <code>#</code> is a part of the name itself. It is used for declaration and accessing as well.</p> <p>The encapsulation is enforced by the language. It is a syntax error to refer to <code>#</code> names from out of scope.</p> <pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">ClassWithPrivateField</span> <span class="token punctuation">{</span>
+  #privateField
+
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>#privateField <span class="token operator">=</span> <span class="token number">42</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>#randomField <span class="token operator">=</span> <span class="token number">444</span> <span class="token comment">// Syntax error</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ClassWithPrivateField</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+instance<span class="token punctuation">.</span>#privateField <span class="token operator">===</span> <span class="token number">42</span> <span class="token comment">// Syntax error</span>
+</pre>
+<h3 id="private_methods">Private methods</h3>
+<h4 id="private_static_methods">Private static methods</h4> <p>Like their public equivalent, private static methods are called on the class itself, not instances of the class. Like private static fields, they are only accessible from inside the class declaration.</p> <p>Private static methods may be generator, async, and async generator functions.</p> <pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">ClassWithPrivateStaticMethod</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> <span class="token function">#privateStaticMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">42</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">static</span> <span class="token function">publicStaticMethod1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> ClassWithPrivateStaticMethod<span class="token punctuation">.</span><span class="token function">#privateStaticMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">static</span> <span class="token function">publicStaticMethod2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">#privateStaticMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+console<span class="token punctuation">.</span><span class="token function">assert</span><span class="token punctuation">(</span>ClassWithPrivateStaticMethod<span class="token punctuation">.</span><span class="token function">publicStaticMethod1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token number">42</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">assert</span><span class="token punctuation">(</span>ClassWithPrivateStaticMethod<span class="token punctuation">.</span><span class="token function">publicStaticMethod2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token number">42</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>This can lead to unexpected behavior when using <code>this</code>. In the following example <code>this</code> refers to the <code>Derived</code> class (not the <code>Base</code> class) when we try to call <code>Derived.publicStaticMethod2()</code>, and thus exhibits the same "provenance restriction" as mentioned above:</p> <pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">Base</span> <span class="token punctuation">{</span>
+  <span class="token keyword">static</span> <span class="token function">#privateStaticMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token number">42</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">static</span> <span class="token function">publicStaticMethod1</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> Base<span class="token punctuation">.</span><span class="token function">#privateStaticMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">static</span> <span class="token function">publicStaticMethod2</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">#privateStaticMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">class</span> <span class="token class-name">Derived</span> <span class="token keyword">extends</span> <span class="token class-name">Base</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Derived<span class="token punctuation">.</span><span class="token function">publicStaticMethod1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 42</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>Derived<span class="token punctuation">.</span><span class="token function">publicStaticMethod2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// TypeError</span>
+</pre> <h4 id="private_instance_methods">Private instance methods</h4> <p>Private instance methods are methods available on class instances whose access is restricted in the same manner as private instance fields.</p> <pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">ClassWithPrivateMethod</span> <span class="token punctuation">{</span>
+  <span class="token function">#privateMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'hello world'</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token function">getPrivateMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">#privateMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> instance <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ClassWithPrivateMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>instance<span class="token punctuation">.</span><span class="token function">getPrivateMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">// expected output: "hello world"</span></pre> <p>Private instance methods may be generator, async, or async generator functions. Private getters and setters are also possible:</p> <pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">ClassWithPrivateAccessor</span> <span class="token punctuation">{</span>
+  #message
+
+  get <span class="token function">#decoratedMessage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">✨</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span><span class="token keyword">this</span><span class="token punctuation">.</span>#message<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">✨</span><span class="token template-punctuation string">`</span></span>
+  <span class="token punctuation">}</span>
+  set <span class="token function">#decoratedMessage</span><span class="token punctuation">(</span><span class="token parameter">msg</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>#message <span class="token operator">=</span> msg
+  <span class="token punctuation">}</span>
+
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>#decoratedMessage <span class="token operator">=</span> <span class="token string">'hello world'</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>#decoratedMessage<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">new</span> <span class="token class-name">ClassWithPrivateAccessor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// expected output: "✨hello world✨"</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/proposal-class-fields/#prod-PrivateIdentifier">Public and private instance fields proposal (Public and private instance fields proposal)<br> <small>#prod-PrivateIdentifier</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>Private_class_fields</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds. See <a href="https://bugzil.la/1562054">bug 1562054</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds. See <a href="https://bugzil.la/1562054">bug 1562054</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="public_class_fields">Public class fields</a></li> <li>
+<a href="https://v8.dev/features/class-fields" rel=" noopener">Public and private class fields</a> article at the v8.dev site.</li> <li>
+<a href="https://github.com/tc39/proposal-class-fields#class-field-declarations-for-javascript" rel=" noopener">Class field declarations for JavaScript</a> explainer, by the <a href="https://github.com/tc39/proposal-class-fields" rel=" noopener">Public and private instance fields</a> authors</li> <li><a href="https://rfrn.org/~shu/2018/05/02/the-semantics-of-all-js-class-elements.html" rel=" noopener">The Semantics of All JS Class Elements</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields</a>
+  </p>
+</div>

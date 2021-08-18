@@ -1,0 +1,75 @@
+<h1>Function.caller</h1> <div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div> <p>The <code><var>function</var>.caller</code> property returns the function that invoked the specified function. It returns <code>null</code> for strict, async function and generator function callers.</p>
+<h2 id="description">Description</h2>
+<p>If the function <code>f</code> was invoked by the top level code, the value of <code>f.caller</code> is <a href="../null"><code>null</code></a>, otherwise it's the function that called <code>f</code>. It's also <code>null</code> for strict, async function and generator function callers.</p> <p>This property replaces the obsolete <a class="page-not-created"><code>arguments.caller</code></a> property of the <a href="../../functions/arguments"><code>arguments</code></a> object.</p> <p>The special property <code>__caller__</code>, which returned the activation object of the caller thus allowing to reconstruct the stack, was removed for security reasons.</p>
+<h3 id="notes">Notes</h3>
+<p>Note that in case of recursion, you can't reconstruct the call stack using this property. Consider:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token parameter">n</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token function">g</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">g</span><span class="token punctuation">(</span><span class="token parameter">n</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token function">f</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span> <span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span>
+<span class="token function">f</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>At the moment <code>stop()</code> is called the call stack will be:</p> <pre data-language="js"><span class="token function">f</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token function">g</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token function">g</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">&gt;</span> <span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+</pre> <p>The following is true:</p> <pre data-language="js">stop<span class="token punctuation">.</span>caller <span class="token operator">===</span> g <span class="token operator">&amp;&amp;</span> f<span class="token punctuation">.</span>caller <span class="token operator">===</span> g <span class="token operator">&amp;&amp;</span> g<span class="token punctuation">.</span>caller <span class="token operator">===</span> f
+</pre> <p>so if you tried to get the stack trace in the <code>stop()</code> function like this:</p> <pre data-language="js"><span class="token keyword">var</span> f <span class="token operator">=</span> stop<span class="token punctuation">;</span>
+<span class="token keyword">var</span> stack <span class="token operator">=</span> <span class="token string">'Stack trace:'</span><span class="token punctuation">;</span>
+<span class="token keyword">while</span> <span class="token punctuation">(</span>f<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  stack <span class="token operator">+=</span> <span class="token string">'\n'</span> <span class="token operator">+</span> f<span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+  f <span class="token operator">=</span> f<span class="token punctuation">.</span>caller<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>the loop would never stop.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="checking_the_value_of_a_functions_caller_property">Checking the value of a function's <code>caller</code> property</h3>
+<p>The following code checks the value a function's <code>caller</code> property.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">myFunc</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>myFunc<span class="token punctuation">.</span>caller <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'The function was called from the top!'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token string">'This function\'s caller was '</span> <span class="token operator">+</span> myFunc<span class="token punctuation">.</span>caller<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<p><span class="pl-s">Not part of any standard.</span></p>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>caller</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>9.6</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="name"><code>Function.name</code></a></li> <li><a href="../../functions/arguments"><code>arguments</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/caller</a>
+  </p>
+</div>

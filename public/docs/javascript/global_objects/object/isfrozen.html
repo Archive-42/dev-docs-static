@@ -1,0 +1,150 @@
+<h1>Object.isFrozen()</h1> <p>The <code>Object.isFrozen()</code> determines if an object is <a href="freeze">frozen</a>.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/object-isfrozen.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js">Object<span class="token punctuation">.</span><span class="token function">isFrozen</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>obj</var></code></dt> <dd>The object which should be checked.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="../boolean"><code>Boolean</code></a> indicating whether or not the given object is frozen.</p>
+<h2 id="description">Description</h2>
+<p>An object is frozen if and only if it is not <a href="isextensible">extensible</a>, all its properties are non-configurable, and all its data properties (that is, properties which are not accessor properties with getter or setter components) are non-writable.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_object.isfrozen">Using Object.isFrozen</h3>
+<pre data-language="js"><span class="token comment">// A new object is extensible, so it is not frozen.</span>
+Object<span class="token punctuation">.</span><span class="token function">isFrozen</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// === false</span>
+
+<span class="token comment">// An empty object which is not extensible</span>
+<span class="token comment">// is vacuously frozen.</span>
+<span class="token keyword">var</span> vacuouslyFrozen <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">preventExtensions</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">isFrozen</span><span class="token punctuation">(</span>vacuouslyFrozen<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// === true</span>
+
+<span class="token comment">// A new object with one property is also extensible,</span>
+<span class="token comment">// ergo not frozen.</span>
+<span class="token keyword">var</span> oneProp <span class="token operator">=</span> <span class="token punctuation">{</span> p<span class="token operator">:</span> <span class="token number">42</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">isFrozen</span><span class="token punctuation">(</span>oneProp<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// === false</span>
+
+<span class="token comment">// Preventing extensions to the object still doesn't</span>
+<span class="token comment">// make it frozen, because the property is still</span>
+<span class="token comment">// configurable (and writable).</span>
+Object<span class="token punctuation">.</span><span class="token function">preventExtensions</span><span class="token punctuation">(</span>oneProp<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">isFrozen</span><span class="token punctuation">(</span>oneProp<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// === false</span>
+
+<span class="token comment">// ...but then deleting that property makes the object</span>
+<span class="token comment">// vacuously frozen.</span>
+<span class="token keyword">delete</span> oneProp<span class="token punctuation">.</span>p<span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">isFrozen</span><span class="token punctuation">(</span>oneProp<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// === true</span>
+
+<span class="token comment">// A non-extensible object with a non-writable</span>
+<span class="token comment">// but still configurable property is not frozen.</span>
+<span class="token keyword">var</span> nonWritable <span class="token operator">=</span> <span class="token punctuation">{</span> e<span class="token operator">:</span> <span class="token string">'plep'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">preventExtensions</span><span class="token punctuation">(</span>nonWritable<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>nonWritable<span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  writable<span class="token operator">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// make non-writable</span>
+Object<span class="token punctuation">.</span><span class="token function">isFrozen</span><span class="token punctuation">(</span>nonWritable<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// === false</span>
+
+<span class="token comment">// Changing that property to non-configurable</span>
+<span class="token comment">// then makes the object frozen.</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>nonWritable<span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  configurable<span class="token operator">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// make non-configurable</span>
+Object<span class="token punctuation">.</span><span class="token function">isFrozen</span><span class="token punctuation">(</span>nonWritable<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// === true</span>
+
+<span class="token comment">// A non-extensible object with a non-configurable</span>
+<span class="token comment">// but still writable property also isn't frozen.</span>
+<span class="token keyword">var</span> nonConfigurable <span class="token operator">=</span> <span class="token punctuation">{</span> release<span class="token operator">:</span> <span class="token string">'the kraken!'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">preventExtensions</span><span class="token punctuation">(</span>nonConfigurable<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>nonConfigurable<span class="token punctuation">,</span> <span class="token string">'release'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  configurable<span class="token operator">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">isFrozen</span><span class="token punctuation">(</span>nonConfigurable<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// === false</span>
+
+<span class="token comment">// Changing that property to non-writable</span>
+<span class="token comment">// then makes the object frozen.</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>nonConfigurable<span class="token punctuation">,</span> <span class="token string">'release'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  writable<span class="token operator">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">isFrozen</span><span class="token punctuation">(</span>nonConfigurable<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// === true</span>
+
+<span class="token comment">// A non-extensible object with a configurable</span>
+<span class="token comment">// accessor property isn't frozen.</span>
+<span class="token keyword">var</span> accessor <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token keyword">get</span> <span class="token function">food</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token string">'yum'</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">preventExtensions</span><span class="token punctuation">(</span>accessor<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">isFrozen</span><span class="token punctuation">(</span>accessor<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// === false</span>
+
+<span class="token comment">// ...but make that property non-configurable</span>
+<span class="token comment">// and it becomes frozen.</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>accessor<span class="token punctuation">,</span> <span class="token string">'food'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  configurable<span class="token operator">:</span> <span class="token boolean">false</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">isFrozen</span><span class="token punctuation">(</span>accessor<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// === true</span>
+
+<span class="token comment">// But the easiest way for an object to be frozen</span>
+<span class="token comment">// is if Object.freeze has been called on it.</span>
+<span class="token keyword">var</span> frozen <span class="token operator">=</span> <span class="token punctuation">{</span> <span class="token number">1</span><span class="token operator">:</span> <span class="token number">81</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">isFrozen</span><span class="token punctuation">(</span>frozen<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// === false</span>
+Object<span class="token punctuation">.</span><span class="token function">freeze</span><span class="token punctuation">(</span>frozen<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">isFrozen</span><span class="token punctuation">(</span>frozen<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// === true</span>
+
+<span class="token comment">// By definition, a frozen object is non-extensible.</span>
+Object<span class="token punctuation">.</span><span class="token function">isExtensible</span><span class="token punctuation">(</span>frozen<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// === false</span>
+
+<span class="token comment">// Also by definition, a frozen object is sealed.</span>
+Object<span class="token punctuation">.</span><span class="token function">isSealed</span><span class="token punctuation">(</span>frozen<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// === true</span>
+</pre>
+<h3 id="non-object_coercion">Non-object coercion</h3>
+<p>In ES5, if the argument to this method is not an object (a primitive), then it will cause a <a href="../typeerror"><code>TypeError</code></a>. In ES2015, a non-object argument will be treated as if it was a frozen ordinary object, return <code>true</code>.</p> <pre data-language="js">Object<span class="token punctuation">.</span><span class="token function">isFrozen</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// TypeError: 1 is not an object (ES5 code)</span>
+
+Object<span class="token punctuation">.</span><span class="token function">isFrozen</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// true                          (ES2015 code)</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> </tr> </thead> <tbody> <tr> <td><a href="https://tc39.es/ecma262/#sec-object.isfrozen" hreflang="en" rel=" noopener">ECMAScript (ECMA-262)<br><small>The definition of 'Object.isFrozen' in that specification.</small></a></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>isFrozen</code></th>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="freeze"><code>Object.freeze()</code></a></li> <li><a href="preventextensions"><code>Object.preventExtensions()</code></a></li> <li><a href="isextensible"><code>Object.isExtensible()</code></a></li> <li><a href="seal"><code>Object.seal()</code></a></li> <li><a href="issealed"><code>Object.isSealed()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isFrozen" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isFrozen</a>
+  </p>
+</div>

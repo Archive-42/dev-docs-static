@@ -1,0 +1,95 @@
+<h1>Node.isConnected</h1> <p>The <code>isConnected</code> read-only property of the <a href="../node"><code>Node</code></a> interface returns a boolean indicating whether the node is connected (directly or indirectly) to the context object, for example the <a href="../document"><code>Document</code></a> object in the case of the normal DOM, or the <a href="../shadowroot"><code>ShadowRoot</code></a> in the case of a shadow DOM.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> isItConnected <span class="token operator">=</span> nodeObjectInstance<span class="token punctuation">.</span>isConnected</pre>
+<h3 id="return_value">Return value</h3>
+<p><code>true</code> if the node is connected to its relevant context object, and <code>false</code> if not.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="standard_dom">Standard DOM</h3>
+<p>A standard DOM example:</p> <pre data-language="js"><span class="token keyword">let</span> test <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'p'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>test<span class="token punctuation">.</span>isConnected<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Returns false</span>
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>test<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>test<span class="token punctuation">.</span>isConnected<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Returns true</span>
+</pre>
+<h3 id="shadow_dom">Shadow DOM</h3>
+<p>A shadow DOM example:</p> <pre data-language="js"><span class="token comment">// Create a shadow root</span>
+<span class="token keyword">var</span> shadow <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">attachShadow</span><span class="token punctuation">(</span><span class="token punctuation">{</span>mode<span class="token operator">:</span> <span class="token string">'open'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Create some CSS to apply to the shadow dom</span>
+<span class="token keyword">var</span> style <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'style'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>style<span class="token punctuation">.</span>isConnected<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// returns false</span>
+
+style<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">
+.wrapper {
+  position: relative;
+}
+
+.info {
+  font-size: 0.8rem;
+  width: 200px;
+  display: inline-block;
+  border: 1px solid black;
+  padding: 10px;
+  background: white;
+  border-radius: 10px;
+  opacity: 0;
+  transition: 0.6s all;
+  positions: absolute;
+  bottom: 20px;
+  left: 10px;
+  z-index: 3
+}
+</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+
+<span class="token comment">// Attach the created style element to the shadow dom</span>
+
+shadow<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>style<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>style<span class="token punctuation">.</span>isConnected<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Returns true</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://dom.spec.whatwg.org/#dom-node-isconnected" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'isConnected' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>isConnected</code></th>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://gist.github.com/eligrey/f109a6d0bf4efe3461201c3d7b745e8f" rel=" noopener">Node.prototype.isConnected polyfill</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/isConnected" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Node/isConnected</a>
+  </p>
+</div>

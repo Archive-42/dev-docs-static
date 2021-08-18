@@ -1,0 +1,108 @@
+<h1>DOMPoint</h1> <p>A <code>DOMPoint</code> object represents a 2D or 3D point in a coordinate system; it includes values for the coordinates in up to three dimensions, as well as an optional perspective value. <code>DOMPoint</code> is based on <a href="dompointreadonly"><code>DOMPointReadOnly</code></a> but allows its properties' values to be changed.</p> <p>In general, a positive <code>x</code> component represents a position to the right of the origin, a positive <code>y</code> component is downward from the origin, and a positive <code>z</code> component extends outward from the screen (in other words, toward the user).</p>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="dompoint/dompoint"><code>DOMPoint()</code></a></dt> <dd>Creates and returns a new <code>DOMPoint</code> object given the values of zero or more of its coordinate components and optionally the <code>w</code> perspective value. You can also use an existing <code>DOMPoint</code> or <code>DOMPointReadOnly</code> or a <a href="dompointinit"><code>DOMPointInit</code></a> dictionary to create a new point by calling the <a href="dompoint/frompoint"><code>DOMPoint.fromPoint()</code></a> static method.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<p><em><code>DOMPoint</code> inherits methods from its parent, <a href="dompointreadonly"><code>DOMPointReadOnly</code></a>.</em></p>
+<h2 id="static_methods">Static methods</h2>
+<dl> <dt><a href="dompoint/frompoint"><code>DOMPoint.fromPoint()</code></a></dt> <dd>Creates a new mutable <code>DOMPoint</code> object given an existing point (or a <a href="dompointinit"><code>DOMPointInit</code></a> dictionary) which provides the values for its properties.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<p><em><code>DOMPoint</code> inherits properties from its parent, <a href="dompointreadonly"><code>DOMPointReadOnly</code></a>.</em></p> <dl> <dt><a href="dompointreadonly/x"><code>DOMPoint.x</code></a></dt> <dd>The <code>x</code> coordinate of the <code>DOMPoint</code>.</dd> <dt><a href="dompointreadonly/y"><code>DOMPoint.y</code></a></dt> <dd>The <code>y</code> coordinate of the <code>DOMPoint</code>.</dd> <dt><a href="dompointreadonly/z"><code>DOMPoint.z</code></a></dt> <dd>The <code>z</code> coordinate of the <code>DOMPoint</code>.</dd> <dt><a href="dompointreadonly/w"><code>DOMPoint.w</code></a></dt> <dd>The perspective value of the <code>DOMPoint</code>.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>In the <a href="webxr_device_api">WebXR Device API</a>, <code>DOMPointReadOnly</code> values are used to represent positions and orientations. In the following snippet, the pose of the XR device (such as a VR headset or phone with AR capabilities) can be retrieved by calling using <a href="xrframe/getviewerpose"><code>XRFrame.getViewerPose()</code></a> during an <a href="xrsession"><code>XRSession</code></a> animation frame, then accessing the resulting <a href="xrpose"><code>XRPose</code></a>'s <a href="xrpose/transform"><code>transform</code></a> property, which contains two <code>DOMPointReadOnly</code> attributes: <a href="xrrigidtransform/position"><code>position</code></a> as a vector and <a class="page-not-created"><code>orientation</code></a> as a quaternion.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">onXRFrame</span><span class="token punctuation">(</span><span class="token parameter">time<span class="token punctuation">,</span> xrFrame</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> viewerPose <span class="token operator">=</span> xrFrame<span class="token punctuation">.</span><span class="token function">getViewerPose</span><span class="token punctuation">(</span>xrReferenceSpace<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>viewerPose<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> position <span class="token operator">=</span> viewerPose<span class="token punctuation">.</span>transform<span class="token punctuation">.</span>position<span class="token punctuation">;</span>
+    <span class="token keyword">let</span> orientation <span class="token operator">=</span> viewerPose<span class="token punctuation">.</span>transform<span class="token punctuation">.</span>orientation<span class="token punctuation">;</span>
+
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'XR Viewer Position: {x: '</span> <span class="token operator">+</span> <span class="token function">roundToTwo</span><span class="token punctuation">(</span>position<span class="token punctuation">.</span>x<span class="token punctuation">)</span>
+                                 <span class="token operator">+</span> <span class="token string">', y: '</span> <span class="token operator">+</span> <span class="token function">roundToTwo</span><span class="token punctuation">(</span>position<span class="token punctuation">.</span>y<span class="token punctuation">)</span>
+                                 <span class="token operator">+</span> <span class="token string">', z: '</span> <span class="token operator">+</span> <span class="token function">roundToTwo</span><span class="token punctuation">(</span>position<span class="token punctuation">.</span>z<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'XR Viewer Orientation: {x: '</span> <span class="token operator">+</span> <span class="token function">roundToTwo</span><span class="token punctuation">(</span>orientation<span class="token punctuation">.</span>x<span class="token punctuation">)</span>
+                                    <span class="token operator">+</span> <span class="token string">', y: '</span> <span class="token operator">+</span> <span class="token function">roundToTwo</span><span class="token punctuation">(</span>orientation<span class="token punctuation">.</span>y<span class="token punctuation">)</span>
+                                    <span class="token operator">+</span> <span class="token string">', z: '</span> <span class="token operator">+</span> <span class="token function">roundToTwo</span><span class="token punctuation">(</span>orientation<span class="token punctuation">.</span>z<span class="token punctuation">)</span>
+                                    <span class="token operator">+</span> <span class="token string">', w: '</span> <span class="token operator">+</span> <span class="token function">roundToTwo</span><span class="token punctuation">(</span>orientation<span class="token punctuation">.</span>w<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.fxtf.org/geometry/#DOMPoint" hreflang="en" rel=" noopener">Geometry Interfaces Module Level 1<br><small>The definition of 'DOMPoint' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>DOMPoint</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>DOMPoint</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>worker_support</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="domrect"><code>DOMRect</code></a></li> <li><a href="dommatrix"><code>DOMMatrix</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMPoint" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/DOMPoint</a>
+  </p>
+</div>

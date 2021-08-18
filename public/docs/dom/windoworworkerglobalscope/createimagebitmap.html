@@ -1,0 +1,134 @@
+<h1>self.createImageBitmap()</h1> <p>The <code><strong>createImageBitmap()</strong></code> method creates a bitmap from a given source, optionally cropped to contain only a portion of that source. The method exists on the global scope in both windows and workers. It accepts a variety of different image sources, and returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which resolves to an <a href="../imagebitmap"><code>ImageBitmap</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">const</span> imageBitmapPromise <span class="token operator">=</span> <span class="token function">createImageBitmap</span><span class="token punctuation">(</span>image<span class="token punctuation">[</span><span class="token punctuation">,</span> options<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> imageBitmapPromise <span class="token operator">=</span> <span class="token function">createImageBitmap</span><span class="token punctuation">(</span>image<span class="token punctuation">,</span> sx<span class="token punctuation">,</span> sy<span class="token punctuation">,</span> sw<span class="token punctuation">,</span> sh<span class="token punctuation">[</span><span class="token punctuation">,</span> options<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>image</code></dt> <dd>An image source, which can be an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img"><code>&lt;img&gt;</code></a>, SVG <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/image"><code>&lt;image&gt;</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"><code>&lt;video&gt;</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas"><code>&lt;canvas&gt;</code></a>, <a href="../htmlimageelement"><code>HTMLImageElement</code></a>, <a href="../svgimageelement"><code>SVGImageElement</code></a>, <a href="../htmlvideoelement"><code>HTMLVideoElement</code></a>, <a href="../htmlcanvaselement"><code>HTMLCanvasElement</code></a>, <a href="../blob"><code>Blob</code></a>, <a href="../imagedata"><code>ImageData</code></a>, <a href="../imagebitmap"><code>ImageBitmap</code></a>, or <a href="../offscreencanvas"><code>OffscreenCanvas</code></a> object.</dd> <dt><code>sx</code></dt> <dd>The x coordinate of the reference point of the rectangle from which the <code>ImageBitmap</code> will be extracted.</dd> <dt><code>sy</code></dt> <dd>The y coordinate of the reference point of the rectangle from which the <code>ImageBitmap</code> will be extracted.</dd> <dt><code>sw</code></dt> <dd>The width of the rectangle from which the <code>ImageBitmap</code> will be extracted. This value can be negative.</dd> <dt><code>sh</code></dt> <dd>The height of the rectangle from which the <code>ImageBitmap</code> will be extracted. This value can be negative.</dd> <dt>
+<code>options</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An object that sets options for the image's extraction. The available options are: <ul> <li>
+<code>imageOrientation</code>: Specifies whether the image should be presented as is or flipped vertically. Either <code>none</code> (default) or <code>flipY</code>.</li> <li>
+<code>premultiplyAlpha</code>: Specifies whether the bitmap's color channels should be premultiplied by the alpha channel. One of <code>none</code>, <code>premultiply</code>, or <code>default</code> (default).</li> <li>
+<code>colorSpaceConversion</code>: Specifies whether the image should be decoded using color space conversion. Either <code>none</code> or <code>default</code> (default). The value <code>default</code> indicates that implementation-specific behavior is used.</li> <li>
+<code>resizeWidth</code>: A long integer that indicates the output width.</li> <li>
+<code>resizeHeight</code>: A long integer that indicates the output height.</li> <li>
+<code>resizeQuality</code>: Specifies the algorithm to be used for resizing the input to match the output dimensions. One of <code>pixelated</code>, <code>low</code> (default), <code>medium</code>, or <code>high</code>.</li> </ul> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which resolves to an <a href="../imagebitmap"><code>ImageBitmap</code></a> object containing bitmap data from the given rectangle.</p>
+<h2 id="example">Example</h2>
+<h3 id="creating_sprites_from_a_sprite_sheet">Creating sprites from a sprite sheet</h3>
+<p>This example loads a sprite sheet, extracts individual sprites, and then renders each sprite to the canvas. A sprite sheet is an image containing multiple smaller images, each of which you want to be able to render separately.</p> <pre data-language="js"><span class="token keyword">var</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'myCanvas'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+ctx <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+image <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Image</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Wait for the sprite sheet to load</span>
+image<span class="token punctuation">.</span><span class="token function-variable function">onload</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  Promise<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+    <span class="token comment">// Cut out two sprites from the sprite sheet</span>
+    <span class="token function">createImageBitmap</span><span class="token punctuation">(</span>image<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">createImageBitmap</span><span class="token punctuation">(</span>image<span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">)</span>
+  <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">sprites</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Draw each sprite onto the canvas</span>
+    ctx<span class="token punctuation">.</span><span class="token function">drawImage</span><span class="token punctuation">(</span>sprites<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    ctx<span class="token punctuation">.</span><span class="token function">drawImage</span><span class="token punctuation">(</span>sprites<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">32</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Load the sprite sheet from an image file</span>
+image<span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token string">'sprites.png'</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#dom-createimagebitmap" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'createImageBitmap' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>createImageBitmap</code></th>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>options_parameter</code></th>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>resizeWidth_resizeHeight_resizeQuality</code></th>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>svgimageelement_as_source_image</code></th>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>59</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../canvasrenderingcontext2d/drawimage"><code>CanvasRenderingContext2D.drawImage()</code></a></li> <li><a href="../imagedata"><code>ImageData</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/createImageBitmap" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/createImageBitmap</a>
+  </p>
+</div>

@@ -1,0 +1,223 @@
+<h1>repeating-linear-gradient()</h1> <p>The <code>repeating-linear-gradient()</code> <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> <a href="css_functions">function</a> creates an image consisting of repeating linear gradients. It is similar to <a href="linear-gradient()"><code>linear-gradient()</code></a> and takes the same arguments, but it repeats the color stops infinitely in all directions so as to cover its entire container. The function's result is an object of the <a href="gradient"><code>&lt;gradient&gt;</code></a> data type, which is a special kind of <a href="image"><code>&lt;image&gt;</code></a>.</p> <iframe class="interactive" width="100%" height="390" src="https://interactive-examples.mdn.mozilla.net/pages/css/function-repeating-linear-gradient.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <p>The length of the gradient that repeats is the distance between the first and last color stop. If the first color does not have a color-stop-length, the color-stop-length defaults to 0. With each repetition, the positions of the color stops are shifted by a multiple of the length of the basic linear gradient. Thus, the position of each ending color stop coincides with a starting color stop; if the color values are different, this will result in a sharp visual transition. This can be altered with repeating the first color again as the last color.</p> <p>As with any gradient, a repeating linear gradient has <a href="image#no_intrinsic">no intrinsic dimensions</a>; i.e., it has no natural or preferred size, nor a preferred ratio. Its concrete size will match the size of the element it applies to.</p> <p>Because <code>&lt;gradient&gt;</code>s belong to the <code>&lt;image&gt;</code> data type, they can only be used where <code>&lt;image&gt;</code>s can be used. For this reason, <code>repeating-linear-gradient()</code> won't work on <a href="background-color"><code>background-color</code></a> and other properties that use the <a href="color_value"><code>&lt;color&gt;</code></a> data type.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="css"><span class="token comment">/* A repeating gradient tilted 45 degrees,
+   starting blue and finishing red, repeating 3 times */</span>
+<span class="token function">repeating-linear-gradient</span><span class="token punctuation">(</span>45deg<span class="token punctuation">,</span> blue<span class="token punctuation">,</span> red 33.3%<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* A repeating gradient going from the bottom right to the top left,
+   starting blue and finishing red, repeating every 20px */</span>
+<span class="token function">repeating-linear-gradient</span><span class="token punctuation">(</span>to left top<span class="token punctuation">,</span> blue<span class="token punctuation">,</span> red 20px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* A gradient going from the bottom to top,
+   starting blue, turning green after 40%,
+   and finishing red. This gradient doesn't repeat because
+   the last color stop defaults to 100% */</span>
+<span class="token function">repeating-linear-gradient</span><span class="token punctuation">(</span>0deg<span class="token punctuation">,</span> blue<span class="token punctuation">,</span> green 40%<span class="token punctuation">,</span> red<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* A gradient repeating five times, going from the left to right,
+   starting red, turning green, and back to red */</span>
+<span class="token function">repeating-linear-gradient</span><span class="token punctuation">(</span>to right<span class="token punctuation">,</span> red 0%<span class="token punctuation">,</span> green 10%<span class="token punctuation">,</span> red 20%<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="values">Values</h3>
+<dl> <dt><code>&lt;side-or-corner&gt;</code></dt> <dd>The position of the gradient line's starting point. If specified, it consists of the word <code>to</code> and up to two keywords: one indicates the horizontal side (<code>left</code> or <code>right</code>), and the other the vertical side (<code>top</code> or <code>bottom</code>). The order of the side keywords does not matter. If unspecified, it defaults to <code>to bottom</code>.</dd> <dd>The values <code>to top</code>, <code>to bottom</code>, <code>to left</code>, and <code>to right</code> are equivalent to the angles <code>0deg</code>, <code>180deg</code>, <code>270deg</code>, and <code>90deg</code> respectively. The other values are translated into an angle.</dd> <dt><a href="angle"><code>&lt;angle&gt;</code></a></dt> <dd>The gradient line's angle of direction. A value of <code>0deg</code> is equivalent to <code>to top</code>; increasing values rotate clockwise from there.</dd> <dt><code>&lt;linear-color-stop&gt;</code></dt> <dd>A color-stop's <a href="color_value"><code>&lt;color&gt;</code></a> value, followed by one or two optional stop positions, (each being either a <a href="percentage"><code>&lt;percentage&gt;</code></a> or a <a href="length"><code>&lt;length&gt;</code></a> along the gradient's axis). A percentage of <code>0%</code>, or a length of <code>0</code>, represents the start of the gradient; the value <code>100%</code> is 100% of the image size, meaning the gradient will not repeat.</dd> <dt><code>&lt;color-hint&gt;</code></dt> <dd>Th color-hint is an interpolation hint defining how the gradient progresses between adjacent color stops. The length defines at which point between two color stops the gradient color should reach the midpoint of the color transition. If omitted, the midpoint of the color transition is the midpoint between two color stops.</dd> <dd> <div class="note notecard"> <p><strong>Note:</strong> Rendering of <a href="#gradient_with_multiple_color_stops">color stops in CSS gradients</a> follows the same rules as color stops in <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial/Gradients">SVG gradients</a>.</p> </div> </dd> </dl>
+<h3 id="formal_syntax">Formal syntax</h3>
+<pre data-language="css"><span class="token selector">repeating-linear-gradient(  [ &lt;angle&gt; | to &lt;side-or-corner&gt; ,]? &lt;color-stop-list&gt; )
+                            \---------------------------------/ \---------------/
+                              Definition of the gradient line   List of color stops
+
+where &lt;side-or-corner&gt; = [left | right] || [top | bottom]
+  and &lt;color-stop-list&gt; = [ &lt;linear-color-stop&gt; [, &lt;color-hint&gt;? ]? ]#, &lt;linear-color-stop&gt;
+  and &lt;linear-color-stop&gt; = &lt;color&gt; [ &lt;color-stop-length&gt; ]?
+  and &lt;color-stop-length&gt; = [ &lt;percentage&gt; | &lt;length&gt; ]</span><span class="token punctuation">{</span>1<span class="token punctuation">,</span>2<span class="token punctuation">}</span>
+  and &lt;color-hint&gt; = [ &lt;percentage&gt; | &lt;length&gt; ]
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="zebra_stripes">Zebra stripes</h3>
+<pre data-language="css"><span class="token selector">body</span> <span class="token punctuation">{</span>
+  <span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token function">repeating-linear-gradient</span><span class="token punctuation">(</span>-45deg<span class="token punctuation">,</span>
+      transparent<span class="token punctuation">,</span>
+      transparent 20px<span class="token punctuation">,</span>
+      black 20px<span class="token punctuation">,</span>
+      black 40px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">/* with multiple color stop lengths */</span>
+  <span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token function">repeating-linear-gradient</span><span class="token punctuation">(</span>-45deg<span class="token punctuation">,</span>
+      transparent 0 20px<span class="token punctuation">,</span>
+      black 20px 40px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p><iframe class="sample-code-frame" id="frame_Zebra_stripes" width="120" height="120" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/repeating-linear-gradient()/_samples_/Zebra_stripes" loading="lazy"></iframe></p>
+<h3 id="ten_repeating_horizontal_bars">Ten repeating horizontal bars</h3>
+<pre data-language="css"><span class="token selector">body</span> <span class="token punctuation">{</span>
+  <span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token function">repeating-linear-gradient</span><span class="token punctuation">(</span>to bottom<span class="token punctuation">,</span>
+      <span class="token function">rgb</span><span class="token punctuation">(</span>26<span class="token punctuation">,</span>198<span class="token punctuation">,</span>204<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">rgb</span><span class="token punctuation">(</span>26<span class="token punctuation">,</span>198<span class="token punctuation">,</span>204<span class="token punctuation">)</span> 7%<span class="token punctuation">,</span>
+      <span class="token function">rgb</span><span class="token punctuation">(</span>100<span class="token punctuation">,</span>100<span class="token punctuation">,</span>100<span class="token punctuation">)</span> 10%<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p><iframe class="sample-code-frame" id="frame_Ten_repeating_horizontal_bars" width="120" height="120" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/repeating-linear-gradient()/_samples_/Ten_repeating_horizontal_bars" loading="lazy"></iframe></p> <p>Because the last color stop is 10% and the gradient is vertical, each gradient in the repeated gradient is 10% of the height, fitting 10 horizontal bars.</p> <div class="note notecard"> <p><strong>Note:</strong> Please see <a href="css_images/using_css_gradients">Using CSS gradients</a> for more examples.</p> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/css-images-3/#repeating-gradients" hreflang="en" rel=" noopener">CSS Images Module Level 3<br><small>The definition of 'repeating-linear-gradient()' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>repeating-linear-gradient()</code></th>
+<td class="bc-supports-yes">
+<div>26</div>
+<div>10</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>Before Firefox 36, gradients weren't applied on the pre-multiplied color space, leading to shades of grey unexpectedly appearing when used with transparency.</div>
+<div>3.6</div>
+<div>["Since Firefox 42, the prefixed version of gradients can be disabled by setting <code>layout.css.prefixes.gradients</code> to <code>false</code>.", "Considers <code>&lt;angle&gt;</code> to start to the right, instead of the top. I.e. it considered an angle of <code>0deg</code> as a direction indicator pointing to the right."]</div>
+<div>49</div>
+<div>44</div>
+</td>
+<td class="bc-supports-yes">
+<div>10</div>
+<div>Internet Explorer 5.5 through 9.0 supported gradients via a proprietary filter: <code><a href="https://developer.mozilla.org/docs/Web/CSS/-ms-filter#Gradient">-ms-filter: progid:DXImageTransform.Microsoft.Gradient()</a></code>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>12.1</div>
+<div>15</div>
+<div>Considers <code>&lt;angle&gt;</code> to start to the right, instead of the top. I.e. it considered an angle of <code>0deg</code> as a direction indicator pointing to the right.</div>
+<div>11-15</div>
+<div>Considers <code>&lt;angle&gt;</code> to start to the right, instead of the top. I.e. it considered an angle of <code>0deg</code> as a direction indicator pointing to the right.</div>
+</td>
+<td class="bc-supports-yes">
+<div>6.1</div>
+<div>5.1</div>
+<div>["Safari 4 was supporting an experimental <code><a href="http://developer.apple.com/safari/library/documentation/InternetWeb/Conceptual/SafariVisualEffectsProgGuide/Gradients/Gradient.html">-webkit-gradient(linear,…)</a></code> function. It is more limited than the later standard version: you cannot specify both a position and an angle like in <code>repeating-linear-gradient()</code>. This old outdated syntax is still supported for compatibility purposes.", "Considers <code>&lt;angle&gt;</code> to start to the right, instead of the top. I.e. it considered an angle of <code>0deg</code> as a direction indicator pointing to the right."]</div>
+</td>
+<td class="bc-supports-yes">
+<div>≤37</div>
+<div>≤37</div>
+</td>
+<td class="bc-supports-yes">
+<div>26</div>
+<div>18</div>
+</td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>Before Firefox 36, gradients weren't applied on the pre-multiplied color space, leading to shades of grey unexpectedly appearing when used with transparency.</div>
+<div>4</div>
+<div>["Since Firefox 42, the prefixed version of gradients can be disabled by setting <code>layout.css.prefixes.gradients</code> to <code>false</code>.", "Considers <code>&lt;angle&gt;</code> to start to the right, instead of the top. I.e. it considered an angle of <code>0deg</code> as a direction indicator pointing to the right."]</div>
+<div>49</div>
+<div>44</div>
+</td>
+<td class="bc-supports-yes">
+<div>12.1</div>
+<div>14</div>
+<div>Considers <code>&lt;angle&gt;</code> to start to the right, instead of the top. I.e. it considered an angle of <code>0deg</code> as a direction indicator pointing to the right.</div>
+<div>11-14</div>
+<div>Considers <code>&lt;angle&gt;</code> to start to the right, instead of the top. I.e. it considered an angle of <code>0deg</code> as a direction indicator pointing to the right.</div>
+</td>
+<td class="bc-supports-yes">
+<div>6.1</div>
+<div>6</div>
+<div>["Safari 4 was supporting an experimental <code><a href="http://developer.apple.com/safari/library/documentation/InternetWeb/Conceptual/SafariVisualEffectsProgGuide/Gradients/Gradient.html">-webkit-gradient(linear,…)</a></code> function. It is more limited than the later standard version: you cannot specify both a position and an angle like in <code>repeating-linear-gradient()</code>. This old outdated syntax is still supported for compatibility purposes.", "Considers <code>&lt;angle&gt;</code> to start to the right, instead of the top. I.e. it considered an angle of <code>0deg</code> as a direction indicator pointing to the right."]</div>
+</td>
+<td class="bc-supports-yes">
+<div>1.5</div>
+<div>1.0</div>
+</td>
+</tr>
+<tr>
+<th><code>doubleposition</code></th>
+<td class="bc-supports-yes"><div>71</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>71</div></td>
+<td class="bc-supports-yes"><div>71</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>12.2</div></td>
+<td class="bc-supports-yes"><div>10.0</div></td>
+</tr>
+<tr>
+<th><code>interpolation_hints</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>27</div></td>
+<td class="bc-supports-yes"><div>6.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>27</div></td>
+<td class="bc-supports-yes"><div>6.1</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>to</code></th>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>6.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>6.1</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>unitless_0_angle</code></th>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>46</div>
+<div>Accepted only in <code>-webkit-repeating-linear-gradient()</code> and <code>-moz-repeating-linear-gradient()</code>, not <code>repeating-linear-gradient()</code>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>6.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>46</div>
+<div>Accepted only in <code>-webkit-repeating-linear-gradient()</code> and <code>-moz-repeating-linear-gradient()<code>, not <code>repeating-linear-gradient()</code>.</code></code>
+</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>6.1</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+</tbody>
+</table>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="css_images/using_css_gradients">Using CSS gradients</a></li> <li>Other gradient functions: <a href="linear-gradient()"><code>linear-gradient()</code></a>, <a href="radial-gradient()"><code>radial-gradient()</code></a>, <a href="repeating-radial-gradient()"><code>repeating-radial-gradient()</code></a>, <a href="conic-gradient()"><code>conic-gradient()</code></a>, <a href="repeating-conic-gradient()"><code>repeating-conic-gradient()</code></a>
+</li> <li><a href="image"><code>&lt;image&gt;</code></a></li> <li><a href="image()"><code>image()</code></a></li> <li><a href="element()"><code>element()</code></a></li> <li><a href="image-set()"><code>image-set()</code></a></li> <li><a href="cross-fade()"><code>cross-fade()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/repeating-linear-gradient()" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/repeating-linear-gradient()</a>
+  </p>
+</div>

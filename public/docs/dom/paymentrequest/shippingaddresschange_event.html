@@ -1,0 +1,36 @@
+<h1>PaymentRequest: shippingaddresschange event</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <code>shippingaddresschange</code> event is sent to the <a href="../paymentrequest"><code>PaymentRequest</code></a> object when the user selects a shipping address or changes details of their shipping address.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>No</td> </tr> <tr> <th scope="row">Cancelable</th> <td>No</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../paymentrequestupdateevent"><code>PaymentRequestUpdateEvent</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td><a href="onshippingaddresschange"><code>onshippingaddresschange</code></a></td> </tr> </tbody> </table></div>
+<h2 id="usage_notes">Usage notes</h2>
+<p>Depending on the browser, the shipping address information may be redacted for privacy reasons. That is, the <a href="../paymentaddress"><code>PaymentAddress</code></a> which contains the shipping address may have some portions of its content altered, obscured, or left out entirely in order to prevent identifying the user without their consent (since if they choose to have you ship products to them, you'll need their address).</p>
+<h2 id="example">Example</h2>
+<p>In this example, a handler for the <code>shippingaddresschange</code> event is set up to validate that the address meets requirements set by the web application.</p> <pre data-language="js"><span class="token keyword">const</span> paymentRequest <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PaymentRequest</span><span class="token punctuation">(</span>methodData<span class="token punctuation">,</span> details<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+paymentRequest<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"shippingaddresschange"</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> detailsUpdate <span class="token operator">=</span> <span class="token function">checkAddress</span><span class="token punctuation">(</span>paymentRequest<span class="token punctuation">.</span>shippingAddress<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  event<span class="token punctuation">.</span><span class="token function">updateWith</span><span class="token punctuation">(</span>detailsUpdate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">checkAddress</span> <span class="token operator">=</span> <span class="token parameter">theAddress</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> detailsUpdate <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Check the address, return a PaymentDetailsUpdate object</span>
+  <span class="token comment">// with any changes or errors.</span>
+
+  <span class="token keyword">return</span> detailsUpdate<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre> <p>You can also establish a handler for <code>shippingaddresschange</code> using the <a href="onshippingaddresschange"><code>onshippingaddresschange</code></a> event handler property:</p> <pre data-language="js">paymentRequest<span class="token punctuation">.</span><span class="token function-variable function">onshippingaddresschange</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> detailsUpdate <span class="token operator">=</span> <span class="token function">checkAddress</span><span class="token punctuation">(</span>paymentRequest<span class="token punctuation">.</span>shippingAddress<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  event<span class="token punctuation">.</span><span class="token function">updateWith</span><span class="token punctuation">(</span>detailsUpdate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/payment-request/#dfn-shippingaddresschange" hreflang="en" rel=" noopener">Payment Request API<br><small>The definition of 'shippingaddresschange' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<p>BCD tables only load in the browser</p> 
+ <ul> <li>
+<a href="onshippingaddresschange"><code>onshippingaddresschange</code></a> event handler property</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/shippingaddresschange_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaymentRequest/shippingaddresschange_event</a>
+  </p>
+</div>

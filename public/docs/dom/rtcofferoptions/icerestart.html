@@ -1,0 +1,70 @@
+<h1>RTCOfferOptions.iceRestart</h1> <p>The <code><strong>iceRestart</strong></code> property of the <strong><a href="../rtcofferoptions"><code>RTCOfferOptions</code></a></strong> dictionary is a Boolean value which, when <code>true</code>, tells the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> to start ICE renegotiation.</p> <div class="notecard note"> <p><strong>Note:</strong> Rather than manually creating and submitting an offer with <code>iceRestart</code> set to <code>true</code>, you should consider calling the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> method <a href="../rtcpeerconnection/restartice"><code>restartIce()</code></a> instead.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> options <span class="token operator">=</span> <span class="token punctuation">{</span>
+  iceRestart<span class="token operator">:</span> trueOrFalse
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>A Boolean value indicating whether or not the <code>RTCPeerConnection</code> should generate new values for the connection's ice-ufrag and ice-pwd values, which will trigger ICE renegotiation on the next message sent to the remote peer.</p>
+<h2 id="usage_notes">Usage notes</h2>
+<p>When the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> object's ICE connection state changes to <code>failed</code>, you should try to trigger an <a href="../webrtc_api/session_lifetime#ice_restart">ICE restart</a>. You should ideally do this by calling the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a>'s <a href="../rtcpeerconnection/restartice"><code>restartIce()</code></a> method, if it's available.</p> <p>Fundamentally, this renegotiation is triggered by generating and using new values for the ICE username fragment ("ufrag")}}</p>
+<h2 id="example">Example</h2>
+<p>This example shows a handler for the <code><a href="../rtcpeerconnection/iceconnectionstatechange_event">iceconnectionstatechange</a></code> event. It watches for the ICE connection state to transition to <code>"failed"</code>, which indicates that an ICE restart should be tried in order to attempt to bring the connection back up.</p> <pre data-language="js">pc<span class="token punctuation">.</span><span class="token function-variable function">oniceconnectionstatechange</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">evt</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>pc<span class="token punctuation">.</span>iceConnectionState <span class="token operator">===</span> <span class="token string">"failed"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>pc<span class="token punctuation">.</span>restartIce<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      pc<span class="token punctuation">.</span><span class="token function">restartIce</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      pc<span class="token punctuation">.</span><span class="token function">createOffer</span><span class="token punctuation">(</span><span class="token punctuation">{</span> iceRestart<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>pc<span class="token punctuation">.</span>setLocalDescription<span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>sendOfferToServer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre> <p>If the state changes to <code>failed</code>, this handler starts by looking to see if the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> includes the <a href="../rtcpeerconnection/restartice"><code>restartIce()</code></a> method; if it does, we call that to request an ICE restart. Otherwise, we call back to the older technique: we manually create a new offer with <code>iceRestart</code> set to <code>true</code>, then that offer is set as the new local description for the connection. After that, the offer is sent to the server by calling a custom function <code>sendOfferToServer()</code>.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcofferoptions-icerestart" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCOfferOptions.iceRestart' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>iceRestart</code></th>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCOfferOptions/iceRestart" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCOfferOptions/iceRestart</a>
+  </p>
+</div>

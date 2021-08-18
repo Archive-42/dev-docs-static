@@ -1,0 +1,525 @@
+<h1>MediaRecorder</h1> <p>The <code>MediaRecorder</code> interface of the <a href="mediastream_recording_api">MediaStream Recording API</a> provides functionality to easily record media. It is created using the <a href="mediarecorder/mediarecorder"><code>MediaRecorder()</code></a> constructor.</p>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="mediarecorder/mediarecorder"><code>MediaRecorder()</code></a></dt> <dd>Creates a new <code>MediaRecorder</code> object, given a <a href="mediastream"><code>MediaStream</code></a> to record. Options are available to do things like set the container's MIME type (such as <code>"video/webm"</code> or <code>"video/mp4"</code>) and the bit rates of the audio and video tracks or a single overall bit rate.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<dl> <dt>
+<a href="mediarecorder/mimetype"><code>MediaRecorder.mimeType</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the MIME type that was selected as the recording container for the <code>MediaRecorder</code> object when it was created.</dd> <dt>
+<a href="mediarecorder/state"><code>MediaRecorder.state</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the current state of the <code>MediaRecorder</code> object (<code>inactive</code>, <code>recording</code>, or <code>paused</code>.)</dd> <dt>
+<a href="mediarecorder/stream"><code>MediaRecorder.stream</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the stream that was passed into the constructor when the <code>MediaRecorder</code> was created.</dd> <dt><a href="mediarecorder/ignoremutedmedia"><code>MediaRecorder.ignoreMutedMedia</code></a></dt> <dd>Indicates whether the <code>MediaRecorder</code> instance will record input when the input <a href="mediastreamtrack"><code>MediaStreamTrack</code></a> is muted. If this attribute is <code>false</code>, <code>MediaRecorder</code> will record silence for audio and black frames for video. The default is <code>false</code>.</dd> <dt>
+<a href="mediarecorder/videobitspersecond"><code>MediaRecorder.videoBitsPerSecond</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the video encoding bit rate in use. This may differ from the bit rate specified in the constructor (if it was provided).</dd> <dt>
+<a href="mediarecorder/audiobitspersecond"><code>MediaRecorder.audioBitsPerSecond</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the audio encoding bit rate in use. This may differ from the bit rate specified in the constructor (if it was provided).</dd> </dl>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="mediarecorder/pause"><code>MediaRecorder.pause()</code></a></dt> <dd>Pauses the recording of media.</dd> <dt><a href="mediarecorder/requestdata"><code>MediaRecorder.requestData()</code></a></dt> <dd>Requests a <a href="blob"><code>Blob</code></a> containing the saved data received thus far (or since the last time <code>requestData()</code> was called. After calling this method, recording continues, but in a new <code>Blob</code>.</dd> <dt><a href="mediarecorder/resume"><code>MediaRecorder.resume()</code></a></dt> <dd>Resumes recording of media after having been paused.</dd> <dt><a href="mediarecorder/start"><code>MediaRecorder.start()</code></a></dt> <dd>Begins recording media; this method can optionally be passed a <code>timeslice</code> argument with a value in milliseconds. If this is specified, the media will be captured in separate chunks of that duration, rather than the default behavior of recording the media in a single large chunk.</dd> <dt><a href="mediarecorder/stop"><code>MediaRecorder.stop()</code></a></dt> <dd>Stops recording, at which point a <code><a href="https://developer.mozilla.org/en-US/docs/Web/Events/dataavailable">dataavailable</a></code> event containing the final <code>Blob</code> of saved data is fired. No more recording occurs.</dd> </dl>
+<h2 id="static_methods">Static methods</h2>
+<dl> <dt><a href="mediarecorder/istypesupported"><code>MediaRecorder.isTypeSupported()</code></a></dt> <dd>A static method which returns a <code>true</code> or <code>false</code> value indicating if the given MIME media type is supported by the current user agent. </dd> </dl>
+<h2 id="event_handlers">Event handlers</h2>
+<dl> <dt><a href="mediarecorder/ondataavailable"><code>MediaRecorder.ondataavailable</code></a></dt> <dd>Called to handle the <code><a href="https://developer.mozilla.org/en-US/docs/Web/Events/dataavailable">dataavailable</a></code> event, which is periodically triggered each time <code>timeslice</code> milliseconds of media have been recorded (or when the entire media has been recorded, if <code>timeslice</code> wasn't specified). The event, of type <a href="blobevent"><code>BlobEvent</code></a>, contains the recorded media in its <a href="blobevent/data"><code>data</code></a> property. You can then collect and act upon that recorded media data using this event handler.</dd> <dt><a href="mediarecorder/onerror"><code>MediaRecorder.onerror</code></a></dt> <dd>An <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a> called to handle the <code><a href="element/error_event">error</a></code> event, including reporting errors that arise with media recording. These are fatal errors that stop recording. The received event is based on the <a href="mediarecordererrorevent"><code>MediaRecorderErrorEvent</code></a> interface, whose <a href="mediarecordererrorevent/error"><code>error</code></a> property contains a <a href="domexception"><code>DOMException</code></a> that describes the actual error that occurred.</dd> <dt><a href="mediarecorder/onpause"><code>MediaRecorder.onpause</code></a></dt> <dd>An <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a> called to handle the <code><a href="htmlmediaelement/pause_event">pause</a></code> event, which occurs when media recording is paused.</dd> <dt><a href="mediarecorder/onresume"><code>MediaRecorder.onresume</code></a></dt> <dd>An <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a> called to handle the <code><a href="speechsynthesisutterance/resume_event">resume</a></code> event, which occurs when media recording resumes after being paused.</dd> <dt><a href="mediarecorder/onstart"><code>MediaRecorder.onstart</code></a></dt> <dd>An <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a> called to handle the <code><a href="speechrecognition/start_event">start</a></code> event, which occurs when media recording starts.</dd> <dt><a href="mediarecorder/onstop"><code>MediaRecorder.onstop</code></a></dt> <dd>An <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a> called to handle the <code><a href="https://developer.mozilla.org/en-US/docs/Web/Events/stop">stop</a></code> event, which occurs when media recording ends, either when the <a href="mediastream"><code>MediaStream</code></a> ends — or after the <a href="mediarecorder/stop"><code>MediaRecorder.stop()</code></a> method is called.</dd> <dt>
+<a href="mediarecorder/onwarning"><code>MediaRecorder.onwarning</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>An <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a> called to handle the <code><a href="https://developer.mozilla.org/en-US/docs/Web/Events/warning">warning</a></code> event, which occurs when media recording has a non-fatal error, or after the <a href="mediarecorder/onwarning"><code>MediaRecorder.onwarning()</code></a> method is called.</dd> </dl>
+<h2 id="events">Events</h2>
+<p>Listen to these events using <code>addEventListener()</code> or by assigning an event listener to the <code>on<em>eventname</em></code> property of this interface.</p> <dl> <dt><code><a href="mediarecorder/error_event">error</a></code></dt> <dd>Fired when an error occurs: for example because recording wasn't allowed or was attempted using an unsupported codec.<br> Also available via the <code><a href="mediarecorder/onerror">onerror</a></code> property.</dd> <dt>
+<code><a href="mediarecorder/warning_event">warning</a></code><span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>Fired when a problem occurs that does not halt recording.<br> Also available via the <code><a href="mediarecorder/onwarning">onwarning</a></code> property.</dd> </dl>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span>navigator<span class="token punctuation">.</span>mediaDevices<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'getUserMedia supported.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">var</span> constraints <span class="token operator">=</span> <span class="token punctuation">{</span> audio<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> chunks <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  navigator<span class="token punctuation">.</span>mediaDevices<span class="token punctuation">.</span><span class="token function">getUserMedia</span><span class="token punctuation">(</span>constraints<span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">stream</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">var</span> mediaRecorder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MediaRecorder</span><span class="token punctuation">(</span>stream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token function">visualize</span><span class="token punctuation">(</span>stream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    record<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      mediaRecorder<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>mediaRecorder<span class="token punctuation">.</span>state<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"recorder started"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      record<span class="token punctuation">.</span>style<span class="token punctuation">.</span>background <span class="token operator">=</span> <span class="token string">"red"</span><span class="token punctuation">;</span>
+      record<span class="token punctuation">.</span>style<span class="token punctuation">.</span>color <span class="token operator">=</span> <span class="token string">"black"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    stop<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      mediaRecorder<span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>mediaRecorder<span class="token punctuation">.</span>state<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"recorder stopped"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      record<span class="token punctuation">.</span>style<span class="token punctuation">.</span>background <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+      record<span class="token punctuation">.</span>style<span class="token punctuation">.</span>color <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    mediaRecorder<span class="token punctuation">.</span><span class="token function-variable function">onstop</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"data available after MediaRecorder.stop() called."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">var</span> clipName <span class="token operator">=</span> <span class="token function">prompt</span><span class="token punctuation">(</span><span class="token string">'Enter a name for your sound clip'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token keyword">var</span> clipContainer <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'article'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> clipLabel <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'p'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> audio <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'audio'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> deleteButton <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'button'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      clipContainer<span class="token punctuation">.</span>classList<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span><span class="token string">'clip'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      audio<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'controls'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      deleteButton<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">"Delete"</span><span class="token punctuation">;</span>
+      clipLabel<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> clipName<span class="token punctuation">;</span>
+
+      clipContainer<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>audio<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      clipContainer<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>clipLabel<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      clipContainer<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>deleteButton<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      soundClips<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>clipContainer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      audio<span class="token punctuation">.</span>controls <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> blob <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Blob</span><span class="token punctuation">(</span>chunks<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token string">'type'</span> <span class="token operator">:</span> <span class="token string">'audio/ogg; codecs=opus'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      chunks <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> audioURL <span class="token operator">=</span> <span class="token constant">URL</span><span class="token punctuation">.</span><span class="token function">createObjectURL</span><span class="token punctuation">(</span>blob<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      audio<span class="token punctuation">.</span>src <span class="token operator">=</span> audioURL<span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"recorder stopped"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      deleteButton<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        evtTgt <span class="token operator">=</span> e<span class="token punctuation">.</span>target<span class="token punctuation">;</span>
+        evtTgt<span class="token punctuation">.</span>parentNode<span class="token punctuation">.</span>parentNode<span class="token punctuation">.</span><span class="token function">removeChild</span><span class="token punctuation">(</span>evtTgt<span class="token punctuation">.</span>parentNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    mediaRecorder<span class="token punctuation">.</span><span class="token function-variable function">ondataavailable</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      chunks<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'The following error occurred: '</span> <span class="token operator">+</span> err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+</pre> <div class="note notecard"> <p>This code sample is inspired by the Web Dictaphone demo. Some lines have been omitted for brevity; <a href="https://github.com/mdn/web-dictaphone/" rel=" noopener">refer to the source</a> for the complete code.</p> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/mediacapture-record/#mediarecorder-api" hreflang="en" rel=" noopener">MediaStream Recording</a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>MediaRecorder</code></th>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>25</div>
+<div>Prior to Firefox 58, using <code>MediaStream.addTrack()</code> on a stream obtained using <code>getUserMedia()</code>, then attempting to record the resulting stream would result in only recording the original stream without the added tracks (severe bug).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes">
+<div>25</div>
+<div>Prior to Firefox 58, using <code>MediaStream.addTrack()</code> on a stream obtained using <code>getUserMedia()</code>, then attempting to record the resulting stream would result in only recording the original stream without the added tracks (severe bug).</div>
+</td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>MediaRecorder</code></th>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>audioBitsPerSecond</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>71</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>error_event</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>ignoreMutedMedia</code></th>
+<td class="bc-supports-no"><div>49-57</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>36-44</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>49-57</div></td>
+<td class="bc-supports-no"><div>49-57</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>36-44</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>5.0-7.0</div></td>
+</tr>
+<tr>
+<th><code>isTypeSupported</code></th>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>mimeType</code></th>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>47-49</div>
+<div>Prior to Chrome 49, only video is supported, not audio.</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>25</div>
+<div>Starting with Firefox 71, the behavior of <code>mimeType</code> is more consistent. For example, it now returns the media type even after recording has stopped.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>47-49</div>
+<div>Prior to Chrome 49, only video is supported, not audio.</div>
+</td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>47-49</div>
+<div>Prior to Chrome 49, only video is supported, not audio.</div>
+</td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>ondataavailable</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>onerror</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>onpause</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>onresume</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>onstart</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>onstop</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>onwarning</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>25-71</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>pause</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>requestData</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>resume</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>start</code></th>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>state</code></th>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>47-49</div>
+<div>Prior to Chrome 49, only video is supported, not audio.</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>47-49</div>
+<div>Prior to Chrome 49, only video is supported, not audio.</div>
+</td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>47-49</div>
+<div>Prior to Chrome 49, only video is supported, not audio.</div>
+</td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>stop</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>stream</code></th>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>47-49</div>
+<div>Prior to Chrome 49, only video is supported, not audio.</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>47-49</div>
+<div>Prior to Chrome 49, only video is supported, not audio.</div>
+</td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>videoBitsPerSecond</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>71</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>warning_event</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>25-71</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="mediastream_recording_api/using_the_mediastream_recording_api">Using the MediaRecorder API</a></li> <li>
+<a href="https://mdn.github.io/web-dictaphone/" rel=" noopener">Web Dictaphone</a>: MediaRecorder + getUserMedia + Web Audio API visualization demo, by <a href="https://twitter.com/chrisdavidmills" rel=" noopener">Chris Mills</a> (<a href="https://github.com/mdn/web-dictaphone/" rel=" noopener">source on Github</a>.)</li> <li><a href="mediastream_recording_api/recording_a_media_element">Recording a media element</a></li> <li>
+<a href="https://simpl.info/mediarecorder/" rel=" noopener">simpl.info MediaStream Recording demo</a>, by <a href="https://twitter.com/sw12" rel=" noopener">Sam Dutton</a>.</li> <li><a href="mediadevices/getusermedia"><code>MediaDevices.getUserMedia</code></a></li> <li>
+<a href="https://github.com/chrisjohndigital/OpenLang" rel=" noopener">OpenLang</a>: HTML5 video language lab web application using MediaDevices and the MediaStream Recording API for video recording (<a href="https://github.com/chrisjohndigital/OpenLang" rel=" noopener">source on GitHub</a>)</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaRecorder</a>
+  </p>
+</div>

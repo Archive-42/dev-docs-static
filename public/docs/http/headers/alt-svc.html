@@ -1,0 +1,100 @@
+<h1>Alt-Svc</h1> <p>The <code style="white-space: nowrap;">Alt-Svc</code> HTTP response header is used to advertise alternative services through which the same resource can be reached. An alternative service is defined by a protocol/host/port combination.</p> <h2 id="Syntax">Syntax</h2> <pre class="syntaxbox notranslate">Alt-Svc: clear
+Alt-Svc: <var>&lt;protocol-id&gt;</var>=<em>&lt;alt-authority&gt;</em>; ma=<var>&lt;max-age&gt;</var>
+Alt-Svc: <var>&lt;protocol-id&gt;</var>=<em>&lt;alt-authority&gt;</em>; ma=<var>&lt;max-age&gt;</var>; persist=1</pre> <dl> <dt><code>clear</code></dt> <dd>The special value ''clear" indicates that the origin requests all alternatives for that origin to be invalidated.</dd> <dt><code>&lt;protocol-id&gt;</code></dt> <dd>The <a href="https://developer.mozilla.org/en-US/docs/Glossary/ALPN">ALPN</a> protocol identifier. Examples include h2 for HTTP/2 and h3-25 for draft 25 of the HTTP/3 protocol.</dd> <dt><code>&lt;alt-authority&gt;</code></dt> <dd>The quoted string specifying the alternative authority which consists of an optional host override, a colon, and a mandatory port number.</dd> <dt>
+<code>ma=&lt;max-age&gt;</code><span class="inlineIndicator optional optionalInline">Optional</span>
+</dt> <dd>The number of seconds for which the alternative service is considered fresh. If omitted, it defaults to 24 hours. Alternative service entries can be cached for up to <em>&lt;max-age&gt;</em> seconds, minus the age of the response (from the <a href="age"><code>Age</code></a> header). If the cached entry expires, the client can no longer use this alternative service for new connections.</dd> <dt>
+<code>persist=1</code><span class="inlineIndicator optional optionalInline">Optional</span>
+</dt> <dd>Usually cached alternative service entries are cleared on network configuration changes. Use of the persist=1 parameter ensures that the entry is not deleted through such changes.</dd> </dl> <p>Multiple entries can be specified in a single <code>Alt-Svc</code> header using comma as separator. In that case, early entries are considered more preferable.</p> <h2 id="Example">Example</h2> <pre class="notranslate">Alt-Svc: h2=":443"; ma=2592000;
+Alt-Svc: h2=":443"; ma=2592000; persist=1
+Alt-Svc: h2="alt.example.com:443", h2=":443"
+Alt-Svc: h3-25=":443"; ma=3600, h2=":443"; ma=3600</pre> <h2 id="Specifications">Specifications</h2> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://tools.ietf.org/html/rfc7838">RFC 7838</a></td> <td><span class="spec-RFC">IETF RFC</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div> <h2 id="Browser_compatibility">Browser compatibility<a class="bc-github-link" href="https://github.com/mdn/browser-compat-data">Update compatibility data on GitHub</a>
+</h2>  <div class="_table">
+<table class="bc-table bc-table-web">
+<thead>
+<tr class="bc-platforms">
+<th></th>
+<th colspan="6"><span>Desktop</span></th>
+</tr>
+<tr class="bc-browsers">
+<th></th>
+<th><span class="bc-head-txt-label bc-head-icon-chrome">Chrome</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-edge">Edge</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-firefox">Firefox</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-ie">Internet Explorer</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-opera">Opera</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-safari">Safari</span></th>
+</tr>
+</thead>
+<tbody><tr>
+<th scope="row"><code>Alt-Svc</code></th>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> ≤79</td>
+<td class="bc-supports-yes bc-has-history"> 38
+<section class="bc-history" id="sect1"><dl>
+<dt class="bc-supports-yes bc-supports"> 38
+</dt>
+
+<dt class="bc-supports-no bc-supports">37 — 38
+</dt>
+<dd> Only supports draft-04</dd>
+<dt class="bc-supports-no bc-supports">35 — 37<div class="bc-icons"> Disabled </div>
+</dt>
+<dd> Only supports draft-03</dd>
+<dd>Disabled From version 35 until version 37 (exclusive): this feature is behind the <code>network.http.altsvc.enabled</code> preference (needs to be set to <code>true</code>) and the <code>altsvc.oe</code> preference (needs to be set to <code>true</code>). To change preferences in Firefox, visit about:config.</dd>
+</dl></section>
+</td>
+<td> ? </td>
+<td class="bc-supports-yes"> Yes</td>
+<td> ? </td>
+</tr></tbody>
+</table>
+<table class="bc-table bc-table-web">
+<thead>
+<tr class="bc-platforms">
+<th></th>
+<th colspan="6"><span>Mobile</span></th>
+</tr>
+<tr class="bc-browsers">
+<th></th>
+<th><span class="bc-head-txt-label bc-head-icon-webview_android">Android webview</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-chrome_android">Chrome for Android</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-firefox_android">Firefox for Android</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-opera_android">Opera for Android</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-safari_ios">Safari on iOS</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-samsunginternet_android">Samsung Internet</span></th>
+</tr>
+</thead>
+<tbody><tr>
+<th scope="row"><code>Alt-Svc</code></th>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes bc-has-history"> 38
+<section class="bc-history" id="sect2"><dl>
+<dt class="bc-supports-yes bc-supports"> 38
+</dt>
+
+<dt class="bc-supports-no bc-supports">37 — 38
+</dt>
+<dd> Only supports draft-04</dd>
+<dt class="bc-supports-no bc-supports">35 — 37<div class="bc-icons"> Disabled </div>
+</dt>
+<dd> Only supports draft-03</dd>
+<dd>Disabled From version 35 until version 37 (exclusive): this feature is behind the <code>network.http.altsvc.enabled</code> preference (needs to be set to <code>true</code>) and the <code>altsvc.oe</code> preference (needs to be set to <code>true</code>). To change preferences in Firefox, visit about:config.</dd>
+</dl></section>
+</td>
+<td class="bc-supports-yes"> Yes</td>
+<td> ? </td>
+<td class="bc-supports-yes"> Yes</td>
+</tr></tbody>
+</table>
+</div> <h2 id="See_also">See also</h2> <ul> <li><a href="../basics_of_http/identifying_resources_on_the_web">Identifying resources on the Web</a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Alt-Svc$edit" class="_attribution-link">Edit this page on MDN</a>
+  </p>
+</div>
+<div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2020 Mozilla and individual contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Alt-Svc" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Alt-Svc</a>
+  </p>
+</div>

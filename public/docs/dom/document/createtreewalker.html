@@ -1,0 +1,122 @@
+<h1>Document.createTreeWalker()</h1> <p>The <code>Document.createTreeWalker()</code> creator method returns a newly created <a href="../treewalker"><code>TreeWalker</code></a> object.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">document<span class="token punctuation">.</span><span class="token function">createTreeWalker</span><span class="token punctuation">(</span>root<span class="token punctuation">[</span><span class="token punctuation">,</span> whatToShow<span class="token punctuation">[</span><span class="token punctuation">,</span> filter<span class="token punctuation">[</span><span class="token punctuation">,</span> entityReferenceExpansion<span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>root </code></dt> <dd>A root <a href="../node"><code>Node</code></a> of this <a href="../treewalker"><code>TreeWalker</code></a> traversal. Typically this will be an element owned by the document.</dd> <dt>
+<code>whatToShow</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A <code>unsigned long</code> representing a bitmask created by combining the constant properties of <code><a href="https://www.w3.org/TR/DOM-Level-2-Traversal-Range/traversal.html#Traversal-NodeFilter" rel=" noopener">NodeFilter</a></code>. It is a convenient way of filtering for certain types of node. It defaults to <code>0xFFFFFFFF</code> representing the <code>SHOW_ALL</code> constant. <div class="_table"><table class="standard-table"> <tbody> <tr> <th class="header">Constant</th> <th class="header">Numerical value</th> <th class="header">Description</th> </tr> <tr> <td><code>NodeFilter.SHOW_ALL</code></td> <td>
+<code>-1</code> (that is the max value of <code>unsigned long</code>)</td> <td>Shows all nodes.</td> </tr> <tr> <td>
+<code>NodeFilter.SHOW_ATTRIBUTE</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</td> <td><code>2</code></td> <td>Shows attribute <a href="../attr"><code>Attr</code></a> nodes. This is meaningful only when creating a <a href="../treewalker"><code>TreeWalker</code></a> with an <a href="../attr"><code>Attr</code></a> node as its root; in this case, it means that the attribute node will appear in the first position of the iteration or traversal. Since attributes are never children of other nodes, they do not appear when traversing over the document tree.</td> </tr> <tr> <td>
+<code>NodeFilter.SHOW_CDATA_SECTION</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</td> <td><code>8</code></td> <td>Shows <a href="../cdatasection"><code>CDATASection</code></a> nodes.</td> </tr> <tr> <td><code>NodeFilter.SHOW_COMMENT</code></td> <td><code>128</code></td> <td>Shows <a href="../comment"><code>Comment</code></a> nodes.</td> </tr> <tr> <td><code>NodeFilter.SHOW_DOCUMENT</code></td> <td><code>256</code></td> <td>Shows <a href="../document"><code>Document</code></a> nodes.</td> </tr> <tr> <td><code>NodeFilter.SHOW_DOCUMENT_FRAGMENT</code></td> <td><code>1024</code></td> <td>Shows <a href="../documentfragment"><code>DocumentFragment</code></a> nodes.</td> </tr> <tr> <td><code>NodeFilter.SHOW_DOCUMENT_TYPE</code></td> <td><code>512</code></td> <td>Shows <a href="../documenttype"><code>DocumentType</code></a> nodes.</td> </tr> <tr> <td><code>NodeFilter.SHOW_ELEMENT</code></td> <td><code>1</code></td> <td>Shows <a href="../element"><code>Element</code></a> nodes.</td> </tr> <tr> <td>
+<code>NodeFilter.SHOW_ENTITY</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</td> <td><code>32</code></td> <td>Shows <a class="page-not-created"><code>Entity</code></a> nodes. This is meaningful only when creating a <a href="../treewalker"><code>TreeWalker</code></a> with an <a class="page-not-created"><code>Entity</code></a> node as its root; in this case, it means that the <a class="page-not-created"><code>Entity</code></a> node will appear in the first position of the traversal. Since entities are not part of the document tree, they do not appear when traversing over the document tree.</td> </tr> <tr> <td>
+<code>NodeFilter.SHOW_ENTITY_REFERENCE</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</td> <td><code>16</code></td> <td>Shows <a class="page-not-created"><code>EntityReference</code></a> nodes.</td> </tr> <tr> <td>
+<code>NodeFilter.SHOW_NOTATION</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</td> <td><code>2048</code></td> <td>Shows <a href="../notation"><code>Notation</code></a> nodes. This is meaningful only when creating a <a href="../treewalker"><code>TreeWalker</code></a> with a <a href="../notation"><code>Notation</code></a> node as its root; in this case, it means that the <a href="../notation"><code>Notation</code></a> node will appear in the first position of the traversal. Since entities are not part of the document tree, they do not appear when traversing over the document tree.</td> </tr> <tr> <td><code>NodeFilter.SHOW_PROCESSING_INSTRUCTION</code></td> <td><code>64</code></td> <td>Shows <a href="../processinginstruction"><code>ProcessingInstruction</code></a> nodes.</td> </tr> <tr> <td><code>NodeFilter.SHOW_TEXT</code></td> <td><code>4</code></td> <td>Shows <a href="../text"><code>Text</code></a> nodes.</td> </tr> </tbody> </table></div> </dd> <dt>
+<code>filter</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A <a href="../nodefilter"><code>NodeFilter</code></a>, that is an object with a method <code>acceptNode</code>, which is called by the <a href="../treewalker"><code>TreeWalker</code></a> to determine whether or not to accept a node that has passed the <code>whatToShow</code> check. </dd> <dt>
+<code>entityReferenceExpansion</code> <span class="badge inline optional">Optional</span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> flag indicating if when discarding an <a class="page-not-created"><code>EntityReference</code></a> its whole sub-tree must be discarded at the same time. </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A new <a href="../treewalker"><code>TreeWalker</code></a> object.</p>
+<h2 id="example">Example</h2>
+<p>The following example goes through all nodes in the body, reduces the set of nodes to elements, passes through as acceptable each node (it could reduce the set in the <code>acceptNode()</code> method instead), and then makes use of tree walker iterator that is created to advance through the nodes (now all elements) and push them into an array.</p> <pre data-language="js"><span class="token keyword">var</span> treeWalker <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createTreeWalker</span><span class="token punctuation">(</span>
+  document<span class="token punctuation">.</span>body<span class="token punctuation">,</span>
+  NodeFilter<span class="token punctuation">.</span><span class="token constant">SHOW_ELEMENT</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> <span class="token function-variable function">acceptNode</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">node</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> NodeFilter<span class="token punctuation">.</span><span class="token constant">FILTER_ACCEPT</span><span class="token punctuation">;</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token boolean">false</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> nodeList <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> currentNode <span class="token operator">=</span> treeWalker<span class="token punctuation">.</span>currentNode<span class="token punctuation">;</span>
+
+<span class="token keyword">while</span><span class="token punctuation">(</span>currentNode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  nodeList<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>currentNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  currentNode <span class="token operator">=</span> treeWalker<span class="token punctuation">.</span><span class="token function">nextNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://dom.spec.whatwg.org/#dom-document-createtreewalker" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'Document.createTreeWalker' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Removed the <code>expandEntityReferences</code> parameter. Made the <code>whatToShow</code> and <code>filter</code> parameters optionals.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/DOM-Level-2-Traversal-Range/traversal.html#NodeIteratorFactory-createTreeWalker" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 2 Traversal and Range Specification<br><small>The definition of 'Document.createTreeWalker' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>createTreeWalker</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>expandEntityReferences</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>12-79</div></td>
+<td class="bc-supports-no"><div>2-12</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-no"><div>9-15</div></td>
+<td class="bc-supports-no"><div>3-10.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>4-14</div></td>
+<td class="bc-supports-no"><div>Yes-14</div></td>
+<td class="bc-supports-no"><div>3-10.3</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>whatToShow_filter_optional</code></th>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The interface of the object it creates: <a href="../treewalker"><code>TreeWalker</code></a>.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createTreeWalker" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Document/createTreeWalker</a>
+  </p>
+</div>

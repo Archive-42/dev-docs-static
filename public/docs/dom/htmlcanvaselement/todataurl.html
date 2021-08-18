@@ -1,0 +1,120 @@
+<h1>HTMLCanvasElement.toDataURL()</h1> <p>The <code>HTMLCanvasElement.toDataURL()</code> method returns a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">data URI</a> containing a representation of the image in the format specified by the <code>type</code> parameter (defaults to <a href="https://en.wikipedia.org/wiki/Portable_Network_Graphics" rel=" noopener">PNG</a>). The returned image is in a resolution of 96 dpi.</p> <ul> <li>If the height or width of the canvas is <code>0</code> or larger than the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas#maximum_canvas_size">maximum canvas size</a>, the string <code>"data:,"</code> is returned.</li> <li>If the requested type is not <code>image/png</code>, but the returned value starts with <code>data:image/png</code>, then the requested type is not supported.</li> <li>Chrome also supports the <code>image/webp</code> type.</li> </ul>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">canvas<span class="token punctuation">.</span><span class="token function">toDataURL</span><span class="token punctuation">(</span>type<span class="token punctuation">,</span> encoderOptions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code>type</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A <a href="../domstring"><code>DOMString</code></a> indicating the image format. The default format type is <code>image/png</code>.</dd> <dt>
+<code>encoderOptions</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number"><code>Number</code></a> between <code>0</code> and <code>1</code> indicating the image quality to use for image formats that use lossy compression such as <code>image/jpeg</code> and <code>image/webp</code>.<br> If this argument is anything else, the default value for image quality is used. The default value is <code>0.92</code>. Other arguments are ignored.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="../domstring"><code>DOMString</code></a> containing the requested <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">data URI</a>.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>SecurityError</code></dt> <dd>The canvas's bitmap is not origin clean; at least some of its contents have or may have been loaded from a site other than the one from which the document itself was loaded.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>Given this <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas"><code>&lt;canvas&gt;</code></a> element:</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>canvas<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>5<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>5<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">&gt;</span></span>
+</pre> <p>You can get a data-URL of the canvas with the following lines:</p> <pre data-language="js"><span class="token keyword">var</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> dataURL <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">toDataURL</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>dataURL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNby</span>
+<span class="token comment">// blAAAADElEQVQImWNgoBMAAABpAAFEI8ARAAAAAElFTkSuQmCC"</span>
+</pre>
+<h3 id="setting_image_quality_with_jpegs">Setting image quality with jpegs</h3>
+<pre data-language="js"><span class="token keyword">var</span> fullQuality <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">toDataURL</span><span class="token punctuation">(</span><span class="token string">'image/jpeg'</span><span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// data:image/jpeg;base64,/9j/4AAQSkZJRgABAQ...9oADAMBAAIRAxEAPwD/AD/6AP/Z"</span>
+<span class="token keyword">var</span> mediumQuality <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">toDataURL</span><span class="token punctuation">(</span><span class="token string">'image/jpeg'</span><span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> lowQuality <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">toDataURL</span><span class="token punctuation">(</span><span class="token string">'image/jpeg'</span><span class="token punctuation">,</span> <span class="token number">0.1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="example_dynamically_change_images">Example: Dynamically change images</h3>
+<p>You can use this technique in coordination with mouse events in order to dynamically change images (gray-scale vs. color in this example):</p> <h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>grayscale<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>myPicture.png<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Description of my picture<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span></pre> <h4 id="javascript">JavaScript</h4> <pre data-language="js">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'load'</span><span class="token punctuation">,</span> removeColors<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">showColorImg</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'none'</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>nextSibling<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'inline'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">showGrayImg</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>previousSibling<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'inline'</span><span class="token punctuation">;</span>
+  <span class="token keyword">this</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">'none'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">removeColors</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> aImages <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementsByClassName</span><span class="token punctuation">(</span><span class="token string">'grayscale'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      nImgsLen <span class="token operator">=</span> aImages<span class="token punctuation">.</span>length<span class="token punctuation">,</span>
+      oCanvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      oCtx <span class="token operator">=</span> oCanvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> nWidth<span class="token punctuation">,</span> nHeight<span class="token punctuation">,</span> oImgData<span class="token punctuation">,</span> oGrayImg<span class="token punctuation">,</span> nPixel<span class="token punctuation">,</span> aPix<span class="token punctuation">,</span> nPixLen<span class="token punctuation">,</span> nImgId <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> nImgId <span class="token operator">&lt;</span> nImgsLen<span class="token punctuation">;</span> nImgId<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    oColorImg <span class="token operator">=</span> aImages<span class="token punctuation">[</span>nImgId<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    nWidth <span class="token operator">=</span> oColorImg<span class="token punctuation">.</span>offsetWidth<span class="token punctuation">;</span>
+    nHeight <span class="token operator">=</span> oColorImg<span class="token punctuation">.</span>offsetHeight<span class="token punctuation">;</span>
+    oCanvas<span class="token punctuation">.</span>width <span class="token operator">=</span> nWidth<span class="token punctuation">;</span>
+    oCanvas<span class="token punctuation">.</span>height <span class="token operator">=</span> nHeight<span class="token punctuation">;</span>
+    oCtx<span class="token punctuation">.</span><span class="token function">drawImage</span><span class="token punctuation">(</span>oColorImg<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    oImgData <span class="token operator">=</span> oCtx<span class="token punctuation">.</span><span class="token function">getImageData</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> nWidth<span class="token punctuation">,</span> nHeight<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    aPix <span class="token operator">=</span> oImgData<span class="token punctuation">.</span>data<span class="token punctuation">;</span>
+    nPixLen <span class="token operator">=</span> aPix<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span>nPixel <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> nPixel <span class="token operator">&lt;</span> nPixLen<span class="token punctuation">;</span> nPixel <span class="token operator">+=</span> <span class="token number">4</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      aPix<span class="token punctuation">[</span>nPixel <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> aPix<span class="token punctuation">[</span>nPixel <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> aPix<span class="token punctuation">[</span>nPixel<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span>aPix<span class="token punctuation">[</span>nPixel<span class="token punctuation">]</span> <span class="token operator">+</span> aPix<span class="token punctuation">[</span>nPixel <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">+</span> aPix<span class="token punctuation">[</span>nPixel <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">/</span> <span class="token number">3</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    oCtx<span class="token punctuation">.</span><span class="token function">putImageData</span><span class="token punctuation">(</span>oImgData<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    oGrayImg <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Image</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    oGrayImg<span class="token punctuation">.</span>src <span class="token operator">=</span> oCanvas<span class="token punctuation">.</span><span class="token function">toDataURL</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    oGrayImg<span class="token punctuation">.</span>onmouseover <span class="token operator">=</span> showColorImg<span class="token punctuation">;</span>
+    oColorImg<span class="token punctuation">.</span>onmouseout <span class="token operator">=</span> showGrayImg<span class="token punctuation">;</span>
+    oCtx<span class="token punctuation">.</span><span class="token function">clearRect</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> nWidth<span class="token punctuation">,</span> nHeight<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    oColorImg<span class="token punctuation">.</span>style<span class="token punctuation">.</span>display <span class="token operator">=</span> <span class="token string">"none"</span><span class="token punctuation">;</span>
+    oColorImg<span class="token punctuation">.</span>parentNode<span class="token punctuation">.</span><span class="token function">insertBefore</span><span class="token punctuation">(</span>oGrayImg<span class="token punctuation">,</span> oColorImg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/scripting.html#dom-canvas-todataurl" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'HTMLCanvasElement.toDataURL' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>No change since the latest snapshot, <a href="https://www.w3.org/TR/html52/" hreflang="en" rel=" noopener">HTML5</a>
+</td> </tr> <tr> <td><a href="https://www.w3.org/TR/html51/scripting-1.html#dom-canvas-todataurl" hreflang="en" rel=" noopener">HTML 5.1<br><small>The definition of 'HTMLCanvasElement.toDataURL' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/html52/scripting-1.html#dom-canvas-todataurl" hreflang="en" rel=" noopener">HTML5<br><small>The definition of 'HTMLCanvasElement.toDataURL' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Snapshot of the <a href="https://html.spec.whatwg.org/multipage/" hreflang="en" rel=" noopener">HTML Living Standard</a> containing the initial definition. </td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>toDataURL</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The interface defining it, <a href="../htmlcanvaselement"><code>HTMLCanvasElement</code></a>.</li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs">Data URIs</a> in the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP">HTTP</a> reference.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toDataURL</a>
+  </p>
+</div>

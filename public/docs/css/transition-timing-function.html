@@ -1,0 +1,211 @@
+<h1>transition-timing-function</h1> <p>The <code>transition-timing-function</code> CSS property sets how intermediate values are calculated for CSS properties being affected by a <a href="css_transitions/using_css_transitions">transition effect</a>.</p> <iframe class="interactive" width="100%" height="390" src="https://interactive-examples.mdn.mozilla.net/pages/css/transition-timing-function.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <p>This, in essence, lets you establish an acceleration curve so that the speed of the transition can vary over its duration.</p> <p>This acceleration curve is defined using one <a href="easing-function"><code>&lt;easing-function&gt;</code></a> for each property to be transitioned.</p> <p>You may specify multiple easing functions; each one will be applied to the corresponding property as specified by the <a href="transition-property"><code>transition-property</code></a> property, which acts as a <code>transition-property</code> list. If there are fewer easing functions specified than in the <code>transition-property</code> list, the user agent must calculate which value is used by repeating the list of values until there is one for each transition property. If there are more easing functions, the list is truncated to the right size. In both cases, the CSS declaration stays valid.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="css"><span class="token comment">/* Keyword values */</span>
+<span class="token property">transition-timing-function</span><span class="token punctuation">:</span> ease<span class="token punctuation">;</span>
+<span class="token property">transition-timing-function</span><span class="token punctuation">:</span> ease-in<span class="token punctuation">;</span>
+<span class="token property">transition-timing-function</span><span class="token punctuation">:</span> ease-out<span class="token punctuation">;</span>
+<span class="token property">transition-timing-function</span><span class="token punctuation">:</span> ease-in-out<span class="token punctuation">;</span>
+<span class="token property">transition-timing-function</span><span class="token punctuation">:</span> linear<span class="token punctuation">;</span>
+<span class="token property">transition-timing-function</span><span class="token punctuation">:</span> step-start<span class="token punctuation">;</span>
+<span class="token property">transition-timing-function</span><span class="token punctuation">:</span> step-end<span class="token punctuation">;</span>
+
+<span class="token comment">/* Function values */</span>
+<span class="token property">transition-timing-function</span><span class="token punctuation">:</span> <span class="token function">steps</span><span class="token punctuation">(</span>4<span class="token punctuation">,</span> jump-end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token property">transition-timing-function</span><span class="token punctuation">:</span> <span class="token function">cubic-bezier</span><span class="token punctuation">(</span>0.1<span class="token punctuation">,</span> 0.7<span class="token punctuation">,</span> 1.0<span class="token punctuation">,</span> 0.1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* Steps Function keywords */</span>
+<span class="token property">transition-timing-function</span><span class="token punctuation">:</span> <span class="token function">steps</span><span class="token punctuation">(</span>4<span class="token punctuation">,</span> jump-start<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token property">transition-timing-function</span><span class="token punctuation">:</span> <span class="token function">steps</span><span class="token punctuation">(</span>10<span class="token punctuation">,</span> jump-end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token property">transition-timing-function</span><span class="token punctuation">:</span> <span class="token function">steps</span><span class="token punctuation">(</span>20<span class="token punctuation">,</span> jump-none<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token property">transition-timing-function</span><span class="token punctuation">:</span> <span class="token function">steps</span><span class="token punctuation">(</span>5<span class="token punctuation">,</span> jump-both<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token property">transition-timing-function</span><span class="token punctuation">:</span> <span class="token function">steps</span><span class="token punctuation">(</span>6<span class="token punctuation">,</span> start<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token property">transition-timing-function</span><span class="token punctuation">:</span> <span class="token function">steps</span><span class="token punctuation">(</span>8<span class="token punctuation">,</span> end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* Multiple timing functions */</span>
+<span class="token property">transition-timing-function</span><span class="token punctuation">:</span> ease<span class="token punctuation">,</span> step-start<span class="token punctuation">,</span> <span class="token function">cubic-bezier</span><span class="token punctuation">(</span>0.1<span class="token punctuation">,</span> 0.7<span class="token punctuation">,</span> 1.0<span class="token punctuation">,</span> 0.1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/* Global values */</span>
+<span class="token property">transition-timing-function</span><span class="token punctuation">:</span> inherit<span class="token punctuation">;</span>
+<span class="token property">transition-timing-function</span><span class="token punctuation">:</span> initial<span class="token punctuation">;</span>
+<span class="token property">transition-timing-function</span><span class="token punctuation">:</span> unset<span class="token punctuation">;</span></pre>
+<h3 id="values">Values</h3>
+<dl> <dt><code>&lt;easing-function&gt;</code></dt> <dd>Each <a href="easing-function"><code>&lt;easing-function&gt;</code></a> represents the easing function to link to the corresponding property to transition, as defined in <a href="transition-property"><code>transition-property</code></a>. <p>The non-step keyword values (ease, linear, ease-in-out, etc.) each represent cubic Bézier curve with fixed four point values, with the cubic-bezier() function value allowing for a non-predefined value. The step timing functions divides the input time into a specified number of intervals that are equal in length. It is defined by a number of steps and a step position.</p> <dl> <dt><code>ease</code></dt> <dd>Equal to <code>cubic-bezier(0.25, 0.1, 0.25, 1.0)</code>, the default value, increases in velocity towards the middle of the transition, slowing back down at the end.</dd> <dt><code>linear</code></dt> <dd>Equal to <code>cubic-bezier(0.0, 0.0, 1.0, 1.0)</code>, transitions at an even speed.</dd> <dt><code>ease-in</code></dt> <dd>Equal to <code>cubic-bezier(0.42, 0, 1.0, 1.0)</code>, starts off slowly, with the transition speed increasing until complete.</dd> <dt><code>ease-out</code></dt> <dd>Equal to <code>cubic-bezier(0, 0, 0.58, 1.0)</code>, starts transitioning quickly, slowing down the transition continues. •</dd> <dt><code>ease-in-out</code></dt> <dd>Equal to <code>cubic-bezier(0.42, 0, 0.58, 1.0)</code>, starts transitioning slowly, speeds up, and then slows down again.</dd> <dt><code>cubic-bezier(p1, p2, p3, p4)</code></dt> <dd>An author defined cubic-Bezier curve, where the p1 and p3 values must be in the range of 0 to 1.</dd> <dt><code>steps( n, &lt;jumpterm&gt;)</code></dt> <dd>Displays the transition along <em>n stops along the transition, displaying each stop for</em> equal lengths of time. For example, if <em>n</em> is 5, there are 5 steps. Whether the transition holds temporarily at 0%, 20%, 40%, 60% and 80%, on the 20%, 40%, 60%, 80% and 100%, or makes 5 stops between the 0% and 100% along the transition, or makes 5 stops including the 0% and 100% marks (on the 0%, 25%, 50%, 75%, and 100%) depends on which of the following jump terms is used: <dl> <dt><code>jump-start</code></dt> <dd>Denotes a left-continuous function, so that the first jump happens when the transition begins;</dd> <dt><code>jump-end</code></dt> <dd>Denotes a right-continuous function, so that the last jump happens when the animation ends;</dd> <dt><code>jump-none</code></dt> <dd>There is no jump on either end. Instead, holding at both the 0% mark and the 100% mark, each for 1/n of the duration</dd> <dt><code>jump-both</code></dt> <dd>Includes pauses at both the 0% and 100% marks, effectively adding a step during the transition time.</dd> <dt><code>start</code></dt> <dd>Same as <code>jump-start.</code>
+</dd> <dt><code>end</code></dt> <dd>Same as <code>jump-end.</code>
+</dd> </dl> </dd> <dt><code>step-start</code></dt> <dd>Equal to <code>steps(1, jump-start)</code>
+</dd> <dt><code>step-end</code></dt> <dd>Equal to <code>steps(1, jump-end)</code>
+</dd> </dl> </dd> </dl>
+<h2 id="accessibility_concerns">Accessibility concerns</h2>
+<p>Some animations can be helpful such as to guide users to understand what actions are expected, to show relationships within the user interface, and to inform users as to what actions have occurred. Animations can help reduce cognitive load, prevent change blindness, and establish better recall in spatial relationships. However, some animations can be problematic for people with cognitive concerns such as Attention Deficit Hyperactivity Disorder (ADHD) and certain kinds of motion can be a trigger for Vestibular disorders, epilepsy, and migraine and Scotopic sensitivity.</p> <p>Consider providing a mechanism for pausing or disabling animation, as well as using the <a href="@media/prefers-reduced-motion">Reduced Motion Media Query</a> to create a complimentary experience for users who have expressed a preference for no animated experiences.</p>
+<h2 id="formal_definition">Formal definition</h2>
+
+<div class="_table"><table class="properties"><tbody>
+<tr>
+<th scope="row"><a href="initial_value">Initial value</a></th>
+<td><code>ease</code></td>
+</tr>
+<tr>
+<th scope="row">Applies to</th>
+<td>all elements, <a href="::before"><code>::before</code></a> and <a href="::after"><code>::after</code></a> <a href="pseudo-elements">pseudo-elements</a>
+</td>
+</tr>
+<tr>
+<th scope="row"><a href="inheritance">Inherited</a></th>
+<td>no</td>
+</tr>
+<tr>
+<th scope="row"><a href="computed_value">Computed value</a></th>
+<td>as specified</td>
+</tr>
+<tr>
+<th scope="row">Animation type</th>
+<td>discrete</td>
+</tr>
+</tbody></table></div>
+
+<h2 id="formal_syntax">Formal syntax</h2>
+<pre class="notranslate"><a href="#easing-function">&lt;easing-function&gt;</a><a href="value_definition_syntax#hash_mark_()">#</a><p>where <br><span id="easing-function">&lt;easing-function&gt;</span> = linear <a href="value_definition_syntax#single_bar">|</a> <a href="#cubic-bezier-timing-function">&lt;cubic-bezier-timing-function&gt;</a> <a href="value_definition_syntax#single_bar">|</a> <a href="#step-timing-function">&lt;step-timing-function&gt;</a></p><p>where <br><span id="cubic-bezier-timing-function">&lt;cubic-bezier-timing-function&gt;</span> = ease <a href="value_definition_syntax#single_bar">|</a> ease-in <a href="value_definition_syntax#single_bar">|</a> ease-out <a href="value_definition_syntax#single_bar">|</a> ease-in-out <a href="value_definition_syntax#single_bar">|</a> cubic-bezier(<number href="/en-US/docs/CSS/Value_definition_syntax#Brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[0,1<a href="value_definition_syntax#brackets">]</a>&gt;, <a href="number">&lt;number&gt;</a>, <number href="/en-US/docs/CSS/Value_definition_syntax#Brackets" title="Brackets: enclose several entities, combinators, and multipliers to transform them as a single component">[0,1<a href="value_definition_syntax#brackets">]</a>&gt;, <a href="number">&lt;number&gt;</a>)<br><span id="step-timing-function">&lt;step-timing-function&gt;</span> = step-start <a href="value_definition_syntax#single_bar">|</a> step-end <a href="value_definition_syntax#single_bar">|</a> steps(<a href="integer">&lt;integer&gt;</a><a href="value_definition_syntax#brackets">[</a>, <a href="#step-position">&lt;step-position&gt;</a><a href="value_definition_syntax#brackets">]</a><a href="value_definition_syntax#question_mark_()">?</a>)</number></number></p><p>where <br><span id="step-position">&lt;step-position&gt;</span> = jump-start <a href="value_definition_syntax#single_bar">|</a> jump-end <a href="value_definition_syntax#single_bar">|</a> jump-none <a href="value_definition_syntax#single_bar">|</a> jump-both <a href="value_definition_syntax#single_bar">|</a> start <a href="value_definition_syntax#single_bar">|</a> end</p></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="cubic-bezier_examples">Cubic-Bezier examples</h3>
+<pre data-language="css"><span class="token selector">.ease</span> <span class="token punctuation">{</span>
+   <span class="token property">transition-timing-function</span><span class="token punctuation">:</span> ease<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.easein</span> <span class="token punctuation">{</span>
+   <span class="token property">transition-timing-function</span><span class="token punctuation">:</span> ease-in<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.easeout</span> <span class="token punctuation">{</span>
+   <span class="token property">transition-timing-function</span><span class="token punctuation">:</span> ease-out<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.easeinout</span> <span class="token punctuation">{</span>
+   <span class="token property">transition-timing-function</span><span class="token punctuation">:</span> ease-in-out<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.linear</span> <span class="token punctuation">{</span>
+   <span class="token property">transition-timing-function</span><span class="token punctuation">:</span> linear<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.cb</span> <span class="token punctuation">{</span>
+   <span class="token property">transition-timing-function</span><span class="token punctuation">:</span> <span class="token function">cubic-bezier</span><span class="token punctuation">(</span>0.2<span class="token punctuation">,</span>-2<span class="token punctuation">,</span>0.8<span class="token punctuation">,</span>2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <iframe class="sample-code-frame" id="frame_Cubic-Bezier_examples" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/transition-timing-function/_samples_/Cubic-Bezier_examples" loading="lazy"></iframe><h3 id="step_examples">Step examples</h3>
+<pre data-language="css"><span class="token selector">.jump-start</span> <span class="token punctuation">{</span>
+   <span class="token property">transition-timing-function</span><span class="token punctuation">:</span> <span class="token function">steps</span><span class="token punctuation">(</span>5<span class="token punctuation">,</span> jump-start<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.jump-end</span> <span class="token punctuation">{</span>
+   <span class="token property">transition-timing-function</span><span class="token punctuation">:</span> <span class="token function">steps</span><span class="token punctuation">(</span>5<span class="token punctuation">,</span> jump-end<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.jump-none</span> <span class="token punctuation">{</span>
+   <span class="token property">transition-timing-function</span><span class="token punctuation">:</span> <span class="token function">steps</span><span class="token punctuation">(</span>5<span class="token punctuation">,</span> jump-none<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.jump-both</span> <span class="token punctuation">{</span>
+   <span class="token property">transition-timing-function</span><span class="token punctuation">:</span> <span class="token function">steps</span><span class="token punctuation">(</span>5<span class="token punctuation">,</span> jump-both<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.step-start</span> <span class="token punctuation">{</span>
+   <span class="token property">transition-timing-function</span><span class="token punctuation">:</span> step-start<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.step-end</span> <span class="token punctuation">{</span>
+   <span class="token property">transition-timing-function</span><span class="token punctuation">:</span> step-end<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <iframe class="sample-code-frame" id="frame_Step_examples" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/transition-timing-function/_samples_/Step_examples" loading="lazy"></iframe><h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/css-transitions/#transition-timing-function-property" hreflang="en" rel=" noopener">CSS Transitions<br><small>The definition of 'transition-timing-function' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>transition-timing-function</code></th>
+<td class="bc-supports-yes">
+<div>26</div>
+<div>1</div>
+</td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>12</div>
+</td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>4</div>
+<div>49</div>
+<div>44</div>
+</td>
+<td class="bc-supports-yes">
+<div>10</div>
+<div>10</div>
+</td>
+<td class="bc-supports-yes">
+<div>12.1</div>
+<div>15</div>
+<div>11.6-15</div>
+</td>
+<td class="bc-supports-yes">
+<div>9</div>
+<div>3.1</div>
+</td>
+<td class="bc-supports-yes">
+<div>≤37</div>
+<div>≤37</div>
+</td>
+<td class="bc-supports-yes">
+<div>26</div>
+<div>18</div>
+</td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>4</div>
+<div>49</div>
+<div>44</div>
+</td>
+<td class="bc-supports-yes">
+<div>12.1</div>
+<div>14</div>
+<div>12-14</div>
+</td>
+<td class="bc-supports-yes">
+<div>9</div>
+<div>2</div>
+</td>
+<td class="bc-supports-yes">
+<div>1.5</div>
+<div>1.0</div>
+</td>
+</tr>
+<tr>
+<th><code>jump</code></th>
+<td class="bc-supports-yes"><div>77</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>77</div></td>
+<td class="bc-supports-yes"><div>77</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="css_transitions/using_css_transitions">Using CSS transitions</a></li> <li><a href="transition"><code>transition</code></a></li> <li><a href="transition-property"><code>transition-property</code></a></li> <li><a href="transition-duration"><code>transition-duration</code></a></li> <li><a href="transition-delay"><code>transition-delay</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/TransitionEvent"><code>TransitionEvent</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/transition-timing-function</a>
+  </p>
+</div>

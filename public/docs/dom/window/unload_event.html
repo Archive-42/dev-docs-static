@@ -1,0 +1,92 @@
+<h1>Window: unload event</h1> <div class="notebox warning notecard"> <p>Developers should avoid using this event. See "Usage notes" below.</p> </div> <p>The <code>unload</code> event is fired when the document or a child resource is being unloaded.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>No</td> </tr> <tr> <th scope="row">Cancelable</th> <td>No</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../event"><code>Event</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td><a href="../windoweventhandlers/onunload"><code>onunload</code></a></td> </tr> </tbody> </table></div> <p>It is fired after:</p> <ul> <li>
+<a href="beforeunload_event"><code>beforeunload</code></a> (cancelable event)</li> <li><a href="pagehide_event"><code>pagehide</code></a></li> </ul> <p>The document is in the following state:</p> <ul> <li>All the resources still exist (img, iframe etc.)</li> <li>Nothing is visible anymore to the end user</li> <li>UI interactions are ineffective (<a href="open"><code>window.open</code></a>, <a href="alert"><code>alert</code></a>, <a href="confirm"><code>confirm</code></a>, etc.)</li> <li>An error won't stop the unloading workflow</li> </ul> <p>Please note that the unload event also follows the document tree: parent frame unload will happen <strong>before</strong> child frame <code>unload</code> (see example below).</p>
+<h2 id="usage_notes">Usage notes</h2>
+<p>Developers should avoid using this event.</p> <p>Especially on mobile, the <code>unload</code> event is not reliably fired. For example, the <code>unload</code> event is not fired at all in the following scenario:</p> <ol> <li>A mobile user visits your page.</li> <li>The user then switches to a different app.</li> <li>Later, the user closes the browser from the app manager.</li> </ol> <p> Also, the <code>unload</code> event is not compatible with the <a href="https://web.dev/bfcache/" rel=" noopener">back/forward cache</a> (bfcache), because many pages using this event assume that the page will not continue to exist after the event is fired. To combat this, some browsers (such as Firefox) will not place pages in the bfcache if they have unload listeners, and this is bad for performance. Others, such as Chrome, will not fire the <code>unload</code> when a user navigates away.</p> <p>The best event to use to signal the end of a user's session is the <a href="../document/visibilitychange_event"><code>visibilitychange</code></a> event. In browsers that don't support <code>visibilitychange</code> the next-best alternative is the <a href="pagehide_event"><code>pagehide</code></a> event, which is also not fired reliably, but which is bfcache-compatible.</p> <p>If you're specifically trying to detect page unload events, it's best to listen for the <code>pagehide</code> event.</p> <p>See the <a href="https://developers.google.com/web/updates/2018/07/page-lifecycle-api#the-unload-event" rel=" noopener">Page Lifecycle API</a> guide for more information about the problems associated with the <code>unload</code> event.</p>
+<h2 id="examples">Examples</h2>
+<pre data-language="html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Parent Frame<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+      window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'beforeunload'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'I am the 1st one.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'unload'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'I am the 3rd one.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>child-frame.html<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></pre> <p>Below, the content of <code>child-frame.html</code>:</p> <pre data-language="html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Child Frame<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+      window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'beforeunload'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'I am the 2nd one.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'unload'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'I am the 4th and last one…'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+      ☻
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span></pre> <p>When the parent frame is unloaded, events will be fired in the order described by the <code>console.log()</code> messages.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#event-unload" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'unload' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>unload_event</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>Related events: <a href="domcontentloaded_event"><code>DOMContentLoaded</code></a>, <a href="../document/readystatechange_event"><code>readystatechange</code></a>, <a href="load_event"><code>load</code></a>
+</li> <li><a href="https://html.spec.whatwg.org/multipage/browsers.html#unloading-documents" rel=" noopener">Unloading Documents — unload a document</a></li> <li>The <a href="../document/visibilitychange_event"><code>visibilitychange</code></a> event.</li> <li>
+<a href="https://www.igvita.com/2015/11/20/dont-lose-user-and-app-state-use-page-visibility/" rel=" noopener">Don't lose user and app state, use Page Visibility</a> explains in detail why you should use <code>visibilitychange</code>, not <code>beforeunload</code>/<code>unload</code>. </li> <li>
+<a href="https://developers.google.com/web/updates/2018/07/page-lifecycle-api#developer-recommendations-for-each-state" rel=" noopener">Page Lifecycle API</a> gives best-practices guidance on handling page lifecyle behavior in your web applications.</li> <li>
+<a href="https://github.com/GoogleChromeLabs/page-lifecycle" rel=" noopener">PageLifecycle.js</a>: a JavaScript library that deals with cross-browser inconsistencies in page lifecyle behavior.</li> <li>
+<a href="https://web.dev/bfcache/" rel=" noopener">Back/forward cache</a> explains what the back/forward cache is, and its implications for various page lifecycle events.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/unload_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Window/unload_event</a>
+  </p>
+</div>

@@ -1,0 +1,79 @@
+<h1>:host</h1> <p>The <code>:host</code> <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> <a href="pseudo-classes">pseudo-class</a> selects the shadow host of the <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM">shadow DOM</a> containing the CSS it is used inside — in other words, this allows you to select a custom element from inside its shadow DOM.</p> <div class="note notecard"> <p><strong>Note</strong>: This has no effect when used outside a shadow DOM.</p> </div> <pre data-language="css"><span class="token comment">/* Selects a shadow root host */</span>
+<span class="token selector">:host</span> <span class="token punctuation">{</span>
+  <span class="token property">font-weight</span><span class="token punctuation">:</span> bold<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="syntax">Syntax</h2>
+<pre class="notranslate">:host
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="styling_the_shadow_host">Styling the shadow host</h3>
+<p>The following snippets are taken from our <a href="https://github.com/mdn/web-components-examples/tree/master/host-selectors" rel=" noopener">host-selectors example</a> (<a href="https://mdn.github.io/web-components-examples/host-selectors/" rel=" noopener">see it live also</a>).</p> <p>In this example we have a simple custom element — <code>&lt;context-span&gt;</code> — that you can wrap around text:</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Host selectors <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>context-span</span><span class="token punctuation">&gt;</span></span>example<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>context-span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span></pre> <p>Inside the element's constructor, we create <code>style</code> and <code>span</code> elements, fill the <code>span</code> with the content of the custom element, and fill the <code>style</code> element with some CSS rules:</p> <pre data-language="js"><span class="token keyword">let</span> style <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'style'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> span <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'span'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+span<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>textContent<span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> shadowRoot <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">attachShadow</span><span class="token punctuation">(</span><span class="token punctuation">{</span>mode<span class="token operator">:</span> <span class="token string">'open'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+shadowRoot<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>style<span class="token punctuation">)</span><span class="token punctuation">;</span>
+shadowRoot<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>span<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+style<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'span:hover { text-decoration: underline; }'</span> <span class="token operator">+</span>
+                    <span class="token string">':host-context(h1) { font-style: italic; }'</span> <span class="token operator">+</span>
+                    <span class="token string">':host-context(h1):after { content: " - no links in headers!" }'</span> <span class="token operator">+</span>
+                    <span class="token string">':host-context(article, aside) { color: gray; }'</span> <span class="token operator">+</span>
+                    <span class="token string">':host(.footer) { color : red; }'</span> <span class="token operator">+</span>
+                    <span class="token string">':host { background: rgba(0,0,0,0.1); padding: 2px 5px; }'</span><span class="token punctuation">;</span></pre> <p>The <code>:host { background: rgba(0,0,0,0.1); padding: 2px 5px; }</code> rule styles all instances of the <code>&lt;context-span&gt;</code> element (the shadow host in this instance) in the document.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/css-scoping/#host-selector" hreflang="en" rel=" noopener">CSS Scoping Module Level 1<br><small>The definition of ':host' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>:host</code></th>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>63</div>
+<div>61-63</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes">
+<div>63</div>
+<div>61-63</div>
+</td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components">Web components</a></li> <li><a href=":host()"><code>:host()</code></a></li> <li><a href=":host-context()"><code>:host-context()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:host" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/:host</a>
+  </p>
+</div>

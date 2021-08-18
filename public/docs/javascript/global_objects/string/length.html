@@ -1,0 +1,92 @@
+<h1>String length</h1> <p>The <code>length</code> property of a <a href="../string"><code>String</code></a> object contains the length of the string, in UTF-16 code units. <code>length</code> is a read-only data property of string instances.</p> <iframe class="interactive" width="100%" height="410" src="https://interactive-examples.mdn.mozilla.net/pages/js/string-length.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="description">Description</h2>
+<p>This property returns the number of code units in the string. <a href="https://en.wikipedia.org/wiki/UTF-16" rel=" noopener">UTF-16</a>, the string format used by JavaScript, uses a single 16-bit code unit to represent the most common characters, but needs to use two code units for less commonly-used characters, so it's possible for the value returned by <code>length</code> to not match the actual number of characters in the string.</p> <p>ECMAScript 2016 (ed. 7) established a maximum length of <code>2^53 - 1</code> elements. Previously, no maximum length was specified. In Firefox, strings have a maximum length of <code>2**30 - 2</code> (~1GB). In versions prior to Firefox 65, the maximum length was <code>2**28 - 1</code> (~256MB).</p> <p>For an empty string, <code>length</code> is 0.</p> <p>The static property <code>String.length</code> is unrelated to the length of strings, it's the arity of the <code>String</code> function (loosely, the number of formal parameters it has), which is 1.</p>
+<h2 id="unicode">Unicode</h2>
+<p>Since `length` counts code units instead of characters, if you want to get the number of characters you need something like this:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">getCharacterLength</span> <span class="token punctuation">(</span><span class="token parameter">str</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// The string iterator that is used here iterates over characters,</span>
+  <span class="token comment">//  not mere code units</span>
+  <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token operator">...</span>str<span class="token punctuation">]</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">getCharacterLength</span><span class="token punctuation">(</span><span class="token string">'A\uD87E\uDC04Z'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 3</span>
+
+<span class="token comment">// While not recommended, you could add this to each string as follows:</span>
+
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">.</span>prototype<span class="token punctuation">,</span> <span class="token string">'charLength'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token function">get</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token function">getCharacterLength</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'A\uD87E\uDC04Z'</span><span class="token punctuation">.</span>charLength<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 3</span>
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="basic_usage">Basic usage</h3>
+<pre data-language="js"><span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token string">'Mozilla'</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> empty <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x <span class="token operator">+</span> <span class="token string">' is '</span> <span class="token operator">+</span> x<span class="token punctuation">.</span>length <span class="token operator">+</span> <span class="token string">' code units long'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/* "Mozilla is 7 code units long" */</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'The empty string has a length of '</span> <span class="token operator">+</span> empty<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// expected output: "The empty string has a length of 0"</span></pre>
+<h3 id="assigning_to_length">Assigning to length</h3>
+<pre data-language="js"><span class="token keyword">let</span> myString <span class="token operator">=</span> <span class="token string">"bluebells"</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Attempting to assign a value to a string's .length property has no observable effect.</span>
+myString<span class="token punctuation">.</span>length <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myString<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// expected output: "bluebells"</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myString<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// expected output: 9</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> </tr> </thead> <tbody> <tr> <td><a href="https://tc39.es/ecma262/#sec-properties-of-string-instances-length" hreflang="en" rel=" noopener">ECMAScript (ECMA-262)</a></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>length</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://downloads.teradata.com/blog/jasonstrimpel/2011/11/javascript-string-length-and-internationalizing-web-applications" rel=" noopener">JavaScript <code>String.length</code> and Internationalizing Web Applications</a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/length</a>
+  </p>
+</div>

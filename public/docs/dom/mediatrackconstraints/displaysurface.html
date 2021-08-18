@@ -1,0 +1,67 @@
+<h1>MediaTrackConstraints.displaySurface</h1> <p>The <a href="../mediatrackconstraints"><code>MediaTrackConstraints</code></a> dictionary's <code>displaySurface</code> property is a <a href="../constraindomstring"><code>ConstrainDOMString</code></a> describing the requested or mandatory constraints placed upon the value of the <a href="../mediatracksettings/displaysurface"><code>displaySurface</code></a> constrainable property. This is used to specify the type or types of display surfaces which <a href="../mediadevices/getdisplaymedia"><code>getDisplayMedia()</code></a> will let the user select among for sharing purposes.</p> <p>If needed, you can determine whether or not this constraint is supported by checking the value of <a href="../mediatracksupportedconstraints/displaysurface"><code>MediaTrackSupportedConstraints.displaySurface</code></a> as returned by a call to <a href="../mediadevices/getsupportedconstraints"><code>MediaDevices.getSupportedConstraints()</code></a>. However, typically this is unnecessary since browsers will ignore any constraints they're unfamiliar with.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> constraintsObject <span class="token operator">=</span> <span class="token punctuation">{</span> displaySurface<span class="token operator">:</span> constraint <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+constraintsObject<span class="token punctuation">.</span>displaySurface <span class="token operator">=</span> constraint<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../constraindomstring"><code>ConstrainDOMString</code></a> which specifies the type of display surface that's being captured. This value <em>does not</em> affect the list of display sources in the browser's user interface.</p> <p>See <a href="#">How constraints are defined</a> in <a href="../media_streams_api/constraints">Capabilities, constraints, and settings</a> for an explanation of how to define constraints.</p>
+<h2 id="usage_notes">Usage notes</h2>
+<p>You can check the setting selected by the user agent after the display media has been created by <a href="../mediadevices/getdisplaymedia"><code>getDisplayMedia()</code></a> by calling <a href="../mediastreamtrack/getsettings"><code>getSettings()</code></a> on the display media's video <a href="../mediastreamtrack"><code>MediaStreamTrack</code></a>, then checking the value of the returned <a href="../mediatracksettings"><code>MediaTrackSettings</code></a> object's <a href="../mediatracksettings/displaysurface"><code>displaySurface</code></a> object.</p> <p>For example, if your app needs to know that the surface being shared is a monitor or application—meaning that there's possibly a non-content backdrop—it can use code similar to this:</p> <pre data-language="js"><span class="token keyword">let</span> mayHaveBackdropFlag <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> displaySurface <span class="token operator">=</span> displayStream<span class="token punctuation">.</span><span class="token function">getVideoTracks</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">getSettings</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>displaySurface<span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>displaySurface <span class="token operator">===</span> <span class="token string">"monitor"</span> <span class="token operator">||</span> displaySurface <span class="token operator">===</span><span class="token string">"application"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  mayHaveBackdropFlag <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>Following this code, <code>mayHaveBackdrop</code> is <code>true</code> if the display surface contained in the stream is of type <code>monitor</code> or <code>application</code>; either of these <em>may</em> have non-content backdrop areas. Later code can use this flag to determine whether or not to perform special processing, such as to remove or replace the backdrop, or to "cut" the individual display areas out of the received frames of video.</p>
+<h2 id="example">Examples</h2>
+<p>Here are some example constraints objects for <code>getDisplayMedia()</code> that make use of the <code>displaySurface</code> property. In addition, see <a href="#">Example: Constraint exerciser</a> in <a href="../media_streams_api/constraints">Capabilities, constraints, and settings</a> for a complete example showing how constraints are used.</p> <p>TBD</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/mediacapture-screen-share/#dom-mediatrackconstraintset-displaysurface" hreflang="en" rel=" noopener">Screen Capture<br><small>The definition of 'MediaTrackConstraints.displaySurface' in that specification.</small></a></td> <td><span class="spec-">Unknown</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>displaySurface</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../screen_capture_api">Screen Capture API</a></li> <li><a href="../screen_capture_api/using_screen_capture">Using the Screen Capture API</a></li> <li><a href="../media_streams_api/constraints">Capabilities, constraints, and settings</a></li> <li><a href="../mediatrackconstraints"><code>MediaTrackConstraints</code></a></li> <li><a href="../mediadevices/getsupportedconstraints"><code>MediaDevices.getSupportedConstraints()</code></a></li> <li><a href="../mediatracksupportedconstraints"><code>MediaTrackSupportedConstraints</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints/displaySurface" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaTrackConstraints/displaySurface</a>
+  </p>
+</div>

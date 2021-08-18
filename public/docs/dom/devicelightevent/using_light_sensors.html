@@ -1,0 +1,117 @@
+<h1>Using light sensors</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p><strong>Ambient Light Events</strong> give a web application access to a device's ambient light sensor to detect changes in light intensity. </p>
+<h2 id="how_does_it_work"><span style="line-height: 1.572;">How Does it Work?</span></h2>
+<p>When the light sensor of the device detects a change in light intensity, the browser is notified of the change and fires a <a href="../devicelightevent"><code>DeviceLightEvent</code></a> event. The event gives information about the light intensity of the device's environment.</p> <p>The <a href="../devicelightevent"><code>DeviceLightEvent</code></a> provides a value attribute with light intensity in <em>lux</em> which is generally treated as shown below.</p> <div class="note notecard"> <p>10 ~ 50 lux : Dim Environment</p> <p>100 ~ 1000 lux : Normal</p> <p>&gt; 10000 lux : Bright</p> </div> <p>It uses the <a href="../eventtarget/addeventlistener"><code>addEventListener</code></a> method of the <a href="../window"><code>window</code></a> object.</p> <pre data-language="js">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"devicelight"</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token comment">// Read out the lux value</span>
+
+<span class="token keyword">var</span> luminosity <span class="token operator">=</span> event<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span>luminosity<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="example">Example:</h2>
+<pre data-language="js">window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'devicelight'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token keyword">var</span> bodyBg<span class="token operator">=</span> document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>style<span class="token punctuation">;</span>
+
+<span class="token comment">//event.value is the lux value returned by the sensor on the device</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>value <span class="token operator">&lt;</span> <span class="token number">100</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">'Hey, you! You are working in a dark environment'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+bodyBg<span class="token punctuation">.</span>backgroundColor<span class="token operator">=</span><span class="token string">"lightgrey"</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+
+bodyBg<span class="token punctuation">.</span>backgroundColor<span class="token operator">=</span><span class="token string">"#fff"</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>This example shows how the API can actually be used in the wild. If your app contains a lot of white in the UI, it is usually beneficial to the user to change the UI to a darker color in a darker environment. The code alerts the user that they are working in a dark environment and then changes the page's background to a darker color. </p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/ambient-light/" hreflang="en" rel=" noopener">Ambient Light Sensor<br><small>The definition of 'Ambient Light Events' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial specification</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>Using_light_sensors</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>13-79</div></td>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>See <a href="https://bugzil.la/1462308">bug 1462308</a>.</div>
+<div>22-61</div>
+<div>Not supported for MacBook with Touch Bar and Windows 7 (see <a href="https://bugzil.la/754199">bug 754199</a>).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>See <a href="https://bugzil.la/1462308">bug 1462308</a>.</div>
+<div>15-61</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>value</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>13-79</div></td>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>See <a href="https://bugzil.la/1462308">bug 1462308</a>.</div>
+<div>22-61</div>
+<div>Not supported for MacBook with Touch Bar and Windows 7 (see <a href="https://bugzil.la/754199">bug 754199</a>).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>62</div>
+<div>See <a href="https://bugzil.la/1462308">bug 1462308</a>.</div>
+<div>15-61</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="references">References:</h2>
+<ul> <li><a href="https://hacks.mozilla.org/2013/04/ambient-light-events-and-javascript-detection/" rel=" noopener">Ambient Light Events and JavaScript detection : Robert Nyman</a></li> <li><a href="../ambient_light_events">Using light events</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/DeviceLightEvent/Using_light_sensors" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/DeviceLightEvent/Using_light_sensors</a>
+  </p>
+</div>

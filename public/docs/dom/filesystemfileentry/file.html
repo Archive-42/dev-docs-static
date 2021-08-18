@@ -1,0 +1,79 @@
+<h1>FileSystemFileEntry.file()</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <a href="../filesystemfileentry"><code>FileSystemFileEntry</code></a> interface's method <code><strong>file</strong></code><code>()</code> returns a <a href="../file"><code>File</code></a> object which can be used to read data from the file represented by the directory entry.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">FileSystemFileEntry<span class="token punctuation">.</span><span class="token function">file</span><span class="token punctuation">(</span>successCallback<span class="token punctuation">[</span><span class="token punctuation">,</span> errorCallback<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>successCallback</code></dt> <dd>A callback function which is called when the <a href="../file"><code>File</code></a> has been created successfully; the <code>File</code> is passed into the callback as the only parameter. </dd> <dt>
+<code>errorCallback</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>If provided, this must be a method which is called when an error occurs while trying to create the <a href="../file"><code>File</code></a>. This callback receives as input a <a href="../fileerror"><code>FileError</code></a> object describing the error.</dd> </dl> <div class="note notecard"> <p>Editor's note: We need to find out what kinds of errors can occur and document them. </p> </div>
+<h3 id="return_value">Return value</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"><code>undefined</code></a>.</p>
+<h2 id="example">Example</h2>
+<p>This example establishes a method, <code>readFile()</code>, reads a text file and calls a specified callback function with the received text (in a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a> object) once the read is completed. If an error occurs, a specified (optional) error callback is called.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">readFile</span><span class="token punctuation">(</span><span class="token parameter">entry<span class="token punctuation">,</span> successCallback<span class="token punctuation">,</span> errorCallback</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  entry<span class="token punctuation">.</span><span class="token function">file</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">file</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> reader <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileReader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    reader<span class="token punctuation">.</span><span class="token function-variable function">onload</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">successCallback</span><span class="token punctuation">(</span>reader<span class="token punctuation">.</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+    reader<span class="token punctuation">.</span><span class="token function-variable function">onerror</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">errorCallback</span><span class="token punctuation">(</span>reader<span class="token punctuation">.</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    reader<span class="token punctuation">.</span><span class="token function">readAsText</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> errorCallback<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>This function calls <code>file()</code>, specifying as its success callback a method which proceeds to use a <a href="../filereader"><code>FileReader</code></a> to read the file as text. The FileReader's <code><a href="../window/load_event">load</a></code> event handler is set up to deliver the loaded string to the <code>successCallback</code> specified when the <code>readFile()</code> method was called; similarly, its <code><a href="../element/error_event">error</a></code> handler is set up to call the <code>errorCallback</code> specified.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td>
+<a href="https://wicg.github.io/entries-api/#dom-filesystemfileentry-file" hreflang="en" rel=" noopener">File and Directory Entries API<br><small>The definition of 'file()' in that specification.</small></a> </td> <td><span class="spec-draft">Draft</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>file</code></th>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../file_and_directory_entries_api">File and Directory Entries API</a></li> <li><a href="../file_and_directory_entries_api/introduction">Introduction to the File System API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileEntry/file" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemFileEntry/file</a>
+  </p>
+</div>

@@ -1,0 +1,165 @@
+<h1>BasicCardRequest</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <code>BasicCardRequest</code> dictionary is a JavaScript object-structure that can be used in the <a href="payment_request_api">Payment Request API</a>. The properties of <code>BasicCardRequest</code> are defined in the <a href="#specifications">Basic Card Payment spec</a>).</p>
+<h2 id="properties">Properties</h2>
+<dl> <dt>
+<a href="basiccardrequest/supportednetworks"><code>BasicCardRequest.supportedNetworks</code></a> <span class="badge inline optional">Optional</span> <span class="notecard inline secure">Secure context</span>
+</dt> <dd>An optional array of <a href="domstring"><code>DOMString</code></a>s representing the card networks that the retailer supports (e.g. "<code>amex"</code>, "<code>mastercard"</code>); see <a href="#card_network_identifiers">Card network identifiers</a> for a complete list. If the property is missing, it implies that all networks are supported.</dd> </dl>
+<h3 id="obsolete_properties">Obsolete properties</h3>
+<p>These properties have been removed from the Payment Method: Basic Card specification and should no longer be used.</p> <dl> <dt>
+<a href="basiccardrequest/supportedtypes"><code>BasicCardRequest.supportedTypes</code></a> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span> <span class="badge inline optional">Optional</span> <span class="notecard inline secure">Secure context</span>
+</dt> <dd>This obsolete property was used to provide an optional array of <a href="domstring"><code>DOMString</code></a>s representing the card types that the retailer supports (e.g. <code>credit</code>, <code>debit</code>, <code>prepaid</code>). If the property is missing, it implies that all the card types are supported. Instead of using this property, it is up to the server to check support for the card given the information coded into the account number.</dd> </dl>
+<h2 id="card_network_identifiers">Card network identifiers</h2>
+<p>The W3C maintains an official list of <a href="https://www.w3.org/Payments/card-network-ids" rel=" noopener">approved card network identifier strings</a>, which may be used in the <a href="basiccardrequest/supportednetworks"><code>supportedNetworks</code></a> list. Those are:</p> <div class="twocolumns"> <ul> <li><code>amex</code></li> <li><code>cartebancaire</code></li> <li><code>diners</code></li> <li><code>discover</code></li> <li><code>jcb</code></li> <li><code>mastercard</code></li> <li><code>mir</code></li> <li><code>unionpay</code></li> <li><code>visa</code></li> </ul> </div>
+<h2 id="examples">Examples</h2>
+<p>In the following example, the <a href="paymentrequest/paymentrequest"><code>PaymentRequest()</code></a> constructor is used to create a new payment request, which takes three objects as parameters — one containing details of the payment methods that can be used for the payment, one containing details of the actual order (such as items bought and shipping options), and an optional object that describes what data is needed to fullfil the payment (e.g., a shipping address).</p> <p>The first of these three (<code>supportedInstruments</code> in the example below) contains a <code>data</code> property that has to conform to the structure defined by the <code>BasicCardRequest</code> dictionary. </p> <pre data-language="js"><span class="token keyword">var</span> supportedInstruments <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+  supportedMethods<span class="token operator">:</span> <span class="token string">'basic-card'</span><span class="token punctuation">,</span>
+  data<span class="token operator">:</span> <span class="token punctuation">{</span>
+    supportedNetworks<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'visa'</span><span class="token punctuation">,</span> <span class="token string">'mastercard'</span><span class="token punctuation">,</span> <span class="token string">'amex'</span><span class="token punctuation">,</span> <span class="token string">'jcb'</span><span class="token punctuation">,</span>
+                        <span class="token string">'diners'</span><span class="token punctuation">,</span> <span class="token string">'discover'</span><span class="token punctuation">,</span> <span class="token string">'mir'</span><span class="token punctuation">,</span> <span class="token string">'unionpay'</span><span class="token punctuation">]</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> details <span class="token operator">=</span> <span class="token punctuation">{</span>
+  total<span class="token operator">:</span> <span class="token punctuation">{</span>label<span class="token operator">:</span> <span class="token string">'Donation'</span><span class="token punctuation">,</span> amount<span class="token operator">:</span> <span class="token punctuation">{</span>currency<span class="token operator">:</span> <span class="token string">'USD'</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token string">'65.00'</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  displayItems<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      label<span class="token operator">:</span> <span class="token string">'Original donation amount'</span><span class="token punctuation">,</span>
+      amount<span class="token operator">:</span> <span class="token punctuation">{</span>currency<span class="token operator">:</span> <span class="token string">'USD'</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token string">'65.00'</span><span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  shippingOptions<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      id<span class="token operator">:</span> <span class="token string">'standard'</span><span class="token punctuation">,</span>
+      label<span class="token operator">:</span> <span class="token string">'Standard shipping'</span><span class="token punctuation">,</span>
+      amount<span class="token operator">:</span> <span class="token punctuation">{</span>currency<span class="token operator">:</span> <span class="token string">'USD'</span><span class="token punctuation">,</span> value<span class="token operator">:</span> <span class="token string">'0.00'</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+      selected<span class="token operator">:</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> options <span class="token operator">=</span> <span class="token punctuation">{</span>requestShipping<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">PaymentRequest</span><span class="token punctuation">(</span>supportedInstruments<span class="token punctuation">,</span> details<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// Add event listeners here.</span>
+  <span class="token comment">// Call show() to trigger the browser's payment flow.</span>
+  request<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">instrumentResponse</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Do something with the response from the UI.</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Do something with the error from request.show().</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Catch any other errors.</span>
+<span class="token punctuation">}</span></pre> <p>Once the payment flow has been triggered using <a href="paymentrequest/show"><code>PaymentRequest.show()</code></a> and the promise resolves successfully, the <a href="paymentresponse"><code>PaymentResponse</code></a> object available inside the fulfilled promise (<code>instrumentResponse</code> above) will have a <a class="page-not-created"><code>PaymentResponse.details</code></a> property that will contain response details. This has to conform to the structure defined by the <a href="basiccardresponse"><code>BasicCardResponse</code></a> dictionary, and may look something like this:</p> <pre data-language="js"><span class="token punctuation">{</span>
+  <span class="token string">"cardNumber' : '9999999999999999"</span><span class="token punctuation">,</span>
+  <span class="token string">"cardholderName' : 'Mr Dick Straw"</span><span class="token punctuation">,</span>
+  <span class="token string">"cardSecurityCode"</span> <span class="token operator">:</span> <span class="token string">"999"</span><span class="token punctuation">,</span>
+  <span class="token string">"expiryMonth"</span> <span class="token operator">:</span> <span class="token string">"07"</span><span class="token punctuation">,</span>
+  <span class="token string">"expiryYear"</span> <span class="token operator">:</span> <span class="token string">"2021"</span><span class="token punctuation">,</span>
+  <span class="token string">"billingAddress"</span> <span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token string">"country"</span> <span class="token operator">:</span> <span class="token string">"GB"</span><span class="token punctuation">,</span>
+    <span class="token comment">// etc. billing address is a PaymentAddress object</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/payment-method-basic-card/#basiccardrequest-dictionary" hreflang="en" rel=" noopener">Basic Card Payment<br><small>The definition of 'BasicCardRequest' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>BasicCardRequest</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>≤18-79</div></td>
+<td class="bc-supports-yes">
+<div>56</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>56</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>supportedNetworks</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>≤18-79</div></td>
+<td class="bc-supports-yes">
+<div>56</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>56</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>supportedTypes</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>≤18-79</div></td>
+<td class="bc-supports-no">
+<div>56-65</div>
+<div>It's now up to the payment processor to determine the type of card used, when necessary. Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-no">
+<div>56-65</div>
+<div>It's now up to the payment processor to determine the type of card used, when necessary. Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/BasicCardRequest" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/BasicCardRequest</a>
+  </p>
+</div>

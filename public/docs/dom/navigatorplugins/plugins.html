@@ -1,0 +1,86 @@
+<h1>NavigatorPlugins.plugins</h1>
+
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div>
+ <p>Returns a <a href="../pluginarray"><code>PluginArray</code></a> object, listing the <a href="../plugin"><code>Plugin</code></a> objects describing the plugins installed in the application.</p> <div class="note notecard"> <p>In Firefox 29 and later, enumeration of the <code>navigator.plugins</code> array may be restricted as a privacy measure. Applications that must check for the presence of a browser plugin should query <code>navigator.plugins</code> or <a href="mimetypes"><code>navigator.mimeTypes</code></a> by exact name instead of enumerating the <code>navigator.plugins</code> array and comparing every plugin's name. This privacy change does not disable any plugins; it just hides some plugin names from enumeration. </p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> plugins <span class="token operator">=</span> navigator<span class="token punctuation">.</span>plugins<span class="token punctuation">;</span>
+</pre> <p><code>plugins</code> is <a href="../pluginarray"><code>PluginArray</code></a> object used to access <a href="../plugin"><code>Plugin</code></a> objects either by name or as a list of items.</p> <p>The returned value is not a JavaScript array, but has the <code>length</code> property and supports accessing individual items using bracket notation (<code>plugins[2]</code>), as well as via <code>item(<var>index</var>)</code> and <code>namedItem(<em>"name"</em>)</code> methods.</p>
+<h2 id="examples">Examples</h2>
+<p>The following example function returns the version of the Shockwave Flash plugin.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">getFlashVersion</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> flash <span class="token operator">=</span> navigator<span class="token punctuation">.</span>plugins<span class="token punctuation">.</span><span class="token function">namedItem</span><span class="token punctuation">(</span><span class="token string">'Shockwave Flash'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> flash <span class="token operator">!=</span> <span class="token string">'object'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// flash is not present</span>
+    <span class="token keyword">return</span> <span class="token keyword">undefined</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">if</span><span class="token punctuation">(</span>flash<span class="token punctuation">.</span>version<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">return</span> flash<span class="token punctuation">.</span>version<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">//No version property (e.g. in Chrome)</span>
+    <span class="token keyword">return</span> flash<span class="token punctuation">.</span>description<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">Shockwave Flash </span><span class="token regex-delimiter">/</span></span><span class="token punctuation">,</span><span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre> <p>The following example displays information about the installed plugin(s).</p> <pre data-language="js"><span class="token keyword">var</span> pluginsLength <span class="token operator">=</span> navigator<span class="token punctuation">.</span>plugins<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> pluginsLength <span class="token operator">+</span> <span class="token string">" Plugin(s)&lt;br&gt;"</span>
+  <span class="token operator">+</span> <span class="token string">'&lt;table id="pluginTable"&gt;&lt;thead&gt;'</span>
+  <span class="token operator">+</span><span class="token string">'&lt;tr&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Filename&lt;/th&gt;&lt;th&gt;description&lt;/th&gt;&lt;th&gt;version&lt;/th&gt;&lt;/tr&gt;'</span>
+  <span class="token operator">+</span><span class="token string">'&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> table <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'pluginTable'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> pluginsLength<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> newRow <span class="token operator">=</span> table<span class="token punctuation">.</span><span class="token function">insertRow</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  newRow<span class="token punctuation">.</span><span class="token function">insertCell</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>textContent <span class="token operator">=</span> navigator<span class="token punctuation">.</span>plugins<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+  newRow<span class="token punctuation">.</span><span class="token function">insertCell</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>textContent <span class="token operator">=</span> navigator<span class="token punctuation">.</span>plugins<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>filename<span class="token punctuation">;</span>
+  newRow<span class="token punctuation">.</span><span class="token function">insertCell</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>textContent <span class="token operator">=</span> navigator<span class="token punctuation">.</span>plugins<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>description<span class="token punctuation">;</span>
+  newRow<span class="token punctuation">.</span><span class="token function">insertCell</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>textContent <span class="token operator">=</span> navigator<span class="token punctuation">.</span>plugins<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>version<span class="token operator">?</span>navigator<span class="token punctuation">.</span>plugins<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>version<span class="token operator">:</span><span class="token string">""</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="notes">Notes</h2>
+<p>The <a href="../plugin"><code>Plugin</code></a> object exposes a small interface for getting information about the various plugins installed in your browser. A list of plugins is also available by entering <code>about:plugins</code> in the browser's Location bar.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#dom-navigator-plugins" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'NavigatorPlugins.plugins' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>plugins</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+ <p>In addition to listing each plugin as a pseudo-array by zero-indexed numeric properties, Firefox provides properties that are the plugin name directly on the <a href="../pluginarray">PluginArray</a> object.</p>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorPlugins/plugins" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NavigatorPlugins/plugins</a>
+  </p>
+</div>

@@ -1,0 +1,175 @@
+<h1>WebAssembly.Module</h1> <p>A <code>WebAssembly.Module</code> object contains stateless WebAssembly code that has already been compiled by the browser — this can be efficiently <a href="https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage">shared with Workers</a>, and instantiated multiple times. </p>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="module/module"><code>WebAssembly.Module()</code></a></dt> <dd>Creates a new <code>Module</code> object.</dd> </dl>
+<h2 id="static_properties">Static properties</h2>
+<dl> <dt><a href="module/customsections"><code>WebAssembly.Module.customSections()</code></a></dt> <dd>Given a <code>Module</code> and string, returns a copy of the contents of all custom sections in the module with the given string name.</dd> <dt><a href="module/exports"><code>WebAssembly.Module.exports()</code></a></dt> <dd>Given a <code>Module</code>, returns an array containing descriptions of all the declared exports.</dd> <dt><a href="module/imports"><code>WebAssembly.Module.imports()</code></a></dt> <dd>Given a <code>Module</code>, returns an array containing descriptions of all the declared imports.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="sending_a_compiled_module_to_a_worker">Sending a compiled module to a worker</h3>
+<p>The following example (see our <a href="https://github.com/mdn/webassembly-examples/blob/master/js-api-examples/index-compile.html" rel=" noopener">index-compile.html</a> demo on GitHub, and <a href="https://mdn.github.io/webassembly-examples/js-api-examples/index-compile.html" rel=" noopener">view it live</a> also) compiles the loaded <code>simple.wasm</code> byte code using the <a href="compilestreaming"><code>WebAssembly.compileStreaming()</code></a> method and then sends the resulting <code>Module</code> instance to a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">worker</a> using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Worker/postMessage"><code>postMessage()</code></a>.</p> <pre data-language="js"><span class="token keyword">var</span> worker <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Worker</span><span class="token punctuation">(</span><span class="token string">"wasm_worker.js"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+WebAssembly<span class="token punctuation">.</span><span class="token function">compileStreaming</span><span class="token punctuation">(</span><span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'simple.wasm'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">mod</span> <span class="token operator">=&gt;</span>
+  worker<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span>mod<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>In the worker (see <code><a href="https://github.com/mdn/webassembly-examples/blob/master/js-api-examples/wasm_worker.js" rel=" noopener">wasm_worker.js</a></code>) we define an import object for the module to use, then set up an event handler to receive the module from the main thread. When the module is received, we create an instance from it using the <a href="instantiate"><code>WebAssembly.instantiate()</code></a> method and invoke an exported function from inside it.</p> <pre data-language="js"><span class="token keyword">var</span> importObject <span class="token operator">=</span> <span class="token punctuation">{</span>
+  imports<span class="token operator">:</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">imported_func</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">arg</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'module received from main thread'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> mod <span class="token operator">=</span> e<span class="token punctuation">.</span>data<span class="token punctuation">;</span>
+
+  WebAssembly<span class="token punctuation">.</span><span class="token function">instantiate</span><span class="token punctuation">(</span>mod<span class="token punctuation">,</span> importObject<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">instance</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    instance<span class="token punctuation">.</span>exports<span class="token punctuation">.</span><span class="token function">exported_func</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://webassembly.github.io/spec/js-api/#modules">WebAssembly JavaScript Interface (WebAssembly JavaScript Interface)<br> <small>#modules</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>Module</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>Module</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>customSections</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>exports</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>imports</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>Disabled in the Firefox 52 Extended Support Release (ESR).</div>
+</td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="https://developer.mozilla.org/en-US/docs/WebAssembly">WebAssembly</a> overview page</li> <li><a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Concepts">WebAssembly concepts</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/WebAssembly/Using_the_JavaScript_API">Using the WebAssembly JavaScript API</a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Module" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WebAssembly/Module</a>
+  </p>
+</div>

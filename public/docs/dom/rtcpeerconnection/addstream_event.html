@@ -1,0 +1,62 @@
+<h1>RTCPeerConnection: addstream event</h1>
+
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div>
+ <p>The obsolete <code><strong>addstream</strong></code> event is sent to an <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> when new media, in the form of a <a href="../mediastream"><code>MediaStream</code></a> object, has been added to it.</p> <div class="notecard warning"> <p><strong>Important:</strong> This event has been removed from the WebRTC specification. You should instead watch for the <a href="track_event"><code>track</code></a> event, which is sent for each media track added to the <code>RTCPeerConnection</code>.</p> </div> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>No</td> </tr> <tr> <th scope="row">Cancelable</th> <td>No</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../mediastreamevent"><code>MediaStreamEvent</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td><a href="onaddstream"><code>RTCPeerconnection.onaddstream</code></a></td> </tr> </tbody> </table></div> <p>You can, similarly, watch for streams to be removed from the connection by monitoring the <a href="removestream_event"><code>removestream</code></a> event.</p>
+<h2 id="examples">Examples</h2>
+<p>This example looks to determine if the user's browser supports the <a href="track_event"><code>track</code></a> event. If it does, a <code>track</code> event listener is set up; otherwise, an <code>addstream</code> event listener is set up. <code>pc</code> is an <code>RTCPeerConnection</code>.</p> <pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span>pc<span class="token punctuation">.</span>addTrack <span class="token operator">!==</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  pc<span class="token punctuation">.</span><span class="token function-variable function">ontrack</span> <span class="token operator">=</span> <span class="token parameter">ev</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    ev<span class="token punctuation">.</span>streams<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">stream</span> <span class="token operator">=&gt;</span> <span class="token function">doAddStream</span><span class="token punctuation">(</span>stream<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  pc<span class="token punctuation">.</span><span class="token function-variable function">onaddstream</span> <span class="token operator">=</span> <span class="token parameter">ev</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token function">doAddStream</span><span class="token punctuation">(</span>ev<span class="token punctuation">.</span>stream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre> <p>This calls a function <code>doAddStream()</code> once for each stream being added to the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a>, regardless of whether the browser sends <code>addstream</code> or <code>track</code>.</p> <p>You can also use the <a href="../eventtarget/addeventlistener"><code>addEventListener()</code></a> method to set an event listener:</p> <pre data-language="js">pc<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"addstream"</span><span class="token punctuation">,</span> <span class="token parameter">ev</span> <span class="token operator">=&gt;</span> <span class="token function">doAddStream</span><span class="token punctuation">(</span>ev<span class="token punctuation">.</span>stream<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>addstream_event</code></th>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webrtc_api">WebRTC API</a></li> <li><a href="onaddstream"><code>RTCPeerConnection.onaddstream</code></a></li> <li><a href="addstream"><code>RTCPeerConnection.addStream()</code></a></li> <li><a href="../mediastreamevent"><code>MediaStreamEvent</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/addstream_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/addstream_event</a>
+  </p>
+</div>

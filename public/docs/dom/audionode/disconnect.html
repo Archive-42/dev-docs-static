@@ -1,0 +1,120 @@
+<h1>AudioNode.disconnect()</h1>
+
+ <p>The <code>disconnect()</code> method of the <a href="../audionode"><code>AudioNode</code></a> interface lets you disconnect one or more nodes from the node on which the method is called.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">AudioNode<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+AudioNode<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span>output<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+AudioNode<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+AudioNode<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span>destination<span class="token punctuation">,</span> output<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+AudioNode<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span>destination<span class="token punctuation">,</span> output<span class="token punctuation">,</span> input<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="return_value">Return value</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"><code>undefined</code></a></p>
+<h3 id="parameters">Parameters</h3>
+<p>There are several versions of the <code>disconnect()</code> method, which accept different combinations of parameters to control which nodes to disconnect from. If no parameters are provided, all outgoing connections are disconnected.</p> <dl> <dt>
+<code>destination</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An <a href="../audionode"><code>AudioNode</code></a> or <a href="../audioparam"><code>AudioParam</code></a> specifying the node or nodes to disconnect from. If this value is an <code>AudioNode</code>, a single node is disconnected from, with any other, optional, parameters (<code>output</code> and/or <code>input</code>) further limiting which inputs and/or outputs should be disconnected. If this value is an <code>AudioParam</code>, then the connection to that <code>AudioParam</code> is terminated, and the node's contributions to that computed parameter become 0 going forward once the change takes effect. If no matching connection is found, an <code>InvalidAccessError</code> exception is thrown.</dd> <dt>
+<code>output</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An index describing which output from the current <code>AudioNode</code> is to be disconnected. The index numbers are defined according to the number of output channels (see <a href="../web_audio_api/basic_concepts_behind_web_audio_api#audio_channels">Audio channels</a>). If this parameter is out-of-bound, an <code>IndexSizeError</code> exception is thrown.</dd> <dt>
+<code>input</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An index describing which input into the specified destination <code>AudioNode</code> is to be disconnected. The index numbers are defined according to the number of input channels (see <a href="../web_audio_api/basic_concepts_behind_web_audio_api#audio_channels">Audio channels</a>). If this parameter is out-of-bound, an <code>IndexSizeError</code> exception is thrown.</dd> </dl>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>IndexSizeError</code></dt> <dd>A value specified for <code>input</code> or <code>output</code> is invalid, referring to a node which doesn't exist or outside the permitted range.</dd> <dt><code>InvalidAccessError</code></dt> <dd>The node on which <code>disconnect()</code> was called isn't connected to the specified <code>destination</code> node.</dd> </dl>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token keyword">var</span> AudioContext <span class="token operator">=</span> window<span class="token punctuation">.</span>AudioContext <span class="token operator">||</span> window<span class="token punctuation">.</span>webkitAudioContext<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> audioCtx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> oscillator <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createOscillator</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> gainNode <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createGain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+oscillator<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>gainNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+gainNode<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>audioCtx<span class="token punctuation">.</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+gainNode<span class="token punctuation">.</span><span class="token function">disconnect</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://webaudio.github.io/web-audio-api/#dom-audionode-disconnect" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'disconnect' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>disconnect</code></th>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>destination</code></th>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+<tr>
+<th><code>input</code></th>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../web_audio_api/using_web_audio_api">Using the Web Audio API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioNode/disconnect" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/AudioNode/disconnect</a>
+  </p>
+</div>

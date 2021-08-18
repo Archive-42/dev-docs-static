@@ -1,0 +1,108 @@
+<h1>CanvasRenderingContext2D.setTransform()</h1> <p>The <code><strong>CanvasRenderingContext2D</strong></code><code>.setTransform()</code> method of the Canvas 2D API resets (overrides) the current transformation to the identity matrix, and then invokes a transformation described by the arguments of this method. This lets you scale, rotate, translate (move), and skew the context.</p> <div class="notecard note"> <p><strong>Note:</strong> See also the <a href="transform"><code>transform()</code></a> method; instead of overriding the current transform matrix, it multiplies it with a given one.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">ctx<span class="token punctuation">.</span><span class="token function">setTransform</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">,</span> d<span class="token punctuation">,</span> e<span class="token punctuation">,</span> f<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">setTransform</span><span class="token punctuation">(</span>matrix<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>The transformation matrix is described by: <math> <semantics> <mrow> <mo>[</mo> <mtable columnalign="center center center" rowspacing="0.5ex"> <mtr> <mtd> <mi>a</mi> </mtd> <mtd> <mi>c</mi> </mtd> <mtd> <mi>e</mi> </mtd> </mtr> <mtr> <mtd> <mi>b</mi> </mtd> <mtd> <mi>d</mi> </mtd> <mtd> <mi>f</mi> </mtd> </mtr> <mtr> <mtd> <mn>0</mn> </mtd> <mtd> <mn>0</mn> </mtd> <mtd> <mn>1</mn> </mtd> </mtr> </mtable> <mo>]</mo> </mrow> <annotation encoding="TeX">\left[ \begin{array}{ccc} a &amp; c &amp; e \\ b &amp; d &amp; f \\ 0 &amp; 0 &amp; 1 \end{array} \right]</annotation> </semantics> </math></p>
+<h3 id="parameters">Parameters</h3>
+<p><code>setTransform()</code> has two types of parameter that it can accept. The older type consists of several parameters representing the individual components of the transformation matrix to set:</p> <dl> <dt>
+<code>a</code> (<code>m11</code>)</dt> <dd>Horizontal scaling. A value of <code>1</code> results in no scaling.</dd> <dt>
+<code>b</code> (<code>m12</code>)</dt> <dd>Vertical skewing.</dd> <dt>
+<code>c</code> (<code>m21</code>)</dt> <dd>Horizontal skewing.</dd> <dt>
+<code>d</code> (<code>m22</code>)</dt> <dd>Vertical scaling. A value of <code>1</code> results in no scaling.</dd> <dt>
+<code>e</code> (<code>dx</code>)</dt> <dd>Horizontal translation (moving).</dd> <dt>
+<code>f</code> (<code>dy</code>)</dt> <dd>Vertical translation (moving).</dd> </dl> <p>The newer type consists of a single parameter, <code>matrix</code>, representing a 2D transformation matrix to set (technically, a <code>DOMMatrixInit</code> object; any object will do as long as it contains the above components as properties).</p>
+<h2 id="examples">Examples</h2>
+<h3 id="skewing_a_shape">Skewing a shape</h3>
+<p>This example skews a rectangle both vertically (<code>.2</code>) and horizontally (<code>.8</code>). Scaling and translation remain unchanged.</p> <h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>canvas<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">&gt;</span></span>
+</pre> <h4 id="javascript">JavaScript</h4> <pre data-language="js"><span class="token keyword">const</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ctx <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+ctx<span class="token punctuation">.</span><span class="token function">setTransform</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">.2</span><span class="token punctuation">,</span> <span class="token number">.8</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">fillRect</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <h4 id="result">Result</h4> <p><iframe class="sample-code-frame" id="frame_Skewing_a_shape" width="700" height="180" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/CanvasRenderingContext2D/setTransform/_samples_/Skewing_a_shape" loading="lazy"></iframe></p>
+<h3 id="retrieving_and_passing_a_dommatrix_object">Retrieving and passing a DOMMatrix object</h3>
+<p>In the following example, we have two <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/canvas"><code>&lt;canvas&gt;</code></a> elements. We apply a transform to the first one's context using the first type of <code>setTransform()</code> and draw a square on it, then retrieve the matrix from it using <a href="gettransform"><code>CanvasRenderingContext2D.getTransform()</code></a>.</p> <p>We then apply the retrieved matrix directly to the second canvas context by passing the <code>DOMMatrix</code> object directly to <code>setTransform()</code> (i.e. the second type), and draw a circle on it.</p> <h4 id="html_2">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>240<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>240<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">&gt;</span></span>
+</pre> <h4 id="css">CSS</h4> <pre data-language="css"><span class="token selector">canvas</span> <span class="token punctuation">{</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid black<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <h4 id="javascript_2">JavaScript</h4> <pre data-language="js"><span class="token keyword">const</span> canvases <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ctx1 <span class="token operator">=</span> canvases<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ctx2 <span class="token operator">=</span> canvases<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+ctx1<span class="token punctuation">.</span><span class="token function">setTransform</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">.2</span><span class="token punctuation">,</span> <span class="token number">.8</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx1<span class="token punctuation">.</span><span class="token function">fillRect</span><span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> storedTransform <span class="token operator">=</span> ctx1<span class="token punctuation">.</span><span class="token function">getTransform</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>storedTransform<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+ctx2<span class="token punctuation">.</span><span class="token function">setTransform</span><span class="token punctuation">(</span>storedTransform<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx2<span class="token punctuation">.</span><span class="token function">beginPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx2<span class="token punctuation">.</span><span class="token function">arc</span><span class="token punctuation">(</span><span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span> <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token constant">PI</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx2<span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <h4 id="result_2">Result</h4> <p><iframe class="sample-code-frame" id="frame_Retrieving_and_passing_a_DOMMatrix_object" width="100%" height="180" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/CanvasRenderingContext2D/setTransform/_samples_/Retrieving_and_passing_a_DOMMatrix_object" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/scripting.html#dom-context-2d-settransform" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'CanvasRenderingContext2D.setTransform' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>setTransform</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>matrix_parameter</code></th>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>70</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>10.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The interface defining this method: <a href="../canvasrenderingcontext2d"><code>CanvasRenderingContext2D</code></a>
+</li> <li><a href="transform"><code>CanvasRenderingContext2D.transform()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setTransform" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setTransform</a>
+  </p>
+</div>

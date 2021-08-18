@@ -1,0 +1,90 @@
+<h1>VRPose.angularVelocity</h1>
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div> <p>The <code>angularVelocity</code> read-only property of the <a href="../vrpose"><code>VRPose</code></a> interface returns an array representing the angular velocity vector of the <a href="../vrdisplay"><code>VRDisplay</code></a> at the current <a href="timestamp"><code>VRPose.timestamp</code></a>, in radians per second.</p> <p>In other words, the current velocity at which the sensor is rotating around the <code>x</code>, <code>y</code>, and <code>z</code> axes.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> myAngularVelocity <span class="token operator">=</span> VRPose<span class="token punctuation">.</span>angularVelocity<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array"><code>Float32Array</code></a>, or <code>null</code> if the VR sensor is not able to provide angular velocity information.</p>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token comment">// rendering loop for a VR scene</span>
+<span class="token keyword">function</span> <span class="token function">drawVRScene</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// WebVR: Request the next frame of the animation</span>
+  vrSceneFrame <span class="token operator">=</span> vrDisplay<span class="token punctuation">.</span><span class="token function">requestAnimationFrame</span><span class="token punctuation">(</span>drawVRScene<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Populate frameData with the data of the next frame to display</span>
+  vrDisplay<span class="token punctuation">.</span><span class="token function">getFrameData</span><span class="token punctuation">(</span>frameData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Retrieve the angular velocity values for use in rendering</span>
+  <span class="token comment">// curFramePose is a VRPose object</span>
+  <span class="token keyword">var</span> curFramePose <span class="token operator">=</span> frameData<span class="token punctuation">.</span>pose<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> angVel <span class="token operator">=</span> curFramePose<span class="token punctuation">.</span>angularVelocity<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> avx <span class="token operator">=</span> angVel<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> avy <span class="token operator">=</span> angVel<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> avz <span class="token operator">=</span> angVel<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// render the scene</span>
+  <span class="token operator">...</span>
+
+  <span class="token comment">// WebVR: submit the rendered frame to the VR display</span>
+  vrDisplay<span class="token punctuation">.</span><span class="token function">submitFrame</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://immersive-web.github.io/webvr/spec/1.1/#dom-vrpose-angularvelocity" hreflang="en" rel=" noopener">WebVR 1.1<br><small>The definition of 'angularVelocity' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>angularVelocity</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>15-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webvr_api">WebVR API homepage</a></li> <li>
+<a href="https://mixedreality.mozilla.org/" rel=" noopener">https://mixedreality.mozilla.org/</a> — demos, downloads, and other resources from the Mozilla VR team.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/VRPose/angularVelocity" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/VRPose/angularVelocity</a>
+  </p>
+</div>

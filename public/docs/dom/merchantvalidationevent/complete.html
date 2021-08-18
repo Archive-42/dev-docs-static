@@ -1,0 +1,83 @@
+<h1>MerchantValidationEvent.complete()</h1>
+
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div>
+<div class="notecard warning"> <strong id="non-standard">Non-standard</strong> <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p> </div>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <a href="../merchantvalidationevent"><code>MerchantValidationEvent</code></a> method <code><strong>complete()</strong></code> takes merchant-specific information previously received from the <a href="validationurl"><code>validationURL</code></a> and uses it to validate the merchant. All you have to do is call <code>complete()</code> from your handler for the <code><a href="../paymentrequest/merchantvalidation_event">merchantvalidation</a></code> event, passing in the data fetched from the <code>validationURL</code>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">merchantValidationEvent<span class="token punctuation">.</span><span class="token function">complete</span><span class="token punctuation">(</span>validationData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+merchantValidationEvent<span class="token punctuation">.</span><span class="token function">complete</span><span class="token punctuation">(</span>merchantSessionPromise<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code>validationData</code> or <code>merchantSessionPromise</code>
+</dt> <dd>An object containing the data needed to complete the merchant validation process, or a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which resolves to the validation data.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p><code>undefined</code>.</p>
+<h3 id="exceptions">Exceptions</h3>
+<p>This exception may be passed into the rejection handler for the promise:</p> <dl> <dt><code>InvalidStateError</code></dt> <dd>The event did not come directly from the user agent, but was instead dispatched by other code. another payment request is currently being processed, the current payment request is not currently being displayed to the user, or payment information is currently being updated.</dd> </dl>
+<h2 id="example">Example</h2>
+<p>In this example, we see the client-side code needed to support merchant validation for a payment request called <code>payRequest</code>:</p> <pre data-language="js">payRequest<span class="token punctuation">.</span><span class="token function-variable function">onmerchantvalidation</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> validationDataPromise <span class="token operator">=</span> <span class="token function">getValidationData</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>validationURL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  event<span class="token punctuation">.</span><span class="token function">complete</span><span class="token punctuation">(</span>validationDataPromise<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">getValidationData</span><span class="token punctuation">(</span><span class="token parameter">url</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">/* ...retrieve the validation data from the URL... */</span>
+<span class="token punctuation">}</span>
+</pre> <p>This code sets up a handler for the <code><a href="../paymentrequest/merchantvalidation_event">merchantvalidation</a></code> event. The event handler calls a function, <code>getValidationData()</code>, which retrieves the data from the validation URL, then passes that data (or a promise to deliver the data) into <code>complete()</code>.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>complete</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>64</div>
+<div>Available only in Nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>64</div>
+<div>Available only in Nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../payment_request_api">Payment Request API</a></li> <li><a href="../payment_request_api/using_the_payment_request_api">Using the Payment Request API</a></li> <li><a href="../payment_request_api/concepts">Payment processing concepts</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MerchantValidationEvent/complete" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MerchantValidationEvent/complete</a>
+  </p>
+</div>

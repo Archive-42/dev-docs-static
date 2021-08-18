@@ -1,0 +1,345 @@
+<h1>&lt;display-inside&gt;</h1> <p class="summary">These keywords specify the element’s inner <a href="display"><code>display</code></a> type, which defines the type of formatting context that lays out its contents (assuming it is a non-replaced element). These keywords are used as values of the <code>display</code> property, and can be used for legacy purposes as a single keyword, or as defined in the Level 3 specification alongside a value from the <a href="display-outside"><code>&lt;display-outside&gt;</code></a> keywords.</p>
+<h2 id="syntax">Syntax</h2>
+<p>Valid <code>&lt;display-inside&gt;</code> values:</p> <dl> <dt>
+<code>flow</code> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt> <dd>The element lays out its contents using flow layout (block-and-inline layout). <p>If its outer display type is <code>inline</code> or <code>run-in</code>, and it is participating in a block or inline formatting context, then it generates an inline box. Otherwise it generates a block container box.</p> <p>Depending on the value of other properties (such as <a href="position"><code>position</code></a>, <a href="float"><code>float</code></a>, or <a href="overflow"><code>overflow</code></a>) and whether it is itself participating in a block or inline formatting context, it either establishes a new <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context">block formatting context</a> (BFC) for its contents or integrates its contents into its parent formatting context.</p> </dd> <dt><code>flow-root</code></dt> <dd>The element generates a block element box that establishes a new <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Block_formatting_context">block formatting context</a>, defining where the formatting root lies.</dd> <dt><code>table</code></dt> <dd>These elements behave like HTML <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table"><code>&lt;table&gt;</code></a> elements. It defines a block-level box.</dd> <dt><code>flex</code></dt> <dd>The element behaves like a block element and lays out its content according to the <a href="css_flexible_box_layout">flexbox model</a>.</dd> <dt><code>grid</code></dt> <dd>The element behaves like a block element and lays out its content according to the <a href="css_grid_layout/basic_concepts_of_grid_layout">grid model</a>.</dd> <dt>
+<code>ruby</code> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt> <dd>The element behaves like an inline element and lays out its content according to the ruby formatting model. It behaves like the corresponding HTML <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ruby"><code>&lt;ruby&gt;</code></a> elements.</dd> </dl> <div class="note notecard"> <p><strong>Note</strong>: Browsers that support the two value syntax, on finding the inner value only, such as when <code>display: flex</code> or <code>display: grid</code> is specified, will set their outer value to <code>block</code>. This will result in expected behavior; for example if you specify an element to be <code>display: grid</code>, you would expect that the box created on the grid container would be a block level box.</p> </div>
+<h2 id="examples">Examples</h2>
+<p>In this example the parent box has been given <code>display: flow-root</code> and so establishes a new BFC and contains the floated item.</p>
+<h3 id="html">HTML</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>box<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>float<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>I am a floated box!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>I am content inside the container.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</pre>
+<h3 id="css">CSS</h3>
+<pre data-language="css"><span class="token selector">.box</span> <span class="token punctuation">{</span>
+    <span class="token property">background-color</span><span class="token punctuation">:</span> <span class="token function">rgb</span><span class="token punctuation">(</span>224<span class="token punctuation">,</span> 206<span class="token punctuation">,</span> 247<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token property">border</span><span class="token punctuation">:</span> 5px solid rebeccapurple<span class="token punctuation">;</span>
+    <span class="token property">display</span><span class="token punctuation">:</span> flow-root<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.float</span> <span class="token punctuation">{</span>
+    <span class="token property">float</span><span class="token punctuation">:</span> left<span class="token punctuation">;</span>
+    <span class="token property">width</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+    <span class="token property">height</span><span class="token punctuation">:</span> 150px<span class="token punctuation">;</span>
+    <span class="token property">background-color</span><span class="token punctuation">:</span> white<span class="token punctuation">;</span>
+    <span class="token property">border</span><span class="token punctuation">:</span>1px solid black<span class="token punctuation">;</span>
+    <span class="token property">padding</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h3 id="result">Result</h3>
+<p><iframe class="sample-code-frame" id="frame_Examples" width="100%" height="180" src="https://yari-demos.prod.mdn.mozit.cloud/en-us/docs/web/css/display-inside/_samples_/Examples" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/css-display/#typedef-display-inside" hreflang="en" rel=" noopener">CSS Display Module Level 3<br><small>The definition of 'display-inside' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>display-inside</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>12-79</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>display-inside</code></th>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>21</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>20</div>
+<div>Firefox 28 added multi-line flexbox support.</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>IE incorrectly positions inline block content inside flex containers. See the <a href="https://answers.microsoft.com/en-us/ie/forum/ie11-iewindows_10/inline-block-content-in-a-flex-container-not/deea64e2-933b-4bd2-a98c-62be16d04b57">discussion on Microsoft Answers</a>.</div>
+<div>8</div>
+<div>IE incorrectly positions inline block content inside flex containers. See the <a href="https://answers.microsoft.com/en-us/ie/forum/ie11-iewindows_10/inline-block-content-in-a-flex-container-not/deea64e2-933b-4bd2-a98c-62be16d04b57">discussion on Microsoft Answers</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>15</div>
+<div>12.1-15</div>
+</td>
+<td class="bc-supports-yes">
+<div>9</div>
+<div>6.1</div>
+</td>
+<td class="bc-supports-yes">
+<div>4.4</div>
+<div>≤37</div>
+</td>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>25</div>
+</td>
+<td class="bc-supports-yes">
+<div>20</div>
+<div>Firefox 28 added multi-line flexbox support.</div>
+</td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>14</div>
+<div>12.1-14</div>
+</td>
+<td class="bc-supports-yes">
+<div>9</div>
+<div>7</div>
+</td>
+<td class="bc-supports-yes">
+<div>2.0</div>
+<div>1.5</div>
+</td>
+</tr></tbody>
+</table>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>display-inside</code></th>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>12</div>
+</td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes">
+<div>10</div>
+<div>Internet Explorer implements an older version of the specification.</div>
+</td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Samsung Internet added this earlier than the corresponding Chrome version would indicate.</div>
+</td>
+</tr></tbody>
+</table>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>display-inside</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>display-inside</code></th>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr></tbody>
+</table>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>display-inside</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>70</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+<p>BCD tables only load in the browser</p>
+
+ <ul> <li>Chromium bug: <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=804600" rel=" noopener">https://bugs.chromium.org/p/chromium/issues/detail?id=804600</a>
+</li> </ul>
+<h3 id="support_of_flow-root">Support of flow-root</h3>
+<p>BCD tables only load in the browser</p>
+
+
+<h3 id="support_of_table">Support of table</h3>
+<p>BCD tables only load in the browser</p>
+
+
+<h3 id="support_of_grid">Support of grid</h3>
+<p>BCD tables only load in the browser</p>
+
+
+<h3 id="support_of_flex">Support of flex</h3>
+<p>BCD tables only load in the browser</p>
+
+
+<h3 id="support_of_ruby">Support of ruby</h3>
+<p>BCD tables only load in the browser</p>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="display"><code>display</code></a> <ul> <li><a href="display-outside"><code>&lt;display-outside&gt;</code></a></li> <li><a href="display-listitem"><code>&lt;display-listitem&gt;</code></a></li> <li><a href="display-internal"><code>&lt;display-internal&gt;</code></a></li> <li><a href="display-box"><code>&lt;display-box&gt;</code></a></li> <li><a href="display-legacy"><code>&lt;display-legacy&gt;</code></a></li> </ul> </li> <li><a href="css_flexible_box_layout/basic_concepts_of_flexbox">Basic Concepts of Flexbox</a></li> <li><a href="css_grid_layout/basic_concepts_of_grid_layout">Basic Concepts of Grid Layout</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display-inside" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/display-inside</a>
+  </p>
+</div>

@@ -1,0 +1,285 @@
+<h1>IDBCursor</h1>
+
+ <div class="notecard note"> <p><strong>Note:</strong> Not to be confused with <a href="idbcursorwithvalue"><code>IDBCursorWithValue</code></a> which is just an <code>IDBCursor</code> interface with an additional <code>value</code> property.</p> </div> <p>The <code>IDBCursor</code> interface of the <a href="indexeddb_api">IndexedDB API</a> represents a <a href="indexeddb_api/basic_concepts_behind_indexeddb#gloss_cursor">cursor</a> for traversing or iterating over multiple records in a database.</p> <p>The cursor has a source that indicates which index or object store it is iterating over. It has a position within the range, and moves in a direction that is increasing or decreasing in the order of record keys. The cursor enables an application to asynchronously process all the records in the cursor's range.</p> <p>You can have an unlimited number of cursors at the same time. You always get the same <code>IDBCursor</code> object representing a given cursor. Operations are performed on the underlying index or object store.</p> 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="web_workers_api">Web Workers</a>.</p> </div>
+
+<h2 id="properties">Properties</h2>
+<div class="notecard note"> <p><strong>Note:</strong> <a href="idbcursorwithvalue"><code>IDBCursorWithValue</code></a> is an <code>IDBCursor</code> interface with an additional <code>value</code> property.</p> </div> <dl> <dt>
+<a href="idbcursor/source"><code>IDBCursor.source</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the <a href="idbobjectstore"><code>IDBObjectStore</code></a> or <a href="idbindex"><code>IDBIndex</code></a> that the cursor is iterating. This function never returns null or throws an exception, even if the cursor is currently being iterated, has iterated past its end, or its transaction is not active.</dd> <dt>
+<a href="idbcursor/direction"><code>IDBCursor.direction</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the direction of traversal of the cursor. See <a href="#const_next">Constants</a> for possible values.</dd> <dt>
+<a href="idbcursor/key"><code>IDBCursor.key</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the key for the record at the cursor's position. If the cursor is outside its range, this is set to <code>undefined</code>. The cursor's key can be any data type.</dd> <dt>
+<a href="idbcursor/primarykey"><code>IDBCursor.primaryKey</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the cursor's current effective primary key. If the cursor is currently being iterated or has iterated outside its range, this is set to <code>undefined</code>. The cursor's primary key can be any data type.</dd> <dt>
+<a href="idbcursor/request"><code>IDBCursor.request</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the <a href="idbrequest"><code>IDBRequest</code></a> that was used to obtain the cursor.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="idbcursor/advance"><code>IDBCursor.advance()</code></a></dt> <dd>Sets the number of times a cursor should move its position forward.</dd> <dt><a href="idbcursor/continue"><code>IDBCursor.continue()</code></a></dt> <dd>Advances the cursor to the next position along its direction, to the item whose key matches the optional <code>key</code> parameter.</dd> <dt><a href="idbcursor/continueprimarykey"><code>IDBCursor.continuePrimaryKey()</code></a></dt> <dd>Sets the cursor to the given index key and primary key given as arguments.</dd> <dt><a href="idbcursor/delete"><code>IDBCursor.delete()</code></a></dt> <dd>Returns an <a href="idbrequest"><code>IDBRequest</code></a> object, and, in a separate thread, deletes the record at the cursor's position, without changing the cursor's position. This can be used to delete specific records.</dd> <dt><a href="idbcursor/update"><code>IDBCursor.update()</code></a></dt> <dd>Returns an <a href="idbrequest"><code>IDBRequest</code></a> object, and, in a separate thread, updates the value at the current position of the cursor in the object store. This can be used to update specific records.</dd> </dl>
+<h2 id="constants">Constants</h2>
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div> <div class="warning notecard"> <p>These constants are no longer available — they were removed in Gecko 25. You should use the string constants directly instead. (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=891944" rel=" noopener">bug 891944</a>)</p> </div> <ul> <li>
+<code>NEXT </code>: <code>"next"</code> : The cursor shows all records, including duplicates. It starts at the lower bound of the key range and moves upwards (monotonically increasing in the order of keys).</li> <li>
+<code>NEXTUNIQUE</code> : <code>"nextunique"</code> : The cursor shows all records, excluding duplicates. If multiple records exist with the same key, only the first one iterated is retrieved. It starts at the lower bound of the key range and moves upwards.</li> <li>
+<code>PREV </code>: <code>"prev"</code> : The cursor shows all records, including duplicates. It starts at the upper bound of the key range and moves downwards (monotonically decreasing in the order of keys).</li> <li>
+<code>PREVUNIQUE </code>: <code>"prevunique"</code> : The cursor shows all records, excluding duplicates. If multiple records exist with the same key, only the first one iterated is retrieved. It starts at the upper bound of the key range and moves downwards.</li> </ul>
+<h2 id="examples">Examples</h2>
+<p>In this simple fragment we create a transaction, retrieve an object store, then use a cursor to iterate through all the records in the object store. The cursor does not require us to select the data based on a key; we can just grab all of it. Also note that in each iteration of the loop, you can grab data from the current record under the cursor object using <code>cursor.value.foo</code>. For a complete working example, see our <a href="https://github.com/mdn/indexeddb-examples/tree/master/idbcursor" rel=" noopener">IDBCursor example</a> (<a href="https://mdn.github.io/indexeddb-examples/idbcursor/" rel=" noopener">view example live</a>.)</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">displayData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> transaction <span class="token operator">=</span> db<span class="token punctuation">.</span><span class="token function">transaction</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'rushAlbumList'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">"readonly"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> objectStore <span class="token operator">=</span> transaction<span class="token punctuation">.</span><span class="token function">objectStore</span><span class="token punctuation">(</span><span class="token string">'rushAlbumList'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  objectStore<span class="token punctuation">.</span><span class="token function">openCursor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function-variable function">onsuccess</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> cursor <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>result<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>cursor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> listItem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      listItem<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> cursor<span class="token punctuation">.</span>value<span class="token punctuation">.</span>albumTitle <span class="token operator">+</span> <span class="token string">', '</span> <span class="token operator">+</span> cursor<span class="token punctuation">.</span>value<span class="token punctuation">.</span>year<span class="token punctuation">;</span>
+      list<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>listItem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      cursor<span class="token punctuation">.</span><span class="token function">continue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Entries all displayed.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.w3.org/TR/IndexedDB/#cursor-interface" hreflang="en" rel=" noopener">Indexed Database API 2.0<br><small>The definition of 'cursor' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition</td> </tr> <tr> <td><a href="https://www.w3.org/TR/IndexedDB/#cursor-interface" hreflang="en" rel=" noopener">Indexed Database API 2.0<br><small>The definition of 'cursor' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Added <code>continuePrimaryKey()</code> and support for binary keys, and the <a href="idbcursor/request"><code>IDBCursor.request</code></a> property.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>IDBCursor</code></th>
+<td class="bc-supports-yes">
+<div>24</div>
+<div>23-57</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>10-16</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>15-44</div>
+</td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes">
+<div>≤37</div>
+<div>≤37-57</div>
+</td>
+<td class="bc-supports-yes">
+<div>25</div>
+<div>25-57</div>
+</td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>14-43</div>
+</td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes">
+<div>1.5</div>
+<div>1.5-7.0</div>
+</td>
+</tr>
+<tr>
+<th><code>advance</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>continue</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>continuePrimaryKey</code></th>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>delete</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>direction</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>key</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>primaryKey</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>request</code></th>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>77</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr>
+<tr>
+<th><code>source</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>update</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>worker_support</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="indexeddb_api/using_indexeddb">Using IndexedDB</a></li> <li>Starting transactions: <a href="idbdatabase"><code>IDBDatabase</code></a>
+</li> <li>Using transactions: <a href="idbtransaction"><code>IDBTransaction</code></a>
+</li> <li>Setting a range of keys: <a href="idbkeyrange"><code>IDBKeyRange</code></a>
+</li> <li>Retrieving and making changes to your data: <a href="idbobjectstore"><code>IDBObjectStore</code></a>
+</li> <li>Using cursors: <a href="idbcursor"><code>IDBCursor</code></a>
+</li> <li>Reference example: <a href="https://github.com/mdn/to-do-notifications/tree/gh-pages" rel=" noopener">To-do Notifications</a> (<a href="https://mdn.github.io/to-do-notifications/" rel=" noopener">view example live</a>.)</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBCursor</a>
+  </p>
+</div>

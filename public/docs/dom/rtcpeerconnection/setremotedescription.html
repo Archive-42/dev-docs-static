@@ -1,0 +1,165 @@
+<h1>RTCPeerConnection.setRemoteDescription()</h1>
+
+ <p>The <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> method <code><strong>setRemoteDescription()</strong></code> sets the specified session description as the remote peer's current offer or answer. The description specifies the properties of the remote end of the connection, including the media format. The method takes a single parameter—the session description—and it returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which is fulfilled once the description has been changed, asynchronously.</p> <p>This is typically called after receiving an offer or answer from another peer over the signaling server. Keep in mind that if <code>setRemoteDescription()</code> is called while a connection is already in place, it means renegotiation is underway (possibly to adapt to changing network conditions).</p> <p>Because descriptions will be exchanged until the two peers agree on a configuration, the description submitted by calling <code>setRemoteDescription()</code> does not immediately take effect. Instead, the current connection configuration remains in place until negotiation is complete. Only then does the agreed-upon configuration take effect.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">aPromise <span class="token operator">=</span> rtcPeerConnection<span class="token punctuation">.</span><span class="token function">setRemoteDescription</span><span class="token punctuation">(</span>sessionDescription<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>sessionDescription</code></dt> <dd>An <a class="page-not-created"><code>RTCSessionDescriptionInit</code></a> or <a href="../rtcsessiondescription"><code>RTCSessionDescription</code></a> which specifies the remote peer's current offer or answer. This value is an offer or answer received from the remote peer through your implementation of </dd> </dl> <p>The <code>sessionDescription</code> parameter is technically of type <code>RTCSessionDescriptionInit</code>, but because <a href="../rtcsessiondescription"><code>RTCSessionDescription</code></a> serializes to be indistinguishable from <code>RTCSessionDescriptionInit</code>, you can also pass in an <code>RTCSessionDescription</code>. This lets you simplify code such as the following: </p> <pre data-language="js">myPeerConnection<span class="token punctuation">.</span><span class="token function">setRemoteDescription</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">RTCSessionDescription</span><span class="token punctuation">(</span>description<span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">createMyStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre> <p>to be:</p> <pre data-language="js">myPeerConnection<span class="token punctuation">.</span><span class="token function">setRemoteDescription</span><span class="token punctuation">(</span>description<span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">createMyStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></pre> <p>Using <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function">async</a></code>/<code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await">await</a></code> syntax, you can further simplify this to:</p> <pre data-language="js"><span class="token keyword">await</span> myPeerConnection<span class="token punctuation">.</span><span class="token function">setRemoteDescription</span><span class="token punctuation">(</span>description<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">createMyStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Since it's unnecessary, the <a href="../rtcsessiondescription/rtcsessiondescription"><code>RTCSessionDescription()</code></a> constructor is deprecated.</p>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which is fulfilled once the value of the connection's <a href="remotedescription"><code>remoteDescription</code></a> is successfully changed or rejected if the change cannot be applied (for example, if the specified description is incompatible with one or both of the peers on the connection). The promise fulfillment handler receives no input parameters.</p> <div class="note notecard"> <p><strong>Note:</strong> The process of changing descriptions actually involves intermediary steps handled by the WebRTC layer to ensure that an active connection can be changed without losing the connection if the change does not succeed. See <a href="#">Pending and current descriptions</a> in <a href="../webrtc_api/connectivity">WebRTC connectivity</a> for more details on this process.</p> </div>
+<h3 id="exceptions">Exceptions</h3>
+<p>The following exceptions are reported to the rejection handler for the promise returned by <code>setRemoteDescription()</code>:</p> <dl> <dt><code>InvalidAccessError</code></dt> <dd>The content of the description is invalid.</dd> <dt><code>InvalidStateError</code></dt> <dd>The <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> is closed, or it's in a state which isn't compatible with the specified description's <a href="../rtcsessiondescription/type"><code>type</code></a>. For example, if the <code>type</code> is <code>rollback</code> and the signaling state is one of <code>stable</code>, <code>have-local-pranswer</code>, or <code>have-remote-pranswer</code>, this exception is thrown, because you can't roll back a connection that's either fully established or is in the final stage of becoming connected.</dd> <dt><code>OperationError</code></dt> <dd>Any errors that occur which don't match the others specifeid here are reported as <code>OperationError</code>. This includes identity validation errors.</dd> <dt><code>RTCError</code></dt> <dd>An <code>RTCError</code> with the <a href="../rtcerror/errordetail"><code>errorDetail</code></a> set to <code>sdp-syntax-error</code> is reported if the <a href="https://developer.mozilla.org/en-US/docs/Glossary/SDP">SDP</a> specified by <a href="../rtcsessiondescription/sdp"><code>RTCSessionDescription.sdp</code></a>. The error object's <a href="../rtcerror/sdplinenumber"><code>sdpLineNumber</code></a> property indicates the line number within the SDP on which the syntax error was detected. </dd> <dt><code>TypeError</code></dt> <dd>The specified <code>RTCSessionDescriptionInit</code> or <code>RTCSessionDescription</code> object is missing the <a href="../rtcsessiondescription/type"><code>type</code></a> property, or no description parameter was provided at all.</dd> </dl>
+<h2 id="usage_notes">Usage notes</h2>
+<p>When you call <code>setRemoteDescription()</code>, the ICE agent checks to make sure the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> is in either the <code>stable</code> or <code>have-remote-offer</code> <a href="signalingstate"><code>signalingState</code></a>. These states indicate that either an existing connection is being renegotiated or that an offer previously specified by an earlier call to <code>setRemoteDescription()</code> is to be replaced with the new offer. In either of those two cases, we're at the beginning of the negotiation process, and the offer is set as the remote description.</p> <p>On the other hand, if we're in the middle of an ongoing negotiation and an offer is passed into <code>setRemoteDescription()</code>, the ICE agent automatically begins an ICE rollback in order to return the connection to a stable signaling state, then, once the rollback is completed, sets the remote description to the specified offer. This begins a new negotiation session, with the newly-established offer as the starting point.</p> <p>Upon starting the new negotiation with the newly-established offer, the local peer is now the callee, even if it was previously the caller. This happens instead of throwing an exception, thereby reducing the number of potential errors which might occur, and simplifies the processing you need to do when you receive an offer, by eliminating the need to handle the offer/answer process differently depending on whether the local peer is the caller or callee.</p> <div class="notecard note"> <p><strong>Note:</strong> Earlier implementations of WebRTC would throw an exception if an offer was set outside a <code>stable</code> or <code>have-remote-offer</code> state.</p> </div>
+<h2 id="deprecated_syntax">Deprecated syntax</h2>
+<p>In older code and documentation, you may see a callback-based version of this function used. This has been deprecated and its use is <em>strongly</em> discouraged. You should update any existing code to use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>-based version of <code>setRemoteDescription()</code> instead. The parameters for the older form of <code>setRemoteDescription()</code> are described below, to aid in updating existing code.</p> <pre data-language="js">pc<span class="token punctuation">.</span><span class="token function">setRemoteDescription</span><span class="token punctuation">(</span>sessionDescription<span class="token punctuation">,</span> successCallback<span class="token punctuation">,</span> errorCallback<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters_2">Parameters</h3>
+<dl> <dt>
+<code>successCallback</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>A JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function"><code>Function</code></a> which accepts no input parameters to be called once the description has been successfully set. At that time, the offer can be sent to a remote peer via the signaling server.</dd> <dt>
+<code>errorCallback</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>A function matching the signautre <code>RTCPeerConnectionErrorCallback</code> which gets called if the description can't be set. It is passed a single <a href="../domexception"><code>DOMException</code></a> object explaining why the request failed.</dd> </dl> <p>This deprecated form of the method returns instantaneously without waiting for the actual setting to be done: in case of success, the <code>successCallback</code> will be called; in case of failure, the <code>errorCallback</code> will be called.</p>
+<h3 id="exceptions_2">Exceptions</h3>
+<p>When using the deprecated callback-based version of <code>setRemoteDescription()</code>, the following exceptions may occur:</p> <dl> <dt>
+<code>InvalidStateError</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>The connection's <a href="signalingstate"><code>signalingState</code></a> is <code>"closed"</code>, indicating that the connection is not currently open, so negotiation cannot take place.</dd> <dt>
+<code>InvalidSessionDescriptionError</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>The <a href="../rtcsessiondescription"><code>RTCSessionDescription</code></a> specified by the <code>sessionDescription</code> parameter is invalid.</dd> </dl>
+<h2 id="example">Example</h2>
+<p>Here we see a function which handles an offer received from the remote peer. This code is derived from the example and tutorial in the article <a href="../webrtc_api/signaling_and_video_calling">Signaling and video calling</a>; take a look at that for more details and a more in-depth explanation of what's going on.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">handleOffer</span><span class="token punctuation">(</span><span class="token parameter">msg</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">createMyPeerConnection</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  myPeerConnection<span class="token punctuation">.</span><span class="token function">setRemoteDescription</span><span class="token punctuation">(</span>msg<span class="token punctuation">.</span>description<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> navigator<span class="token punctuation">.</span>mediaDevices<span class="token punctuation">.</span><span class="token function">getUserMedia</span><span class="token punctuation">(</span>mediaConstraints<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">stream</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"local_video"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>srcObject <span class="token operator">=</span> stream<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> myPeerConnection<span class="token punctuation">.</span><span class="token function">addStream</span><span class="token punctuation">(</span>stream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> myPeerConnection<span class="token punctuation">.</span><span class="token function">createAnswer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">answer</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> myPeerConnection<span class="token punctuation">.</span><span class="token function">setLocalDescription</span><span class="token punctuation">(</span>answer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Send the answer to the remote peer using the signaling server</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span>handleGetUserMediaError<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>After creating our <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> and saving it as <code>myPeerConnection</code>, we pass the description included in the received offer message, <code>msg</code>, directly into <code>setRemoteDescription()</code> to tell the user agent's WebRTC layer what configuration the caller has proposed using. When our promise fulfillment handler is called, indicating that this has been done, we create a stream, add it to the connection, then create an SDP answer and call <a href="setlocaldescription"><code>setLocalDescription()</code></a> to set that as the configuration at our end of the call before forwarding that answer to the caller.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-peerconnection-setremotedescription" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCPeerConnection.setRemoteDescription()' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>setRemoteDescription</code></th>
+<td class="bc-supports-yes">
+<div>51</div>
+<div>Promise-based version.</div>
+<div>24</div>
+</td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>51</div>
+<div>Promise-based version.</div>
+<div>Yes</div>
+</td>
+<td class="bc-supports-yes">
+<div>51</div>
+<div>Promise-based version.</div>
+<div>Yes</div>
+</td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>5.0</div>
+<div>Promise-based version.</div>
+<div>Yes</div>
+</td>
+</tr>
+<tr>
+<th><code>implicit_rollback</code></th>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-yes"><div>70</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr>
+<tr>
+<th><code>optional_description</code></th>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-yes"><div>80</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webrtc_api">WebRTC</a></li> <li>
+<a href="remotedescription"><code>RTCPeerConnection.remoteDescription</code></a>, <a href="pendingremotedescription"><code>RTCPeerConnection.pendingRemoteDescription</code></a>, <a href="currentremotedescription"><code>RTCPeerConnection.currentRemoteDescription</code></a>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/setRemoteDescription" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/setRemoteDescription</a>
+  </p>
+</div>

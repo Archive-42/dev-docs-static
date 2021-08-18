@@ -1,0 +1,123 @@
+<h1>CanvasRenderingContext2D.putImageData()</h1> <p>The <code><strong>CanvasRenderingContext2D</strong></code><code>.putImageData()</code> method of the Canvas 2D API paints data from the given <a href="../imagedata"><code>ImageData</code></a> object onto the canvas. If a dirty rectangle is provided, only the pixels from that rectangle are painted. This method is not affected by the canvas transformation matrix.</p> <div class="note notecard"> <p><strong>Note:</strong> Image data can be retrieved from a canvas using the <a href="getimagedata"><code>getImageData()</code></a> method.</p> </div> <p>You can find more information about <code>putImageData()</code> and general manipulation of canvas contents in the article <a href="../canvas_api/tutorial/pixel_manipulation_with_canvas">Pixel manipulation with canvas</a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">void</span> ctx<span class="token punctuation">.</span><span class="token function">putImageData</span><span class="token punctuation">(</span>imageData<span class="token punctuation">,</span> dx<span class="token punctuation">,</span> dy<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">void</span> ctx<span class="token punctuation">.</span><span class="token function">putImageData</span><span class="token punctuation">(</span>imageData<span class="token punctuation">,</span> dx<span class="token punctuation">,</span> dy<span class="token punctuation">,</span> dirtyX<span class="token punctuation">,</span> dirtyY<span class="token punctuation">,</span> dirtyWidth<span class="token punctuation">,</span> dirtyHeight<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>imageData</code></dt> <dd>An <a href="../imagedata"><code>ImageData</code></a> object containing the array of pixel values.</dd> <dt><code>dx</code></dt> <dd>Horizontal position (x coordinate) at which to place the image data in the destination canvas.</dd> <dt><code>dy</code></dt> <dd>Vertical position (y coordinate) at which to place the image data in the destination canvas.</dd> <dt>
+<code>dirtyX</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>Horizontal position (x coordinate) of the top-left corner from which the image data will be extracted. Defaults to <code>0</code>.</dd> <dt>
+<code>dirtyY</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>Vertical position (y coordinate) of the top-left corner from which the image data will be extracted. Defaults to <code>0</code>.</dd> <dt>
+<code>dirtyWidth</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>Width of the rectangle to be painted. Defaults to the width of the image data.</dd> <dt>
+<code>dirtyHeight</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>Height of the rectangle to be painted. Defaults to the height of the image data. </dd> </dl>
+<h3 id="errors_thrown">Errors thrown</h3>
+<dl> <dt><code>NotSupportedError</code></dt> <dd>Thrown if any of the arguments is infinite.</dd> <dt><code>InvalidStateError</code></dt> <dd>Thrown if the <code>ImageData</code> object's data has been detached.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="understanding_putimagedata">Understanding putImageData</h3>
+<p>To understand what this algorithm does under the hood, here is an implementation on top of <a href="fillrect"><code>CanvasRenderingContext2D.fillRect()</code></a>.</p> <h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>canvas<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">&gt;</span></span>
+</pre> <h4 id="javascript">JavaScript</h4> <pre data-language="js"><span class="token keyword">var</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> ctx <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">putImageData</span><span class="token punctuation">(</span><span class="token parameter">ctx<span class="token punctuation">,</span> imageData<span class="token punctuation">,</span> dx<span class="token punctuation">,</span> dy<span class="token punctuation">,</span>
+    dirtyX<span class="token punctuation">,</span> dirtyY<span class="token punctuation">,</span> dirtyWidth<span class="token punctuation">,</span> dirtyHeight</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> data <span class="token operator">=</span> imageData<span class="token punctuation">.</span>data<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> height <span class="token operator">=</span> imageData<span class="token punctuation">.</span>height<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> width <span class="token operator">=</span> imageData<span class="token punctuation">.</span>width<span class="token punctuation">;</span>
+  dirtyX <span class="token operator">=</span> dirtyX <span class="token operator">||</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  dirtyY <span class="token operator">=</span> dirtyY <span class="token operator">||</span> <span class="token number">0</span><span class="token punctuation">;</span>
+  dirtyWidth <span class="token operator">=</span> dirtyWidth <span class="token operator">!==</span> <span class="token keyword">undefined</span><span class="token operator">?</span> dirtyWidth<span class="token operator">:</span> width<span class="token punctuation">;</span>
+  dirtyHeight <span class="token operator">=</span> dirtyHeight <span class="token operator">!==</span> <span class="token keyword">undefined</span><span class="token operator">?</span> dirtyHeight<span class="token operator">:</span> height<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> limitBottom <span class="token operator">=</span> dirtyY <span class="token operator">+</span> dirtyHeight<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> limitRight <span class="token operator">=</span> dirtyX <span class="token operator">+</span> dirtyWidth<span class="token punctuation">;</span>
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> y <span class="token operator">=</span> dirtyY<span class="token punctuation">;</span> y <span class="token operator">&lt;</span> limitBottom<span class="token punctuation">;</span> y<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> x <span class="token operator">=</span> dirtyX<span class="token punctuation">;</span> x <span class="token operator">&lt;</span> limitRight<span class="token punctuation">;</span> x<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> pos <span class="token operator">=</span> y <span class="token operator">*</span> width <span class="token operator">+</span> x<span class="token punctuation">;</span>
+      ctx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> <span class="token string">'rgba('</span> <span class="token operator">+</span> data<span class="token punctuation">[</span>pos<span class="token operator">*</span><span class="token number">4</span><span class="token operator">+</span><span class="token number">0</span><span class="token punctuation">]</span>
+                        <span class="token operator">+</span> <span class="token string">','</span> <span class="token operator">+</span> data<span class="token punctuation">[</span>pos<span class="token operator">*</span><span class="token number">4</span><span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">]</span>
+                        <span class="token operator">+</span> <span class="token string">','</span> <span class="token operator">+</span> data<span class="token punctuation">[</span>pos<span class="token operator">*</span><span class="token number">4</span><span class="token operator">+</span><span class="token number">2</span><span class="token punctuation">]</span>
+                        <span class="token operator">+</span> <span class="token string">','</span> <span class="token operator">+</span> <span class="token punctuation">(</span>data<span class="token punctuation">[</span>pos<span class="token operator">*</span><span class="token number">4</span><span class="token operator">+</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token operator">/</span><span class="token number">255</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">')'</span><span class="token punctuation">;</span>
+      ctx<span class="token punctuation">.</span><span class="token function">fillRect</span><span class="token punctuation">(</span>x <span class="token operator">+</span> dx<span class="token punctuation">,</span> y <span class="token operator">+</span> dy<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Draw content onto the canvas</span>
+ctx<span class="token punctuation">.</span><span class="token function">fillRect</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Create an ImageData object from it</span>
+<span class="token keyword">var</span> imagedata <span class="token operator">=</span> ctx<span class="token punctuation">.</span><span class="token function">getImageData</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// use the putImageData function that illustrates how putImageData works</span>
+<span class="token function">putImageData</span><span class="token punctuation">(</span>ctx<span class="token punctuation">,</span> imagedata<span class="token punctuation">,</span> <span class="token number">150</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <h4 id="result">Result</h4> <p><iframe class="sample-code-frame" id="frame_Understanding_putImageData" width="700" height="180" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/CanvasRenderingContext2D/putImageData/_samples_/Understanding_putImageData" loading="lazy"></iframe></p>
+<h3 id="data_loss_due_to_browser_optimization">Data loss due to browser optimization</h3>
+<div class="notecard warning"> <p> Due to the lossy nature of converting to and from premultiplied alpha color values, pixels that have just been set using <code>putImageData()</code> might be returned to an equivalent <code>getImageData()</code> as different values.</p> </div> <h4 id="javascript_2">JavaScript</h4> <pre data-language="js"><span class="token keyword">const</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">"canvas"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+canvas<span class="token punctuation">.</span>width <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+canvas<span class="token punctuation">.</span>height <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> context <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">"2d"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> imgData <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">getImageData</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> canvas<span class="token punctuation">.</span>width<span class="token punctuation">,</span> canvas<span class="token punctuation">.</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> pixels <span class="token operator">=</span> imgData<span class="token punctuation">.</span>data<span class="token punctuation">;</span>
+pixels<span class="token punctuation">[</span><span class="token number">0</span> <span class="token operator">+</span> <span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+pixels<span class="token punctuation">[</span><span class="token number">0</span> <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">127</span><span class="token punctuation">;</span>
+pixels<span class="token punctuation">[</span><span class="token number">0</span> <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">255</span><span class="token punctuation">;</span>
+pixels<span class="token punctuation">[</span><span class="token number">0</span> <span class="token operator">+</span> <span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"before:"</span><span class="token punctuation">,</span> pixels<span class="token punctuation">)</span><span class="token punctuation">;</span>
+context<span class="token punctuation">.</span><span class="token function">putImageData</span><span class="token punctuation">(</span>imgData<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> imgData2 <span class="token operator">=</span> context<span class="token punctuation">.</span><span class="token function">getImageData</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> canvas<span class="token punctuation">.</span>width<span class="token punctuation">,</span> canvas<span class="token punctuation">.</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> pixels2 <span class="token operator">=</span> imgData2<span class="token punctuation">.</span>data<span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"after:"</span><span class="token punctuation">,</span> pixels2<span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>The output might look like:</p> <pre class="notranslate">before: Uint8ClampedArray(4) [ 1, 127, 255, 1 ]
+after: Uint8ClampedArray(4) [ 255, 255, 255, 1 ]</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/scripting.html#dom-context-2d-putimagedata" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'CanvasRenderingContext2D.putImageData' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>putImageData</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h3 id="gecko-specific_notes">Gecko-specific notes</h3>
+<ul> <li>Starting in Gecko 10.0 (Firefox 10.0 / Thunderbird 10.0 / SeaMonkey 2.7), non-finite values to any of these parameters cause the call to <code>putImageData()</code> to be silently ignored, rather than throwing an exception.</li> <li>To comply with the specification, starting with Gecko 16.0 (Firefox 16.0 / Thunderbird 16.0 / SeaMonkey 2.13), a call with an invalid number of arguments (only 3 or 7 arguments are valid), will now throw an error (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=762657" rel=" noopener">bug 762657</a>).</li> </ul>
+<h2 id="see_also">See also</h2>
+<ul> <li>The interface defining this method: <a href="../canvasrenderingcontext2d"><code>CanvasRenderingContext2D</code></a>
+</li> <li>
+<a href="../imagedata"><code>ImageData</code></a> object</li> <li><a href="getimagedata"><code>CanvasRenderingContext2D.getImageData()</code></a></li> <li><a href="../canvas_api/tutorial/pixel_manipulation_with_canvas">Pixel manipulation with canvas</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/putImageData" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/putImageData</a>
+  </p>
+</div>

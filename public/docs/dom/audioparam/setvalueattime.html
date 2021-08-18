@@ -1,0 +1,98 @@
+<h1>AudioParam.setValueAtTime()</h1>
+
+ <p class="summary">The <code>setValueAtTime()</code> method of the <a href="../audioparam"><code>AudioParam</code></a> interface schedules an instant change to the <code>AudioParam</code> value at a precise time, as measured against <a href="../baseaudiocontext/currenttime"><code>AudioContext.currentTime</code></a>. The new value is given in the value parameter. </p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> AudioParam <span class="token operator">=</span> AudioParam<span class="token punctuation">.</span><span class="token function">setValueAtTime</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> startTime<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>value</dt> <dd>A floating point number representing the value the AudioParam will change to at the given time.</dd> <dt>startTime</dt> <dd>A double representing the time (in seconds) after the <a href="../audiocontext"><code>AudioContext</code></a> was first created that the change in value will happen. A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError"><code>TypeError</code></a> is thrown if this value is negative.</dd> </dl>
+<h3 id="returns">Returns</h3>
+<p>A reference to this <code>AudioParam</code> object. In some browsers older implementations of this interface return void.</p>
+<h2 id="examples">Examples</h2>
+<p>This simple example features a media element source with two control buttons (see our <a href="https://github.com/mdn/webaudio-examples/blob/master/audio-param/index.html" rel=" noopener">webaudio-examples repo</a> for the source code, or <a href="https://mdn.github.io/webaudio-examples/audio-param/" rel=" noopener">view the example live</a>). When the buttons are pressed, the <code>currGain</code> variable is incremented/decremented by 0.25, then the <code>setValueAtTime()</code> method is used to set the gain value equal to <code>currGain</code>, one second from now (<code>audioCtx.currentTime + 1</code>.)</p> <pre data-language="js"><span class="token comment">// create audio context</span>
+<span class="token keyword">var</span> AudioContext <span class="token operator">=</span> window<span class="token punctuation">.</span>AudioContext <span class="token operator">||</span> window<span class="token punctuation">.</span>webkitAudioContext<span class="token punctuation">;</span>
+<span class="token keyword">var</span> audioCtx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// set basic variables for example</span>
+<span class="token keyword">var</span> myAudio <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'audio'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> pre <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'pre'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> myScript <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'script'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+pre<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> myScript<span class="token punctuation">.</span>innerHTML<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> targetAtTimePlus <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.set-target-at-time-plus'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> targetAtTimeMinus <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.set-target-at-time-minus'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Create a MediaElementAudioSourceNode</span>
+<span class="token comment">// Feed the HTMLMediaElement into it</span>
+<span class="token keyword">var</span> source <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createMediaElementSource</span><span class="token punctuation">(</span>myAudio<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Create a gain node and set it's gain value to 0.5</span>
+<span class="token keyword">var</span> gainNode <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createGain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gainNode<span class="token punctuation">.</span>gain<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token number">0.5</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> currGain <span class="token operator">=</span> gainNode<span class="token punctuation">.</span>gain<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+
+<span class="token comment">// connect the AudioBufferSourceNode to the gainNode</span>
+<span class="token comment">// and the gainNode to the destination</span>
+source<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>gainNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+gainNode<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>audioCtx<span class="token punctuation">.</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// set buttons to do something onclick</span>
+targetAtTimePlus<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  currGain <span class="token operator">+=</span> <span class="token number">0.25</span><span class="token punctuation">;</span>
+  gainNode<span class="token punctuation">.</span>gain<span class="token punctuation">.</span><span class="token function">setValueAtTime</span><span class="token punctuation">(</span>currGain<span class="token punctuation">,</span> audioCtx<span class="token punctuation">.</span>currentTime <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+targetAtTimeMinus<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  currGain <span class="token operator">-=</span> <span class="token number">0.25</span><span class="token punctuation">;</span>
+  gainNode<span class="token punctuation">.</span>gain<span class="token punctuation">.</span><span class="token function">setValueAtTime</span><span class="token punctuation">(</span>currGain<span class="token punctuation">,</span> audioCtx<span class="token punctuation">.</span>currentTime <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://webaudio.github.io/web-audio-api/#dom-audioparam-setvalueattime" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'setValueAtTime' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>setValueAtTime</code></th>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../web_audio_api/using_web_audio_api">Using the Web Audio API</a> </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioParam/setValueAtTime" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/AudioParam/setValueAtTime</a>
+  </p>
+</div>

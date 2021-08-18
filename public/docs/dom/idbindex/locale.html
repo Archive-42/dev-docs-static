@@ -1,0 +1,90 @@
+<h1>IDBIndex.locale</h1>
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div> <p>The <code>locale</code> read-only property of the <a href="../idbindex"><code>IDBIndex</code></a> interface returns the locale of the index (for example <code>en-US</code>, or <code>pl</code>) if it had a <code>locale</code> value specified upon its creation (see <a href="../idbobjectstore/createindex#parameters"><code>createIndex()</code>'s optionalParameters</a>.) Note that this property always returns the current locale being used in this index, in other words, it never returns <code>"auto"</code>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> myIndex <span class="token operator">=</span> objectStore<span class="token punctuation">.</span><span class="token function">index</span><span class="token punctuation">(</span><span class="token string">'index'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myIndex<span class="token punctuation">.</span>locale<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../domstring"><code>DOMString</code></a>.</p>
+<h2 id="example">Example</h2>
+<p>In the following example we open a transaction and an object store, then get the index <code>lName</code> from a simple contacts database. We then open a basic cursor on the index using <a href="opencursor"><code>IDBIndex.openCursor</code></a> — this works the same as opening a cursor directly on an <code>ObjectStore</code> using <a href="../idbobjectstore/opencursor"><code>IDBObjectStore.openCursor</code></a> except that the returned records are sorted based on the index, not the primary key.</p> <p>The <code>locale</code> value is logged to the console.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">displayDataByIndex</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  tableEntry<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">''</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> transaction <span class="token operator">=</span> db<span class="token punctuation">.</span><span class="token function">transaction</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'contactsList'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'readonly'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> objectStore <span class="token operator">=</span> transaction<span class="token punctuation">.</span><span class="token function">objectStore</span><span class="token punctuation">(</span><span class="token string">'contactsList'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">var</span> myIndex <span class="token operator">=</span> objectStore<span class="token punctuation">.</span><span class="token function">index</span><span class="token punctuation">(</span><span class="token string">'lName'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myIndex<span class="token punctuation">.</span>locale<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  myIndex<span class="token punctuation">.</span><span class="token function">openCursor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function-variable function">onsuccess</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> cursor <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>result<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>cursor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> tableRow <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'tr'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      tableRow<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span>   <span class="token string">'&lt;td&gt;'</span> <span class="token operator">+</span> cursor<span class="token punctuation">.</span>value<span class="token punctuation">.</span>id <span class="token operator">+</span> <span class="token string">'&lt;/td&gt;'</span>
+                           <span class="token operator">+</span> <span class="token string">'&lt;td&gt;'</span> <span class="token operator">+</span> cursor<span class="token punctuation">.</span>value<span class="token punctuation">.</span>lName <span class="token operator">+</span> <span class="token string">'&lt;/td&gt;'</span>
+                           <span class="token operator">+</span> <span class="token string">'&lt;td&gt;'</span> <span class="token operator">+</span> cursor<span class="token punctuation">.</span>value<span class="token punctuation">.</span>fName <span class="token operator">+</span> <span class="token string">'&lt;/td&gt;'</span>
+                           <span class="token operator">+</span> <span class="token string">'&lt;td&gt;'</span> <span class="token operator">+</span> cursor<span class="token punctuation">.</span>value<span class="token punctuation">.</span>jTitle <span class="token operator">+</span> <span class="token string">'&lt;/td&gt;'</span>
+                           <span class="token operator">+</span> <span class="token string">'&lt;td&gt;'</span> <span class="token operator">+</span> cursor<span class="token punctuation">.</span>value<span class="token punctuation">.</span>company <span class="token operator">+</span> <span class="token string">'&lt;/td&gt;'</span>
+                           <span class="token operator">+</span> <span class="token string">'&lt;td&gt;'</span> <span class="token operator">+</span> cursor<span class="token punctuation">.</span>value<span class="token punctuation">.</span>eMail <span class="token operator">+</span> <span class="token string">'&lt;/td&gt;'</span>
+                           <span class="token operator">+</span> <span class="token string">'&lt;td&gt;'</span> <span class="token operator">+</span> cursor<span class="token punctuation">.</span>value<span class="token punctuation">.</span>phone <span class="token operator">+</span> <span class="token string">'&lt;/td&gt;'</span>
+                           <span class="token operator">+</span> <span class="token string">'&lt;td&gt;'</span> <span class="token operator">+</span> cursor<span class="token punctuation">.</span>value<span class="token punctuation">.</span>age <span class="token operator">+</span> <span class="token string">'&lt;/td&gt;'</span><span class="token punctuation">;</span>
+      tableEntry<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>tableRow<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      cursor<span class="token punctuation">.</span><span class="token function">continue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Entries all displayed.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<p>Not currently part of any specification.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>locale</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../indexeddb_api/using_indexeddb">Using IndexedDB</a></li> <li>Starting transactions: <a href="../idbdatabase"><code>IDBDatabase</code></a>
+</li> <li>Using transactions: <a href="../idbtransaction"><code>IDBTransaction</code></a>
+</li> <li>Setting a range of keys: <a href="../idbkeyrange"><code>IDBKeyRange</code></a>
+</li> <li>Retrieving and making changes to your data: <a href="../idbobjectstore"><code>IDBObjectStore</code></a>
+</li> <li>Using cursors: <a href="../idbcursor"><code>IDBCursor</code></a>
+</li> <li>Reference example: <a href="https://github.com/mdn/to-do-notifications/tree/gh-pages" rel=" noopener">To-do Notifications</a> (<a href="https://mdn.github.io/to-do-notifications/" rel=" noopener">view example live</a>.)</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBIndex/locale" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBIndex/locale</a>
+  </p>
+</div>

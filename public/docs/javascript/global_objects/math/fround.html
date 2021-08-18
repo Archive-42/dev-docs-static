@@ -1,0 +1,95 @@
+<h1>Math.fround()</h1> <p class="seoSummary">The <code>Math.fround()</code> function returns the nearest <a href="https://en.wikipedia.org/wiki/Single-precision_floating-point_format" rel=" noopener">32-bit single precision</a> float representation of a <a href="../number"><code>Number</code></a>.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/math-fround.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js">Math<span class="token punctuation">.</span><span class="token function">fround</span><span class="token punctuation">(</span>doubleFloat<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>doubleFloat</var></code></dt> <dd>A <a href="../number"><code>Number</code></a>. If the parameter is of a different type, it will get converted to a number or to <a href="../nan"><code>NaN</code></a> if it cannot be converted.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The nearest <a href="https://en.wikipedia.org/wiki/Single-precision_floating-point_format" rel=" noopener">32-bit single precision</a> float representation of the given number.</p>
+<h2 id="description">Description</h2>
+<p>JavaScript uses 64-bit double floating-point numbers internally, which offer a very high precision. However, sometimes you may be working with 32-bit floating-point numbers, for example if you are reading values from a <a href="../float32array"><code>Float32Array</code></a>. This can create confusion: Checking a 64-bit float and a 32-bit float for equality may fail even though the numbers are seemingly identical.</p> <p>To solve this, <code>Math.fround()</code> can be used to cast the 64-bit float to a 32-bit float. Internally, JavaScript continues to treat the number as a 64-bit float, it just performs a "round to even" on the 23rd bit of the mantissa, and sets all following mantissa bits to <code>0</code>. If the number is outside the range of a 32-bit float, <a href="../infinity"><code>Infinity</code></a> or <code>-Infinity</code> is returned.</p> <p>Because <code>fround()</code> is a static method of <code>Math</code>, you always use it as <code>Math.fround()</code>, rather than as a method of a <code>Math</code> object you created (<code>Math</code> is not a constructor).</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_math.fround">Using Math.fround()</h3>
+<p>The number 1.5 can be precisely represented in the binary numeral system, and is identical in 32-bit and 64-bit:</p> <pre data-language="js">Math<span class="token punctuation">.</span><span class="token function">fround</span><span class="token punctuation">(</span><span class="token number">1.5</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1.5</span>
+Math<span class="token punctuation">.</span><span class="token function">fround</span><span class="token punctuation">(</span><span class="token number">1.5</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token number">1.5</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+</pre> <p>However, the number 1.337 cannot be precisely represented in the binary numeral system, so it differs in 32-bit and 64-bit:</p> <pre data-language="js">Math<span class="token punctuation">.</span><span class="token function">fround</span><span class="token punctuation">(</span><span class="token number">1.337</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1.3370000123977661</span>
+Math<span class="token punctuation">.</span><span class="token function">fround</span><span class="token punctuation">(</span><span class="token number">1.337</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token number">1.337</span><span class="token punctuation">;</span> <span class="token comment">// false</span>
+</pre> <p><math> <semantics> <msup> <mn>2</mn> <mn>150</mn> </msup> <annotation encoding="TeX">2^150</annotation> </semantics> </math> is too big for a 32-bit float, so <code>Infinity</code> is returned:</p> <pre data-language="js"><span class="token number">2</span> <span class="token operator">**</span> <span class="token number">150</span><span class="token punctuation">;</span> <span class="token comment">// 1.42724769270596e+45</span>
+Math<span class="token punctuation">.</span><span class="token function">fround</span><span class="token punctuation">(</span><span class="token number">2</span> <span class="token operator">**</span> <span class="token number">150</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Infinity</span>
+</pre> <p>If the parameter cannot be converted to a number, or it is <a href="https://en.wikipedia.org/wiki/NaN" rel=" noopener">not-a-number</a> (<code>NaN</code>), <code>Math.fround()</code> will return <code>NaN</code>:</p> <pre data-language="js">Math<span class="token punctuation">.</span><span class="token function">fround</span><span class="token punctuation">(</span><span class="token string">'abc'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// NaN</span>
+Math<span class="token punctuation">.</span><span class="token function">fround</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// NaN</span>
+</pre>
+<h2 id="polyfill">Polyfill</h2>
+<p>This can be emulated with the following function, if <a href="../float32array"><code>Float32Array</code></a> are supported:</p> <pre data-language="js">Math<span class="token punctuation">.</span>fround <span class="token operator">=</span> Math<span class="token punctuation">.</span>fround <span class="token operator">||</span> <span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">array</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> x<span class="token punctuation">,</span> array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Float32Array</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>Supporting older browsers is slower, but also possible:</p> <pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Math<span class="token punctuation">.</span>fround<span class="token punctuation">)</span> Math<span class="token punctuation">.</span><span class="token function-variable function">fround</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">arg</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  arg <span class="token operator">=</span> <span class="token function">Number</span><span class="token punctuation">(</span>arg<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// Return early for ±0 and NaN.</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>arg<span class="token punctuation">)</span> <span class="token keyword">return</span> arg<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> sign <span class="token operator">=</span> arg <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">?</span> <span class="token operator">-</span><span class="token number">1</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>sign <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> arg <span class="token operator">=</span> <span class="token operator">-</span>arg<span class="token punctuation">;</span>
+  <span class="token comment">// Compute the exponent (8 bits, signed).</span>
+  <span class="token keyword">var</span> exp <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arg<span class="token punctuation">)</span> <span class="token operator">/</span> Math<span class="token punctuation">.</span><span class="token constant">LN2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> powexp <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">126</span><span class="token punctuation">,</span> Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span>exp<span class="token punctuation">,</span> <span class="token number">127</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// Handle subnormals: leading digit is zero if exponent bits are all zero.</span>
+  <span class="token keyword">var</span> leading <span class="token operator">=</span> exp <span class="token operator">&lt;</span> <span class="token operator">-</span><span class="token number">127</span> <span class="token operator">?</span> <span class="token number">0</span> <span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token comment">// Compute 23 bits of mantissa, inverted to round toward zero.</span>
+  <span class="token keyword">var</span> mantissa <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">round</span><span class="token punctuation">(</span><span class="token punctuation">(</span>leading <span class="token operator">-</span> arg <span class="token operator">/</span> powexp<span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0x800000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>mantissa <span class="token operator">&lt;=</span> <span class="token operator">-</span><span class="token number">0x800000</span><span class="token punctuation">)</span> <span class="token keyword">return</span> sign <span class="token operator">*</span> <span class="token number">Infinity</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> sign <span class="token operator">*</span> powexp <span class="token operator">*</span> <span class="token punctuation">(</span>leading <span class="token operator">-</span> mantissa <span class="token operator">/</span> <span class="token number">0x800000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-math.fround">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-math.fround</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>fround</code></th>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="round"><code>Math.round()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/fround" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/fround</a>
+  </p>
+</div>

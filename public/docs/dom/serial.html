@@ -1,0 +1,140 @@
+<h1>Serial</h1>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+<h2 id="description">Description</h2>
+<p>The <code>Serial</code> interface of the <a class="page-not-created"><code>Web Serial API</code></a> provides attributes and methods for finding and connecting to serial ports from a web page.</p>
+<h2 id="event_handlers">Event Handlers</h2>
+<dl> <dt><a href="serial/onconnect"><code>Serial.onconnect</code></a></dt> <dd>An event handler called when a port has been connected to the device.</dd> <dt><a href="serial/ondisconnect"><code>Serial.ondisconnect</code></a></dt> <dd>An event handler called when a port has been disconnected from the device.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="serial/requestport"><code>Serial.requestPort()</code></a></dt> <dd> <p>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves with an instance of <a href="serialport"><code>SerialPort</code></a> representing the device chosen by the user or rejects if no device was selected.</p> <p>This method must be called with user activation.</p> </dd> <dt><a href="serial/getports"><code>Serial.getPorts()</code></a></dt> <dd> Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves with an array of <a href="serialport"><code>SerialPort</code></a> objects representing serial ports connected to the host which the origin has permission to access. </dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>The following example shows how a site can check for available ports and allow the user to grant it permission to access additional ports.</p> <p>On load event listeners are added for the <code>connect</code> and <code>disconnect</code> events so that the site can react when a device is connected or disconnected from the system. The <a href="serial/getports"><code>getPorts()</code></a> method is then called to see which ports are connected that the site already has access to.</p> <p>If the site doesn't have access to any connected ports it has to wait until it has user activation to proceed. In this example we use a <a href="element/click_event"><code>click</code></a> event handler on a button for this task. A filter is passed to <a href="serial/requestport"><code>requestPort()</code></a> with a USB vendor ID in order to limit the set of devices shown to the user to only USB devices built by a particular manufacturer.</p> <pre data-language="js">navigator<span class="token punctuation">.</span>serial<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'connect'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Connect to `e.target` or add it to a list of available ports.</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+navigator<span class="token punctuation">.</span>serial<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'disconnect'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Remove `e.target` from the list of available ports.</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+navigator<span class="token punctuation">.</span>serial<span class="token punctuation">.</span><span class="token function">getPorts</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">ports</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Initialize the list of available ports with `ports` on page load.</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+button<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> usbVendorId <span class="token operator">=</span> <span class="token operator">...</span><span class="token punctuation">;</span>
+  navigator<span class="token punctuation">.</span>serial<span class="token punctuation">.</span><span class="token function">requestPort</span><span class="token punctuation">(</span><span class="token punctuation">{</span> filters<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span> usbVendorId <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">port</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Connect to `port` or add it to the list of available ports.</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// The user didn't select a port.</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://wicg.github.io/serial/#serial-interface" hreflang="en" rel=" noopener">Web Serial API<br><small>The definition of 'Serial' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>Serial</code></th>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>getPorts</code></th>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>onconnect</code></th>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>ondisconnect</code></th>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>requestPort</code></th>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-yes"><div>89</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Serial" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Serial</a>
+  </p>
+</div>

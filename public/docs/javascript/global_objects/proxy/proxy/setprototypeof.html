@@ -1,0 +1,97 @@
+<h1>handler.setPrototypeOf()</h1> <p>The <code>handler.setPrototypeOf()</code> method is a trap for <a href="../../object/setprototypeof"><code>Object.setPrototypeOf()</code></a>.</p> <iframe class="interactive" width="100%" height="692" src="https://interactive-examples.mdn.mozilla.net/pages/js/proxyhandler-setprototypeof.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">const</span> p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Proxy</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">setPrototypeOf</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">target<span class="token punctuation">,</span> prototype</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<p>The following parameters are passed to the <code>setPrototypeOf()</code> method. <code>this</code> is bound to the handler.</p> <dl> <dt><code><var>target</var></code></dt> <dd>The target object.</dd> <dt><code><var>prototype</var></code></dt> <dd>The object's new prototype or <code>null</code>.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The <code>setPrototypeOf()</code> method returns <code>true</code> if the <code>[[Prototype]]</code> was successfully changed, otherwise <code>false</code>.</p>
+<h2 id="description">Description</h2>
+<p>The <code><strong>handler.setPrototypeOf()</strong></code> method is a trap for <a href="../../object/setprototypeof"><code>Object.setPrototypeOf()</code></a>.</p>
+<h3 id="interceptions">Interceptions</h3>
+<p>This trap can intercept these operations:</p> <ul> <li><a href="../../object/setprototypeof"><code>Object.setPrototypeOf()</code></a></li> <li><a href="../../reflect/setprototypeof"><code>Reflect.setPrototypeOf()</code></a></li> </ul>
+<h3 id="invariants">Invariants</h3>
+<p>If the following invariants are violated, the proxy will throw a <a href="../../typeerror"><code>TypeError</code></a>:</p> <ul> <li>If <code><var>target</var></code> is not extensible, the <code>prototype</code> parameter must be the same value as <code>Object.getPrototypeOf(<var>target</var>)</code>.</li> </ul>
+<h2 id="examples">Examples</h2>
+<p>If you want to disallow setting a new prototype for your object, your handler's <code>setPrototypeOf()</code> method can either return <code>false</code>, or it can throw an exception.</p>
+<h3 id="approach_1_returning_false">Approach 1: Returning false</h3>
+<p>This approach means that any mutating operation that throws an exception on failure to mutate, must create the exception itself.</p> <p>For example, <a href="../../object/setprototypeof"><code>Object.setPrototypeOf()</code></a> will create and throw a <a href="../../typeerror"><code>TypeError</code></a> itself. If the mutation is performed by an operation that <em>doesn't</em> ordinarily throw in case of failure, such as <a href="../../reflect/setprototypeof"><code>Reflect.setPrototypeOf()</code></a>, no exception will be thrown.</p> <pre data-language="js"><span class="token keyword">const</span> handlerReturnsFalse <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token function">setPrototypeOf</span><span class="token punctuation">(</span><span class="token parameter">target<span class="token punctuation">,</span> newProto</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> newProto <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> target <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> p1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Proxy</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> handlerReturnsFalse<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">setPrototypeOf</span><span class="token punctuation">(</span>p1<span class="token punctuation">,</span> newProto<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// throws a TypeError</span>
+Reflect<span class="token punctuation">.</span><span class="token function">setPrototypeOf</span><span class="token punctuation">(</span>p1<span class="token punctuation">,</span> newProto<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// returns false</span>
+</pre>
+<h3 id="approach_2_throwing_an_exception">Approach 2: Throwing an Exception</h3>
+<p>The latter approach will cause <em>any</em> operation that attempts to mutate, to throw. This approach is best if you want even non-throwing operations to throw on failure, or you want to throw a custom exception value.</p> <pre data-language="js"><span class="token keyword">const</span> handlerThrows <span class="token operator">=</span> <span class="token punctuation">{</span>
+    <span class="token function">setPrototypeOf</span><span class="token punctuation">(</span><span class="token parameter">target<span class="token punctuation">,</span> newProto</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">'custom error'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> newProto <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> target <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> p2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Proxy</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> handlerThrows<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">setPrototypeOf</span><span class="token punctuation">(</span>p2<span class="token punctuation">,</span> newProto<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// throws new Error("custom error")</span>
+Reflect<span class="token punctuation">.</span><span class="token function">setPrototypeOf</span><span class="token punctuation">(</span>p2<span class="token punctuation">,</span> newProto<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// throws new Error("custom error")</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots-setprototypeof-v">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-proxy-object-internal-methods-and-internal-slots-setprototypeof-v</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>setPrototypeOf</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../../proxy"><code>Proxy</code></a></li> <li><a href="../proxy"><code>handler</code></a></li> <li><a href="../../object/setprototypeof"><code>Object.setPrototypeOf()</code></a></li> <li><a href="../../reflect/setprototypeof"><code>Reflect.setPrototypeOf()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/setPrototypeOf" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/setPrototypeOf</a>
+  </p>
+</div>

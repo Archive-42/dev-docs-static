@@ -1,0 +1,250 @@
+<h1>FileSystemEntry</h1> <div class="notecard warning"> <strong id="non-standard">Non-standard</strong> <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p> </div> <p>The <code>FileSystemEntry</code> interface of the File and Directory Entries API represents a single entry in a file system. The entry can be a file or a directory (directories are represented by the <a href="filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a> interface). It includes methods for working with files—including copying, moving, removing, and reading files—as well as information about a file it points to—including the file name and its path from the root to the entry.</p> <div class="note notecard"> <p>Because this is a non-standard API, whose specification is not currently on a standards track, it's important to keep in mind that not all browsers implement it, and those that do may implement only small portions of it. Check the <a href="#browser_compatibility">Browser compatibility</a> section for details.</p> </div>
+<h2 id="basic">Basic concepts</h2>
+<p>You don't create <code>FileSystemEntry</code> objects directly. Instead, you will receive an object based on this interface through other APIs. This interface serves as a base class for the <a href="filesystemfileentry"><code>FileSystemFileEntry</code></a> and <a href="filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a> interfaces, which provide features specific to file system entries representing files and directories, respectively.</p> <p>The <code>FileSystemEntry</code> interface includes methods that you would expect for manipulating files and directories, but it also includes a convenient method for obtaining the URL of the entry: <code><a href="#tourl">toURL()</a></code>. It also introduces a new URL scheme: <code>filesystem:</code>.</p> <p>You can use the <code>filesystem:</code> scheme on Google Chrome to see all the files and folders that are stored in the origin of your app. Just use <code>filesystem:</code> scheme for the root directory of the origin of the app. For example, if your app is in <code><a href="https://www.html5rocks.com" rel=" noopener">http://www.html5rocks.com</a></code>, open<code> filesystem:<a href="https://www.html5rocks.com/temporary/" rel=" noopener">http://www.html5rocks.com/temporary/</a></code> in a tab. Chrome shows a read-only list of all the files and folders stored the origin of your app.</p>
+<h3 id="example">Example</h3>
+<p>To see an example of how <code>toURL()</code> works, see the <a href="#tourl">method description</a>. The snippet below shows you how you can remove a file by name.</p> <pre data-language="js"><span class="token comment">// Taking care of the browser-specific prefixes.</span>
+window<span class="token punctuation">.</span>requestFileSystem  <span class="token operator">=</span> window<span class="token punctuation">.</span>requestFileSystem <span class="token operator">||</span> window<span class="token punctuation">.</span>webkitRequestFileSystem<span class="token punctuation">;</span>
+
+<span class="token operator">...</span>
+
+<span class="token comment">// Opening a file system with temporary storage</span>
+window<span class="token punctuation">.</span><span class="token function">requestFileSystem</span><span class="token punctuation">(</span><span class="token constant">TEMPORARY</span><span class="token punctuation">,</span> <span class="token number">1024</span><span class="token operator">*</span><span class="token number">1024</span> <span class="token comment">/*1MB*/</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">fs</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  fs<span class="token punctuation">.</span>root<span class="token punctuation">.</span><span class="token function">getFile</span><span class="token punctuation">(</span><span class="token string">'log.txt'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">fileEntry</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    fileEntry<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'File removed.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> onError<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> onError<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> onError<span class="token punctuation">)</span><span class="token punctuation">;</span> </pre>
+<h2 id="properties">Properties</h2>
+<p><em>This interface provides the following properties.</em></p> <dl> <dt>
+<a href="filesystementry/filesystem"><code>filesystem</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="filesystem"><code>FileSystem</code></a> object representing the file system in which the entry is located.</dd> <dt>
+<a href="filesystementry/fullpath"><code>fullPath</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="usvstring"><code>USVString</code></a> object which provides the full, absolute path from the file system's root to the entry; it can also be thought of as a path which is relative to the root directory, prepended with a "/" character.</dd> <dt>
+<a href="filesystementry/isdirectory"><code>isDirectory</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> which is <code>true</code> if the entry represents a directory; otherwise, it's <code>false</code>.</dd> <dt>
+<a href="filesystementry/isfile"><code>isFile</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A Boolean which is <code>true</code> if the entry represents a file. If it's not a file, this value is <code>false</code>.</dd> <dt>
+<a href="filesystementry/name"><code>name</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="usvstring"><code>USVString</code></a> containing the name of the entry (the final part of the path, after the last "/" character).</dd> </dl>
+<h2 id="methods">Methods</h2>
+<p><em>This interface defines the following methods.</em></p> <dl> <dt><a href="filesystementry/copyto"><code>copyTo()</code></a></dt> <dd>Copies the file or directory to a new location on the file system.</dd> <dt><a href="filesystementry/getmetadata"><code>getMetadata()</code></a></dt> <dd>Obtains metadata about the file, such as its modification date and size.</dd> <dt><a href="filesystementry/getparent"><code>getParent()</code></a></dt> <dd>Returns a <a href="filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a> representing the entry's parent directory.</dd> <dt><a href="filesystementry/moveto"><code>moveTo()</code></a></dt> <dd>Moves the file or directory to a new location on the file system, or renames the file or directory.</dd> <dt><a href="filesystementry/remove"><code>remove()</code></a></dt> <dd>Removes the specified file or directory. You can only remove directories which are empty.</dd> <dt><a href="filesystementry/tourl"><code>toURL()</code></a></dt> <dd>Creates and returns a URL which identifies the entry. This URL uses the URL scheme <code>"filesystem:"</code>.</dd> </dl>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://wicg.github.io/entries-api/" hreflang="en" rel=" noopener">File and Directory Entries API</a></td> <td><span class="spec-draft">Draft</span></td> <td>Draft of proposed API</td> </tr> </tbody> </table></div> <p>This API has no official W3C or WHATWG specification.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>FileSystemEntry</code></th>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>copyTo</code></th>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>filesystem</code></th>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>fullPath</code></th>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>getMetadata</code></th>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>getParent</code></th>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>isDirectory</code></th>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>isFile</code></th>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>moveTo</code></th>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>name</code></th>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>remove</code></th>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>toURL</code></th>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="file_and_directory_entries_api">File and Directory Entries API</a></li> <li><a href="file_and_directory_entries_api/introduction">Introduction to the File System API</a></li> <li>
+<a href="filesystemfileentry"><code>FileSystemFileEntry</code></a> and <a href="filesystemdirectoryentry"><code>FileSystemDirectoryEntry</code></a> are based on <code>FileSystemEntry</code>.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemEntry" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemEntry</a>
+  </p>
+</div>

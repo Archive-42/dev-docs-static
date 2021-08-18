@@ -1,0 +1,356 @@
+<h1>ShadowRoot</h1> <p>The <code><strong>ShadowRoot</strong></code> interface of the Shadow DOM API is the root node of a DOM subtree that is rendered separately from a document's main DOM tree.</p> <p>You can retrieve a reference to an element's shadow root using its <a href="element/shadowroot"><code>Element.shadowRoot</code></a> property, provided it was created using <a href="element/attachshadow"><code>Element.attachShadow()</code></a> with the <code>mode</code> option set to <code>open</code>.</p>
+<h2 id="properties">Properties</h2>
+<dl> <dt>
+<a href="shadowroot/activeelement"><code>ShadowRoot.activeElement</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the <a href="element"><code>Element</code></a> within the shadow tree that has focus.</dd> <dt>
+<a href="shadowroot/delegatesfocus"><code>ShadowRoot.delegatesFocus</code></a> <span class="badge inline readonly">Read only </span> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized.   </span> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>Returns a boolean that indicates whether delegatesFocus was set when the shadow was attached (see <a href="element/attachshadow"><code>Element.attachShadow()</code></a>).</dd> <dt>
+<a href="shadowroot/fullscreenelement"><code>ShadowRoot.fullscreenElement</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>The element that's currently in full screen mode for this shadow tree.</dd> <dt>
+<a href="shadowroot/host"><code>ShadowRoot.host</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a reference to the DOM element the <code>ShadowRoot</code> is attached to.</dd> <dt>
+<a href="shadowroot/innerhtml"><code>ShadowRoot.innerHTML</code></a> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized.   </span>
+</dt> <dd>Sets or returns a reference to the DOM tree inside the <code>ShadowRoot</code>.</dd> <dt>
+<a href="shadowroot/mode"><code>ShadowRoot.mode</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>The mode of the <code>ShadowRoot</code> — either <code>open</code> or <code>closed</code>. This defines whether or not the shadow root's internal features are accessible from JavaScript.</dd> <dt>
+<a href="shadowroot/pictureinpictureelement"><code>ShadowRoot.pictureInPictureElement</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the <a href="element"><code>Element</code></a> within the shadow tree that is currently being presented in picture-in-picture mode.</dd> <dt>
+<a href="shadowroot/pointerlockelement"><code>ShadowRoot.pointerLockElement</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the <a href="element"><code>Element</code></a> set as the target for mouse events while the pointer is locked. <code>null</code> if lock is pending, pointer is unlocked, or if the target is in another tree.</dd> <dt>
+<a href="shadowroot/stylesheets"><code>ShadowRoot.styleSheets</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="stylesheetlist"><code>StyleSheetList</code></a> of <a href="cssstylesheet"><code>CSSStyleSheet</code></a> objects for stylesheets explicitly linked into, or embedded in a shadow tree.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="shadowroot/getanimations"><code>ShadowRoot.getAnimations()</code></a></dt> <dd>Returns an array of all <a href="animation"><code>Animation</code></a> objects currently in effect, whose target elements are descendants of the shadow tree.</dd> <dt><a class="page-not-created"><code>ShadowRoot.getSelection()</code></a></dt> <dd>Returns a <a href="selection"><code>Selection</code></a> object representing the range of text selected by the user, or the current position of the caret.</dd> <dt><a class="page-not-created"><code>ShadowRoot.elementFromPoint()</code></a></dt> <dd>Returns the topmost element at the specified coordinates.</dd> <dt><a class="page-not-created"><code>ShadowRoot.elementsFromPoint()</code></a></dt> <dd>Returns an array of all elements at the specified coordinates.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>The following snippets are taken from our <a href="https://github.com/mdn/web-components-examples/tree/master/life-cycle-callbacks" rel=" noopener">life-cycle-callbacks</a> example (<a href="https://mdn.github.io/web-components-examples/life-cycle-callbacks" rel=" noopener">see it live also</a>), which creates an element that displays a square of a size and color specified in the element's attributes.</p> <p>Inside the <code>&lt;custom-square&gt;</code> element's class definition we include some life cycle callbacks that make a call to an external function, <code>updateStyle()</code>, which actually applies the size and color to the element. You'll see that we are passing it <code>this</code> (the custom element itself) as a parameter.</p> <pre data-language="js"><span class="token function">connectedCallback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Custom square element added to page.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">updateStyle</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">attributeChangedCallback</span><span class="token punctuation">(</span><span class="token parameter">name<span class="token punctuation">,</span> oldValue<span class="token punctuation">,</span> newValue</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Custom square element attributes changed.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">updateStyle</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>In the <code>updateStyle()</code> function itself, we get a reference to the shadow DOM using <a href="element/shadowroot"><code>Element.shadowRoot</code></a>. From here we use standard DOM traversal techniques to find the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/style"><code>&lt;style&gt;</code></a> element inside the shadow DOM and then update the CSS found inside it:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">updateStyle</span><span class="token punctuation">(</span><span class="token parameter">elem</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> shadow <span class="token operator">=</span> elem<span class="token punctuation">.</span>shadowRoot<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> childNodes <span class="token operator">=</span> shadow<span class="token punctuation">.</span>childNodes<span class="token punctuation">;</span>
+  <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> childNodes<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>childNodes<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>nodeName <span class="token operator">===</span> <span class="token string">'STYLE'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      childNodes<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>textContent <span class="token operator">=</span>
+        <span class="token string">'div {'</span> <span class="token operator">+</span>
+          <span class="token string">'width: '</span> <span class="token operator">+</span> elem<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'l'</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'px;'</span> <span class="token operator">+</span>
+          <span class="token string">'height: '</span> <span class="token operator">+</span> elem<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'l'</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'px;'</span> <span class="token operator">+</span>
+          <span class="token string">'background-color: '</span> <span class="token operator">+</span> elem<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'c'</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">';'</span> <span class="token operator">+</span>
+        <span class="token string">'}'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://dom.spec.whatwg.org/#interface-shadowroot" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'Interface ShadowRoot' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>ShadowRoot</code></th>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>delegatesFocus</code></th>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>getSelection</code></th>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>host</code></th>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>innerHTML</code></th>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>mode</code></th>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>activeElement</code></th>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>adoptedStyleSheets</code></th>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>elementFromPoint</code></th>
+<td class="bc-supports-yes">
+<div>53</div>
+<div>Before Chrome 66, this method returned <code>null</code> when the element was a child of a host node. See <a href="https://crbug.com/759947">issue 759947</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>40</div>
+<div>Before Opera 53, this method returned <code>null</code> when the element was a child of a host node. See <a href="https://crbug.com/759947">issue 759947</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes">
+<div>53</div>
+<div>Before WebView 66, this method returned <code>null</code> when the element was a child of a host node. See <a href="https://crbug.com/759947">issue 759947</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>53</div>
+<div>Before Chrome 66, this method returned <code>null</code> when the element was a child of a host node. See <a href="https://crbug.com/759947">issue 759947</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes">
+<div>41</div>
+<div>Before Opera Android 47, this method returned <code>null</code> when the element was a child of a host node. See <a href="https://crbug.com/759947">issue 759947</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Before Samsung Internet 9.0, this method returned <code>null</code> when the element was a child of a host node. See <a href="https://crbug.com/759947">issue 759947</a>.</div>
+</td>
+</tr>
+<tr>
+<th><code>elementsFromPoint</code></th>
+<td class="bc-supports-yes">
+<div>53</div>
+<div>Before Chrome 66, this method returned <code>null</code> when the element was a child of a host node. See <a href="https://crbug.com/759947">issue 759947</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes">
+<div>53</div>
+<div>Before WebView 66, this method returned <code>null</code> when the element was a child of a host node. See <a href="https://crbug.com/759947">issue 759947</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>53</div>
+<div>Before Chrome 66, this method returned <code>null</code> when the element was a child of a host node. See <a href="https://crbug.com/759947">issue 759947</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Before Samsung Internet 9.0, this method returned <code>null</code> when the element was a child of a host node. See <a href="https://crbug.com/759947">issue 759947</a>.</div>
+</td>
+</tr>
+<tr>
+<th><code>fullscreenElement</code></th>
+<td class="bc-supports-yes"><div>71</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>64</div>
+<div>63</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>71</div></td>
+<td class="bc-supports-yes"><div>71</div></td>
+<td class="bc-supports-yes">
+<div>64</div>
+<div>63</div>
+</td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>10.0</div></td>
+</tr>
+<tr>
+<th><code>getAnimations</code></th>
+<td class="bc-supports-yes">
+<div>84</div>
+<div>83</div>
+</td>
+<td class="bc-supports-yes">
+<div>84</div>
+<div>83</div>
+</td>
+<td class="bc-supports-yes">
+<div>75</div>
+<div>72-75</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>70</div>
+<div>69</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes">
+<div>84</div>
+<div>83</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>pictureInPictureElement</code></th>
+<td class="bc-supports-yes"><div>69</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>13.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.4</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>pointerLockElement</code></th>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>styleSheets</code></th>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>12.2</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot</a>
+  </p>
+</div>

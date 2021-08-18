@@ -1,0 +1,74 @@
+<h1>PaymentMethodChangeEvent.methodName</h1>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div> <p>The read-only <code><strong>methodName</strong></code> property of the <a href="../paymentmethodchangeevent"><code>PaymentMethodChangeEvent</code></a> interface is a string which uniquely identifies the payment handler currently selected by the user. The payment handler may be a payment technology, such as Apple Pay or Android Pay, and each payment handler may support multiple payment methods; changes to the payment method within the payment handler are described by the <code>PaymentMethodChangeEvent</code>. </p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> methodName <span class="token operator">=</span> paymentMethodChangeEvent<span class="token punctuation">.</span>methodName<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../domstring"><code>DOMString</code></a> which uniquely identifies the currently-selected payment handler. This may be a string chosen from the list of standardized payment method identifiers, or a URL used by the payment processing service. See <a href="#">Payment method identifiers</a> in <a href="../payment_request_api">Payment Request API</a> for more information.</p> <p>The default value is the empty string, <code>""</code>.</p>
+<h2 id="example">Example</h2>
+<p>This example uses the <code><a href="../paymentrequest/paymentmethodchange_event">paymentmethodchange</a></code> event to watch for changes to the payment method selected for Apple Pay, in order to compute a discount if the user chooses to use a Visa card as their payment method.</p> <pre data-language="js">request<span class="token punctuation">.</span><span class="token function-variable function">onpaymentmethodchange</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">ev</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> <span class="token punctuation">{</span> type<span class="token operator">:</span> cardType <span class="token punctuation">}</span> <span class="token operator">=</span> ev<span class="token punctuation">.</span>methodDetails<span class="token punctuation">;</span>
+  <span class="token keyword">const</span> newStuff <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>ev<span class="token punctuation">.</span>methodName <span class="token operator">===</span> <span class="token string">"https://apple.com/apple-pay"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">switch</span> <span class="token punctuation">(</span>cardType<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">case</span> <span class="token string">"visa"</span><span class="token operator">:</span>
+        <span class="token comment">// do Apple Pay specific handling for Visa card...</span>
+        <span class="token comment">// methodDetails contains the card information</span>
+        <span class="token keyword">const</span> result <span class="token operator">=</span> <span class="token function">calculateDiscount</span><span class="token punctuation">(</span>ev<span class="token punctuation">.</span>methodDetails<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        Object<span class="token punctuation">.</span><span class="token function">assign</span><span class="token punctuation">(</span>newStuff<span class="token punctuation">,</span> result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// finally...</span>
+  ev<span class="token punctuation">.</span><span class="token function">updateWith</span><span class="token punctuation">(</span>newStuff<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> request<span class="token punctuation">.</span><span class="token function">show</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td> <a href="https://w3c.github.io/payment-request/#dom-paymentmethodchangeevent-methodname" hreflang="en" rel=" noopener">Payment Request API<br><small>The definition of 'PaymentMethodChangeEvent.methodName' in that specification.</small></a> </td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>methodName</code></th>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>12.2</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PaymentMethodChangeEvent/methodName" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PaymentMethodChangeEvent/methodName</a>
+  </p>
+</div>

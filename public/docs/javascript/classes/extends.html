@@ -1,0 +1,107 @@
+<h1>extends</h1> <p>The <code>extends</code> keyword is used in <a href="../statements/class">class declarations</a> or <a href="../operators/class">class expressions</a> to create a class that is a child of another class.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/classes-extends.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">ChildClass</span> <span class="token keyword">extends</span> <span class="token class-name">ParentClass</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span></pre>
+<h2 id="description">Description</h2>
+<p>The <code>extends</code> keyword can be used to subclass custom classes as well as built-in objects.</p> <p>The <code>.prototype</code> of the extension must be an <a href="../global_objects/object"><code>Object</code></a> or <a href="../global_objects/null"><code>null</code></a>.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_extends">Using extends</h3>
+<p>The first example creates a class called <code>Square</code> from a class called <code>Polygon</code>. This example is extracted from this <a href="https://googlechrome.github.io/samples/classes-es6/index.html" rel=" noopener">live demo</a> <a href="https://github.com/GoogleChrome/samples/blob/gh-pages/classes-es6/index.html" rel=" noopener">(source)</a>. </p> <pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">Square</span> <span class="token keyword">extends</span> <span class="token class-name">Polygon</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">length</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Here, it calls the parent class' constructor with lengths</span>
+    <span class="token comment">// provided for the Polygon's width and height</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span>length<span class="token punctuation">,</span> length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Note: In derived classes, super() must be called before you</span>
+    <span class="token comment">// can use 'this'. Leaving this out will cause a reference error.</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>name <span class="token operator">=</span> <span class="token string">'Square'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token keyword">get</span> <span class="token function">area</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>height <span class="token operator">*</span> <span class="token keyword">this</span><span class="token punctuation">.</span>width<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre>
+<h3 id="using_extends_with_built-in_objects">Using extends with built-in objects</h3>
+<p>This example extends the built-in <a href="../global_objects/date"><code>Date</code></a> object. This example is extracted from this <a href="https://googlechrome.github.io/samples/classes-es6/index.html" rel=" noopener">live demo</a> <a href="https://github.com/GoogleChrome/samples/blob/gh-pages/classes-es6/index.html" rel=" noopener">(source)</a>. </p> <pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">myDate</span> <span class="token keyword">extends</span> <span class="token class-name">Date</span> <span class="token punctuation">{</span>
+
+  <span class="token function">getFormattedDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> months <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Jan'</span><span class="token punctuation">,</span> <span class="token string">'Feb'</span><span class="token punctuation">,</span> <span class="token string">'Mar'</span><span class="token punctuation">,</span> <span class="token string">'Apr'</span><span class="token punctuation">,</span> <span class="token string">'May'</span><span class="token punctuation">,</span> <span class="token string">'Jun'</span><span class="token punctuation">,</span> <span class="token string">'Jul'</span><span class="token punctuation">,</span> <span class="token string">'Aug'</span><span class="token punctuation">,</span> <span class="token string">'Sep'</span><span class="token punctuation">,</span> <span class="token string">'Oct'</span><span class="token punctuation">,</span> <span class="token string">'Nov'</span><span class="token punctuation">,</span> <span class="token string">'Dec'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">'-'</span> <span class="token operator">+</span> months<span class="token punctuation">[</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getMonth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">'-'</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getFullYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> </tr> </thead> <tbody> <tr> <td><a href="https://tc39.es/ecma262/#sec-class-definitions" hreflang="en" rel=" noopener">ECMAScript (ECMA-262)<br><small>The definition of 'extends' in that specification.</small></a></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>extends</code></th>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>42-49</div>
+<div>Strict mode is required.</div>
+<div>42-49</div>
+</td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>36</div>
+<div>29-36</div>
+<div>Strict mode is required.</div>
+<div>29-36</div>
+</td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>42-49</div>
+<div>Strict mode is required.</div>
+</td>
+<td class="bc-supports-yes">
+<div>49</div>
+<div>42-49</div>
+<div>Strict mode is required.</div>
+<div>42-49</div>
+</td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes">
+<div>36</div>
+<div>29-36</div>
+<div>Strict mode is required.</div>
+<div>29-36</div>
+</td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes">
+<div>5.0</div>
+<div>4.0-5.0</div>
+<div>Strict mode is required.</div>
+</td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../classes">Classes</a></li> <li>
+<a href="constructor">constructor</a> </li> <li><a href="../operators/super">super</a></li> <li><a href="https://medium.com/beginners-guide-to-mobile-web-development/super-and-extends-in-javascript-es6-understanding-the-tough-parts-6120372d3420" rel=" noopener">Anurag Majumdar - Super &amp; Extends in JavaScript</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/extends</a>
+  </p>
+</div>

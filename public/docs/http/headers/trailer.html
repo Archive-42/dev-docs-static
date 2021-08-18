@@ -1,0 +1,79 @@
+<h1>Trailer</h1> <p>The <strong>Trailer</strong> response header allows the sender to include additional fields at the end of chunked messages in order to supply metadata that might be dynamically generated while the message body is sent, such as a message integrity check, digital signature, or post-processing status.</p> <div class="note"> <p>The <a href="te"><code>TE</code></a> request header needs to be set to "trailers" to allow trailer fields.</p> </div> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Header type</th> <td><a href="https://developer.mozilla.org/en-US/docs/Glossary/Response_header">Response header</a></td> </tr> <tr> <th scope="row"><a href="https://developer.mozilla.org/en-US/docs/Glossary/Forbidden_header_name">Forbidden header name</a></th> <td>yes</td> </tr> </tbody> </table></div> <h2 id="Syntax">Syntax</h2> <pre class="syntaxbox notranslate">Trailer: header-names</pre> <h2 id="Directives">Directives</h2> <dl> <dt><code>header-names</code></dt> <dd>HTTP header fields which will be present in the trailer part of chunked messages. These header fields are <strong>disallowed</strong>: <ul> <li>message framing headers (e.g., <a href="transfer-encoding"><code>Transfer-Encoding</code></a> and <a href="content-length"><code>Content-Length</code></a>),</li> <li>routing headers (e.g., <a href="host"><code>Host</code></a>),</li> <li>request modifiers (e.g., controls and conditionals, like <a href="cache-control"><code>Cache-Control</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Max-Forwards"><code>Max-Forwards</code></a>, or <a href="te"><code>TE</code></a>), </li> <li>authentication headers (e.g., <a href="authorization"><code>Authorization</code></a> or <a href="set-cookie"><code>Set-Cookie</code></a>),</li> <li>or <a href="content-encoding"><code>Content-Encoding</code></a>, <a href="content-type"><code>Content-Type</code></a>, <a href="content-range"><code>Content-Range</code></a>, and <code>Trailer</code> itself.</li> </ul> </dd> </dl> <h2 id="Examples">Examples</h2> <h3 id="Chunked_transfer_encoding_using_a_trailing_header">Chunked transfer encoding using a trailing header</h3> <p>In this example, the <a href="expires"><code>Expires</code></a> header is used at the end of the chunked message and serves as a trailing header.</p> <pre class="notranslate">HTTP/1.1 200 OK 
+Content-Type: text/plain 
+Transfer-Encoding: chunked
+Trailer: Expires
+
+7\r\n 
+Mozilla\r\n 
+9\r\n 
+Developer\r\n 
+7\r\n 
+Network\r\n 
+0\r\n 
+Expires: Wed, 21 Oct 2015 07:28:00 GMT\r\n
+\r\n
+</pre> <h2 id="Specifications">Specifications</h2> <div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Title</th> </tr> <tr> <td><a href="https://tools.ietf.org/html/rfc7230#section-4.4">RFC 7230, section 4.4: Trailer</a></td> <td>Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing</td> </tr> <tr> <td><a href="https://tools.ietf.org/html/rfc7230#section-4.1.2">RFC 7230, section 4.1.2: Chunked trailer part</a></td> <td>Hypertext Transfer Protocol (HTTP/1.1): Message Syntax and Routing</td> </tr> </tbody> </table></div> <h2 id="Browser_compatibility">Browser compatibility<a class="bc-github-link" href="https://github.com/mdn/browser-compat-data">Update compatibility data on GitHub</a>
+</h2>  <div class="_table">
+<table class="bc-table bc-table-web">
+<thead>
+<tr class="bc-platforms">
+<th></th>
+<th colspan="6"><span>Desktop</span></th>
+</tr>
+<tr class="bc-browsers">
+<th></th>
+<th><span class="bc-head-txt-label bc-head-icon-chrome">Chrome</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-edge">Edge</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-firefox">Firefox</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-ie">Internet Explorer</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-opera">Opera</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-safari">Safari</span></th>
+</tr>
+</thead>
+<tbody><tr>
+<th scope="row"><code>Trailer</code></th>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> 12</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+</tr></tbody>
+</table>
+<table class="bc-table bc-table-web">
+<thead>
+<tr class="bc-platforms">
+<th></th>
+<th colspan="6"><span>Mobile</span></th>
+</tr>
+<tr class="bc-browsers">
+<th></th>
+<th><span class="bc-head-txt-label bc-head-icon-webview_android">Android webview</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-chrome_android">Chrome for Android</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-firefox_android">Firefox for Android</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-opera_android">Opera for Android</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-safari_ios">Safari on iOS</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-samsunginternet_android">Samsung Internet</span></th>
+</tr>
+</thead>
+<tbody><tr>
+<th scope="row"><code>Trailer</code></th>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+<td class="bc-supports-yes"> Yes</td>
+</tr></tbody>
+</table>
+</div> <h2 id="See_also">See also</h2> <ul> <li><a href="transfer-encoding"><code>Transfer-Encoding</code></a></li> <li><a href="te"><code>TE</code></a></li> <li> <p><a href="https://en.wikipedia.org/wiki/Chunked_transfer_encoding">Chunked transfer encoding</a></p> </li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Trailer$edit" class="_attribution-link">Edit this page on MDN</a>
+  </p>
+</div>
+<div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2020 Mozilla and individual contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Trailer" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Trailer</a>
+  </p>
+</div>

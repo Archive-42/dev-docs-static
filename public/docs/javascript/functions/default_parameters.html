@@ -1,0 +1,209 @@
+<h1>Default parameters</h1> <p><strong>Default function parameters</strong> allow named parameters to be initialized with default values if no value or <code>undefined</code> is passed.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/functions-default.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">function</span> <span class="token function">fnName</span><span class="token punctuation">(</span><span class="token parameter">param1 <span class="token operator">=</span> defaultValue1<span class="token punctuation">,</span> <span class="token operator">...</span><span class="token punctuation">,</span> paramN <span class="token operator">=</span> defaultValueN</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span>
+</pre>
+<h2 id="description">Description</h2>
+<p>In JavaScript, function parameters default to <a href="../global_objects/undefined"><code>undefined</code></a>. However, it's often useful to set a different default value. This is where default parameters can help.</p> <p>In the past, the general strategy for setting defaults was to test parameter values in the function body and assign a value if they are <code>undefined</code>.</p> <p>In the following example, if no value is provided for <code><var>b</var></code> when <code>multiply</code> is called, <code><var>b</var></code>'s value would be <code>undefined</code> when evaluating <code><var>a</var> * <var>b</var></code> and <code>multiply</code> would return <code>NaN</code>.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">multiply</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> a <span class="token operator">*</span> b
+<span class="token punctuation">}</span>
+
+<span class="token function">multiply</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>  <span class="token comment">// 10</span>
+<span class="token function">multiply</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>     <span class="token comment">// NaN !</span>
+</pre> <p>To guard against this, something like the second line would be used, where <code><var>b</var></code> is set to <code>1</code> if <code>multiply</code> is called with only one argument:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">multiply</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  b <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> b <span class="token operator">!==</span> <span class="token string">'undefined'</span><span class="token punctuation">)</span> <span class="token operator">?</span>  b <span class="token operator">:</span> <span class="token number">1</span>
+  <span class="token keyword">return</span> a <span class="token operator">*</span> b
+<span class="token punctuation">}</span>
+
+<span class="token function">multiply</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>  <span class="token comment">// 10</span>
+<span class="token function">multiply</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>     <span class="token comment">// 5</span>
+</pre> <p>With default parameters in ES2015, checks in the function body are no longer necessary. Now, you can assign <code>1</code> as the default value for <code><var>b</var></code> in the function head:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">multiply</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token number">1</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> a <span class="token operator">*</span> b
+<span class="token punctuation">}</span>
+
+<span class="token function">multiply</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>          <span class="token comment">// 10</span>
+<span class="token function">multiply</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span>             <span class="token comment">// 5</span>
+<span class="token function">multiply</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span>  <span class="token comment">// 5</span>
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="passing_undefined_vs._other_falsy_values">Passing <code>undefined</code> vs. other falsy values</h3>
+<p>In the second call in this example, even if the first argument is set explicitly to <code>undefined</code> (though not <code>null</code> or other <a href="https://developer.mozilla.org/en-US/docs/Glossary/Falsy">falsy</a> values), the value of the <code><var>num</var></code> argument is still the default.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">test</span><span class="token punctuation">(</span><span class="token parameter">num <span class="token operator">=</span> <span class="token number">1</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> num<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token punctuation">)</span>           <span class="token comment">// 'number' (num is set to 1)</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token keyword">undefined</span><span class="token punctuation">)</span>  <span class="token comment">// 'number' (num is set to 1 too)</span>
+
+<span class="token comment">// test with other falsy values:</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span>         <span class="token comment">// 'string' (num is set to '')</span>
+<span class="token function">test</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span>       <span class="token comment">// 'object' (num is set to null)</span>
+</pre>
+<h3 id="evaluated_at_call_time">Evaluated at call time</h3>
+<p>The default argument is evaluated at <em>call time</em>. So, unlike (for example) Python, a new object is created each time the function is called.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">append</span><span class="token punctuation">(</span><span class="token parameter">value<span class="token punctuation">,</span> array <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  array<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+  <span class="token keyword">return</span> array
+<span class="token punctuation">}</span>
+
+<span class="token function">append</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>  <span class="token comment">// [1]</span>
+<span class="token function">append</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>  <span class="token comment">// [2], not [1, 2]</span>
+</pre> <p>This even applies to functions and variables:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">callSomething</span><span class="token punctuation">(</span><span class="token parameter">thing <span class="token operator">=</span> <span class="token function">something</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> thing
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> numberOfTimesCalled <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">function</span> <span class="token function">something</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  numberOfTimesCalled <span class="token operator">+=</span> <span class="token number">1</span>
+  <span class="token keyword">return</span> numberOfTimesCalled
+<span class="token punctuation">}</span>
+
+<span class="token function">callSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// 1</span>
+<span class="token function">callSomething</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// 2</span>
+</pre>
+<h3 id="earlier_parameters_are_available_to_later_default_parameters">Earlier parameters are available to later default parameters</h3>
+<p>Parameters defined earlier (to the left) are available to later default parameters:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">greet</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> greeting<span class="token punctuation">,</span> message <span class="token operator">=</span> greeting <span class="token operator">+</span> <span class="token string">' '</span> <span class="token operator">+</span> name<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">[</span>name<span class="token punctuation">,</span> greeting<span class="token punctuation">,</span> message<span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">greet</span><span class="token punctuation">(</span><span class="token string">'David'</span><span class="token punctuation">,</span> <span class="token string">'Hi'</span><span class="token punctuation">)</span>                     <span class="token comment">// ["David", "Hi", "Hi David"]</span>
+<span class="token function">greet</span><span class="token punctuation">(</span><span class="token string">'David'</span><span class="token punctuation">,</span> <span class="token string">'Hi'</span><span class="token punctuation">,</span> <span class="token string">'Happy Birthday!'</span><span class="token punctuation">)</span>  <span class="token comment">// ["David", "Hi", "Happy Birthday!"]</span>
+</pre> <p>This functionality can be approximated like this, which demonstrates how many edge cases are handled:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">go</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token string">':P'</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">withDefaults</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">,</span> c <span class="token operator">=</span> b<span class="token punctuation">,</span> d <span class="token operator">=</span> <span class="token function">go</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> e <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">,</span>
+                      f <span class="token operator">=</span> arguments<span class="token punctuation">,</span> g <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>value</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">[</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">,</span> d<span class="token punctuation">,</span> e<span class="token punctuation">,</span> f<span class="token punctuation">,</span> g<span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">withoutDefaults</span><span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">,</span> d<span class="token punctuation">,</span> e<span class="token punctuation">,</span> f<span class="token punctuation">,</span> g</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>arguments<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token number">0</span><span class="token operator">:</span>
+      a<span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">1</span><span class="token operator">:</span>
+      b <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">2</span><span class="token operator">:</span>
+      c <span class="token operator">=</span> b<span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">3</span><span class="token operator">:</span>
+      d <span class="token operator">=</span> <span class="token function">go</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">4</span><span class="token operator">:</span>
+      e <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">5</span><span class="token operator">:</span>
+      f <span class="token operator">=</span> arguments<span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token number">6</span><span class="token operator">:</span>
+      g <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token operator">:</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token punctuation">[</span>a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">,</span> d<span class="token punctuation">,</span> e<span class="token punctuation">,</span> f<span class="token punctuation">,</span> g<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">withDefaults</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">{</span>value<span class="token operator">:</span> <span class="token string">'=^_^='</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// [undefined, 5, 5, ":P", {value:"=^_^="}, arguments, "=^_^="]</span>
+
+<span class="token function">withoutDefaults</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span><span class="token punctuation">{</span>value<span class="token operator">:</span> <span class="token string">'=^_^='</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// [undefined, 5, 5, ":P", {value:"=^_^="}, arguments, "=^_^="]</span>
+</pre>
+<h3 id="scope_effects">Scope Effects</h3>
+<p>If default parameters are defined for one or more parameter, then a <a href="https://tc39.es/ecma262/#sec-functiondeclarationinstantiation" rel=" noopener">second scope</a> (Environment Record) is created, specifically for the identifiers within the parameter list. This scope is a parent of the scope created for the function body.</p> <p>This means that functions and variables declared in the function body cannot be referred to from default value parameter initializers; attempting to do so throws a run-time <a href="../global_objects/referenceerror"><code>ReferenceError</code></a>.</p> <p>It also means that variables declared inside the function body using <code>var</code> will mask parameters of the same name, instead of the usual behavior of duplicate <code>var</code> declarations having no effect.</p> <p>The following function will throw a <code>ReferenceError</code> when invoked, because the default parameter value does not have access to the child scope of the function body:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token parameter">a <span class="token operator">=</span> <span class="token function">go</span><span class="token punctuation">(</span><span class="token punctuation">)</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// Throws a `ReferenceError` when `f` is invoked.</span>
+  <span class="token keyword">function</span> <span class="token function">go</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token string">':P'</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre> <p>...and this function will print <code>undefined</code> because variable <code>var a</code> is hoisted only to the top of the scope created for the function body (and not the parent scope created for the parameter list):</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> <span class="token function-variable function">b</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">1</span>
+  <span class="token function">b</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// Prints `undefined`, because default parameter values exist in their own scope</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="parameters_without_defaults_after_default_parameters">Parameters without defaults after default parameters</h3>
+<p>Parameters are still set left-to-right, overwriting default parameters even if there are later parameters without defaults.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token parameter">x <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> y</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">[</span>x<span class="token punctuation">,</span> y<span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span>   <span class="token comment">// [1, undefined]</span>
+<span class="token function">f</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>  <span class="token comment">// [2, undefined]</span>
+</pre>
+<h3 id="destructured_parameter_with_default_value_assignment">Destructured parameter with default value assignment</h3>
+<p>You can use default value assignment with the <a href="../operators/destructuring_assignment">destructuring assignment</a> notation:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">f</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">[</span>x<span class="token punctuation">,</span> y<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>z<span class="token operator">:</span> z<span class="token punctuation">}</span> <span class="token operator">=</span> <span class="token punctuation">{</span>z<span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> x <span class="token operator">+</span> y <span class="token operator">+</span> z
+<span class="token punctuation">}</span>
+
+<span class="token function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span>  <span class="token comment">// 6</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-function-definitions">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-function-definitions</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>Default_parameters</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>destructured_parameter_with_default_value_assignment</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>parameters_without_defaults_after_default_parameters</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="http://wiki.ecmascript.org/doku.php?id=harmony:parameter_default_values" rel="external noopener">Original proposal at ecmascript.org</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters</a>
+  </p>
+</div>

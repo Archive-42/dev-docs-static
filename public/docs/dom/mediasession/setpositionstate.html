@@ -1,0 +1,88 @@
+<h1>MediaSession.setPositionState()</h1>
+
+ <p>The <a href="../mediasession"><code>MediaSession</code></a> method <code><strong>setPositionState()</strong></code> is used to update the current document's media playback position and speed for presentation by user's device in any kind of interface that provides details about ongoing media. This can be particularly useful if your code implements a player for type of media not directly supported by the browser.</p> <p>Call this method on the <code>navigator</code> object's <a href="../navigator/mediasession"><code>mediaSession</code></a> object.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">navigator<span class="token punctuation">.</span>mediaSession<span class="token punctuation">.</span><span class="token function">setPositionState</span><span class="token punctuation">(</span>stateDict<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code>stateDict</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An object conforming to the <a href="../mediapositionstate"><code>MediaPositionState</code></a> dictionary, providing updated information about the playback position and speed of the document's ongoing media. If the object is empty, the existing playback state information is cleared. </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"><code>undefined</code></a>.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>TypeError</code></dt> <dd> <p>This error can occur in an array of circumstances:</p> <ul> <li>The specified <a href="../mediapositionstate"><code>MediaPositionState</code></a> object's <a href="../mediapositionstate/duration"><code>duration</code></a> is missing, negative, or <code>null</code>.</li> <li>
+<a href="../mediapositionstate/position"><code>position</code></a> is missing or null, or is either negative or greater than <code>duration</code>.</li> <li>The <a href="../mediapositionstate/playbackrate"><code>playbackRate</code></a> is zero.</li> </ul> </dd> </dl>
+<h2 id="example">Example</h2>
+<p>Below is a function which updates the position state of the current <a href="../mediasession"><code>MediaSession</code></a> track.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">updatePositionState</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  navigator<span class="token punctuation">.</span>mediaSession<span class="token punctuation">.</span><span class="token function">setPositionState</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    duration<span class="token operator">:</span> audioEl<span class="token punctuation">.</span>duration<span class="token punctuation">,</span>
+    playbackRate<span class="token operator">:</span> audioEl<span class="token punctuation">.</span>playbackRate<span class="token punctuation">,</span>
+    position<span class="token operator">:</span> audioEl<span class="token punctuation">.</span>currentTime
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>We can use this function when updating <a href="../mediametadata"><code>media session
+  metadata</code></a> and within callbacks for actions, such as below.</p> <pre data-language="js">navigator<span class="token punctuation">.</span>mediaSession<span class="token punctuation">.</span><span class="token function">setActionHandler</span><span class="token punctuation">(</span><span class="token string">'seekbackward'</span><span class="token punctuation">,</span> <span class="token parameter">details</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+
+  <span class="token comment">// our time to skip</span>
+  <span class="token keyword">const</span> skipTime <span class="token operator">=</span> details<span class="token punctuation">.</span>seekOffset <span class="token operator">||</span> <span class="token number">10</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// set our position</span>
+  audioEl<span class="token punctuation">.</span>currentTime <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>audioEl<span class="token punctuation">.</span>currentTime <span class="token operator">-</span> skipTime<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">updatePositionState</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td>
+<a href="https://w3c.github.io/mediasession/#dom-mediasession-setpositionstate" hreflang="en" rel=" noopener">Media Session Standard<br><small>The definition of 'MediaSession.setPositionState()' in that specification.</small></a> </td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>setPositionState</code></th>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>82</div>
+<div>71</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes">
+<div>82</div>
+<div>Firefox exposes the API, but does not provide a corresponding user-facing media control interface.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr></tbody>
+</table> 
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaSession/setPositionState" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaSession/setPositionState</a>
+  </p>
+</div>

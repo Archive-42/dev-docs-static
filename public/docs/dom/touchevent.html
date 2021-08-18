@@ -1,0 +1,266 @@
+<h1>TouchEvent</h1>
+
+ <p>The <code>TouchEvent</code> interface represents an <a href="uievent"><code>UIEvent</code></a> which is sent when the state of contacts with a touch-sensitive surface changes. This surface can be a touch screen or trackpad, for example. The event can describe one or more points of contact with the screen and includes support for detecting movement, addition and removal of contact points, and so forth.</p> <p>Touches are represented by the <a href="touch"><code>Touch</code></a> object; each touch is described by a position, size and shape, amount of pressure, and target element. Lists of touches are represented by <a href="touchlist"><code>TouchList</code></a> objects.</p>  <iframe class="inheritance-diagram-frame" id="frame_inheritance_diagram" width="600" height="70" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/TouchEvent/_samples_/inheritance_diagram" loading="lazy"></iframe>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="touchevent/touchevent"><code>TouchEvent()</code></a></dt> <dd>Creates a <code>TouchEvent</code> object.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<p><em>This interface inherits properties from its parent, <a href="uievent"><code>UIEvent</code></a> and <a href="event"><code>Event</code></a>.</em></p> <dl> <dt>
+<a href="touchevent/altkey"><code>TouchEvent.altKey</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A Boolean value indicating whether or not the alt key was down when the touch event was fired.</dd> <dt>
+<a href="touchevent/changedtouches"><code>TouchEvent.changedTouches</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="touchlist"><code>TouchList</code></a> of all the <a href="touch"><code>Touch</code></a> objects representing individual points of contact whose states changed between the previous touch event and this one.</dd> <dt>
+<a href="touchevent/ctrlkey"><code>TouchEvent.ctrlKey</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A Boolean value indicating whether or not the control key was down when the touch event was fired.</dd> <dt>
+<a href="touchevent/metakey"><code>TouchEvent.metaKey</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A Boolean value indicating whether or not the meta key was down when the touch event was fired.</dd> <dt>
+<a href="touchevent/shiftkey"><code>TouchEvent.shiftKey</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A Boolean value indicating whether or not the shift key was down when the touch event was fired.</dd> <dt>
+<a href="touchevent/targettouches"><code>TouchEvent.targetTouches</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="touchlist"><code>TouchList</code></a> of all the <a href="touch"><code>Touch</code></a> objects that are both currently in contact with the touch surface <strong>and</strong> were also started on the same element that is the target of the event.</dd> <dt>
+<a href="touchevent/touches"><code>TouchEvent.touches</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="touchlist"><code>TouchList</code></a> of all the <a href="touch"><code>Touch</code></a> objects representing all current points of contact with the surface, regardless of target or changed status.</dd> <dt>
+<a class="page-not-created"><code>TouchEvent.rotation</code></a> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized.   </span> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Change in rotation (in degrees) since the event's beginning. Positive values indicate clockwise rotation; negative values indicate counterclockwise rotation. Initial value: <code>0.0</code>
+</dd> <dt>
+<a class="page-not-created"><code>TouchEvent.scale</code></a> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized.   </span> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Distance between two digits since the event's beginning. Expressed as a floating-point multiple of the initial distance between the digits at the beginning of the event. Values below 1.0 indicate an inward pinch (zoom out). Values above 1.0 indicate an outward unpinch (zoom in). Initial value: <code>1.0</code>
+</dd> </dl>
+<h2 id="touch_event_types">Touch event types</h2>
+<p>There are several types of event that can be fired to indicate that touch-related changes have occurred. You can determine which of these has happened by looking at the event's <a href="event/type"><code>TouchEvent.type</code></a> property.</p>
+<h3 id="touchstart_event"><code>touchstart</code></h3>
+<p>Sent when the user places a touch point on the touch surface. The event's target will be the <a href="element"><code>element</code></a> in which the touch occurred.</p>
+<h3 id="touchend_event"><code>touchend</code></h3>
+<p>Sent when the user removes a touch point from the surface (that is, when they lift a finger or stylus from the surface). This is also sent if the touch point moves off the edge of the surface; for example, if the user's finger slides off the edge of the screen.</p> <p>The event's target is the same <a href="element"><code>element</code></a> that received the <code>touchstart</code> event corresponding to the touch point, even if the touch point has moved outside that element.</p> <p>The touch point (or points) that were removed from the surface can be found in the <a href="touchlist"><code>TouchList</code></a> specified by the <code>changedTouches</code> attribute.</p>
+<h3 id="touchmove_event"><code>touchmove</code></h3>
+<p>Sent when the user moves a touch point along the surface. The event's target is the same <a href="element"><code>element</code></a> that received the <code>touchstart</code> event corresponding to the touch point, even if the touch point has moved outside that element.</p> <p>This event is also sent if the values of the radius, rotation angle, or force attributes of a touch point change.</p> <div class="note notecard">
+<strong>Note:</strong> The rate at which <code>touchmove</code> events is sent is browser-specific, and may also vary depending on the capability of the user's hardware. You must not rely on a specific granularity of these events.</div>
+<h3 id="touchcancel_event"><code>touchcancel</code></h3>
+<p>Sent when a touch point has been disrupted in some way. There are several possible reasons why this might happen (and the exact reasons will vary from device to device, as well as browser to browser):</p> <ul> <li>An event of some kind occurred that canceled the touch; this might happen if a modal alert pops up during the interaction.</li> <li>The touch point has left the document window and moved into the browser's UI area, a plug-in, or other external content.</li> <li>The user has placed more touch points on the screen than can be supported, in which case the earliest <a href="touch"><code>Touch</code></a> in the <a href="touchlist"><code>TouchList</code></a> gets canceled.</li> </ul>
+<h3 id="using_with_addeventlistener_and_preventdefault">Using with addEventListener() and preventDefault()</h3>
+<p>It's important to note that in many cases, both touch and mouse events get sent (in order to let non-touch-specific code still interact with the user). If you use touch events, you should call <a href="event/preventdefault"><code>preventDefault()</code></a> to keep the mouse event from being sent as well.</p> <p>The exception to this is Chrome, starting with version 56 (desktop, Chrome for android, and android webview), where the default value for the <code>passive</code> option for <a href="element/touchstart_event"><code>touchstart</code></a> and <a href="element/touchmove_event"><code>touchmove</code></a> is <code>true</code> and calls to <a href="event/preventdefault"><code>preventDefault()</code></a> will have no effect. To override this behavior, you need to set the <code>passive</code> option to <code>false</code>, after which calling <a href="event/preventdefault"><code>preventDefault()</code></a> will work as specified. The change to treat listeners as <code>passive</code> by default prevents the listener from blocking page rendering while a user is scrolling. A demo is available on the <a href="https://developers.google.com/web/updates/2016/06/passive-event-listeners" rel=" noopener">Google Developer</a> site.</p>
+<h2 id="globaleventhandlers">GlobalEventHandlers</h2>
+<p>The <a href="globaleventhandlers"><code>GlobalEventHandlers</code></a> mixin defines these events as global events that are available on any element in the DOM that the user can interact with.</p> <dl> <dt>
+<a href="globaleventhandlers/ontouchstart"><code>GlobalEventHandlers.ontouchstart</code></a> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt> <dd>A <a href="globaleventhandlers">global event handler</a> for the <a href="element/touchstart_event"><code>touchstart</code></a> event.</dd> <dt>
+<a href="globaleventhandlers/ontouchend"><code>GlobalEventHandlers.ontouchend</code></a> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt> <dd>A <a href="globaleventhandlers">global event handler</a> for the <a href="element/touchend_event"><code>touchend</code></a> event.</dd> <dt>
+<a href="globaleventhandlers/ontouchmove"><code>GlobalEventHandlers.ontouchmove</code></a> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt> <dd>A <a href="globaleventhandlers">global event handler</a> for the <a href="element/touchmove_event"><code>touchmove</code></a> event.</dd> <dt>
+<a href="globaleventhandlers/ontouchcancel"><code>GlobalEventHandlers.ontouchcancel</code></a> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt> <dd>A <a href="globaleventhandlers">global event handler</a> for the <a href="element/touchcancel_event"><code>touchcancel</code></a> event.</dd> </dl>
+<h2 id="example">Example</h2>
+<p>See the <a href="touch_events#example">example on the main Touch events article</a>.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/touch-events/#touchevent-interface" hreflang="en" rel=" noopener">Touch Events – Level 2<br><small>The definition of 'TouchEvent' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Added <code>ontouchstart</code>, <code>ontouchend</code>, <code>ontouchmove</code>, <code>ontouchend</code> global attribute handlers</td> </tr> <tr> <td><a href="https://www.w3.org/TR/touch-events/#touchevent-interface" hreflang="en" rel=" noopener">Touch Events<br><small>The definition of 'TouchEvent' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>TouchEvent</code></th>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>≤18-79</div>
+</td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>18-24</div>
+<div>Removed in <a href="https://bugzil.la/888304">bug 888304</a> due to web compatibility issues.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>TouchEvent</code></th>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>Chrome only supports the following <code>touchEventInit</code> properties: <code>touches</code>, <code>targetTouches</code>, <code>changedTouches</code>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>≤79</div>
+<div>Edge only supports the following <code>touchEventInit</code> properties: <code>touches</code>, <code>targetTouches</code>, <code>changedTouches</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>Chrome only supports the following <code>touchEventInit</code> properties: <code>touches</code>, <code>targetTouches</code>, <code>changedTouches</code>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>Chrome only supports the following <code>touchEventInit</code> properties: <code>touches</code>, <code>targetTouches</code>, <code>changedTouches</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes">
+<div>5.0</div>
+<div>Samsung Internet only supports the following <code>touchEventInit</code> properties: <code>touches</code>, <code>targetTouches</code>, <code>changedTouches</code>.</div>
+</td>
+</tr>
+<tr>
+<th><code>altKey</code></th>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>18-24</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>changedTouches</code></th>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>18-24</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>ctrlKey</code></th>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>18-24</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>metaKey</code></th>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>18-24</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>shiftKey</code></th>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>18-24</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>targetTouches</code></th>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>18-24</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>touches</code></th>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes">
+<div>52</div>
+<div>18-24</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="touch_events">Touch events</a></li> <li><a href="gestureevent"><code>GestureEvent</code></a></li> <li><a href="msgestureevent"><code>MSGestureEvent</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/TouchEvent</a>
+  </p>
+</div>

@@ -1,0 +1,138 @@
+<h1>BaseAudioContext.decodeAudioData()</h1>
+
+ <p>The <code>decodeAudioData()</code> method of the <a href="../baseaudiocontext"><code>BaseAudioContext</code></a> Interface is used to asynchronously decode audio file data contained in an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a>. In this case the <code>ArrayBuffer</code> is loaded from <a href="../xmlhttprequest"><code>XMLHttpRequest</code></a> and <a href="../filereader"><code>FileReader</code></a>. The decoded <a href="../audiobuffer"><code>AudioBuffer</code></a> is resampled to the <a href="../audiocontext"><code>AudioContext</code></a>'s sampling rate, then passed to a callback or promise.</p> <p>This is the preferred method of creating an audio source for Web Audio API from an audio track. This method only works on complete file data, not fragments of audio file data.</p>
+<h2 id="syntax">Syntax</h2>
+<p>Older callback syntax:</p> <pre data-language="js">baseAudioContext<span class="token punctuation">.</span><span class="token function">decodeAudioData</span><span class="token punctuation">(</span>ArrayBuffer<span class="token punctuation">,</span> successCallback<span class="token punctuation">,</span> errorCallback<span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Newer promise-based syntax:</p> <pre data-language="js">Promise<span class="token operator">&lt;</span>decodedData<span class="token operator">&gt;</span> baseAudioContext<span class="token punctuation">.</span><span class="token function">decodeAudioData</span><span class="token punctuation">(</span>ArrayBuffer<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><var>ArrayBuffer</var></dt> <dd>An ArrayBuffer containing the audio data to be decoded, usually grabbed from <a href="../xmlhttprequest"><code>XMLHttpRequest</code></a>, <a href="../windoworworkerglobalscope/fetch"><code>WindowOrWorkerGlobalScope.fetch()</code></a> or <a href="../filereader"><code>FileReader</code></a>.</dd> <dt><var>successCallback</var></dt> <dd>A callback function to be invoked when the decoding successfully finishes. The single argument to this callback is an <a href="../audiobuffer"><code>AudioBuffer</code></a> representing the <var>decodedData</var> (the decoded PCM audio data). Usually you'll want to put the decoded data into an <a href="../audiobuffersourcenode"><code>AudioBufferSourceNode</code></a>, from which it can be played and manipulated how you want.</dd> <dt><var>errorCallback</var></dt> <dd>An optional error callback, to be invoked if an error occurs when the audio data is being decoded.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>Void, or a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> object that fulfills with the <var>decodedData</var>.</p>
+<h2 id="example">Example</h2>
+<p>In this section we will first cover the older callback-based system and then the newer promise-based syntax.</p>
+<h3 id="older_callback_syntax">Older callback syntax</h3>
+<p>In this example, the <code>getData()</code> function uses XHR to load an audio track, setting the <code>responseType</code> of the request to <code>arraybuffer</code> so that it returns an array buffer as its <code>response</code> that we then store in the <code>audioData</code> variable . We then pass this buffer into a <code>decodeAudioData()</code> function; the success callback takes the successfully decoded PCM data, puts it into an <a href="../audiobuffersourcenode"><code>AudioBufferSourceNode</code></a> created using <a href="createbuffersource"><code>AudioContext.createBufferSource()</code></a>, connects the source to the <a href="destination"><code>AudioContext.destination</code></a> and sets it to loop.</p> <p>The buttons in the example run <code>getData()</code> to load the track and start it playing, and stop it playing, respectively. When the <code>stop()</code> method is called on the source, the source is cleared out.</p> <div class="note notecard"> <p><strong>Note</strong>: You can <a href="https://mdn.github.io/webaudio-examples/decode-audio-data/" rel=" noopener">run the example live</a> (or <a href="https://github.com/mdn/webaudio-examples/tree/master/decode-audio-data" rel=" noopener">view the source</a>.)</p> </div> <pre data-language="js"><span class="token comment">// define variables</span>
+
+<span class="token keyword">var</span> audioCtx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>AudioContext <span class="token operator">||</span> window<span class="token punctuation">.</span>webkitAudioContext<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> source<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> pre <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'pre'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> myScript <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'script'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> play <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.play'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> stop <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.stop'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// use XHR to load an audio track, and</span>
+<span class="token comment">// decodeAudioData to decode it and stick it in a buffer.</span>
+<span class="token comment">// Then we put the buffer into the source</span>
+
+<span class="token keyword">function</span> <span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  source <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createBufferSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  request<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'GET'</span><span class="token punctuation">,</span> <span class="token string">'viper.ogg'</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  request<span class="token punctuation">.</span>responseType <span class="token operator">=</span> <span class="token string">'arraybuffer'</span><span class="token punctuation">;</span>
+
+  request<span class="token punctuation">.</span><span class="token function-variable function">onload</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> audioData <span class="token operator">=</span> request<span class="token punctuation">.</span>response<span class="token punctuation">;</span>
+
+    audioCtx<span class="token punctuation">.</span><span class="token function">decodeAudioData</span><span class="token punctuation">(</span>audioData<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">buffer</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        source<span class="token punctuation">.</span>buffer <span class="token operator">=</span> buffer<span class="token punctuation">;</span>
+
+        source<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>audioCtx<span class="token punctuation">.</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        source<span class="token punctuation">.</span>loop <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+
+      <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span><span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Error with decoding audio data"</span> <span class="token operator">+</span> e<span class="token punctuation">.</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token punctuation">}</span>
+
+  request<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// wire up buttons to stop and play audio</span>
+
+play<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">getData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  source<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  play<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'disabled'</span><span class="token punctuation">,</span> <span class="token string">'disabled'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+stop<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  source<span class="token punctuation">.</span><span class="token function">stop</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  play<span class="token punctuation">.</span><span class="token function">removeAttribute</span><span class="token punctuation">(</span><span class="token string">'disabled'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// dump script to pre element</span>
+
+pre<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> myScript<span class="token punctuation">.</span>innerHTML<span class="token punctuation">;</span></pre>
+<h3 id="new_promise-based_syntax">New promise-based syntax</h3>
+<pre data-language="js">ctx<span class="token punctuation">.</span><span class="token function">decodeAudioData</span><span class="token punctuation">(</span>audioData<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">decodedData</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token comment">// use the decoded data here</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://webaudio.github.io/web-audio-api/#dom-baseaudiocontext-decodeaudiodata" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'decodeAudioData()' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>decodeAudioData</code></th>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>promise_syntax</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../web_audio_api/using_web_audio_api">Using the Web Audio API</a> </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/decodeAudioData" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/BaseAudioContext/decodeAudioData</a>
+  </p>
+</div>

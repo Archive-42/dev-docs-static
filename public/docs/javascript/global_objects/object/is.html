@@ -1,0 +1,112 @@
+<h1>Object.is()</h1> <p>The <code>Object.is()</code> method determines whether two values are <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness">the same value</a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">Object<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span>value1<span class="token punctuation">,</span> value2<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>value1</var></code></dt> <dd>The first value to compare.</dd> <dt><code><var>value2</var></code></dt> <dd>The second value to compare.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="../boolean"><code>Boolean</code></a> indicating whether or not the two arguments are the same value. </p>
+<h2 id="description">Description</h2>
+<p><code>Object.is()</code> determines whether two values are <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness">the same value</a>. Two values are the same if one of the following holds:</p> <ul> <li>both <a href="../undefined"><code>undefined</code></a>
+</li> <li>both <a href="../null"><code>null</code></a>
+</li> <li>both <code>true</code> or both <code>false</code>
+</li> <li>both strings of the same length with the same characters in the same order</li> <li>both the same object (meaning both values reference the same object in memory)</li> <li>both numbers and <ul> <li>both <code>+0</code>
+</li> <li>both <code>-0</code>
+</li> <li>both <a href="../nan"><code>NaN</code></a>
+</li> <li>or both non-zero and both not <a href="../nan"><code>NaN</code></a> and both have the same value </li> </ul> </li> </ul> <p>This is <em>not</em> the same as being equal according to the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#equality"><code>==</code></a> operator. The <code>==</code> operator applies various coercions to both sides (if they are not the same Type) before testing for equality (resulting in such behavior as <code>"" == false</code> being <code>true</code>), but <code>Object.is</code> doesn't coerce either value.</p> <p>This is also <em>not</em> the same as being equal according to the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators#identity"><code>===</code></a> operator. The only difference between <code>Object.is()</code> and <code>===</code> is in their treatment of signed zeroes and NaNs. For example, the <code>===</code> operator (and the <code>==</code> operator) treats the number values <code>-0</code> and <code>+0</code> as equal. Also, the <code>===</code> operator treats <a href="../number/nan"><code>Number.NaN</code></a> and <a href="../nan"><code>NaN</code></a> as not equal.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_object.is">Using Object.is</h3>
+<pre data-language="js"><span class="token comment">// Case 1: Evaluation result is the same as using ===</span>
+Object<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span><span class="token number">25</span><span class="token punctuation">,</span> <span class="token number">25</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment">// true</span>
+Object<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// true</span>
+Object<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token string">'bar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>          <span class="token comment">// false</span>
+Object<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// true</span>
+Object<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span><span class="token keyword">undefined</span><span class="token punctuation">,</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// true</span>
+Object<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span>window<span class="token punctuation">,</span> window<span class="token punctuation">)</span><span class="token punctuation">;</span>        <span class="token comment">// true</span>
+Object<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment">// false</span>
+<span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token punctuation">{</span> a<span class="token operator">:</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> bar <span class="token operator">=</span> <span class="token punctuation">{</span> a<span class="token operator">:</span> <span class="token number">1</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span>foo<span class="token punctuation">,</span> foo<span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// true</span>
+Object<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span>foo<span class="token punctuation">,</span> bar<span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// false</span>
+
+<span class="token comment">// Case 2: Signed zero</span>
+Object<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                 <span class="token comment">// false</span>
+Object<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span><span class="token operator">+</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment">// false</span>
+Object<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>                <span class="token comment">// true</span>
+Object<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span><span class="token number">0n</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">0n</span><span class="token punctuation">)</span><span class="token punctuation">;</span>               <span class="token comment">// true</span>
+
+<span class="token comment">// Case 3: NaN</span>
+Object<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token operator">/</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// true</span>
+Object<span class="token punctuation">.</span><span class="token function">is</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">,</span> Number<span class="token punctuation">.</span><span class="token number">NaN</span><span class="token punctuation">)</span>        <span class="token comment">// true</span>
+</pre>
+<h2 id="polyfill">Polyfill</h2>
+<pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>Object<span class="token punctuation">.</span>is<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>Object<span class="token punctuation">,</span> <span class="token string">"is"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">value</span><span class="token operator">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">x<span class="token punctuation">,</span> y</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// SameValue algorithm</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">===</span> y<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// return true if x and y are not 0, OR</span>
+        <span class="token comment">// if x and y are both 0 of the same sign.</span>
+        <span class="token comment">// This checks for cases 1 and 2 above.</span>
+        <span class="token keyword">return</span> x <span class="token operator">!==</span> <span class="token number">0</span> <span class="token operator">||</span> <span class="token number">1</span> <span class="token operator">/</span> x <span class="token operator">===</span> <span class="token number">1</span> <span class="token operator">/</span> y<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token comment">// return true if both x AND y evaluate to NaN.</span>
+        <span class="token comment">// The only possibility for a variable to not be strictly equal to itself</span>
+        <span class="token comment">// is when that variable evaluates to NaN (example: Number.NaN, 0/0, NaN).</span>
+        <span class="token comment">// This checks for case 3.</span>
+        <span class="token keyword">return</span> x <span class="token operator">!==</span> x <span class="token operator">&amp;&amp;</span> y <span class="token operator">!==</span> y<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> </tr> </thead> <tbody> <tr> <td><a href="https://tc39.es/ecma262/#sec-object.is" hreflang="en" rel=" noopener">ECMAScript (ECMA-262)<br><small>The definition of 'Object.is' in that specification.</small></a></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>is</code></th>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness">Equality comparisons and sameness</a> — a comparison of all three built-in sameness facilities</li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is</a>
+  </p>
+</div>

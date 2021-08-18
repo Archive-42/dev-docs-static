@@ -1,0 +1,424 @@
+<h1>Payment Request API</h1>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div> <p>The Payment Request API provides a consistent user experience for both merchants and users. It is not a new way for paying for things; rather, it's a way for users to select their preferred way of paying for things, and make that information available to a merchant.</p>
+<h2 id="payment_request_concepts_and_usage">Payment Request concepts and usage</h2>
+<p>Many problems related to online shopping-cart abandonment can be traced to checkout forms, which can be difficult and time consuming to fill out and often require multiple steps to complete. The <strong>Payment Request API</strong> is meant to reduce the number of steps needed to complete a payment online, potentially doing away with checkout forms. It aims to make the checkout process easier, by remembering a user's details, which are then passed along to a merchant hopefully without requiring a HTML form.</p> <p>Advantages of using the Payment Request API with "basic-card" (card-based payments):</p> <ul> <li>
+<strong>Fast purchase experience</strong>: Users enter their details once into the browser and are then ready to pay for goods and services on the web. They no longer have to fill out the same details repeatedly across different sites.</li> <li>
+<strong>Consistent experience on every site (that supports the API):</strong> As the payment sheet is controlled by the browser, it can tailor the experience to the user. This can include localizing the UI into the user's preferred language.</li> <li>
+<strong>Accessibility</strong>: As the browser controls the input elements of the payment sheet, it can assure consistent keyboard and screen reader accessibility on every website without developers needing to do anything. A browser could also adjust the font size or color contrast of the payment sheet, making it more comfortable for the user to make a payment.</li> <li>
+<strong>Credentials management</strong>: Users can manage their credit cards and shipping addresses directly in the browser. A browser can also sync these "credentials" across devices, making it easy for users to jump from desktop to mobile and back again when buying things.</li> <li>
+<strong>Consistent error handling:</strong> The browser can check the validity of card numbers, and can tell the user if a card has expired (or is about to expire). The browser can automatically suggest which card to use based on past usage patterns or restrictions from the merchant (e.g, "we only accept Visa or Mastercard"), or allow the user to say which is their default/favorite card.</li> </ul> <p>To request a payment, a web page creates a <a href="paymentrequest"><code>PaymentRequest</code></a> object in response to a user action that initiates a payment, such as clicking a "Purchase" button. The <code>PaymentRequest</code> allows the web page to exchange information with the user agent while the user provides input to complete the transaction.</p> <p>You can find a complete guide in <a href="payment_request_api/using_the_payment_request_api">Using the Payment Request API</a>.</p> <div class="note notecard"> <p><strong>Note</strong>: The API is available inside cross-origin <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a> elements only if they have had the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe#attr-allowpaymentrequest"><code>allowpaymentrequest</code></a> attribute set on them.</p> </div>
+<h2 id="interfaces">Interfaces</h2>
+<dl> <dt><a href="paymentaddress"><code>PaymentAddress</code></a></dt> <dd>An object that contains address information; used for billing and shipping addresses, for example.</dd> <dt><a href="paymentrequest"><code>PaymentRequest</code></a></dt> <dd>An object that provides the API for creating and managing the <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent's</a> payment interface.</dd> <dt><a href="paymentrequestevent"><code>PaymentRequestEvent</code></a></dt> <dd>An event delivered to a payment handler when a <a href="paymentrequest"><code>PaymentRequest</code></a> is made.</dd> <dt><a href="paymentrequestupdateevent"><code>PaymentRequestUpdateEvent</code></a></dt> <dd>Enables the web page to update the details of the payment request in response to a user action.</dd> <dt><a href="paymentmethodchangeevent"><code>PaymentMethodChangeEvent</code></a></dt> <dd>Represents the user changing payment instrument (e.g., switching from a credit card to debit card).</dd> <dt><a href="paymentresponse"><code>PaymentResponse</code></a></dt> <dd>An object returned after the user selects a payment method and approves a payment request.</dd> <dt><a href="merchantvalidationevent"><code>MerchantValidationEvent</code></a></dt> <dd>Represents the browser requiring the merchant (website) to validate themselves as allowed to use a particular payment handler (e.g., registered as allowed to use Apple Pay).</dd> </dl>
+<h2 id="dictionaries">Dictionaries</h2>
+<dl> <dt><a href="addresserrors"><code>AddressErrors</code></a></dt> <dd>A dictionary containing strings providing descriptive explanations of any errors in any <a href="paymentaddress"><code>PaymentAddress</code></a> entries which have errors.</dd> <dt><a href="payererrors"><code>PayerErrors</code></a></dt> <dd>A dictionary containing strings providing descriptive explanations of any errors in related to <a href="paymentresponse"><code>PaymentResponse</code></a>'s email, phone, and name attributes.</dd> <dt><a href="paymentdetailsupdate"><code>PaymentDetailsUpdate</code></a></dt> <dd>An object describing changes that need to be made to the payment details in the event that the server needs to update information following the instantiation of the payment interface but before the user begins to interact with it.</dd> </dl>
+<h3 id="related_dictionaries_for_the_basic_card_specification">Related dictionaries for the Basic Card specification</h3>
+<dl> <dt><a class="page-not-created"><code>BasicCardChangeDetails</code></a></dt> <dd>An object providing <em>redacted</em> address information that is provided as the <a href="paymentmethodchangeevent/methoddetails"><code>methodDetails</code></a> on the <code><a href="paymentrequest/paymentmethodchange_event">paymentmethodchange</a></code> event sent to the <a href="paymentrequest"><code>PaymentRequest</code></a> when the user changes payment information.</dd> <dt><a class="page-not-created"><code>BasicCardErrors</code></a></dt> <dd>An object providing any error messages associated with the fields in the <a href="basiccardresponse"><code>BasicCardResponse</code></a> object that are not valid. This is used as the value of the <a class="page-not-created"><code>paymentMethod</code></a> property on the <a href="paymentvalidationerrors"><code>PaymentValidationErrors</code></a> object sent to the <a href="paymentrequest"><code>PaymentRequest</code></a> when an error occurs.</dd> <dt><a href="basiccardrequest"><code>BasicCardRequest</code></a></dt> <dd>Defines an object structure for containing payment request details such as card type.</dd> <dt><a href="basiccardresponse"><code>BasicCardResponse</code></a></dt> <dd>Defines an object structure for payment response details such as the number/expiry date of the card used to make the payment, and the billing address.</dd> </dl>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/payment-request/" hreflang="en" rel=" noopener">Payment Request API</a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> <tr> <td><a href="https://w3c.github.io/payment-method-basic-card/" hreflang="en" rel=" noopener">Basic Card Payment</a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Defines <a href="basiccardrequest"><code>BasicCardRequest</code></a> and <a href="basiccardresponse"><code>BasicCardResponse</code></a>, among other things needed for handling credit card payment</td> </tr> <tr> <td><a href="https://w3c.github.io/payment-method-id/" hreflang="en" rel=" noopener">Payment Method Identifiers</a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Defines payment method identifiers and how they are validated, and, where applicable, minted and formally registered with the W3C.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>Payment_Request_API</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds. Requires <code>dom.payments.request.enabled</code> to be set to <code>true</code> and the comma-delineated list in <code>dom.payments.request.supportedRegions</code> to contain one or more of the supported 2-character ISO locales, currently US and CA.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds. Requires <code>dom.payments.request.enabled</code> to be set to <code>true</code> and the comma-delineated list in <code>dom.payments.request.supportedRegions</code> to contain one or more of the supported 2-character ISO locales, currently US and CA.</div>
+</td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>PaymentRequest</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>abort</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>canMakePayment</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>id</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>merchantvalidation_event</code></th>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+</tr>
+<tr>
+<th><code>onmerchantvalidation</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>onpaymentmethodchange</code></th>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>12.2</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>onshippingaddresschange</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>onshippingoptionchange</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>paymentmethodchange_event</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>requestId</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>≤18-79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>shippingAddress</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>shippingaddresschange_event</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>shippingOption</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>shippingoptionchange_event</code></th>
+<td class="bc-supports-yes"><div>61</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>shippingType</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>show</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Available only in nightly builds.</div>
+</td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+</tbody>
+</table>  
+  <h2 id="see_also">See also</h2>
+<ul> <li><a href="payment_request_api/using_the_payment_request_api">Using the Payment Request API</a></li> <li><a href="payment_request_api/concepts">Payment processing concepts</a></li> <li><a href="https://webkit.org/blog/8182/introducing-the-payment-request-api-for-apple-pay/" rel=" noopener">Introducing the Payment Request API for Apple Pay</a></li> <li><a href="https://developers.google.com/pay/api/web/guides/paymentrequest/tutorial" rel=" noopener">Google Pay API PaymentRequest Tutorial</a></li> <li><a href="https://github.com/w3c/payment-request-info/wiki/FAQ" rel=" noopener">W3C Payment Request API FAQ</a></li> <li>Feature Policy directive <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy/payment"><code>payment</code></a>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Payment_Request_API" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Payment_Request_API</a>
+  </p>
+</div>

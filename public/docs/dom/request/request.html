@@ -1,0 +1,212 @@
+<h1>Request()</h1> <p>The <code><strong>Request()</strong></code> constructor creates a new <a href="../request"><code>Request</code></a> object.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> myRequest <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Request</span><span class="token punctuation">(</span>input<span class="token punctuation">[</span><span class="token punctuation">,</span> init<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><em>input</em></dt> <dd>Defines the resource that you wish to fetch. This can either be: <ul> <li>A <a href="../usvstring"><code>USVString</code></a> containing the direct URL of the resource you want to fetch.</li> <li>A <a href="../request"><code>Request</code></a> object, effectively creating a copy. Note the following behavioral updates to retain security while making the constructor less likely to throw exceptions: <ul> <li>If this object exists on another origin to the constructor call, the <a href="referrer"><code>Request.referrer</code></a> is stripped out.</li> <li>If this object has a <a href="mode"><code>Request.mode</code></a> of <code>navigate</code>, the <code>mode</code> value is converted to <code>same-origin</code>.</li> </ul> </li> </ul> </dd> <dt>
+<em>init</em> <span class="badge inline optional">Optional</span>
+</dt> <dd>An options object containing any custom settings that you want to apply to the request. The possible options are: <ul> <li>
+<code>method</code>: The request method, e.g., <code>GET</code>, <code>POST</code>. The default is <code>GET</code>.</li> <li>
+<code>headers</code>: Any headers you want to add to your request, contained within a <a href="../headers"><code>Headers</code></a> object or an object literal with <a href="../bytestring"><code>ByteString</code></a> values.</li> <li>
+<code>body</code>: Any body that you want to add to your request: this can be a <a href="../blob"><code>Blob</code></a>, <a href="../buffersource"><code>BufferSource</code></a>, <a href="../formdata"><code>FormData</code></a>, <a href="../urlsearchparams"><code>URLSearchParams</code></a>, <a href="../usvstring"><code>USVString</code></a>, or <a href="../readablestream"><code>ReadableStream</code></a> object. Note that a request using the <code>GET</code> or <code>HEAD</code> method cannot have a body.</li> <li>
+<code>mode</code>: The mode you want to use for the request, e.g., <code>cors</code>, <code>no-cors</code>, <code>same-origin</code>, or <code>navigate</code>. The default is <code>cors</code>.</li> <li>
+<code>credentials</code>: The request credentials you want to use for the request: <code>omit</code>, <code>same-origin</code>, or <code>include</code>. The default is <code>same-origin</code>.</li> <li>
+<code>cache</code>: The <a href="cache">cache mode</a> you want to use for the request.</li> <li>
+<code>redirect</code>: The redirect mode to use: <code>follow</code>, <code>error</code>, or <code>manual</code>. The default is <code>follow</code>. </li> <li>
+<code>referrer</code>: A <a href="../usvstring"><code>USVString</code></a> specifying <code>no-referrer</code>, <code>client</code>, or a URL. The default is <code>about:client</code>.</li> <li>
+<code>integrity</code>: Contains the <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity">subresource integrity</a> value of the request (e.g., <code>sha256-BpfBw7ivV8q2jLiT13fxDYAe2tJllusRSZ273h2nFSE=</code>).</li> </ul> </dd> </dl>
+<h2 id="errors">Errors</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Type</th> <th scope="col">Description</th> </tr> </thead> <tbody> <tr> <td><code>TypeError</code></td> <td>Since <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/43">Firefox 43</a>, <code>Request()</code> will throw a TypeError if the URL has credentials, such as http://user:password@example.com.</td> </tr> </tbody> </table></div>
+<h2 id="example">Example</h2>
+<p>In our <a href="https://github.com/mdn/fetch-examples/tree/master/fetch-request" rel=" noopener">Fetch Request example</a> (see <a href="https://mdn.github.io/fetch-examples/fetch-request/" rel=" noopener">Fetch Request live</a>) we create a new <code>Request</code> object using the constructor, then fetch it using a <a href="../windoworworkerglobalscope/fetch"><code>WindowOrWorkerGlobalScope.fetch</code></a> call. Since we are fetching an image, we run <a href="../body/blob"><code>Body.blob</code></a> on the response to give it the proper MIME type so it will be handled properly, then create an Object URL of it and display it in an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img"><code>&lt;img&gt;</code></a> element.</p> <pre data-language="js"><span class="token keyword">var</span> myImage <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> myRequest <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Request</span><span class="token punctuation">(</span><span class="token string">'flowers.jpg'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">fetch</span><span class="token punctuation">(</span>myRequest<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> response<span class="token punctuation">.</span><span class="token function">blob</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> objectURL <span class="token operator">=</span> <span class="token constant">URL</span><span class="token punctuation">.</span><span class="token function">createObjectURL</span><span class="token punctuation">(</span>response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  myImage<span class="token punctuation">.</span>src <span class="token operator">=</span> objectURL<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>In our <a href="https://github.com/mdn/fetch-examples/tree/master/fetch-request-with-init" rel=" noopener">Fetch Request with init example</a> (see <a href="https://mdn.github.io/fetch-examples/fetch-request-with-init/" rel=" noopener">Fetch Request init live</a>) we do the same thing except that we pass in an init object when we invoke <code>fetch()</code>:</p> <pre data-language="js"><span class="token keyword">var</span> myImage <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> myHeaders <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Headers</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+myHeaders<span class="token punctuation">.</span><span class="token function">append</span><span class="token punctuation">(</span><span class="token string">'Content-Type'</span><span class="token punctuation">,</span> <span class="token string">'image/jpeg'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> myInit <span class="token operator">=</span> <span class="token punctuation">{</span> method<span class="token operator">:</span> <span class="token string">'GET'</span><span class="token punctuation">,</span>
+               headers<span class="token operator">:</span> myHeaders<span class="token punctuation">,</span>
+               mode<span class="token operator">:</span> <span class="token string">'cors'</span><span class="token punctuation">,</span>
+               cache<span class="token operator">:</span> <span class="token string">'default'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> myRequest <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Request</span><span class="token punctuation">(</span><span class="token string">'flowers.jpg'</span><span class="token punctuation">,</span>myInit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">fetch</span><span class="token punctuation">(</span>myRequest<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Note that you could also pass the init object into the <code>fetch</code> call to get the same effect, e.g.:</p> <pre data-language="js"><span class="token function">fetch</span><span class="token punctuation">(</span>myRequest<span class="token punctuation">,</span>myInit<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>You can also use an object literal as <code>headers</code> in <code>init</code>.</p> <pre data-language="js"><span class="token keyword">var</span> myInit <span class="token operator">=</span> <span class="token punctuation">{</span> method<span class="token operator">:</span> <span class="token string">'GET'</span><span class="token punctuation">,</span>
+               headers<span class="token operator">:</span> <span class="token punctuation">{</span>
+                   <span class="token string">'Content-Type'</span><span class="token operator">:</span> <span class="token string">'image/jpeg'</span>
+               <span class="token punctuation">}</span><span class="token punctuation">,</span>
+               mode<span class="token operator">:</span> <span class="token string">'cors'</span><span class="token punctuation">,</span>
+               cache<span class="token operator">:</span> <span class="token string">'default'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> myRequest <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Request</span><span class="token punctuation">(</span><span class="token string">'flowers.jpg'</span><span class="token punctuation">,</span> myInit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>You may also pass a <a href="../request"><code>Request</code></a> object to the <code>Request()</code> constructor to create a copy of the Request (This is similar to calling the <a href="clone"><code>clone()</code></a> method.)</p> <div class="codehilite" style="background: #f0f3f3;"> <pre class="notranslate">var copy = new Request(myRequest);
+</pre> </div> <div class="note notecard"> <p><strong>Note</strong>: This last usage is probably only useful in <a href="../service_worker_api">ServiceWorkers</a>.</p> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://fetch.spec.whatwg.org/#dom-request" hreflang="en" rel=" noopener">Fetch<br><small>The definition of 'Request()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>Request</code></th>
+<td class="bc-supports-yes">
+<div>41</div>
+<div>From Chrome 47, default values for the <code>init</code> argument's properties changed. <code>mode</code> defaults to <code>same-origin</code> (from <code>no-cors</code>). <code>credentials</code> defaults to <code>include</code> (from <code>same-origin</code>). <code>redirect</code> defaults to <code>follow</code> (from <code>manual</code>).</div>
+</td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes">
+<div>39</div>
+<div>34</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>28</div>
+</td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes">
+<div>42</div>
+<div>From WebView 47, default values for the <code>init</code> argument's properties changed. <code>mode</code> defaults to <code>same-origin</code> (from <code>no-cors</code>). <code>credentials</code> defaults to <code>include</code> (from <code>same-origin</code>). <code>redirect</code> defaults to <code>follow</code> (from <code>manual</code>).</div>
+</td>
+<td class="bc-supports-yes">
+<div>41</div>
+<div>From Chrome 47, default values for the <code>init</code> argument's properties changed. <code>mode</code> defaults to <code>same-origin</code> (from <code>no-cors</code>). <code>credentials</code> defaults to <code>include</code> (from <code>same-origin</code>). <code>redirect</code> defaults to <code>follow</code> (from <code>manual</code>).</div>
+</td>
+<td class="bc-supports-yes">
+<div>39</div>
+<div>34</div>
+</td>
+<td class="bc-supports-yes">
+<div>29</div>
+<div>28</div>
+</td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes">
+<div>4.0</div>
+<div>5.0</div>
+<div>Some default values for the init parameter changed in Samsung Internet 5.0. See the Properties section for details.</div>
+</td>
+</tr>
+<tr>
+<th><code>cross_origin_stripped</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>navigate_mode</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>readablestream_request_body</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>referrer_init</code></th>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>reponse_body_readablestream</code></th>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>65</div>
+<div>57</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes">
+<div>65</div>
+<div>57</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../service_worker_api">ServiceWorker API</a></li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS">HTTP access control (CORS)</a> </li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP">HTTP</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Request/Request" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Request/Request</a>
+  </p>
+</div>

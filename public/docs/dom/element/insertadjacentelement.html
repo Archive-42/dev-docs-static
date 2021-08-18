@@ -1,0 +1,100 @@
+<h1>Element.insertAdjacentElement()</h1>
+
+ <p>The <code>insertAdjacentElement()</code> method of the <a href="../element"><code>Element</code></a> interface inserts a given element node at a given position relative to the element it is invoked upon.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">targetElement<span class="token punctuation">.</span><span class="token function">insertAdjacentElement</span><span class="token punctuation">(</span>position<span class="token punctuation">,</span> element<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>position</code></dt> <dd>A <a href="../domstring"><code>DOMString</code></a> representing the position relative to the <code>targetElement</code>; must match (case-insensitively) one of the following strings: <ul> <li>
+<code style="color: red;">'beforebegin'</code>: Before the <code>targetElement</code> itself.</li> <li>
+<code style="color: green;">'afterbegin'</code>: Just inside the <code>targetElement</code>, before its first child.</li> <li>
+<code style="color: blue;">'beforeend'</code>: Just inside the <code>targetElement</code>, after its last child.</li> <li>
+<code style="color: magenta;">'afterend'</code>: After the <code>targetElement</code> itself.</li> </ul> </dd> <dt><code>element</code></dt> <dd>The element to be inserted into the tree.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The element that was inserted, or <code>null</code>, if the insertion failed.</p>
+<h3 id="exceptions">Exceptions</h3>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Exception</th> <th scope="col">Explanation</th> </tr> </thead> <tbody> <tr> <td><code>SyntaxError</code></td> <td>The <code>position</code> specified is not a recognized value.</td> </tr> <tr> <td><code>TypeError</code></td> <td>The <code>element</code> specified is not a valid element.</td> </tr> </tbody> </table></div>
+<h3 id="visualization_of_position_names">Visualization of position names</h3>
+<pre class="notranslate">&lt;!-- <strong>beforebegin</strong> --&gt;
+&lt;p&gt;
+  &lt;!-- <strong>afterbegin</strong> --&gt;
+  foo
+  &lt;!-- <strong>beforeend</strong> --&gt;
+&lt;/p&gt;
+&lt;!-- <strong>afterend</strong> --&gt;</pre> <div class="note notecard">
+<strong>Note:</strong> The <code>beforebegin</code> and <code>afterend</code> positions work only if the node is in a tree and has an element parent.</div>
+<h2 id="example">Example</h2>
+<pre data-language="js">beforeBtn<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> tempDiv <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  tempDiv<span class="token punctuation">.</span>style<span class="token punctuation">.</span>backgroundColor <span class="token operator">=</span> <span class="token function">randomColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>activeElem<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    activeElem<span class="token punctuation">.</span><span class="token function">insertAdjacentElement</span><span class="token punctuation">(</span><span class="token string">'beforebegin'</span><span class="token punctuation">,</span> tempDiv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">setListener</span><span class="token punctuation">(</span>tempDiv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+afterBtn<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> tempDiv <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  tempDiv<span class="token punctuation">.</span>style<span class="token punctuation">.</span>backgroundColor <span class="token operator">=</span> <span class="token function">randomColor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>activeElem<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    activeElem<span class="token punctuation">.</span><span class="token function">insertAdjacentElement</span><span class="token punctuation">(</span><span class="token string">'afterend'</span><span class="token punctuation">,</span> tempDiv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">setListener</span><span class="token punctuation">(</span>tempDiv<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Have a look at our <a href="https://mdn.github.io/dom-examples/insert-adjacent/insertAdjacentElement.html" rel=" noopener">insertAdjacentElement.html</a> demo on GitHub (see the <a href="https://github.com/mdn/dom-examples/blob/master/insert-adjacent/insertAdjacentElement.html" rel=" noopener">source code</a> too.) Here, we have a sequence of <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a> elements inside a container. When one is clicked, it becomes selected and you can then press the <em>Insert before</em> and <em>Insert after</em> buttons to insert new divs before or after the selected element using <code>insertAdjacentElement()</code>.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://dom.spec.whatwg.org/#dom-element-insertadjacentelement" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'insertAdjacentElement()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>insertAdjacentElement</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>17</div>
+<div>12-17</div>
+<div>Only supported for <a href="https://developer.mozilla.org/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>, not all <code>Element</code> objects, such as <a href="https://developer.mozilla.org/docs/Web/API/SVGElement"><code>SVGElement</code></a>.</div>
+</td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes">
+<div>5</div>
+<div>Only supported for <a href="https://developer.mozilla.org/docs/Web/API/HTMLElement"><code>HTMLElement</code></a>, not all <code>Element</code> objects, such as <a href="https://developer.mozilla.org/docs/Web/API/SVGElement"><code>SVGElement</code></a>.</div>
+</td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="insertadjacenthtml"><code>Element.insertAdjacentHTML()</code></a></li> <li><a href="insertadjacenttext"><code>Element.insertAdjacentText()</code></a></li> <li>
+<a href="../node/insertbefore"><code>Node.insertBefore()</code></a> (similar to <code>beforebegin</code>, with different arguments)</li> <li>
+<a href="../node/appendchild"><code>Node.appendChild()</code></a> (same effect as <code>beforeend</code>)</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentElement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/insertAdjacentElement</a>
+  </p>
+</div>

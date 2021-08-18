@@ -1,0 +1,96 @@
+<h1>ClipboardItem()</h1> <p class="summary">The <code><strong>ClipboardItem()</strong></code> constructor of the <a href="../clipboard_api"><code>Clipboard API</code></a> creates a new <a href="../clipboarditem"><code>ClipboardItem</code></a> object which represents data to be stored or retrieved via the <a href="../clipboard_api"><code>Clipboard API</code></a>, that is <a href="../clipboard/write"><code>clipboard.write()</code></a> and <a href="../clipboard/read"><code>clipboard.read()</code></a> respectively.</p> <div class="notecard note"> <p><strong>Note</strong>: Image format support varies by browser. See the browser compatibility table for the <a href="../clipboard"><code>Clipboard</code></a> interface.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> ClipboardItem <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ClipboardItem</span><span class="token punctuation">(</span>ClipboardItemData<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>ClipboardItemData</code></dt> <dd>An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> with the <a href="https://developer.mozilla.org/en-US/docs/Glossary/MIME_type">MIME type</a> as the key and data as the value. The data can represented as a <a href="../blob"><code>Blob</code></a>, a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a> or a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which resolves to either a blob or string.</dd> <dt>
+<code>ClipboardItemOptions</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object"><code>Object</code></a> with the following properties: <ul> <li>
+<code><strong>presentationStyle</strong></code>: One of <code>"unspecified"</code>, <code>"inline"</code> or <code>"attachment"</code>. The default is <code>"unspecified"</code>.</li> </ul> </dd> </dl> <div class="notecard note"> <p><strong>Note</strong>: You can also work with text via the <a href="../clipboard/readtext"><code>Clipboard.readText()</code></a> and <a href="../clipboard/writetext"><code>Clipboard.writeText()</code></a> methods of the <a href="../clipboard"><code>Clipboard</code></a> interface.</p> </div>
+<h2 id="examples">Examples</h2>
+<p>The below example requests a png image using the <a href="../fetch_api"><code>Fetch API</code></a>, and in turn, the <a href="../body/blob"><code>responses' blob()</code></a> method, to create a new <a href="../clipboarditem"><code>ClipboardItem</code></a>. This item is then written to the clipboard, using the <a href="../clipboard/write"><code>Clipboard.write()</code></a> method.</p> <div class="note notecard"> <p><strong>Note</strong>: You can only pass in one clipboard item at a time.</p> </div> <pre data-language="js"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">writeClipImg</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> imgURL <span class="token operator">=</span> <span class="token string">'/myimage.png'</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> data <span class="token operator">=</span> <span class="token keyword">await</span> <span class="token function">fetch</span><span class="token punctuation">(</span>imgURL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">const</span> blob <span class="token operator">=</span> <span class="token keyword">await</span> data<span class="token punctuation">.</span><span class="token function">blob</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">await</span> navigator<span class="token punctuation">.</span>clipboard<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+      <span class="token keyword">new</span> <span class="token class-name">ClipboardItem</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        <span class="token punctuation">[</span>blob<span class="token punctuation">.</span>type<span class="token punctuation">]</span><span class="token operator">:</span> blob
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Fetched image copied.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>err<span class="token punctuation">.</span>name<span class="token punctuation">,</span> err<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/clipboard-apis/#clipboarditem" hreflang="en" rel=" noopener">Clipboard API and events<br><small>The definition of 'ClipboardItem' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>ClipboardItem</code></th>
+<td class="bc-supports-yes">
+<div>66</div>
+<div>The <code>ClipboardItem</code> constructor only accepts a blob as the item data, but not strings or Promises that resolve to strings or blobs. See <a href="https://crbug.com/1014310">bug 1014310</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>The <code>ClipboardItem</code> constructor only accepts a blob as the item data, but not strings or Promises that resolve to strings or blobs. See <a href="https://crbug.com/1014310">bug 1014310</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>The <code>ClipboardItem</code> constructor only accepts a blob as the item data, but not strings or Promises that resolve to strings or blobs. See <a href="https://crbug.com/1014310">bug 1014310</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>13.1</div></td>
+<td class="bc-supports-yes">
+<div>66</div>
+<div>The <code>ClipboardItem</code> constructor only accepts a blob as the item data. Full implementation would also allow for a string or a Promise which resolves with either a string or blob. See <a href="https://crbug.com/1014310">bug 1014310</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>66</div>
+<div>The <code>ClipboardItem</code> constructor only accepts a blob as the item data. Full implementation would also allow for a string or a Promise which resolves with either a string or blob. See <a href="https://crbug.com/1014310">bug 1014310</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>The <code>ClipboardItem</code> constructor only accepts a blob as the item data, but not strings or Promises that resolve to strings or blobs. See <a href="https://crbug.com/1014310">bug 1014310</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>13.4</div></td>
+<td class="bc-supports-yes">
+<div>9.0</div>
+<div>The <code>ClipboardItem</code> constructor only accepts a blob as the item data, but not strings or Promises that resolve to strings or blobs. See <a href="https://crbug.com/1014310">bug 1014310</a>.</div>
+</td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../clipboard_api">Clipboard API</a></li> <li><a href="https://async-clipboard-api.glitch.me/" rel=" noopener">Async Clipboard API demo on Glitch</a></li> <li><a href="https://web.dev/image-support-for-async-clipboard/" rel=" noopener">Image support for Async Clipboard article</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/ClipboardItem/ClipboardItem" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ClipboardItem/ClipboardItem</a>
+  </p>
+</div>

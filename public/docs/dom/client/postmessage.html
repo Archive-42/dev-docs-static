@@ -1,0 +1,87 @@
+<h1>Client.postMessage()</h1>
+
+ <p>The <code>postMessage()</code> method of the <a href="../client"><code>Client</code></a> interface allows a service worker to send a message to a client (a <a href="../window"><code>Window</code></a>, <a href="../worker"><code>Worker</code></a>, or <a href="../sharedworker"><code>SharedWorker</code></a>). The message is received in the "<code>message</code>" event on <a href="../serviceworkercontainer"><code>navigator.serviceWorker</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">client<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span>message<span class="token punctuation">[</span><span class="token punctuation">,</span> transfer<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+client<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span>message<span class="token punctuation">[</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> transfer <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>message</var></code></dt> <dd>The message to send to the client. This can be any <a href="../web_workers_api/structured_clone_algorithm">structured-clonable type</a>.</dd> <dt>
+<code><var>transfer</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A sequence of objects that are <a href="../transferable">transferred</a> with the message. The ownership of these objects is given to the destination side and they are no longer usable on the sending side.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p><code>undefined</code>.</p>
+<h2 id="examples">Examples</h2>
+<p>Sending a message from a service worker to a client:</p> <pre data-language="js"><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'fetch'</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  event<span class="token punctuation">.</span><span class="token function">waitUntil</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Exit early if we don't have access to the client.</span>
+    <span class="token comment">// Eg, if it's cross-origin.</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>event<span class="token punctuation">.</span>clientId<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Get the client.</span>
+    <span class="token keyword">const</span> client <span class="token operator">=</span> <span class="token keyword">await</span> clients<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>clientId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Exit early if we don't get the client.</span>
+    <span class="token comment">// Eg, if it closed.</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>client<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Send a message to the client.</span>
+    client<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      msg<span class="token operator">:</span> <span class="token string">"Hey I just got a fetch from you!"</span><span class="token punctuation">,</span>
+      url<span class="token operator">:</span> event<span class="token punctuation">.</span>request<span class="token punctuation">.</span>url
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Receiving that message:</p> <pre data-language="js">navigator<span class="token punctuation">.</span>serviceWorker<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'message'</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>data<span class="token punctuation">.</span>msg<span class="token punctuation">,</span> event<span class="token punctuation">.</span>data<span class="token punctuation">.</span>url<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/ServiceWorker/#dom-client-postmessage-message-options" hreflang="en" rel=" noopener">Service Workers<br><small>The definition of 'postMessage()' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>postMessage</code></th>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>32</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>32</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Client/postMessage" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Client/postMessage</a>
+  </p>
+</div>

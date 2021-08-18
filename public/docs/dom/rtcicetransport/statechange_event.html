@@ -1,0 +1,71 @@
+<h1>RTCIceTransport: statechange event</h1> <p>A <code>statechange</code> event occurs when the <a href="../rtcicetransport"><code>RTCIceTransport</code></a> changes state. The <a href="state"><code>state</code></a> can be used to determine how far through the process of examining, verifying, and selecting a valid candidate pair is prior to successfully connecting the two peers for WebRTC communications.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>No</td> </tr> <tr> <th scope="row">Cancelable</th> <td>No</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../event"><code>Event</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td><a href="onstatechange"><code>RTCIceTransport.onstatechange</code></a></td> </tr> </tbody> </table></div>
+<h2 id="examples">Examples</h2>
+<p>Given an <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a>, <code>pc</code>, the following code creates an event handler that calls a function named <code>handleFailure()</code> if the ICE transport enters a failure state.</p> <pre data-language="js"><span class="token keyword">let</span> iceTransport <span class="token operator">=</span> pc<span class="token punctuation">.</span><span class="token function">getSenders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>transport<span class="token punctuation">.</span>iceTransport<span class="token punctuation">;</span>
+
+iceTransport<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"statechange"</span><span class="token punctuation">,</span> <span class="token parameter">ev</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>iceTransport<span class="token punctuation">.</span>state <span class="token operator">===</span> <span class="token string">"failed"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">handleFailure</span><span class="token punctuation">(</span>pc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>The same code, using the <a href="onstatechange"><code>onstatechange</code></a> event handler property, looks like this:</p> <pre data-language="js"><span class="token keyword">let</span> iceTransport <span class="token operator">=</span> pc<span class="token punctuation">.</span><span class="token function">getSenders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>transport<span class="token punctuation">.</span>iceTransport<span class="token punctuation">;</span>
+
+iceTransport<span class="token punctuation">.</span><span class="token function-variable function">onstatechange</span> <span class="token operator">=</span> <span class="token parameter">ev</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>iceTransport<span class="token punctuation">.</span>state <span class="token operator">===</span> <span class="token string">"failed"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">handleFailure</span><span class="token punctuation">(</span>pc<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#event-icetransport-statechange" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'statechange' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>statechange_event</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webrtc_api">WebRTC API</a></li> <li><a href="../webrtc_api/connectivity">WebRTC connectivity</a></li> <li>
+<a href="onstatechange"><code>RTCIceTransport.onstatechange</code></a> event handler</li> </ul>
+<h3 id="related_rtcicetransport_events">Related RTCIceTransport events</h3>
+<ul> <li><code><a href="gatheringstatechange_event">gatheringstatechange</a></code></li> <li><code><a href="selectedcandidatepairchange_event">selectedcandidatepairchange</a></code></li> </ul>
+<h3 id="related_rtcpeerconnection_events">Related RTCPeerConnection events</h3>
+<ul> <li><code><a href="../rtcpeerconnection/negotiationneeded_event">negotiationneeded</a></code></li> <li><code><a href="../rtcpeerconnection/signalingstatechange_event">signalingstatechange</a></code></li> <li><code><a href="../rtcpeerconnection/iceconnectionstatechange_event">iceconnectionstatechange</a></code></li> <li><code><a href="../rtcpeerconnection/icegatheringstatechange_event">icegatheringstatechange</a></code></li> <li><code><a href="https://developer.mozilla.org/en-US/docs/Web/Events/connectionstatechange">connectionstatechange</a></code></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCIceTransport/statechange_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCIceTransport/statechange_event</a>
+  </p>
+</div>

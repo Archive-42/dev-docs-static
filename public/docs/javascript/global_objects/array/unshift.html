@@ -1,0 +1,93 @@
+<h1>Array.prototype.unshift()</h1> <p>The <code><strong>unshift()</strong></code> method adds one or more elements to the beginning of an array and returns the new length of the array.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/array-unshift.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">unshift</span><span class="token punctuation">(</span>element0<span class="token punctuation">)</span>
+<span class="token function">unshift</span><span class="token punctuation">(</span>element0<span class="token punctuation">,</span> element1<span class="token punctuation">)</span>
+<span class="token function">unshift</span><span class="token punctuation">(</span>element0<span class="token punctuation">,</span> element1<span class="token punctuation">,</span> <span class="token operator">...</span> <span class="token punctuation">,</span> elementN<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>element<em>N</em></code></dt> <dd>The elements to add to the front of the <code><var>arr</var></code>.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The new <a href="length"><code>length</code></a> property of the object upon which the method was called.</p>
+<h2 id="description">Description</h2>
+<p>The <code>unshift</code> method inserts the given values to the beginning of an array-like object.</p> <p><code>unshift</code> is intentionally generic. This method can be <a href="../function/call">called</a> or <a href="../function/apply">applied</a> to objects resembling arrays. Objects which do not contain a <code>length</code> property—reflecting the last in a series of consecutive, zero-based numerical properties—may not behave in any meaningful manner.</p> <p>Please note that, if multiple elements are passed as parameters, they're inserted in chunk at the beginning of the object, in the exact same order they were passed as parameters. Hence, calling <code>unshift</code> with <code><var>n</var></code> arguments <strong>once</strong>, or calling it <code><var>n</var></code> times with <strong>1</strong> argument (with a loop, for example), don't yield the same results. </p> <p>See example:</p> <pre data-language="js"><span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span>
+
+arr<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// [1, 2, 3, 4, 5, 6]</span>
+
+arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span> <span class="token comment">// resetting the array</span>
+
+arr<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+arr<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>
+arr<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span>
+<span class="token comment">// [3, 2, 1, 4, 5, 6]</span>
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="using_unshift">Using unshift</h3>
+<pre data-language="js"><span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span>
+
+arr<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>               <span class="token comment">// result of the call is 3, which is the new array length</span>
+<span class="token comment">// arr is [0, 1, 2]</span>
+
+arr<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>          <span class="token comment">// the new array length is 5</span>
+<span class="token comment">// arr is [-2, -1, 0, 1, 2]</span>
+
+arr<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span>        <span class="token comment">// the new array length is 6</span>
+<span class="token comment">// arr is [[-4, -3], -2, -1, 0, 1, 2]</span>
+
+arr<span class="token punctuation">.</span><span class="token function">unshift</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">)</span>  <span class="token comment">// the new array length is 8</span>
+<span class="token comment">// arr is [ [-7, -6], [-5], [-4, -3], -2, -1, 0, 1, 2 ]</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-array.prototype.unshift">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-array.prototype.unshift</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>unshift</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5.5</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="push"><code>Array.prototype.push()</code></a></li> <li><a href="pop"><code>Array.prototype.pop()</code></a></li> <li><a href="shift"><code>Array.prototype.shift()</code></a></li> <li><a href="concat"><code>Array.prototype.concat()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/unshift</a>
+  </p>
+</div>

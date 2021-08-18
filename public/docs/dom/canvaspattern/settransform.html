@@ -1,0 +1,93 @@
+<h1>CanvasPattern.setTransform()</h1> <p>The <code><strong>CanvasPattern</strong></code><code>.setTransform()</code> method uses an <a href="../svgmatrix"><code>SVGMatrix</code></a> or <a href="../dommatrix"><code>DOMMatrix</code></a> object as the pattern's transformation matrix and invokes it on the pattern.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">void</span> pattern<span class="token punctuation">.</span><span class="token function">setTransform</span><span class="token punctuation">(</span>matrix<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>matrix</code></dt> <dd>An <a href="../svgmatrix"><code>SVGMatrix</code></a> or <a href="../dommatrix"><code>DOMMatrix</code></a> to use as the pattern's transformation matrix.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="using_the_settransform_method">Using the <code>setTransform</code> method</h3>
+<p>This is just a simple code snippet which uses the <code>setTransform</code> method to create a <a href="../canvaspattern"><code>CanvasPattern</code></a> with the specified pattern transformation from an <a href="../svgmatrix"><code>SVGMatrix</code></a>. The pattern gets applied if you set it as the current <a href="../canvasrenderingcontext2d/fillstyle"><code>fillStyle</code></a> and gets drawn onto the canvas when using the <a href="../canvasrenderingcontext2d/fillrect"><code>fillRect()</code></a> method, for example.</p> <h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>canvas<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>svg1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">&gt;</span></span>
+</pre> <h4 id="javascript">JavaScript</h4> <pre data-language="js"><span class="token keyword">var</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> ctx <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> svg1 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'svg1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> matrix <span class="token operator">=</span> svg1<span class="token punctuation">.</span><span class="token function">createSVGMatrix</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> img <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Image</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+img<span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token string">'https://mdn.mozillademos.org/files/222/Canvas_createpattern.png'</span><span class="token punctuation">;</span>
+
+img<span class="token punctuation">.</span><span class="token function-variable function">onload</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> pattern <span class="token operator">=</span> ctx<span class="token punctuation">.</span><span class="token function">createPattern</span><span class="token punctuation">(</span>img<span class="token punctuation">,</span> <span class="token string">'repeat'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  pattern<span class="token punctuation">.</span><span class="token function">setTransform</span><span class="token punctuation">(</span>matrix<span class="token punctuation">.</span><span class="token function">rotate</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">45</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">scale</span><span class="token punctuation">(</span><span class="token number">1.5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> pattern<span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span><span class="token function">fillRect</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">,</span> <span class="token number">400</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre> <p>Note that newer browser versions started to support <a href="../dommatrix"><code>DOMMatrix</code></a> as an input to <code>setTransform()</code>, so for example you could replace the <code>SVGMatrix</code> in the above example with the following:</p> <pre data-language="js"><span class="token keyword">const</span> matrix <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DOMMatrix</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">.2</span><span class="token punctuation">,</span> <span class="token number">.8</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Edit the code below and see your changes update live in the canvas:</p> <p><iframe class="sample-code-frame" id="frame_Playable_code" width="700" height="380" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/CanvasPattern/setTransform/_samples_/Playable_code" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/scripting.html#dom-canvaspattern-settransform" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'CanvasPattern.setTransform' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>setTransform</code></th>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>10.0</div></td>
+</tr>
+<tr>
+<th><code>dommatrix</code></th>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>10.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The interface defining this method: <a href="../canvaspattern"><code>CanvasPattern</code></a>
+</li> <li><a href="../svgmatrix"><code>SVGMatrix</code></a></li> <li><a href="../dommatrix"><code>DOMMatrix</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasPattern/setTransform" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/CanvasPattern/setTransform</a>
+  </p>
+</div>

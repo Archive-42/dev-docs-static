@@ -1,0 +1,72 @@
+<h1>Worker.onmessage</h1>
+
+ <p>The <code>onmessage</code> property of the <a href="../worker"><code>Worker</code></a> interface represents an <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a>, that is a function to be called when the <code><a href="../broadcastchannel/message_event">message</a></code> event occurs. These events are of type <a href="../messageevent"><code>MessageEvent</code></a> and will be called when the worker's parent receives a message (i.e. from the <a href="../dedicatedworkerglobalscope/postmessage"><code>DedicatedWorkerGlobalScope.postMessage</code></a> method).</p> <p>Note that deserializing the message sent by <a href="../dedicatedworkerglobalscope/postmessage"><code>postMessage()</code></a> blocks the thread receiving it.</p> <div class="note notecard"> <p><strong>Note</strong>: The message payload is available in the <code><a href="../broadcastchannel/message_event">message</a></code> event's <code>data</code> property.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">myWorker<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span></pre>
+<h2 id="example">Example</h2>
+<p>The following code snippet shows creation of a <a href="../worker"><code>Worker</code></a> object using the <a href="worker"><code>Worker()</code></a> constructor. Messages are passed to the worker when the value inside the form input <code>first</code> changes. An onmessage handler is also present, to deal with messages that are passed back from the worker.</p> <pre data-language="js"><span class="token keyword">var</span> myWorker <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Worker</span><span class="token punctuation">(</span><span class="token string">'worker.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+first<span class="token punctuation">.</span><span class="token function-variable function">onchange</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  myWorker<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span><span class="token punctuation">[</span>first<span class="token punctuation">.</span>value<span class="token punctuation">,</span>second<span class="token punctuation">.</span>value<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Message posted to worker'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+myWorker<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  result<span class="token punctuation">.</span>textContent <span class="token operator">=</span> e<span class="token punctuation">.</span>data<span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Message received from worker'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>In the <code>worker.js</code> script, an <code>onmessage</code> handler is used to the handle messages from the main script:</p> <pre data-language="js"><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Message received from main script'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> workerResult <span class="token operator">=</span> <span class="token string">'Result: '</span> <span class="token operator">+</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> e<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Posting message back to main script'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">postMessage</span><span class="token punctuation">(</span>workerResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>Notice how in the main script, <code>onmessage</code> has to be called on <code>myWorker</code>, whereas inside the worker script you just need <code>onmessage</code> because the worker is effectively the global scope (<a href="../dedicatedworkerglobalscope"><code>DedicatedWorkerGlobalScope</code></a>).</p> <p>For a full example, see our<a href="https://github.com/mdn/simple-web-worker" rel=" noopener">Basic dedicated worker example</a> (<a href="https://mdn.github.io/simple-web-worker/" rel=" noopener">run dedicated worker</a>).</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#handler-worker-onmessage" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'Worker.onmessage' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onmessage</code></th>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10.6</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<p>The <a href="../worker"><code>Worker</code></a> interface it belongs to.</p>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Worker/onmessage" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Worker/onmessage</a>
+  </p>
+</div>

@@ -1,0 +1,236 @@
+<h1>Attribute selectors</h1> <p>The CSS <strong>attribute selector</strong> matches elements based on the presence or value of a given attribute.</p> <pre data-language="css"><span class="token comment">/* &lt;a&gt; elements with a title attribute */</span>
+<span class="token selector">a[title]</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> purple<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* &lt;a&gt; elements with an href matching "https://example.org" */</span>
+<span class="token selector">a[href="https://example.org"]</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> green<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* &lt;a&gt; elements with an href containing "example" */</span>
+<span class="token selector">a[href*="example"]</span> <span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 2em<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* &lt;a&gt; elements with an href ending ".org" */</span>
+<span class="token selector">a[href$=".org"]</span> <span class="token punctuation">{</span>
+  <span class="token property">font-style</span><span class="token punctuation">:</span> italic<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* &lt;a&gt; elements whose class attribute contains the word "logo" */</span>
+<span class="token selector">a[class~="logo"]</span> <span class="token punctuation">{</span>
+  <span class="token property">padding</span><span class="token punctuation">:</span> 2px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="syntax">Syntax</h2>
+<dl> <dt><code>[<em>attr</em>]</code></dt> <dd>Represents elements with an attribute name of <em>attr</em>.</dd> <dt><code>[<em>attr</em>=<em>value</em>]</code></dt> <dd>Represents elements with an attribute name of <em>attr</em> whose value is exactly <em>value</em>.</dd> <dt><code>[<em>attr</em>~=<em>value</em>]</code></dt> <dd>Represents elements with an attribute name of <em>attr</em> whose value is a whitespace-separated list of words, one of which is exactly <em>value</em>.</dd> <dt><code>[<em>attr</em>|=<em>value</em>]</code></dt> <dd>Represents elements with an attribute name of <em>attr</em> whose value can be exactly <em>value</em> or can begin with <em>value</em> immediately followed by a hyphen, <code>-</code> (U+002D). It is often used for language subcode matches.</dd> <dt><code>[<em>attr</em>^=<em>value</em>]</code></dt> <dd>Represents elements with an attribute name of <em>attr</em> whose value is prefixed (preceded) by <em>value</em>.</dd> <dt><code>[<em>attr</em>$=<em>value</em>]</code></dt> <dd>Represents elements with an attribute name of <em>attr</em> whose value is suffixed (followed) by <em>value</em>.</dd> <dt><code>[<em>attr</em>*=<em>value</em>]</code></dt> <dd>Represents elements with an attribute name of <em>attr</em> whose value contains at least one occurrence of <em>value</em> within the string.</dd> <dt id="case-insensitive"><code>[<em>attr</em> <em>operator</em> <em>value</em> i]</code></dt> <dd>Adding an <code>i</code> (or <code>I</code>) before the closing bracket causes the value to be compared case-insensitively (for characters within the ASCII range).</dd> <dt id="case-sensitive">
+<code>[<em>attr</em> <em>operator</em> <em>value</em> s]</code> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt> <dd>Adding an <code>s</code> (or <code>S</code>) before the closing bracket causes the value to be compared case-sensitively (for characters within the ASCII range).</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="links">Links</h3>
+<h4 id="css">CSS</h4> <pre data-language="css"><span class="token selector">a</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Internal links, beginning with "#" */</span>
+<span class="token selector">a[href^="#"]</span> <span class="token punctuation">{</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> gold<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Links with "example" anywhere in the URL */</span>
+<span class="token selector">a[href*="example"]</span> <span class="token punctuation">{</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> silver<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Links with "insensitive" anywhere in the URL,
+   regardless of capitalization */</span>
+<span class="token selector">a[href*="insensitive" i]</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> cyan<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Links with "cAsE" anywhere in the URL,
+with matching capitalization */</span>
+<span class="token selector">a[href*="cAsE" s]</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> pink<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Links that end in ".org" */</span>
+<span class="token selector">a[href$=".org"]</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Links that start with "https" and end in ".org" */</span>
+<span class="token selector">a[href^="https"][href$=".org"]</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> green<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#internal<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Internal link<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://example.com<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Example link<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>#InSensitive<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Insensitive internal link<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>http://example.org<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Example org link<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://example.org<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Example https org link<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span></pre> <h4 id="result">Result</h4> <p><iframe class="sample-code-frame" id="frame_Links" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/Attribute_selectors/_samples_/Links" loading="lazy"></iframe></p>
+<h3 id="languages">Languages</h3>
+<h4 id="css_2">CSS</h4> <pre data-language="css"><span class="token comment">/* All divs with a `lang` attribute are bold. */</span>
+<span class="token selector">div[lang]</span> <span class="token punctuation">{</span>
+  <span class="token property">font-weight</span><span class="token punctuation">:</span> bold<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* All divs without a `lang` attribute are italicized. */</span>
+<span class="token selector">div:not([lang])</span> <span class="token punctuation">{</span>
+  <span class="token property">font-style</span><span class="token punctuation">:</span> italic<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* All divs in US English are blue. */</span>
+<span class="token selector">div[lang~="en-us"]</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* All divs in Portuguese are green. */</span>
+<span class="token selector">div[lang="pt"]</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> green<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* All divs in Chinese are red, whether
+   simplified (zh-CN) or traditional (zh-TW). */</span>
+<span class="token selector">div[lang|="zh"]</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* All divs with a Traditional Chinese
+   `data-lang` are purple. */</span>
+<span class="token comment">/* Note: You could also use hyphenated attributes
+   without double quotes */</span>
+<span class="token selector">div[data-lang="zh-TW"]</span> <span class="token punctuation">{</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> purple<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <h4 id="html_2">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>en-us en-gb en-au en-nz<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Hello World!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>pt<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Olá Mundo!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>zh-CN<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>世界您好！<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>zh-TW<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>世界您好！<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">data-lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>zh-TW<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>世界您好！<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</pre> <h4 id="result_2">Result</h4> <p><iframe class="sample-code-frame" id="frame_Languages" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/Attribute_selectors/_samples_/Languages" loading="lazy"></iframe></p>
+<h3 id="html_ordered_lists">HTML ordered lists</h3>
+<p>The HTML specification requires the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attr-type"><code>type</code></a> attribute to be matched case-insensitively due to it primarily being used in the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a> element, trying to use attribute selectors to with the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol#attr-type"><code>type</code></a> attribute of an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol">ordered list</a> doesn't work without the <a href="#case-sensitive">case-sensitive</a> modifier.</p> <h4 id="css_3">CSS</h4> <pre data-language="css"><span class="token comment">/* List types require the case sensitive flag due to a quirk in how HTML treats the type attribute. */</span>
+<span class="token selector">ol[type="a"]</span> <span class="token punctuation">{</span>
+  <span class="token property">list-style-type</span><span class="token punctuation">:</span> lower-alpha<span class="token punctuation">;</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">ol[type="a" s]</span> <span class="token punctuation">{</span>
+  <span class="token property">list-style-type</span><span class="token punctuation">:</span> lower-alpha<span class="token punctuation">;</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> lime<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">ol[type="A" s]</span> <span class="token punctuation">{</span>
+  <span class="token property">list-style-type</span><span class="token punctuation">:</span> upper-alpha<span class="token punctuation">;</span>
+  <span class="token property">background</span><span class="token punctuation">:</span> lime<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <h4 id="html_3">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ol</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>A<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>Example list<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ol</span><span class="token punctuation">&gt;</span></span></pre> <h4 id="result_3">Result</h4> <p><iframe class="sample-code-frame" id="frame_HTML_ordered_lists" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/Attribute_selectors/_samples_/HTML_ordered_lists" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/selectors-4/#attribute-selectors" hreflang="en" rel=" noopener">Selectors Level 4<br><small>The definition of 'attribute selectors' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Adds modifier for ASCII case-sensitive and case-insensitive attribute value selection.</td> </tr> <tr> <td><a href="https://drafts.csswg.org/selectors-3/#attribute-selectors" hreflang="en" rel=" noopener">Selectors Level 3<br><small>The definition of 'attribute selectors' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/CSS2/selector.html#attribute-selectors" hreflang="en" rel=" noopener">CSS Level 2 (Revision 1)<br><small>The definition of 'attribute selectors' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>Attribute_selectors</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>case_insensitive_modifier</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>case_sensitive_modifier</code></th>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://crbug.com/1041095">bug 1041095</a>.</div>
+</td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://crbug.com/1041095">bug 1041095</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://crbug.com/1041095">bug 1041095</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://crbug.com/1041095">bug 1041095</a>.</div>
+</td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://crbug.com/1041095">bug 1041095</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://crbug.com/1041095">bug 1041095</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://crbug.com/1041095">bug 1041095</a>.</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="attr()"><code>attr()</code></a></li> <li>Selecting a single element: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector"><code>Document.querySelector()</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment/querySelector"><code>DocumentFragment.querySelector()</code></a>, or <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelector"><code>Element.querySelector()</code></a>
+</li> <li>Selecting all matching elements: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll"><code>Document.querySelectorAll()</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment/querySelectorAll"><code>DocumentFragment.querySelectorAll()</code></a>, or <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll"><code>Element.querySelectorAll()</code></a>
+</li> <li>The above methods are all implemented based on the <a href="https://developer.mozilla.org/en-US/docs/Web/API/ParentNode"><code>ParentNode</code></a> mixin; see <a href="https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelector"><code>ParentNode.querySelector()</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll"><code>ParentNode.querySelectorAll()</code></a>
+</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/Attribute_selectors</a>
+  </p>
+</div>

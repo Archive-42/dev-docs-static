@@ -1,0 +1,115 @@
+<h1>Element: mouseup event</h1> <p>The <code>mouseup</code> event is fired at an <a href="../element"><code>Element</code></a> when a button on a pointing device (such as a mouse or trackpad) is released while the pointer is located inside it. <code>mouseup</code> events are the counterpoint to <a href="mousedown_event"><code>mousedown</code></a> events.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>Yes</td> </tr> <tr> <th scope="row">Cancelable</th> <td>Yes</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../mouseevent"><code>MouseEvent</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td><a href="../globaleventhandlers/onmouseup"><code>onmouseup</code></a></td> </tr> </tbody> </table></div>
+<h2 id="examples">Examples</h2>
+
+<p>The following example uses the <a href="mousedown_event"><code>mousedown</code></a>, <code>mousemove</code>, and <a href="mouseup_event"><code>mouseup</code></a> events to allow the user to draw on an HTML5 <a href="../canvas_api">canvas</a>. Its functionality is simple: the thickness of the line is set to 1, and the color is always black.</p>
+<p>When the page loads, constants <code>myPics</code> and <code>context</code> are created to store a reference to the canvas and the 2d context we will use to draw.</p>
+<p>Drawing begins when the <code>mousedown</code> event fires. First we store the x and y coordinates of the mouse pointer in the variables <code>x</code> and <code>y</code>, and then set <code>isDrawing</code> to true.</p>
+<p>As the mouse moves over the page, the <code>mousemove</code> event fires. If <code>isDrawing</code> is true, the event handler calls the <code>drawLine</code> function to draw a line from the stored <code>x</code> and <code>y</code> values to the current location.</p>
+<p>When the <code>drawLine()</code> function returns, we adjust the coordinates and then save them in <code>x</code> and <code>y</code>.</p>
+<p>The <code>mouseup</code> event draws the final line segment, sets <code>x</code> and <code>y</code> to <code>0</code>, and stops further drawing by setting <code>isDrawing</code> to <code>false</code>.</p>
+<h3 id="html">HTML</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Drawing with mouse events<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>myPics<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>560<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>360<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">&gt;</span></span>
+</pre>
+<h3 id="css">CSS</h3>
+<pre data-language="css"><span class="token selector">canvas</span> <span class="token punctuation">{</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid black<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 560px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 360px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js"><span class="token comment">// When true, moving the mouse draws on the canvas</span>
+<span class="token keyword">let</span> isDrawing <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> myPics <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'myPics'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> context <span class="token operator">=</span> myPics<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// event.offsetX, event.offsetY gives the (x,y) offset from the edge of the canvas.</span>
+
+<span class="token comment">// Add the event listeners for mousedown, mousemove, and mouseup</span>
+myPics<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'mousedown'</span><span class="token punctuation">,</span> <span class="token parameter">e</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  x <span class="token operator">=</span> e<span class="token punctuation">.</span>offsetX<span class="token punctuation">;</span>
+  y <span class="token operator">=</span> e<span class="token punctuation">.</span>offsetY<span class="token punctuation">;</span>
+  isDrawing <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+myPics<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'mousemove'</span><span class="token punctuation">,</span> <span class="token parameter">e</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>isDrawing <span class="token operator">===</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">drawLine</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> e<span class="token punctuation">.</span>offsetX<span class="token punctuation">,</span> e<span class="token punctuation">.</span>offsetY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    x <span class="token operator">=</span> e<span class="token punctuation">.</span>offsetX<span class="token punctuation">;</span>
+    y <span class="token operator">=</span> e<span class="token punctuation">.</span>offsetY<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'mouseup'</span><span class="token punctuation">,</span> <span class="token parameter">e</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>isDrawing <span class="token operator">===</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">drawLine</span><span class="token punctuation">(</span>context<span class="token punctuation">,</span> x<span class="token punctuation">,</span> y<span class="token punctuation">,</span> e<span class="token punctuation">.</span>offsetX<span class="token punctuation">,</span> e<span class="token punctuation">.</span>offsetY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    x <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    y <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    isDrawing <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">drawLine</span><span class="token punctuation">(</span><span class="token parameter">context<span class="token punctuation">,</span> x1<span class="token punctuation">,</span> y1<span class="token punctuation">,</span> x2<span class="token punctuation">,</span> y2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  context<span class="token punctuation">.</span><span class="token function">beginPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  context<span class="token punctuation">.</span>strokeStyle <span class="token operator">=</span> <span class="token string">'black'</span><span class="token punctuation">;</span>
+  context<span class="token punctuation">.</span>lineWidth <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  context<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span>x1<span class="token punctuation">,</span> y1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  context<span class="token punctuation">.</span><span class="token function">lineTo</span><span class="token punctuation">(</span>x2<span class="token punctuation">,</span> y2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  context<span class="token punctuation">.</span><span class="token function">stroke</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  context<span class="token punctuation">.</span><span class="token function">closePath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h3 id="result">Result</h3>
+<p><iframe class="sample-code-frame" id="frame_Examples" width="640" height="450" src="https://yari-demos.prod.mdn.mozit.cloud/en-us/docs/web/api/element/mousemove_event/_samples_/Examples" loading="lazy"></iframe></p>
+
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/uievents/#event-type-mouseup" hreflang="en" rel=" noopener">UI Events<br><small>The definition of 'mouseup' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> </tr> <tr> <td><a href="https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/#event-type-mouseup" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 3 Events Specification<br><small>The definition of 'mouseup' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>mouseup_event</code></th>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>11.6</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events">Introduction to events</a></li> <li><a href="mousedown_event"><code>mousedown</code></a></li> <li><a href="mouseup_event"><code>mouseup</code></a></li> <li><a href="mousemove_event"><code>mousemove</code></a></li> <li><a href="click_event"><code>click</code></a></li> <li><a href="dblclick_event"><code>dblclick</code></a></li> <li><a href="mouseover_event"><code>mouseover</code></a></li> <li><a href="mouseout_event"><code>mouseout</code></a></li> <li><a href="mouseenter_event"><code>mouseenter</code></a></li> <li><a href="mouseleave_event"><code>mouseleave</code></a></li> <li><a href="contextmenu_event"><code>contextmenu</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseup_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseup_event</a>
+  </p>
+</div>

@@ -1,0 +1,111 @@
+<h1>Array.prototype.concat()</h1> <p>The <code><strong>concat()</strong></code> method is used to merge two or more arrays. This method does not change the existing arrays, but instead returns a new array.</p> <iframe class="interactive" width="100%" height="410" src="https://interactive-examples.mdn.mozilla.net/pages/js/array-concat.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">concat</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">concat</span><span class="token punctuation">(</span>value0<span class="token punctuation">)</span>
+<span class="token function">concat</span><span class="token punctuation">(</span>value0<span class="token punctuation">,</span> value1<span class="token punctuation">)</span>
+<span class="token function">concat</span><span class="token punctuation">(</span>value0<span class="token punctuation">,</span> value1<span class="token punctuation">,</span> <span class="token operator">...</span> <span class="token punctuation">,</span> valueN<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code>value<em>N</em></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>Arrays and/or values to concatenate into a new array. If all <code>value<em>N</em></code> parameters are omitted, <code>concat</code> returns a shallow copy of the existing array on which it is called. See the description below for more details.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A new <a href="../array"><code>Array</code></a> instance.</p>
+<h2 id="description">Description</h2>
+<p>The <code>concat</code> method creates a new array consisting of the elements in the object on which it is called, followed in order by, for each argument, the elements of that argument (if the argument is an array) or the argument itself (if the argument is not an array). It does not recurse into nested array arguments.</p> <p>The <code>concat</code> method does not alter <code>this</code> or any of the arrays provided as arguments but instead returns a shallow copy that contains copies of the same elements combined from the original arrays. Elements of the original arrays are copied into the new array as follows:</p> <ul> <li>Object references (and not the actual object): <code>concat</code> copies object references into the new array. Both the original and new array refer to the same object. That is, if a referenced object is modified, the changes are visible to both the new and original arrays. This includes elements of array arguments that are also arrays.</li> <li>Data types such as strings, numbers and booleans (not <a href="../string"><code>String</code></a>, <a href="../number"><code>Number</code></a>, and <a href="../boolean"><code>Boolean</code></a> objects): <code>concat</code> copies the values of strings and numbers into the new array.</li> </ul> <div class="note notecard"> <p><strong>Note:</strong> Concatenating array(s)/value(s) will leave the originals untouched. Furthermore, any operation on the new array (except operations on elements which are object references) will have no effect on the original arrays, and vice versa.</p> </div>
+<h2 id="examples">Examples</h2>
+<h3 id="concatenating_two_arrays">Concatenating two arrays</h3>
+<p>The following code concatenates two arrays:</p> <pre data-language="js"><span class="token keyword">const</span> letters <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> numbers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+letters<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>numbers<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// result in ['a', 'b', 'c', 1, 2, 3]</span>
+</pre>
+<h3 id="concatenating_three_arrays">Concatenating three arrays</h3>
+<p>The following code concatenates three arrays:</p> <pre data-language="js"><span class="token keyword">const</span> num1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> num2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> num3 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> numbers <span class="token operator">=</span> num1<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>num2<span class="token punctuation">,</span> num3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>numbers<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// results in [1, 2, 3, 4, 5, 6, 7, 8, 9]</span>
+</pre>
+<h3 id="concatenating_values_to_an_array">Concatenating values to an array</h3>
+<p>The following code concatenates three values to an array:</p> <pre data-language="js"><span class="token keyword">const</span> letters <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> alphaNumeric <span class="token operator">=</span> letters<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>alphaNumeric<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// results in ['a', 'b', 'c', 1, 2, 3]</span>
+</pre>
+<h3 id="concatenating_nested_arrays">Concatenating nested arrays</h3>
+<p>The following code concatenates nested arrays and demonstrates retention of references: </p> <pre data-language="js"><span class="token keyword">const</span> num1 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> num2 <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> numbers <span class="token operator">=</span> num1<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>num2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>numbers<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// results in [[1], 2, [3]]</span>
+
+<span class="token comment">// modify the first element of num1</span>
+num1<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>numbers<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// results in [[1, 4], 2, [3]]</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-array.prototype.concat">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-array.prototype.concat</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>concat</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5.5</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="push"><code>push</code></a> / <a href="pop"><code>pop</code></a> — add/remove elements from the end of the array</li> <li>
+<a href="unshift"><code>unshift</code></a> / <a href="shift"><code>shift</code></a> — add/remove elements from the beginning of the array</li> <li>
+<a href="splice"><code>splice</code></a> — add/remove elements from the specified location of the array</li> <li><a href="../string/concat"><code>String.prototype.concat()</code></a></li> <li>
+<a href="../symbol/isconcatspreadable"><code>Symbol.isConcatSpreadable</code></a> – control flattening.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat</a>
+  </p>
+</div>

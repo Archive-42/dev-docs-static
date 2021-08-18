@@ -1,0 +1,93 @@
+<h1>Animation.playbackRate</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <code><strong>Animation</strong></code><code>.playbackRate</code> property of the <a href="../web_animations_api">Web Animations API</a> returns or sets the playback rate of the animation.</p> <p>Animations have a <strong>playback rate</strong> that provides a scaling factor from the rate of change of the animation's <a href="../documenttimeline"><code>timeline</code></a> time values to the animation’s current time. The playback rate is initially <code>1</code>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> currentPlaybackRate <span class="token operator">=</span> Animation<span class="token punctuation">.</span>playbackRate<span class="token punctuation">;</span>
+
+Animation<span class="token punctuation">.</span>playbackRate <span class="token operator">=</span> newRate<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>Takes a number that can be 0, negative, or positive. Negative values reverse the animation. The value is a scaling factor, so for example a value of 2 would double the playback rate.</p> <div class="note notecard"> <p>Setting an animation’s <code>playbackRate</code> to <code>0</code> effectively pauses the animation (however, its <a href="playstate"><code>playstate</code></a> does not necessarily become <code>paused</code>).</p> </div>
+<h2 id="examples">Examples</h2>
+<p>In the <a href="https://codepen.io/rachelnabors/pen/PNYGZQ?editors=0010" rel=" noopener">Growing/Shrinking Alice Game</a> example, clicking or tapping the bottle causes Alice's growing animation (<code>aliceChange</code>) to reverse, causing her to shrink:</p> <pre data-language="js"><span class="token keyword">var</span> <span class="token function-variable function">shrinkAlice</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  aliceChange<span class="token punctuation">.</span>playbackRate <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+  aliceChange<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// On tap or click, Alice will shrink.</span>
+bottle<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"mousedown"</span><span class="token punctuation">,</span> shrinkAlice<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+bottle<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"touchstart"</span><span class="token punctuation">,</span> shrinkAlice<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>Contrariwise, clicking on the cake causes her to "grow," playing <code>aliceChange</code> forwards again:</p> <pre data-language="js"><span class="token keyword">var</span> <span class="token function-variable function">growAlice</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  aliceChange<span class="token punctuation">.</span>playbackRate <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+  aliceChange<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// On tap or click, Alice will grow.</span>
+cake<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"mousedown"</span><span class="token punctuation">,</span> growAlice<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+cake<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"touchstart"</span><span class="token punctuation">,</span> growAlice<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>In another example, the <a href="https://codepen.io/rachelnabors/pen/PNGGaV?editors=0010" rel=" noopener">Red Queen's Race Game</a>, Alice and the Red Queen are constantly slowing down:</p> <pre data-language="js"><span class="token function">setInterval</span><span class="token punctuation">(</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token comment">// Make sure the playback rate never falls below .4</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>redQueen_alice<span class="token punctuation">.</span>playbackRate <span class="token operator">&gt;</span> <span class="token number">.4</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    redQueen_alice<span class="token punctuation">.</span>playbackRate <span class="token operator">*=</span> <span class="token number">.9</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">3000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>But clicking or tapping on them causes them to speed up by multiplying their <code>playbackRate</code>:</p> <pre data-language="js"><span class="token keyword">var</span> <span class="token function-variable function">goFaster</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  redQueen_alice<span class="token punctuation">.</span>playbackRate <span class="token operator">*=</span> <span class="token number">1.1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> goFaster<span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"touchstart"</span><span class="token punctuation">,</span> goFaster<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://drafts.csswg.org/web-animations-1/#dom-animation-playbackrate" hreflang="en" rel=" noopener">Web Animations<br><small>The definition of 'Animation.playbackRate' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>playbackRate</code></th>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>13.1</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>13.4</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../web_animations_api">Web Animations API</a></li> <li><a href="../animation"><code>Animation</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Animation/playbackRate" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Animation/playbackRate</a>
+  </p>
+</div>

@@ -1,0 +1,69 @@
+<h1>HTMLImageElement.decode()</h1> <p class="summary">The <code>decode()</code> method of the <a href="../htmlimageelement"><code>HTMLImageElement</code></a> interface returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves when the image is decoded and it is safe to append the image to the DOM. This can be used to initiate loading of the image prior to attaching it to an element in the DOM (or adding it to the DOM as a new element), so that the image can be rendered immediately upon being added to the DOM. This, in turn, prevents the rendering of the next frame after adding the image to the DOM from causing a delay while the image loads.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> promise <span class="token operator">=</span> HTMLImageElement<span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<p>None.</p>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which is resolved once the image data is ready to be used.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>EncodingError</code></dt> <dd>A <a href="../domexception"><code>DOMException</code></a> indicating that an error occurred while decoding the image.</dd> </dl>
+<h2 id="usage_notes">Usage notes</h2>
+<p>One potential use case for <code>decode()</code>: when loading very large images (for example, in an online photo album), you can present a low resolution thumbnail image initially and then replace that image with the full-resolution image by instantiating a new <a href="../htmlimageelement"><code>HTMLImageElement</code></a>, setting its source to the full-resolution image's URL, then using <code>decode()</code> to get a promise which is resolved once the full-resolution image is ready for use. At that time, you can then replace the low-resolution image with the full-resolution one that's now available.</p>
+<h2 id="examples">Examples</h2>
+<p>The following example shows how to use the <code>decode()</code> method to control when an image is appended to the DOM. Without a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>-returning method, you would add the image to the DOM in a <code><a href="../window/load_event">load</a></code> event handler, such as by using the <a href="../globaleventhandlers/onload"><code>img.onload</code></a> event handler, and by handling the error in the <code><a href="../element/error_event">error</a></code> event's handler.</p> <pre data-language="js"><span class="token keyword">const</span> img <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Image</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+img<span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token string">'nebula.jpg'</span><span class="token punctuation">;</span>
+img<span class="token punctuation">.</span><span class="token function">decode</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>img<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">encodingError</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Do something with the error.</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#dom-img-decode" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'decode()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>decode</code></th>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/decode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/decode</a>
+  </p>
+</div>

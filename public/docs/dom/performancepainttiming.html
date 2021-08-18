@@ -1,0 +1,67 @@
+<h1>PerformancePaintTiming</h1>
+
+ <p>The <code>PerformancePaintTiming</code> interface of the <a href="paint_timing_api">Paint Timing API</a> provides timing information about "paint" (also called "render") operations during web page construction. "Paint" refers to conversion of the render tree to on-screen pixels.</p> <p>An application can register a <a href="performanceobserver"><code>PerformanceObserver</code></a> for "<code>paint</code>" <a href="performanceentry"><code>performance entry types</code></a> and the observer can retrieve the times that paint events occur. Use this information to help identify areas that take too long to provide a good user experience.</p>  <iframe class="inheritance-diagram-frame" id="frame_inheritance_diagram" width="600" height="70" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/PerformancePaintTiming/_samples_/inheritance_diagram" loading="lazy"></iframe>
+<h2 id="properties">Properties</h2>
+<p>This interface has no properties but it extends the following <a href="performanceentry"><code>PerformanceEntry</code></a> properties (for "<code>paint</code>" <a href="performanceentry/entrytype"><code>performance entry types</code></a>) by qualifying and constraining the properties as follows:</p> <dl> <dt><a href="performanceentry/entrytype"><code>PerformanceEntry.entryType</code></a></dt> <dd>Returns "<code>paint</code>".</dd> <dt><a href="performanceentry/name"><code>PerformanceEntry.name</code></a></dt> <dd>Returns either <code>"first-paint"</code> or <code>"first-contentful-paint"</code>.</dd> <dt><a href="performanceentry/starttime"><code>PerformanceEntry.startTime</code></a></dt> <dd>Returns the <a href="domhighrestimestamp"><code>timestamp</code></a> when the paint occurred.</dd> <dt><a href="performanceentry/duration"><code>PerformanceEntry.duration</code></a></dt> <dd>Returns 0.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<p>This interface has no methods.</p>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token keyword">function</span> <span class="token function">showPaintTimings</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>performance<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> performance <span class="token operator">=</span> window<span class="token punctuation">.</span>performance<span class="token punctuation">;</span>
+    <span class="token keyword">let</span> performanceEntries <span class="token operator">=</span> performance<span class="token punctuation">.</span><span class="token function">getEntriesByType</span><span class="token punctuation">(</span><span class="token string">'paint'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    performanceEntries<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span> <span class="token punctuation">(</span><span class="token parameter">performanceEntry<span class="token punctuation">,</span> i<span class="token punctuation">,</span> entries</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"The time to "</span> <span class="token operator">+</span> performanceEntry<span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">" was "</span> <span class="token operator">+</span> performanceEntry<span class="token punctuation">.</span>startTime <span class="token operator">+</span> <span class="token string">" milliseconds."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Performance timing isn\'t supported.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre> <p>The code above produces console output something like the following:</p> <pre data-language="bash">The <span class="token function">time</span> to first-paint was <span class="token number">2785.915</span> milliseconds.
+The <span class="token function">time</span> to first-contentful-paint was <span class="token number">2787.460</span> milliseconds.</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/paint-timing/#sec-PerformancePaintTiming" hreflang="en" rel=" noopener">Paint Timing<br><small>The definition of 'PerformancePaintTiming' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>PerformancePaintTiming</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PerformancePaintTiming" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PerformancePaintTiming</a>
+  </p>
+</div>

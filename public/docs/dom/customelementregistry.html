@@ -1,0 +1,294 @@
+<h1>CustomElementRegistry</h1> <p>The <code>CustomElementRegistry</code> interface provides methods for registering custom elements and querying registered elements. To get an instance of it, use the <a href="window/customelements"><code>window.customElements</code></a> property.</p>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="customelementregistry/define"><code>CustomElementRegistry.define()</code></a></dt> <dd>Defines a new <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements">custom element</a>.</dd> <dt><a href="customelementregistry/get"><code>CustomElementRegistry.get()</code></a></dt> <dd>Returns the constructor for the named custom element, or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"><code>undefined</code></a> if the custom element is not defined.</dd> <dt><a href="customelementregistry/upgrade"><code>CustomElementRegistry.upgrade()</code></a></dt> <dd>Upgrades a custom element directly, even before it is connected to its shadow root.</dd> <dt><a href="customelementregistry/whendefined"><code>CustomElementRegistry.whenDefined()</code></a></dt> <dd>Returns an empty <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>promise</code></a> that resolves when a custom element becomes defined with the given name. If such a custom element is already defined, the returned promise is immediately fulfilled.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>The following code is taken from our <a href="https://github.com/mdn/web-components-examples/tree/master/word-count-web-component" rel=" noopener">word-count-web-component</a> example (<a href="https://mdn.github.io/web-components-examples/word-count-web-component/" rel=" noopener">see it live also</a>). Note how we use the <a href="customelementregistry/define"><code>CustomElementRegistry.define()</code></a> method to define the custom element after creating its class.</p> <pre data-language="js"><span class="token comment">// Create a class for the element</span>
+<span class="token keyword">class</span> <span class="token class-name">WordCount</span> <span class="token keyword">extends</span> <span class="token class-name">HTMLParagraphElement</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Always call super first in constructor</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// count words in element's parent element</span>
+    <span class="token keyword">var</span> wcParent <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>parentNode<span class="token punctuation">;</span>
+
+    <span class="token keyword">function</span> <span class="token function">countWords</span><span class="token punctuation">(</span><span class="token parameter">node</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">var</span> text <span class="token operator">=</span> node<span class="token punctuation">.</span>innerText <span class="token operator">||</span> node<span class="token punctuation">.</span>textContent
+      <span class="token keyword">return</span> text<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\s+</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">var</span> count <span class="token operator">=</span> <span class="token string">'Words: '</span> <span class="token operator">+</span> <span class="token function">countWords</span><span class="token punctuation">(</span>wcParent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Create a shadow root</span>
+    <span class="token keyword">var</span> shadow <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">attachShadow</span><span class="token punctuation">(</span><span class="token punctuation">{</span>mode<span class="token operator">:</span> <span class="token string">'open'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Create text node and add word count to it</span>
+    <span class="token keyword">var</span> text <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'span'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    text<span class="token punctuation">.</span>textContent <span class="token operator">=</span> count<span class="token punctuation">;</span>
+
+    <span class="token comment">// Append it to the shadow root</span>
+    shadow<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Update count when element content changes</span>
+    <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> count <span class="token operator">=</span> <span class="token string">'Words: '</span> <span class="token operator">+</span> <span class="token function">countWords</span><span class="token punctuation">(</span>wcParent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      text<span class="token punctuation">.</span>textContent <span class="token operator">=</span> count<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span>
+
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Define the new element</span>
+customElements<span class="token punctuation">.</span><span class="token function">define</span><span class="token punctuation">(</span><span class="token string">'word-count'</span><span class="token punctuation">,</span> WordCount<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token keyword">extends</span><span class="token operator">:</span> <span class="token string">'p'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <div class="note notecard"> <p><strong>Note:</strong> The <code>CustomElementRegistry</code> is available through the <a href="window/customelements"><code>Window.customElements</code></a> property.</p> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/custom-elements.html#customelementregistry" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'CustomElementRegistry' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>CustomElementRegistry</code></th>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>builtin</code></th>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://webkit.org/b/182671">bug 182671</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://webkit.org/b/182671">bug 182671</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr>
+<tr>
+<th><code>define</code></th>
+<td class="bc-supports-yes">
+<div>67</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>54</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>79</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>54</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>41</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>10.1</div>
+<div>Supports 'Autonomous custom elements' but not 'Customized built-in elements'</div>
+</td>
+<td class="bc-supports-yes">
+<div>67</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>54</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>67</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>54</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>41</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>10.3</div>
+<div>Supports 'Autonomous custom elements' but not 'Customized built-in elements'</div>
+</td>
+<td class="bc-supports-yes">
+<div>9.0</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>6.0</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+</tr>
+<tr>
+<th><code>get</code></th>
+<td class="bc-supports-yes">
+<div>67</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>54</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>79</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>54</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>41</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>10.1</div>
+<div>Supports 'Autonomous custom elements' but not 'Customized built-in elements'</div>
+</td>
+<td class="bc-supports-yes">
+<div>67</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>54</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>67</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>54</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>41</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>10.3</div>
+<div>Supports 'Autonomous custom elements' but not 'Customized built-in elements'</div>
+</td>
+<td class="bc-supports-yes">
+<div>9.0</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>6.0</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+</tr>
+<tr>
+<th><code>upgrade</code></th>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>68</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>12.2</div></td>
+<td class="bc-supports-yes"><div>10.0</div></td>
+</tr>
+<tr>
+<th><code>whenDefined</code></th>
+<td class="bc-supports-yes">
+<div>67</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>54</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>79</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>54</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>41</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>10.1</div>
+<div>Supports 'Autonomous custom elements' but not 'Customized built-in elements'</div>
+</td>
+<td class="bc-supports-yes">
+<div>67</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>54</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>67</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>54</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>41</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>10.3</div>
+<div>Supports 'Autonomous custom elements' but not 'Customized built-in elements'</div>
+</td>
+<td class="bc-supports-yes">
+<div>9.0</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>6.0</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry</a>
+  </p>
+</div>

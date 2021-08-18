@@ -1,0 +1,89 @@
+<h1>ReadableStream.getReader()</h1> <p class="summary">The <code>getReader()</code> method of the <a href="../readablestream"><code>ReadableStream</code></a> interface creates a reader and locks the stream to it. While the stream is locked, no other reader can be acquired until this one is released. </p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> reader <span class="token operator">=</span> readableStream<span class="token punctuation">.</span><span class="token function">getReader</span><span class="token punctuation">(</span><span class="token punctuation">{</span>mode<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>{mode} <span class="badge inline optional">Optional</span>
+</dt> <dd>An object containing a property <code>mode</code>, specifying the type of reader to create. Values can be: <ul> <li>
+<code>"byob"</code>, which results in a <a href="../readablestreambyobreader"><code>ReadableStreamBYOBReader</code></a> being created that can read readable byte streams (i.e. can handle "bring your own buffer" reading).</li> <li>
+<code>undefined</code> (or not specified at all — this is the default), which results in a <a href="../readablestreamdefaultreader"><code>ReadableStreamDefaultReader</code></a> being created that can read individual chunks from a stream.</li> </ul> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="../readablestreamdefaultreader"><code>ReadableStreamDefaultReader</code></a> or <a href="../readablestreambyobreader"><code>ReadableStreamBYOBReader</code></a> object instance, depending on the <code>mode</code> value.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt>RangeError</dt> <dd>The provided mode value is not <code>"byob"</code> or <code>undefined</code>.</dd> <dt>TypeError</dt> <dd>The stream you are trying to create a reader for is not a <a href="../readablestream"><code>ReadableStream</code></a>.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>In the following simple example, a previously-created custom <code>ReadableStream</code> is read using a <a href="../readablestreamdefaultreader"><code>ReadableStreamDefaultReader</code></a> created using <code>getReader()</code>. (see our <a href="https://mdn.github.io/dom-examples/streams/simple-random-stream/" rel=" noopener">Simple random stream example</a> for the full code). Each chunk is read sequentially and output to the UI, until the stream has finished being read, at which point we return out of the recursive function and print the entire stream to another part of the UI.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">fetchStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> reader <span class="token operator">=</span> stream<span class="token punctuation">.</span><span class="token function">getReader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> charsReceived <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// read() returns a promise that resolves</span>
+  <span class="token comment">// when a value has been received</span>
+  reader<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">processText</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> done<span class="token punctuation">,</span> value <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Result objects contain two properties:</span>
+    <span class="token comment">// done  - true if the stream has already given you all its data.</span>
+    <span class="token comment">// value - some data. Always undefined when done is true.</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>done<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Stream complete"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      para<span class="token punctuation">.</span>textContent <span class="token operator">=</span> value<span class="token punctuation">;</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// value for fetch streams is a Uint8Array</span>
+    charsReceived <span class="token operator">+=</span> value<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> chunk <span class="token operator">=</span> value<span class="token punctuation">;</span>
+    <span class="token keyword">let</span> listItem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    listItem<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'Received '</span> <span class="token operator">+</span> charsReceived <span class="token operator">+</span> <span class="token string">' characters so far. Current chunk = '</span> <span class="token operator">+</span> chunk<span class="token punctuation">;</span>
+    list2<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>listItem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    result <span class="token operator">+=</span> chunk<span class="token punctuation">;</span>
+
+    <span class="token comment">// Read some more, and call this function again</span>
+    <span class="token keyword">return</span> reader<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>processText<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://streams.spec.whatwg.org/#rs-get-reader" hreflang="en" rel=" noopener">Streams<br><small>The definition of 'getReader()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getReader</code></th>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream/getReader" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream/getReader</a>
+  </p>
+</div>

@@ -1,0 +1,63 @@
+<h1>WebGLRenderingContext.isContextLost()</h1> <p>The <code><strong>WebGLRenderingContext.isContextLost()</strong></code> method returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> indicating whether or not the WebGL context has been lost and must be re-established before rendering can resume.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">let</span> isLost <span class="token operator">=</span> gl<span class="token punctuation">.</span><span class="token function">isContextLost</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> which is <code>true</code> if the context is lost, or <code>false</code> if not.</p>
+<h2 id="usage_notes">Usage notes</h2>
+<p>There are several reasons why a WebGL context may be lost, making it necessary to re-establish the context before resuming rendering. Examples include:</p> <ul> <li>Two or more pages are using the GPU, but together place too high a demand on the GPU, so the browser tells the two contexts that they've lost the connection, then selects one of the two to restore access for.</li> <li>The user's computer has multiple graphics processors (such as a laptop with both mobile and desktop class GPUs, the former used primarily when on battery power), and the user or system decides to switch GPUs. In this case, all contexts are lost, then restored after switching GPUs.</li> <li>Another page running in the user's browser performs an operation using the GPU that takes too long, causing hte browser to decide to reset the GPU in order to break the stall. This would cause every WebGL context to be lost throughout the entire browser. </li> <li>The user updates their graphics driver on an operating system that allows graphics drivers to be updated without restarting the system.</li> </ul>
+<h2 id="examples">Examples</h2>
+<p>For example, when checking for program linking success, you could also check if the context is not lost:</p> <pre data-language="js">gl<span class="token punctuation">.</span><span class="token function">linkProgram</span><span class="token punctuation">(</span>program<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>gl<span class="token punctuation">.</span><span class="token function">getProgramParameter</span><span class="token punctuation">(</span>program<span class="token punctuation">,</span> gl<span class="token punctuation">.</span><span class="token constant">LINK_STATUS</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span>gl<span class="token punctuation">.</span><span class="token function">isContextLost</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> info <span class="token operator">=</span> gl<span class="token punctuation">.</span><span class="token function">getProgramInfoLog</span><span class="token punctuation">(</span>program<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Error linking program:\n'</span> <span class="token operator">+</span> info<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.khronos.org/registry/webgl/specs/latest/1.0/#5.14.13" hreflang="en" rel=" noopener">WebGL 1.0<br><small>The definition of 'WebGLRenderingContext.isContextLost' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>isContextLost</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr></tbody>
+</table> 
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The <a href="../webglcontextevent"><code>WebGLContextEvent</code></a> signals changes in the context state.</li> <li>
+<a href="https://www.khronos.org/webgl/wiki/HandlingContextLost" rel=" noopener">Handling lost context in WebGL</a>: Khronos WebGL wiki</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/isContextLost" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/isContextLost</a>
+  </p>
+</div>

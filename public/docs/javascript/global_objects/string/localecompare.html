@@ -1,0 +1,157 @@
+<h1>String.prototype.localeCompare()</h1> <p>The <code>localeCompare()</code> method returns a number indicating whether a reference string comes before, or after, or is the same as the given string in sort order.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/string-localecompare.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <p>The new <code><var>locales</var></code> and <code><var>options</var></code> arguments let applications specify the language whose sort order should be used and customize the behavior of the function. In older implementations, which ignore the <code><var>locales</var></code> and <code><var>options</var></code> arguments, the locale and sort order used are entirely implementation-dependent.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">localeCompare</span><span class="token punctuation">(</span>compareString<span class="token punctuation">)</span>
+<span class="token function">localeCompare</span><span class="token punctuation">(</span>compareString<span class="token punctuation">,</span> locales<span class="token punctuation">)</span>
+<span class="token function">localeCompare</span><span class="token punctuation">(</span>compareString<span class="token punctuation">,</span> locales<span class="token punctuation">,</span> options<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>compareString</var></code></dt> <dd>The string against which the <code><var>referenceStr</var></code> is compared.</dd> <dt>
+<code><var>locales</var></code> and <code><var>options</var></code>
+</dt> <dd> <p>These arguments customize the behavior of the function and let applications specify the language whose formatting conventions should be used. In implementations which ignore the <code><var>locales</var></code> and <code><var>options</var></code> arguments, the locale used and the form of the string returned are entirely implementation-dependent.</p> <p>See the <a href="../intl/collator/collator"><code>Intl.Collator()</code> constructor</a> for details on these parameters and how to use them.</p> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <strong>negative</strong> number if <code><var>referenceStr</var></code> occurs before <code><var>compareString</var></code>; <strong>positive</strong> if the <code><var>referenceStr</var></code> occurs after <code><var>compareString</var></code>; <code>0</code> if they are equivalent.</p>
+<h2 id="description">Description</h2>
+<p>Returns an integer indicating whether the <code><var>referenceStr</var></code> comes before, after or is equivalent to the <code><var>compareString</var></code>.</p> <ul> <li>Negative when the <code><var>referenceStr</var></code> occurs before <code><var>compareString</var></code>
+</li> <li>Positive when the <code><var>referenceStr</var></code> occurs after <code><var>compareString</var></code>
+</li> <li>Returns <code>0</code> if they are equivalent</li> </ul> <div class="notecard warning"> <p><strong>Warning:</strong> Do not rely on exact return values of <code>-1</code> or <code>1</code>!</p> <p>Negative and positive integer results vary between browsers (as well as between browser versions) because the W3C specification only mandates negative and positive values. Some browsers may return <code>-2</code> or <code>2</code>, or even some other negative or positive value.</p> </div>
+<h2 id="performance">Performance</h2>
+<p>When comparing large numbers of strings, such as in sorting large arrays, it is better to create an <a href="../intl/collator"><code>Intl.Collator</code></a> object and use the function provided by its <a href="../intl/collator/compare"><code>compare</code></a> property. </p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_localecompare">Using <code>localeCompare()</code>
+</h3>
+<pre data-language="js"><span class="token comment">// The letter "a" is before "c" yielding a negative value</span>
+<span class="token string">'a'</span><span class="token punctuation">.</span><span class="token function">localeCompare</span><span class="token punctuation">(</span><span class="token string">'c'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// -2 or -1 (or some other negative value)</span>
+
+<span class="token comment">// Alphabetically the word "check" comes after "against" yielding a positive value</span>
+<span class="token string">'check'</span><span class="token punctuation">.</span><span class="token function">localeCompare</span><span class="token punctuation">(</span><span class="token string">'against'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 2 or 1 (or some other positive value)</span>
+
+<span class="token comment">// "a" and "a" are equivalent yielding a neutral value of zero</span>
+<span class="token string">'a'</span><span class="token punctuation">.</span><span class="token function">localeCompare</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 0</span>
+</pre>
+<h3 id="sort_an_array">Sort an array</h3>
+<p><code>localeCompare()</code> enables case-insensitive sorting for an array.</p> <pre data-language="js"><span class="token keyword">let</span> items <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'réservé'</span><span class="token punctuation">,</span> <span class="token string">'Premier'</span><span class="token punctuation">,</span> <span class="token string">'Cliché'</span><span class="token punctuation">,</span> <span class="token string">'communiqué'</span><span class="token punctuation">,</span> <span class="token string">'café'</span><span class="token punctuation">,</span> <span class="token string">'Adieu'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+items<span class="token punctuation">.</span><span class="token function">sort</span><span class="token punctuation">(</span> <span class="token punctuation">(</span><span class="token parameter">a<span class="token punctuation">,</span> b</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> a<span class="token punctuation">.</span><span class="token function">localeCompare</span><span class="token punctuation">(</span>b<span class="token punctuation">,</span> <span class="token string">'fr'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>ignorePunctuation<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// ['Adieu', 'café', 'Cliché', 'communiqué', 'Premier', 'réservé']</span>
+</pre>
+<h3 id="check_browser_support_for_extended_arguments">Check browser support for extended arguments</h3>
+<p>The <code><var>locales</var></code> and <code><var>options</var></code> arguments are not supported in all browsers yet.</p> <p>To check whether an implementation supports them, use the <code>"i"</code> argument (a requirement that illegal language tags are rejected) and look for a <a href="../rangeerror"><code>RangeError</code></a> exception:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">localeCompareSupportsLocales</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token string">'foo'</span><span class="token punctuation">.</span><span class="token function">localeCompare</span><span class="token punctuation">(</span><span class="token string">'bar'</span><span class="token punctuation">,</span> <span class="token string">'i'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> e<span class="token punctuation">.</span>name <span class="token operator">===</span> <span class="token string">'RangeError'</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="using_locales">Using <code>locales</code>
+</h3>
+<p>The results provided by <code>localeCompare()</code> vary between languages. In order to get the sort order of the language used in the user interface of your application, make sure to specify that language (and possibly some fallback languages) using the <code><var>locales</var></code> argument:</p> <pre data-language="js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'ä'</span><span class="token punctuation">.</span><span class="token function">localeCompare</span><span class="token punctuation">(</span><span class="token string">'z'</span><span class="token punctuation">,</span> <span class="token string">'de'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// a negative value: in German, ä sorts before z</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'ä'</span><span class="token punctuation">.</span><span class="token function">localeCompare</span><span class="token punctuation">(</span><span class="token string">'z'</span><span class="token punctuation">,</span> <span class="token string">'sv'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// a positive value: in Swedish, ä sorts after z</span>
+</pre>
+<h3 id="using_options">Using <code>options</code>
+</h3>
+<p>The results provided by <code>localeCompare()</code> can be customized using the <code><var>options</var></code> argument:</p> <pre data-language="js"><span class="token comment">// in German, ä has a as the base letter</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'ä'</span><span class="token punctuation">.</span><span class="token function">localeCompare</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'de'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> sensitivity<span class="token operator">:</span> <span class="token string">'base'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 0</span>
+
+<span class="token comment">// in Swedish, ä and a are separate base letters</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'ä'</span><span class="token punctuation">.</span><span class="token function">localeCompare</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'sv'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> sensitivity<span class="token operator">:</span> <span class="token string">'base'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// a positive value</span>
+</pre>
+<h3 id="numeric_sorting">Numeric sorting</h3>
+<pre data-language="js"><span class="token comment">// by default, "2" &gt; "10"</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"2"</span><span class="token punctuation">.</span><span class="token function">localeCompare</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1</span>
+
+<span class="token comment">// numeric using options:</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"2"</span><span class="token punctuation">.</span><span class="token function">localeCompare</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">,</span> <span class="token keyword">undefined</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>numeric<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// -1</span>
+
+<span class="token comment">// numeric using locales tag:</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"2"</span><span class="token punctuation">.</span><span class="token function">localeCompare</span><span class="token punctuation">(</span><span class="token string">"10"</span><span class="token punctuation">,</span> <span class="token string">"en-u-kn-true"</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// -1</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody>
+<tr><td><a href="https://tc39.es/ecma262/#sec-string.prototype.localecompare">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-string.prototype.localecompare</small></a></td></tr>
+<tr><td><a href="https://tc39.es/ecma402/#sup-String.prototype.localeCompare">ECMAScript Internationalization API Specification (ECMAScript Internationalization API)<br> <small>#sup-String.prototype.localeCompare</small></a></td></tr>
+</tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>localeCompare</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5.5</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>locales</code></th>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>options</code></th>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../intl/collator"><code>Intl.Collator</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/localeCompare</a>
+  </p>
+</div>

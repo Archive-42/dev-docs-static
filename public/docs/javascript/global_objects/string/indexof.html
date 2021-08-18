@@ -1,0 +1,114 @@
+<h1>String.prototype.indexOf()</h1> <p>The <code>indexOf()</code> method returns the index within the calling <a href="../string"><code>String</code></a> object of the first occurrence of the specified value, starting the search at <code>fromIndex</code>. Returns <code>-1</code> if the value is not found.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/string-indexof.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <div class="note notecard"><p><strong>Note:</strong> For the Array method, see <a href="../array/indexof"><code>Array.prototype.indexOf()</code></a>.</p></div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">indexOf</span><span class="token punctuation">(</span>searchValue<span class="token punctuation">)</span>
+<span class="token function">indexOf</span><span class="token punctuation">(</span>searchValue<span class="token punctuation">,</span> fromIndex<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>searchValue</var></code></dt> <dd> <p>The string value to search for.</p> <p>If no string is explicitly provided, <a href="https://tc39.github.io/ecma262/#sec-tostring" rel=" noopener"><var>searchValue</var> will be coerced to "<code>undefined</code>"</a>, and this value will be searched for in <code><var>str</var></code>.</p> <p>So, for example: <code>'undefined'.indexOf()</code> will return <code>0</code>, as <code>undefined</code> is found at position <code>0</code> in the string <code>undefined</code>. <code>'undefine'.indexOf()</code> however will return <code>-1</code>, as <code>undefined</code> is not found in the string <code>undefine</code>.</p> </dd> <dt>
+<var><code>fromIndex</code></var> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>An integer representing the index at which to start the search. Defaults to <code>0</code>.</p> <p>For <var><code>fromIndex</code></var> values lower than <code>0</code>, or greater than <code><var>str</var>.length</code>, the search starts at index <code>0</code> and <code><var>str</var>.length</code>, respectively.</p> <p>For example, <code>'hello world'.indexOf('o', -5)</code> will return <code>4</code>, as it starts at position <code>0</code>, and <code>o</code> is found at position <code>4</code>. On the other hand, <code>'hello world'.indexOf('o', 11)</code> (and with any <code>fromIndex</code> value greater than <code>11</code>) will return <code>-1</code>, as the search is started at position <code>11</code>, a position <em>after</em> the end of the string.</p> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The index of the first occurrence of <code><var>searchValue</var></code>, or <code><strong>-1</strong></code> if not found.</p> <p>An empty string <code><var>searchValue</var></code> produces strange results. With no <code><var>fromIndex</var></code> value, or any <code><var>fromIndex</var></code> value lower than the string's <code>length</code>, the returned value is the same as the <code><var>fromIndex</var></code> value:</p> <pre data-language="js"><span class="token string">'hello world'</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span> <span class="token comment">// returns 0</span>
+<span class="token string">'hello world'</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment">// returns 0</span>
+<span class="token string">'hello world'</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token comment">// returns 3</span>
+<span class="token string">'hello world'</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">)</span> <span class="token comment">// returns 8</span></pre> <p>However, with any <code><var>fromIndex</var></code> value equal to or greater than the string's <code>length</code>, the returned value <em>is</em> the string's <code>length</code>:</p> <pre data-language="js"><span class="token string">'hello world'</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">)</span> <span class="token comment">// returns 11</span>
+<span class="token string">'hello world'</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span> <span class="token number">13</span><span class="token punctuation">)</span> <span class="token comment">// returns 11</span>
+<span class="token string">'hello world'</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span> <span class="token number">22</span><span class="token punctuation">)</span> <span class="token comment">// returns 11</span></pre> <p>In the former instance, JS seems to find an empty string just after the specified index value. In the latter instance, JS seems to be finding an empty string at the end of the searched string.</p>
+<h2 id="description">Description</h2>
+<p>Characters in a string are indexed from left to right. The index of the first character is <code>0</code>, and the index of the last character of a string called <code><var>stringName</var></code> is <code><var>stringName</var>.length - 1</code>.</p> <pre data-language="js"><span class="token string">'Blue Whale'</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'Blue'</span><span class="token punctuation">)</span>      <span class="token comment">// returns  0</span>
+<span class="token string">'Blue Whale'</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'Blute'</span><span class="token punctuation">)</span>     <span class="token comment">// returns -1</span>
+<span class="token string">'Blue Whale'</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'Whale'</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>  <span class="token comment">// returns  5</span>
+<span class="token string">'Blue Whale'</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'Whale'</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">)</span>  <span class="token comment">// returns  5</span>
+<span class="token string">'Blue Whale'</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'Whale'</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">)</span>  <span class="token comment">// returns -1</span>
+<span class="token string">'Blue Whale'</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">)</span>          <span class="token comment">// returns  0</span>
+<span class="token string">'Blue Whale'</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span> <span class="token number">9</span><span class="token punctuation">)</span>       <span class="token comment">// returns  9</span>
+<span class="token string">'Blue Whale'</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>      <span class="token comment">// returns 10</span>
+<span class="token string">'Blue Whale'</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">''</span><span class="token punctuation">,</span> <span class="token number">11</span><span class="token punctuation">)</span>      <span class="token comment">// returns 10</span>
+</pre> <p>The <code>indexOf()</code> method is case sensitive. For example, the following expression returns <code>-1</code>:</p> <pre data-language="js"><span class="token string">'Blue Whale'</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'blue'</span><span class="token punctuation">)</span>  <span class="token comment">// returns -1</span>
+</pre>
+<h3 id="checking_occurrences">Checking occurrences</h3>
+<p>Note that <code>0</code> doesn't evaluate to <code>true</code> and <code>-1</code> doesn't evaluate to <code>false</code>. Therefore, when checking if a specific string exists within another string, the correct way to check would be:</p> <pre data-language="js"><span class="token string">'Blue Whale'</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'Blue'</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token operator">-</span><span class="token number">1</span>  <span class="token comment">// true</span>
+<span class="token string">'Blue Whale'</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'Bloe'</span><span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token operator">-</span><span class="token number">1</span>  <span class="token comment">// false</span>
+<span class="token operator">~</span><span class="token punctuation">(</span><span class="token string">'Blue Whale'</span><span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'Bloe'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// 0, which is falsy</span>
+</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="using_indexof">Using <code>indexOf()</code>
+</h3>
+<p>The following example uses <code>indexOf()</code> to locate values in the string <code>"Brave new world"</code>.</p> <pre data-language="js"><span class="token keyword">const</span> str <span class="token operator">=</span> <span class="token string">'Brave new world'</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Index of first w from start is '</span> <span class="token operator">+</span> str<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'w'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>   <span class="token comment">// logs 8</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Index of "new" from start is '</span> <span class="token operator">+</span> str<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'new'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>   <span class="token comment">// logs 6</span>
+</pre>
+<h3 id="indexof_and_case-sensitivity">
+<code>indexOf()</code> and case-sensitivity</h3>
+<p>The following example defines two string variables.</p> <p>The variables contain the same string, except that the second string contains uppercase letters. The first <a href="https://developer.mozilla.org/en-US/docs/Web/API/Console/log"><code>console.log()</code></a> method displays <code>19</code>. But because the <code>indexOf()</code> method is case sensitive, the string "<code>cheddar</code>" is not found in <code>myCapString</code>, so the second <code>console.log()</code> method displays <code>-1</code>.</p> <pre data-language="js"><span class="token keyword">const</span> myString    <span class="token operator">=</span> <span class="token string">'brie, pepper jack, cheddar'</span>
+<span class="token keyword">const</span> myCapString <span class="token operator">=</span> <span class="token string">'Brie, Pepper Jack, Cheddar'</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'myString.indexOf("cheddar") is '</span> <span class="token operator">+</span> myString<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'cheddar'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">// logs 19</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'myCapString.indexOf("cheddar") is '</span> <span class="token operator">+</span> myCapString<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'cheddar'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment">// logs -1</span>
+</pre>
+<h3 id="using_indexof_to_count_occurrences_of_a_letter_in_a_string">Using <code>indexOf()</code> to count occurrences of a letter in a string</h3>
+<p>The following example sets <code>count</code> to the number of occurrences of the letter <code>e</code> in the string <code>str</code>:</p> <pre data-language="js"><span class="token keyword">const</span> str <span class="token operator">=</span> <span class="token string">'To be, or not to be, that is the question.'</span>
+<span class="token keyword">let</span> count <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">let</span> position <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'e'</span><span class="token punctuation">)</span>
+
+<span class="token keyword">while</span> <span class="token punctuation">(</span>position <span class="token operator">!==</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  count<span class="token operator">++</span>
+  position <span class="token operator">=</span> str<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span><span class="token string">'e'</span><span class="token punctuation">,</span> position <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>count<span class="token punctuation">)</span>  <span class="token comment">// displays 4</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> </tr> </thead> <tbody> <tr> <td><a href="https://tc39.es/ecma262/#sec-string.prototype.indexof" hreflang="en" rel=" noopener">ECMAScript (ECMA-262)<br><small>The definition of 'String.prototype.indexOf' in that specification.</small></a></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>indexOf</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="charat"><code>String.prototype.charAt()</code></a></li> <li><a href="lastindexof"><code>String.prototype.lastIndexOf()</code></a></li> <li><a href="includes"><code>String.prototype.includes()</code></a></li> <li><a href="split"><code>String.prototype.split()</code></a></li> <li><a href="../array/indexof"><code>Array.prototype.indexOf()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/indexOf</a>
+  </p>
+</div>

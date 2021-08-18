@@ -1,0 +1,73 @@
+<h1>XRSession.onsqueezestart</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <a href="../xrsession"><code>XRSession</code></a> interface's <code><strong>onsqueezestart</strong></code> event handler property can be set to a function which is then invoked to handle the <a href="squeezestart_event"><code>squeezestart</code></a> event that's sent when the user successfully begins a <a href="../webxr_device_api/inputs#primary_squeeze_actions">primary squeeze action</a> on a WebXR input device. These actions represent the user squeezing or tightly gripping an object or controller.</p> <p>To learn more about how to use and handle WebXR controller inputs, see <a href="../webxr_device_api/inputs">Inputs and input sources</a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">xrSession<span class="token punctuation">.</span>onsqueezestart <span class="token operator">=</span> squeezestartHandlerFunction<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>A function to be invoked whenever the <a href="../xrsession"><code>XRSession</code></a> receives a <a href="squeezestart_event"><code>squeezestart</code></a> event.</p>
+<h2 id="examples">Examples</h2>
+<p>This snippet of code adds a simple handler for the <code>squeezestart</code> event, which responds only to events on the user's dominant hand by getting the target ray, then calling a function <code>findObjectUsingRay()</code> to identify the object that the user is pointing at. This object is then stored in a <code>heldObject</code> variable in the <code>user</code> object we're using to represent user information.</p> <pre data-language="js">xrSession<span class="token punctuation">.</span><span class="token function-variable function">onsqueezestart</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>inputSource<span class="token punctuation">.</span>handedness <span class="token operator">==</span> user<span class="token punctuation">.</span>handedness<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> targetRayPose <span class="token operator">=</span> event<span class="token punctuation">.</span>frame<span class="token punctuation">.</span><span class="token function">getPose</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>inputSource<span class="token punctuation">.</span>targetRaySpace<span class="token punctuation">,</span> myRefSpace<span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>targetRayPose<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      user<span class="token punctuation">.</span>heldObject <span class="token operator">=</span> <span class="token function">findObjectUsingRay</span><span class="token punctuation">(</span>targetRayPose<span class="token punctuation">.</span>transform<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td>
+<a href="https://immersive-web.github.io/webxr/#dom-xrsession-onsqueezestart" hreflang="en" rel=" noopener">WebXR Device API<br><small>The definition of 'XRSession.onsqueezestart' in that specification.</small></a> </td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onsqueezestart</code></th>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../webxr_device_api/inputs">Inputs and input sources</a> </li> <li>The other <code>onsqueeze*</code> handlers: <a href="onsqueeze"><code>onsqueeze</code></a> and <a href="onsqueezeend"><code>onsqueezeend</code></a>
+</li> <li>The <a href="squeeze_event"><code>squeeze</code></a>, <a href="squeezestart_event"><code>squeezestart</code></a>, and <a href="squeezeend_event"><code>squeezeend</code></a> events</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XRSession/onsqueezestart" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XRSession/onsqueezestart</a>
+  </p>
+</div>

@@ -1,0 +1,132 @@
+<h1>DataView() constructor</h1> <p>The <code>DataView()</code> constructor is used to create <a href="../dataview"><code>DataView</code></a> objects.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/dataview-constructor.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">new</span> <span class="token class-name">DataView</span><span class="token punctuation">(</span>buffer<span class="token punctuation">)</span>
+<span class="token keyword">new</span> <span class="token class-name">DataView</span><span class="token punctuation">(</span>buffer<span class="token punctuation">,</span> byteOffset<span class="token punctuation">)</span>
+<span class="token keyword">new</span> <span class="token class-name">DataView</span><span class="token punctuation">(</span>buffer<span class="token punctuation">,</span> byteOffset<span class="token punctuation">,</span> byteLength<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>buffer</var></code></dt> <dd>An existing <a href="../arraybuffer"><code>ArrayBuffer</code></a> or <a href="../sharedarraybuffer"><code>SharedArrayBuffer</code></a> to use as the storage backing the new <code>DataView</code> object.</dd> <dt>
+<code><var>byteOffset</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>The offset, in bytes, to the first byte in the above buffer for the new view to reference. If unspecified, the buffer view starts with the first byte.</dd> <dt>
+<code><var>byteLength</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>The number of elements in the byte array. If unspecified, the view's length will match the buffer's length.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A new <code>DataView</code> object representing the specified data buffer. (That probably wasn't a very helpful description.)</p> <p>You can think of the returned object as an "interpreter" of the array buffer of bytes — it knows how to convert numbers to fit within the buffer correctly, both when reading and writing to it. This means handling integer and float conversion, endianness, and other details of representing numbers in binary form.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><a href="../rangeerror"><code>RangeError</code></a></dt> <dd> <p>Thrown if the <code>byteOffset</code> or <code>byteLength</code> parameter values result in the view extending past the end of the buffer.</p> <p>For example, if the buffer is 16 bytes long, the <code>byteOffset</code> is 8, and the <code>byteLength</code> is 10, this error is thrown because the resulting view tries to extend 2 bytes past the total length of the buffer.</p> </dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="using_dataview">Using DataView</h3>
+<pre data-language="js"><span class="token keyword">var</span> buffer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ArrayBuffer</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> view <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DataView</span><span class="token punctuation">(</span>buffer<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+view<span class="token punctuation">.</span><span class="token function">setInt16</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">42</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+view<span class="token punctuation">.</span><span class="token function">getInt16</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 42</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-dataview-constructor">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-dataview-constructor</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>DataView</code></th>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>new_required</code></th>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>sharedarraybuffer_support</code></th>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>60-63</div>
+<div>Chrome disabled SharedArrayBuffer on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This was a temporary removal while mitigations were put in place.</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.1-11</div></td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled SharedArrayBuffer on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled SharedArrayBuffer on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.3-11</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Chrome disabled SharedArrayBuffer on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../dataview"><code>DataView</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView/DataView" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView/DataView</a>
+  </p>
+</div>

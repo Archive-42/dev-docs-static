@@ -1,0 +1,82 @@
+<h1>RTCPeerConnection.getConfiguration()</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <code>RTCPeerConnection.getConfiguration()</code> method returns an <a href="../rtcconfiguration"><code>RTCConfiguration</code></a> object which indicates the current configuration of the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> on which the method is called.</p> <p>The returned configuration is the last configuration applied via <a href="setconfiguration"><code>setConfiguration()</code></a>, or if <code>setConfiguration()</code> hasn't been called, the configuration the <code>RTCPeerConnection</code> was constructed with. The configuration includes a list of the ICE servers used by the connection, information about transport policies, and identity information.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> configuration <span class="token operator">=</span> RTCPeerConnection<span class="token punctuation">.</span><span class="token function">getConfiguration</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<p>This method takes no input parameters.</p>
+<h3 id="return_value">Return value</h3>
+<p>An <a href="../rtcconfiguration"><code>RTCConfiguration</code></a> object describing the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a>'s current configuration.</p>
+<h2 id="example">Example</h2>
+<p>This example adds a new certificate to an active connection if it doesn't already have one in use.</p> <pre data-language="js"><span class="token keyword">let</span> configuration <span class="token operator">=</span> myPeerConnection<span class="token punctuation">.</span><span class="token function">getConfiguration</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>configuration<span class="token punctuation">.</span>certificates <span class="token operator">!=</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span><span class="token operator">!</span>configuration<span class="token punctuation">.</span>certificates<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   RTCPeerConnection<span class="token punctuation">.</span><span class="token function">generateCertificate</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      name<span class="token operator">:</span> <span class="token string">'RSASSA-PKCS1-v1_5'</span><span class="token punctuation">,</span>
+      hash<span class="token operator">:</span> <span class="token string">'SHA-256'</span><span class="token punctuation">,</span>
+      modulusLength<span class="token operator">:</span> <span class="token number">2048</span><span class="token punctuation">,</span>
+      publicExponent<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">cert</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    configuration<span class="token punctuation">.</span>certificates <span class="token operator">=</span> <span class="token punctuation">[</span>cert<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    myPeerConnection<span class="token punctuation">.</span><span class="token function">setConfiguration</span><span class="token punctuation">(</span>configuration<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>This example fetches the current configuration of the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a>, then looks to see if it has any certificates set by examining whether or not (a) the configuration has a value for <code>certificates</code>, and (b) whether its length is zero.</p> <p>If it's determined that there are no certificates in place, <a href="generatecertificate"><code>RTCPeerConnection.generateCertificate()</code></a> is called to create a new certificate; we provide a fulfillment handler which adds a new array containing the one newly-created certificate to the current configuration and passes it to <a class="page-not-created"><code>setConfiguration()</code></a> to add the certificate to the connection.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcpeerconnection-getconfiguration" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'getConfiguration()' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getConfiguration</code></th>
+<td class="bc-supports-yes"><div>70</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>70</div></td>
+<td class="bc-supports-yes"><div>70</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="setconfiguration"><code>RTCPeerConnection.setConfiguration()</code></a></li> <li><a href="../rtcconfiguration"><code>RTCConfiguration</code></a></li> <li><a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/getConfiguration" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/getConfiguration</a>
+  </p>
+</div>

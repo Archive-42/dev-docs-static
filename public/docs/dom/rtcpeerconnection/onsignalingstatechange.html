@@ -1,0 +1,74 @@
+<h1>RTCPeerConnection.onsignalingstatechange</h1> <p>The <code><strong>onsignalingstatechange</strong></code> event handler property of the <strong><a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a></strong> interface specifies a function to be called when the <code><a href="signalingstatechange_event">signalingstatechange</a></code> event occurs on an <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> interface. The function receives as input the event object of type <a href="../event"><code>Event</code></a>; this event is sent when the peer connection's <a href="signalingstate"><code>signalingState</code></a> changes, which may happen either because of a call to <a href="setlocaldescription"><code>setLocalDescription()</code></a> or to <a href="setremotedescription"><code>setRemoteDescription()</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">rtcPeerConnection<span class="token punctuation">.</span>onsignalingstatechange <span class="token operator">=</span> errorHandler<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>Set this to a function which you provide that receives an <a href="../event"><code>Event</code></a> object as input; this contains the <code><a href="signalingstatechange_event">signalingstatechange</a></code> event. This event object doesn't provide details about what changed, but you can examine the <a href="signalingstate"><code>signalingState</code></a> property to determine what the new state is.</p> <p>You may also, as always, set up a handler for the <a href="signalingstatechange_event"><code>signalingstatechange</code></a> event using <a href="../eventtarget/addeventlistener"><code>addEventListener()</code></a>:</p> <pre data-language="js">myRTCPeerConnection<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"signalingstatechange"</span><span class="token punctuation">,</span> mySignalingStateChangeHandler<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>Or, using an anonymous (inline) handler:</p> <pre data-language="js">myRTCPeerConnection<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"signalingstatechange"</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">/* handle the event here */</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="example">Example</h2>
+<p>This snippet shows a handler for <code><a href="signalingstatechange_event">signalingstatechange</a></code> that looks for the <code>"have-local-pranswer"</code> signaling state—indicating that a remote offer has been received and a local description of type <code>"pranswer"</code> has been applied in response.</p> <pre data-language="js">pc<span class="token punctuation">.</span><span class="token function-variable function">onsignalingstatechange</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>pc<span class="token punctuation">.</span>signalingState <span class="token operator">===</span> <span class="token string">"have-local-pranswer"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// setLocalDescription() has been called with an answer</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcpeerconnection-onsignalingstatechange" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCPeerConnection.onsignalingstatechange' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onsignalingstatechange</code></th>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../webrtc_api/signaling_and_video_calling">Signaling and video calling</a>: A WebRTC example</li> <li>The <code><a href="signalingstatechange_event">signalingstatechange</a></code> event and its type, <a href="../event"><code>Event</code></a>.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/onsignalingstatechange" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/onsignalingstatechange</a>
+  </p>
+</div>

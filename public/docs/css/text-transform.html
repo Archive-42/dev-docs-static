@@ -1,0 +1,370 @@
+<h1>text-transform</h1> <p>The <code>text-transform</code> CSS property specifies how to capitalize an element's text. It can be used to make text appear in all-uppercase or all-lowercase, or with each word capitalized. It also can help improve legibility for ruby.</p> <iframe class="interactive" width="100%" height="390" src="https://interactive-examples.mdn.mozilla.net/pages/css/text-transform.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <p>The <code>text-transform</code> property takes into account language-specific case mapping rules such as the following:</p> <ul> <li> <p>In Turkic languages, like Turkish (<code>tr</code>), Azerbaijani (<code>az</code>), Crimean Tatar (<code>crh</code>), Volga Tatar (<code>tt</code>), and Bashkir (<code>ba</code>), there are two kinds of <code>i</code>, with and without the dot, and two case pairings: <code>i</code>/<code>İ</code> and <code>ı</code>/<code>I</code>.</p> </li> <li> <p>In German (<code>de</code>), the <code>ß</code> becomes <code>SS</code> in uppercase.</p> </li> <li> <p>In Dutch (<code>nl</code>), the <code>ij</code> digraph becomes <code>IJ</code>, even with <code>text-transform: capitalize</code>, which only puts the first letter of a word in uppercase.</p> </li> <li> <p>In Greek (<code>el</code>), vowels lose their accent when the whole word is in uppercase (<code>ά</code>/<code>Α</code>), except for the disjunctive <span>eta</span> (<code>ή</code>/<code>Ή</code>). Also, diphthongs with an accent on the first vowel lose the accent and gain a diaeresis on the second vowel (<code>άι</code>/<code>ΑΪ</code>).</p> </li> <li> <p>In Greek (<code>el</code>), the lowercase sigma character has two forms: <code>σ</code> and <code>ς</code>. <code>ς</code> is used only when sigma terminates a word. When applying <code>text-transform: lowercase</code> to an uppercase sigma (<code>Σ</code>), the browser needs to choose the right lowercase form based on context.</p> </li> <li>in Irish (<code>ga</code>), certain prefixed letters remain in lowercase when the base initial is capitalized, so for example <code>text-transform: uppercase</code> will change <code>ar aon tslí</code> to <code>AR AON tSLÍ</code> and not, as one might expect, <code>AR AON TSLÍ</code> (Firefox only). In some cases, a hyphen is also removed upon uppercasing: <code>an t-uisce</code> transforms to <code>AN tUISCE</code> (and the hyphen is correctly reinserted by <code>text-transform: lowercase</code>).</li> </ul> <p>The language is defined by the <code><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang">lang</a></code> HTML attribute or the <code><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/xml:lang">xml:lang</a></code> XML attribute.</p> <div class="note notecard"> <p><strong>Note:</strong> Support for language-specific cases varies between browsers, so check the <a href="#browser_compatibility">browser compatibility table</a>.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="css"><span class="token comment">/* Keyword values */</span>
+<span class="token property">text-transform</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token property">text-transform</span><span class="token punctuation">:</span> capitalize<span class="token punctuation">;</span>
+<span class="token property">text-transform</span><span class="token punctuation">:</span> uppercase<span class="token punctuation">;</span>
+<span class="token property">text-transform</span><span class="token punctuation">:</span> lowercase<span class="token punctuation">;</span>
+<span class="token property">text-transform</span><span class="token punctuation">:</span> full-width<span class="token punctuation">;</span>
+<span class="token property">text-transform</span><span class="token punctuation">:</span> full-size-kana<span class="token punctuation">;</span>
+
+<span class="token comment">/* Global values */</span>
+<span class="token property">text-transform</span><span class="token punctuation">:</span> inherit<span class="token punctuation">;</span>
+<span class="token property">text-transform</span><span class="token punctuation">:</span> initial<span class="token punctuation">;</span>
+<span class="token property">text-transform</span><span class="token punctuation">:</span> unset<span class="token punctuation">;</span>
+</pre> <dl> <dt><code>capitalize</code></dt> <dd> <p>Is a keyword that converts the first <em>letter</em> of each word to uppercase. Other characters remain unchanged (they retain their original case as written in the element's text). A letter is defined as a character that is part of Unicode's Letter or Number general categories <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>; thus, any punctuation marks or symbols at the beginning of a word are ignored.</p> <div class="note notecard">Authors should not expect <code>capitalize</code> to follow language-specific title casing conventions (such as skipping articles in English).</div> <div class="note notecard">The <code>capitalize</code> keyword was under-specified in CSS 1 and CSS 2.1. This resulted in differences between browsers in the way the first letter was calculated (Firefox considered <code>-</code> and <code>_</code> as letters, but other browsers did not. Both Webkit and Gecko incorrectly considered letter-based symbols like <code>ⓐ</code> to be real letters. Internet Explorer 9 was the closest to the CSS 2 definition, but with some weird cases.) By precisely defining the correct behavior, CSS Text Level 3 cleans this mess up. The <code>capitalize</code> line in the browser compatibility table contains the version the different engines started to support this now precisely-defined behavior.</div> </dd> <dt><code>uppercase</code></dt> <dd>Is a keyword that converts all characters to uppercase.</dd> <dt><code>lowercase</code></dt> <dd>Is a keyword that converts all characters to lowercase.</dd> <dt><code>none</code></dt> <dd>Is a keyword that prevents the case of all characters from being changed.</dd> <dt><code>full-width</code></dt> <dd>Is a keyword that forces the writing of a character — mainly ideograms and Latin scripts — inside a square, allowing them to be aligned in the usual East Asian scripts (like Chinese or Japanese).</dd> <dt><code>full-size-kana</code></dt> <dd>Generally used for <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ruby"><code>&lt;ruby&gt;</code></a> annotation text, the keyword converts all small Kana characters to the equivalent full-size Kana, to compensate for legibility issues at the small font sizes typically used in ruby.</dd> </dl>
+<h2 id="accessibility_concerns">Accessibility concerns</h2>
+<p>Large sections of text set with a <code>text-transform</code> value of <code>uppercase</code> may be difficult for people with cognitive concerns such as Dyslexia to read.</p> <ul> <li><a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/Understanding_WCAG/Perceivable#guideline_1.4_make_it_easier_for_users_to_see_and_hear_content_including_separating_foreground_from_background">MDN Understanding WCAG, Guideline 1.4 explanations</a></li> <li><a href="https://www.w3.org/TR/WCAG21/#visual-presentation" rel="noopener">W3C Understanding WCAG 2.1</a></li> </ul>
+<h2 id="formal_definition">Formal definition</h2>
+
+<div class="_table"><table class="properties"><tbody>
+<tr>
+<th scope="row"><a href="initial_value">Initial value</a></th>
+<td><code>none</code></td>
+</tr>
+<tr>
+<th scope="row">Applies to</th>
+<td>all elements. It also applies to <a href="::first-letter"><code>::first-letter</code></a> and <a href="::first-line"><code>::first-line</code></a>.</td>
+</tr>
+<tr>
+<th scope="row"><a href="inheritance">Inherited</a></th>
+<td>yes</td>
+</tr>
+<tr>
+<th scope="row"><a href="computed_value">Computed value</a></th>
+<td>as specified</td>
+</tr>
+<tr>
+<th scope="row">Animation type</th>
+<td>discrete</td>
+</tr>
+</tbody></table></div>
+
+<h2 id="formal_syntax">Formal syntax</h2>
+<pre class="notranslate">none <a href="value_definition_syntax#single_bar">|</a> capitalize <a href="value_definition_syntax#single_bar">|</a> uppercase <a href="value_definition_syntax#single_bar">|</a> lowercase <a href="value_definition_syntax#single_bar">|</a> full-width <a href="value_definition_syntax#single_bar">|</a> full-size-kana</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="none"><code>none</code></h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Initial String
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, ...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>text-transform: none
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, ...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+</pre> <pre data-language="css"><span class="token selector">span</span> <span class="token punctuation">{</span>
+  <span class="token property">text-transform</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">strong</span> <span class="token punctuation">{</span> <span class="token property">float</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span> <span class="token punctuation">}</span></pre> <p>This demonstrates no text transformation.</p> <p><iframe class="sample-code-frame" id="frame_none" width="100%" height="100px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/text-transform/_samples_/none" loading="lazy"></iframe></p>
+<h3 id="capitalize_general">capitalize (General)</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Initial String
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, ...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>text-transform: capitalize
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, ...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre> <pre data-language="css"><span class="token selector">span</span> <span class="token punctuation">{</span>
+  <span class="token property">text-transform</span><span class="token punctuation">:</span> capitalize<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">strong</span> <span class="token punctuation">{</span> <span class="token property">float</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span> <span class="token punctuation">}</span></pre> <p>This demonstrates text capitalization.</p> <p><iframe class="sample-code-frame" id="frame_capitalize_General" width="100%" height="100px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/text-transform/_samples_/capitalize_General" loading="lazy"></iframe></p>
+<h3 id="capitalize_punctuation">capitalize (Punctuation)</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Initial String
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span>(this) “is” [a] –short– -test- «for» *the* _css_ ¿capitalize? ?¡transform!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>text-transform: capitalize
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>(this) “is” [a] –short– -test- «for» *the* _css_ ¿capitalize? ?¡transform!<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre> <pre data-language="css"><span class="token selector">span</span> <span class="token punctuation">{</span>
+  <span class="token property">text-transform</span><span class="token punctuation">:</span> capitalize<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">strong</span> <span class="token punctuation">{</span> <span class="token property">float</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span> <span class="token punctuation">}</span></pre> <p>This demonstrates how initial punctuations of a word are ignored. The keyword target the first letter, that is the first Unicode character part of the Letter or Number general category.</p> <p><iframe class="sample-code-frame" id="frame_capitalize_Punctuation" width="100%" height="100px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/text-transform/_samples_/capitalize_Punctuation" loading="lazy"></iframe></p>
+<h3 id="capitalize_symbols">capitalize (Symbols)</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Initial String
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span>ⓐⓑⓒ (ⓓⓔⓕ) —ⓖⓗⓘ— ⓙkl<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>text-transform: capitalize
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>ⓐⓑⓒ (ⓓⓔⓕ) —ⓖⓗⓘ— ⓙkl<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre> <pre data-language="css"><span class="token selector">span</span> <span class="token punctuation">{</span>
+  <span class="token property">text-transform</span><span class="token punctuation">:</span> capitalize<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">strong</span> <span class="token punctuation">{</span> <span class="token property">float</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span> <span class="token punctuation">}</span></pre> <p>This demonstrates how initial symbols are ignored. The keyword target the first letter, that is the first Unicode character part of the Letter or Number general category.</p> <p><iframe class="sample-code-frame" id="frame_capitalize_Symbols" width="100%" height="100px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/text-transform/_samples_/capitalize_Symbols" loading="lazy"></iframe></p>
+<h3 id="capitalize_dutch_ij_digraph">capitalize (Dutch ij digraph)</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Initial String
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nl<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>The Dutch word: "ijsland" starts with a digraph.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>text-transform: capitalize
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>nl<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>The Dutch word: "ijsland" starts with a digraph.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre> <pre data-language="css"><span class="token selector">span</span> <span class="token punctuation">{</span>
+  <span class="token property">text-transform</span><span class="token punctuation">:</span> capitalize<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">strong</span> <span class="token punctuation">{</span> <span class="token property">float</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span> <span class="token punctuation">}</span></pre> <p>This demonstrates how the Dutch <em>ij</em> digraph must be handled like one single letter.</p> <p><iframe class="sample-code-frame" id="frame_capitalize_Dutch_ij_digraph" width="100%" height="100px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/text-transform/_samples_/capitalize_Dutch_ij_digraph" loading="lazy"></iframe></p>
+<h3 id="uppercase_general">uppercase (General)</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Initial String
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, ...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>text-transform: uppercase
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, ...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre> <pre data-language="css"><span class="token selector">span</span> <span class="token punctuation">{</span>
+  <span class="token property">text-transform</span><span class="token punctuation">:</span> uppercase<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">strong</span> <span class="token punctuation">{</span> <span class="token property">float</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span> <span class="token punctuation">}</span></pre> <p>This demonstrates transforming the text to uppercase.</p> <p><iframe class="sample-code-frame" id="frame_uppercase_General" width="100%" height="100px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/text-transform/_samples_/uppercase_General" loading="lazy"></iframe></p>
+<h3 id="uppercase_greek_vowels">uppercase (Greek Vowels)</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Initial String
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span>Θα πάμε στο "Θεϊκό φαΐ" ή στη "Νεράιδα"<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>text-transform: uppercase
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>el<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Θα πάμε στο "Θεϊκό φαΐ" ή στη "Νεράιδα"<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre> <pre data-language="css"><span class="token selector">span</span> <span class="token punctuation">{</span>
+  <span class="token property">text-transform</span><span class="token punctuation">:</span> uppercase<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">strong</span> <span class="token punctuation">{</span> <span class="token property">float</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span> <span class="token punctuation">}</span></pre> <p>This demonstrates how Greek vowels except disjunctive <em>eta</em> should have no accent, and the accent on the first vowel of a vowel pair becomes a diaeresis on the second vowel.</p> <p><iframe class="sample-code-frame" id="frame_uppercase_Greek_Vowels" width="100%" height="100px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/text-transform/_samples_/uppercase_Greek_Vowels" loading="lazy"></iframe></p>
+<h3 id="lowercase_general">lowercase (General)</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Initial String
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, ...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>text-transform: lowercase
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, ...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre> <pre data-language="css"><span class="token selector">span</span> <span class="token punctuation">{</span>
+  <span class="token property">text-transform</span><span class="token punctuation">:</span> lowercase<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">strong</span> <span class="token punctuation">{</span> <span class="token property">float</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span> <span class="token punctuation">}</span></pre> <p>This demonstrates transforming the text to lowercase.</p> <p><iframe class="sample-code-frame" id="frame_lowercase_General" width="100%" height="100px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/text-transform/_samples_/lowercase_General" loading="lazy"></iframe></p>
+<h3 id="lowercase_greek_σ">lowercase (Greek Σ)</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Initial String
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span>Σ IS A greek LETTER that appears SEVERAL TIMES IN ΟΔΥΣΣΕΥΣ.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>text-transform: lowercase
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>Σ IS A greek LETTER that appears SEVERAL TIMES IN ΟΔΥΣΣΕΥΣ.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre> <pre data-language="css"><span class="token selector">span</span> <span class="token punctuation">{</span>
+  <span class="token property">text-transform</span><span class="token punctuation">:</span> lowercase<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">strong</span> <span class="token punctuation">{</span> <span class="token property">float</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span> <span class="token punctuation">}</span></pre> <p>This demonstrates how the Greek character sigma (<code>Σ</code>) is transformed into the regular lowercase sigma (<code>σ</code>) or the word-final variant (<code>ς</code>), according the context.</p> <p><iframe class="sample-code-frame" id="frame_lowercase_Greek_Σ" width="100%" height="100px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/text-transform/_samples_/lowercase_Greek_%CE%A3" loading="lazy"></iframe></p>
+<h3 id="lowercase_lithuanian">lowercase (Lithuanian)</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Initial String
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span>Ĩ is a Lithuanian LETTER as is J́<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>text-transform: lowercase
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>lt<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Ĩ is a Lithuanian LETTER as is J́<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre> <pre data-language="css"><span class="token selector">span</span> <span class="token punctuation">{</span>
+  <span class="token property">text-transform</span><span class="token punctuation">:</span> lowercase<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">strong</span> <span class="token punctuation">{</span> <span class="token property">float</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span> <span class="token punctuation">}</span></pre> <p>This demonstrates how the Lithuanian letters <code>Ĩ</code> and <code>J́</code> retain their dot when transformed to lowercase.</p> <p><iframe class="sample-code-frame" id="frame_lowercase_Lithuanian" width="100%" height="100px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/text-transform/_samples_/lowercase_Lithuanian" loading="lazy"></iframe></p>
+<h3 id="full-width_general">full-width (General)</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Initial String
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span>0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&amp;()*+,-./:;&lt;=&gt;?@{|}~<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>text-transform: full-width
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&amp;()*+,-./:;&lt;=&gt;?@{|}~<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre> <pre data-language="css"><span class="token selector">span</span> <span class="token punctuation">{</span>
+  <span class="token property">text-transform</span><span class="token punctuation">:</span> full-width<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">strong</span> <span class="token punctuation">{</span> <span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span> <span class="token property">float</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span> <span class="token punctuation">}</span></pre> <p>Some characters exists in two formats, normal width and a full-width, with different Unicode code points. The full-width version is used to mix them smoothly with Asian ideographic characters.</p> <p><iframe class="sample-code-frame" id="frame_full-width_General" width="100%" height="175px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/text-transform/_samples_/full-width_General" loading="lazy"></iframe></p>
+<h3 id="full-width_japanese_half-width_katakana">full-width (Japanese half-width katakana)</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Initial String
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span>ｳｪﾌﾞﾌﾟﾛｸﾞﾗﾐﾝｸﾞの勉強<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>text-transform: full-width
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>strong</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span>ｳｪﾌﾞﾌﾟﾛｸﾞﾗﾐﾝｸﾞの勉強<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>strong</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre> <pre data-language="css"><span class="token selector">span</span> <span class="token punctuation">{</span>
+  <span class="token property">text-transform</span><span class="token punctuation">:</span> full-width<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">strong</span> <span class="token punctuation">{</span> <span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span> <span class="token property">float</span><span class="token punctuation">:</span> right<span class="token punctuation">;</span> <span class="token punctuation">}</span></pre> <p>The Japanese half-width katakana was used to represent katakana in 8-bit character codes. Unlike regular (full-width) katakana characters, a letter with dakuten (voiced sound mark) is represented as two code points, the body of letter and dakuten. The <code>full-width</code> combines these into a single code point when converting these characters into full-width.</p> <p><iframe class="sample-code-frame" id="frame_full-width_Japanese_half-width_katakana" width="100%" height="175px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/text-transform/_samples_/full-width_Japanese_half-width_katakana" loading="lazy"></iframe></p>
+<h3 id="full-size-kana">full-size-kana</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>ァィゥェ ォヵㇰヶ ㇱㇲッㇳ ㇴㇵㇶㇷ ㇸㇹㇺャ ュョㇻㇼ ㇽㇾㇿヮ<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>ァィゥェ ォヵㇰヶ ㇱㇲッㇳ ㇴㇵㇶㇷ ㇸㇹㇺャ ュョㇻㇼ ㇽㇾㇿヮ<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre> <pre data-language="css"><span class="token selector">p:nth-of-type(2)</span> <span class="token punctuation">{</span>
+  <span class="token property">text-transform</span><span class="token punctuation">:</span> full-size-kana<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p><iframe class="sample-code-frame" id="frame_full-size-kana" width="100%" height="175px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/text-transform/_samples_/full-size-kana" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/css-text-3/#text-transform" hreflang="en" rel=" noopener">CSS Text Module Level 3<br><small>The definition of 'text-transform' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>From <a href="https://www.w3.org/TR/CSS2/text.html#caps-prop" hreflang="en" rel=" noopener">CSS Level 2 (Revision 1)<br><small>The definition of 'text-transform' in that specification.</small></a>, extends letters to any Unicode character in the Number or Letter general category. Modifies the behavior of <code>capitalize</code> to apply to the first letter of the word, ignoring initial punctuations or symbols. Adds the <code>full-width</code> and <code>full-size-kana</code> keywords.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/CSS2/text.html#caps-prop" hreflang="en" rel=" noopener">CSS Level 2 (Revision 1)<br><small>The definition of 'text-transform' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>From <a href="https://www.w3.org/TR/CSS1/#text-transform" hreflang="en" rel=" noopener">CSS Level 1<br><small>The definition of 'text-transform' in that specification.</small></a>, extends letters to non-latin bi-cameral scripts</td> </tr> <tr> <td><a href="https://www.w3.org/TR/CSS1/#text-transform" hreflang="en" rel=" noopener">CSS Level 1<br><small>The definition of 'text-transform' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>text-transform</code></th>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>The <code>text-transform</code> property does not work for <code>::first-line</code> pseudo-elements (nor for the one-colon syntax). See <a href="https://crbug.com/129669">Chromium bug 129669</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>7</div>
+<div>Since Opera 15, the <code>text-transform</code> property does not work for <code>::first-line</code> pseudo-elements (nor for the one-colon syntax). See <a href="https://crbug.com/129669">Chromium bug 129669</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>The <code>text-transform</code> property does not work for <code>::first-line</code> pseudo-elements (also not for the old one-colon syntax). See <a href="https://webkit.org/b/3409">WebKit bug 3409</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>The <code>text-transform</code> property does not work for <code>::first-line</code> pseudo-elements (nor for the one-colon syntax). See <a href="https://crbug.com/129669">Chromium bug 129669</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>The <code>text-transform</code> property does not work for <code>::first-line</code> pseudo-elements (nor for the one-colon syntax). See <a href="https://crbug.com/129669">Chromium bug 129669</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>The <code>text-transform</code> property does not work for <code>::first-line</code> pseudo-elements (also not for the old one-colon syntax). See <a href="https://webkit.org/b/3409">WebKit bug 3409</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>1.0</div>
+<div>The <code>text-transform</code> property does not work for <code>::first-line</code> pseudo-elements (nor for the one-colon syntax). See <a href="https://crbug.com/129669">Chromium bug 129669</a>.</div>
+</td>
+</tr>
+<tr>
+<th><code>capitalize</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Before Firefox 14, some punctuation characters could interfere with correct capitalization. See <a href="https://bugzil.la/731536">bug 731536</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>Before Firefox 14, some punctuation characters could interfere with correct capitalization. See <a href="https://bugzil.la/731536">bug 731536</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>dutch_ij_digraph</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>full-size-kana</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>full-width</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>19</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>19</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>greek_accented_characters</code></th>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>21</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>21</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+</tr>
+<tr>
+<th><code>lowercase_sigma</code></th>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>4.4</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+</tr>
+<tr>
+<th><code>turkic_is</code></th>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>2.0</div></td>
+</tr>
+<tr>
+<th><code>uppercase_eszett</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="font-variant"><code>font-variant</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/text-transform</a>
+  </p>
+</div>

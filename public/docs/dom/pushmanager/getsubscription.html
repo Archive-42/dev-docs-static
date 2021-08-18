@@ -1,0 +1,95 @@
+<h1>PushManager.getSubscription()</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <code>PushManager.getSubscription()</code> method of the <a href="../pushmanager"><code>PushManager</code></a> interface retrieves an existing push subscription.</p> <p>It returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to a <a href="../pushsubscription"><code>PushSubscription</code></a> object containing details of an existing subscription. If no existing subscription exists, this resolves to a <code>null</code> value.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">PushManager<span class="token punctuation">.</span><span class="token function">getSubscription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">pushSubscription</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span> <span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<p>None.</p>
+<h3 id="returns">Returns</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to a <a href="../pushsubscription"><code>PushSubscription</code></a> object or <code>null</code>.</p>
+<h2 id="example">Example</h2>
+<p>This code snippet is taken from a <a href="https://github.com/GoogleChrome/samples/blob/gh-pages/push-messaging-and-notifications" rel=" noopener">push messaging and notification sample</a>. (No live demo is available.)</p> <pre data-language="js"><span class="token comment">// We need the service worker registration to check for a subscription</span>
+  navigator<span class="token punctuation">.</span>serviceWorker<span class="token punctuation">.</span>ready<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">serviceWorkerRegistration</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Do we already have a push message subscription?</span>
+    serviceWorkerRegistration<span class="token punctuation">.</span>pushManager<span class="token punctuation">.</span><span class="token function">getSubscription</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">subscription</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Enable any UI which subscribes / unsubscribes from</span>
+        <span class="token comment">// push messages.</span>
+        <span class="token keyword">var</span> pushButton <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.js-push-button'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        pushButton<span class="token punctuation">.</span>disabled <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>subscription<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token comment">// We aren’t subscribed to push, so set UI</span>
+          <span class="token comment">// to allow the user to enable push</span>
+          <span class="token keyword">return</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// Keep your server in sync with the latest subscriptionId</span>
+        <span class="token function">sendSubscriptionToServer</span><span class="token punctuation">(</span>subscription<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token function">showCurlCommand</span><span class="token punctuation">(</span>subscription<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Set your UI to show they have subscribed for</span>
+        <span class="token comment">// push messages</span>
+        pushButton<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'Disable Push Messages'</span><span class="token punctuation">;</span>
+        isPushEnabled <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        window<span class="token punctuation">.</span>Demo<span class="token punctuation">.</span>debug<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Error during getSubscription()'</span><span class="token punctuation">,</span> err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/push-api/#dom-pushmanager-getsubscription" hreflang="en" rel=" noopener">Push API<br><small>The definition of 'getSubscription()' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getSubscription</code></th>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>Push enabled by default.</div>
+</td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>  
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PushManager/getSubscription" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PushManager/getSubscription</a>
+  </p>
+</div>

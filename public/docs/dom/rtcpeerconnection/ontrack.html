@@ -1,0 +1,69 @@
+<h1>RTCPeerConnection.ontrack</h1> <p>The <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> property <code>ontrack</code> is an <a href="https://developer.mozilla.org/en-US/docs/Web/Events/Event_handlers"><code>EventHandler</code></a> which specifies a function to be called when the <code><a href="track_event">track</a></code> event occurs, indicating that a track has been added to the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a>. The function receives as input the event object, of type <a href="../rtctrackevent"><code>RTCTrackEvent</code></a>; this event is sent when a new incoming <a href="../mediastreamtrack"><code>MediaStreamTrack</code></a> has been created and associated with an <a href="../rtcrtpreceiver"><code>RTCRtpReceiver</code></a> object which has been added to the set of receivers on connection.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">RTCPeerConnection<span class="token punctuation">.</span>ontrack <span class="token operator">=</span> eventHandler<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>Set <code>ontrack</code> to be a function you provide that accepts as input a <a href="../rtctrackevent"><code>RTCTrackEvent</code></a> object describing the new track and how it's being used. This information includes the <a href="../mediastreamtrack"><code>MediaStreamTrack</code></a> object representing the new track, the <a href="../rtcrtpreceiver"><code>RTCRtpReceiver</code></a> and <a href="../rtcrtptransceiver"><code>RTCRtpTransceiver</code></a>, and a list of <a href="../mediastream"><code>MediaStream</code></a> objects which indicates which stream or streams the track is part of..</p>
+<h2 id="example">Example</h2>
+<p>This example, taken from the code for the article <a href="../webrtc_api/signaling_and_video_calling">Signaling and video calling</a>, connects the incoming track to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"><code>&lt;video&gt;</code></a> element which will be used to display the incoming video.</p> <pre data-language="js">pc<span class="token punctuation">.</span><span class="token function-variable function">ontrack</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"received_video"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>srcObject <span class="token operator">=</span> event<span class="token punctuation">.</span>streams<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"hangup-button"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>disabled <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre> <p>The first line of our <code>ontrack</code> event handler takes the first stream in the incoming track and sets the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video#attr-srcobject"><code>srcobject</code></a> attribute to that. This connects that stream of video to the element so that it begins to be presented to the user. The second line of code enables a "hang up" button, which the user can use to disconnect from the call.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcpeerconnection-ontrack" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCPeerConnection.ontrack' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>ontrack</code></th>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The <code><a href="track_event">track</a></code> event and its type, <a href="../rtctrackevent"><code>RTCTrackEvent</code></a>.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/ontrack" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/ontrack</a>
+  </p>
+</div>

@@ -1,0 +1,130 @@
+<h1>VRFrameData.VRFrameData()</h1>
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div> <p>The <a href="../vrframedata"><code>VRFrameData</code></a> constructor creates a <code>VRFrameData</code> object instance.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> myFrameData <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VRFrameData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<p>None.</p>
+<h2 id="examples">Examples</h2>
+
+<pre data-language="js"><span class="token keyword">var</span> frameData <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VRFrameData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> vrDisplay<span class="token punctuation">;</span>
+
+navigator<span class="token punctuation">.</span><span class="token function">getVRDisplays</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">displays</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  vrDisplay <span class="token operator">=</span> displays<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Display found'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// Starting the presentation when the button is clicked: It can only be called in response to a user gesture</span>
+  btn<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    vrDisplay<span class="token punctuation">.</span><span class="token function">requestPresent</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">{</span> source<span class="token operator">:</span> canvas <span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">drawVRScene</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// WebVR: Draw the scene for the WebVR display.</span>
+<span class="token keyword">function</span> <span class="token function">drawVRScene</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// WebVR: Request the next frame of the animation</span>
+  vrSceneFrame <span class="token operator">=</span> vrDisplay<span class="token punctuation">.</span><span class="token function">requestAnimationFrame</span><span class="token punctuation">(</span>drawVRScene<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// Populate frameData with the data of the next frame to display</span>
+  vrDisplay<span class="token punctuation">.</span><span class="token function">getFrameData</span><span class="token punctuation">(</span>frameData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// You can get the position, orientation, etc. of the display from the current frame's pose</span>
+  <span class="token comment">// curFramePose is a VRPose object</span>
+  <span class="token keyword">var</span> curFramePose <span class="token operator">=</span> frameData<span class="token punctuation">.</span>pose<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> curPos <span class="token operator">=</span> curFramePose<span class="token punctuation">.</span>position<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> curOrient <span class="token operator">=</span> curFramePose<span class="token punctuation">.</span>orientation<span class="token punctuation">;</span>
+
+  <span class="token comment">// Clear the canvas before we start drawing on it.</span>
+
+  gl<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span>gl<span class="token punctuation">.</span><span class="token constant">COLOR_BUFFER_BIT</span> <span class="token operator">|</span> gl<span class="token punctuation">.</span><span class="token constant">DEPTH_BUFFER_BIT</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// WebVR: Create the required projection and view matrix locations needed</span>
+  <span class="token comment">// for passing into the uniformMatrix4fv methods below</span>
+
+  <span class="token keyword">var</span> projectionMatrixLocation <span class="token operator">=</span> gl<span class="token punctuation">.</span><span class="token function">getUniformLocation</span><span class="token punctuation">(</span>shaderProgram<span class="token punctuation">,</span> <span class="token string">"projMatrix"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> viewMatrixLocation <span class="token operator">=</span> gl<span class="token punctuation">.</span><span class="token function">getUniformLocation</span><span class="token punctuation">(</span>shaderProgram<span class="token punctuation">,</span> <span class="token string">"viewMatrix"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// WebVR: Render the left eye’s view to the left half of the canvas</span>
+  gl<span class="token punctuation">.</span><span class="token function">viewport</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> canvas<span class="token punctuation">.</span>width <span class="token operator">*</span> <span class="token number">0.5</span><span class="token punctuation">,</span> canvas<span class="token punctuation">.</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  gl<span class="token punctuation">.</span><span class="token function">uniformMatrix4fv</span><span class="token punctuation">(</span>projectionMatrixLocation<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> frameData<span class="token punctuation">.</span>leftProjectionMatrix<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  gl<span class="token punctuation">.</span><span class="token function">uniformMatrix4fv</span><span class="token punctuation">(</span>viewMatrixLocation<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> frameData<span class="token punctuation">.</span>leftViewMatrix<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">drawGeometry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// WebVR: Render the right eye’s view to the right half of the canvas</span>
+  gl<span class="token punctuation">.</span><span class="token function">viewport</span><span class="token punctuation">(</span>canvas<span class="token punctuation">.</span>width <span class="token operator">*</span> <span class="token number">0.5</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> canvas<span class="token punctuation">.</span>width <span class="token operator">*</span> <span class="token number">0.5</span><span class="token punctuation">,</span> canvas<span class="token punctuation">.</span>height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  gl<span class="token punctuation">.</span><span class="token function">uniformMatrix4fv</span><span class="token punctuation">(</span>projectionMatrixLocation<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> frameData<span class="token punctuation">.</span>rightProjectionMatrix<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  gl<span class="token punctuation">.</span><span class="token function">uniformMatrix4fv</span><span class="token punctuation">(</span>viewMatrixLocation<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> frameData<span class="token punctuation">.</span>rightViewMatrix<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">drawGeometry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">function</span> <span class="token function">drawGeometry</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// draw the view for each eye</span>
+  <span class="token punctuation">}</span>
+
+    <span class="token operator">...</span>
+
+  <span class="token comment">// WebVR: Indicate that we are ready to present the rendered frame to the VR display</span>
+  vrDisplay<span class="token punctuation">.</span><span class="token function">submitFrame</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<div class="note notecard"> <p><strong>Note</strong>: You can see this complete code at <a href="https://github.com/mdn/webvr-tests/blob/master/raw-webgl-example/webgl-demo.js" rel=" noopener">raw-webgl-example</a>.</p> </div>
+
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://immersive-web.github.io/webvr/spec/1.1/#dom-vrframedata-vrframedata" hreflang="en" rel=" noopener">WebVR 1.1<br><small>The definition of 'VRFrameData()' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>VRFrameData</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>≤18-79</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Windows support was enabled in Firefox 55.</div>
+<div>64</div>
+<div>macOS support was enabled in Firefox 64.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>56-80</div>
+<div>["Only works in an <a href="https://webvr.info/get-chrome/">experimental version of Chrome</a>. (Other builds won't return any devices when <code>Navigator.getVRDisplays()</code> is invoked.)", "Daydream View supported in Chrome 56.", "Google Cardboard supported in Chrome 57."]</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Google Cardboard supported in Samsung Internet 7.0.</div>
+</td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webvr_api">WebVR API homepage</a></li> <li>
+<a href="https://mixedreality.mozilla.org/" rel=" noopener">https://mixedreality.mozilla.org/</a> — demos, downloads, and other resources from the Mozilla VR team.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/VRFrameData/VRFrameData" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/VRFrameData/VRFrameData</a>
+  </p>
+</div>

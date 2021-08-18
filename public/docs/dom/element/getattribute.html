@@ -1,0 +1,77 @@
+<h1>Element.getAttribute()</h1> <p>The <code>getAttribute()</code> method of the <a href="../element"><code>Element</code></a> interface returns the value of a specified attribute on the element. If the given attribute does not exist, the value returned will either be <code>null</code> or <code>""</code> (the empty string); see <a href="#non-existing_attributes">Non-existing attributes</a> for details.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">let</span> attribute <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span>attributeName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>where</p> <ul> <li>
+<code><var>attribute</var></code> is a string containing the value of <code><var>attributeName</var></code>.</li> <li>
+<code><var>attributeName</var></code> is the name of the attribute whose value you want to get.</li> </ul>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token operator">&lt;</span><span class="token operator">!</span><span class="token operator">--</span> example div <span class="token keyword">in</span> an html <span class="token constant">DOC</span> <span class="token operator">--</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>div id<span class="token operator">=</span><span class="token string">"div1"</span><span class="token operator">&gt;</span>Hi Champ<span class="token operator">!</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+
+<span class="token comment">// in a console</span>
+<span class="token keyword">const</span> div1 <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'div1'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//=&gt; &lt;div id="div1"&gt;Hi Champ!&lt;/div&gt;</span>
+
+<span class="token keyword">const</span> exampleAttr<span class="token operator">=</span> div1<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'id'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//=&gt; "div1"</span>
+
+<span class="token keyword">const</span> align <span class="token operator">=</span> div1<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'align'</span><span class="token punctuation">)</span>
+<span class="token comment">//=&gt; null</span>
+
+</pre>
+<h2 id="description">Description</h2>
+<h3 id="lower_casing">Lower casing</h3>
+<p>When called on an HTML element in a DOM flagged as an HTML document, <code>getAttribute()</code> lower-cases its argument before proceeding.</p>
+<h3 id="non-existing_attributes">Non-existing attributes</h3>
+<p>Essentially all web browsers (Firefox, Internet Explorer, recent versions of Opera, Safari, Konqueror, and iCab, as a non-exhaustive list) return <code>null</code> when the specified attribute does not exist on the specified element; this is what <a href="https://dom.spec.whatwg.org/#dom-element-getattribute" rel=" noopener">the current DOM specification draft</a> specifies. The old DOM 3 Core specification, on the other hand, says that the correct return value in this case is actually the <em>empty string</em>, and some DOM implementations implement this behavior. The implementation of <code>getAttribute()</code> in XUL (Gecko) actually follows the DOM 3 Core specification and returns an empty string. Consequently, you should use <a href="hasattribute"><code>element.hasAttribute()</code></a> to check for an attribute's existence prior to calling <code>getAttribute()</code> if it is possible that the requested attribute does not exist on the specified element.</p>
+<h3 id="retrieving_nonce_values">Retrieving nonce values</h3>
+<p>For security reasons, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">CSP</a> nonces from non-script sources, such as CSS selectors, and <code>.getAttribute("nonce")</code> calls are hidden.</p> <pre data-language="js"><span class="token keyword">let</span> nonce <span class="token operator">=</span>  script<span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'nonce'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// returns empty string</span>
+</pre> <p>Instead of retrieving the nonce from the content attribute, use the <a href="../htmlorforeignelement/nonce"><code>nonce</code></a> property:</p> <pre data-language="js"><span class="token keyword">let</span> nonce <span class="token operator">=</span>  script<span class="token punctuation">.</span>nonce<span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td>
+<a href="https://dom.spec.whatwg.org/#dom-element-getattribute" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'getAttribute()' in that specification.</small></a> </td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getAttribute</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table> 
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getAttribute" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/getAttribute</a>
+  </p>
+</div>

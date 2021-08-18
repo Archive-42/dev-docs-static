@@ -1,0 +1,190 @@
+<h1>visibility</h1> <p>The <code>visibility</code> CSS property shows or hides an element without changing the layout of a document. The property can also hide rows or columns in a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table"><code>&lt;table&gt;</code></a>.</p> <iframe class="interactive" width="100%" height="390" src="https://interactive-examples.mdn.mozilla.net/pages/css/visibility.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <p>To both hide an element <em>and remove it from the document layout</em>, set the <a href="display"><code>display</code></a> property to <code>none</code> instead of using <code>visibility</code>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="css"><span class="token comment">/* Keyword values */</span>
+<span class="token property">visibility</span><span class="token punctuation">:</span> visible<span class="token punctuation">;</span>
+<span class="token property">visibility</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
+<span class="token property">visibility</span><span class="token punctuation">:</span> collapse<span class="token punctuation">;</span>
+
+<span class="token comment">/* Global values */</span>
+<span class="token property">visibility</span><span class="token punctuation">:</span> inherit<span class="token punctuation">;</span>
+<span class="token property">visibility</span><span class="token punctuation">:</span> initial<span class="token punctuation">;</span>
+<span class="token property">visibility</span><span class="token punctuation">:</span> unset<span class="token punctuation">;</span>
+</pre> <p>The <code>visibility</code> property is specified as one of the keyword values listed below.</p>
+<h3 id="values">Values</h3>
+<dl> <dt><code>visible</code></dt> <dd>The element box is visible.</dd> <dt><code>hidden</code></dt> <dd>The element box is invisible (not drawn), but still affects layout as normal. Descendants of the element will be visible if they have <code>visibility</code> set to <code>visible</code>. The element cannot receive focus (such as when navigating through <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/tabindex">tab indexes</a>).</dd> <dt><code>collapse</code></dt> <dd> <ul> <li>For <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/table"><code>&lt;table&gt;</code></a> rows, columns, column groups, and row groups, the row(s) or column(s) are hidden and the space they would have occupied is removed (as if <code><a href="display"><code>display</code></a>: none</code> were applied to the column/row of the table). However, the size of other rows and columns is still calculated as though the cells in the collapsed row(s) or column(s) are present. This value allows for the fast removal of a row or column from a table without forcing the recalculation of widths and heights for the entire table.</li> <li>Collapsed flex items and ruby annotations are hidden, and the space they would have occupied is removed.</li> <li>For <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Tech/XUL">XUL</a> elements, the computed size of the element is always zero, regardless of other styles that would normally affect the size, although margins still take effect.</li> <li>For other elements, <code>collapse</code> is treated the same as <code>hidden</code>.</li> </ul> </dd> </dl>
+<h2 id="accessibility_concerns">Accessibility concerns</h2>
+<p>Using a <code>visibility</code> value of <code>hidden</code> on an element will remove it from the <a href="https://developer.mozilla.org/en-US/docs/Learn/Accessibility/What_is_accessibility#accessibility_apis">accessibility tree</a>. This will cause the element and all its descendant elements to no longer be announced by screen reading technology.</p>
+<h2 id="interpolation">Interpolation</h2>
+<p>Visibility values are interpolated between <em>visible</em> and <em>not-visible</em>. One of the start or ending values must therefore be <code>visible</code> or no interpolation can happen. The value is interpolated as a discrete step, where values of the timing function between <code>0</code> and <code>1</code> map to <code class="css">visible</code> and other values of the timing function (which occur only at the start/end of the transition or as a result of <code class="css">cubic-bezier()</code> functions with y values outside of [0, 1]) map to the closer endpoint.</p>
+<h2 id="notes">Notes</h2>
+<ul> <li>Support for <code>visibility: collapse</code> is missing or partially incorrect in some modern browsers. It may not be correctly treated like <code>visibility: hidden</code> on elements other than table rows and columns.</li> <li>
+<code>visibility: collapse</code> may change the layout of a table if the table has nested tables within the cells that are collapsed, unless <code>visibility: visible</code> is specified explicitly on nested tables.</li> </ul>
+<h2 id="formal_definition">Formal definition</h2>
+
+<div class="_table"><table class="properties"><tbody>
+<tr>
+<th scope="row"><a href="initial_value">Initial value</a></th>
+<td><code>visible</code></td>
+</tr>
+<tr>
+<th scope="row">Applies to</th>
+<td>all elements</td>
+</tr>
+<tr>
+<th scope="row"><a href="inheritance">Inherited</a></th>
+<td>yes</td>
+</tr>
+<tr>
+<th scope="row"><a href="computed_value">Computed value</a></th>
+<td>as specified</td>
+</tr>
+<tr>
+<th scope="row">Animation type</th>
+<td>a <a href="#Interpolation">visibility</a>
+</td>
+</tr>
+</tbody></table></div>
+
+<h2 id="formal_syntax">Formal syntax</h2>
+<pre class="notranslate">visible <a href="value_definition_syntax#single_bar">|</a> hidden <a href="value_definition_syntax#single_bar">|</a> collapse</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="basic_example">Basic example</h3>
+<h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>visible<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>The first paragraph is visible.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>not-visible<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>The second paragraph is NOT visible.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>visible<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>The third paragraph is visible. Notice the second paragraph is still occupying space.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+</pre> <h4 id="css">CSS</h4> <pre data-language="css"><span class="token selector">.visible</span> <span class="token punctuation">{</span>
+  <span class="token property">visibility</span><span class="token punctuation">:</span> visible<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.not-visible</span> <span class="token punctuation">{</span>
+  <span class="token property">visibility</span><span class="token punctuation">:</span> hidden<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p><iframe class="sample-code-frame" id="frame_Basic_example" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/visibility/_samples_/Basic_example" loading="lazy"></iframe></p>
+<h3 id="table_example">Table example</h3>
+<h4 id="html_2">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>table</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>1.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>collapse<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>1.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>1.3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>collapse<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>2.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>2.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>2.3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>tr</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>3.1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>3.2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>td</span><span class="token punctuation">&gt;</span></span>3.3<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>td</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>tr</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>table</span><span class="token punctuation">&gt;</span></span></pre> <h4 id="css_2">CSS</h4> <pre data-language="css"><span class="token selector">.collapse</span> <span class="token punctuation">{</span>
+  <span class="token property">visibility</span><span class="token punctuation">:</span> collapse<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">table</span> <span class="token punctuation">{</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid red<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">td</span> <span class="token punctuation">{</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 1px solid gray<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p><iframe class="sample-code-frame" id="frame_Table_example" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/visibility/_samples_/Table_example" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/css-ruby/#hiding" hreflang="en" rel=" noopener">CSS Ruby Layout Module Level 1<br><small>The definition of 'visibility' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Defines the <code>collapse</code> value as it applies to ruby annotations.</td> </tr> <tr> <td><a href="https://drafts.csswg.org/css-flexbox-1/#visibility-collapse" hreflang="en" rel=" noopener">CSS Flexible Box Layout Module<br><small>The definition of 'visibility' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Defines the <code>collapse</code> value as it applies to flex items.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/CSS2/visufx.html#visibility" hreflang="en" rel=" noopener">CSS Level 2 (Revision 1)<br><small>The definition of 'visibility' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>visibility</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>["Internet Explorer doesn't support <code>visibility: initial</code>.", "Up to Internet Explorer 7, descendants of <code>hidden</code> elements will still be invisible even if they have <code>visibility</code> set to <code>visible</code>."]</div>
+</td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>collapse</code></th>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>["Chrome treats <code>visibility: collapse</code> like <code>hidden</code>, leaving a white gap.", "Chrome supports the <code>collapse</code> value only on <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tr"><code>&lt;tr&gt;</code></a>, <a href="https://developer.mozilla.org/docs/Web/HTML/Element/thead"><code>&lt;thead&gt;</code></a>, <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tbody"><code>&lt;tbody&gt;</code></a>, and <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tfoot"><code>&lt;tfoot&gt;</code></a>, but not on <a href="https://developer.mozilla.org/docs/Web/HTML/Element/col"><code>&lt;col&gt;</code></a> and <a href="https://developer.mozilla.org/docs/Web/HTML/Element/colgroup"><code>&lt;colgroup&gt;</code></a> elements."]</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>["Firefox doesn't hide borders when hiding <a href="https://developer.mozilla.org/docs/Web/HTML/Element/col"><code>&lt;col&gt;</code></a> and <a href="https://developer.mozilla.org/docs/Web/HTML/Element/colgroup"><code>&lt;colgroup&gt;</code></a> elements if <code>border-collapse: collapse</code> is set.", "Prior to Firefox 88, <code>collapse</code> is not supported on ruby annotations."]</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>["Opera treats <code>visibility: collapse</code> like <code>hidden</code>, leaving a white gap.", "Opera supports the <code>collapse</code> value only on <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tr"><code>&lt;tr&gt;</code></a>, <a href="https://developer.mozilla.org/docs/Web/HTML/Element/thead"><code>&lt;thead&gt;</code></a>, <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tbody"><code>&lt;tbody&gt;</code></a>, and <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tfoot"><code>&lt;tfoot&gt;</code></a>, but not on <a href="https://developer.mozilla.org/docs/Web/HTML/Element/col"><code>&lt;col&gt;</code></a> and <a href="https://developer.mozilla.org/docs/Web/HTML/Element/colgroup"><code>&lt;colgroup&gt;</code></a> elements."]</div>
+</td>
+<td class="bc-supports-yes">
+<div>1.3</div>
+<div>["Safari treats <code>visibility: collapse</code> like <code>hidden</code>, leaving a white gap.", "Safari supports the collapse value only on <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tr"><code>&lt;tr&gt;</code></a>, <a href="https://developer.mozilla.org/docs/Web/HTML/Element/thead"><code>&lt;thead&gt;</code></a>, <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tbody"><code>&lt;tbody&gt;</code></a>, and <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tfoot"><code>&lt;tfoot&gt;</code></a>, but not on <a href="https://developer.mozilla.org/docs/Web/HTML/Element/col"><code>&lt;col&gt;</code></a> and <a href="https://developer.mozilla.org/docs/Web/HTML/Element/colgroup"><code>&lt;colgroup&gt;</code></a> elements."]</div>
+</td>
+<td class="bc-supports-yes">
+<div>≤37</div>
+<div>["WebView treats <code>visibility: collapse</code> like <code>hidden</code>, leaving a white gap.", "WebView supports the <code>collapse</code> value only on <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tr"><code>&lt;tr&gt;</code></a>, <a href="https://developer.mozilla.org/docs/Web/HTML/Element/thead"><code>&lt;thead&gt;</code></a>, <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tbody"><code>&lt;tbody&gt;</code></a>, and <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tfoot"><code>&lt;tfoot&gt;</code></a>, but not on <a href="https://developer.mozilla.org/docs/Web/HTML/Element/col"><code>&lt;col&gt;</code></a> and <a href="https://developer.mozilla.org/docs/Web/HTML/Element/colgroup"><code>&lt;colgroup&gt;</code></a> elements."]</div>
+</td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>["Chrome treats <code>visibility: collapse</code> like <code>hidden</code>, leaving a white gap.", "Chrome supports the <code>collapse</code> value only on <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tr"><code>&lt;tr&gt;</code></a>, <a href="https://developer.mozilla.org/docs/Web/HTML/Element/thead"><code>&lt;thead&gt;</code></a>, <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tbody"><code>&lt;tbody&gt;</code></a>, and <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tfoot"><code>&lt;tfoot&gt;</code></a>, but not on <a href="https://developer.mozilla.org/docs/Web/HTML/Element/col"><code>&lt;col&gt;</code></a> and <a href="https://developer.mozilla.org/docs/Web/HTML/Element/colgroup"><code>&lt;colgroup&gt;</code></a> elements."]</div>
+</td>
+<td class="bc-supports-yes">
+<div>4</div>
+<div>["Firefox doesn't hide borders when hiding <a href="https://developer.mozilla.org/docs/Web/HTML/Element/col"><code>&lt;col&gt;</code></a> and <a href="https://developer.mozilla.org/docs/Web/HTML/Element/colgroup"><code>&lt;colgroup&gt;</code></a> elements if <code>border-collapse: collapse</code> is set.", "Prior to Firefox 88, <code>collapse</code> is not supported on ruby annotations."]</div>
+</td>
+<td class="bc-supports-yes">
+<div>10.1</div>
+<div>["Opera treats <code>visibility: collapse</code> like <code>hidden</code>, leaving a white gap.", "Opera supports the <code>collapse</code> value only on <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tr"><code>&lt;tr&gt;</code></a>, <a href="https://developer.mozilla.org/docs/Web/HTML/Element/thead"><code>&lt;thead&gt;</code></a>, <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tbody"><code>&lt;tbody&gt;</code></a>, and <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tfoot"><code>&lt;tfoot&gt;</code></a>, but not on <a href="https://developer.mozilla.org/docs/Web/HTML/Element/col"><code>&lt;col&gt;</code></a> and <a href="https://developer.mozilla.org/docs/Web/HTML/Element/colgroup"><code>&lt;colgroup&gt;</code></a> elements."]</div>
+</td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>["Safari treats <code>visibility: collapse</code> like <code>hidden</code>, leaving a white gap.", "Safari supports the collapse value only on <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tr"><code>&lt;tr&gt;</code></a>, <a href="https://developer.mozilla.org/docs/Web/HTML/Element/thead"><code>&lt;thead&gt;</code></a>, <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tbody"><code>&lt;tbody&gt;</code></a>, and <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tfoot"><code>&lt;tfoot&gt;</code></a>, but not on <a href="https://developer.mozilla.org/docs/Web/HTML/Element/col"><code>&lt;col&gt;</code></a> and <a href="https://developer.mozilla.org/docs/Web/HTML/Element/colgroup"><code>&lt;colgroup&gt;</code></a> elements."]</div>
+</td>
+<td class="bc-supports-yes">
+<div>1.0</div>
+<div>["Samsung Internet treats <code>visibility: collapse</code> like <code>hidden</code>, leaving a white gap.", "Samsung Internet supports the <code>collapse</code> value only on <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tr"><code>&lt;tr&gt;</code></a>, <a href="https://developer.mozilla.org/docs/Web/HTML/Element/thead"><code>&lt;thead&gt;</code></a>, <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tbody"><code>&lt;tbody&gt;</code></a>, and <a href="https://developer.mozilla.org/docs/Web/HTML/Element/tfoot"><code>&lt;tfoot&gt;</code></a>, but not on <a href="https://developer.mozilla.org/docs/Web/HTML/Element/col"><code>&lt;col&gt;</code></a> and <a href="https://developer.mozilla.org/docs/Web/HTML/Element/colgroup"><code>&lt;colgroup&gt;</code></a> elements."]</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="display"><code>display</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/visibility" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/visibility</a>
+  </p>
+</div>

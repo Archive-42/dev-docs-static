@@ -1,0 +1,76 @@
+<h1>ServiceWorkerGlobalScope: install event</h1> <p>The <code>install</code> event of the <a href="../serviceworkerglobalscope"><code>ServiceWorkerGlobalScope</code></a> interface is fired when a <a href="../serviceworkerregistration"><code>ServiceWorkerRegistration</code></a> acquires a new <a href="../serviceworkerregistration/installing"><code>ServiceWorkerRegistration.installing</code></a> worker.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>No</td> </tr> <tr> <th scope="row">Cancelable</th> <td>No</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../extendableevent"><code>ExtendableEvent</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td><a href="oninstall"><code>ServiceWorkerGlobalScope.oninstall</code></a></td> </tr> </tbody> </table></div>
+<h2 id="examples">Examples</h2>
+<p>The following snippet shows how an <code>install</code> event handler can be used to populate a cache with a number of responses, which the service worker can then use to serve assets offline:</p> <pre data-language="js"><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'install'</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  event<span class="token punctuation">.</span><span class="token function">waitUntil</span><span class="token punctuation">(</span>
+   caches<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'v1'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">cache</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> cache<span class="token punctuation">.</span><span class="token function">addAll</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+        <span class="token string">'/sw-test/'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/index.html'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/style.css'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/app.js'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/image-list.js'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/star-wars-logo.jpg'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/gallery/'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/gallery/bountyHunters.jpg'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/gallery/myLittleVader.jpg'</span><span class="token punctuation">,</span>
+        <span class="token string">'/sw-test/gallery/snowTroopers.jpg'</span>
+      <span class="token punctuation">]</span><span class="token punctuation">)</span>
+   <span class="token punctuation">}</span><span class="token punctuation">)</span>
+   <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>You can also set up the event handler using the <a href="oninstall"><code>ServiceWorkerGlobalScope.oninstall</code></a> property:</p> <pre data-language="js">globalScope<span class="token punctuation">.</span><span class="token function-variable function">oninstall</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token operator">...</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/ServiceWorker/#service-worker-global-scope-install-event" hreflang="en" rel=" noopener">Service Workers<br><small>The definition of 'install' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>install_event</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="activate_event"><code>activate</code></a> event</li> <li><a href="../serviceworkerglobalscope"><code>ServiceWorkerGlobalScope</code></a></li> <li><a href="../service_worker_api">Service Worker API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/install_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/install_event</a>
+  </p>
+</div>

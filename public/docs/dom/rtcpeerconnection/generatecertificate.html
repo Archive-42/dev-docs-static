@@ -1,0 +1,97 @@
+<h1>RTCPeerConnection.generateCertificate() static function</h1>
+
+ <p>The static <code>RTCPeerConnection.generateCertificate()</code> function creates an X.509 certificate and corresponding private key, returning a promise that resolves with the new <a href="../rtccertificate"><code>RTCCertificate</code></a> once it's generated.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">let</span> certPromise <span class="token operator">=</span> RTCPeerConnection<span class="token punctuation">.</span><span class="token function">generateCertificate</span><span class="token punctuation">(</span>keygenAlgorithm<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>keygenAlgorithm</code></dt> <dd>A <a href="../web_crypto_api">Web Crypto API</a> <a class="page-not-created"><code>AlgorithmIdentifier</code></a> string or an <a class="page-not-created"><code>Algorithm</code></a> -subclassed object specifying an algorithm to use when creating the certificate's key.</dd> </dl> <div class="note notecard"> <p><code>RTCPeerConnection.generateCertificate()</code> is a static method, so it is always called on the <code>RTCPeerConnection</code> interface itself, not an instance thereof.</p> </div>
+<h3 id="return_value">Return value</h3>
+<p>A promise which resolves to a new <a href="../rtccertificate"><code>RTCCertificate</code></a> object containing a new key based on the specified options.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>NotSupportedError</code></dt> <dd>The normalized form of <code>keygenAlgorithm</code> specifies an algorithm or algorithm settings that the browser doesn't support, or which it does not allow for use with an <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a>.</dd> </dl> <p>Other errors may occur; for example, if the specified <code>keygenAlgorithm</code> can't be successfully converted into an <a class="page-not-created"><code>RTCCertificateExpiration</code></a> dictionary, the error that occurs during that conversion will be thrown.</p>
+<h2 id="description">Description</h2>
+<p>If a string is specified, it must be a <a href="../web_crypto_api">Web Crypto API</a>-compatible algorithm name string. Alternatively, you can provide specific details for the algorithm's configuration by providing an object based on one of the Web Crypto API's <a class="page-not-created"><code>Algorithm</code></a> class's subclasses.</p>
+<h3 id="standard_configurations">Standard configurations</h3>
+<p>All browsers are required to support the following two configurations. It's entirely possible that a browser's <em>default</em> settings may be different, but these are always supported.</p> <h4 id="rsassa-pkcs1-v1_5">RSASSA-PKCS1-v1_5</h4> <pre data-language="js"><span class="token keyword">let</span> stdRSACertificate <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">"RSASSA-PKCS10-v1_5"</span><span class="token punctuation">,</span>
+  modulusLength<span class="token operator">:</span> <span class="token number">2048</span><span class="token punctuation">,</span>
+  publicExponent<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">UInt8Array</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+  hash<span class="token operator">:</span> <span class="token string">"SHA-256"</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre> <h4 id="ecdsa">ECDSA</h4> <pre data-language="js"><span class="token keyword">let</span> stdECDSACertificate <span class="token operator">=</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">"ECDSA"</span><span class="token punctuation">,</span>
+  namedCurve<span class="token operator">:</span> <span class="token string">"P-256"</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="certificate_expiration_time">Certificate expiration time</h3>
+<p>By default the new certificate is configured with <code>expires</code> set to a <a href="../domtimestamp"><code>DOMTimeStamp</code></a> value of 2592000000, or 30 days. The expiration time cannot exceed 31536000000, or 365 days. It's also useful to note that browsers may further restrict the expiration time of certificates if they choose.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="specifying_algorithm_details">Specifying algorithm details</h3>
+<p>This example requests a new RSASSA-PKCS1-v1_5 certificate using a SHA-256 hash and a modulus length of 2048.</p> <pre data-language="js">RTCPeerConnection<span class="token punctuation">.</span><span class="token function">generateCertificate</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">'RSASSA-PKCS1-v1_5'</span><span class="token punctuation">,</span>
+    hash<span class="token operator">:</span> <span class="token string">'SHA-256'</span><span class="token punctuation">,</span>
+    modulusLength<span class="token operator">:</span> <span class="token number">2048</span><span class="token punctuation">,</span>
+    publicExponent<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">cert</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> pc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RTCPeerConnection</span><span class="token punctuation">(</span><span class="token punctuation">{</span>certificates<span class="token operator">:</span> <span class="token punctuation">[</span>cert<span class="token punctuation">]</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="specifying_an_algorithm_by_name">Specifying an algorithm by name</h3>
+<p>The example below specifies a string requesting an <a href="https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm" rel=" noopener">ECDSA</a> certificate.</p> <pre data-language="js">RTCPeerConnection<span class="token punctuation">.</span><span class="token function">generateCertificate</span><span class="token punctuation">(</span><span class="token string">"ECDSA"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcpeerconnection-generatecertificate" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCPeerConnection.generateCertificate()' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>generateCertificate</code></th>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>48</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>12.2</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webrtc_api">WebRTC API</a></li> <li><a href="../web_crypto_api">Web Crypto API</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/First_steps/Website_security">Web site security</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/Security">Web security</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Symmetric-key_cryptography">Symmetric-key cryptography</a></li> <li><code><a href="../window/crypto">Window.crypto</a></code></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/generateCertificate" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/generateCertificate</a>
+  </p>
+</div>

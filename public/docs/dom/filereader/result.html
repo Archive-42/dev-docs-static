@@ -1,0 +1,69 @@
+<h1>FileReader.result</h1> <p>The <a href="../filereader"><code>FileReader</code></a> <code><strong>result</strong></code> property returns the file's contents. This property is only valid after the read operation is complete, and the format of the data depends on which of the methods was used to initiate the read operation.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> file <span class="token operator">=</span> instanceOfFileReader<span class="token punctuation">.</span>result
+</pre>
+<h3 id="value">Value</h3>
+<p>An appropriate string or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> based on which of the reading methods was used to initiate the read operation. The value is <code>null</code> if the reading is not yet complete or was unsuccessful.</p> <p>The result types are described below.</p> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Method</th> <th scope="col">Description</th> </tr> </thead> <tbody> <tr> <td><a href="readasarraybuffer"><code>readAsArrayBuffer()</code></a></td> <td>The <code>result</code> is a JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> containing binary data.</td> </tr> <tr> <td><a href="readasbinarystring"><code>readAsBinaryString()</code></a></td> <td>The <code>result</code> contains the raw binary data from the file in a string. </td> </tr> <tr> <td><a href="readasdataurl"><code>readAsDataURL()</code></a></td> <td>The <code>result</code> is a string with a <code>data:</code> URL representing the file's data.</td> </tr> <tr> <td><a href="readastext"><code>readAsText()</code></a></td> <td>The <code>result</code> is text in a string.</td> </tr> </tbody> </table></div>
+<h2 id="example">Example</h2>
+<p>This example presents a function, <code>read()</code>, which reads a file from a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/file">file input</a>. It works by creating a <a href="../filereader"><code>FileReader</code></a> object and creating a listener for <a href="load_event"><code>load</code></a> events such that when then file is read, the <code>result</code> is obtained and passed to the callback function provided to <code>read()</code>.</p> <p>The content is handled as raw text data.</p> <pre data-language="js"><span class="token keyword">var</span> fileInput <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'input[type="file"]'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">read</span><span class="token punctuation">(</span><span class="token parameter">callback</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> file <span class="token operator">=</span> fileInput<span class="token punctuation">.</span>files<span class="token punctuation">.</span><span class="token function">item</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> reader <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FileReader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  reader<span class="token punctuation">.</span><span class="token function-variable function">onload</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">callback</span><span class="token punctuation">(</span>reader<span class="token punctuation">.</span>result<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  reader<span class="token punctuation">.</span><span class="token function">readAsText</span><span class="token punctuation">(</span>file<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/FileAPI/#dom-filereader-result" hreflang="en" rel=" noopener">File API<br><small>The definition of 'result' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>result</code></th>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.6</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>32</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>6.1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../filereader"><code>FileReader</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileReader/result" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileReader/result</a>
+  </p>
+</div>

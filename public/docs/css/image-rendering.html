@@ -1,0 +1,177 @@
+<h1>image-rendering</h1> <p>The <code>image-rendering</code> <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> property sets an image scaling algorithm. The property applies to an element itself, to any images set in its other properties, and to its descendants.</p> <iframe class="interactive" width="100%" height="390" src="https://interactive-examples.mdn.mozilla.net/pages/css/image-rendering.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <p>The <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent</a> will scale an image when the page author specifies dimensions other than its natural size. Scaling may also occur due to user interaction (zooming). For example, if the natural size of an image is <code>100×100px</code><em>,</em> but its actual dimensions are <code>200×200px</code> (or <code>50×50px</code>), then the image will be upscaled (or downscaled) using the algorithm specified by <code>image-rendering</code>. This property has no effect on non-scaled images.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="css"><span class="token comment">/* Keyword values */</span>
+<span class="token property">image-rendering</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+<span class="token property">image-rendering</span><span class="token punctuation">:</span> crisp-edges<span class="token punctuation">;</span>
+<span class="token property">image-rendering</span><span class="token punctuation">:</span> pixelated<span class="token punctuation">;</span>
+
+<span class="token comment">/* Global values */</span>
+<span class="token property">image-rendering</span><span class="token punctuation">:</span> inherit<span class="token punctuation">;</span>
+<span class="token property">image-rendering</span><span class="token punctuation">:</span> initial<span class="token punctuation">;</span>
+<span class="token property">image-rendering</span><span class="token punctuation">:</span> unset<span class="token punctuation">;</span></pre>
+<h3 id="values">Values</h3>
+<dl> <dt><code>auto</code></dt> <dd>The scaling algorithm is UA dependent. Since version 1.9 (Firefox 3.0), Gecko uses <em>bilinear</em> resampling (high quality).</dd> <dt>
+<code>smooth</code> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt> <dd>The image should be scaled with an algorithm that maximizes the appearance of the image. In particular, scaling algorithms that "smooth" colors are acceptable, such as bilinear interpolation. This is intended for images such as photos.</dd> <dt>
+<code style="white-space: nowrap;">high-quality</code> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt> <dd>Identical to <code>smooth</code>, but with a preference for higher-quality scaling. If system resources are constrained, images with <code style="white-space: nowrap;">high-quality</code> should be prioritized over those with any other value, when considering which images to degrade the quality of and to what degree.</dd> <dt><code style="white-space: nowrap;">crisp-edges</code></dt> <dd>The image must be scaled with an algorithm that preserves contrast and edges in the image, and which does not smooth colors or introduce blur to the image in the process. Suitable algorithms include nearest-neighbor and <a href="https://en.wikipedia.org/wiki/Pixel-art_scaling_algorithms" rel=" noopener">other non-smoothing scaling algorithms</a> such as 2×SaI and <a href="https://en.wikipedia.org/wiki/Hqx" rel=" noopener">hqx-family</a> algorithms. This value is intended for pixel-art images, such as in browser games.</dd> <dt><code>pixelated</code></dt> <dd>When scaling the image up, the nearest-neighbor algorithm must be used, so that the image appears to be composed of large pixels. When scaling down, this is the same as <code>auto</code>.</dd> </dl> <div class="notecard note"> <p><strong>Note:</strong> The values <code>optimizeQuality</code> and <code>optimizeSpeed</code> present in an early draft (and coming from its SVG counterpart <code><a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/image-rendering">image-rendering</a></code>) are defined as synonyms for the <code>smooth</code> and <code>pixelated</code> values respectively.</p> </div>
+<h2 id="formal_definition">Formal definition</h2>
+
+<div class="_table"><table class="properties"><tbody>
+<tr>
+<th scope="row"><a href="initial_value">Initial value</a></th>
+<td><code>auto</code></td>
+</tr>
+<tr>
+<th scope="row">Applies to</th>
+<td>all elements</td>
+</tr>
+<tr>
+<th scope="row"><a href="inheritance">Inherited</a></th>
+<td>yes</td>
+</tr>
+<tr>
+<th scope="row"><a href="computed_value">Computed value</a></th>
+<td>as specified</td>
+</tr>
+<tr>
+<th scope="row">Animation type</th>
+<td>discrete</td>
+</tr>
+</tbody></table></div>
+
+<h2 id="formal_syntax">Formal syntax</h2>
+<pre class="notranslate">auto <a href="value_definition_syntax#single_bar">|</a> crisp-edges <a href="value_definition_syntax#single_bar">|</a> pixelated</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="setting_image_scaling_algorithms">Setting image scaling algorithms</h3>
+<p>In practical use, the <code>pixelated</code> and <code>crisp-edges</code> rules can be combined to provide some fallback for each other. (Just prepend the actual rules with the fallback.) The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">Canvas API</a> can provide a <a href="http://phrogz.net/tmp/canvas_image_zoom.html" rel=" noopener">fallback solution for <code>pixelated</code></a> through manual image data manipulation or with <code><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/imageSmoothingEnabled">imageSmoothingEnabled</a></code>.</p> <h4 id="css">CSS</h4> <pre data-language="css"><span class="token selector">.auto</span> <span class="token punctuation">{</span>
+  <span class="token property">image-rendering</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.pixelated</span> <span class="token punctuation">{</span>
+  <span class="token property">-ms-interpolation-mode</span><span class="token punctuation">:</span> nearest-neighbor<span class="token punctuation">;</span>
+  <span class="token property">image-rendering</span><span class="token punctuation">:</span> pixelated<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">.crisp-edges</span> <span class="token punctuation">{</span>
+  <span class="token property">image-rendering</span><span class="token punctuation">:</span> -webkit-optimize-contrast<span class="token punctuation">;</span>
+  <span class="token property">image-rendering</span><span class="token punctuation">:</span> crisp-edges<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <h4 id="result">Result</h4> <p><iframe class="sample-code-frame" id="frame_Setting_image_scaling_algorithms" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/image-rendering/_samples_/Setting_image_scaling_algorithms" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/css-images-3/#the-image-rendering" hreflang="en" rel=" noopener">CSS Images Module Level 3<br><small>The definition of 'image-rendering' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>image-rendering</code></th>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>3.6</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>crisp-edges</code></th>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>65</div>
+<div>3.6</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes">
+<div>65</div>
+<div>4</div>
+</td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>optimizeQuality</code></th>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>3.6</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>optimizeSpeed</code></th>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>3.6</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>pixelated</code></th>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>26</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+</tbody>
+</table>
+
+ <div class="notecard note"> <p><strong>Note:</strong> Although <code>crisp-edges</code> is supposed to use a pixel-art scaler like in the specification example, in practice no browsers (as of January 2020) does so. <a href="https://dxr.mozilla.org/mozilla-central/rev/5fd4cfacc90ddd975c82ba27fdc56f4187b3f180/gfx/wr/webrender/src/resource_cache.rs#1727" rel=" noopener">In Firefox</a>, <code>crisp-edges</code> is interpreted as nearest-neighbor, <code>pixelated</code> is not supported, and <code>auto</code> is interpolated as trilinear or linear.</p> <p>For behavior on Chromium and Safari (WebKit), see the <code><a href="https://cs.chromium.org/chromium/src/third_party/blink/renderer/core/style/computed_style.cc?type=cs&amp;q=GetInterpolationQuality&amp;g=0&amp;l=1160" rel=" noopener">GetInterpolationQuality</a></code> function and <code><a href="https://github.com/WebKit/webkit/blob/9b169b6c85394d94f172e5d75ca2f6c74830e99c/Source/WebCore/css/CSSPrimitiveValueMappings.h#L4324" rel=" noopener">CSSPrimitiveValue::operator ImageRendering()</a></code> respectively.</p> </div>
+<h2 id="see_also">See also</h2>
+<ul> <li>Other image-related CSS properties: <a href="object-fit"><code>object-fit</code></a>, <a href="object-position"><code>object-position</code></a>, <a href="image-orientation"><code>image-orientation</code></a>, <a href="image-rendering"><code>image-rendering</code></a>, <a href="image-resolution"><code>image-resolution</code></a>.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/image-rendering" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/image-rendering</a>
+  </p>
+</div>

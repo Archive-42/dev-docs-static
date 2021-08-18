@@ -1,0 +1,100 @@
+<h1>handler.deleteProperty()</h1> <p>The <code>handler.deleteProperty()</code> method is a trap for the <a href="../../../operators/delete"><code>delete</code></a> operator.</p> <iframe class="interactive" width="100%" height="692" src="https://interactive-examples.mdn.mozilla.net/pages/js/proxyhandler-deleteproperty.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">const</span> p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Proxy</span><span class="token punctuation">(</span>target<span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">deleteProperty</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">target<span class="token punctuation">,</span> property</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<p>The following parameters are passed to the <code>deleteProperty()</code> method. <code>this</code> is bound to the handler.</p> <dl> <dt><code><var>target</var></code></dt> <dd>The target object.</dd> <dt><code><var>property</var></code></dt> <dd>The name or <a href="../../symbol"><code>Symbol</code></a> of the property to delete.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The <code>deleteProperty()</code> method must return a <a href="../../boolean"><code>Boolean</code></a> indicating whether or not the property has been successfully deleted.</p>
+<h2 id="description">Description</h2>
+<p>The <code><strong>handler.deleteProperty()</strong></code> method is a trap for the <a href="../../../operators/delete"><code>delete</code></a> operator.</p>
+<h3 id="interceptions">Interceptions</h3>
+<p>This trap can intercept these operations:</p> <ul> <li>Property deletion: <code>delete <var>proxy</var>[<var>foo</var>]</code> and <code>delete <var>proxy</var>.<var>foo</var></code>
+</li> <li><a href="../../reflect/deleteproperty"><code>Reflect.deleteProperty()</code></a></li> </ul>
+<h3 id="invariants">Invariants</h3>
+<p>If the following invariants are violated, the proxy will throw a <a href="../../typeerror"><code>TypeError</code></a>:</p> <ul> <li>A property cannot be deleted, if it exists as a non-configurable own property of the target object.</li> </ul>
+<h2 id="examples">Examples</h2>
+<h3 id="trapping_the_delete_operator">Trapping the delete operator</h3>
+<p>The following code traps the <a href="../../../operators/delete"><code>delete</code></a> operator.</p> <pre data-language="js"><span class="token keyword">const</span> p <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Proxy</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">deleteProperty</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">target<span class="token punctuation">,</span> prop</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>prop <span class="token keyword">in</span> target<span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">delete</span> target<span class="token punctuation">[</span>prop<span class="token punctuation">]</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'property removed: '</span> <span class="token operator">+</span> prop<span class="token punctuation">)</span>
+      <span class="token keyword">return</span> <span class="token boolean">true</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'property not found: '</span> <span class="token operator">+</span> prop<span class="token punctuation">)</span>
+      <span class="token keyword">return</span> <span class="token boolean">false</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">let</span> result
+
+p<span class="token punctuation">.</span>a <span class="token operator">=</span> <span class="token number">10</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'a'</span> <span class="token keyword">in</span> p<span class="token punctuation">)</span>  <span class="token comment">// true</span>
+
+result <span class="token operator">=</span> <span class="token keyword">delete</span> p<span class="token punctuation">.</span>a    <span class="token comment">// "property removed: a"</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>    <span class="token comment">// true</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'a'</span> <span class="token keyword">in</span> p<span class="token punctuation">)</span>  <span class="token comment">// false</span>
+
+result <span class="token operator">=</span> <span class="token keyword">delete</span> p<span class="token punctuation">.</span>a    <span class="token comment">// "property not found: a"</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>result<span class="token punctuation">)</span>    <span class="token comment">// false</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots-delete-p">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-proxy-object-internal-methods-and-internal-slots-delete-p</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>deleteProperty</code></th>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../../proxy"><code>Proxy</code></a></li> <li><a href="../proxy"><code>handler</code></a></li> <li>
+<a href="../../../operators/delete"><code>delete</code></a> operator</li> <li><a href="../../reflect/deleteproperty"><code>Reflect.deleteProperty()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/deleteProperty" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy/Proxy/deleteProperty</a>
+  </p>
+</div>

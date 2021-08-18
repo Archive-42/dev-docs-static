@@ -1,0 +1,101 @@
+<h1>Equality (==)</h1> <p>The equality operator (<code>==</code>) checks whether its two operands are equal, returning a Boolean result. Unlike the <a href="strict_equality">strict equality</a> operator, it attempts to convert and compare operands that are of different types.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/expressions-equality.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js">x <span class="token operator">==</span> y
+</pre>
+<h2 id="description">Description</h2>
+<p>The equality operators (<code>==</code> and <code>!=</code>) use the <a href="https://www.ecma-international.org/ecma-262/5.1/#sec-11.9.3" rel=" noopener">Abstract Equality Comparison Algorithm</a> to compare two operands. This can be roughly summarised as follows:</p> <ul> <li>If the operands are both objects, return <code>true</code> only if both operands reference the same object.</li> <li>If one operand is <code>null</code> and the other is <code>undefined</code>, return <code>true</code>.</li> <li>If the operands are of different types, try to convert them to the same type before comparing: <ul> <li>When comparing a number to a string, try to convert the string to a numeric value.</li> <li>If one of the operands is <code>Boolean</code>, convert the Boolean operand to 1 if it is <code>true</code> and +0 if it is <code>false</code>.</li> <li>If one of the operands is an object and the other is a number or a string, try to convert the object to a primitive using the object's <code>valueOf()</code> and <code>toString()</code> methods.</li> </ul> </li> <li>If the operands have the same type, they are compared as follows: <ul> <li>
+<code>String</code>: return <code>true</code> only if both operands have the same characters in the same order.</li> <li>
+<code>Number</code>: return <code>true</code> only if both operands have the same value. <code>+0</code> and <code>-0</code> are treated as the same value. If either operand is <code>NaN</code>, return <code>false</code>.</li> <li>
+<code>Boolean</code>: return <code>true</code> only if operands are both <code>true</code> or both <code>false</code>.</li> </ul> </li> </ul> <p>The most notable difference between this operator and the <a href="strict_equality">strict equality</a> (<code>===</code>) operator is that the strict equality operator does not attempt type conversion. Instead, the strict equality operator always considers operands of different types to be different.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="comparison_with_no_type_conversion">Comparison with no type conversion</h3>
+<pre data-language="js"><span class="token number">1</span> <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">;</span>              <span class="token comment">// true</span>
+<span class="token string">"hello"</span> <span class="token operator">==</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>  <span class="token comment">// true</span></pre>
+<h3 id="comparison_with_type_conversion">Comparison with type conversion</h3>
+<pre data-language="js"><span class="token string">"1"</span> <span class="token operator">==</span>  <span class="token number">1</span><span class="token punctuation">;</span>            <span class="token comment">// true</span>
+<span class="token number">1</span> <span class="token operator">==</span> <span class="token string">"1"</span><span class="token punctuation">;</span>             <span class="token comment">// true</span>
+<span class="token number">0</span> <span class="token operator">==</span> <span class="token boolean">false</span><span class="token punctuation">;</span>           <span class="token comment">// true</span>
+<span class="token number">0</span> <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">;</span>            <span class="token comment">// false</span>
+<span class="token number">0</span> <span class="token operator">==</span> <span class="token keyword">undefined</span><span class="token punctuation">;</span>       <span class="token comment">// false</span>
+<span class="token number">0</span> <span class="token operator">==</span> <span class="token operator">!</span><span class="token operator">!</span><span class="token keyword">null</span><span class="token punctuation">;</span>          <span class="token comment">// true, look at Logical NOT operator</span>
+<span class="token number">0</span> <span class="token operator">==</span> <span class="token operator">!</span><span class="token operator">!</span><span class="token keyword">undefined</span><span class="token punctuation">;</span>     <span class="token comment">// true, look at Logical NOT operator</span>
+<span class="token keyword">null</span> <span class="token operator">==</span> <span class="token keyword">undefined</span><span class="token punctuation">;</span>    <span class="token comment">// true</span>
+
+<span class="token keyword">const</span> number1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Number</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> number2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Number</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+number1 <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">;</span>         <span class="token comment">// true</span>
+number1 <span class="token operator">==</span> number2<span class="token punctuation">;</span>   <span class="token comment">// false</span></pre>
+<h3 id="comparison_of_objects">Comparison of objects</h3>
+<pre data-language="js"><span class="token keyword">const</span> object1 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"key"</span><span class="token operator">:</span> <span class="token string">"value"</span><span class="token punctuation">}</span>
+<span class="token keyword">const</span> object2 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"key"</span><span class="token operator">:</span> <span class="token string">"value"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+object1 <span class="token operator">==</span> object2 <span class="token comment">// false</span>
+object2 <span class="token operator">==</span> object2 <span class="token comment">// true</span></pre>
+<h3 id="comparing_strings_and_string_objects">Comparing strings and String objects</h3>
+<p>Note that strings constructed using <code>new String()</code> are objects. If you compare one of these with a string literal, the <code>String</code> object will be converted to a string literal and the contents will be compared. However, if both operands are <code>String</code> objects, then they are compared as objects and must reference the same object for comparison to succeed:</p> <pre data-language="js"><span class="token keyword">const</span> string1 <span class="token operator">=</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> string2 <span class="token operator">=</span> <span class="token function">String</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> string3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> string4 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">(</span><span class="token string">"hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>string1 <span class="token operator">==</span> string2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>string1 <span class="token operator">==</span> string3<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>string2 <span class="token operator">==</span> string3<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>string3 <span class="token operator">==</span> string4<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// false</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>string4 <span class="token operator">==</span> string4<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span></pre>
+<h3 id="comparing_dates_and_strings">Comparing Dates and strings</h3>
+<pre data-language="js"><span class="token keyword">const</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token string">'December 17, 1995 03:24:00'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> s <span class="token operator">=</span> d<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// for example: "Sun Dec 17 1995 03:24:00 GMT-0800 (Pacific Standard Time)"</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>d <span class="token operator">==</span> s<span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token comment">//true</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-equality-operators">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-equality-operators</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>Equality</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="inequality">Inequality operator</a></li> <li><a href="strict_equality">Strict equality operator</a></li> <li><a href="strict_inequality">Strict inequality operator</a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Equality" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Equality</a>
+  </p>
+</div>

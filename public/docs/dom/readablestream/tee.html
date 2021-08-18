@@ -1,0 +1,89 @@
+<h1>ReadableStream.tee()</h1> <p class="summary">The <code>tee()</code> method of the <a href="../readablestream"><code>ReadableStream</code></a> interface <a href="https://streams.spec.whatwg.org/#tee-a-readable-stream" id="ref-for-tee-a-readable-stream②" rel=" noopener">tees</a> the current readable stream, returning a two-element array containing the two resulting branches as new <a href="../readablestream"><code>ReadableStream</code></a> instances.</p> <p>This is useful for allowing two readers to read a stream simultaneously, perhaps at different speeds. You might do this for example in a ServiceWorker if you want to fetch a response from the server and stream it to the browser, but also stream it to the ServiceWorker cache. Since a response body cannot be consumed more than once, you’d need two copies to do this.</p> <p>To cancel the stream you then need to cancel both resulting branches. Teeing a stream will generally lock it for the duration, preventing other readers from locking it.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> teedStreams <span class="token operator">=</span> readableStream<span class="token punctuation">.</span><span class="token function">tee</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<p>None.</p>
+<h3 id="return_value">Return value</h3>
+<p>An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> containing two <a href="../readablestream"><code>ReadableStream</code></a> instances.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt>TypeError</dt> <dd>The source stream is not a <code>ReadableStream</code>.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>In the following simple example, a previously-created stream is teed, then both resulting streams (contained in two members of a generated array) are passed to a function that reads the data out of the two streams and prints each stream's chunks sequentially to a different part of the UI. See <a href="https://mdn.github.io/dom-examples/streams/simple-tee-example/" rel=" noopener">Simple tee example</a> for the full code.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">teeStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> teedOff <span class="token operator">=</span> stream<span class="token punctuation">.</span><span class="token function">tee</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">fetchStream</span><span class="token punctuation">(</span>teedOff<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> list2<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">fetchStream</span><span class="token punctuation">(</span>teedOff<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> list3<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">fetchStream</span><span class="token punctuation">(</span><span class="token parameter">stream<span class="token punctuation">,</span> list</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> reader <span class="token operator">=</span> stream<span class="token punctuation">.</span><span class="token function">getReader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">let</span> charsReceived <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// read() returns a promise that resolves</span>
+  <span class="token comment">// when a value has been received</span>
+  reader<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">processText</span><span class="token punctuation">(</span><span class="token parameter"><span class="token punctuation">{</span> done<span class="token punctuation">,</span> value <span class="token punctuation">}</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Result objects contain two properties:</span>
+    <span class="token comment">// done  - true if the stream has already given you all its data.</span>
+    <span class="token comment">// value - some data. Always undefined when done is true.</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>done<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Stream complete"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">return</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// value for fetch streams is a Uint8Array</span>
+    charsReceived <span class="token operator">+=</span> value<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+    <span class="token keyword">const</span> chunk <span class="token operator">=</span> value<span class="token punctuation">;</span>
+    <span class="token keyword">let</span> listItem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    listItem<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'Read '</span> <span class="token operator">+</span> charsReceived <span class="token operator">+</span> <span class="token string">' characters so far. Current chunk = '</span> <span class="token operator">+</span> chunk<span class="token punctuation">;</span>
+    list<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>listItem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Read some more, and call this function again</span>
+    <span class="token keyword">return</span> reader<span class="token punctuation">.</span><span class="token function">read</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>processText<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://streams.spec.whatwg.org/#rs-tee" hreflang="en" rel=" noopener">Streams<br><small>The definition of 'tee()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>tee</code></th>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>30</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream/tee" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream/tee</a>
+  </p>
+</div>

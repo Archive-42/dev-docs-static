@@ -1,0 +1,93 @@
+<h1>File.lastModified</h1> <p>The <code><strong>File.lastModified</strong></code> read-only property provides the last modified date of the file as the number of milliseconds since the Unix epoch (January 1, 1970 at midnight). Files without a known last modified date return the current date.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">const</span> time <span class="token operator">=</span> instanceOfFile<span class="token punctuation">.</span>lastModified<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>A number that represents the number of milliseconds since the Unix epoch.</p>
+<h2 id="example">Example</h2>
+<h3 id="reading_from_file_input">Reading from file input</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>file<span class="token punctuation">"</span></span> <span class="token attr-name">multiple</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>fileInput<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+</pre> <pre data-language="js"><span class="token keyword">const</span> fileInput <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'#fileInput'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+fileInput<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'change'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// files is a FileList object (similar to NodeList)</span>
+  <span class="token keyword">const</span> files <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>files<span class="token punctuation">;</span>
+
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> file <span class="token keyword">of</span> files<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> date <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span>file<span class="token punctuation">.</span>lastModified<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>file<span class="token punctuation">.</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> has a last modified date of </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>date<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>Try the results out below:</p> <p><iframe class="sample-code-frame" id="frame_Reading_from_file_input" width="300" height="60" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/File/lastModified/_samples_/Reading_from_file_input" loading="lazy"></iframe></p>
+<h3 id="dynamically_created_files">Dynamically created files</h3>
+<p>If a File is created dynamically, the last modified time can be supplied in the <a href="file"><code>new File()</code></a> constructor function. If it is missing, <code>lastModified</code> inherits the current time from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/now"><code>Date.now()</code></a> at the moment the <code>File</code> object gets created.</p> <pre data-language="js"><span class="token keyword">const</span> fileWithDate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'file.bin'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  lastModified<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">2017</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>fileWithDate<span class="token punctuation">.</span>lastModified<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//returns 1485903600000</span>
+
+<span class="token keyword">const</span> fileWithoutDate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">'file.bin'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>fileWithoutDate<span class="token punctuation">.</span>lastModified<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">//returns current time</span>
+</pre>
+<h2 id="reduced_time_precision">Reduced time precision</h2>
+<p>To offer protection against timing attacks and fingerprinting, the precision of <code>someFile.lastModified</code> might get rounded depending on browser settings.<br> In Firefox, the <code>privacy.reduceTimerPrecision</code> preference is enabled by default and defaults to 20us in Firefox 59; in 60 it will be 2ms.</p> <pre data-language="js"><span class="token comment">// reduced time precision (2ms) in Firefox 60</span>
+someFile<span class="token punctuation">.</span>lastModified<span class="token punctuation">;</span>
+<span class="token comment">// 1519211809934</span>
+<span class="token comment">// 1519211810362</span>
+<span class="token comment">// 1519211811670</span>
+<span class="token comment">// ...</span>
+
+<span class="token comment">// reduced time precision with `privacy.resistFingerprinting` enabled</span>
+someFile<span class="token punctuation">.</span>lastModified<span class="token punctuation">;</span>
+<span class="token comment">// 1519129853500</span>
+<span class="token comment">// 1519129858900</span>
+<span class="token comment">// 1519129864400</span>
+<span class="token comment">// ...</span>
+</pre> <p>In Firefox, you can also enabled <code>privacy.resistFingerprinting</code>, the precision will be 100ms or the value of <code>privacy.resistFingerprinting.reduceTimerPrecision.microseconds</code>, whichever is larger.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/FileAPI/#file-attrs" hreflang="en" rel=" noopener">File API<br><small>The definition of 'lastModified' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>lastModified</code></th>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>16</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../file"><code>File</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/File/lastModified" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/File/lastModified</a>
+  </p>
+</div>

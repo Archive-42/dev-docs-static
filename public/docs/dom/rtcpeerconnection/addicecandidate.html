@@ -1,0 +1,132 @@
+<h1>RTCPeerConnection.addIceCandidate()</h1> <p>When a web site or app using <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> receives a new ICE candidate from the remote peer over its signaling channel, it delivers the newly-received candidate to the browser's <a href="https://developer.mozilla.org/en-US/docs/Glossary/ICE">ICE</a> agent by calling <code><strong>RTCPeerConnection.addIceCandidate()</strong></code>. This adds this new remote candidate to the <code>RTCPeerConnection</code>'s remote description, which describes the state of the remote end of the connection.</p> <p>If the <code>candidate</code> parameter is missing or a value of <code>null</code> is given when calling <code>addIceCandidate()</code>, the added ICE candidate is an "end-of-candidates" indicator. The same is the case if the value of the specified object's <a href="../rtcicecandidate/candidate"><code>candidate</code></a> is either missing or an empty string (<code>""</code>), it signals that all remote candidates have been delivered.</p> <p>The end-of-candidates notification is transmitted to the remote peer using a candidate with an a-line value of <code>end-of-candidates</code>.</p> <p>During negotiation, your app will likely receive many candidates which you'll deliver to the ICE agent in this way, allowing it to build up a list of potential connection methods. This is covered in more detail in the articles <a href="../webrtc_api/connectivity">WebRTC connectivity</a> and <a href="../webrtc_api/signaling_and_video_calling">Signaling and video calling</a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">aPromise <span class="token operator">=</span> pc<span class="token punctuation">.</span><span class="token function">addIceCandidate</span><span class="token punctuation">(</span>candidate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token function">addIceCandidate</span><span class="token punctuation">(</span>candidate<span class="token punctuation">,</span> successCallback<span class="token punctuation">,</span> failureCallback<span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    This deprecated <span class="token constant">API</span> should no longer be used<span class="token punctuation">,</span> but will probably still work<span class="token punctuation">.</span>
+    
+
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code>candidate</code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>An object conforming to the <a href="../rtcicecandidateinit"><code>RTCIceCandidateInit</code></a> dictionary, or an <a href="../rtcicecandidate"><code>RTCIceCandidate</code></a> object; the contents of the object should be constructed from a message received over the signaling channel, describing a newly received ICE candidate that's ready to be delivered to the local ICE agent.</p> <p>If no <code>candidate</code> object is specified, or its value is <code>null</code>, an end-of-candidates signal is sent to the remote peer using the <code>end-of-candidates</code> a-line, formatted like this:</p> <pre class="notranslate">a=end-of-candidates</pre> </dd> </dl>
+<h3 id="deprecated_parameters">Deprecated parameters</h3>
+<p>In older code and documentation, you may see a callback-based version of this function. This has been deprecated and its use is <strong>strongly</strong> discouraged. You should update any existing code to use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>-based version of <code>addIceCandidate()</code> instead. The parameters for this form of <code>addIceCandidate()</code> are described below, to aid in updating existing code. </p> <dl> <dt>
+<code>successCallback</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>A function to be called when the ICE candidate has been successfully added. This function receives no input parameters and doesn't return a value.</dd> <dt>
+<code>failureCallback</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>A function to be called if attempting to add the ICE candidate fails. Receives as input a <a href="../domexception"><code>DOMException</code></a> object describing why failure occurred.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which is fulfilled when the candidate has been successfully added to the remote peer's description by the ICE agent. The promise does not receive any input parameters.</p>
+<h3 id="exceptions">Exceptions</h3>
+<p>When an error occurs while attempting to add the ICE candidate, the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> returned by this method is rejected, returning one of the errors below as the <a href="../domexception/name"><code>name</code></a> attribute in the specified <a href="../domexception"><code>DOMException</code></a> object passed to the rejection handler.</p> <dl> <dt><code>TypeError</code></dt> <dd>The specified candidate's <a href="../rtcicecandidate/sdpmid"><code>sdpMid</code></a> and <a href="../rtcicecandidate/sdpmlineindex"><code>sdpMLineIndex</code></a> are both <code>null</code>.</dd> <dt><code>InvalidStateError</code></dt> <dd>The <code>RTCPeerConnection</code> currently has no remote peer established (<a href="remotedescription"><code>remoteDescription</code></a> is <code>null</code>).</dd> <dt><code>OperationError</code></dt> <dd>This can happen for a number of reasons: <ul> <li>The value specified for <a href="../rtcicecandidate/sdpmid"><code>sdpMid</code></a> is non-<code>null</code> and doesn't match the media description ID of any media description included within the <a href="remotedescription"><code>remoteDescription</code></a>. </li> <li>The specified value of <a href="../rtcicecandidate/sdpmlineindex"><code>sdpMLineIndex</code></a> is greater than or equal to the number of media descriptions included in the remote description.</li> <li>The specified <a href="../rtcicecandidate/usernamefragment"><code>ufrag</code></a> doesn't match the <code>ufrag</code> field in any of the remote descriptions being considered.</li> <li>One or more of the values in the <a href="../rtcicecandidate"><code>candidate</code></a> string are invalid or could not be parsed.</li> <li>Attempting to add the candidate fails for any reason.</li> </ul> </dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>This code snippet shows how to signal ICE candidates across an arbitrary signaling channel.</p> <pre data-language="js"><span class="token comment">// This example assumes that the other peer is using a signaling channel as follows:</span>
+<span class="token comment">//</span>
+<span class="token comment">// pc.onicecandidate = event =&gt; {</span>
+<span class="token comment">//   if (event.candidate) {</span>
+<span class="token comment">//     signalingChannel.send(JSON.stringify({ice: event.candidate})); // "ice" is arbitrary</span>
+<span class="token comment">//   } else {</span>
+<span class="token comment">//     // All ICE candidates have been sent</span>
+<span class="token comment">//   }</span>
+<span class="token comment">// }</span>
+
+signalingChannel<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token parameter">receivedString</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> message <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>receivedString<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>message<span class="token punctuation">.</span>ice<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// A typical value of ice here might look something like this:</span>
+    <span class="token comment">//</span>
+    <span class="token comment">// {candidate: "candidate:0 1 UDP 2122154243 192.168.1.9 53421 typ host", sdpMid: "0", ...}</span>
+    <span class="token comment">//</span>
+    <span class="token comment">// Pass the whole thing to addIceCandidate:</span>
+
+    pc<span class="token punctuation">.</span><span class="token function">addIceCandidate</span><span class="token punctuation">(</span>message<span class="token punctuation">.</span>ice<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token parameter">e</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Failure during addIceCandidate(): "</span> <span class="token operator">+</span> e<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">// handle other things you might be signaling, like sdp</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre> <p>The last candidate to be signaled this way by the remote peer will be a special candidate denoting end-of-candidates. Out of interest, end-of-candidates may be manually indicated as follows:</p> <pre data-language="js">pc<span class="token punctuation">.</span><span class="token function">addIceCandidate</span><span class="token punctuation">(</span><span class="token punctuation">{</span>candidate<span class="token operator">:</span><span class="token string">''</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>However, in most cases you won't need to look for this explicitly, since the events driving the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> will deal with it for you, sending the appropriate events.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-peerconnection-addicecandidate" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCPeerConnection.addIceCandidate()' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>addIceCandidate</code></th>
+<td class="bc-supports-yes">
+<div>51</div>
+<div>Promise-based version.</div>
+<div>24</div>
+</td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes">
+<div>22</div>
+<div>Starting in Firefox 68, the <code>candidate</code> parameter is optional when calling <code>addIceCandidate()</code>. A <code>null</code> value for <code>candidate</code> indicates no more candidates will be sent, while an empty <code>candidate</code> string indicates that no more candidates will be sent for the current generation of candidates.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>51</div>
+<div>Promise-based version.</div>
+<div>Yes</div>
+</td>
+<td class="bc-supports-yes">
+<div>51</div>
+<div>Promise-based version.</div>
+<div>Yes</div>
+</td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>Starting in Firefox 68, the <code>candidate</code> parameter is optional when calling <code>addIceCandidate()</code>. A <code>null</code> value for <code>candidate</code> indicates no more candidates will be sent, while an empty <code>candidate</code> string indicates that no more candidates will be sent for the current generation of candidates.</div>
+</td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Promise-based version and unprefixed.</div>
+<div>5.0-6.0</div>
+<div>Promise-based version.</div>
+</td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webrtc_api">WebRTC API</a></li> <li><a href="../webrtc_api/signaling_and_video_calling">Signaling and video calling</a></li> <li><a href="../webrtc_api/protocols">WebRTC architecture overview</a></li> <li><a href="../webrtc_api/connectivity">WebRTC connectivity</a></li> <li><a href="../webrtc_api/session_lifetime">Lifetime of a WebRTC session</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/addIceCandidate" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/addIceCandidate</a>
+  </p>
+</div>

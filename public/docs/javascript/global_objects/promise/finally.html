@@ -1,0 +1,84 @@
+<h1>Promise.prototype.finally()</h1> <p>The <code>finally()</code> method returns a <a href="../promise"><code>Promise</code></a>. When the promise is settled, i.e either fulfilled or rejected, the specified callback function is executed. This provides a way for code to be run whether the promise was fulfilled successfully or rejected once the <code>Promise</code> has been dealt with. </p> <p>This helps to avoid duplicating code in both the promise's <a href="then"><code>then()</code></a> and <a href="catch"><code>catch()</code></a> handlers.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">p<span class="token punctuation">.</span><span class="token function">finally</span><span class="token punctuation">(</span>onFinally<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+p<span class="token punctuation">.</span><span class="token function">finally</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token comment">// settled (fulfilled or rejected)</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>onFinally</var></code></dt> <dd>A <a href="../function"><code>Function</code></a> called when the <code>Promise</code> is settled.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>Returns a <a href="../promise"><code>Promise</code></a> whose <code>finally</code> handler is set to the specified function, <code>onFinally</code>.</p>
+<h2 id="description">Description</h2>
+<p>The <code>finally()</code> method can be useful if you want to do some processing or cleanup once the promise is settled, regardless of its outcome.</p> <p>The <code>finally()</code> method is very similar to calling <code>.then(onFinally, onFinally)</code> however there are a couple of differences:</p> <ul> <li>When creating a function inline, you can pass it once, instead of being forced to either declare it twice, or create a variable for it</li> <li>A <code>finally</code> callback will not receive any argument, since there's no reliable means of determining if the promise was fulfilled or rejected. This use case is for precisely when you <em>do not care</em> about the rejection reason, or the fulfillment value, and so there's no need to provide it. So for example: <ul> <li>Unlike <code>Promise.resolve(2).then(() =&gt; {}, () =&gt; {})</code> (which will be resolved with <code>undefined</code>), <code>Promise.resolve(2).finally(() =&gt; {})</code> will be resolved with <code>2</code>.</li> <li>Similarly, unlike <code>Promise.reject(3).then(() =&gt; {}, () =&gt; {})</code> (which will be fulfilled with <code>undefined</code>), <code>Promise.reject(3).finally(() =&gt; {})</code> will be rejected with <code>3</code>.</li> </ul> </li> </ul> <div class="note notecard"> <p><strong>Note:</strong> A <code>throw</code> (or returning a rejected promise) in the <code>finally</code> callback will reject the new promise with the rejection reason specified when calling <code>throw</code>.</p> </div>
+<h2 id="examples">Examples</h2>
+<h3 id="using_finally">Using finally</h3>
+<pre data-language="js"><span class="token keyword">let</span> isLoading <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+<span class="token function">fetch</span><span class="token punctuation">(</span>myRequest<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">response</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> contentType <span class="token operator">=</span> response<span class="token punctuation">.</span>headers<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"content-type"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>contentType <span class="token operator">&amp;&amp;</span> contentType<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">"application/json"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">return</span> response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">TypeError</span><span class="token punctuation">(</span><span class="token string">"Oops, we haven't got JSON!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">json</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">/* process your JSON further */</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* this line can also throw, e.g. when console = {} */</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">finally</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> isLoading <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-promise.prototype.finally">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-promise.prototype.finally</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>finally</code></th>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../promise"><code>Promise</code></a></li> <li><a href="then"><code>Promise.prototype.then()</code></a></li> <li><a href="catch"><code>Promise.prototype.catch()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/finally" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/finally</a>
+  </p>
+</div>

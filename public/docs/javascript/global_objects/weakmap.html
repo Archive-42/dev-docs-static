@@ -1,0 +1,233 @@
+<h1>WeakMap</h1> <p>The <code>WeakMap</code> object is a collection of key/value pairs in which the keys are weakly referenced. The keys must be objects and the values can be arbitrary values.</p> <p>You can learn more about <code>WeakMap</code>s in the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Keyed_collections#weakmap_object">WeakMap object</a> guide (under <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Keyed_collections">Keyed collections</a>).</p>
+<h2 id="description">Description</h2>
+<p>Keys of WeakMaps are of the type <code>Object</code> only. <a href="https://developer.mozilla.org/en-US/docs/Glossary/Primitive">Primitive data types</a> as keys are not allowed (e.g. a <a href="symbol"><code>Symbol</code></a> can't be a <code>WeakMap</code> key).</p>
+<h3 id="why_weakmap">Why <em>Weak</em>Map?</h3>
+<p>A map API <em>could</em> be implemented in JavaScript with two arrays (one for keys, one for values) shared by the four API methods. Setting elements on this map would involve pushing a key and value onto the end of each of those arrays simultaneously. As a result, the indices of the key and value would correspond to both arrays. Getting values from the map would involve iterating through all keys to find a match, then using the index of this match to retrieve the corresponding value from the array of values.</p> <p>Such an implementation would have two main inconveniences:</p> <ol> <li>The first one is an <em>O(<var>n</var>)</em> set and search (<var>n</var> being the number of keys in the map) since both operations must iterate through the list of keys to find a matching value.</li> <li>The second inconvenience is a memory leak because the arrays ensure that references to each key and each value are maintained indefinitely. These references prevent the keys from being garbage collected, even if there are no other references to the object. This would also prevent the corresponding values from being garbage collected.</li> </ol> <p>By contrast, native <code>WeakMap</code>s hold "weak" references to key objects. As such native <code>WeakMap</code>s do not prevent garbage collection, which eventually removes references to the key object. "Weak" references also avoid preventing garbage collection of values in the map. <code>WeakMap</code>s can be particularly useful constructs when mapping keys to information about the key that is valuable <em>only if</em> the key has not been garbage collected.</p> <p><code>WeakMap</code> There is no method to obtain a list of the keys. If there was, the list would depend on the state of garbage collection, introducing non-determinism. If you want to have a list of keys, you should use a <a href="map"><code>Map</code></a>.</p>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="weakmap/weakmap"><code>WeakMap()</code></a></dt> <dd>Creates a new <code>WeakMap</code> object.</dd> </dl>
+<h2 id="instance_methods">Instance methods</h2>
+<dl> <dt><a href="weakmap/delete"><code>WeakMap.prototype.delete(<var>key</var>)</code></a></dt> <dd>Removes any value associated to the <code><var>key</var></code>. <code>WeakMap.prototype.has(<var>key</var>)</code> will return <code>false</code> afterwards.</dd> <dt><a href="weakmap/get"><code>WeakMap.prototype.get(<var>key</var>)</code></a></dt> <dd>Returns the value associated to the <code><var>key</var></code>, or <code>undefined</code> if there is none.</dd> <dt><a href="weakmap/has"><code>WeakMap.prototype.has(<var>key</var>)</code></a></dt> <dd>Returns a Boolean asserting whether a value has been associated to the <code><var>key</var></code> in the <code>WeakMap</code> object or not.</dd> <dt><a href="weakmap/set"><code>WeakMap.prototype.set(<var>key</var>, <var>value</var>)</code></a></dt> <dd>Sets the <code><var>value</var></code> for the <code><var>key</var></code> in the <code>WeakMap</code> object. Returns the <code>WeakMap</code> object.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="using_weakmap">Using WeakMap</h3>
+<pre data-language="js"><span class="token keyword">const</span> wm1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WeakMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      wm2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WeakMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      wm3 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WeakMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> o1 <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token function-variable function">o2</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+      o3 <span class="token operator">=</span> window<span class="token punctuation">;</span>
+
+wm1<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>o1<span class="token punctuation">,</span> <span class="token number">37</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+wm1<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>o2<span class="token punctuation">,</span> <span class="token string">'azerty'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+wm2<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>o1<span class="token punctuation">,</span> o2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// a value can be anything, including an object or a function</span>
+wm2<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>o3<span class="token punctuation">,</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+wm2<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>wm1<span class="token punctuation">,</span> wm2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// keys and values can be any objects. Even WeakMaps!</span>
+
+wm1<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>o2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// "azerty"</span>
+wm2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>o2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// undefined, because there is no key for o2 on wm2</span>
+wm2<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>o3<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// undefined, because that is the set value</span>
+
+wm1<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>o2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+wm2<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>o2<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// false</span>
+wm2<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>o3<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true (even if the value itself is 'undefined')</span>
+
+wm3<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>o1<span class="token punctuation">,</span> <span class="token number">37</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+wm3<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>o1<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 37</span>
+
+wm1<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>o1<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+wm1<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span>o1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+wm1<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>o1<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// false</span>
+</pre>
+<h3 id="implementing_a_weakmap-like_class_with_a_.clear_method">Implementing a WeakMap-like class with a .clear() method</h3>
+<pre data-language="js"><span class="token keyword">class</span> <span class="token class-name">ClearableWeakMap</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token parameter">init</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>_wm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WeakMap</span><span class="token punctuation">(</span>init<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>_wm <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">WeakMap</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">delete</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_wm<span class="token punctuation">.</span><span class="token function">delete</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">get</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_wm<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">has</span><span class="token punctuation">(</span><span class="token parameter">k</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>_wm<span class="token punctuation">.</span><span class="token function">has</span><span class="token punctuation">(</span>k<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token function">set</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> v<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>_wm<span class="token punctuation">.</span><span class="token function">set</span><span class="token punctuation">(</span>k<span class="token punctuation">,</span> v<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-weakmap-objects">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-weakmap-objects</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>WeakMap</code></th>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>WeakMap</code></th>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>clear</code></th>
+<td class="bc-supports-no"><div>36-43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>20-46</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-no"><div>25-30</div></td>
+<td class="bc-supports-no"><div>8-9</div></td>
+<td class="bc-supports-no"><div>37-43</div></td>
+<td class="bc-supports-no"><div>36-43</div></td>
+<td class="bc-supports-no"><div>20-46</div></td>
+<td class="bc-supports-no"><div>25-30</div></td>
+<td class="bc-supports-no"><div>8-9</div></td>
+<td class="bc-supports-no"><div>3.0-4.0</div></td>
+</tr>
+<tr>
+<th><code>delete</code></th>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>6</div>
+<div>Prior to Firefox 38, this method threw a <code>TypeError</code> when the key parameter was not an object. This has been fixed in version 38 and later to return <code>false</code> as per the ES2015 standard.</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes">
+<div>6</div>
+<div>Prior to Firefox 38, this method threw a <code>TypeError</code> when the key parameter was not an object. This has been fixed in version 38 and later to return <code>false</code> as per the ES2015 standard.</div>
+</td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>get</code></th>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>6</div>
+<div>Prior to Firefox 38, this method threw a <code>TypeError</code> when the key parameter was not an object. However, the ES2015 specification specifies to return <code>undefined</code> instead. Furthermore, <code>WeakMap.prototype.get</code> accepted an optional second argument as a fallback value, which is not part of the standard. Both non-standard behaviors are removed in version 38 and higher.</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes">
+<div>6</div>
+<div>Prior to Firefox 38, this method threw a <code>TypeError</code> when the key parameter was not an object. However, the ES2015 specification specifies to return <code>undefined</code> instead. Furthermore, <code>WeakMap.prototype.get</code> accepted an optional second argument as a fallback value, which is not part of the standard. Both non-standard behaviors are removed in version 38 and higher.</div>
+</td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>has</code></th>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>6</div>
+<div>Prior to Firefox 38, this method threw a <code>TypeError</code> when the key parameter was not an object. This has been fixed in version 38 and later to return <code>false</code> as per the ES2015 standard.</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes">
+<div>6</div>
+<div>Prior to Firefox 38, this method threw a <code>TypeError</code> when the key parameter was not an object. This has been fixed in version 38 and later to return <code>false</code> as per the ES2015 standard.</div>
+</td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>set</code></th>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>6</div>
+<div>Prior to Firefox 38, this method threw a <code>TypeError</code> when the key parameter was not an object. This has been fixed in version 38 and later to return <code>false</code> as per the ES2015 standard.</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>Returns 'undefined' instead of the 'Map' object.</div>
+</td>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes">
+<div>6</div>
+<div>Prior to Firefox 38, this method threw a <code>TypeError</code> when the key parameter was not an object. This has been fixed in version 38 and later to return <code>false</code> as per the ES2015 standard.</div>
+</td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Keyed_collections#weakmap_object"><code>WeakMap</code> in the JavaScript guide</a></li> <li><a href="https://fitzgeraldnick.com/weblog/53/" rel=" noopener">Hiding Implementation Details with ECMAScript 6 WeakMaps</a></li> <li><a href="map"><code>Map</code></a></li> <li><a href="set"><code>Set</code></a></li> <li><a href="weakset"><code>WeakSet</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap</a>
+  </p>
+</div>

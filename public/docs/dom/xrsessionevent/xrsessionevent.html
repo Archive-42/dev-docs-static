@@ -1,0 +1,80 @@
+<h1>XRSessionEvent()</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The WebXR Device API's <code><strong>XRSessionEvent()</strong></code> constructor creates and returns a new <a href="../xrsessionevent"><code>XRSessionEvent</code></a> object. These objects represent events announcing state changes in an <a href="../xrsession"><code>XRSession</code></a> representing an augmented or virtual reality session.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">newXRSessionEvent <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XRSessionEvent</span><span class="token punctuation">(</span>type<span class="token punctuation">,</span> eventInitDict<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>type</code></dt> <dd>A <a href="../domstring"><code>DOMString</code></a> indicating which of the events represented by objects of type <code>XRSessionEvent</code> this particular object represents. See <a href="#event%0A____types">Event types</a> for a list of the permitted values.</dd> <dt><code>eventInitDict</code></dt> <dd> <p>An object conforming to the <a href="../xrsessioneventinit"><code>XRSessionEventInit</code></a> dictionary which contains values to be applied to the newly-created event object. Permitted values are:</p> 
+<dl> <dt><a href="../xrsessioneventinit/session"><code>session</code></a></dt> <dd>The <a href="../xrsession"><code>XRSession</code></a> to which the event is to be delivered.</dd> </dl>
+ </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A newly-created <a href="../xrsessionevent"><code>XRSessionEvent</code></a> object representing an object of the specfied type and configured as described by the <code>eventInitDict</code> parameter. </p>
+<h2 id="event_types">Event types</h2>
+
+<p><em>The following events are represented using the <code>XRSessionEvent</code> interface, and are permitted values for its <code>type</code> property.</em></p>
+<dl> <dt><a href="../xrsession/end_event"><code>end</code></a></dt> <dd>Fired at the session when it has ended, after being terminated by the application or the <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent</a>.</dd> <dt><a href="../xrsession/visibilitychange_event"><code>visibilitychange</code></a></dt> <dd>Fired at the session whenever its visibility state changes.</dd> </dl>
+
+<h2 id="examples">Examples</h2>
+
+<p>This example creates a listiener that watches for the visibility state of the session to change. It reacts by calling a function <code>mySessionVisible()</code> with a Boolean indicating whether or not the session is visible; this function might, for instance, spin up or reconfigure a worker that handles rendering the scene.</p>
+<pre data-language="js">xrSession<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"visibilitystate"</span><span class="token punctuation">,</span> <span class="token parameter">e</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">switch</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>session<span class="token punctuation">.</span>visibilitystate<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">"visible"</span><span class="token operator">:</span>
+    <span class="token keyword">case</span> <span class="token string">"visible-blurred"</span><span class="token operator">:</span>
+      <span class="token function">mySessionVisible</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"hidden"</span><span class="token operator">:</span>
+      <span class="token function">mySessionVisible</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://immersive-web.github.io/webxr/#dom-xrsessionevent-xrsessionevent" hreflang="en" rel=" noopener">WebXR Device API<br><small>The definition of 'XRSessionEvent() constructor' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>XRSessionEvent</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr></tbody>
+</table>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XRSessionEvent/XRSessionEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XRSessionEvent/XRSessionEvent</a>
+  </p>
+</div>

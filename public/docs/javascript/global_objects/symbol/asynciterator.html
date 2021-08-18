@@ -1,0 +1,82 @@
+<h1>Symbol.asyncIterator</h1> <p>The <code><strong>Symbol.asyncIterator</strong></code> well-known symbol specifies the default AsyncIterator for an object. If this property is set on an object, it is an async iterable and can be used in a <code><a href="../../statements/for-await...of">for await...of</a></code> loop.</p>
+<h2 id="description">Description</h2>
+<p>The <code>Symbol.asyncIterator</code> symbol is a builtin symbol that is used to access an object's <code>@@asyncIterator</code> method. In order for an object to be async iterable, it must have a <code>Symbol.asyncIterator</code> key.</p> 
+<div class="_table"><table class="standard-table"> <thead> <tr> <th class="header" colspan="2">Property attributes of <code>Symbol.asyncIterator</code>
+</th> </tr> </thead> <tbody> <tr> <td>Writable</td> <td>no</td> </tr> <tr> <td>Enumerable</td> <td>no</td> </tr> <tr> <td>Configurable</td> <td>no</td> </tr> </tbody> </table></div>
+
+<h2 id="examples">Examples</h2>
+<h3 id="user-defined_async_iterables">User-defined Async Iterables</h3>
+<p>You can define your own async iterable by setting the <code>[Symbol.asyncIterator]</code> property on an object. </p> <pre data-language="js"><span class="token keyword">const</span> myAsyncIterable <span class="token operator">=</span> <span class="token punctuation">{</span>
+    async<span class="token operator">*</span> <span class="token punctuation">[</span>Symbol<span class="token punctuation">.</span>asyncIterator<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">yield</span> <span class="token string">"hello"</span><span class="token punctuation">;</span>
+        <span class="token keyword">yield</span> <span class="token string">"async"</span><span class="token punctuation">;</span>
+        <span class="token keyword">yield</span> <span class="token string">"iteration!"</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token keyword">await</span> <span class="token punctuation">(</span><span class="token keyword">const</span> x <span class="token keyword">of</span> myAsyncIterable<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// expected output:</span>
+        <span class="token comment">//    "hello"</span>
+        <span class="token comment">//    "async"</span>
+        <span class="token comment">//    "iteration!"</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>When creating an API, remember that async iterables are designed to represent something <em>iterable</em> — like a stream of data or a list —, not to completely replace callbacks and events in most situations.</p>
+<h3 id="built-in_async_iterables">Built-in Async Iterables</h3>
+<p>There are currently no built-in JavaScript objects that have the <code>[Symbol.asyncIterator]</code> key set by default. However, WHATWG Streams are set to be the first built-in object to be async iterable, with <code>[Symbol.asyncIterator]</code> recently landing in the spec.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-symbol.asynciterator">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-symbol.asynciterator</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>asyncIterator</code></th>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../../iteration_protocols">Iteration protocols</a></li> <li><a href="../../statements/for-await...of">for await... of</a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/asyncIterator" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/asyncIterator</a>
+  </p>
+</div>

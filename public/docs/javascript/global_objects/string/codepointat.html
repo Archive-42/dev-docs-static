@@ -1,0 +1,131 @@
+<h1>String.prototype.codePointAt()</h1> <p>The <code>codePointAt()</code> method returns a non-negative integer that is the UTF-16 code point value.</p> <iframe class="interactive" width="100%" height="410" src="https://interactive-examples.mdn.mozilla.net/pages/js/string-codepointat.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">codePointAt</span><span class="token punctuation">(</span>pos<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>pos</var></code></dt> <dd>Position of an element in <code><var>str</var></code> to return the code point value from.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A number representing the code point value of the character at the given <code><var>pos</var></code>. If there is no element at <code>pos</code>, returns <a href="../undefined"><code>undefined</code></a>.</p>
+<h2 id="description">Description</h2>
+<p>If there is no element at the specified position, <a href="../undefined"><code>undefined</code></a> is returned. If no UTF-16 surrogate pair begins at <code><var>pos</var></code>, the code unit at <code><var>pos</var></code> is returned.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_codepointat">Using codePointAt()</h3>
+<pre data-language="js"><span class="token string">'ABC'</span><span class="token punctuation">.</span><span class="token function">codePointAt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>           <span class="token comment">// 66</span>
+<span class="token string">'\uD800\uDC00'</span><span class="token punctuation">.</span><span class="token function">codePointAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>  <span class="token comment">// 65536</span>
+
+<span class="token string">'XYZ'</span><span class="token punctuation">.</span><span class="token function">codePointAt</span><span class="token punctuation">(</span><span class="token number">42</span><span class="token punctuation">)</span>          <span class="token comment">// undefined</span>
+</pre>
+<h3 id="looping_with_codepointat">Looping with codePointAt()</h3>
+<pre data-language="js"><span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> codePoint <span class="token keyword">of</span> <span class="token string">'\ud83d\udc0e\ud83d\udc71\u2764'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>codePoint<span class="token punctuation">.</span><span class="token function">codePointAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// '1f40e', '1f471', '2764'</span>
+</pre>
+<h2 id="polyfill">Polyfill</h2>
+<p>The following extends Strings to include the <code>codePointAt()</code> function as specified in ECMAScript 2015 for browsers without native support.</p> <pre data-language="js"><span class="token comment">/*! https://mths.be/codepointat v0.2.0 by @mathias */</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">String</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>codePointAt<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token string">'use strict'</span><span class="token punctuation">;</span> <span class="token comment">// needed to support `apply`/`call` with `undefined`/`null`</span>
+    <span class="token keyword">var</span> defineProperty <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// IE 8 only supports `Object.defineProperty` on DOM elements</span>
+      <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> object <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> $defineProperty <span class="token operator">=</span> Object<span class="token punctuation">.</span>defineProperty<span class="token punctuation">;</span>
+        <span class="token keyword">var</span> result <span class="token operator">=</span> <span class="token function">$defineProperty</span><span class="token punctuation">(</span>object<span class="token punctuation">,</span> object<span class="token punctuation">,</span> object<span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> $defineProperty<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+      <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> <span class="token function-variable function">codePointAt</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">position</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span> <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token function">TypeError</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">var</span> string <span class="token operator">=</span> <span class="token function">String</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> size <span class="token operator">=</span> string<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+      <span class="token comment">// `ToInteger`</span>
+      <span class="token keyword">var</span> index <span class="token operator">=</span> position <span class="token operator">?</span> <span class="token function">Number</span><span class="token punctuation">(</span>position<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token number">0</span><span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">!=</span> index<span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// better `isNaN`</span>
+        index <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token comment">// Account for out-of-bounds indices:</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>index <span class="token operator">&lt;</span> <span class="token number">0</span> <span class="token operator">||</span> index <span class="token operator">&gt;=</span> size<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">undefined</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token comment">// Get the first code unit</span>
+      <span class="token keyword">var</span> first <span class="token operator">=</span> string<span class="token punctuation">.</span><span class="token function">charCodeAt</span><span class="token punctuation">(</span>index<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> second<span class="token punctuation">;</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span> <span class="token comment">// check if it’s the start of a surrogate pair</span>
+        first <span class="token operator">&gt;=</span> <span class="token number">0xD800</span> <span class="token operator">&amp;&amp;</span> first <span class="token operator">&lt;=</span> <span class="token number">0xDBFF</span> <span class="token operator">&amp;&amp;</span> <span class="token comment">// high surrogate</span>
+        size <span class="token operator">&gt;</span> index <span class="token operator">+</span> <span class="token number">1</span> <span class="token comment">// there is a next code unit</span>
+      <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        second <span class="token operator">=</span> string<span class="token punctuation">.</span><span class="token function">charCodeAt</span><span class="token punctuation">(</span>index <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>second <span class="token operator">&gt;=</span> <span class="token number">0xDC00</span> <span class="token operator">&amp;&amp;</span> second <span class="token operator">&lt;=</span> <span class="token number">0xDFFF</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token comment">// low surrogate</span>
+          <span class="token comment">// https://mathiasbynens.be/notes/javascript-encoding#surrogate-formulae</span>
+          <span class="token keyword">return</span> <span class="token punctuation">(</span>first <span class="token operator">-</span> <span class="token number">0xD800</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">0x400</span> <span class="token operator">+</span> second <span class="token operator">-</span> <span class="token number">0xDC00</span> <span class="token operator">+</span> <span class="token number">0x10000</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">return</span> first<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>defineProperty<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token function">defineProperty</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">.</span>prototype<span class="token punctuation">,</span> <span class="token string">'codePointAt'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        <span class="token string">'value'</span><span class="token operator">:</span> codePointAt<span class="token punctuation">,</span>
+        <span class="token string">'configurable'</span><span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span>
+        <span class="token string">'writable'</span><span class="token operator">:</span> <span class="token boolean">true</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      <span class="token class-name">String</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>codePointAt <span class="token operator">=</span> codePointAt<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-string.prototype.codepointat">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-string.prototype.codepointat</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>codePointAt</code></th>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="fromcodepoint"><code>String.fromCodePoint()</code></a></li> <li><a href="fromcharcode"><code>String.fromCharCode()</code></a></li> <li><a href="charcodeat"><code>String.prototype.charCodeAt()</code></a></li> <li><a href="charat"><code>String.prototype.charAt()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/codePointAt</a>
+  </p>
+</div>

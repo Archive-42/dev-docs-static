@@ -1,0 +1,109 @@
+<h1>Text.splitText()</h1>
+
+ <p>The <code>Text.splitText()</code> method breaks the <a href="../text"><code>Text</code></a> node into two nodes at the specified offset, keeping both nodes in the tree as siblings.</p> <p>After the split, the current node contains all the content up to the specified offset point, and a newly created node of the same type contains the remaining text. The newly created node is returned to the caller. If the original node had a parent, the new node is inserted as the next sibling of the original node. If the offset is equal to the length of the original node, the newly created node has no data.</p> <p>Separated text nodes can be concatenated using the <a href="../node/normalize"><code>Node.normalize()</code></a> method.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">newNode <span class="token operator">=</span> textNode<span class="token punctuation">.</span><span class="token function">splitText</span><span class="token punctuation">(</span>offset<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>offset</var></code></dt> <dd>The index immediately before which to break the text node.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>Returns a newly created <a href="../text"><code>Text</code></a> node that contains the text after the specified offset point.</p>
+<h3 id="exceptions_thrown">Exceptions thrown</h3>
+<p>A <a href="../domexception"><code>DOMException</code></a> with a value of <code>INDEX_SIZE_ERR</code> is thrown if the specified offset is negative or is greater than the number of 16-bit units in the node's text; a <a href="../domexception"><code>DOMException</code></a> with a value of <code>NO_MODIFICATION_ALLOWED_ERR</code> is thrown if the node is read-only.</p>
+<h2 id="example">Example</h2>
+<p>In this example, the text of a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p"><code>&lt;p&gt;</code></a> is split into two text nodes, and a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/u"><code>&lt;u&gt;</code></a> is inserted between them.</p>
+<h3 id="html">HTML</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>foobar<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js"><span class="token keyword">const</span> p <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'p'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Get contents of &lt;p&gt; as a text node</span>
+<span class="token keyword">const</span> foobar <span class="token operator">=</span> p<span class="token punctuation">.</span>firstChild<span class="token punctuation">;</span>
+
+<span class="token comment">// Split 'foobar' into two text nodes, 'foo' and 'bar',</span>
+<span class="token comment">// and save 'bar' as a const</span>
+<span class="token keyword">const</span> bar <span class="token operator">=</span> foobar<span class="token punctuation">.</span><span class="token function">splitText</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Create a &lt;u&gt; element containing ' new content '</span>
+<span class="token keyword">const</span> u <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'u'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+u<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">createTextNode</span><span class="token punctuation">(</span><span class="token string">' new content '</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Add &lt;u&gt; before 'bar'</span>
+p<span class="token punctuation">.</span><span class="token function">insertBefore</span><span class="token punctuation">(</span>u<span class="token punctuation">,</span> bar<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// The result is: &lt;p&gt;foo&lt;u&gt; new content &lt;/u&gt;bar&lt;/p&gt;</span></pre>
+<h3 id="result">Result</h3>
+<p><iframe class="sample-code-frame" id="frame_Example" width="700" height="70" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Text/splitText/_samples_/Example" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://dom.spec.whatwg.org/#dom-text-splittext" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'Text.splitText' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>No change from <a href="https://www.w3.org/TR/DOM-Level-3-Core/" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 3 Core Specification</a>.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/DOM-Level-3-Core/core.html#ID-38853C1D" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 3 Core Specification<br><small>The definition of 'Text.splitText' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>No change from <a href="https://www.w3.org/TR/DOM-Level-2-Core/" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 2 Core Specification</a>.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/DOM-Level-2-Core/core.html#ID-38853C1D" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 2 Core Specification<br><small>The definition of 'Text.splitText' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>No change from <a href="https://www.w3.org/TR/REC-DOM-Level-1/" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 1 Specification</a>.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/REC-DOM-Level-1/level-one-core.html#ID-38853C1D" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 1 Specification<br><small>The definition of 'Text.splitText' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>splitText</code></th>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>Before Chrome 30, the <code>offset</code> argument was optional.</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Before Opera 17, the <code>offset</code> argument was optional.</div>
+</td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>The <code>offset</code> argument is optional.</div>
+</td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Before version 4.4, the <code>offset</code> argument was optional.</div>
+</td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>Before Chrome 30, the <code>offset</code> argument was optional.</div>
+</td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Before Opera 17, the <code>offset</code> argument was optional.</div>
+</td>
+<td class="bc-supports-yes">
+<div>1</div>
+<div>The <code>offset</code> argument is optional.</div>
+</td>
+<td class="bc-supports-yes">
+<div>1.0</div>
+<div>Before Samsung Internet 2.0, the <code>offset</code> argument was optional.</div>
+</td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>The <a href="../text"><code>Text</code></a> interface it belongs to.</li> <li>The opposite method: <a href="../node/normalize"><code>Node.normalize</code></a>.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Text/splitText" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Text/splitText</a>
+  </p>
+</div>

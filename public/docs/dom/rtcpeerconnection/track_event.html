@@ -1,0 +1,68 @@
+<h1>RTCPeerConnection: track event</h1> <p>The <code>track</code> event is sent to the <a href="ontrack"><code>ontrack</code></a> event handler on <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a>s after a new track has been added to an <a href="../rtcrtpreceiver"><code>RTCRtpReceiver</code></a> which is part of the connection.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>Yes</td> </tr> <tr> <th scope="row">Cancelable</th> <td>No</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../rtctrackevent"><code>RTCTrackEvent</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td><a href="ontrack"><code>ontrack</code></a></td> </tr> </tbody> </table></div> <p>By the time this event is delivered, the new track has been fully added to the peer connection. See <a href="../rtctrackevent#track_event_types">Track event types</a> in <a href="../rtctrackevent">RTCTrackEvent</a> for details.</p>
+<h2 id="examples">Examples</h2>
+<p>This example shows code that creates a new <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a>, then adds a new <code>track</code> event handler.</p> <pre data-language="js">pc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RTCPeerConnection</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  iceServers<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      urls<span class="token operator">:</span> <span class="token string">"turn:fake.turnserver.url"</span><span class="token punctuation">,</span>
+      username<span class="token operator">:</span> <span class="token string">"someusername"</span><span class="token punctuation">,</span>
+      credential<span class="token operator">:</span> <span class="token string">"somepassword"</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+pc<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"track"</span><span class="token punctuation">,</span> <span class="token parameter">e</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  videoElement<span class="token punctuation">.</span>srcObject <span class="token operator">=</span> e<span class="token punctuation">.</span>streams<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  hangupButton<span class="token punctuation">.</span>disabled <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>The event handler assigns the new track's first stream to an existing <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"><code>&lt;video&gt;</code></a> element, identified using the variable <code>videoElement</code>.</p> <p>You can also assign the event handler function to the <a href="ontrack"><code>ontrack</code></a> property, rather than use <a href="../eventtarget/addeventlistener"><code>addEventListener()</code></a>.</p> <pre data-language="js">pc<span class="token punctuation">.</span><span class="token function-variable function">ontrack</span> <span class="token operator">=</span> <span class="token parameter">e</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  videoElement<span class="token punctuation">.</span>srcObject <span class="token operator">=</span> e<span class="token punctuation">.</span>streams<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  hangupButton<span class="token punctuation">.</span>disabled <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#event-track" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'track' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>track_event</code></th>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/track_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/track_event</a>
+  </p>
+</div>

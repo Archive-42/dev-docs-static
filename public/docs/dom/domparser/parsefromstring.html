@@ -1,0 +1,142 @@
+<h1>DOMParser.parseFromString()</h1> <p>The <code>parseFromString()</code> method of the <a href="../domparser"><code>DOMParser</code></a> interface parses a string containing either HTML or XML, returning an <a href="../htmldocument"><code>HTMLDocument</code></a> or an <a href="../xmldocument"><code>XMLDocument</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">const</span> doc <span class="token operator">=</span> domparser<span class="token punctuation">.</span><span class="token function">parseFromString</span><span class="token punctuation">(</span>string<span class="token punctuation">,</span> mimeType<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>string</var></code></dt> <dd>The <a href="../domstring"><code>DOMString</code></a> to be parsed. It must contain either an <a href="https://developer.mozilla.org/en-US/docs/Glossary/HTML">HTML</a>, <a href="https://developer.mozilla.org/en-US/docs/Glossary/XML">xml</a>, <a class="page-not-created">xhtml+xml</a>, or <a href="https://developer.mozilla.org/en-US/docs/Glossary/SVG">svg</a> document.</dd> <dt id="Argument02"><code><var>mimeType</var></code></dt> <dd> <p>A <a href="../domstring"><code>DOMString</code></a>. This string determines whether the XML parser or the HTML parser is used to parse the string. Valid values are:</p> <ul> <li><code>text/html</code></li> <li><code>text/xml</code></li> <li><code>application/xml</code></li> <li><code>application/xhtml+xml</code></li> <li><code>image/svg+xml</code></li> </ul> <p>A value of <code>text/html</code> will invoke the HTML parser, and the method will return an <a href="../htmldocument"><code>HTMLDocument</code></a>. Any other valid value will invoke the XML parser, and the method will return an <a href="../xmldocument"><code>XMLDocument</code></a>.</p> <p>Any other value will cause a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError"><code>TypeError</code></a> to be thrown.</p> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>An <a href="../htmldocument"><code>HTMLDocument</code></a> or an <a href="../xmldocument"><code>XMLDocument</code></a>, depending on the <code>mimeType</code> argument.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="parsing_xml_svg_and_html">Parsing XML, SVG, and HTML</h3>
+<p>This example shows how to parse XML, SVG, and HTML. Note that a MIME type of <code>text/html</code> will invoke the HTML parser, and any other valid MIME type will invoke the XML parser.</p> <pre data-language="js"><span class="token keyword">const</span> parser <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DOMParser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> xmlString <span class="token operator">=</span> <span class="token string">"&lt;warning&gt;Beware of the tiger&lt;/warning&gt;"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> doc1 <span class="token operator">=</span> parser<span class="token punctuation">.</span><span class="token function">parseFromString</span><span class="token punctuation">(</span>xmlString<span class="token punctuation">,</span> <span class="token string">"application/xml"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// XMLDocument</span>
+
+<span class="token keyword">const</span> svgString <span class="token operator">=</span> <span class="token string">"&lt;circle cx=\"50\" cy=\"50\" r=\"50\"/&gt;"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> doc2 <span class="token operator">=</span> parser<span class="token punctuation">.</span><span class="token function">parseFromString</span><span class="token punctuation">(</span>svgString<span class="token punctuation">,</span> <span class="token string">"image/svg+xml"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// XMLDocument</span>
+
+<span class="token keyword">const</span> htmlString <span class="token operator">=</span> <span class="token string">"&lt;strong&gt;Beware of the leopard&lt;/strong&gt;"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> doc3 <span class="token operator">=</span> parser<span class="token punctuation">.</span><span class="token function">parseFromString</span><span class="token punctuation">(</span>htmlString<span class="token punctuation">,</span> <span class="token string">"text/html"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// HTMLDocument</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>doc1<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>textContent<span class="token punctuation">)</span>
+<span class="token comment">// "Beware of the tiger"</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>doc2<span class="token punctuation">.</span>firstChild<span class="token punctuation">.</span>tagName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// "circle"</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>doc3<span class="token punctuation">.</span>body<span class="token punctuation">.</span>firstChild<span class="token punctuation">.</span>textContent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// "Beware of the leopard"</span>
+</pre>
+<h3 id="error_handling">Error handling</h3>
+<p>Note that if the XML parser is used and parsing fails, the <code>DOMParser</code> does not throw an exception, but instead returns an error document:</p> <pre data-language="js"><span class="token keyword">const</span> parser <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DOMParser</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> xmlString <span class="token operator">=</span> <span class="token string">"&lt;warning&gt;Beware of the missing closing tag"</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> doc <span class="token operator">=</span> parser<span class="token punctuation">.</span><span class="token function">parseFromString</span><span class="token punctuation">(</span>xmlString<span class="token punctuation">,</span> <span class="token string">"application/xml"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>doc<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>tagName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// parsererror</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>doc<span class="token punctuation">.</span>documentElement<span class="token punctuation">.</span>textContent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// XML Parsing Error: no element found</span>
+</pre> <p>The parsing error may also be reported to the browser's JavaScript console.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td>
+<a href="https://html.spec.whatwg.org/multipage/#dom-domparser-parsefromstring" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'parseFromString()' in that specification.</small></a> </td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>parseFromString</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>html</code></th>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>9.1</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>9.3</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>svg</code></th>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>xml</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../xmlserializer"><code>XMLSerializer</code></a></li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse"><code>JSON.parse()</code></a> - counterpart for <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON"><code>JSON</code></a> documents.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMParser/parseFromString" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/DOMParser/parseFromString</a>
+  </p>
+</div>

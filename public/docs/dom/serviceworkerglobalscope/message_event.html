@@ -1,0 +1,76 @@
+<h1>ServiceWorkerGlobalScope: message event</h1> <p>The <code><strong>message</strong></code> event of the <a href="../serviceworkerglobalscope"><code>ServiceWorkerGlobalScope</code></a> interface occurs when incoming messages are received. Controlled pages can use the <a class="page-not-created"><code>ServiceWorker.postMessage()</code></a> method to send messages to service workers.<br> The service worker can optionally send a response back via the <a href="../client/postmessage"><code>Client.postMessage()</code></a>, corresponding to the controlled page.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>No</td> </tr> <tr> <th scope="row">Cancelable</th> <td>No</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../extendablemessageevent"><code>ExtendableMessageEvent</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td><code><a href="onmessage">onmessage</a></code></td> </tr> </tbody> </table></div>
+<h2 id="examples">Examples</h2>
+<p>In the below example a page gets a handle to the <a href="../serviceworker"><code>ServiceWorker</code></a> object via <a href="../serviceworkerregistration/active"><code>ServiceWorkerRegistration.active</code></a>, and then calls its <code>postMessage()</code> function.</p> <pre data-language="js"><span class="token comment">// in the page being controlled</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>navigator<span class="token punctuation">.</span>serviceWorker<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  navigator<span class="token punctuation">.</span>serviceWorker<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'service-worker.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  navigator<span class="token punctuation">.</span>serviceWorker<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'message'</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token comment">// event is a MessageEvent object</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">The service worker sent me a message: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>event<span class="token punctuation">.</span>data<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  navigator<span class="token punctuation">.</span>serviceWorker<span class="token punctuation">.</span>ready<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span> <span class="token parameter">registration</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    registration<span class="token punctuation">.</span>active<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span><span class="token string">"Hi service worker"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span></pre> <p>The service worker can receive the message by listening to the <code>message</code> event:</p> <pre data-language="js"><span class="token comment">// in the service worker</span>
+<span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'message'</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// event is an ExtendableMessageEvent object</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">The client sent me a message: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>event<span class="token punctuation">.</span>data<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  event<span class="token punctuation">.</span>source<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span><span class="token string">"Hi client"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> </tr> <tr> <td><a href="https://w3c.github.io/ServiceWorker/#eventdef-serviceworkerglobalscope-message" hreflang="en" rel=" noopener">Service Workers<br><small>The definition of 'message' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>message_event</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../service_worker_api/using_service_workers">Using Service Workers</a></li> <li><a href="https://github.com/mdn/sw-test" rel=" noopener">Service workers basic code example</a></li> <li><a href="https://jakearchibald.github.io/isserviceworkerready/" rel=" noopener">Is ServiceWorker ready?</a></li> <li><a href="../web_workers_api/using_web_workers">Using web workers</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/message_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerGlobalScope/message_event</a>
+  </p>
+</div>

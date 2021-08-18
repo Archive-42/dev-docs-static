@@ -1,0 +1,89 @@
+<h1>RTCRtpSender.replaceTrack()</h1> <p>The <a href="../rtcrtpsender"><code>RTCRtpSender</code></a> method <code><strong>replaceTrack()</strong></code> replaces the track currently being used as the sender's source with a new <a href="../mediastreamtrack"><code>MediaStreamTrack</code></a>. The new track must be of the same media kind (audio, video, etc) and switching the track should not require negotiation.</p> <p>Among the use cases for <code>replaceTrack()</code> is the common need to switch between the rear- and front-facing cameras on a phone. With <code>replaceTrack()</code>, you can have a track object for each camera and switch between the two as needed. See the example <a href="#switching_cameras">Switching cameras</a> below.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">trackReplacedPromise <span class="token operator">=</span> sender<span class="token punctuation">.</span><span class="token function">replaceTrack</span><span class="token punctuation">(</span>newTrack<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code>newTrack</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A <a href="../mediastreamtrack"><code>MediaStreamTrack</code></a> specifying the track with which to replace the <code>RTCRtpSender</code>'s current source track. The new track's <a href="../mediastreamtrack/kind"><code>kind</code></a> must be the same as the current track's, or the replace track request will fail.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which is fulfilled once the track has been successfully replaced. The promise is rejected if the track cannot be replaced for any reason; this is commonly because the change would require renegotiation of the codec, which is not allowed (see <a href="#things_that_require_negotiation">Things that require negotiation</a>).</p> <p>If <code>newTrack</code> was omitted or was <code>null</code>, <code>replaceTrack()</code> stops the sender. No negotiation is required in this case. </p> <p>When the promise is fulfilled, the fulfillment handler receives a value of <code>undefined</code>.</p>
+<h3 id="exceptions">Exceptions</h3>
+<p>If the returned promise is rejected, one of the following exceptions is provided to the rejection handler:</p> <dl> <dt><code>InvalidModificationError</code></dt> <dd>Replacing the <code>RTCRtpSende<em>r</em></code>'s current track with the new one would require negotiation.</dd> <dt><code>InvalidStateError</code></dt> <dd>The track on which this method was called is stopped rather than running.</dd> <dt><code>TypeError</code></dt> <dd>The new track's <code>kind</code> doesn't match the original track.</dd> </dl>
+<h2 id="usage_notes">Usage notes</h2>
+<h3 id="things_that_trigger_negotiation">Things that trigger negotiation</h3>
+<p>Not all track replacements require renegotiation. In fact, even changes that seem huge can be done without requiring negotation. Here are the changes that can trigger negotiaton:</p> <ul> <li>The new track has a resolution which is outside the bounds of the current track; that is, the new track is either wider or taller than the current one.</li> <li>The new track's frame rate is high enough to cause the codec's block rate to be exceeded.</li> <li>The new track is a video track and its raw or pre-encoded state differs from that of the original track.</li> <li>The new track is an audio track with a different number of channels fom the original.</li> <li>Media sources that have built-in encoders — such as hardware encoders — may not be able to provide the negotiated codec. Software sources may not implement the negotiated codec.</li> </ul>
+<h2 id="examples">Examples</h2>
+<h3 id="switching_video_cameras">Switching video cameras</h3>
+<pre class="notranslate">// example to change video camera, suppose selected value saved into window.selectedCamera
+
+navigator.mediaDevices
+  .getUserMedia({
+    video: {
+      deviceId: {
+        exact: window.selectedCamera
+      }
+    }
+  })
+  .then(function(stream) {
+    let videoTrack = stream.getVideoTracks()[0];
+    PCs.forEach(function(pc) {
+      var sender = pc.getSenders().find(function(s) {
+        return s.track.kind == videoTrack.kind;
+      });
+      console.log('found sender:', sender);
+      sender.replaceTrack(videoTrack);
+    });
+  })
+  .catch(function(err) {
+    console.error('Error happens:', err);
+  });
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcrtpsender-replacetrack" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCRtpSender.replaceTrack()' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>replaceTrack</code></th>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webrtc_api">WebRTC API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpSender/replaceTrack" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpSender/replaceTrack</a>
+  </p>
+</div>

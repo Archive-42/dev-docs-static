@@ -1,0 +1,71 @@
+<h1>DataTransfer.mozSetDataAt()</h1> 
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div>
+<div class="notecard warning"> <strong id="non-standard">Non-standard</strong> <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p> </div>
+ <p>The <code>DataTransfer.mozSetDataAt()</code> method is used to add data to a specific index in the drag event's <a href="../datatransfer"><code>data transfer</code></a> object.</p> <p>A data transfer may store multiple items, each at a given zero-based index. <code>mozSetDataAt()</code> may only be called with an index argument less than <a href="mozitemcount"><code>mozItemCount</code></a> in which case an existing item is modified, or equal to <a href="mozitemcount"><code>mozItemCount</code></a> in which case a new item is added, and the <a href="mozitemcount"><code>mozItemCount</code></a> is incremented by one.</p> <p>Data should be added in order of preference, with the most specific format added first and the least specific format added last. If data of the given format already exists, it is replaced in the same position as the old data.</p> <p>The data should be either a <a href="../domstring"><code>string</code></a>, a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> or number type (which will be converted into a string) or an <a class="page-not-created"><code>nsISupports</code></a>.</p> <div class="notecard note"> <strong id="note">Note</strong> <p>This method is Firefox-specific.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">void</span> dataTransfer<span class="token punctuation">.</span><span class="token function">mozSetDataAt</span><span class="token punctuation">(</span><span class="token punctuation">[</span>type<span class="token punctuation">]</span><span class="token punctuation">,</span> data<span class="token punctuation">,</span> index<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="arguments">Arguments</h3>
+<dl> <dt><em>type</em></dt> <dd>A <a href="../domstring"><code>string</code></a> representing the type of the drag data to add to the <a href="../datatransfer"><code>drag data object</code></a>.</dd> <dt><em>data</em></dt> <dd>A <a class="page-not-created"><code>nsIVariant</code></a> representing the data to add to the <a href="../datatransfer"><code>drag data object</code></a>.</dd> <dt><em>index</em></dt> <dd>A <code>unsigned long</code> representing the index of the data to add.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<dl> <dt>void</dt>  </dl>
+<h2 id="example">Example</h2>
+<p>This example shows the use of the <code>mozSetDataAt()</code> method in a <code><a href="../document/dragstart_event">dragstart</a></code> handler.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">dragstart_handler</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+  <span class="token keyword">var</span> dt <span class="token operator">=</span> event<span class="token punctuation">.</span>dataTransfer<span class="token punctuation">;</span>
+  <span class="token keyword">var</span> idx <span class="token operator">=</span> dt<span class="token punctuation">.</span>mozItemCount<span class="token punctuation">;</span>
+  <span class="token comment">// Add two new items to the drag transfer</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>idx <span class="token operator">&gt;=</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    dt<span class="token punctuation">.</span><span class="token function">mozSetDataAt</span><span class="token punctuation">(</span><span class="token string">"text/uri-list"</span><span class="token punctuation">,</span><span class="token string">"http://www.example.com/"</span><span class="token punctuation">,</span> idx<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    dt<span class="token punctuation">.</span><span class="token function">mozSetDataAt</span><span class="token punctuation">(</span><span class="token string">"text/html"</span><span class="token punctuation">,</span> <span class="token string">"Hello World"</span><span class="token punctuation">,</span> idx<span class="token operator">+</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<p>This method is not defined in any Web standard.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>mozSetDataAt</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>3.5-71</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>4-79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../html_drag_and_drop_api">Drag and drop</a></li> <li><a href="../html_drag_and_drop_api/drag_operations">Drag Operations</a></li> <li><a href="../html_drag_and_drop_api/recommended_drag_types">Recommended Drag Types</a></li> <li><a href="../html_drag_and_drop_api/multiple_items">Dragging and Dropping Multiple Items</a></li> <li><a href="https://codepen.io/tech_query/pen/MqGgap" rel=" noopener">DataTransfer test - Paste or Drag</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/mozSetDataAt" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/mozSetDataAt</a>
+  </p>
+</div>

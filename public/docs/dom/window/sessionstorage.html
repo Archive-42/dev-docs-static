@@ -1,0 +1,88 @@
+<h1>Window.sessionStorage</h1>
+
+ <p>The read-only <code>sessionStorage</code> property accesses a session <a href="../storage"><code>Storage</code></a> object for the current <a href="https://developer.mozilla.org/en-US/docs/Glossary/Origin">origin</a>. <code>sessionStorage</code> is similar to <a href="localstorage"><code>localStorage</code></a>; the difference is that while data in <code>localStorage</code> doesn't expire, data in <code>sessionStorage</code> is cleared when the <em>page session</em> ends.</p> <ul> <li>Whenever a document is loaded in a particular tab in the browser, a unique page session gets created and assigned to that particular tab. That page session is valid only for that particular tab.</li> <li>A page session lasts as long as the tab or the browser is open, and survives over page reloads and restores.</li> <li><strong>Opening a page in a new tab or window creates a new session with the value of the top-level browsing context, which differs from how session cookies work.</strong></li> <li>Opening multiple tabs/windows with the same URL creates <code>sessionStorage</code> for each tab/window.</li> <li>Duplicating a tab copies the tab's <code>sessionStorage</code> into the new tab.</li> <li>Closing a tab/window ends the session and clears objects in <code>sessionStorage</code>.</li> </ul> <p>Data stored in <code>sessionStorage</code> <strong>is specific to the protocol of the page</strong>. In particular, data stored by a script on a site accessed with HTTP (e.g., <a href="https://example.com" rel="noopener">http://example.com</a>) is put in a different <code>sessionStorage</code> object from the same site accessed with HTTPS (e.g., <a href="https://example.com" rel="noopener">https://example.com</a>).</p> <p>The keys and the values are <em>always</em> in the UTF-16 <a href="../domstring"><code>DOMString</code></a> format, which uses two bytes per character. As with objects, integer keys are automatically converted to strings.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">myStorage <span class="token operator">=</span> window<span class="token punctuation">.</span>sessionStorage<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../storage"><code>Storage</code></a> object which can be used to access the current origin's session storage space.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>SecurityError</code></dt> <dd>The request violates a policy decision, or the origin is not <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy#definition_of_an_origin">a valid scheme/host/port tuple</a> (this can happen if the origin uses the <code>file:</code> or <code>data:</code> scheme, for example). For example, the user may have their browser configured to deny permission to persist data for the specified origin.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="basic_usage">Basic usage</h3>
+<pre data-language="js"><span class="token comment">// Save data to sessionStorage</span>
+sessionStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">'key'</span><span class="token punctuation">,</span> <span class="token string">'value'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Get saved data from sessionStorage</span>
+<span class="token keyword">let</span> data <span class="token operator">=</span> sessionStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">'key'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Remove saved data from sessionStorage</span>
+sessionStorage<span class="token punctuation">.</span><span class="token function">removeItem</span><span class="token punctuation">(</span><span class="token string">'key'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Remove all saved data from sessionStorage</span>
+sessionStorage<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="saving_text_between_refreshes">Saving text between refreshes</h3>
+<p>The following example autosaves the contents of a text field, and if the browser is refreshed, restores the text field content so that no writing is lost.</p> <pre data-language="js"><span class="token comment">// Get the text field that we're going to track</span>
+<span class="token keyword">let</span> field <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"field"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// See if we have an autosave value</span>
+<span class="token comment">// (this will only happen if the page is accidentally refreshed)</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>sessionStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">"autosave"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Restore the contents of the text field</span>
+  field<span class="token punctuation">.</span>value <span class="token operator">=</span> sessionStorage<span class="token punctuation">.</span><span class="token function">getItem</span><span class="token punctuation">(</span><span class="token string">"autosave"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Listen for changes in the text field</span>
+field<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"change"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// And save the results into the session storage object</span>
+  sessionStorage<span class="token punctuation">.</span><span class="token function">setItem</span><span class="token punctuation">(</span><span class="token string">"autosave"</span><span class="token punctuation">,</span> field<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <div class="notecard note"> <p><strong>Note</strong>: Please refer to the <a href="../web_storage_api/using_the_web_storage_api">Using the Web Storage API</a> article for a full example.</p> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/webstorage.html#dom-sessionstorage" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'sessionStorage' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>sessionStorage</code></th>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>10.5</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>3.2</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../web_storage_api/using_the_web_storage_api">Using the Web Storage API</a></li> <li><a href="localstorage"><code>Window.localStorage</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage</a>
+  </p>
+</div>

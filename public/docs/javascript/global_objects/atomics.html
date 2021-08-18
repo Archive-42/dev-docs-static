@@ -1,0 +1,674 @@
+<h1>Atomics</h1> <p>The <code>Atomics</code> object provides atomic operations as static methods. They are used with <a href="sharedarraybuffer"><code>SharedArrayBuffer</code></a> and <a href="arraybuffer"><code>ArrayBuffer</code></a> objects.</p>
+<h2 id="description">Description</h2>
+<p>The Atomic operations are installed on an <code>Atomics</code> module. Unlike the other global objects, <code>Atomics</code> is not a constructor. You cannot use it with a <a href="../operators/new"><code>new</code> operator</a> or invoke the <code>Atomics</code> object as a function. All properties and methods of <code>Atomics</code> are static (as is the case with the <a href="math"><code>Math</code></a> object, for example).</p>
+<h3 id="atomic_operations">Atomic operations</h3>
+<p>When memory is shared, multiple threads can read and write the same data in memory. Atomic operations make sure that predictable values are written and read, that operations are finished before the next operation starts and that operations are not interrupted.</p>
+<h3 id="wait_and_notify">Wait and notify</h3>
+<p>The <code>wait()</code> and <code>notify()</code> methods are modeled on Linux futexes ("fast user-space mutex") and provide ways for waiting until a certain condition becomes true and are typically used as blocking constructs.</p>
+<h2 id="static_methods">Static methods</h2>
+<dl> <dt><a href="atomics/add"><code>Atomics.add()</code></a></dt> <dd>Adds the provided value to the existing value at the specified index of the array. Returns the old value at that index.</dd> <dt><a href="atomics/and"><code>Atomics.and()</code></a></dt> <dd>Computes a bitwise AND on the value at the specified index of the array with the provided value. Returns the old value at that index.</dd> <dt><a href="atomics/compareexchange"><code>Atomics.compareExchange()</code></a></dt> <dd>Stores a value at the specified index of the array, if it equals a value. Returns the old value.</dd> <dt><a href="atomics/exchange"><code>Atomics.exchange()</code></a></dt> <dd>Stores a value at the specified index of the array. Returns the old value.</dd> <dt><a href="atomics/islockfree"><code>Atomics.isLockFree(size)</code></a></dt> <dd>An optimization primitive that can be used to determine whether to use locks or atomic operations. Returns <code>true</code> if an atomic operation on arrays of the given element size will be implemented using a hardware atomic operation (as opposed to a lock). Experts only.</dd> <dt><a href="atomics/load"><code>Atomics.load()</code></a></dt> <dd>Returns the value at the specified index of the array.</dd> <dt><a href="atomics/notify"><code>Atomics.notify()</code></a></dt> <dd>Notifies agents that are waiting on the specified index of the array. Returns the number of agents that were notified.</dd> <dt><a href="atomics/or"><code>Atomics.or()</code></a></dt> <dd>Computes a bitwise OR on the value at the specified index of the array with the provided value. Returns the old value at that index.</dd> <dt><a href="atomics/store"><code>Atomics.store()</code></a></dt> <dd>Stores a value at the specified index of the array. Returns the value.</dd> <dt><a href="atomics/sub"><code>Atomics.sub()</code></a></dt> <dd>Subtracts a value at the specified index of the array. Returns the old value at that index.</dd> <dt><a href="atomics/wait"><code>Atomics.wait()</code></a></dt> <dd>Verifies that the specified index of the array still contains a value and sleeps awaiting or times out. Returns either "<code>ok</code>", "<code>not-equal</code>", or "<code>timed-out</code>". If waiting is not allowed in the calling agent then it throws an <a href="error"><code>Error</code></a> exception. (Most browsers will not allow <code>wait()</code> on the browser's main thread.)</dd> <dt><a href="atomics/xor"><code>Atomics.xor()</code></a></dt> <dd>Computes a bitwise XOR on the value at the specified index of the array with the provided value. Returns the old value at that index.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="using_atomics">Using Atomics</h3>
+<pre data-language="js"><span class="token keyword">const</span> sab <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SharedArrayBuffer</span><span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ta <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span>sab<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+ta<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// 0</span>
+ta<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span> <span class="token comment">// 5</span>
+
+Atomics<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>ta<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 5</span>
+Atomics<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span>ta<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 17</span>
+
+Atomics<span class="token punctuation">.</span><span class="token function">and</span><span class="token punctuation">(</span>ta<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 17</span>
+Atomics<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span>ta<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1</span>
+
+Atomics<span class="token punctuation">.</span><span class="token function">compareExchange</span><span class="token punctuation">(</span>ta<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1</span>
+Atomics<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span>ta<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1</span>
+
+Atomics<span class="token punctuation">.</span><span class="token function">exchange</span><span class="token punctuation">(</span>ta<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 1</span>
+Atomics<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span>ta<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 12</span>
+
+Atomics<span class="token punctuation">.</span><span class="token function">isLockFree</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+Atomics<span class="token punctuation">.</span><span class="token function">isLockFree</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+Atomics<span class="token punctuation">.</span><span class="token function">isLockFree</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// false</span>
+Atomics<span class="token punctuation">.</span><span class="token function">isLockFree</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+
+Atomics<span class="token punctuation">.</span><span class="token function">or</span><span class="token punctuation">(</span>ta<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 12</span>
+Atomics<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span>ta<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// 13</span>
+
+Atomics<span class="token punctuation">.</span><span class="token function">store</span><span class="token punctuation">(</span>ta<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 12</span>
+
+Atomics<span class="token punctuation">.</span><span class="token function">sub</span><span class="token punctuation">(</span>ta<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 12</span>
+Atomics<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span>ta<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 10</span>
+
+Atomics<span class="token punctuation">.</span><span class="token function">xor</span><span class="token punctuation">(</span>ta<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 10</span>
+Atomics<span class="token punctuation">.</span><span class="token function">load</span><span class="token punctuation">(</span>ta<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 11</span>
+</pre>
+<h3 id="waiting_and_notifiying">Waiting and notifiying</h3>
+<p>Given a shared <code>Int32Array</code>:</p> <pre data-language="js"><span class="token keyword">const</span> sab <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SharedArrayBuffer</span><span class="token punctuation">(</span><span class="token number">1024</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> int32 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Int32Array</span><span class="token punctuation">(</span>sab<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>A reading thread is sleeping and waiting on location 0 which is expected to be 0. As long as that is true, it will not go on. However, once the writing thread has stored a new value, it will be notified by the writing thread and return the new value (123).</p> <pre data-language="js">Atomics<span class="token punctuation">.</span><span class="token function">wait</span><span class="token punctuation">(</span>int32<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>int32<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 123</span></pre> <p>A writing thread stores a new value and notifies the waiting thread once it has written:</p> <pre data-language="js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>int32<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 0;</span>
+Atomics<span class="token punctuation">.</span><span class="token function">store</span><span class="token punctuation">(</span>int32<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">123</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Atomics<span class="token punctuation">.</span><span class="token function">notify</span><span class="token punctuation">(</span>int32<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-atomics-object">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-atomics-object</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>Atomics</code></th>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This was a temporary removal while mitigations were put in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>16-17</div>
+<div>Support was removed to mitigate <a href="https://blogs.windows.com/msedgedev/2018/01/03/speculative-execution-mitigations-microsoft-edge-internet-explorer">speculative execution side-channel attacks (Windows blog)</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>78</div>
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.1-11.1</div></td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.3-11.3</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+</tr>
+<tr>
+<th><code>Atomic_operations_on_non-shared_buffers</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>add</code></th>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This was a temporary removal while mitigations were put in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>16-17</div>
+<div>Support was removed to mitigate <a href="https://blogs.windows.com/msedgedev/2018/01/03/speculative-execution-mitigations-microsoft-edge-internet-explorer">speculative execution side-channel attacks (Windows blog)</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>78</div>
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.1-11.1</div></td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.3-11.3</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+</tr>
+<tr>
+<th><code>and</code></th>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This was a temporary removal while mitigations were put in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>16-17</div>
+<div>Support was removed to mitigate <a href="https://blogs.windows.com/msedgedev/2018/01/03/speculative-execution-mitigations-microsoft-edge-internet-explorer">speculative execution side-channel attacks (Windows blog)</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>78</div>
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.1-11.1</div></td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.3-11.3</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+</tr>
+<tr>
+<th><code>compareExchange</code></th>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This was a temporary removal while mitigations were put in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>16-17</div>
+<div>Support was removed to mitigate <a href="https://blogs.windows.com/msedgedev/2018/01/03/speculative-execution-mitigations-microsoft-edge-internet-explorer">speculative execution side-channel attacks (Windows blog)</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>78</div>
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.1-11.1</div></td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.3-11.3</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+</tr>
+<tr>
+<th><code>exchange</code></th>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This was a temporary removal while mitigations were put in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>16-17</div>
+<div>Support was removed to mitigate <a href="https://blogs.windows.com/msedgedev/2018/01/03/speculative-execution-mitigations-microsoft-edge-internet-explorer">speculative execution side-channel attacks (Windows blog)</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>78</div>
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.1-11.1</div></td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.3-11.3</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+</tr>
+<tr>
+<th><code>isLockFree</code></th>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This was a temporary removal while mitigations were put in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>16-17</div>
+<div>Support was removed to mitigate <a href="https://blogs.windows.com/msedgedev/2018/01/03/speculative-execution-mitigations-microsoft-edge-internet-explorer">speculative execution side-channel attacks (Windows blog)</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>78</div>
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.1-11.1</div></td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.3-11.3</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+</tr>
+<tr>
+<th><code>load</code></th>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This was a temporary removal while mitigations were put in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>16-17</div>
+<div>Support was removed to mitigate <a href="https://blogs.windows.com/msedgedev/2018/01/03/speculative-execution-mitigations-microsoft-edge-internet-explorer">speculative execution side-channel attacks (Windows blog)</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>78</div>
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.1-11.1</div></td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled SharedArrayBuffer on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.3-11.3</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Chrome disabled SharedArrayBuffer on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+</tr>
+<tr>
+<th><code>notify</code></th>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This was a temporary removal while mitigations were put in place.</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>78</div>
+<div>63</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>48-55</div>
+<div>46-48</div>
+<div>The <code>count</code> parameter defaults to <code>0</code> instead of the later-specified <code>+Infinity</code>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.1-11.1</div></td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>63</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>48-55</div>
+<div>46-48</div>
+<div>The <code>count</code> parameter defaults to <code>0</code> instead of the later-specified <code>+Infinity</code>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.3-11.3</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+</tr>
+<tr>
+<th><code>or</code></th>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This was a temporary removal while mitigations were put in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>16-17</div>
+<div>Support was removed to mitigate <a href="https://blogs.windows.com/msedgedev/2018/01/03/speculative-execution-mitigations-microsoft-edge-internet-explorer">speculative execution side-channel attacks (Windows blog)</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>78</div>
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.1-11.1</div></td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.3-11.3</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+</tr>
+<tr>
+<th><code>store</code></th>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This was a temporary removal while mitigations were put in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>16-17</div>
+<div>Support was removed to mitigate <a href="https://blogs.windows.com/msedgedev/2018/01/03/speculative-execution-mitigations-microsoft-edge-internet-explorer">speculative execution side-channel attacks (Windows blog)</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>78</div>
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.1-11.1</div></td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.3-11.3</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+</tr>
+<tr>
+<th><code>sub</code></th>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This was a temporary removal while mitigations were put in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>16-17</div>
+<div>Support was removed to mitigate <a href="https://blogs.windows.com/msedgedev/2018/01/03/speculative-execution-mitigations-microsoft-edge-internet-explorer">speculative execution side-channel attacks (Windows blog)</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>78</div>
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.1-11.1</div></td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled SharedArrayBuffer on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.3-11.3</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Chrome disabled SharedArrayBuffer on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+</tr>
+<tr>
+<th><code>wait</code></th>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This was a temporary removal while mitigations were put in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>16-17</div>
+<div>Support was removed to mitigate <a href="https://blogs.windows.com/msedgedev/2018/01/03/speculative-execution-mitigations-microsoft-edge-internet-explorer">speculative execution side-channel attacks (Windows blog)</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>78</div>
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>48-55</div>
+<div>46-48</div>
+<div>The method returns values <code>Atomics.OK</code>, <code>Atomics.TIMEDOUT</code>, and <code>Atomics.NOTEQUAL</code>, instead of the later-specified strings.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.1-11.1</div></td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>48-55</div>
+<div>46-48</div>
+<div>The method returns values <code>Atomics.OK</code>, <code>Atomics.TIMEDOUT</code>, and <code>Atomics.NOTEQUAL</code>, instead of the later-specified strings.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.3-11.3</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+</tr>
+<tr>
+<th><code>xor</code></th>
+<td class="bc-supports-yes">
+<div>68</div>
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This was a temporary removal while mitigations were put in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>16-17</div>
+<div>Support was removed to mitigate <a href="https://blogs.windows.com/msedgedev/2018/01/03/speculative-execution-mitigations-microsoft-edge-internet-explorer">speculative execution side-channel attacks (Windows blog)</a>.</div>
+</td>
+<td class="bc-supports-yes">
+<div>78</div>
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.1-11.1</div></td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-no">
+<div>60-63</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+<td class="bc-supports-yes">
+<div>57</div>
+<div>Support was disabled by default to mitigate <a href="https://blog.mozilla.org/security/2018/01/03/mitigations-landing-new-class-timing-attack/">speculative execution side-channel attacks (Mozilla Security Blog)</a>.</div>
+<div>55-57</div>
+<div>46-55</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>10.3-11.3</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Chrome disabled <code>SharedArrayBuffer</code> on January 5, 2018 to help reduce the efficacy of <a href="https://www.chromium.org/Home/chromium-security/ssca">speculative side-channel attacks</a>. This is intended as a temporary measure until other mitigations are in place.</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="arraybuffer"><code>ArrayBuffer</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">JavaScript typed arrays</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API">Web Workers</a></li> <li>
+<a href="https://github.com/lars-t-hansen/parlib-simple" rel=" noopener">parlib-simple </a>– a simple library providing synchronization and work distribution abstractions.</li> <li><a href="https://github.com/tc39/ecmascript_sharedmem/blob/master/TUTORIAL.md" rel=" noopener">Shared Memory – a brief tutorial</a></li> <li><a href="https://hacks.mozilla.org/2016/05/a-taste-of-javascripts-new-parallel-primitives/" rel=" noopener">A Taste of JavaScript’s New Parallel Primitives – Mozilla Hacks</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Atomics</a>
+  </p>
+</div>

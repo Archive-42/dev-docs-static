@@ -1,0 +1,177 @@
+<h1>NavigationPreloadManager</h1>
+
+ <p>The <code>NavigationPreloadManager</code> interface of the <a href="service_worker_api">Service Worker API</a> provides methods for managing the preloading of resources with a service worker.</p>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a class="page-not-created"><code>NavigationPreloadManager.enable()</code></a></dt> <dd>Enables navigation preloading and returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves.</dd> <dt><a class="page-not-created"><code>NavigationPreloadManager.disable()</code></a></dt> <dd>Disables navigation preloading and returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves.</dd> <dt><a class="page-not-created"><code>NavigationPreloadManager.setHeaderValue()</code></a></dt> <dd>Sets the value of the <code>Service-Worker-Navigation-Preload</code> header and returns an empty <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>.</dd> <dt><a class="page-not-created"><code>NavigationPreloadManager.getState()</code></a></dt> <dd>Returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to an object with properties indicating whether preload is enabled and the contents of the <code>Service-Worker-Navigation-Preload</code>.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h4 id="feature_detecting_and_enabling_navigation_preloading">Feature Detecting and Enabling Navigation Preloading </h4> <pre data-language="js"><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'activate'</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  event<span class="token punctuation">.</span><span class="token function">waitUntil</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>self<span class="token punctuation">.</span>registration<span class="token punctuation">.</span>navigationPreload<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// Enable navigation preloads!</span>
+      <span class="token keyword">await</span> self<span class="token punctuation">.</span>registration<span class="token punctuation">.</span>navigationPreload<span class="token punctuation">.</span><span class="token function">enable</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <h4 id="using_a_preloaded_response">Using a Preloaded Response</h4> <p>The following example shows the implementation of a fetch event that uses a preloaded response. </p> <pre data-language="js"><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'fetch'</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  event<span class="token punctuation">.</span><span class="token function">respondWith</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Respond from the cache if we can</span>
+    <span class="token keyword">const</span> cachedResponse <span class="token operator">=</span> <span class="token keyword">await</span> caches<span class="token punctuation">.</span><span class="token function">match</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>cachedResponse<span class="token punctuation">)</span> <span class="token keyword">return</span> cachedResponse<span class="token punctuation">;</span>
+
+    <span class="token comment">// Else, use the preloaded response, if it's there</span>
+    <span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> event<span class="token punctuation">.</span>preloadResponse<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>response<span class="token punctuation">)</span> <span class="token keyword">return</span> response<span class="token punctuation">;</span>
+
+    <span class="token comment">// Else try the network.</span>
+    <span class="token keyword">return</span> <span class="token function">fetch</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/ServiceWorker/#navigation-preload-manager" hreflang="en" rel=" noopener">Service Workers<br><small>The definition of 'NavigationPreloadManager' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>NavigationPreloadManager</code></th>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Implementation tracked in <a href="https://bugzil.la/1290958">bug 1290958</a>
+</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Implementation tracked in <a href="https://bugzil.la/1290958">bug 1290958</a>
+</div>
+</td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>disable</code></th>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Implementation tracked in <a href="https://bugzil.la/1290958">bug 1290958</a>
+</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Implementation tracked in <a href="https://bugzil.la/1290958">bug 1290958</a>
+</div>
+</td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>enable</code></th>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Implementation tracked in <a href="https://bugzil.la/1290958">bug 1290958</a>
+</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Implementation tracked in <a href="https://bugzil.la/1290958">bug 1290958</a>
+</div>
+</td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>getState</code></th>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Implementation tracked in <a href="https://bugzil.la/1290958">bug 1290958</a>
+</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Implementation tracked in <a href="https://bugzil.la/1290958">bug 1290958</a>
+</div>
+</td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>setHeaderValue</code></th>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Implementation tracked in <a href="https://bugzil.la/1290958">bug 1290958</a>
+</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>Implementation tracked in <a href="https://bugzil.la/1290958">bug 1290958</a>
+</div>
+</td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/NavigationPreloadManager" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/NavigationPreloadManager</a>
+  </p>
+</div>

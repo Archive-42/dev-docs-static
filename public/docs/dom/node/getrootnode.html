@@ -1,0 +1,84 @@
+<h1>Node.getRootNode()</h1> <p>The <code>getRootNode()</code> method of the <a href="../node"><code>Node</code></a> interface returns the context object's root, which optionally includes the shadow root if it is available.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> root <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token function">getRootNode</span><span class="token punctuation">(</span>options<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code>options</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An object that sets options for getting the root node. The available options are: <ul> <li>
+<code>composed</code>: A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> that indicates whether the shadow root should be returned (<code>false</code>, the default), or a root node beyond shadow root (<code>true</code>).</li> </ul> </dd> </dl>
+<h3 id="returns">Returns</h3>
+<p>An object inheriting from <a href="../node"><code>Node</code></a>. This will differ in exact form depending on where you called <code>getRootNode()</code>; for example:</p> <ul> <li>Calling it on an element inside a standard web page will return an <a href="../htmldocument"><code>HTMLDocument</code></a> object representing the entire page.</li> <li>Calling it on an element inside a shadow DOM will return the associated <a href="../shadowroot"><code>ShadowRoot</code></a>.</li> </ul>
+<h2 id="examples">Examples</h2>
+<p>The first simple example returns a reference to the HTML/document node:</p> <pre data-language="js">rootNode <span class="token operator">=</span> node<span class="token punctuation">.</span><span class="token function">getRootNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>This more complex example shows the difference between returning a normal root, and a root including the shadow root. (See the <a href="https://github.com/jserz/js_piece/blob/master/DOM/Node/getRootNode()/demo/getRootNode.html" rel=" noopener">full source code</a>):</p> <pre data-language="html"><span class="token comment">&lt;!-- source: https://github.com/jserz/js_piece/blob/master/DOM/Node/getRootNode()/demo/getRootNode.html --&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>js-parent<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>js-child<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>js-shadowHost<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+  <span class="token comment">// works on Chrome 54+, Opera 41+</span>
+
+  <span class="token keyword">var</span> parent <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.js-parent'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      child <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.js-child'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      shadowHost <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.js-shadowHost'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>parent<span class="token punctuation">.</span><span class="token function">getRootNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>nodeName<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// #document</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>child<span class="token punctuation">.</span><span class="token function">getRootNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>nodeName<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// #document</span>
+
+  <span class="token comment">// create a ShadowRoot</span>
+  <span class="token keyword">var</span> shadowRoot <span class="token operator">=</span> shadowHost<span class="token punctuation">.</span><span class="token function">attachShadow</span><span class="token punctuation">(</span><span class="token punctuation">{</span>mode<span class="token operator">:</span><span class="token string">'open'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  shadowRoot<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">'&lt;style&gt;div{background:#2bb8aa;}&lt;/style&gt;'</span>
+      <span class="token operator">+</span> <span class="token string">'&lt;div class="js-shadowChild"&gt;content&lt;/div&gt;'</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> shadowChild <span class="token operator">=</span> shadowRoot<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.js-shadowChild'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// The default value of composed is false</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>shadowChild<span class="token punctuation">.</span><span class="token function">getRootNode</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">===</span> shadowRoot<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>shadowChild<span class="token punctuation">.</span><span class="token function">getRootNode</span><span class="token punctuation">(</span><span class="token punctuation">{</span>composed<span class="token operator">:</span><span class="token boolean">false</span><span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token operator">===</span> shadowRoot<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>shadowChild<span class="token punctuation">.</span><span class="token function">getRootNode</span><span class="token punctuation">(</span><span class="token punctuation">{</span>composed<span class="token operator">:</span><span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span>nodeName<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// #document</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://dom.spec.whatwg.org/#dom-node-getrootnode" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'getRootNode()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getRootNode</code></th>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10.3</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/getRootNode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Node/getRootNode</a>
+  </p>
+</div>

@@ -1,0 +1,383 @@
+<h1>Array.prototype.reduce()</h1> <p>The <code><strong>reduce()</strong></code> method executes a <strong>reducer</strong> function (that you provide) on each element of the array, resulting in a single output value.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/array-reduce.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <p>The <strong>reducer</strong> function takes four arguments:</p> <ol> <li>Accumulator</li> <li>Current Value</li> <li>Current Index</li> <li>Source Array</li> </ol> <p>Your <strong>reducer</strong> function's returned value is assigned to the accumulator, whose value is remembered across each iteration throughout the array, and ultimately becomes the final, single resulting value.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token comment">// Arrow function</span>
+<span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">accumulator<span class="token punctuation">,</span> currentValue</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span> <span class="token punctuation">)</span>
+<span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">accumulator<span class="token punctuation">,</span> currentValue<span class="token punctuation">,</span> index</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span> <span class="token punctuation">)</span>
+<span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">accumulator<span class="token punctuation">,</span> currentValue<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span> <span class="token punctuation">)</span>
+<span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">accumulator<span class="token punctuation">,</span> currentValue<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> initialValue<span class="token punctuation">)</span>
+
+<span class="token comment">// Reducer function</span>
+<span class="token function">reduce</span><span class="token punctuation">(</span>reducerFn<span class="token punctuation">)</span>
+<span class="token function">reduce</span><span class="token punctuation">(</span>reducerFn<span class="token punctuation">,</span> initialValue<span class="token punctuation">)</span>
+
+<span class="token comment">// Inline reducer function</span>
+<span class="token function">reduce</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">reducerFn</span><span class="token punctuation">(</span><span class="token parameter">accumulator<span class="token punctuation">,</span> currentValue</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">reduce</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">reducerFn</span><span class="token punctuation">(</span><span class="token parameter">accumulator<span class="token punctuation">,</span> currentValue<span class="token punctuation">,</span> index</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">reduce</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">reducerFn</span><span class="token punctuation">(</span><span class="token parameter">accumulator<span class="token punctuation">,</span> currentValue<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array</span><span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token function">reduce</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token function">reducerFn</span><span class="token punctuation">(</span><span class="token parameter">accumulator<span class="token punctuation">,</span> currentValue<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> initialValue<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>callback</var></code></dt> <dd> <p>A function to execute on each element in the array (except for the first, if no <code><var>initialValue</var></code> is supplied).</p> <p>It takes four arguments:</p> <dl> <dt><code><var>accumulator</var></code></dt> <dd>The accumulator accumulates <var>callback</var>'s return values. It is the accumulated value previously returned in the last invocation of the callback—or <code><var>initialValue</var></code>, if it was supplied (see below).</dd> <dt><code><var>currentValue</var></code></dt> <dd>The current element being processed in the array.</dd> <dt>
+<code><var>index</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>The index of the current element being processed in the array. Starts from index <code>0</code> if an <code>initialValue</code> is provided. Otherwise, it starts from index <code>1</code>.</dd> <dt>
+<code><var>array</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>The array <code>reduce()</code> was called upon.</dd> </dl> </dd> <dt>
+<code><var>initialValue</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>A value to use as the first argument to the first call of the <code><var>callback</var></code>. If no <code><var>initialValue</var></code> is supplied, the first element in the array will be used as the initial <code><var>accumulator</var></code> value and skipped as <code><var>currentValue</var></code>. Calling <code>reduce()</code> on an empty array without an <code><var>initialValue</var></code> will throw a <a href="../typeerror"><code>TypeError</code></a>. </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The single value that results from the reduction.</p>
+<h2 id="description">Description</h2>
+<p>The <code>reduce()</code> method executes the <code><var>callback</var></code> once for each assigned value present in the array, taking four arguments:</p> <ol> <li><code><var>accumulator</var></code></li> <li><code><var>currentValue</var></code></li> <li><code><var>currentIndex</var></code></li> <li><code><var>array</var></code></li> </ol> <p>The first time the callback is called, <code><var>accumulator</var></code> and <code><var>currentValue</var></code> can be one of two values. If <code><var>initialValue</var></code> is provided in the call to <code>reduce()</code>, then <code><var>accumulator</var></code> will be equal to <code><var>initialValue</var></code>, and <code><var>currentValue</var></code> will be equal to the first value in the array. If no <code><var>initialValue</var></code> is provided, then <code><var>accumulator</var></code> will be equal to the first value in the array, and <code><var>currentValue</var></code> will be equal to the second.</p> <div class="note notecard"> <p><strong>Note:</strong> If <code><var>initialValue</var></code> is not provided, <code>reduce()</code> will execute the callback function starting at index <code>1</code>, skipping the first index. If <code><var>initialValue</var></code> is provided, it will start at index <code>0</code>.</p> </div> <p>If the array is empty and no <code><var>initialValue</var></code> is provided, <a href="../typeerror"><code>TypeError</code></a> will be thrown.</p> <p>If the array only has one element (regardless of position) and no <code><var>initialValue</var></code> is provided, or if <code><var>initialValue</var></code> is provided but the array is empty, the solo value will be returned <em>without</em> calling <em><code>callback</code>.</em></p> <p>It is almost always safer to provide an <code><var>initialValue</var></code>, because there can be up to <em>four</em> possible output types without <code><var>initialValue</var></code>, as shown in the following example:</p> <pre data-language="js"><span class="token keyword">let</span> <span class="token function-variable function">maxCallback</span> <span class="token operator">=</span> <span class="token punctuation">(</span> <span class="token parameter">acc<span class="token punctuation">,</span> cur</span> <span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span> acc<span class="token punctuation">.</span>x<span class="token punctuation">,</span> cur<span class="token punctuation">.</span>x <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> <span class="token function-variable function">maxCallback2</span> <span class="token operator">=</span> <span class="token punctuation">(</span> <span class="token parameter">max<span class="token punctuation">,</span> cur</span> <span class="token punctuation">)</span> <span class="token operator">=&gt;</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span> max<span class="token punctuation">,</span> cur <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// reduce without initialValue</span>
+<span class="token punctuation">[</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">22</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">42</span> <span class="token punctuation">}</span> <span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span> maxCallback <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// NaN</span>
+<span class="token punctuation">[</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">2</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">22</span> <span class="token punctuation">}</span>            <span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span> maxCallback <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 22</span>
+<span class="token punctuation">[</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">2</span> <span class="token punctuation">}</span>                       <span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span> maxCallback <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// { x: 2 }</span>
+<span class="token punctuation">[</span>                                <span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span> maxCallback <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// TypeError</span>
+
+<span class="token comment">// map &amp; reduce with initialValue; better solution, also works for empty or larger arrays</span>
+<span class="token punctuation">[</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">22</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> x<span class="token operator">:</span> <span class="token number">42</span> <span class="token punctuation">}</span> <span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span> <span class="token parameter">el</span> <span class="token operator">=&gt;</span> el<span class="token punctuation">.</span>x <span class="token punctuation">)</span>
+                        <span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span> maxCallback2<span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">Infinity</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="how_reduce_works">How reduce() works</h3>
+<p>Suppose the following use of <code>reduce()</code> occurred:</p> <pre data-language="js"><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">accumulator<span class="token punctuation">,</span> currentValue<span class="token punctuation">,</span> currentIndex<span class="token punctuation">,</span> array</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> accumulator <span class="token operator">+</span> currentValue
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</pre> <p>The callback would be invoked four times, with the arguments and return values in each call being as follows:</p> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">
+<code><var>callback</var></code> iteration</th> <th scope="col"><code><var>accumulator</var></code></th> <th scope="col"><code><var>currentValue</var></code></th> <th scope="col"><code><var>currentIndex</var></code></th> <th scope="col"><code><var>array</var></code></th> <th scope="col">return value</th> </tr> </thead> <tbody> <tr> <th scope="row">first call</th> <td><code>0</code></td> <td><code>1</code></td> <td><code>1</code></td> <td><code>[0, 1, 2, 3, 4]</code></td> <td><code>1</code></td> </tr> <tr> <th scope="row">second call</th> <td><code>1</code></td> <td><code>2</code></td> <td><code>2</code></td> <td><code>[0, 1, 2, 3, 4]</code></td> <td><code>3</code></td> </tr> <tr> <th scope="row">third call</th> <td><code>3</code></td> <td><code>3</code></td> <td><code>3</code></td> <td><code>[0, 1, 2, 3, 4]</code></td> <td><code>6</code></td> </tr> <tr> <th scope="row">fourth call</th> <td><code>6</code></td> <td><code>4</code></td> <td><code>4</code></td> <td><code>[0, 1, 2, 3, 4]</code></td> <td><code>10</code></td> </tr> </tbody> </table></div> <p>The value returned by <code>reduce()</code> would be that of the last callback invocation (<code>10</code>).</p> <p>You can also provide an <a href="../../functions/arrow_functions">Arrow Function</a> instead of a full function. The code below will produce the same output as the code in the block above:</p> <pre data-language="js"><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span> <span class="token punctuation">(</span><span class="token parameter">accumulator<span class="token punctuation">,</span> currentValue<span class="token punctuation">,</span> currentIndex<span class="token punctuation">,</span> array</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> accumulator <span class="token operator">+</span> currentValue <span class="token punctuation">)</span>
+</pre> <p>If you were to provide an <code><var>initialValue</var></code> as the second argument to <code>reduce()</code>, the result would look like this:</p> <pre data-language="js"><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">accumulator<span class="token punctuation">,</span> currentValue<span class="token punctuation">,</span> currentIndex<span class="token punctuation">,</span> array</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> accumulator <span class="token operator">+</span> currentValue
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
+</pre> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">
+<code><var>callback</var></code> iteration</th> <th scope="col"><code><var>accumulator</var></code></th> <th scope="col"><code><var>currentValue</var></code></th> <th scope="col"><code><var>currentIndex</var></code></th> <th scope="col"><code><var>array</var></code></th> <th scope="col">return value</th> </tr> </thead> <tbody> <tr> <th scope="row">first call</th> <td><code>10</code></td> <td><code>0</code></td> <td><code>0</code></td> <td><code>[0, 1, 2, 3, 4]</code></td> <td><code>10</code></td> </tr> <tr> <th scope="row">second call</th> <td><code>10</code></td> <td><code>1</code></td> <td><code>1</code></td> <td><code>[0, 1, 2, 3, 4]</code></td> <td><code>11</code></td> </tr> <tr> <th scope="row">third call</th> <td><code>11</code></td> <td><code>2</code></td> <td><code>2</code></td> <td><code>[0, 1, 2, 3, 4]</code></td> <td><code>13</code></td> </tr> <tr> <th scope="row">fourth call</th> <td><code>13</code></td> <td><code>3</code></td> <td><code>3</code></td> <td><code>[0, 1, 2, 3, 4]</code></td> <td><code>16</code></td> </tr> <tr> <th scope="row">fifth call</th> <td><code>16</code></td> <td><code>4</code></td> <td><code>4</code></td> <td><code>[0, 1, 2, 3, 4]</code></td> <td><code>20</code></td> </tr> </tbody> </table></div> <p>The value returned by <code>reduce()</code> in this case would be <code>20</code>.</p>
+<h2 id="polyfill">Polyfill</h2>
+<pre data-language="js"><span class="token comment">// Production steps of ECMA-262, Edition 5, 15.4.4.21</span>
+<span class="token comment">// Reference: https://es5.github.io/#x15.4.4.21</span>
+<span class="token comment">// https://tc39.github.io/ecma262/#sec-array.prototype.reduce</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>reduce<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span><span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">,</span> <span class="token string">'reduce'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token function-variable function">value</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>callback <span class="token comment">/*, initialValue*/</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span> <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">TypeError</span><span class="token punctuation">(</span> <span class="token string">'Array.prototype.reduce '</span> <span class="token operator">+</span>
+          <span class="token string">'called on null or undefined'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> callback <span class="token operator">!==</span> <span class="token string">'function'</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">TypeError</span><span class="token punctuation">(</span> callback <span class="token operator">+</span>
+          <span class="token string">' is not a function'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token comment">// 1. Let O be ? ToObject(this value).</span>
+      <span class="token keyword">var</span> o <span class="token operator">=</span> <span class="token function">Object</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// 2. Let len be ? ToLength(? Get(O, "length")).</span>
+      <span class="token keyword">var</span> len <span class="token operator">=</span> o<span class="token punctuation">.</span>length <span class="token operator">&gt;&gt;&gt;</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+      <span class="token comment">// Steps 3, 4, 5, 6, 7</span>
+      <span class="token keyword">var</span> k <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+      <span class="token keyword">var</span> value<span class="token punctuation">;</span>
+
+      <span class="token keyword">if</span> <span class="token punctuation">(</span>arguments<span class="token punctuation">.</span>length <span class="token operator">&gt;=</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        value <span class="token operator">=</span> arguments<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span>k <span class="token operator">&lt;</span> len <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token punctuation">(</span>k <span class="token keyword">in</span> o<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          k<span class="token operator">++</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// 3. If len is 0 and initialValue is not present,</span>
+        <span class="token comment">//    throw a TypeError exception.</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>k <span class="token operator">&gt;=</span> len<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">TypeError</span><span class="token punctuation">(</span> <span class="token string">'Reduce of empty array '</span> <span class="token operator">+</span>
+            <span class="token string">'with no initial value'</span> <span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        value <span class="token operator">=</span> o<span class="token punctuation">[</span>k<span class="token operator">++</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token comment">// 8. Repeat, while k &lt; len</span>
+      <span class="token keyword">while</span> <span class="token punctuation">(</span>k <span class="token operator">&lt;</span> len<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// a. Let Pk be ! ToString(k).</span>
+        <span class="token comment">// b. Let kPresent be ? HasProperty(O, Pk).</span>
+        <span class="token comment">// c. If kPresent is true, then</span>
+        <span class="token comment">//    i.  Let kValue be ? Get(O, Pk).</span>
+        <span class="token comment">//    ii. Let accumulator be ? Call(</span>
+        <span class="token comment">//          callbackfn, undefined,</span>
+        <span class="token comment">//          « accumulator, kValue, k, O »).</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>k <span class="token keyword">in</span> o<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          value <span class="token operator">=</span> <span class="token function">callback</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> o<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">,</span> k<span class="token punctuation">,</span> o<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// d. Increase k by 1.</span>
+        k<span class="token operator">++</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token comment">// 9. Return accumulator.</span>
+      <span class="token keyword">return</span> value<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <div class="notecard note"> <p><strong>Note:</strong> If you need to support truly obsolete JavaScript engines that do not support <a href="../object/defineproperty"><code>Object.defineProperty()</code></a>, it is best not to polyfill <code>Array.prototype</code> methods at all, as you cannot make them <strong>non-enumerable</strong>.</p> </div>
+<h2 id="examples">Examples</h2>
+<h3 id="sum_all_the_values_of_an_array">Sum all the values of an array</h3>
+<pre data-language="js"><span class="token keyword">let</span> sum <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">accumulator<span class="token punctuation">,</span> currentValue</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> accumulator <span class="token operator">+</span> currentValue
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token comment">// sum is 6</span>
+
+</pre> <p>Alternatively written with an arrow function:</p> <pre data-language="js"><span class="token keyword">let</span> total <span class="token operator">=</span> <span class="token punctuation">[</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span> <span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span>
+  <span class="token punctuation">(</span> <span class="token parameter">accumulator<span class="token punctuation">,</span> currentValue</span> <span class="token punctuation">)</span> <span class="token operator">=&gt;</span> accumulator <span class="token operator">+</span> currentValue<span class="token punctuation">,</span>
+  <span class="token number">0</span>
+<span class="token punctuation">)</span></pre>
+<h3 id="sum_of_values_in_an_object_array">Sum of values in an object array</h3>
+<p>To sum up the values contained in an array of objects, you <strong>must</strong> supply an <code><var>initialValue</var></code>, so that each item passes through your function. </p> <pre data-language="js"><span class="token keyword">let</span> initialValue <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">let</span> sum <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>x<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>x<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>x<span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">accumulator<span class="token punctuation">,</span> currentValue</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> accumulator <span class="token operator">+</span> currentValue<span class="token punctuation">.</span>x
+<span class="token punctuation">}</span><span class="token punctuation">,</span> initialValue<span class="token punctuation">)</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>sum<span class="token punctuation">)</span> <span class="token comment">// logs 6</span>
+</pre> <p>Alternatively written with an arrow function:</p> <pre data-language="js"><span class="token keyword">let</span> initialValue <span class="token operator">=</span> <span class="token number">0</span>
+<span class="token keyword">let</span> sum <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>x<span class="token operator">:</span> <span class="token number">1</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>x<span class="token operator">:</span> <span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>x<span class="token operator">:</span> <span class="token number">3</span><span class="token punctuation">}</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span>
+    <span class="token punctuation">(</span><span class="token parameter">accumulator<span class="token punctuation">,</span> currentValue</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> accumulator <span class="token operator">+</span> currentValue<span class="token punctuation">.</span>x
+    <span class="token punctuation">,</span> initialValue
+<span class="token punctuation">)</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>sum<span class="token punctuation">)</span> <span class="token comment">// logs 6</span></pre>
+<h3 id="flatten_an_array_of_arrays">Flatten an array of arrays</h3>
+<pre data-language="js"><span class="token keyword">let</span> flattened <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span>
+  <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">accumulator<span class="token punctuation">,</span> currentValue</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> accumulator<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>currentValue<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">)</span>
+<span class="token comment">// flattened is [0, 1, 2, 3, 4, 5]</span>
+</pre> <p>Alternatively written with an arrow function:</p> <pre data-language="js"><span class="token keyword">let</span> flattened <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span>
+  <span class="token punctuation">(</span> <span class="token parameter">accumulator<span class="token punctuation">,</span> currentValue</span> <span class="token punctuation">)</span> <span class="token operator">=&gt;</span> accumulator<span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>currentValue<span class="token punctuation">)</span><span class="token punctuation">,</span>
+  <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">)</span>
+</pre>
+<h3 id="counting_instances_of_values_in_an_object">Counting instances of values in an object</h3>
+<pre data-language="js"><span class="token keyword">let</span> names <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Alice'</span><span class="token punctuation">,</span> <span class="token string">'Bob'</span><span class="token punctuation">,</span> <span class="token string">'Tiff'</span><span class="token punctuation">,</span> <span class="token string">'Bruce'</span><span class="token punctuation">,</span> <span class="token string">'Alice'</span><span class="token punctuation">]</span>
+
+<span class="token keyword">let</span> countedNames <span class="token operator">=</span> names<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">allNames<span class="token punctuation">,</span> name</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>name <span class="token keyword">in</span> allNames<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    allNames<span class="token punctuation">[</span>name<span class="token punctuation">]</span><span class="token operator">++</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    allNames<span class="token punctuation">[</span>name<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> allNames
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token comment">// countedNames is:</span>
+<span class="token comment">// { 'Alice': 2, 'Bob': 1, 'Tiff': 1, 'Bruce': 1 }</span>
+</pre>
+<h3 id="grouping_objects_by_a_property">Grouping objects by a property</h3>
+<pre data-language="js"><span class="token keyword">let</span> people <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token string">'Alice'</span><span class="token punctuation">,</span> age<span class="token operator">:</span> <span class="token number">21</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token string">'Max'</span><span class="token punctuation">,</span> age<span class="token operator">:</span> <span class="token number">20</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">{</span> name<span class="token operator">:</span> <span class="token string">'Jane'</span><span class="token punctuation">,</span> age<span class="token operator">:</span> <span class="token number">20</span> <span class="token punctuation">}</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">groupBy</span><span class="token punctuation">(</span><span class="token parameter">objectArray<span class="token punctuation">,</span> property</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> objectArray<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">acc<span class="token punctuation">,</span> obj</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> key <span class="token operator">=</span> obj<span class="token punctuation">[</span>property<span class="token punctuation">]</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>acc<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      acc<span class="token punctuation">[</span>key<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+    <span class="token punctuation">}</span>
+    acc<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> acc
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> groupedPeople <span class="token operator">=</span> <span class="token function">groupBy</span><span class="token punctuation">(</span>people<span class="token punctuation">,</span> <span class="token string">'age'</span><span class="token punctuation">)</span>
+<span class="token comment">// groupedPeople is:</span>
+<span class="token comment">// {</span>
+<span class="token comment">//   20: [</span>
+<span class="token comment">//     { name: 'Max', age: 20 },</span>
+<span class="token comment">//     { name: 'Jane', age: 20 }</span>
+<span class="token comment">//   ],</span>
+<span class="token comment">//   21: [{ name: 'Alice', age: 21 }]</span>
+<span class="token comment">// }</span>
+</pre>
+<h3 id="bonding_arrays_contained_in_an_array_of_objects_using_the_spread_operator_and_initialvalue"> Bonding arrays contained in an array of objects using the spread operator and initialValue</h3>
+<pre data-language="js"><span class="token comment">// friends - an array of objects</span>
+<span class="token comment">// where object field "books" is a list of favorite books</span>
+<span class="token keyword">let</span> friends <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">'Anna'</span><span class="token punctuation">,</span>
+  books<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'Bible'</span><span class="token punctuation">,</span> <span class="token string">'Harry Potter'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  age<span class="token operator">:</span> <span class="token number">21</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">'Bob'</span><span class="token punctuation">,</span>
+  books<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'War and peace'</span><span class="token punctuation">,</span> <span class="token string">'Romeo and Juliet'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  age<span class="token operator">:</span> <span class="token number">26</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  name<span class="token operator">:</span> <span class="token string">'Alice'</span><span class="token punctuation">,</span>
+  books<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">'The Lord of the Rings'</span><span class="token punctuation">,</span> <span class="token string">'The Shining'</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  age<span class="token operator">:</span> <span class="token number">18</span>
+<span class="token punctuation">}</span><span class="token punctuation">]</span>
+
+<span class="token comment">// allbooks - list which will contain all friends' books +</span>
+<span class="token comment">// additional list contained in initialValue</span>
+<span class="token keyword">let</span> allbooks <span class="token operator">=</span> friends<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">accumulator<span class="token punctuation">,</span> currentValue</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token punctuation">[</span><span class="token operator">...</span>accumulator<span class="token punctuation">,</span> <span class="token operator">...</span>currentValue<span class="token punctuation">.</span>books<span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'Alphabet'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+<span class="token comment">// allbooks = [</span>
+<span class="token comment">//   'Alphabet', 'Bible', 'Harry Potter', 'War and peace',</span>
+<span class="token comment">//   'Romeo and Juliet', 'The Lord of the Rings',</span>
+<span class="token comment">//   'The Shining'</span>
+<span class="token comment">// ]</span></pre>
+<h3 id="remove_duplicate_items_in_an_array">Remove duplicate items in an array</h3>
+<div class="notecard note"> <p><strong>Note:</strong> If you are using an environment compatible with <a href="../set"><code>Set</code></a> and <a href="from"><code>Array.from()</code></a>, you could use <code>let orderedArray = Array.from(new Set(myArray))</code> to get an array where duplicate items have been removed.</p> </div> <pre data-language="js"><span class="token keyword">let</span> myArray <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">,</span> <span class="token string">'e'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">]</span>
+<span class="token keyword">let</span> myOrderedArray <span class="token operator">=</span> myArray<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">accumulator<span class="token punctuation">,</span> currentValue</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>accumulator<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>currentValue<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    accumulator<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>currentValue<span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> accumulator
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myOrderedArray<span class="token punctuation">)</span></pre>
+<h3 id="replace_.filter.map_with_.reduce">Replace .filter().map() with .reduce()</h3>
+<p>Using <a href="filter"><code>Array.filter()</code></a> then <a href="map"><code>Array.map()</code></a> traverses the array twice, but you can achieve the same effect while traversing only once with <a href="reduce"><code>Array.reduce()</code></a>, thereby being more efficient. (If you like for loops, you can filter and map while traversing once with <a href="foreach"><code>Array.forEach()</code></a>).</p> <pre data-language="js"><span class="token keyword">const</span> numbers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> doubledPositiveNumbers <span class="token operator">=</span> numbers<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">accumulator<span class="token punctuation">,</span> currentValue</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>currentValue <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> doubled <span class="token operator">=</span> currentValue <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">;</span>
+    accumulator<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>doubled<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token keyword">return</span> accumulator<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>doubledPositiveNumbers<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [12, 4]</span></pre>
+<h3 id="running_promises_in_sequence">Running Promises in Sequence</h3>
+<pre data-language="js"><span class="token comment">/**
+ * Runs promises from array of functions that can return promises
+ * in chained manner
+ *
+ * @param {array} arr - promise arr
+ * @return {Object} promise object
+ */</span>
+<span class="token keyword">function</span> <span class="token function">runPromiseInSequence</span><span class="token punctuation">(</span><span class="token parameter">arr<span class="token punctuation">,</span> input</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> arr<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span>
+    <span class="token punctuation">(</span><span class="token parameter">promiseChain<span class="token punctuation">,</span> currentFunction</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> promiseChain<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>currentFunction<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    Promise<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>input<span class="token punctuation">)</span>
+  <span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// promise function 1</span>
+<span class="token keyword">function</span> <span class="token function">p1</span><span class="token punctuation">(</span><span class="token parameter">a</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token function">resolve</span><span class="token punctuation">(</span>a <span class="token operator">*</span> <span class="token number">5</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// promise function 2</span>
+<span class="token keyword">function</span> <span class="token function">p2</span><span class="token punctuation">(</span><span class="token parameter">a</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token function">resolve</span><span class="token punctuation">(</span>a <span class="token operator">*</span> <span class="token number">2</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// function 3  - will be wrapped in a resolved promise by .then()</span>
+<span class="token keyword">function</span> <span class="token function">f3</span><span class="token punctuation">(</span><span class="token parameter">a</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token keyword">return</span> a <span class="token operator">*</span> <span class="token number">3</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// promise function 4</span>
+<span class="token keyword">function</span> <span class="token function">p4</span><span class="token punctuation">(</span><span class="token parameter">a</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">Promise</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">resolve<span class="token punctuation">,</span> reject</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token function">resolve</span><span class="token punctuation">(</span>a <span class="token operator">*</span> <span class="token number">4</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">const</span> promiseArr <span class="token operator">=</span> <span class="token punctuation">[</span>p1<span class="token punctuation">,</span> p2<span class="token punctuation">,</span> f3<span class="token punctuation">,</span> p4<span class="token punctuation">]</span>
+<span class="token function">runPromiseInSequence</span><span class="token punctuation">(</span>promiseArr<span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>console<span class="token punctuation">.</span>log<span class="token punctuation">)</span>   <span class="token comment">// 1200</span>
+</pre>
+<h3 id="function_composition_enabling_piping">Function composition enabling piping</h3>
+<pre data-language="js"><span class="token comment">// Building-blocks to use for composition</span>
+<span class="token keyword">const</span> <span class="token function-variable function">double</span> <span class="token operator">=</span> <span class="token parameter">x</span> <span class="token operator">=&gt;</span> x <span class="token operator">+</span> x
+<span class="token keyword">const</span> <span class="token function-variable function">triple</span> <span class="token operator">=</span> <span class="token parameter">x</span> <span class="token operator">=&gt;</span> <span class="token number">3</span> <span class="token operator">*</span> x
+<span class="token keyword">const</span> <span class="token function-variable function">quadruple</span> <span class="token operator">=</span> <span class="token parameter">x</span> <span class="token operator">=&gt;</span> <span class="token number">4</span> <span class="token operator">*</span> x
+
+<span class="token comment">// Function composition enabling pipe functionality</span>
+<span class="token keyword">const</span> <span class="token function-variable function">pipe</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter"><span class="token operator">...</span>functions</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token parameter">input</span> <span class="token operator">=&gt;</span> functions<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span>
+    <span class="token punctuation">(</span><span class="token parameter">acc<span class="token punctuation">,</span> fn</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token function">fn</span><span class="token punctuation">(</span>acc<span class="token punctuation">)</span><span class="token punctuation">,</span>
+    input
+<span class="token punctuation">)</span>
+
+<span class="token comment">// Composed functions for multiplication of specific values</span>
+<span class="token keyword">const</span> multiply6 <span class="token operator">=</span> <span class="token function">pipe</span><span class="token punctuation">(</span>double<span class="token punctuation">,</span> triple<span class="token punctuation">)</span>
+<span class="token keyword">const</span> multiply9 <span class="token operator">=</span> <span class="token function">pipe</span><span class="token punctuation">(</span>triple<span class="token punctuation">,</span> triple<span class="token punctuation">)</span>
+<span class="token keyword">const</span> multiply16 <span class="token operator">=</span> <span class="token function">pipe</span><span class="token punctuation">(</span>quadruple<span class="token punctuation">,</span> quadruple<span class="token punctuation">)</span>
+<span class="token keyword">const</span> multiply24 <span class="token operator">=</span> <span class="token function">pipe</span><span class="token punctuation">(</span>double<span class="token punctuation">,</span> triple<span class="token punctuation">,</span> quadruple<span class="token punctuation">)</span>
+
+<span class="token comment">// Usage</span>
+<span class="token function">multiply6</span><span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span>   <span class="token comment">// 36</span>
+<span class="token function">multiply9</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">)</span>   <span class="token comment">// 81</span>
+<span class="token function">multiply16</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span> <span class="token comment">// 256</span>
+<span class="token function">multiply24</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token comment">// 240</span>
+
+</pre>
+<h3 id="write_map_using_reduce">Write map using reduce</h3>
+<pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>mapUsingReduce<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">mapUsingReduce</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">callback<span class="token punctuation">,</span> initialValue</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">mappedArray<span class="token punctuation">,</span> currentValue<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      mappedArray<span class="token punctuation">[</span>index<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">callback</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>initialValue<span class="token punctuation">,</span> currentValue<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array<span class="token punctuation">)</span>
+      <span class="token keyword">return</span> mappedArray
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">mapUsingReduce</span><span class="token punctuation">(</span>
+  <span class="token punctuation">(</span><span class="token parameter">currentValue<span class="token punctuation">,</span> index<span class="token punctuation">,</span> array</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> currentValue <span class="token operator">+</span> index <span class="token operator">+</span> array<span class="token punctuation">.</span>length
+<span class="token punctuation">)</span> <span class="token comment">// [5, 7, , 10]</span>
+
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> </tr> </thead> <tbody> <tr> <td><a href="https://tc39.es/ecma262/#sec-array.prototype.reduce" hreflang="en" rel=" noopener">ECMAScript (ECMA-262)<br><small>The definition of 'Array.prototype.reduce()' in that specification.</small></a></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>Reduce</code></th>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>10.5</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="reduceright"><code>Array.prototype.reduceRight()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce</a>
+  </p>
+</div>

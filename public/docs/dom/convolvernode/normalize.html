@@ -1,0 +1,87 @@
+<h1>ConvolverNode.normalize</h1> <p>The <code>normalize</code> property of the <a href="../convolvernode"><code>ConvolverNode</code></a> interface is a boolean that controls whether the impulse response from the buffer will be scaled by an equal-power normalization when the <code>buffer</code> attribute is set, or not.</p> <p>Its default value is <code>true</code> in order to achieve a more uniform output level from the convolver, when loaded with diverse impulse responses. If normalize is set to <code>false</code>, then the convolution will be rendered with no pre-processing/scaling of the impulse response. Changes to this value do not take effect until the next time the <code>buffer</code> attribute is set.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> audioCtx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> convolver <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createConvolver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+convolver<span class="token punctuation">.</span>normalize <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>A boolean.</p>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token keyword">var</span> audioCtx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token punctuation">(</span>window<span class="token punctuation">.</span>AudioContext <span class="token operator">||</span> window<span class="token punctuation">.</span>webkitAudioContext<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> convolver <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createConvolver</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token operator">...</span>
+
+<span class="token comment">// grab audio track via XHR for convolver node</span>
+
+<span class="token keyword">var</span> soundSource<span class="token punctuation">,</span> concertHallBuffer<span class="token punctuation">;</span>
+
+ajaxRequest <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ajaxRequest<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'GET'</span><span class="token punctuation">,</span> <span class="token string">'concert-crowd.ogg'</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ajaxRequest<span class="token punctuation">.</span>responseType <span class="token operator">=</span> <span class="token string">'arraybuffer'</span><span class="token punctuation">;</span>
+
+ajaxRequest<span class="token punctuation">.</span><span class="token function-variable function">onload</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> audioData <span class="token operator">=</span> ajaxRequest<span class="token punctuation">.</span>response<span class="token punctuation">;</span>
+  audioCtx<span class="token punctuation">.</span><span class="token function">decodeAudioData</span><span class="token punctuation">(</span>audioData<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">buffer</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      concertHallBuffer <span class="token operator">=</span> buffer<span class="token punctuation">;</span>
+      soundSource <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createBufferSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      soundSource<span class="token punctuation">.</span>buffer <span class="token operator">=</span> concertHallBuffer<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token string">"Error with decoding audio data"</span> <span class="token operator">+</span> e<span class="token punctuation">.</span>err<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+ajaxRequest<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token operator">...</span>
+
+convolver<span class="token punctuation">.</span>normalize <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span> <span class="token comment">// must be set before the buffer, to take effect</span>
+convolver<span class="token punctuation">.</span>buffer <span class="token operator">=</span> concertHallBuffer<span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://webaudio.github.io/web-audio-api/#dom-convolvernode-normalize" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'normalize' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>normalize</code></th>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../web_audio_api/using_web_audio_api">Using the Web Audio API</a> </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/ConvolverNode/normalize" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ConvolverNode/normalize</a>
+  </p>
+</div>

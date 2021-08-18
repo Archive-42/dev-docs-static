@@ -1,0 +1,92 @@
+<h1>Array.prototype.includes()</h1> <p>The <code><strong>includes()</strong></code> method determines whether an array includes a certain value among its entries, returning <code>true</code> or <code>false</code> as appropriate.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/array-includes.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">includes</span><span class="token punctuation">(</span>searchElement<span class="token punctuation">)</span>
+<span class="token function">includes</span><span class="token punctuation">(</span>searchElement<span class="token punctuation">,</span> fromIndex<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>searchElement</var></code></dt> <dd> <p>The value to search for.</p> <div class="notecard note"> <p><strong>Note:</strong> When comparing strings and characters, <code>includes()</code> is <em>case-sensitive</em>.</p> </div> </dd> <dt>
+<code><var>fromIndex</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>The position in this array at which to begin searching for <code><var>searchElement</var></code>.</p> <p>The first element to be searched is found at <code><var>fromIndex</var></code> for positive values of <code><var>fromIndex</var></code>, or at <code><var>arr</var>.length + <var>fromIndex</var></code> for negative values of <code><var>fromIndex</var></code> (using the <a href="#" rel=" noopener">absolute value</a> of <code><var>fromIndex</var></code> as the number of elements from the end of the array at which to start the search).</p> <p>Defaults to <code>0</code>.</p> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="../boolean"><code>Boolean</code></a> which is <code>true</code> if the value <code><var>searchElement</var></code> is found within the array (or the part of the array indicated by the index <code><var>fromIndex</var></code>, if specified).</p> <p>Values of zero are all considered to be equal, regardless of sign. (That is, <code>-0</code> is considered to be equal to both <code>0</code> and <code>+0</code>), but <code>false</code> is <em>not</em> considered to be the same as <code>0</code>.</p> <div class="note notecard"> <p><strong>Note:</strong> Technically speaking, <code>includes()</code> uses the <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness#same-value-zero_equality">sameValueZero</a></code> algorithm to determine whether the given element is found.</p> </div>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span>      <span class="token comment">// true</span>
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span>      <span class="token comment">// false</span>
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>   <span class="token comment">// false</span>
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span>  <span class="token comment">// true</span>
+<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">NaN</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">)</span>  <span class="token comment">// true</span>
+</pre>
+<h3 id="fromindex_is_greater_than_or_equal_to_the_array_length"> <code><var>fromIndex</var></code> is greater than or equal to the array length</h3>
+<p>If <code><var>fromIndex</var></code> is greater than or equal to the length of the array, <code>false</code> is returned. The array will not be searched.</p> <pre data-language="js"><span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">]</span>
+
+arr<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>    <span class="token comment">// false</span>
+arr<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span>  <span class="token comment">// false</span>
+</pre>
+<h3 id="computed_index_is_less_than_0">Computed index is less than 0</h3>
+<p>If <code><var>fromIndex</var></code> is negative, the computed index is calculated to be used as a position in the array at which to begin searching for <code><var>searchElement</var></code>. If the computed index is less or equal than <code>-1 * <var>arr</var>.length</code>, the entire array will be searched.</p> <pre data-language="js"><span class="token comment">// array length is 3</span>
+<span class="token comment">// fromIndex is -100</span>
+<span class="token comment">// computed index is 3 + (-100) = -97</span>
+
+<span class="token keyword">let</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token string">'c'</span><span class="token punctuation">]</span>
+
+arr<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token comment">// true</span>
+arr<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'b'</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token comment">// true</span>
+arr<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'c'</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">100</span><span class="token punctuation">)</span> <span class="token comment">// true</span>
+arr<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span>   <span class="token comment">// false</span>
+</pre>
+<h3 id="includes_used_as_a_generic_method">includes() used as a generic method</h3>
+<p><code>includes()</code> method is intentionally generic. It does not require <code>this</code> value to be an Array object, so it can be applied to other kinds of objects (e.g. array-like objects).</p> <p>The example below illustrates <code>includes()</code> method called on the function's <a href="../../functions/arguments">arguments</a> object. </p> <pre data-language="js"><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>arguments<span class="token punctuation">,</span> <span class="token string">'a'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment">// true</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>arguments<span class="token punctuation">,</span> <span class="token string">'d'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token comment">// false</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token string">'a'</span><span class="token punctuation">,</span><span class="token string">'b'</span><span class="token punctuation">,</span><span class="token string">'c'</span><span class="token punctuation">)</span> </pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-array.prototype.includes">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-array.prototype.includes</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>includes</code></th>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../typedarray/includes"><code>TypedArray.prototype.includes()</code></a></li> <li><a href="../string/includes"><code>String.prototype.includes()</code></a></li> <li><a href="indexof"><code>Array.prototype.indexOf()</code></a></li> <li><a href="find"><code>Array.prototype.find()</code></a></li> <li><a href="findindex"><code>Array.prototype.findIndex()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes</a>
+  </p>
+</div>

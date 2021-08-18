@@ -1,0 +1,117 @@
+<h1>Element.attachShadow()</h1> <p>The <code>Element.attachShadow()</code> method attaches a shadow DOM tree to the specified element and returns a reference to its <a href="../shadowroot"><code>ShadowRoot</code></a>. </p>
+<h2 id="elements_you_can_attach_a_shadow_to">Elements you can attach a shadow to</h2>
+<p>Note that you can't attach a shadow root to every type of element. There are some that can't have a shadow DOM for security reasons (for example <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a"><code>&lt;a&gt;</code></a>), and more besides. The following is a list of elements you <strong>can</strong> attach a shadow root to:</p> <ul> <li>Any autonomous custom element with a <a href="https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name" rel=" noopener">valid name</a>
+</li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article"><code>&lt;article&gt;</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/aside"><code>&lt;aside&gt;</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/blockquote"><code>&lt;blockquote&gt;</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body"><code>&lt;body&gt;</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/footer"><code>&lt;footer&gt;</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements"><code>&lt;h1&gt;</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements"><code>&lt;h2&gt;</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements"><code>&lt;h3&gt;</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements"><code>&lt;h4&gt;</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements"><code>&lt;h5&gt;</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements"><code>&lt;h6&gt;</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/header"><code>&lt;header&gt;</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main"><code>&lt;main&gt;</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav"><code>&lt;nav&gt;</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p"><code>&lt;p&gt;</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section"><code>&lt;section&gt;</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span"><code>&lt;span&gt;</code></a></li> </ul>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> shadowroot <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">attachShadow</span><span class="token punctuation">(</span>shadowRootInit<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>shadowRootInit</code></dt> <dd>A <code>ShadowRootInit</code> dictionary, which can contain the following fields: <dl> <dt><code>mode</code></dt> <dd> <p>A string specifying the <em>encapsulation mode</em> for the shadow DOM tree. This can be one of:</p> <ul> <li>
+<code>open</code>: Elements of the shadow root are accessible from JavaScript outside the root, for example using <a href="shadowroot"><code>Element.shadowRoot</code></a>:<br> <pre class="notranslate">element.shadowRoot; // Returns a ShadowRoot obj</pre> </li> <li>
+<code>closed</code>: Denies access to the node(s) of a closed shadow root from JavaScript outside it:<br> <pre class="notranslate">element.shadowRoot; // Returns null
+</pre> </li> </ul> </dd> <dt><code>delegatesFocus</code></dt> <dd>A boolean that, when set to <code>true</code>, specifies behavior that mitigates custom element issues around focusability. When a non-focusable part of the shadow DOM is clicked, the first focusable part is given focus, and the shadow host is given any available <code>:focus</code> styling.</dd> </dl> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>Returns a <a href="../shadowroot"><code>ShadowRoot</code></a> object.</p>
+<h3 id="exceptions">Exceptions</h3>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Exception</th> <th scope="col">Explanation</th> </tr> </thead> <tbody> <tr> <td><code>InvalidStateError</code></td> <td>The element you are trying to attach to is already a shadow host.</td> </tr> <tr> <td><code>NotSupportedError</code></td> <td>You are trying to attach a shadow root to an element outside the HTML namespace, or the element cannot have a shadow attached to it (see above).</td> </tr> </tbody> </table></div>
+<h2 id="examples">Examples</h2>
+<p>The following example is taken from our <a href="https://github.com/mdn/web-components-examples/tree/master/word-count-web-component" rel=" noopener">word-count-web-component</a> demo (<a href="https://mdn.github.io/web-components-examples/word-count-web-component/" rel=" noopener">see it live also</a>). You can see that we use <code>attachShadow()</code> in the middle of the code to create a shadow root, which we then attach our custom element's contents to. </p> <pre data-language="js"><span class="token comment">// Create a class for the element</span>
+<span class="token keyword">class</span> <span class="token class-name">WordCount</span> <span class="token keyword">extends</span> <span class="token class-name">HTMLParagraphElement</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Always call super first in constructor</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// count words in element's parent element</span>
+    <span class="token keyword">var</span> wcParent <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>parentNode<span class="token punctuation">;</span>
+
+    <span class="token keyword">function</span> <span class="token function">countWords</span><span class="token punctuation">(</span><span class="token parameter">node</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">var</span> text <span class="token operator">=</span> node<span class="token punctuation">.</span>innerText <span class="token operator">||</span> node<span class="token punctuation">.</span>textContent
+      <span class="token keyword">return</span> text<span class="token punctuation">.</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\s+</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">var</span> count <span class="token operator">=</span> <span class="token string">'Words: '</span> <span class="token operator">+</span> <span class="token function">countWords</span><span class="token punctuation">(</span>wcParent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Create a shadow root</span>
+    <span class="token keyword">var</span> shadow <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">attachShadow</span><span class="token punctuation">(</span><span class="token punctuation">{</span>mode<span class="token operator">:</span> <span class="token string">'open'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Create text node and add word count to it</span>
+    <span class="token keyword">var</span> text <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'span'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    text<span class="token punctuation">.</span>textContent <span class="token operator">=</span> count<span class="token punctuation">;</span>
+
+    <span class="token comment">// Append it to the shadow root</span>
+    shadow<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Update count when element content changes</span>
+    <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> count <span class="token operator">=</span> <span class="token string">'Words: '</span> <span class="token operator">+</span> <span class="token function">countWords</span><span class="token punctuation">(</span>wcParent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      text<span class="token punctuation">.</span>textContent <span class="token operator">=</span> count<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Define the new element</span>
+customElements<span class="token punctuation">.</span><span class="token function">define</span><span class="token punctuation">(</span><span class="token string">'word-count'</span><span class="token punctuation">,</span> WordCount<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token keyword">extends</span><span class="token operator">:</span> <span class="token string">'p'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://dom.spec.whatwg.org/#dom-element-attachshadow" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'attachShadow()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>attachShadow</code></th>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>delegatesFocus</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow</a>
+  </p>
+</div>

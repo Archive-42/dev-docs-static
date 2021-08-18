@@ -1,0 +1,69 @@
+<h1>TextTrack: cuechange event</h1> <p>The <code>cuechange</code> event fires when a <a href="../texttrack"><code>TextTrack</code></a> has changed the currently displaying cues. The event is fired at both the <code>TextTrack</code> <em>and</em> at the <a href="../htmltrackelement"><code>HTMLTrackElement</code></a> in which it's being presented, if any.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>No</td> </tr> <tr> <th scope="row">Cancelable</th> <td>No</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../event"><code>Event</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td><a href="../globaleventhandlers/oncuechange"><code>GlobalEventHandlers.oncuechange</code></a></td> </tr> </tbody> </table></div>
+<h2 id="examples">Examples</h2>
+<h3 id="on_the_texttrack">On the TextTrack</h3>
+<p>You can set up a listener for the <code>cuechange</code> event on a <code>TextTrack</code> using the <a href="../eventtarget/addeventlistener"><code>addEventListener()</code></a> method:</p> <pre data-language="js">track<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'cuechange'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> cues <span class="token operator">=</span> track<span class="token punctuation">.</span>activeCues<span class="token punctuation">;</span>  <span class="token comment">// array of current cues</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>Or you can just set the <a href="../globaleventhandlers/oncuechange"><code>oncuechange</code></a> event handler property:</p> <pre data-language="js">track<span class="token punctuation">.</span><span class="token function-variable function">oncuechange</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> cues <span class="token operator">=</span> track<span class="token punctuation">.</span>activeCues<span class="token punctuation">;</span> <span class="token comment">// array of current cues</span>
+<span class="token punctuation">}</span></pre>
+<h3 id="on_the_track_element">On the track element</h3>
+<p>The underlying <a href="../texttrack"><code>TextTrack</code></a>, indicated by the <a class="page-not-created"><code>track</code></a> property, receives a <a href="cuechange_event"><code>cuechange</code></a> event every time the currently-presented cue is changed. This happens even if the track isn't associated with a media element.</p> <p>If the track <em>is</em> associated with a media element, using the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/track"><code>&lt;track&gt;</code></a> element as a child of the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio"><code>&lt;audio&gt;</code></a> or <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"><code>&lt;video&gt;</code></a> element, the <code>cuechange</code> event is also sent to the <a href="../htmltrackelement"><code>HTMLTrackElement</code></a>.</p> <pre data-language="js"><span class="token keyword">let</span> textTrackElem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"texttrack"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+textTrackElem<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"cuechange"</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> cues <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>track<span class="token punctuation">.</span>activeCues<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>In addition, you can use the <code>oncuechange</code> event handler:</p> <pre data-language="js"><span class="token keyword">let</span> textTrackElem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"texttrack"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+textTrackElem<span class="token punctuation">.</span><span class="token function-variable function">oncuechange</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> cues <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>track<span class="token punctuation">.</span>activeCues<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> </tr> </thead> <tbody> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#event-media-cuechange" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'cuechange' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>cuechange_event</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://developer.mozilla.org/en-US/docs/Glossary/WebVTT">WebVTT</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/TextTrack/cuechange_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/TextTrack/cuechange_event</a>
+  </p>
+</div>

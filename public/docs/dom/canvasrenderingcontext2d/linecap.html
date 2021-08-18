@@ -1,0 +1,107 @@
+<h1>CanvasRenderingContext2D.lineCap</h1> <p>The <code><strong>CanvasRenderingContext2D</strong></code><code>.lineCap</code> property of the Canvas 2D API determines the shape used to draw the end points of lines. </p> <div class="notecard note"> <p><strong>Note:</strong> Lines can be drawn with the <a href="stroke"><code>stroke()</code></a>, <a href="strokerect"><code>strokeRect()</code></a>, and <a href="stroketext"><code>strokeText()</code></a> methods.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">ctx<span class="token punctuation">.</span>lineCap <span class="token operator">=</span> <span class="token string">"butt"</span> <span class="token operator">||</span> <span class="token string">"round"</span> <span class="token operator">||</span> <span class="token string">"square"</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="options">Options</h3>
+<dl> <dt><code>"butt"</code></dt> <dd>The ends of lines are squared off at the endpoints. Default value.</dd> <dt><code>"round"</code></dt> <dd>The ends of lines are rounded.</dd> <dt><code>"square"</code></dt> <dd>The ends of lines are squared off by adding a box with an equal width and half the height of the line's thickness.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="changing_the_shape_of_line_caps">Changing the shape of line caps</h3>
+<p>This example rounds the end caps of a straight line.</p> <h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>canvas</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>canvas<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>canvas</span><span class="token punctuation">&gt;</span></span>
+</pre> <h4 id="javascript">JavaScript</h4> <pre data-language="js"><span class="token keyword">const</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ctx <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+ctx<span class="token punctuation">.</span><span class="token function">beginPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span><span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span>lineWidth <span class="token operator">=</span> <span class="token number">15</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span>lineCap <span class="token operator">=</span> <span class="token string">'round'</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">lineTo</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">stroke</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <h4 id="result">Result</h4> <p><iframe class="sample-code-frame" id="frame_Changing_the_shape_of_line_caps" width="700" height="180" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap/_samples_/Changing_the_shape_of_line_caps" loading="lazy"></iframe></p>
+<h3 id="comparison_of_line_caps">Comparison of line caps</h3>
+<p>In this example three lines are drawn, each with a different value for the <code>lineCap</code> property. Two guides to see the exact differences between the three are added. Each of these lines starts and ends exactly on these guides.</p> <p>The line on the left uses the default <code>"butt"</code> option. It's drawn completely flush with the guides. The second is set to use the <code>"round"</code> option. This adds a semicircle to the end that has a radius half the width of the line. The line on the right uses the <code>"square"</code> option. This adds a box with an equal width and half the height of the line thickness.</p> <pre data-language="js"><span class="token keyword">const</span> canvas <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'canvas'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> ctx <span class="token operator">=</span> canvas<span class="token punctuation">.</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token string">'2d'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> lineCap <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'butt'</span><span class="token punctuation">,</span> <span class="token string">'round'</span><span class="token punctuation">,</span> <span class="token string">'square'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Draw guides</span>
+ctx<span class="token punctuation">.</span>strokeStyle <span class="token operator">=</span> <span class="token string">'#09f'</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">beginPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">lineTo</span><span class="token punctuation">(</span><span class="token number">140</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">140</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">lineTo</span><span class="token punctuation">(</span><span class="token number">140</span><span class="token punctuation">,</span> <span class="token number">140</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ctx<span class="token punctuation">.</span><span class="token function">stroke</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Draw lines</span>
+ctx<span class="token punctuation">.</span>strokeStyle <span class="token operator">=</span> <span class="token string">'black'</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> lineCap<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  ctx<span class="token punctuation">.</span>lineWidth <span class="token operator">=</span> <span class="token number">15</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span>lineCap <span class="token operator">=</span> lineCap<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span><span class="token function">beginPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span><span class="token function">moveTo</span><span class="token punctuation">(</span><span class="token number">25</span> <span class="token operator">+</span> i <span class="token operator">*</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span><span class="token function">lineTo</span><span class="token punctuation">(</span><span class="token number">25</span> <span class="token operator">+</span> i <span class="token operator">*</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token number">140</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span><span class="token function">stroke</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> 
+<div class="_table"><table class="sample-code-table">
+<thead><tr>
+<th scope="col">Screenshot</th>
+<th scope="col">Live sample</th>
+</tr></thead>
+<tbody><tr>
+<td><img alt="" class="internal" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAL4AAAC+CAMAAAC8qkWvAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAD9QTFRF9/f3////zMzMhoaG+vr6+Pj4AAAA/f39/Pz8/v7+d3d3h87/dsn/7Ozs3d3dQWiDdnZ2vLy8IiIiCwsLlJSUdGB7kwAAAn9JREFUeNrt3eFSqzAQhuGkgkLtRmi9/2s9PVXHEtkmKYEm03cZRxnZ+PAR9I8za2zVZeDDhw8fPvxK+a24XeHlpFX4vXFOTOElzpl5fls+/usG2jl+L85UUU5m07+EX/jH5ZOb5e/qCF/Mrma+uc0vdesYCfOl9I0TTL9kuInhXz0qKeHcv4/I9KWUc5meh/e+5EOkrmeC37+dvsQsEjj/fvTj5+coJm693cukxtkGSXp15fZT1M6/T4bT67lOg0Td9MvrpPb6k4njL9yq7vgjOTrvepk7n+PP/6gtfnHK8ZdyjPlzcotvNufvIy1l8uV0bTlJZfxxihkfw3+/tz6mmI+7OxbxD1/lL30IVraOHJvHe7BD8lbI2rGUv8+5kzd4deHDhw8fPnz48OEXwm/V8pdug7VmB3z48OHDhw8fPnz48OHXxm+U4+/STeBYs0PjN9HJNMlZZuwgfdInfdInfdInfdIn/VrTb9Tyl26CtWYHfPjw4cOHDx8+fPjwn5DfKcffpbvAsWaHxu+ik+mSs8zYQfqkT/qkT/qkT/qk/8Tpd2r5S3fBWrMDPnz48OHDhw8fPnz46fw3tfyl34K1Zgd8+PDhw4cPHz58+PCfjt+r5S/dB2vNDvjw4cOHDx8+fPjw4Wfh555lkN6xiH+4t7JNP8ixeZLL+qMzkjfPkHHvp5c/uOShr+4dtU98c5fzs07/nA7tiWjw+fqVW/Dt9cgkWx/f/g6ssjXyzzdwGRcWefE4TGp8PH9J9XXzLXz42/GbOvTK/+87qYOvjAcWVwdfGc7c1hG/Mhr7/LVzUvj+b/TB5Laveiz8/xvoi987U6GxVRd8+PDhw38u/j9+9zvAu5qbDwAAAABJRU5ErkJggg==" loading="lazy"></td>
+<td><iframe class="sample-code-frame" id="frame_Comparison_of_line_caps" width="180" height="180" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap/_samples_/Comparison_of_line_caps" loading="lazy"></iframe></td>
+</tr></tbody>
+</table></div>
+
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/scripting.html#dom-context-2d-linecap" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'CanvasRenderingContext2D.lineCap' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>lineCap</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>2</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h3 id="webkitblink-specific_notes">WebKit/Blink-specific notes</h3>
+<ul> <li>In WebKit- and Blink-based Browsers, a non-standard and deprecated method <code>ctx.setLineCap()</code> is implemented in addition to this property.</li> </ul>
+<h2 id="see_also">See also</h2>
+<ul> <li>The interface defining this property: <a href="../canvasrenderingcontext2d"><code>CanvasRenderingContext2D</code></a>
+</li> <li><a href="linewidth"><code>CanvasRenderingContext2D.lineWidth</code></a></li> <li><a href="linejoin"><code>CanvasRenderingContext2D.lineJoin</code></a></li> <li><a href="../canvas_api/tutorial/applying_styles_and_colors">Applying styles and color</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/lineCap</a>
+  </p>
+</div>

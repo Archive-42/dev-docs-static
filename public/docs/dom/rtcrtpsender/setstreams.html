@@ -1,0 +1,74 @@
+<h1>RTCRtpSender.setStreams()</h1>
+ <p>The <a href="../rtcrtpsender"><code>RTCRtpSender</code></a> method <code><strong>setStreams()</strong></code> associates the sender's <a href="track"><code>track</code></a> with the specified <a href="../mediastream"><code>MediaStream</code></a> or array of <code>MediaStream</code> objects.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">rtcRtpSender<span class="token punctuation">.</span><span class="token function">setStreams</span><span class="token punctuation">(</span>mediaStream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+rtcRtpSender<span class="token punctuation">.</span><span class="token function">setStreams</span><span class="token punctuation">(</span><span class="token punctuation">[</span>mediaStream<span class="token operator">...</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code>mediaStream</code> or <code>[mediaStream...]</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An <a href="../mediastream"><code>MediaStream</code></a> object—or an array of multiple <code>MediaStream</code> objects—identifying the streams to which the <code>RTCRtpSender</code>'s <a href="track"><code>track</code></a> belongs. If this parameter isn't specified, no new streams will be associated with the track.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>None.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>InvalidStateError</code></dt> <dd>The sender's connection is closed.</dd> </dl>
+<h2 id="description">Description</h2>
+<p><code>setStreams()</code> is purely additive. It doesn't remove the track from any streams; it adds it to new ones. If you specify streams to which the track already belongs, that stream is unaffected.</p> <p>Once the track has been added to all of the streams, renegotiation of the connection will be triggered by the <a href="../rtcpeerconnection/negotiationneeded_event"><code>negotiationneeded</code></a> event being dispatched to the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> to which the sender belongs.</p>
+<h2 id="example">Example</h2>
+<p>This example adds all of an <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a>'s tracks to the specified stream.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">addTracksToStream</span><span class="token punctuation">(</span><span class="token parameter">stream</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> senders <span class="token operator">=</span> pc<span class="token punctuation">.</span><span class="token function">getSenders</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  senders<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">sender</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>sender<span class="token punctuation">.</span>track <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span>sender<span class="token punctuation">.</span>transport<span class="token punctuation">.</span>state <span class="token operator">===</span> connected<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      sender<span class="token punctuation">.</span><span class="token function">setStreams</span><span class="token punctuation">(</span>stream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>After calling the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> method <a href="../rtcpeerconnection/getsenders"><code>getSenders()</code></a> to get the list of the connection's senders, the <code>addTracksToStream()</code> function iterates over the list. For each sender, if the sender's track is non-null and its transport's state is <code>connected</code>, we call <code>setStreams()</code> to add the track to the <code>stream</code> specified.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcrtpsender-setstreams" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCRtpSender.setStreams()' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>setStreams</code></th>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>54</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpSender/setStreams" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpSender/setStreams</a>
+  </p>
+</div>

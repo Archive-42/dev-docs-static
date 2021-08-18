@@ -1,0 +1,80 @@
+<h1>RTCIceCandidateStats.networkType</h1>
+
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div>
+ <p>The <a href="../rtcicecandidatestats"><code>RTCIceCandidateStats</code></a> dictionary's <code><strong>networkType</strong></code> property specifies the type of network used by a local candidate to communicate with a remote peer.</p> <div class="notecard note"> <p><strong>Note:</strong> The <code>networkType</code> property is only included in <code>RTCIceCandidateStats</code> objects for local candidates (that is, candidates generated locally and included in an <a href="https://developer.mozilla.org/en-US/docs/Glossary/SDP">SDP</a> offer or answer that has been sent to the remote peer).</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">networkType <span class="token operator">=</span> rtcIceCandidateStats<span class="token punctuation">.</span>networkType<span class="token punctuation">;</span></pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../domstring"><code>DOMString</code></a> whose value is taken from the <a href="../rtcnetworktype"><code>RTCNetworkType</code></a> enumerated type. The string indicates the type of network connection that the described candidate would use to communicate with the other peer.</p> <p>The permitted values are:</p> 
+<dl> <dt><code>bluetooth</code></dt> <dd>A Bluetooth connection is used by the described connection.</dd> <dt><code>cellular</code></dt> <dd>The connection uses a cellular data service to connect. This includes all cellular data services including EDGE (2G), HSPA (3G), LTE (4G), and NR (5G).</dd> <dt><code>ethernet</code></dt> <dd>The described connection uses an Ethernet network.</dd> <dt><code>wifi</code></dt> <dd>The described connection uses WiFi.</dd> <dt><code>wimax</code></dt> <dd>The described connection uses a <a href="https://en.wikipedia.org/wiki/WiMAX" rel=" noopener">WiMAX</a> network.</dd> <dt><code>vpn</code></dt> <dd>The connection uses a Virtual Private Network (VPN). The VPN obscures the underlying network type, which is not discernible.</dd> <dt><code>unknown</code></dt> <dd>The user's browser is unable or unwilling to identify the underlying connection technology used by the described connection. This may be because the browser isn't able to determine the network type for some reason or it may be intentionally getting obscured for security reasons, such as to avoid <a href="https://en.wikipedia.org/wiki/Device_fingerprinting" rel=" noopener">device fingerprinting</a>.</dd> </dl>
+<div class="notecard note"> <p><strong>Note:</strong> Keep in mind that the specified value only reflects the initial connection between the local peer and the next hop along the network toward reaching the remote peer. For example, if the <code>networkType</code> is <code>wifi</code> but the user is connected using a cellular hotspot, the connection will be bottlenecked by the underlying cellular network (and any other networks between the two peers).</p> </div>
+
+<h2 id="example">Example</h2>
+<p>This example sets up a periodic function using <a href="../windoworworkerglobalscope/setinterval"><code>setInterval()</code></a> that outputs statistics reports for candidates that use or would use a cellular data network to a log view.</p> <pre data-language="js">window<span class="token punctuation">.</span><span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  myPeerConnection<span class="token punctuation">.</span><span class="token function">getStats</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">stats</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> statsOutput <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+
+    stats<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">report</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token punctuation">(</span>stats<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">"local-candidate"</span> <span class="token operator">||</span> stats<span class="token punctuation">.</span>type <span class="token operator">===</span> <span class="token string">"remote.candidate"</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> stats<span class="token punctuation">.</span>networkType <span class="token operator">===</span> <span class="token string">"cellular"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        statsOutput <span class="token operator">+=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">&lt;h2&gt;Report: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>report<span class="token punctuation">.</span>type<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;/h3&gt;\n&lt;strong&gt;ID:&lt;/strong&gt; </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>report<span class="token punctuation">.</span>id<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;br&gt;\n</span><span class="token template-punctuation string">`</span></span> <span class="token operator">+</span>
+                       <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">&lt;strong&gt;Timestamp:&lt;/strong&gt; </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>report<span class="token punctuation">.</span>timestamp<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;br&gt;\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Now the statistics for this report; we intentially drop the ones we</span>
+        <span class="token comment">// sorted to the top above</span>
+
+        Object<span class="token punctuation">.</span><span class="token function">keys</span><span class="token punctuation">(</span>report<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">statName</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+          <span class="token keyword">if</span> <span class="token punctuation">(</span>statName <span class="token operator">!==</span> <span class="token string">"id"</span> <span class="token operator">&amp;&amp;</span> statName <span class="token operator">!==</span> <span class="token string">"timestamp"</span> <span class="token operator">&amp;&amp;</span> statName <span class="token operator">!==</span> <span class="token string">"type"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            statsOutput <span class="token operator">+=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">&lt;strong&gt;</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>statName<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">:&lt;/strong&gt; </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>report<span class="token punctuation">[</span>statName<span class="token punctuation">]</span><span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">&lt;br&gt;\n</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">".stats-box"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> statsOutput<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>networkType</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCIceCandidateStats/networkType" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCIceCandidateStats/networkType</a>
+  </p>
+</div>

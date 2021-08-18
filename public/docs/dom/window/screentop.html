@@ -1,0 +1,84 @@
+<h1>Window.screenTop</h1>
+
+ <p>The <code><strong>Window.screenTop</strong></code> read-only property returns the vertical distance, in CSS pixels, from the top border of the user's browser viewport to the top side of the screen.</p> <div class="notecard note"> <p><strong>Note</strong>: <code>screenTop</code> is an alias of the older <a href="screeny"><code>Window.screenY</code></a> property. <code>screenTop</code> was originally supported only in IE but was introduced everywhere due to popularity.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">topWindowPos <span class="token operator">=</span> window<span class="token punctuation">.</span>screenTop
+</pre>
+<h3 id="returns">Returns</h3>
+<p>A number equal to the number of CSS pixels from the top edge of the browser viewport to the top edge of the screen.</p>
+<h2 id="examples">Examples</h2>
+<p>In our <a href="https://mdn.github.io/dom-examples/screenleft-screentop/" rel=" noopener">screenleft-screentop</a> example, you'll see a canvas onto which has been drawn a circle. In this example we are using <code>screenLeft</code>/<code>screenTop</code> plus <a href="../window/requestanimationframe"><code>Window.requestAnimationFrame()</code></a> to constantly redraw the circle in the same physical position on the screen, even if the window position is moved.</p> <pre data-language="js">initialLeft <span class="token operator">=</span> window<span class="token punctuation">.</span>screenLeft <span class="token operator">+</span> canvasElem<span class="token punctuation">.</span>offsetLeft<span class="token punctuation">;</span>
+initialTop <span class="token operator">=</span> window<span class="token punctuation">.</span>screenTop <span class="token operator">+</span> canvasElem<span class="token punctuation">.</span>offsetTop<span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">positionElem</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> newLeft <span class="token operator">=</span> window<span class="token punctuation">.</span>screenLeft <span class="token operator">+</span> canvasElem<span class="token punctuation">.</span>offsetLeft<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> newTop <span class="token operator">=</span> window<span class="token punctuation">.</span>screenTop <span class="token operator">+</span> canvasElem<span class="token punctuation">.</span>offsetTop<span class="token punctuation">;</span>
+
+  <span class="token keyword">let</span> leftUpdate <span class="token operator">=</span> initialLeft <span class="token operator">-</span> newLeft<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> topUpdate <span class="token operator">=</span> initialTop <span class="token operator">-</span> newTop<span class="token punctuation">;</span>
+
+  ctx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> <span class="token string">'rgb(0, 0, 0)'</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span><span class="token function">fillRect</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> width<span class="token punctuation">,</span> height<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span>fillStyle <span class="token operator">=</span> <span class="token string">'rgb(0, 0, 255)'</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span><span class="token function">beginPath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span><span class="token function">arc</span><span class="token punctuation">(</span>leftUpdate <span class="token operator">+</span> <span class="token punctuation">(</span>width<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">,</span> topUpdate <span class="token operator">+</span> <span class="token punctuation">(</span>height<span class="token operator">/</span><span class="token number">2</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">35</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">,</span> <span class="token function">degToRad</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">degToRad</span><span class="token punctuation">(</span><span class="token number">360</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  ctx<span class="token punctuation">.</span><span class="token function">fill</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  pElem<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'Window.screenLeft: '</span> <span class="token operator">+</span> window<span class="token punctuation">.</span>screenLeft <span class="token operator">+</span> <span class="token string">', Window.screenTop: '</span> <span class="token operator">+</span> window<span class="token punctuation">.</span>screenTop<span class="token punctuation">;</span>
+
+  window<span class="token punctuation">.</span><span class="token function">requestAnimationFrame</span><span class="token punctuation">(</span>positionElem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+window<span class="token punctuation">.</span><span class="token function">requestAnimationFrame</span><span class="token punctuation">(</span>positionElem<span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Also in the code we include a snippet that detects whether <code>screenLeft</code> is supported, and if not, polyfills in <code>screenLeft</code>/<code>screenTop</code> using <a href="screenx"><code>Window.screenX</code></a>/<a href="screeny"><code>Window.screenY</code></a>.</p> <pre data-language="js"><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>window<span class="token punctuation">.</span>screenLeft<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  window<span class="token punctuation">.</span>screenLeft <span class="token operator">=</span> window<span class="token punctuation">.</span>screenX<span class="token punctuation">;</span>
+  window<span class="token punctuation">.</span>screenTop <span class="token operator">=</span> window<span class="token punctuation">.</span>screenY<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/cssom-view/#dom-window-screeny" hreflang="en" rel=" noopener">CSS Object Model (CSSOM) View Module<br><small>The definition of 'Window.screenTop' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>screenTop</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>≤12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="screenleft"><code>window.screenLeft</code></a></li> <li><a href="screeny"><code>Window.screenY</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/screenTop" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Window/screenTop</a>
+  </p>
+</div>

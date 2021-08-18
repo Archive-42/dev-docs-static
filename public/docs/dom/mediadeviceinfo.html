@@ -1,0 +1,169 @@
+<h1>MediaDeviceInfo</h1> <p>The <code>MediaDeviceInfo</code> interface contains information that describes a single media input or output device. The list of devices obtained by calling <a href="mediadevices/enumeratedevices"><code>navigator.mediaDevices.enumerateDevices()</code></a> is an array of <code>MediaDeviceInfo</code> objects, one per media device.</p>
+<h2 id="properties">Properties</h2>
+<dl> <dt>
+<a href="mediadeviceinfo/deviceid"><code>MediaDeviceInfo.deviceId</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="domstring"><code>DOMString</code></a> that is an identifier for the represented device that is persisted across sessions. It is un-guessable by other applications and unique to the origin of the calling application. It is reset when the user clears cookies (for Private Browsing, a different identifier is used that is not persisted across sessions).</dd> <dt>
+<a href="mediadeviceinfo/groupid"><code>MediaDeviceInfo.groupId</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="domstring"><code>DOMString</code></a> that is a group identifier. Two devices have the same group identifier if they belong to the same physical device — for example a monitor with both a built-in camera and a microphone.</dd> <dt>
+<a href="mediadeviceinfo/kind"><code>MediaDeviceInfo.kind</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns an enumerated value that is either <code>"videoinput"</code>, <code>"audioinput"</code> or <code>"audiooutput"</code>.</dd> <dt>
+<a href="mediadeviceinfo/label"><code>MediaDeviceInfo.label</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a <a href="domstring"><code>DOMString</code></a> that is a label describing this device (for example "External USB Webcam").</dd> </dl> <div class="note notecard"> <p>For security reasons, the <code>label</code> field is always blank unless an active media stream exists <em>or</em> the user has granted persistent permission for media device access. The set of device labels could otherwise be used as part of a fingerprinting mechanism to identify a user.</p> </div>
+<h2 id="methods">Methods</h2>
+<p>None.</p>
+<h2 id="example">Example</h2>
+<p>Here's an example that uses <a href="mediadevices/enumeratedevices"><code>enumerateDevices()</code></a> to get a list of devices.</p> <pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>navigator<span class="token punctuation">.</span>mediaDevices <span class="token operator">||</span> <span class="token operator">!</span>navigator<span class="token punctuation">.</span>mediaDevices<span class="token punctuation">.</span>enumerateDevices<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"enumerateDevices() not supported."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// List cameras and microphones.</span>
+
+navigator<span class="token punctuation">.</span>mediaDevices<span class="token punctuation">.</span><span class="token function">enumerateDevices</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">devices</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  devices<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">device</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>device<span class="token punctuation">.</span>kind <span class="token operator">+</span> <span class="token string">": "</span> <span class="token operator">+</span> device<span class="token punctuation">.</span>label <span class="token operator">+</span>
+                <span class="token string">" id = "</span> <span class="token operator">+</span> device<span class="token punctuation">.</span>deviceId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>err<span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">": "</span> <span class="token operator">+</span> err<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>This might produce:</p> <pre data-language="bash">videoinput: <span class="token function">id</span> <span class="token operator">=</span> csO9c0YpAf274OuCPUA53CNE0YHlIr2yXCi+SqfBZZ8<span class="token operator">=</span>
+audioinput: <span class="token function">id</span> <span class="token operator">=</span> RKxXByjnabbADGQNNZqLVLdmXlS0YkETYCIbg+XxnvM<span class="token operator">=</span>
+audioinput: <span class="token function">id</span> <span class="token operator">=</span> r2/xw1xUPIyZunfV1lGrKOma5wTOvCkWfZ368XCndm0<span class="token operator">=</span></pre> <p>or if one or more media streams are active, or if persistent permissions have been granted:</p> <pre data-language="bash">videoinput: FaceTime HD Camera <span class="token punctuation">(</span>Built-in<span class="token punctuation">)</span> <span class="token assign-left variable">id</span><span class="token operator">=</span>csO9c0YpAf274OuCPUA53CNE0YHlIr2yXCi+SqfBZZ8<span class="token operator">=</span>
+audioinput: default <span class="token punctuation">(</span>Built-in Microphone<span class="token punctuation">)</span> <span class="token assign-left variable">id</span><span class="token operator">=</span>RKxXByjnabbADGQNNZqLVLdmXlS0YkETYCIbg+XxnvM<span class="token operator">=</span>
+audioinput: Built-in Microphone <span class="token assign-left variable">id</span><span class="token operator">=</span>r2/xw1xUPIyZunfV1lGrKOma5wTOvCkWfZ368XCndm0<span class="token operator">=</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/mediacapture-main/#dom-mediadeviceinfo" hreflang="en" rel=" noopener">Media Capture and Streams<br><small>The definition of 'MediaDevicesInfo' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>MediaDeviceInfo</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>deviceId</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>groupId</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>39</div>
+<div>Prior to Firefox 67, related devices are not actually grouped together by <code>groupId</code>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>39</div>
+<div>Prior to Firefox 67, related devices are not actually grouped together by <code>groupId</code>.</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>kind</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>label</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>39</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>toJSON</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="webrtc_api">WebRTC API</a></li> <li><a href="mediadevices/enumeratedevices"><code>navigator.mediaDevices.enumerateDevices()</code></a></li> <li><a href="mediadevices/getusermedia"><code>navigator.mediaDevices.getUserMedia()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDeviceInfo" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaDeviceInfo</a>
+  </p>
+</div>

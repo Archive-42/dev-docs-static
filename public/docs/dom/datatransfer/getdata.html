@@ -1,0 +1,95 @@
+<h1>DataTransfer.getData()</h1> <p>The <code>DataTransfer.getData()</code> method retrieves drag data (as a <a href="../domstring"><code>DOMString</code></a>) for the specified type. If the drag operation does not include data, this method returns an empty string.</p> <p>Example data types are <code>text/plain</code> and <code>text/uri-list</code>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">dataTransfer<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span>format<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="arguments">Arguments</h3>
+<dl> <dt><code>format</code></dt> <dd>A <a href="../domstring"><code>DOMString</code></a> representing the type of data to retrieve.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<dl> <dt><a href="../domstring"><code>DOMString</code></a></dt> <dd>A <a href="../domstring"><code>DOMString</code></a> representing the drag data for the specified <code>format</code>. If the drag operation has no data or the operation has no data for the specified <code>format</code>, this method returns an empty string. </dd> </dl>
+<h3 id="caveats">Caveats</h3>
+<dl> <dt>Data availability</dt> <dd>The <a href="https://www.w3.org/TR/2011/WD-html5-20110113/dnd.html#drag-data-store-mode" rel=" noopener">HTML5 Drag and Drop Specification</a> dictates a <code>drag data store mode</code>. This may result in unexpected behavior, being <code>DataTransfer.getData()</code> not returning an expected value.</dd> </dl>
+<h2 id="example">Example</h2>
+<p>This example shows the use of the <a href="../datatransfer"><code>DataTransfer</code></a> object's <a href="getdata"><code>getData()</code></a> and <a href="setdata"><code>setData()</code></a> methods.</p>
+<h3 id="html_content">HTML Content</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>div1<span class="token punctuation">"</span></span> <span class="token attr-name">ondrop</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>drop(event)<span class="token punctuation">"</span></span> <span class="token attr-name">ondragover</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>allowDrop(event)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>drag<span class="token punctuation">"</span></span> <span class="token attr-name">draggable</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token attr-name">ondragstart</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>drag(event)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>drag me to the other box<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>div2<span class="token punctuation">"</span></span> <span class="token attr-name">ondrop</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>drop(event)<span class="token punctuation">"</span></span> <span class="token attr-name">ondragover</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>allowDrop(event)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</pre>
+<h3 id="css_content">CSS Content</h3>
+<pre data-language="css"><span class="token selector">#div1, #div2</span> <span class="token punctuation">{</span>
+    <span class="token property">width</span><span class="token punctuation">:</span>100px<span class="token punctuation">;</span>
+    <span class="token property">height</span><span class="token punctuation">:</span>50px<span class="token punctuation">;</span>
+    <span class="token property">padding</span><span class="token punctuation">:</span>10px<span class="token punctuation">;</span>
+    <span class="token property">border</span><span class="token punctuation">:</span>1px solid #aaaaaa<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="javascript_content">JavaScript Content</h3>
+<pre data-language="js"><span class="token keyword">function</span> <span class="token function">allowDrop</span><span class="token punctuation">(</span><span class="token parameter">allowdropevent</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    allowdropevent<span class="token punctuation">.</span>target<span class="token punctuation">.</span>style<span class="token punctuation">.</span>color <span class="token operator">=</span> <span class="token string">'blue'</span><span class="token punctuation">;</span>
+    allowdropevent<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">drag</span><span class="token punctuation">(</span><span class="token parameter">dragevent</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    dragevent<span class="token punctuation">.</span>dataTransfer<span class="token punctuation">.</span><span class="token function">setData</span><span class="token punctuation">(</span><span class="token string">"text"</span><span class="token punctuation">,</span> dragevent<span class="token punctuation">.</span>target<span class="token punctuation">.</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    dragevent<span class="token punctuation">.</span>target<span class="token punctuation">.</span>style<span class="token punctuation">.</span>color <span class="token operator">=</span> <span class="token string">'green'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">drop</span><span class="token punctuation">(</span><span class="token parameter">dropevent</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    dropevent<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> data <span class="token operator">=</span> dropevent<span class="token punctuation">.</span>dataTransfer<span class="token punctuation">.</span><span class="token function">getData</span><span class="token punctuation">(</span><span class="token string">"text"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    dropevent<span class="token punctuation">.</span>target<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"drag"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>color <span class="token operator">=</span> <span class="token string">'black'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="result">Result</h3>
+<p id="EmbedLiveSample('Example'_''_''_''_'WebAPIDataTransfergetData')"><iframe class="sample-code-frame" id="frame_Example" width="600" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/DataTransfer/getData/_samples_/Example" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/interaction.html#dom-datatransfer-getdata" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'getData()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/html51/editing.html#dom-datatransfer-getdata" hreflang="en" rel=" noopener">HTML 5.1<br><small>The definition of 'getData()' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>getData</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../html_drag_and_drop_api">Drag and drop</a></li> <li><a href="../html_drag_and_drop_api/drag_operations">Drag Operations</a></li> <li><a href="../html_drag_and_drop_api/recommended_drag_types">Recommended Drag Types</a></li> <li><a href="../html_drag_and_drop_api/multiple_items">Dragging and Dropping Multiple Items</a></li> <li><a href="https://codepen.io/tech_query/pen/MqGgap" rel=" noopener">DataTransfer test - Paste or Drag</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/getData" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer/getData</a>
+  </p>
+</div>

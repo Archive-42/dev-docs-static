@@ -1,0 +1,53 @@
+<h1>PublicKeyCredential.id</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <code>id</code> read-only property of the <a href="../publickeycredential"><code>PublicKeyCredential</code></a> interface is a <a href="../domstring"><code>DOMString</code></a>, inherited from <a href="../credential"><code>Credential</code></a>, which represents the identifier of the current <code>PublicKeyCredential</code> instance.</p> <p>This property is a <a href="https://developer.mozilla.org/en-US/docs/Glossary/Base64">base64url encoded</a> version of <a href="rawid"><code>PublicKeyCredential.rawId</code></a>.</p> <div class="note notecard"> <p><strong>Note:</strong> This property may only be used in top-level contexts and will not be available in an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe"><code>&lt;iframe&gt;</code></a> for example.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">id <span class="token operator">=</span> publicKeyCredential<span class="token punctuation">.</span>id</pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../domstring"><code>DOMString</code></a> being the <a href="https://developer.mozilla.org/en-US/docs/Glossary/Base64">base64url encoded</a> version of <a href="rawid"><code>PublicKeyCredential.rawId</code></a>.</p>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token keyword">var</span> publicKey <span class="token operator">=</span> <span class="token punctuation">{</span>
+  challenge<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token number">26</span><span class="token punctuation">)</span> <span class="token comment">/* this actually is given from the server */</span><span class="token punctuation">,</span>
+  rp<span class="token operator">:</span> <span class="token punctuation">{</span>
+    name<span class="token operator">:</span> <span class="token string">"Example CORP"</span><span class="token punctuation">,</span>
+    id  <span class="token operator">:</span> <span class="token string">"login.example.com"</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  user<span class="token operator">:</span> <span class="token punctuation">{</span>
+    id<span class="token operator">:</span> <span class="token keyword">new</span> <span class="token class-name">Uint8Array</span><span class="token punctuation">(</span><span class="token number">26</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token comment">/* To be changed for each user */</span>
+    name<span class="token operator">:</span> <span class="token string">"jdoe@example.com"</span><span class="token punctuation">,</span>
+    displayName<span class="token operator">:</span> <span class="token string">"John Doe"</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  pubKeyCredParams<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      type<span class="token operator">:</span> <span class="token string">"public-key"</span><span class="token punctuation">,</span>
+      alg<span class="token operator">:</span> <span class="token operator">-</span><span class="token number">7</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+navigator<span class="token punctuation">.</span>credentials<span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span><span class="token punctuation">{</span> publicKey <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">newCredentialInfo</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> id <span class="token operator">=</span> newCredentialInfo<span class="token punctuation">.</span>id<span class="token punctuation">;</span>
+    <span class="token comment">// Do something with the id</span>
+
+    <span class="token comment">// send attestation response and client extensions</span>
+    <span class="token comment">// to the server to proceed with the registration</span>
+    <span class="token comment">// of the credential</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span>err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/webauthn/#iface-pkcredential" hreflang="en" rel=" noopener">Web Authentication: An API for accessing Public Key Credentials Level 1<br><small>The definition of 'id' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Specified in the context of <code>PublicKeyCredential</code>. Overrides the getter defined in <code>Credential</code>.</td> </tr> <tr> <td><a href="https://w3c.github.io/webappsec-credential-management/#dom-credential-id" hreflang="en" rel=" noopener">Credential Management Level 1<br><small>The definition of 'id' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<div class="notecard warning"><p>No compatibility data found for <code>api.PublicKeyCredential.id</code>.<br><a href="#on-github">Check for problems with this page</a> or contribute missing data to <a href="https://github.com/mdn/browser-compat-data">mdn/browser-compat-data</a>.</p></div>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../credential/id"><code>Credential.id</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredential/id" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/PublicKeyCredential/id</a>
+  </p>
+</div>

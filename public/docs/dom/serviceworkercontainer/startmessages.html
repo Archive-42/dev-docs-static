@@ -1,0 +1,71 @@
+<h1>ServiceWorkerContainer.startMessages()</h1> <p>The <code>startMessages()</code> method of the <a href="../serviceworkercontainer"><code>ServiceWorkerContainer</code></a> interface explicitly starts the flow of messages being dispatched from a service worker to pages under its control (e.g. sent via <a href="../client/postmessage"><code>Client.postMessage()</code></a>). This can be used to react to sent messages earlier, even before that page's content has finished loading.</p>
+<h2 id="explanation">Explanation</h2>
+<p>By default, all messages sent from a page's controlling service worker to the page (using <a href="../client/postmessage"><code>Client.postMessage()</code></a>) are queued while the page is loading, and get dispatched once the page's HTML document has been loaded and parsed (i.e. after the <code><a href="../window/domcontentloaded_event">DOMContentLoaded</a></code> event fires). It's possible to start dispatching these messages earlier by calling <a href="startmessages"><code>ServiceWorkerContainer.startMessages()</code></a>, for example if you've invoked a message handler using <a href="../eventtarget/addeventlistener"><code>EventTarget.addEventListener()</code></a> before the page has finished loading, but want to start processing the messages right away.</p> <div class="notecard note"> <p><strong>Note</strong>: The messages start being sent automatically when setting the handler directly using <a href="onmessage"><code>ServiceWorkerContainer.onmessage</code></a>. In this you don't need <code>startMessages()</code>.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">serviceWorkerContainer<span class="token punctuation">.</span><span class="token function">startMessages</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<p>None.</p>
+<h3 id="return_value">Return value</h3>
+<p><code>undefined</code>.</p>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token keyword">if</span><span class="token punctuation">(</span><span class="token string">'serviceWorker'</span> <span class="token keyword">in</span> navigator<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  navigator<span class="token punctuation">.</span>serviceWorker
+           <span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'/sw.js'</span><span class="token punctuation">)</span>
+           <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Service Worker Registered'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// ...</span>
+
+navigator<span class="token punctuation">.</span>serviceWorker<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'message'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token comment">// ...</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+navigator<span class="token punctuation">.</span>serviceWorker<span class="token punctuation">.</span><span class="token function">startMessages</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/ServiceWorker/#dom-serviceworkercontainer-startmessages" hreflang="en" rel=" noopener">Service Workers<br><small>The definition of 'ServiceWorkerContainer: startMessages()' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>startMessages</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerContainer/startMessages" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerContainer/startMessages</a>
+  </p>
+</div>

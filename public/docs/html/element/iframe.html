@@ -1,0 +1,595 @@
+<h1>&lt;iframe&gt;: The Inline Frame element</h1> <p>The <code>&lt;iframe&gt;</code> represents a nested <a href="https://developer.mozilla.org/en-US/docs/Glossary/Browsing_context">browsing context</a>, embedding another HTML page into the current one.</p> <iframe class="interactive" width="100%" height="445" src="https://interactive-examples.mdn.mozilla.net/pages/tabbed/iframe.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe> <p>Each embedded browsing context has its own <a href="https://developer.mozilla.org/en-US/docs/Web/API/History">session history</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document">document</a>. The browsing context that embeds the others is called the <em><dfn>parent</dfn> browsing context</em>. The <em>topmost</em> browsing context — the one with no parent — is usually the browser window, represented by the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window"><code>Window</code></a> object.</p> <div class="notecard warning"> <p>Because each browsing context is a complete document environment, every <code>&lt;iframe&gt;</code> in a page requires increased memory and other computing resources. While theoretically you can use as many <code>&lt;iframe&gt;</code>s as you like, check for performance problems.</p> </div> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row"><a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories">Content categories</a></th> <td>
+<a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#flow_content">Flow content</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Content_categories#phrasing_content">phrasing content</a>, embedded content, interactive content, palpable content.</td> </tr> <tr> <th scope="row">Permitted content</th> <td>None.</td> </tr> <tr> <th scope="row">Tag omission</th> <td>None, both the starting and ending tag are mandatory.</td> </tr> <tr> <th scope="row">Permitted parents</th> <td>Any element that accepts embedded content.</td> </tr> <tr> <th scope="row">Implicit ARIA role</th> <td><a href="https://www.w3.org/TR/html-aria/#dfn-no-corresponding-role" rel=" noopener">No corresponding role</a></td> </tr> <tr> <th scope="row">Permitted ARIA roles</th> <td>
+<code><a href="https://w3c.github.io/aria/#application" rel=" noopener">application</a></code>, <code><a href="https://w3c.github.io/aria/#document" rel=" noopener">document</a></code>, <code><a href="https://w3c.github.io/aria/#img" rel=" noopener">img</a></code>, <code><a href="https://w3c.github.io/aria/#none" rel=" noopener">none</a></code>, <code><a href="https://w3c.github.io/aria/#presentation" rel=" noopener">presentation</a></code>
+</td> </tr> <tr> <th scope="row">DOM interface</th> <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement"><code>HTMLIFrameElement</code></a></td> </tr> </tbody> </table></div>
+<h2 id="attributes">Attributes</h2>
+<p>This element includes the <a href="../global_attributes">global attributes</a>.</p> <dl> <dt><code>allow</code></dt> <dd>Specifies a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy">feature policy</a> for the <code>&lt;iframe&gt;</code>. The policy defines what features are available to the <code>&lt;iframe&gt;</code> based on the origin of the request (e.g. access to the microphone, camera, battery, web-share API, etc.).<br> <br> For more information and examples see: <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy/Using_Feature_Policy">Using Feature Policy</a> &gt; <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy/Using_Feature_Policy#the_iframe_allow_attribute">The iframe allow attribute</a>.</dd> <dt><code>allowfullscreen</code></dt> <dd>Set to <code>true</code> if the <code>&lt;iframe&gt;</code> can activate fullscreen mode by calling the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/requestFullScreen"><code>requestFullscreen()</code></a> method.</dd> <dd> <div class="note notecard">This attribute is considered a legacy attribute and redefined as <code>allow="fullscreen"</code>.</div> </dd> <dt><code>allowpaymentrequest</code></dt> <dd>Set to <code>true</code> if a cross-origin <code>&lt;iframe&gt;</code> should be allowed to invoke the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Payment_Request_API">Payment Request API</a>.</dd> <dd> <div class="note notecard">This attribute is considered a legacy attribute and redefined as <code>allow="payment"</code>.</div> </dd> <dt>
+<code>csp</code> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt> <dd>A <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP">Content Security Policy</a> enforced for the embedded resource. See <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/csp"><code>HTMLIFrameElement.csp</code></a> for details.</dd> <dt><code>height</code></dt> <dd>The height of the frame in CSS pixels. Default is <code>150</code>.</dd> <dt>
+<code>loading</code> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt> <dd>Indicates how the browser should load the iframe: <ul> <li>
+<code>eager</code>: Load the iframe immediately, regardless if it is outside the visible viewport (this is the default value).</li> <li>
+<code>lazy</code>: Defer loading of the iframe until it reaches a calculated distance from the viewport, as defined by the browser.</li> </ul> </dd> <dt><code>name</code></dt> <dd>A targetable name for the embedded browsing context. This can be used in the <code>target</code> attribute of the <a href="a"><code>&lt;a&gt;</code></a>, <a href="form"><code>&lt;form&gt;</code></a>, or <a href="base"><code>&lt;base&gt;</code></a> elements; the <code>formtarget</code> attribute of the <a href="input"><code>&lt;input&gt;</code></a> or <a href="button"><code>&lt;button&gt;</code></a> elements; or the <code>windowName</code> parameter in the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/open"><code>window.open()</code></a> method.</dd> <dt id="attr-referrer"><code>referrerpolicy</code></dt> <dd>Indicates which <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/referrer">referrer</a> to send when fetching the frame's resource: <ul> <li>
+<code>no-referrer</code>: The <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referer"><code>Referer</code></a> header will not be sent.</li> <li>
+<code>no-referrer-when-downgrade</code> (default): The <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referer"><code>Referer</code></a> header will not be sent to <a href="https://developer.mozilla.org/en-US/docs/Glossary/Origin">origin</a>s without <a href="https://developer.mozilla.org/en-US/docs/Glossary/TLS">TLS</a> (<a href="https://developer.mozilla.org/en-US/docs/Glossary/https">HTTPS</a>).</li> <li>
+<code>origin</code>: The sent referrer will be limited to the origin of the referring page: its <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/What_is_a_URL">scheme</a>, <a href="https://developer.mozilla.org/en-US/docs/Glossary/Host">host</a>, and <a href="https://developer.mozilla.org/en-US/docs/Glossary/Port">port</a>.</li> <li>
+<code>origin-when-cross-origin</code>: The referrer sent to other origins will be limited to the scheme, the host, and the port. Navigations on the same origin will still include the path.</li> <li>
+<code>same-origin</code>: A referrer will be sent for <a href="https://developer.mozilla.org/en-US/docs/Glossary/Same-origin_policy">same origin</a>, but cross-origin requests will contain no referrer information.</li> <li>
+<code>strict-origin</code>: Only send the origin of the document as the referrer when the protocol security level stays the same (HTTPS→HTTPS), but don't send it to a less secure destination (HTTPS→HTTP).</li> <li>
+<code>strict-origin-when-cross-origin</code>: Send a full URL when performing a same-origin request, only send the origin when the protocol security level stays the same (HTTPS→HTTPS), and send no header to a less secure destination (HTTPS→HTTP).</li> <li>
+<code>unsafe-url</code>: The referrer will include the origin <em>and</em> the path (but not the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/hash">fragment</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/password">password</a>, or <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/username">username</a>). <strong>This value is unsafe</strong>, because it leaks origins and paths from TLS-protected resources to insecure origins.</li> </ul> </dd> <dt><code>sandbox</code></dt> <dd>Applies extra restrictions to the content in the frame. The value of the attribute can either be empty to apply all restrictions, or space-separated tokens to lift particular restrictions: <ul> <li>
+<code>allow-downloads-without-user-activation</code> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>: Allows for downloads to occur without a gesture from the user.</li> <li>
+<code>allow-downloads</code>: Allows for downloads to occur with a gesture from the user.</li> <li>
+<code>allow-forms</code>: Allows the resource to submit forms. If this keyword is not used, form submission is blocked.</li> <li>
+<code>allow-modals</code>: Lets the resource <a href="https://html.spec.whatwg.org/multipage/origin.html#sandboxed-modals-flag" rel=" noopener">open modal windows</a>.</li> <li>
+<code>allow-orientation-lock</code>: Lets the resource <a href="https://developer.mozilla.org/en-US/docs/Web/API/Screen/lockOrientation">lock the screen orientation</a>.</li> <li>
+<code>allow-pointer-lock</code>: Lets the resource use the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Pointer_Lock_API">Pointer Lock API</a>.</li> <li>
+<code>allow-popups</code>: Allows popups (such as <code>window.open()</code>, <code>target="_blank"</code>, or <code>showModalDialog()</code>). If this keyword is not used, the popup will silently fail to open.</li> <li>
+<code>allow-popups-to-escape-sandbox</code>: Lets the sandboxed document open new windows without those windows inheriting the sandboxing. For example, this can safely sandbox an advertisement without forcing the same restrictions upon the page the ad links to.</li> <li>
+<code>allow-presentation</code>: Lets the resource start a <a href="https://developer.mozilla.org/en-US/docs/Web/API/PresentationRequest">presentation session</a>.</li> <li>
+<code>allow-same-origin</code>: If this token is not used, the resource is treated as being from a special origin that always fails the <a href="https://developer.mozilla.org/en-US/docs/Glossary/Same-origin_policy">same-origin policy</a> (potentially preventing access to <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy#cross-origin_data_storage_access">data storage/cookies</a> and some JavaScript APIs).</li> <li>
+<code>allow-scripts</code>: Lets the resource run scripts (but not create popup windows).</li> <li>
+<code>allow-storage-access-by-user-activation</code> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>: Lets the resource request access to the parent's storage capabilities with the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Storage_Access_API">Storage Access API</a>.</li> <li>
+<code>allow-top-navigation</code>: Lets the resource navigate the top-level browsing context (the one named <code>_top</code>).</li> <li>
+<code>allow-top-navigation-by-user-activation</code>: Lets the resource navigate the top-level browsing context, but only if initiated by a user gesture.</li> </ul> <div class="note notecard">
+<strong>Notes about sandboxing:</strong> <ul> <li>When the embedded document has the same origin as the embedding page, it is <strong>strongly discouraged</strong> to use both <code>allow-scripts</code> and <code>allow-same-origin</code>, as that lets the embedded document remove the <code>sandbox</code> attribute — making it no more secure than not using the <code>sandbox</code> attribute at all.</li> <li>Sandboxing is useless if the attacker can display content outside a sandboxed <code>iframe</code> — such as if the viewer opens the frame in a new tab. Such content should be also served from a <em>separate origin</em> to limit potential damage.</li> <li>The <code>sandbox</code> attribute is unsupported in Internet Explorer 9 and earlier.</li> </ul> </div> </dd> <dt><code>src</code></dt> <dd>The URL of the page to embed. Use a value of <code>about:blank</code> to embed an empty page that conforms to the <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy#inherited_origins">same-origin policy</a>. Also note that programmatically removing an <code>&lt;iframe&gt;</code>'s src attribute (e.g. via <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/removeAttribute"><code>Element.removeAttribute()</code></a>) causes <code>about:blank</code> to be loaded in the frame in Firefox (from version 65), Chromium-based browsers, and Safari/iOS.</dd> <dt><code>srcdoc</code></dt> <dd>Inline HTML to embed, overriding the <code>src</code> attribute. If a browser does not support the <code>srcdoc</code> attribute, it will fall back to the URL in the <code>src</code> attribute.</dd> <dt><code>width</code></dt> <dd>The width of the frame in CSS pixels. Default is <code>300</code>.</dd> </dl>
+<h3 id="deprecated_attributes">Deprecated attributes</h3>
+<p>These attributes are deprecated and may no longer be supported by all user agents. You should not use them in new content, and try to remove them from existing content.</p> <dl> <dt>
+<code>align</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>The alignment of this element with respect to the surrounding context.</dd> <dt>
+<code>frameborder</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>The value <code>1</code> (the default) draws a border around this frame. The value <code>0</code> removes the border around this frame, but you should instead use the CSS property <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border"><code>border</code></a> to control <code>&lt;iframe&gt;</code> borders.</dd> <dt>
+<code>longdesc</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>A URL of a long description of the frame's content. Due to widespread misuse, this is not helpful for non-visual browsers.</dd> <dt>
+<code>marginheight</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>The amount of space in pixels between the frame's content and its top and bottom borders.</dd> <dt>
+<code>marginwidth</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>The amount of space in pixels between the frame's content and its left and right borders.</dd> <dt>
+<code>scrolling</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>Indicates when the browser should provide a scrollbar for the frame: <ul> <li>
+<code>auto</code>: Only when the frame's content is larger than its dimensions.</li> <li>
+<code>yes</code>: Always show a scrollbar.</li> <li>
+<code>no</code>: Never show a scrollbar.</li> </ul> </dd> </dl>
+<h3 id="non-standard_attributes">Non-standard attributes</h3>
+<dl> <dt>
+<code>mozbrowser</code> <span class="icon non-standard" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This API has not been standardized.   </span>
+</dt> <dd> <div class="note notecard">See <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1318532" rel=" noopener">bug 1318532</a> for exposing this to WebExtensions in Firefox.</div> Makes the <code>&lt;iframe&gt;</code> act like a top-level browser window. See <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Gecko/Chrome/API/Browser_API">Browser API</a> for details.<br> <strong>Available only to <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions">WebExtensions</a>.</strong>
+</dd> </dl>
+<h2 id="scripting">Scripting</h2>
+<p>Inline frames, like <a href="frame"><code>&lt;frame&gt;</code></a> elements, are included in the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/frames"><code>window.frames</code></a> pseudo-array.</p> <p>With the DOM <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement"><code>HTMLIFrameElement</code></a> object, scripts can access the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window"><code>window</code></a> object of the framed resource via the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/contentWindow"><code>contentWindow</code></a> property. The <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLIFrameElement/contentDocument"><code>contentDocument</code></a> property refers to the <code>document</code> inside the <code>&lt;iframe&gt;</code>, same as <code>contentWindow.document</code>.</p> <p>From the inside of a frame, a script can get a reference to its parent window with <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/parent"><code>window.parent</code></a>.</p> <p>Script access to a frame's content is subject to the <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy">same-origin policy</a>. Scripts cannot access most properties in other <code>window</code> objects if the script was loaded from a different origin, including scripts inside a frame accessing the frame's parent. Cross-origin communication can be achieved using <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage"><code>Window.postMessage()</code></a>.</p>
+<h2 id="positioning_and_scaling">Positioning and scaling</h2>
+<p>As a <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Replaced_element">replaced element</a>, the position, alignment, and scaling of the embedded document within the <code>&lt;iframe&gt;</code> element's box, can be adjusted with the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-position"><code>object-position</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit"><code>object-fit</code></a> properties.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="example1">A simple &lt;iframe&gt;</h3>
+<p>An <code>&lt;iframe&gt;</code> in action. After creating the frame, when the user clicks a button, its title is displayed in an alert.</p> <h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://mdn-samples.mozilla.org/snippets/html/iframe-simple-contents.html<span class="token punctuation">"</span></span>
+            <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>iframe Example 1<span class="token punctuation">"</span></span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>400<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>300<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">&gt;</span></span></pre> <h4 id="result">Result</h4> <p><iframe class="sample-code-frame" id="frame_Example1" width="640" height="400" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/HTML/Element/iframe/_samples_/Example1" loading="lazy"></iframe></p>
+<h2 id="accessibility_concerns">Accessibility concerns</h2>
+<p>People navigating with assistive technology such as a screen reader can use the <a href="../global_attributes/title"><code>title</code> attribute</a> on an <code>&lt;iframe&gt;</code> to label its content. The title's value should concisely describe the embedded content:</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>iframe</span> <span class="token attr-name">title</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Wikipedia page for Avocados<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://en.wikipedia.org/wiki/Avocado<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>iframe</span><span class="token punctuation">&gt;</span></span></pre> <p>Without this title, they have to navigate into the <code>&lt;iframe&gt;</code> to determine what its embedded content is. This context shift can be confusing and time-consuming, especially for pages with multiple <code>&lt;iframe&gt;</code>s and/or if embeds contain interactive content like video or audio.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/webappsec-referrer-policy/#referrer-policy-delivery-referrer-attribute" hreflang="en" rel=" noopener">Referrer Policy<br><small>The definition of 'referrerpolicy attribute' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Added the <code>referrerpolicy</code> attribute.</td> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/iframe-embed-object.html#the-iframe-element" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of '&lt;iframe&gt;' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/html52/semantics-embedded-content.html#the-iframe-element" hreflang="en" rel=" noopener">HTML5<br><small>The definition of '&lt;iframe&gt;' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/html401/present/frames.html#h-16.5" hreflang="en" rel=" noopener">HTML 4.01 Specification<br><small>The definition of '&lt;iframe&gt;' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> <tr> <td><a href="https://w3c.github.io/screen-orientation/" hreflang="en" rel=" noopener">Screen Orientation API</a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Adds <code>allow-orientation-lock</code> to the <code>sandbox</code> attribute.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>iframe</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>The <code>resize</code> CSS property doesn't have any effect on this element due to <a href="https://bugzil.la/680823">bug 680823</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Safari has a <a href="https://www.quirksmode.org/bugreports/archives/2005/02/hidden_iframes.html">bug</a> that prevents iframes from loading if the <code>iframe</code> element was hidden when added to the page. <code>iframeElement.src = iframeElement.src</code> should cause it to load the iframe.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>The <code>resize</code> CSS property doesn't have any effect on this element due to <a href="https://bugzil.la/680823">bug 680823</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Safari has a <a href="https://www.quirksmode.org/bugreports/archives/2005/02/hidden_iframes.html">bug</a> that prevents iframes from loading if the <code>iframe</code> element was hidden when added to the page. <code>iframeElement.src = iframeElement.src</code> should cause it to load the iframe.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>align</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>allow</code></th>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-yes"><div>8.0</div></td>
+</tr>
+<tr>
+<th><code>allowfullscreen</code></th>
+<td class="bc-supports-yes">
+<div>27</div>
+<div>17-38</div>
+</td>
+<td class="bc-supports-yes">
+<div>≤79</div>
+<div>12-79</div>
+</td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>9</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>≤15</div>
+<div>15-25</div>
+</td>
+<td class="bc-supports-yes">
+<div>7</div>
+<div>Yes</div>
+</td>
+<td class="bc-supports-yes">
+<div>37</div>
+<div>37-38</div>
+</td>
+<td class="bc-supports-yes">
+<div>27</div>
+<div>18-38</div>
+</td>
+<td class="bc-supports-yes">
+<div>18</div>
+<div>9</div>
+</td>
+<td class="bc-supports-yes">
+<div>≤14</div>
+<div>14-25</div>
+</td>
+<td class="bc-supports-yes">
+<div>7</div>
+<div>Yes</div>
+</td>
+<td class="bc-supports-yes">
+<div>1.5</div>
+<div>1.0-3.0</div>
+</td>
+</tr>
+<tr>
+<th><code>allowpaymentrequest</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>56-83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>56-83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>aspect_ratio_computed_from_attributes</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes">
+<div>71</div>
+<div>69-71</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>66</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr>
+<tr>
+<th><code>external_protocol_urls_blocked</code></th>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>67</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+</tr>
+<tr>
+<th><code>frameborder</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>height</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>loading</code></th>
+<td class="bc-supports-yes"><div>77</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1622090">bug 1622090</a>.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://webkit.org/b/196698">bug 196698</a>
+</div>
+</td>
+<td class="bc-supports-yes"><div>77</div></td>
+<td class="bc-supports-yes"><div>77</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://bugzil.la/1622090">bug 1622090</a>.</div>
+</td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://webkit.org/b/196698">bug 196698</a>
+</div>
+</td>
+<td class="bc-supports-yes"><div>12.0</div></td>
+</tr>
+<tr>
+<th><code>longdesc</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>marginheight</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>marginwidth</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>name</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>referrerpolicy</code></th>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>38</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7.2</div></td>
+</tr>
+<tr>
+<th><code>sandbox</code></th>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>5</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>4.2</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>sandbox-allow-downloads</code></th>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>82</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-yes"><div>82</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+</tr>
+<tr>
+<th><code>sandbox-allow-modals</code></th>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+</tr>
+<tr>
+<th><code>sandbox-allow-popups</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>28</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>27</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>sandbox-allow-popups-to-escape-sandbox</code></th>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>32</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>46</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-yes"><div>32</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>sandbox-allow-presentation</code></th>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr>
+<tr>
+<th><code>sandbox-allow-same-origin</code></th>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Chrome 70 and earlier block script execution without <code>allow-scripts</code>, even if <code>allow-same-origin</code> is set. For example, any bound handlers for click events of nodes inside an iframe throw an error for blocked script execution.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Safari blocks script execution without <code>allow-scripts</code> even if <code>allow-same-origin</code> is set. For example, any bound handlers for click events of nodes inside an iframe throw an error for blocked script execution.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>sandbox-allow-storage-access-by-user-activation</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.3</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>sandbox-allow-top-navigation-by-user-activation</code></th>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>45</div></td>
+<td class="bc-supports-yes">
+<div>11.1</div>
+<div>Not initially available in 11.1, but added in sub-version 13605.1.33.1.2.</div>
+</td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr>
+<tr>
+<th><code>scrolling</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>src</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>srcdoc</code></th>
+<td class="bc-supports-yes"><div>20</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr>
+<tr>
+<th><code>width</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://developer.mozilla.org/en-US/docs/Web/Privacy">Privacy, permissions, and information security</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/HTML/Element/iframe</a>
+  </p>
+</div>

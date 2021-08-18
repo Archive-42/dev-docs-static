@@ -1,0 +1,107 @@
+<h1>AudioParam.setValueCurveAtTime()</h1>
+
+ <p class="summary">The <code>setValueCurveAtTime()</code> method of the <a href="../audioparam"><code>AudioParam</code></a> interface schedules the parameter's value to change following a curve defined by a list of values. The curve is a linear interpolation between the sequence of values defined in an array of floating-point values, which are scaled to fit into the given interval starting at <code>startTime</code> and a specific duration.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> paramRef <span class="token operator">=</span> param<span class="token punctuation">.</span><span class="token function">setValueCurveAtTime</span><span class="token punctuation">(</span>values<span class="token punctuation">,</span> startTime<span class="token punctuation">,</span> duration<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>values</code></dt> <dd>An array of floating-point numbers representing the value curve the <a href="../audioparam"><code>AudioParam</code></a> will change through along the specified <code>duration</code>. Every value in the array must be a finite number; if any value is <code>NaN</code>, <code>Infinity</code>, or <code>-Infinity</code>, a <code>TypeError</code> exception is thrown.</dd> <dt><code>startTime</code></dt> <dd>A double representing the time (in seconds) after the <a href="../audiocontext"><code>AudioContext</code></a> was first created that the change in value will happen. If this value is lower than <a href="../baseaudiocontext/currenttime"><code>AudioContext.currentTime</code></a>, it is clamped to <code>currentTime</code>. </dd> <dt><code>duration</code></dt> <dd>A double representing the total time (in seconds) over which the parameter's <code>value</code> will change following the specified curve. The specified values are spaced equally along this duration.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A reference to this <code>AudioParam</code> object. Some older browser implementations of this interface return <code>undefined</code>.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>InvalidStateError</code></dt> <dd>The specified array of <code>values</code> has fewer than 2 items in it.</dd> <dt><code>RangeError</code></dt> <dd>The specified <code>startTime</code> is either negative or a non-finite value, or <code>duration</code> is not a finite, strictly positive number.</dd> <dt><code>TypeError</code></dt> <dd>One or more of the values in the <code>values</code> array is non-finite. Non-finite values are <code>NaN</code>, <code>Infinity</code>, and <code>-Infinity</code>.</dd> </dl>
+<h2 id="usage_notes">Usage notes</h2>
+<p>When the parameter's value finishes following the curve, its value is guaranteed to match the last value in the set of values specified in the <code>values</code> parameter.</p> <div class="note notecard"> <p><strong>Note:</strong> Some early implementations of the Web Audio API did not ensure this to be the case, causing unexpected results.</p> </div>
+<h2 id="examples">Examples</h2>
+<p>In this example, we have a media source with a single button (see the <a href="https://github.com/mdn/webaudio-examples/blob/master/audio-param/index.html" rel=" noopener">webaudio-examples repo</a> for the source code, or <a href="https://mdn.github.io/webaudio-examples/audio-param/" rel=" noopener">view the example live</a>.) When this button is pressed, <code>setValueCurveAtTime()</code> is used to change the gain value between the values contained in the waveArray array:</p> <pre data-language="js"><span class="token comment">// create audio context</span>
+<span class="token keyword">var</span> AudioContext <span class="token operator">=</span> window<span class="token punctuation">.</span>AudioContext <span class="token operator">||</span> window<span class="token punctuation">.</span>webkitAudioContext<span class="token punctuation">;</span>
+<span class="token keyword">var</span> audioCtx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// set basic variables for example</span>
+<span class="token keyword">var</span> myAudio <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'audio'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> pre <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'pre'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> myScript <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'script'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+pre<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> myScript<span class="token punctuation">.</span>innerHTML<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> valueCurve <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.value-curve'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Create a MediaElementAudioSourceNode</span>
+<span class="token comment">// Feed the HTMLMediaElement into it</span>
+<span class="token keyword">var</span> source <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createMediaElementSource</span><span class="token punctuation">(</span>myAudio<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Create a gain node and set it's gain value to 0.5</span>
+<span class="token keyword">var</span> gainNode <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createGain</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gainNode<span class="token punctuation">.</span>gain<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token number">0.5</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> currGain <span class="token operator">=</span> gainNode<span class="token punctuation">.</span>gain<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+
+<span class="token comment">// connect the AudioBufferSourceNode to the gainNode</span>
+<span class="token comment">// and the gainNode to the destination</span>
+source<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>gainNode<span class="token punctuation">)</span><span class="token punctuation">;</span>
+gainNode<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>audioCtx<span class="token punctuation">.</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// set button to do something onclick</span>
+
+<span class="token keyword">var</span> waveArray <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Float32Array</span><span class="token punctuation">(</span><span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+waveArray<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0.5</span><span class="token punctuation">;</span>
+waveArray<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+waveArray<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0.5</span><span class="token punctuation">;</span>
+waveArray<span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+waveArray<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0.5</span><span class="token punctuation">;</span>
+waveArray<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+waveArray<span class="token punctuation">[</span><span class="token number">6</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0.5</span><span class="token punctuation">;</span>
+waveArray<span class="token punctuation">[</span><span class="token number">7</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+waveArray<span class="token punctuation">[</span><span class="token number">8</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">0.5</span><span class="token punctuation">;</span>
+
+valueCurve<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  gainNode<span class="token punctuation">.</span>gain<span class="token punctuation">.</span><span class="token function">setValueCurveAtTime</span><span class="token punctuation">(</span>waveArray<span class="token punctuation">,</span> audioCtx<span class="token punctuation">.</span>currentTime<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://webaudio.github.io/web-audio-api/#dom-audioparam-setvaluecurveattime" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'setValueCurveAtTime' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>setValueCurveAtTime</code></th>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+ <p>Versions before Chrome 46 use nearest neighbor instead of linear interpolation.</p>
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../web_audio_api/using_web_audio_api">Using the Web Audio API</a> </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/AudioParam/setValueCurveAtTime" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/AudioParam/setValueCurveAtTime</a>
+  </p>
+</div>

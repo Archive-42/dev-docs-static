@@ -1,0 +1,123 @@
+<h1>CustomElementRegistry.whenDefined()</h1>
+
+ <p>The <code><strong>whenDefined()</strong></code> method of the <a href="../customelementregistry"><code>CustomElementRegistry</code></a> interface returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves when the named element is defined.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">customElements<span class="token punctuation">.</span><span class="token function">whenDefined</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token operator">:</span> Promise<span class="token operator">&lt;</span>CustomElementConstructor<span class="token operator">&gt;</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>name</dt> <dd>Custom element name.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that will be fulfilled with the <a href="../window/customelements" id="custom-elements-api:custom-element-4">custom element</a>'s constructor when a <a href="../window/customelements" id="custom-elements-api:custom-element-5">custom element</a> becomes defined with the given name. (If such a <a href="../window/customelements" id="custom-elements-api:custom-element-6">custom element</a> is already defined, the returned promise will be immediately fulfilled.)</p>
+<h3 id="exceptions">Exceptions</h3>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Exception</th> <th scope="col">Description</th> </tr> </thead> <tbody> <tr> <td><code>SyntaxError</code></td> <td>If the provided name is not a <a href="https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name" rel=" noopener">valid custom element name</a>, the promise rejects with a <code>SyntaxError</code>. </td> </tr> </tbody> </table></div>
+<h2 id="examples">Examples</h2>
+<p>This example uses <code>whenDefined()</code> to detect when the custom elements that make up a menu are defined. The menu displays placeholder content until the actual menu content is ready to display.</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nav</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>menu-container<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>menu-placeholder<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Loading...<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>nav-menu</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu-item</span><span class="token punctuation">&gt;</span></span>Item 1<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>menu-item</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu-item</span><span class="token punctuation">&gt;</span></span>Item 2<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>menu-item</span><span class="token punctuation">&gt;</span></span>
+     ...
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>menu-item</span><span class="token punctuation">&gt;</span></span>Item N<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>menu-item</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nav-menu</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>nav</span><span class="token punctuation">&gt;</span></span>
+</pre> <pre data-language="js"><span class="token keyword">const</span> container <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">'menu-container'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> placeholder <span class="token operator">=</span> container<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'.menu-placeholder'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Fetch all the children of menu that are not yet defined.</span>
+<span class="token keyword">const</span> undefinedElements <span class="token operator">=</span> container<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">':not(:defined)'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> promises <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token operator">...</span>undefinedElements<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span>
+  <span class="token parameter">button</span> <span class="token operator">=&gt;</span> customElements<span class="token punctuation">.</span><span class="token function">whenDefined</span><span class="token punctuation">(</span>button<span class="token punctuation">.</span>localName<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Wait for all the children to be upgraded,</span>
+<span class="token comment">// then remove the placeholder.</span>
+<span class="token keyword">await</span> Promise<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span>promises<span class="token punctuation">)</span><span class="token punctuation">;</span>
+container<span class="token punctuation">.</span><span class="token function">removeChild</span><span class="token punctuation">(</span>placeholder<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#dom-customelementregistry-whendefined" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'customElements.whenDefined()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>whenDefined</code></th>
+<td class="bc-supports-yes">
+<div>67</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>54</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>79</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>54</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>41</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>10.1</div>
+<div>Supports 'Autonomous custom elements' but not 'Customized built-in elements'</div>
+</td>
+<td class="bc-supports-yes">
+<div>67</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>54</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>67</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>54</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>41</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>10.3</div>
+<div>Supports 'Autonomous custom elements' but not 'Customized built-in elements'</div>
+</td>
+<td class="bc-supports-yes">
+<div>9.0</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>6.0</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/whenDefined" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/whenDefined</a>
+  </p>
+</div>

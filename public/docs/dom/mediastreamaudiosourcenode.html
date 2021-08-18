@@ -1,0 +1,167 @@
+<h1>MediaStreamAudioSourceNode</h1> <p>The <code>MediaStreamAudioSourceNode</code> interface is a type of <a href="audionode"><code>AudioNode</code></a> which operates as an audio source whose media is received from a <a href="mediastream"><code>MediaStream</code></a> obtained using the WebRTC or Media Capture and Streams APIs. This media could be from a microphone (through <a href="mediadevices/getusermedia"><code>getUserMedia()</code></a>) or from a remote peer on a WebRTC call (using the <a href="rtcpeerconnection"><code>RTCPeerConnection</code></a>'s audio tracks).</p> <p>A <code>MediaStreamAudioSourceNode</code> has no inputs and exactly one output, and is created using the <a href="audiocontext/createmediastreamsource"><code>AudioContext.createMediaStreamSource()</code></a> method.</p> <p>The <code>MediaStreamAudioSourceNode</code> takes the audio from the <em>first</em> <a href="mediastreamtrack"><code>MediaStreamTrack</code></a> whose <a href="mediastreamtrack/kind"><code>kind</code></a> attribute's value is <code>audio</code>. See <a href="#track_ordering">Track ordering</a> for more information about the order of tracks.</p> <p>The number of channels output by the node matches the number of tracks found in the selected audio track.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Number of inputs</th> <td><code>0</code></td> </tr> <tr> <th scope="row">Number of outputs</th> <td><code>1</code></td> </tr> <tr> <th scope="row">Channel count</th> <td>defined by the first audio <a href="mediastreamtrack"><code>MediaStreamTrack</code></a> passed to the <a href="audiocontext/createmediastreamsource"><code>AudioContext.createMediaStreamSource()</code></a> method that created it.</td> </tr> </tbody> </table></div>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="mediastreamaudiosourcenode/mediastreamaudiosourcenode"><code>new MediaStreamAudioSourceNode()</code></a></dt> <dd>Creates a new <code>MediaStreamAudioSourceNode</code> object instance with the specified options.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<p><em>In addition to the following properties, <code>MediaStreamAudioSourceNode</code> inherits the properties of its parent, <a href="audionode"><code>AudioNode</code></a>.</em></p> <dl> <dt>
+<a href="mediastreamaudiosourcenode/mediastream"><code>mediaStream</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>The <a href="mediastream"><code>MediaStream</code></a> used when constructing this <code>MediaStreamAudioSourceNode</code>.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<p><em>Inherits methods from its parent, <a href="audionode"><code>AudioNode</code></a></em>.</p>
+<h2 id="exceptions">Exceptions</h2>
+<dl> <dt><code>InvalidStateError</code></dt> <dd>The stream specified by the <code>mediaStream</code> parameter does not contain any audio tracks.</dd> </dl>
+<h2 id="usage_notes">Usage notes</h2>
+<h3 id="track_ordering">Track ordering</h3>
+<p>For the purposes of the <code>MediaStreamTrackAudioSourceNode</code> interface, the order of the audio tracks on the stream is determined by taking the tracks whose <a href="mediastreamtrack/kind"><code>kind</code></a> is <code>audio</code>, then sorting the tracks by their <a href="mediastreamtrack/id"><code>id</code></a> property's values, in Unicode code point order (essentially, in alphabetical or lexicographical order, for IDs which are simple alphanumeric strings).</p> <p>The <strong>first</strong> track, then, is the track whose <code>id</code> comes first when the tracks' IDs are all sorted by Unicode code point.</p> <p>However, it's important to note that the rule establishing this ordering was added long after this interface was first introduced into the <a href="web_audio_api">Web Audio API</a>. As such, you can't easily rely on the order matching between any two browsers or browser versions.</p> <p>The <a href="mediastreamtrackaudiosourcenode"><code>MediaStreamTrackAudioSourceNode</code></a> interface is similar to <code>MediaStreamAudioSourceNode</code>, but avoids this problem by letting you specify which track you want to use.</p>
+<h2 id="example">Example</h2>
+
+<p>In this example, we grab a media (audio + video) stream from <a href="navigator/getusermedia"><code>navigator.getUserMedia</code></a>, feed the media into a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"><code>&lt;video&gt;</code></a> element to play then mute the audio, but then also feed the audio into a <a href="mediastreamaudiosourcenode"><code>MediaStreamAudioSourceNode</code></a>. Next, we feed this source audio into a low pass <a href="biquadfilternode"><code>BiquadFilterNode</code></a> (which effectively serves as a bass booster), then a <a href="audiodestinationnode"><code>AudioDestinationNode</code></a>.</p>
+<p>The range slider below the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video"><code>&lt;video&gt;</code></a> element controls the amount of gain given to the lowpass filter — increase the value of the slider to make the audio sound more bass heavy!</p>
+<div class="note notecard"> <p><strong>Note</strong>: You can see this <a href="https://mdn.github.io/webaudio-examples/stream-source-buffer/" rel=" noopener">example running live</a>, or <a href="https://github.com/mdn/webaudio-examples/tree/master/stream-source-buffer" rel=" noopener">view the source</a>.</p> </div>
+<pre data-language="js"><span class="token keyword">var</span> pre <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'pre'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> video <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'video'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> myScript <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'script'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> range <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'input'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// getUserMedia block - grab stream</span>
+<span class="token comment">// put it into a MediaStreamAudioSourceNode</span>
+<span class="token comment">// also output the visuals into a video element</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span>navigator<span class="token punctuation">.</span>mediaDevices<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'getUserMedia supported.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    navigator<span class="token punctuation">.</span>mediaDevices<span class="token punctuation">.</span><span class="token function">getUserMedia</span> <span class="token punctuation">(</span><span class="token punctuation">{</span>audio<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">,</span> video<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">stream</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        video<span class="token punctuation">.</span>srcObject <span class="token operator">=</span> stream<span class="token punctuation">;</span>
+        video<span class="token punctuation">.</span><span class="token function-variable function">onloadedmetadata</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            video<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            video<span class="token punctuation">.</span>muted <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Create a MediaStreamAudioSourceNode</span>
+        <span class="token comment">// Feed the HTMLMediaElement into it</span>
+        <span class="token keyword">var</span> audioCtx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">var</span> source <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createMediaStreamSource</span><span class="token punctuation">(</span>stream<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Create a biquadfilter</span>
+        <span class="token keyword">var</span> biquadFilter <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span><span class="token function">createBiquadFilter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        biquadFilter<span class="token punctuation">.</span>type <span class="token operator">=</span> <span class="token string">"lowshelf"</span><span class="token punctuation">;</span>
+        biquadFilter<span class="token punctuation">.</span>frequency<span class="token punctuation">.</span>value <span class="token operator">=</span> <span class="token number">1000</span><span class="token punctuation">;</span>
+        biquadFilter<span class="token punctuation">.</span>gain<span class="token punctuation">.</span>value <span class="token operator">=</span> range<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+
+        <span class="token comment">// connect the AudioBufferSourceNode to the gainNode</span>
+        <span class="token comment">// and the gainNode to the destination, so we can play the</span>
+        <span class="token comment">// music and adjust the volume using the mouse cursor</span>
+        source<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>biquadFilter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        biquadFilter<span class="token punctuation">.</span><span class="token function">connect</span><span class="token punctuation">(</span>audioCtx<span class="token punctuation">.</span>destination<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Get new mouse pointer coordinates when mouse is moved</span>
+        <span class="token comment">// then set new gain value</span>
+
+        range<span class="token punctuation">.</span><span class="token function-variable function">oninput</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            biquadFilter<span class="token punctuation">.</span>gain<span class="token punctuation">.</span>value <span class="token operator">=</span> range<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">err</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'The following gUM error occurred: '</span> <span class="token operator">+</span> err<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+   console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'getUserMedia not supported on your browser!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// dump script to pre element</span>
+
+pre<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> myScript<span class="token punctuation">.</span>innerHTML<span class="token punctuation">;</span></pre>
+<div class="note notecard"> <p><strong>Note</strong>: As a consequence of calling <code>createMediaStreamSource()</code>, audio playback from the media stream will be re-routed into the processing graph of the <a href="audiocontext"><code>AudioContext</code></a>. So playing/pausing the stream can still be done through the media element API and the player controls.</p> </div>
+
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://webaudio.github.io/web-audio-api/#mediastreamaudiosourcenode" hreflang="en" rel=" noopener">Web Audio API<br><small>The definition of 'MediaStreamAudioSourceNode' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>MediaStreamAudioSourceNode</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>MediaStreamAudioSourceNode</code></th>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Before Chrome 59, the default values were not supported.</div>
+</td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>14.1</div></td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Before Chrome 59, the default values were not supported.</div>
+</td>
+<td class="bc-supports-yes">
+<div>55</div>
+<div>Before Chrome 59, the default values were not supported.</div>
+</td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>14.5</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Before Samsung Internet 7.0, the default values were not supported.</div>
+</td>
+</tr>
+<tr>
+<th><code>mediaStream</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>70</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="web_audio_api/using_web_audio_api">Using the Web Audio API</a></li> <li><a href="webrtc_api">WebRTC API</a></li> <li><a href="media_streams_api">Media Capture and Streams API (Media Streams)</a></li> <li><a href="mediastreamtrackaudiosourcenode"><code>MediaStreamTrackAudioSourceNode</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamAudioSourceNode" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamAudioSourceNode</a>
+  </p>
+</div>

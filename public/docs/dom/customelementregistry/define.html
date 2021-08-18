@@ -1,0 +1,222 @@
+<h1>CustomElementRegistry.define()</h1>
+
+ <p>The <code><strong>define()</strong></code> method of the <a href="../customelementregistry"><code>CustomElementRegistry</code></a> interface defines a new custom element.</p> <p>There are two types of custom elements you can create:</p> <ul> <li>
+<strong>Autonomous custom element</strong>: Standalone elements; they don't inherit from built-in HTML elements.</li> <li>
+<strong>Customized built-in element</strong>: These elements inherit from — and extend — built-in HTML elements.</li> </ul>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">customElements<span class="token punctuation">.</span><span class="token function">define</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> constructor<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>name</dt> <dd>Name for the new custom element. Note that custom element names must contain a hyphen.</dd> <dt>constructor</dt> <dd>Constructor for the new custom element.</dd> <dt>options <span class="badge inline optional">Optional</span>
+</dt> <dd>Object that controls how the element is defined. One option is currently supported: <ul> <li>
+<code>extends</code>: String specifying the name of a built-in element to extend. Used to create a <em>customized built-in element</em>.</li> </ul> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>Void.</p>
+<h3 id="exceptions">Exceptions</h3>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Exception</th> <th scope="col">Description</th> </tr> </thead> <tbody> <tr> <td><code>NotSupportedError</code></td> <td>The <a href="../customelementregistry"><code>CustomElementRegistry</code></a> already contains an entry with the same name or the same constructor (or is otherwise already defined), or <code>extends</code> is specified and it is a <a href="https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name" rel=" noopener">valid custom element name</a>, or <code>extends</code> is specified but the element it is trying to extend is an unknown element.</td> </tr> <tr> <td><code>SyntaxError</code></td> <td>The provided name is not a <a href="https://html.spec.whatwg.org/multipage/custom-elements.html#valid-custom-element-name" rel=" noopener">valid custom element name</a>.</td> </tr> <tr> <td><code>TypeError</code></td> <td>The referenced constructor is not a constructor.</td> </tr> </tbody> </table></div> <div class="note notecard"> <p><strong>Note</strong>: You'll often get <code>NotSupportedError</code>s thrown that seem like <code>define()</code> is failing, but instead it is likely a problem with <a href="../element/attachshadow"><code>Element.attachShadow()</code></a>.</p> </div>
+<h2 id="examples">Examples</h2>
+<h3 id="autonomous_custom_element">Autonomous custom element</h3>
+<p>The following code is taken from our <a href="https://github.com/mdn/web-components-examples/tree/master/popup-info-box-web-component" rel=" noopener">popup-info-box-web-component</a> example (<a href="https://mdn.github.io/web-components-examples/popup-info-box-web-component/" rel=" noopener">see it live also</a>).</p> <pre data-language="js"><span class="token comment">// Create a class for the element</span>
+<span class="token keyword">class</span> <span class="token class-name">PopUpInfo</span> <span class="token keyword">extends</span> <span class="token class-name">HTMLElement</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Always call super first in constructor</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Create a shadow root</span>
+    <span class="token keyword">var</span> shadow <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">attachShadow</span><span class="token punctuation">(</span><span class="token punctuation">{</span>mode<span class="token operator">:</span> <span class="token string">'open'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Create spans</span>
+    <span class="token keyword">var</span> wrapper <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'span'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    wrapper<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'class'</span><span class="token punctuation">,</span><span class="token string">'wrapper'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> icon <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'span'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    icon<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'class'</span><span class="token punctuation">,</span><span class="token string">'icon'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    icon<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'tabindex'</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> info <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'span'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    info<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'class'</span><span class="token punctuation">,</span><span class="token string">'info'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Take attribute content and put it inside the info span</span>
+    <span class="token keyword">var</span> text <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'text'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    info<span class="token punctuation">.</span>textContent <span class="token operator">=</span> text<span class="token punctuation">;</span>
+
+    <span class="token comment">// Insert icon</span>
+    <span class="token keyword">var</span> imgUrl<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">hasAttribute</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      imgUrl <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      imgUrl <span class="token operator">=</span> <span class="token string">'img/default.png'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">var</span> img <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'img'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    img<span class="token punctuation">.</span>src <span class="token operator">=</span> imgUrl<span class="token punctuation">;</span>
+    icon<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>img<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Create some CSS to apply to the shadow dom</span>
+    <span class="token keyword">var</span> style <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'style'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    style<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'.wrapper {'</span> <span class="token operator">+</span>
+                           <span class="token string">'position: relative;'</span> <span class="token operator">+</span>
+                        <span class="token string">'}'</span> <span class="token operator">+</span>
+
+                         <span class="token string">'.info {'</span> <span class="token operator">+</span>
+                            <span class="token string">'font-size: 0.8rem;'</span> <span class="token operator">+</span>
+                            <span class="token string">'width: 200px;'</span> <span class="token operator">+</span>
+                            <span class="token string">'display: inline-block;'</span> <span class="token operator">+</span>
+                            <span class="token string">'border: 1px solid black;'</span> <span class="token operator">+</span>
+                            <span class="token string">'padding: 10px;'</span> <span class="token operator">+</span>
+                            <span class="token string">'background: white;'</span> <span class="token operator">+</span>
+                            <span class="token string">'border-radius: 10px;'</span> <span class="token operator">+</span>
+                            <span class="token string">'opacity: 0;'</span> <span class="token operator">+</span>
+                            <span class="token string">'transition: 0.6s all;'</span> <span class="token operator">+</span>
+                            <span class="token string">'position: absolute;'</span> <span class="token operator">+</span>
+                            <span class="token string">'bottom: 20px;'</span> <span class="token operator">+</span>
+                            <span class="token string">'left: 10px;'</span> <span class="token operator">+</span>
+                            <span class="token string">'z-index: 3;'</span> <span class="token operator">+</span>
+                          <span class="token string">'}'</span> <span class="token operator">+</span>
+
+                          <span class="token string">'img {'</span> <span class="token operator">+</span>
+                            <span class="token string">'width: 1.2rem'</span> <span class="token operator">+</span>
+                          <span class="token string">'}'</span> <span class="token operator">+</span>
+
+                          <span class="token string">'.icon:hover + .info, .icon:focus + .info {'</span> <span class="token operator">+</span>
+                            <span class="token string">'opacity: 1;'</span> <span class="token operator">+</span>
+                          <span class="token string">'}'</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// attach the created elements to the shadow dom</span>
+
+    shadow<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>style<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    shadow<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>wrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    wrapper<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>icon<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    wrapper<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>info<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Define the new element</span>
+customElements<span class="token punctuation">.</span><span class="token function">define</span><span class="token punctuation">(</span><span class="token string">'popup-info'</span><span class="token punctuation">,</span> PopUpInfo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>popup-info</span> <span class="token attr-name">img</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>img/alt.png<span class="token punctuation">"</span></span> <span class="token attr-name">text</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Your card validation code (CVC) is an extra
+                                    security feature — it is the last 3 or 4
+                                    numbers on the back of your card.<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span></pre> <div class="note notecard"> <p><strong>Note</strong>: Constructors for autonomous custom elements must extend <a href="../htmlelement"><code>HTMLElement</code></a>.</p> </div>
+<h3 id="customized_built-in_element">Customized built-in element</h3>
+<p>The following code is taken from our <a href="https://github.com/mdn/web-components-examples/tree/master/word-count-web-component" rel=" noopener">word-count-web-component</a> example (<a href="https://mdn.github.io/web-components-examples/word-count-web-component/" rel=" noopener">see it live also</a>).</p> <pre data-language="js"><span class="token comment">// Create a class for the element</span>
+<span class="token keyword">class</span> <span class="token class-name">WordCount</span> <span class="token keyword">extends</span> <span class="token class-name">HTMLParagraphElement</span> <span class="token punctuation">{</span>
+  <span class="token function">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Always call super first in constructor</span>
+    <span class="token keyword">super</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// count words in element's parent element</span>
+    <span class="token keyword">var</span> wcParent <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>parentNode<span class="token punctuation">;</span>
+
+    <span class="token keyword">function</span> <span class="token function">countWords</span><span class="token punctuation">(</span><span class="token parameter">node</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+      <span class="token keyword">var</span> text <span class="token operator">=</span> node<span class="token punctuation">.</span>innerText <span class="token operator">||</span> node<span class="token punctuation">.</span>textContent
+      <span class="token keyword">return</span> text<span class="token punctuation">.</span><span class="token function">split</span><span class="token punctuation">(</span><span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\s+</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">var</span> count <span class="token operator">=</span> <span class="token string">'Words: '</span> <span class="token operator">+</span> <span class="token function">countWords</span><span class="token punctuation">(</span>wcParent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Create a shadow root</span>
+    <span class="token keyword">var</span> shadow <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">attachShadow</span><span class="token punctuation">(</span><span class="token punctuation">{</span>mode<span class="token operator">:</span> <span class="token string">'open'</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Create text node and add word count to it</span>
+    <span class="token keyword">var</span> text <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'span'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    text<span class="token punctuation">.</span>textContent <span class="token operator">=</span> count<span class="token punctuation">;</span>
+
+    <span class="token comment">// Append it to the shadow root</span>
+    shadow<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Update count when element content changes</span>
+    <span class="token function">setInterval</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> count <span class="token operator">=</span> <span class="token string">'Words: '</span> <span class="token operator">+</span> <span class="token function">countWords</span><span class="token punctuation">(</span>wcParent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      text<span class="token punctuation">.</span>textContent <span class="token operator">=</span> count<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">200</span><span class="token punctuation">)</span>
+
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Define the new element</span>
+customElements<span class="token punctuation">.</span><span class="token function">define</span><span class="token punctuation">(</span><span class="token string">'word-count'</span><span class="token punctuation">,</span> WordCount<span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token keyword">extends</span><span class="token operator">:</span> <span class="token string">'p'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">is</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>word-count<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/custom-elements.html#dom-customelementregistry-define" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'customElements.define()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>define</code></th>
+<td class="bc-supports-yes">
+<div>67</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>54</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>79</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>54</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>41</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>10.1</div>
+<div>Supports 'Autonomous custom elements' but not 'Customized built-in elements'</div>
+</td>
+<td class="bc-supports-yes">
+<div>67</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>54</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>67</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>54</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes"><div>63</div></td>
+<td class="bc-supports-yes">
+<div>48</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>41</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+<td class="bc-supports-yes">
+<div>10.3</div>
+<div>Supports 'Autonomous custom elements' but not 'Customized built-in elements'</div>
+</td>
+<td class="bc-supports-yes">
+<div>9.0</div>
+<div>Support for 'Customized built-in elements' as well.</div>
+<div>6.0</div>
+<div>Support for 'Autonomous custom elements' only.</div>
+</td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define</a>
+  </p>
+</div>

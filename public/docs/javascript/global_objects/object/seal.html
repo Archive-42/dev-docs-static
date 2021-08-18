@@ -1,0 +1,123 @@
+<h1>Object.seal()</h1>
+
+ <p>The <code><strong>Object.seal()</strong></code> method seals an object, preventing new properties from being added to it and marking all existing properties as non-configurable. Values of present properties can still be changed as long as they are writable.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/object-seal.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js">Object<span class="token punctuation">.</span><span class="token function">seal</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>obj</var></code></dt> <dd>The object which should be sealed.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The object being sealed.</p>
+<h2 id="description">Description</h2>
+<p>By default, objects are <a href="isextensible">extensible</a> (new properties can be added to them). Sealing an object prevents new properties from being added and marks all existing properties as non-configurable. This has the effect of making the set of properties on the object fixed. Making all properties non-configurable also prevents them from being converted from data properties to accessor properties and vice versa, but it does not prevent the values of data properties from being changed. Attempting to delete or add properties to a sealed object, or to convert a data property to accessor or vice versa, will fail, either silently or by throwing a <a href="../typeerror"><code>TypeError</code></a> (most commonly, although not exclusively, when in <a href="../../strict_mode">strict mode</a> code).</p> <p>The prototype chain remains untouched. However, the <a href="proto"><code>__proto__</code></a> property is sealed as well.</p>
+<h3 id="comparison_to_object.freeze">Comparison to Object.freeze()</h3>
+<p>Existing properties in objects frozen with <a href="freeze"><code>Object.freeze()</code></a> are made immutable. Objects sealed with <code>Object.seal()</code> can have their existing properties changed.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_object.seal">Using Object.seal</h3>
+<pre data-language="js"><span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">prop</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  foo<span class="token operator">:</span> <span class="token string">'bar'</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// New properties may be added, existing properties</span>
+<span class="token comment">// may be changed or removed.</span>
+obj<span class="token punctuation">.</span>foo <span class="token operator">=</span> <span class="token string">'baz'</span><span class="token punctuation">;</span>
+obj<span class="token punctuation">.</span>lumpy <span class="token operator">=</span> <span class="token string">'woof'</span><span class="token punctuation">;</span>
+<span class="token keyword">delete</span> obj<span class="token punctuation">.</span>prop<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> o <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">seal</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+o <span class="token operator">===</span> obj<span class="token punctuation">;</span> <span class="token comment">// true</span>
+Object<span class="token punctuation">.</span><span class="token function">isSealed</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// === true</span>
+
+<span class="token comment">// Changing property values on a sealed object</span>
+<span class="token comment">// still works.</span>
+obj<span class="token punctuation">.</span>foo <span class="token operator">=</span> <span class="token string">'quux'</span><span class="token punctuation">;</span>
+
+<span class="token comment">// But you can't convert data properties to accessors,</span>
+<span class="token comment">// or vice versa.</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">get</span><span class="token operator">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token keyword">return</span> <span class="token string">'g'</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// throws a TypeError</span>
+
+<span class="token comment">// Now any changes, other than to property values,</span>
+<span class="token comment">// will fail.</span>
+obj<span class="token punctuation">.</span>quaxxor <span class="token operator">=</span> <span class="token string">'the friendly duck'</span><span class="token punctuation">;</span>
+<span class="token comment">// silently doesn't add the property</span>
+<span class="token keyword">delete</span> obj<span class="token punctuation">.</span>foo<span class="token punctuation">;</span>
+<span class="token comment">// silently doesn't delete the property</span>
+
+<span class="token comment">// ...and in strict mode such attempts</span>
+<span class="token comment">// will throw TypeErrors.</span>
+<span class="token keyword">function</span> <span class="token function">fail</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token string">'use strict'</span><span class="token punctuation">;</span>
+  <span class="token keyword">delete</span> obj<span class="token punctuation">.</span>foo<span class="token punctuation">;</span> <span class="token comment">// throws a TypeError</span>
+  obj<span class="token punctuation">.</span>sparky <span class="token operator">=</span> <span class="token string">'arf'</span><span class="token punctuation">;</span> <span class="token comment">// throws a TypeError</span>
+<span class="token punctuation">}</span>
+<span class="token function">fail</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Attempted additions through</span>
+<span class="token comment">// Object.defineProperty will also throw.</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">'ohai'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  value<span class="token operator">:</span> <span class="token number">17</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// throws a TypeError</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>obj<span class="token punctuation">,</span> <span class="token string">'foo'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  value<span class="token operator">:</span> <span class="token string">'eit'</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// changes existing property value</span>
+</pre>
+<h3 id="non-object_coercion">Non-object coercion</h3>
+<p>In ES5, if the argument to this method is not an object (a primitive), then it will cause a <a href="../typeerror"><code>TypeError</code></a>. In ES2015, a non-object argument will be treated as if it was a sealed ordinary object by returning it.</p> <pre data-language="js">Object<span class="token punctuation">.</span><span class="token function">seal</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// TypeError: 1 is not an object (ES5 code)</span>
+
+Object<span class="token punctuation">.</span><span class="token function">seal</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 1                             (ES2015 code)</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> </tr> </thead> <tbody> <tr> <td><a href="https://tc39.es/ecma262/#sec-object.seal" hreflang="en" rel=" noopener">ECMAScript (ECMA-262)<br><small>The definition of 'Object.seal' in that specification.</small></a></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>seal</code></th>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="issealed"><code>Object.isSealed()</code></a></li> <li><a href="preventextensions"><code>Object.preventExtensions()</code></a></li> <li><a href="isextensible"><code>Object.isExtensible()</code></a></li> <li><a href="freeze"><code>Object.freeze()</code></a></li> <li><a href="isfrozen"><code>Object.isFrozen()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/seal" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/seal</a>
+  </p>
+</div>

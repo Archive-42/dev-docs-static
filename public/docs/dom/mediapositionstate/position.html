@@ -1,0 +1,30 @@
+<h1>MediaPositionState.position</h1>
+
+ <p>The <a href="../mediapositionstate"><code>MediaPositionState</code></a> dictionary's <code><strong>position</strong></code> property is used when calling the <a href="../mediasession"><code>MediaSession</code></a> method <a href="../mediasession/setpositionstate"><code>setPositionState()</code></a> to provide the <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent</a> with the current playback position, in seconds, of the currently-playing media. This information is then, in turn, used by the user agent to provide a user interface which displays media playback information to the viewer.</p> <p>For example, a browser might use this information along with the <a href="position"><code>position</code></a> property and the <a href="../mediasession/playbackstate"><code>navigator.mediaSession.playbackState</code></a>, as well as the session's <a href="../mediasession/metadata"><code>metadata</code></a> to provide an integrated common user interface showing the currently playing media as well as standard pause, play, forward, reverse, and other controls.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">let</span> positionState <span class="token operator">=</span> <span class="token punctuation">{</span> position<span class="token operator">:</span> timeInSeconds <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> duration <span class="token operator">=</span> positionState<span class="token punctuation">.</span>duration<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>A floating-point value indicating the current playback position within the media currently being performed, in seconds. This value should always be zero or more.</p>
+<h2 id="example">Example</h2>
+<p>In this example, a player for a non-standard media file format, written in JavaScript, uses <a href="../windoworworkerglobalscope/setinterval"><code>setInterval()</code></a> to establish a callback which fires once per second to refresh the position information by calling <a href="../mediasession/setpositionstate"><code>setPositionState()</code></a>. If the media is still playing when the interval is fired, <code>setPositionState()</code> is called with an object that specifies the duration, playback rate, and position as reported by a <code>myMedia</code> object that describes the track being played.</p> <p>If the media is not playing, <a href="../windoworworkerglobalscope/clearinterval"><code>clearInterval()</code></a> is used to remove the interval handler.</p> <pre class="notranslate">let positionInterval = window.setInterval(() =&gt; {
+  if (myMedia.isPlaying) {
+    navigator.mediaSession.setPositionState({
+      duration: myMedia.trackDurationInSeconds,
+      playbackRate: myMedia.playbackRate,
+      position: myMedia.trackPlayPositionInSeconds
+    });
+  } else {
+    window.clearInterval(positionInterval);
+  }
+}, 1000);</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/mediasession/#dom-mediapositionstate-position" hreflang="en" rel=" noopener">Media Session Standard<br><small>The definition of 'MediaPositionState.position' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<div class="notecard warning"><p>No compatibility data found for <code>api.MediaPositionState.position</code>.<br><a href="#on-github">Check for problems with this page</a> or contribute missing data to <a href="https://github.com/mdn/browser-compat-data">mdn/browser-compat-data</a>.</p></div> 
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaPositionState/position" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaPositionState/position</a>
+  </p>
+</div>

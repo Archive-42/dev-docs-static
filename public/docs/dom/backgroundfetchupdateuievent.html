@@ -1,0 +1,108 @@
+<h1>BackgroundFetchUpdateUIEvent</h1> <p class="summary">The <code>BackgroundFetchUpdateUIEvent</code> interface of the <a href="background_fetch_api">Background Fetch API</a> is an event type passed to <a class="page-not-created"><code>ServiceWorkerGlobalScope.onbackgroundfetchsuccess</code></a> and <a class="page-not-created"><code>ServiceWorkerGlobalScope.onbackgroundfetchfail</code></a>, and provides a method for updating the title and icon of the app to inform a user of the success or failure of a background fetch. </p>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="backgroundfetchupdateuievent/backgroundfetchupdateuievent"><code>BackgroundFetchUpdateUIEvent()</code></a></dt> <dd>Creates a new <code>BackgroundFetchUIEvent</code> object. This constructor is not typically used, as the browser creates these objects itself and passed them to <a class="page-not-created"><code>ServiceWorkerGlobalScope.onbackgroundfetchsuccess</code></a> and <a class="page-not-created"><code>ServiceWorkerGlobalScope.onbackgroundfetchfail</code></a>.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<p><em>This interface doesn't implement any specific properties, but inherits properties from <a href="event"><code>Event</code></a>, and <a href="backgroundfetchevent"><code>BackgroundFetchEvent</code></a>.</em></p>
+<h2 id="methods">Methods</h2>
+<dl> <dt><a href="backgroundfetchupdateuievent/updateui"><code>BackgroundFetchUpdateUIEvent.updateUI()</code></a></dt> <dd>Updates the title and icon in the user interface to show the status of a background fetch. Resolves with a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>In this example, the <code>backgroundfetchsuccess</code> event is listened for, indicating that a fetch has completed successfully. The <a href="backgroundfetchupdateuievent/updateui"><code>updateUI()</code></a> method is then called, with a message to let the user know the episode they downloaded is ready.</p> <pre data-language="js"><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'backgroundfetchsuccess'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> bgFetch <span class="token operator">=</span> event<span class="token punctuation">.</span>registration<span class="token punctuation">;</span>
+
+  event<span class="token punctuation">.</span><span class="token function">waitUntil</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Create/open a cache.</span>
+    <span class="token keyword">const</span> cache <span class="token operator">=</span> <span class="token keyword">await</span> caches<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'downloads'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Get all the records.</span>
+    <span class="token keyword">const</span> records <span class="token operator">=</span> <span class="token keyword">await</span> bgFetch<span class="token punctuation">.</span><span class="token function">matchAll</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// Copy each request/response across.</span>
+    <span class="token keyword">const</span> promises <span class="token operator">=</span> records<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token parameter">record</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      <span class="token keyword">const</span> response <span class="token operator">=</span> <span class="token keyword">await</span> record<span class="token punctuation">.</span>responseReady<span class="token punctuation">;</span>
+      <span class="token keyword">await</span> cache<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>record<span class="token punctuation">.</span>request<span class="token punctuation">,</span> response<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Wait for the copying to complete.</span>
+    <span class="token keyword">await</span> Promise<span class="token punctuation">.</span><span class="token function">all</span><span class="token punctuation">(</span>promises<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Update the progress notification.</span>
+    event<span class="token punctuation">.</span><span class="token function">updateUI</span><span class="token punctuation">(</span><span class="token punctuation">{</span> title<span class="token operator">:</span> <span class="token string">'Episode 5 ready to listen!'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://wicg.github.io/background-fetch/#background-fetch-update-ui-event" hreflang="en" rel=" noopener">Background Fetch<br><small>The definition of 'BackgroundFetchUpdateUIEvent' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>BackgroundFetchUpdateUIEvent</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>BackgroundFetchUpdateUIEvent</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+<tr>
+<th><code>updateUI</code></th>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>74</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>53</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/BackgroundFetchUpdateUIEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/BackgroundFetchUpdateUIEvent</a>
+  </p>
+</div>

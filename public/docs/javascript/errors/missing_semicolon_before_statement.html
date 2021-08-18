@@ -1,0 +1,39 @@
+<h1>SyntaxError: missing ; before statement</h1> <p>The JavaScript exception "missing ; before statement" occurs when there is a semicolon (<code>;</code>) missing somewhere and can't be added by <a href="../lexical_grammar#automatic_semicolon_insertion">automatic semicolon insertion (ASI)</a>. You need to provide a semicolon, so that JavaScript can parse the source code correctly.</p>
+<h2 id="message">Message</h2>
+<pre data-language="js">SyntaxError<span class="token operator">:</span> Expected <span class="token string">';'</span> <span class="token punctuation">(</span>Edge<span class="token punctuation">)</span>
+SyntaxError<span class="token operator">:</span> missing <span class="token punctuation">;</span> before <span class="token function">statement</span> <span class="token punctuation">(</span>Firefox<span class="token punctuation">)</span>
+</pre>
+<h2 id="error_type">Error type</h2>
+<p><a href="../global_objects/syntaxerror"><code>SyntaxError</code></a>.</p>
+<h2 id="what_went_wrong">What went wrong?</h2>
+<p>There is a semicolon (<code>;</code>) missing somewhere. <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements">JavaScript statements</a> must be terminated with semicolons. Some of them are affected by <a href="../lexical_grammar#automatic_semicolon_insertion">automatic semicolon insertion (ASI)</a>, but in this case you need to provide a semicolon, so that JavaScript can parse the source code correctly.</p> <p>However, oftentimes, this error is only a consequence of another error, like not escaping strings properly, or using <code>var</code> wrongly. You might also have too many parenthesis somewhere. Carefully check the syntax when this error is thrown.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="unescaped_strings">Unescaped strings</h3>
+<p>This error can occur easily when not escaping strings properly and the JavaScript engine is expecting the end of your string already. For example:</p> <pre data-language="js"><span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token string">'Tom'</span>s bar'<span class="token punctuation">;</span>
+<span class="token comment">// SyntaxError: missing ; before statement</span></pre> <p>You can use double quotes, or escape the apostrophe:</p> <pre data-language="js"><span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token string">"Tom's bar"</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> foo <span class="token operator">=</span> <span class="token string">'Tom\'s bar'</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="declaring_properties_with_var">Declaring properties with var</h3>
+<p>You <strong>cannot</strong> declare properties of an object or array with a <code>var</code> declaration.</p> <pre data-language="js"><span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> obj<span class="token punctuation">.</span>foo <span class="token operator">=</span> <span class="token string">'hi'</span><span class="token punctuation">;</span> <span class="token comment">// SyntaxError missing ; before statement</span>
+
+<span class="token keyword">var</span> array <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'there'</span><span class="token punctuation">;</span> <span class="token comment">// SyntaxError missing ; before statement</span>
+</pre> <p>Instead, omit the <code>var</code> keyword:</p> <pre data-language="js"><span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+obj<span class="token punctuation">.</span>foo <span class="token operator">=</span> <span class="token string">'hi'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> array <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+array<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token string">'there'</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="bad_keywords">Bad keywords</h3>
+<p>If you come from another programming language, it is also common to use keywords that don't mean the same or have no meaning at all in javaScript:</p> <pre data-language="js">def <span class="token function">print</span><span class="token punctuation">(</span><span class="token parameter">info</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>info<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span> <span class="token comment">// SyntaxError missing ; before statement</span></pre> <p>Instead, use <code>function</code> instead of <code>def</code>:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">print</span><span class="token punctuation">(</span><span class="token parameter">info</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>info<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../lexical_grammar#automatic_semicolon_insertion">Automatic semicolon insertion (ASI)</a></li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements">JavaScript statements</a> </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Missing_semicolon_before_statement" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Errors/Missing_semicolon_before_statement</a>
+  </p>
+</div>

@@ -1,0 +1,121 @@
+<h1>XRInputSourceEvent</h1>
+ <div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <a href="webxr_device_api">WebXR Device API</a>'s <code><strong>XRInputSourceEvent</strong></code> interface describes an event which has occurred on a WebXR user input device such as a hand controller, gaze tracking system, or motion tracking system. More specifically, they represent a change in the state of an <a href="xrinputsource"><code>XRInputSource</code></a>.</p> <p>To learn more about handling inputs in a WebXR project, see the article <a href="webxr_device_api/inputs">Inputs and input sources</a>.</p>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="xrinputsourceevent/xrinputsourceevent"><code>XRInputSourceEvent()</code></a></dt> <dd>Creates and returns a new <code>XRInputSourceEvent</code> object whose properties match those provided in the <code>eventInitDict</code> dictionary provided.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<dl> <dt>
+<a href="xrinputsourceevent/frame"><code>frame</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>An <a href="xrframe"><code>XRFrame</code></a> object providing the needed information about the event frame during which the event occurred. This frame may have been rendered in the past rather than being a current frame. Because this is an <em>event</em> frame, not an <em>animation</em> frame, you cannot call the <a href="xrframe"><code>XRFrame</code></a> method <a href="xrframe/getviewerpose"><code>getViewerPose()</code></a> on it; instead, use <a href="xrframe/getpose"><code>getPose()</code></a>.</dd> <dt>
+<a href="xrinputsourceevent/inputsource"><code>inputSource</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>An <a href="xrinputsource"><code>XRInputSource</code></a> object indicating which input source generated the input event.</dd> </dl>
+<h2 id="methods">Methods</h2>
+<p><em>The <code>XRInputSourceEvent</code> interface doesn't define any methods; however, several methods are inherited from the parent interface, <a href="event"><code>Event</code></a>.</em></p>
+<h2 id="event_types">Event types</h2>
+<dl> <dt><a href="xrsession/select_event"><code>select</code></a></dt> <dd>Sent to an <a href="xrsession"><code>XRSession</code></a> when the sending input source has fully completed a <a href="webxr_device_api/inputs#primary_actions">primary action</a>.</dd> <dt><a href="xrsession/selectend_event"><code>selectend</code></a></dt> <dd>Sent to an <a href="xrsession"><code>XRSession</code></a> when an ongoing <a href="webxr_device_api/inputs#primary_actions">primary action</a> ends, or when an input source with an ongoing primary action has been disconnected from the system.</dd> <dt><a href="xrsession/selectstart_event"><code>selectstart</code></a></dt> <dd>Sent to an <a href="xrsession"><code>XRSession</code></a> when an input source begins its <a href="webxr_device_api/inputs#primary_actions">primary action</a>, indicating that the user has begun a command-like input, such as pressing a trigger or button, issuing a spoken command, tapping on a touchpad, or the like.</dd> <dt><a href="xrsession/squeeze_event"><code>squeeze</code></a></dt> <dd>Sent to an <a href="xrsession"><code>XRSession</code></a> when the sending input source has fully completed a <a href="webxr_device_api/inputs#primary_squeeze_actions">primary squeeze action</a>.</dd> <dt><a href="xrsession/squeezeend_event"><code>squeezeend</code></a></dt> <dd>Sent to an <a href="xrsession"><code>XRSession</code></a> when an ongoing <a href="webxr_device_api/inputs#primary_squeeze_actions">primary squeeze action</a> ends or when an input source with an ongoing primary squeeze action is disconnected.</dd> <dt><a href="xrsession/squeezestart_event"><code>squeezestart</code></a></dt> <dd>Sent to an <a href="xrsession"><code>XRSession</code></a> when an input source begins its <a href="webxr_device_api/inputs#primary_squeeze_actions">primary squeeze action</a>, indicating that the user has begun to grab, squeeze, or grip the controller.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>The code below sets up handlers for primary action events in order to determine when the user clicks on (shoots at/pokes at/whatever) objects in the scene.</p> <pre data-language="js">xrSession<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"select"</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> targetRayPose <span class="token operator">=</span> event<span class="token punctuation">.</span>frame<span class="token punctuation">.</span><span class="token function">getPose</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>inputSource<span class="token punctuation">.</span>targetRaySpace<span class="token punctuation">,</span> myRefSpace<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>targetRayPose<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> hit <span class="token operator">=</span> <span class="token function">myHitTest</span><span class="token punctuation">(</span>targetRayPose<span class="token punctuation">.</span>transform<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>hit<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">/* handle the hit */</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://immersive-web.github.io/webxr/#xrinputsourceevent" hreflang="en" rel=" noopener">WebXR Device API<br><small>The definition of 'XRInputSourceEvent' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>XRInputSourceEvent</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr>
+<tr>
+<th><code>XRInputSourceEvent</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr>
+<tr>
+<th><code>frame</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr>
+<tr>
+<th><code>inputSource</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr>
+</tbody>
+</table>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XRInputSourceEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XRInputSourceEvent</a>
+  </p>
+</div>

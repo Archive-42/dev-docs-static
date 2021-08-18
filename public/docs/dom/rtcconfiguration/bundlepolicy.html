@@ -1,0 +1,75 @@
+<h1>RTCConfiguration.bundlePolicy</h1>
+
+ <p>The <a href="../rtcconfiguration"><code>RTCConfiguration</code></a> dictionary's <code><strong>bundlePolicy</strong></code> property is a string value indicating which SDP bundling policy, if any, to use for the underlying <a href="https://developer.mozilla.org/en-US/docs/Glossary/RTP">RTP</a> streams used by an <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a>.</p> <p>The configuration object is used as an input to the <a href="../rtcpeerconnection/rtcpeerconnection"><code>RTCPeerConnection()</code></a> constructor. </p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">let</span> rtcConfiguration <span class="token operator">=</span> <span class="token punctuation">{</span>
+  bundlePolicy<span class="token operator">:</span> policy
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+rtcConfiguration<span class="token punctuation">.</span>bundlePolicy <span class="token operator">=</span> policy<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../domstring"><code>DOMString</code></a> identifying the SDP bundling policy to use for the RTP streams used by the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a>. This string, which must be a member of the <code>RTCBundlePolicy</code> enumeration, has the following possible values:</p> <dl> <dt><code>balanced</code></dt> <dd>The ICE agent begins by creating one <a href="../rtcdtlstransport"><code>RTCDtlsTransport</code></a> to handle each type of content added: one for audio, one for video, and one for the RTC data channel, if applicable. If the remote peer isn't BUNDLE-aware, the ICE agent chooses one audio track and one video track and those two tracks are each assigned to the corresponding <code>RTCDtlsTransport</code>. All other tracks are ignored by the connection. <strong>This is the default, and most compatible, policy.</strong>
+</dd> <dt><code>max-compat</code></dt> <dd>The ICE agent intially creates one <code>RTCDtlsTransport</code> for each media track and a separate one for the <a href="../rtcdatachannel"><code>RTCDataChannel</code></a>, if one is created. If the remote endpoint can't handle bundling, each media track is negotiated on its own separate transport. This introduces bundling but will fall back to not bundling if the remote peer can't handle it.</dd> <dt><code>max-bundle</code></dt> <dd>The ICE agent starts by creating a single <a href="../rtcdtlstransport"><code>RTCDtlsTransport</code></a> to handle <em>all</em> of the connection's media. If the remote peer isn't bundle-compatible, only one media track is negotiated and the rest are ignored. This maximizes bundling at the risk of losing tracks if the remote peer can't do bundling.</dd> </dl> <p>If any other value is specified, no configuration is specified when creating the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a>, or if the <code>bundlePolicy</code> property isn't included in the <a href="../rtcconfiguration"><code>RTCConfiguration</code></a> object specified when creating the connection, <code>balanced</code> is assumed.</p>
+<h2 id="description">Description</h2>
+<p>The <code>bundlePolicy</code> configuration option for an <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> specifies how the ICE agent should handle negotiation if the remote peer isn't compatible with the <a href="https://datatracker.ietf.org/doc/html/draft-ietf-mmusic-sdp-bundle-negotiation" rel=" noopener">SDP BUNDLE standard</a>. If the remote peer <em>is</em> bundle compatible, the policy is moot and all media tracks and the data channel are bundled onto a single <a href="../rtcdtlstransport"><code>RTCDtlsTransport</code></a> at the completion of the negotiation process. Any other transports that were used during negotiation are then closed.</p> <p>In technical terms, an SDP BUNDLE lets all of the media tracks (identified in the SDP from the <code>m=</code> lines) stream between two peers across a single <strong>5-tuple</strong>, that is, from a single IP and port on one peer to a single IP and port on another peer, all using the same <a href="../rtcdtlstransport"><code>RTCDtlsTransport</code></a>.</p> <p>The goal of bundling is to optimize performance by reducing the overhead of having multiple transports in play. The fewer RTP transports or bundles of RTP streams you have, the better the network performance will be.</p> <div class="notecard note"> <p>All current major browsers are BUNDLE compatible.</p> </div>
+<h2 id="examples">Examples</h2>
+<p>The following example creates a new <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> with a configuration setting the connection's <code>bundlePolicy</code> to <code>max-compat</code> to maximize compatibility while attempting to optimize network use. It also specifies <code>stun:stun.example.com</code> as the <a href="https://developer.mozilla.org/en-US/docs/Glossary/STUN">STUN</a> server for <a href="https://developer.mozilla.org/en-US/docs/Glossary/ICE">ICE</a> to use during negotiation.</p> <pre data-language="js"><span class="token keyword">let</span> config <span class="token operator">=</span> <span class="token punctuation">{</span>
+  iceServers<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span>
+      urls<span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">"stun:stun.example.com"</span> <span class="token punctuation">]</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span><span class="token punctuation">,</span>
+  bundlePolicy<span class="token operator">:</span> <span class="token string">"max-compat"</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">let</span> pc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RTCPeerConnection</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcconfiguration-bundlepolicy" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCConfiguration.bundlePolicy' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>bundlePolicy</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>≤79</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>57</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webrtc_api">WebRTC API</a></li> <li><a href="https://datatracker.ietf.org/doc/html/draft-ietf-mmusic-sdp-bundle-negotiation" rel=" noopener">SDP BUNDLE draft specification</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCConfiguration/bundlePolicy" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCConfiguration/bundlePolicy</a>
+  </p>
+</div>

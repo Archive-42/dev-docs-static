@@ -1,0 +1,94 @@
+<h1>MediaSource.endOfStream()</h1>
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div> <p>The <code><strong>endOfStream()</strong></code> method of the <a href="../mediasource"><code>MediaSource</code></a> interface signals the end of the stream.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">mediaSource<span class="token punctuation">.</span><span class="token function">endOfStream</span><span class="token punctuation">(</span>endOfStreamError<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>endOfStreamError <span class="badge inline optional">Optional</span>
+</dt> <dd>A <a href="../domstring"><code>DOMString</code></a> representing an error to throw when the end of the stream is reached. The possible values are: <ul> <li>
+<code>network</code>: Terminates playback and signals that a network error has occurred. This can be used create a custom error handler related to media streams. For example, you might have a function that handles media chunk requests, separate from other network requests. When you make an <a href="../xmlhttprequest">XMLHttpRequest</a> call for a media chunk, and <code>onabort</code> or <code>onerror</code> triggers, you might want to call <code>endOfStream('network')</code>, display a descriptive message in the UI, and maybe retry the network request immediately or wait until the network is back up (via some kind of polling.)</li> <li>
+<code>decode</code>: Terminates playback and signals that a decoding error has occurred. This can be used to indicate that a parsing error has occurred while fetching media data; maybe the data is corrupt, or is encoded using a codec that the browser doesn't know how to decode.</li> </ul> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"><code>undefined</code></a></p>
+<h3 id="exceptions">Exceptions</h3>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Exception</th> <th scope="col">Explanation</th> </tr> </thead> <tbody> <tr> <td><code>InvalidStateError</code></td> <td>
+<a href="readystate"><code>MediaSource.readyState</code></a> is not equal to <code>open</code>, or one or more of the <a href="../sourcebuffer"><code>SourceBuffer</code></a> objects in <a href="sourcebuffers"><code>MediaSource.sourceBuffers</code></a> are being updated (i.e. their <a href="../sourcebuffer/updating"><code>SourceBuffer.updating</code></a> property is <code>true</code>.)</td> </tr> </tbody> </table></div>
+<h2 id="example">Example</h2>
+<p>The following snippet is from a simple example written by Nick Desaulniers (<a href="https://nickdesaulniers.github.io/netfix/demo/bufferAll.html" rel=" noopener">view the full demo live</a>, or <a href="https://github.com/nickdesaulniers/netfix/blob/gh-pages/demo/bufferAll.html" rel=" noopener">download the source</a> for further investigation.)</p> <pre data-language="js"><span class="token keyword">var</span> assetURL <span class="token operator">=</span> <span class="token string">'frag_bunny.mp4'</span><span class="token punctuation">;</span>
+<span class="token comment">// Need to be specific for Blink regarding codecs</span>
+<span class="token comment">// ./mp4info frag_bunny.mp4 | grep Codec</span>
+<span class="token keyword">var</span> mimeCodec <span class="token operator">=</span> <span class="token string">'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token string">'MediaSource'</span> <span class="token keyword">in</span> window <span class="token operator">&amp;&amp;</span> MediaSource<span class="token punctuation">.</span><span class="token function">isTypeSupported</span><span class="token punctuation">(</span>mimeCodec<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> mediaSource <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">MediaSource</span><span class="token punctuation">;</span>
+  <span class="token comment">//console.log(mediaSource.readyState); // closed</span>
+  video<span class="token punctuation">.</span>src <span class="token operator">=</span> <span class="token constant">URL</span><span class="token punctuation">.</span><span class="token function">createObjectURL</span><span class="token punctuation">(</span>mediaSource<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  mediaSource<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'sourceopen'</span><span class="token punctuation">,</span> sourceOpen<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">'Unsupported MIME type or codec: '</span><span class="token punctuation">,</span> mimeCodec<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">sourceOpen</span> <span class="token punctuation">(</span><span class="token parameter">_</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">//console.log(this.readyState); // open</span>
+  <span class="token keyword">var</span> mediaSource <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> sourceBuffer <span class="token operator">=</span> mediaSource<span class="token punctuation">.</span><span class="token function">addSourceBuffer</span><span class="token punctuation">(</span>mimeCodec<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token function">fetchAB</span><span class="token punctuation">(</span>assetURL<span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">buf</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    sourceBuffer<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'updateend'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">_</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      mediaSource<span class="token punctuation">.</span><span class="token function">endOfStream</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      video<span class="token punctuation">.</span><span class="token function">play</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">//console.log(mediaSource.readyState); // ended</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    sourceBuffer<span class="token punctuation">.</span><span class="token function">appendBuffer</span><span class="token punctuation">(</span>buf<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/media-source/#dom-mediasource-endofstream" hreflang="en" rel=" noopener">Media Source Extensions<br><small>The definition of 'endOfStream()' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>endOfStream</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>Only works on Windows 8+.</div>
+</td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>4.4.3</div></td>
+<td class="bc-supports-yes"><div>25</div></td>
+<td class="bc-supports-yes"><div>41</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>1.5</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../sourcebuffer"><code>SourceBuffer</code></a></li> <li><a href="../sourcebufferlist"><code>SourceBufferList</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/endOfStream" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/MediaSource/endOfStream</a>
+  </p>
+</div>

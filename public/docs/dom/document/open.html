@@ -1,0 +1,104 @@
+<h1>Document.open()</h1> <p>The <code>Document.open()</code> method opens a document for <a href="write">writing</a>.</p> <p>This does come with some side effects. For example:</p> <ul> <li>All event listeners currently registered on the document, nodes inside the document, or the document's window are removed.</li> <li>All existing nodes are removed from the document.</li> </ul>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">document<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<p>None.</p>
+<h3 id="return_value">Return value</h3>
+<p>A <code>Document</code> object instance.</p>
+<h2 id="example">Examples</h2>
+<p>The following simple code opens the document and replaces its content with a number of different HTML fragments, before closing it again.</p> <pre data-language="js">document<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;p&gt;Hello world!&lt;/p&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;p&gt;I am a fish&lt;/p&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;p&gt;The number is 42&lt;/p&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="notes">Notes</h2>
+<p>An automatic <code>document.open()</code> call happens when <a href="write"><code>document.write()</code></a> is called after the page has loaded.</p> <p>For years Firefox and Internet Explorer additionally erased all JavaScript variables, etc., in addition to removing all nodes. This is no longer the case.<span class="comment">document non-spec'ed parameters to document.open</span></p>
+<h3 id="gecko-specific_notes">Gecko-specific notes</h3>
+<p>Starting with Gecko 1.9, this method is subject to the same same-origin policy as other properties, and does not work if doing so would change the document's origin.</p> <p>Starting with Gecko 1.9.2, <code>document.open()</code> uses the <a href="https://developer.mozilla.org/docs/Security_check_basics">principal</a> of the document whose URI it uses, instead of fetching the principal off the stack. As a result, you can no longer call <a href="write"><code>document.write()</code></a> into an untrusted document from chrome, even using <a class="internal" href="https://developer.mozilla.org/en-US/docs/wrappedJSObject"><code>wrappedJSObject</code></a>. See <a href="https://developer.mozilla.org/en-US/docs/Security_check_basics">Security check basics</a> for more about principals. </p>
+<h2 id="three-argument_document.open">Three-argument document.open()</h2>
+<p>There is a lesser-known and little-used three-argument version of <code>document.open()</code> , which is an alias of <a href="../window/open"><code>Window.open()</code></a> (see its page for full details).</p> <p>This call, for example opens github.com in a new window, with its opener set to <code>null</code>:</p> <pre data-language="js">document<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">'https://www.github.com'</span><span class="token punctuation">,</span><span class="token string">''</span><span class="token punctuation">,</span> <span class="token string">'noopener=true'</span><span class="token punctuation">)</span></pre>
+<h2 id="two-argument_document.open">Two-argument document.open()</h2>
+<p>Browsers used to support a two-argument <code>document.open()</code>, with the following signature:</p> <pre data-language="js">document<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span>type<span class="token punctuation">,</span> replace<span class="token punctuation">)</span></pre> <p>Where <code>type</code> specified the MIME type of the data you are writing (e.g. <code>text/html</code>) and replace if set (i.e. a string of <code>"replace"</code>) specified that the history entry for the new document would replace the current history entry of the document being written to.</p> <p>This form is now obsolete; it won't throw an error, but instead just forwards to <code>document.open()</code> (i.e. is the equivalent of just running it with no arguments). The history-replacement behavior now always happens.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#dom-document-open" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'document.open()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/DOM-Level-2-HTML/html.html#ID-72161170" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 2 HTML Specification<br><small>The definition of 'document.open()' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>open</code></th>
+<td class="bc-supports-yes">
+<div>64</div>
+<div>1-64</div>
+<div>Only supported for <a href="https://developer.mozilla.org/docs/Web/API/HTMLDocument"><code>HTMLDocument</code></a>, not all <code>Document</code> objects.</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>51</div>
+<div>≤12.1-51</div>
+<div>Only supported for <a href="https://developer.mozilla.org/docs/Web/API/HTMLDocument"><code>HTMLDocument</code></a>, not all <code>Document</code> objects.</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>1-11</div>
+<div>Only supported for <a href="https://developer.mozilla.org/docs/Web/API/HTMLDocument"><code>HTMLDocument</code></a>, not all <code>Document</code> objects.</div>
+</td>
+<td class="bc-supports-yes">
+<div>64</div>
+<div>1-64</div>
+<div>Only supported for <a href="https://developer.mozilla.org/docs/Web/API/HTMLDocument"><code>HTMLDocument</code></a>, not all <code>Document</code> objects.</div>
+</td>
+<td class="bc-supports-yes">
+<div>64</div>
+<div>18-64</div>
+<div>Only supported for <a href="https://developer.mozilla.org/docs/Web/API/HTMLDocument"><code>HTMLDocument</code></a>, not all <code>Document</code> objects.</div>
+</td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes">
+<div>47</div>
+<div>≤12.1-47</div>
+<div>Only supported for <a href="https://developer.mozilla.org/docs/Web/API/HTMLDocument"><code>HTMLDocument</code></a>, not all <code>Document</code> objects.</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>1-11</div>
+<div>Only supported for <a href="https://developer.mozilla.org/docs/Web/API/HTMLDocument"><code>HTMLDocument</code></a>, not all <code>Document</code> objects.</div>
+</td>
+<td class="bc-supports-yes">
+<div>9.0</div>
+<div>1.0-9.0</div>
+<div>Only supported for <a href="https://developer.mozilla.org/docs/Web/API/HTMLDocument"><code>HTMLDocument</code></a>, not all <code>Document</code> objects.</div>
+</td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../document"><code>Document</code></a></li> <li><a href="../window/open"><code>Window.open()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/open" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Document/open</a>
+  </p>
+</div>

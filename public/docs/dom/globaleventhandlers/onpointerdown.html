@@ -1,0 +1,116 @@
+<h1>GlobalEventHandlers.onpointerdown</h1> <p>The <a href="../globaleventhandlers"><code>GlobalEventHandlers</code></a> event handler <code>onpointerdown</code> is used to specify the event handler for the <code><a href="../htmlelement/pointerdown_event">pointerdown</a></code> event, which is fired when the pointing device is initially pressed. This event can be sent to <a href="../window"><code>Window</code></a>, <a href="../document"><code>Document</code></a>, and <a href="../element"><code>Element</code></a> objects.</p> <p>This is functionally equivalent to the <code><a href="../element/mousedown_event">mousedown</a></code> event when generated due to user activity with a mouse or mouse-compatible device. If the <code>pointerdown</code> event isn't canceled through a call to <a href="../event/preventdefault"><code>preventDefault()</code></a>, most user agents will fire a <code>mousedown</code> event, so that sites not using pointer events will work.</p> <p>You can also use <a href="../eventtarget/addeventlistener"><code>addEventListener()</code></a> to add a listener for <code>pointerdown</code> events.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">target<span class="token punctuation">.</span>onpointerdown <span class="token operator">=</span> downHandler<span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> downHandler <span class="token operator">=</span> target<span class="token punctuation">.</span>onpointerdown<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function"><code>Function</code></a> to handle the <code>pointerdown</code> event for the <code><var>target</var></code> <a href="../element"><code>Element</code></a>, <a href="../document"><code>Document</code></a>, or <a href="../window"><code>Window</code></a>. It receives as input the <a href="../pointerevent"><code>PointerEvent</code></a> describing the <code>pointerdown</code> event.</p>
+<h2 id="example">Example</h2>
+<p>This example demonstrates how to watch for and act upon <code>pointerdown</code> events using <code>onpointerdown</code>. You could also use <code>addEventListener()</code>, of course.</p> <h4 id="javascript">JavaScript</h4> <p>First, let's look at the JavaScript code that handles the <code>pointerdown</code> event.</p> <pre data-language="js"><span class="token keyword">var</span> targetBox <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"target"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+targetBox<span class="token punctuation">.</span>onpointerdown <span class="token operator">=</span> handleDown<span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">handleDown</span><span class="token punctuation">(</span><span class="token parameter">evt</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> action<span class="token punctuation">;</span>
+
+  <span class="token keyword">switch</span><span class="token punctuation">(</span>evt<span class="token punctuation">.</span>pointerType<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">"mouse"</span><span class="token operator">:</span>
+      action <span class="token operator">=</span> <span class="token string">"clicking"</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"pen"</span><span class="token operator">:</span>
+      action <span class="token operator">=</span> <span class="token string">"tapping"</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">case</span> <span class="token string">"touch"</span><span class="token operator">:</span>
+      action <span class="token operator">=</span> <span class="token string">"touching"</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token operator">:</span>
+      action <span class="token operator">=</span> <span class="token string">"interacting with"</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  targetBox<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Thanks for </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>action<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string"> me!</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+  evt<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>This uses <code>onpointerdown</code> to establish the function <code>handleDown()</code> as the event handler for pointer down events.</p> <p>The <code>handleDown()</code> function, in turn, looks at the value of <a href="../pointerevent/pointertype"><code>pointerType</code></a> to determine what kind of pointing device was used, then uses that information to customize a string to replace the contents of the target box.</p> <p>Then the event's <a href="../event/preventdefault"><code>preventDefault()</code></a> method is called to ensure that the <code>mousedown</code> event isn't triggered, potentially causing events to be handled twice if we had a handler for those events in case Pointer Event support is missing.</p> <p>We also have a handler for <code><a href="../htmlelement/pointerup_event">pointerup</a></code> events:</p> <pre data-language="js">targetBox<span class="token punctuation">.</span>onpointerup <span class="token operator">=</span> handleUp<span class="token punctuation">;</span>
+
+<span class="token keyword">function</span> <span class="token function">handleUp</span><span class="token punctuation">(</span><span class="token parameter">evt</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  targetBox<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"Tap me, click me, or touch me!"</span><span class="token punctuation">;</span>
+  evt<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>This code's job is to just restore the original text into the target box after the user's interaction with the element ends (for example, when they release the mouse button, or when they lift the stylus or finger from the screen).</p> <p>In addition, the event's <a href="../event/preventdefault"><code>preventDefault()</code></a> method is called to ensure that the <code>mouseup</code> event isn't triggered unnecessarily. </p> <details> <summary> <h4 id="html">HTML</h4> </summary> <p>The HTML is extremely simple:</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>target<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  Tap me, click me, or touch me!
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span></pre> </details> <details> <summary> <h4 id="css">CSS</h4> </summary> <p>The CSS sets up the appearance of the target, and doesn't affect its functionality at all.</p> <pre data-language="css"><span class="token selector">#target</span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 400px<span class="token punctuation">;</span>
+  <span class="token property">height</span><span class="token punctuation">:</span> 30px<span class="token punctuation">;</span>
+  <span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+  <span class="token property">font</span><span class="token punctuation">:</span> 16px <span class="token string">"Open Sans"</span><span class="token punctuation">,</span> <span class="token string">"Helvetica"</span><span class="token punctuation">,</span> sans-serif<span class="token punctuation">;</span>
+  <span class="token property">color</span><span class="token punctuation">:</span> white<span class="token punctuation">;</span>
+  <span class="token property">background-color</span><span class="token punctuation">:</span> blue<span class="token punctuation">;</span>
+  <span class="token property">border</span><span class="token punctuation">:</span> 2px solid darkblue<span class="token punctuation">;</span>
+  <span class="token property">cursor</span><span class="token punctuation">:</span> pointer<span class="token punctuation">;</span>
+  <span class="token property">user-select</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+  <span class="token property">-moz-user-select</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+  <span class="token property">-webkit-user-select</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+  <span class="token property">-ms-user-select</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> </details> <h4 id="result">Result</h4> <p>The resulting output is shown below. Try tapping, clicking, or touching the box and see what happens. For full effect, try it with a variety of pointer types.</p> <p><iframe class="sample-code-frame" id="frame_Example" width="450" height="60" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/GlobalEventHandlers/onpointerdown/_samples_/Example" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://www.w3.org/TR/pointerevents2/#dom-globaleventhandlers-onpointerdown" hreflang="en" rel=" noopener">Pointer Events – Level 2<br><small>The definition of 'onpointerdown' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Non-stable version</td> </tr> <tr> <td><a href="https://www.w3.org/TR/pointerevents1/#widl-GlobalEventHandlers-onpointerdown" hreflang="en" rel=" noopener">Pointer Events<br><small>The definition of 'onpointerdown' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onpointerdown</code></th>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>12-79</div>
+</td>
+<td class="bc-supports-yes">
+<div>59</div>
+<div>29</div>
+</td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>10</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes"><div>55</div></td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>29</div>
+</td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>13</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../pointer_events">Pointer events</a></li> <li><a href="../pointer_events/using_pointer_events">Using Pointer Events</a></li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSSOM_View/Coordinate_systems">Coordinate systems</a> </li> <li> <code><a href="../document/pointerdown_event">Document: pointerdown</a></code> event</li> <li> <code><a href="../htmlelement/pointerdown_event">HTMLElement: pointerdown</a></code> event</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onpointerdown" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onpointerdown</a>
+  </p>
+</div>

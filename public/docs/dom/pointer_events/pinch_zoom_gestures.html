@@ -1,0 +1,153 @@
+<h1>Pinch zoom gestures</h1> <p>Adding <em>gestures</em> to an application can significantly improve the user experience. There are many types of gestures, from the simple single-touch <em>swipe</em> gesture to the more complex multi-touch <em>twist</em> gesture, where the touch points (aka <em>pointers</em>) move in different directions.</p> <p>This example shows how to detect the <em>pinch/zoom</em> gesture, which uses <a href="../pointer_events"><code>pointer events</code></a> to detect whether the user moves two pointers closer or farther apart from each other. </p> <p>A <em>live</em> version of this application is available on <a href="https://mdn.github.io/dom-examples/pointerevents/Pinch_zoom_gestures.html" rel=" noopener">GitHub</a>. The <a href="https://github.com/mdn/dom-examples/blob/master/pointerevents/Pinch_zoom_gestures.html" rel=" noopener">source code is available on GitHub</a>; pull requests and <a href="https://github.com/mdn/dom-examples/issues" rel=" noopener">bug reports</a> are welcome.</p>
+<h2 id="example">Example</h2>
+<p>In this example, you use the <a href="../pointer_events"><code>pointer events</code></a> to simultaneously detect two pointing devices of any type, including fingers, mice, and pens. The pinch in (zoom out) gesture, which moves the two pointers toward each other, changes the target element's background color to <code>lightblue</code>. The pinch out (zoom in) gesture, which moves the two pointers away from each other, changes the target element's background color to <code>pink</code>.</p>
+<h3 id="define_touch_target">Define touch target</h3>
+<p>The application uses <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a> to define the pointers' target areas.</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span><span class="token punctuation">&gt;</span></span><span class="token style"><span class="token language-css">
+  <span class="token selector">div</span> <span class="token punctuation">{</span>
+    <span class="token property">margin</span><span class="token punctuation">:</span> 0em<span class="token punctuation">;</span>
+    <span class="token property">padding</span><span class="token punctuation">:</span> 2em<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token selector">#target</span> <span class="token punctuation">{</span>
+    <span class="token property">background</span><span class="token punctuation">:</span> white<span class="token punctuation">;</span>
+    <span class="token property">border</span><span class="token punctuation">:</span> 1px solid black<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+</pre>
+<h3 id="global_state">Global state</h3>
+<p>Supporting a two-pointer gesture requires preserving a pointer's event state during various event phases. This application uses two global variables to cache the event state.</p> <pre data-language="js"><span class="token comment">// Global vars to cache event state</span>
+<span class="token keyword">var</span> evCache <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> prevDiff <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="register_event_handlers">Register event handlers</h3>
+<p>Event handlers are registered for the following pointer events: <code><a href="../htmlelement/pointerdown_event">pointerdown</a></code>, <code><a href="../htmlelement/pointermove_event">pointermove</a></code> and <code><a href="../htmlelement/pointerup_event">pointerup</a></code>. The handler for <code><a href="../htmlelement/pointerup_event">pointerup</a></code> is used for the <code><a href="../htmlelement/pointercancel_event">pointercancel</a></code>, <code><a href="../htmlelement/pointerout_event">pointerout</a></code> and <code><a href="../htmlelement/pointerleave_event">pointerleave</a></code> events since these four events have the same semantics in this application.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">init</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token comment">// Install event handlers for the pointer target</span>
+ <span class="token keyword">var</span> el<span class="token operator">=</span>document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"target"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+ el<span class="token punctuation">.</span>onpointerdown <span class="token operator">=</span> pointerdown_handler<span class="token punctuation">;</span>
+ el<span class="token punctuation">.</span>onpointermove <span class="token operator">=</span> pointermove_handler<span class="token punctuation">;</span>
+
+ <span class="token comment">// Use same handler for pointer{up,cancel,out,leave} events since</span>
+ <span class="token comment">// the semantics for these events - in this app - are the same.</span>
+ el<span class="token punctuation">.</span>onpointerup <span class="token operator">=</span> pointerup_handler<span class="token punctuation">;</span>
+ el<span class="token punctuation">.</span>onpointercancel <span class="token operator">=</span> pointerup_handler<span class="token punctuation">;</span>
+ el<span class="token punctuation">.</span>onpointerout <span class="token operator">=</span> pointerup_handler<span class="token punctuation">;</span>
+ el<span class="token punctuation">.</span>onpointerleave <span class="token operator">=</span> pointerup_handler<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="pointer_down">Pointer down</h3>
+<p>The <code><a href="../htmlelement/pointerdown_event">pointerdown</a></code> event is fired when a pointer (mouse, pen/stylus or touch point on a touchscreen) makes contact with the <em>contact surface</em>. In this application, the event's state must be cached in case this down event is part of a two-pointer pinch/zoom gesture.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">pointerdown_handler</span><span class="token punctuation">(</span><span class="token parameter">ev</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token comment">// The pointerdown event signals the start of a touch interaction.</span>
+ <span class="token comment">// This event is cached to support 2-finger gestures</span>
+ evCache<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>ev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"pointerDown"</span><span class="token punctuation">,</span> ev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="pointer_move">Pointer move</h3>
+<p>The <code><a href="../htmlelement/pointermove_event">pointermove</a></code> event handler detects if a user is invoking a two-pointer pinch/zoom gesture. If two pointers are down, and the distance between the pointers is increasing (signifying a pinch out or zoom in), the element's background color is changed to <code>pink</code>, and if the distance between the pointers is decreasing (a pinch in or zoom out), the background color is changed to <code>lightblue</code>. In a more sophisticated application, pinch in or pinch out determination could be used to apply application-specific semantics.</p> <p>When this event is processed, the target's border is set to <code>dashed</code> to provide a clear visual indication the element has received a move event.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">pointermove_handler</span><span class="token punctuation">(</span><span class="token parameter">ev</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token comment">// This function implements a 2-pointer horizontal pinch/zoom gesture.</span>
+ <span class="token comment">//</span>
+ <span class="token comment">// If the distance between the two pointers has increased (zoom in),</span>
+ <span class="token comment">// the target element's background is changed to "pink" and if the</span>
+ <span class="token comment">// distance is decreasing (zoom out), the color is changed to "lightblue".</span>
+ <span class="token comment">//</span>
+ <span class="token comment">// This function sets the target element's border to "dashed" to visually</span>
+ <span class="token comment">// indicate the pointer's target received a move event.</span>
+ <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"pointerMove"</span><span class="token punctuation">,</span> ev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+ ev<span class="token punctuation">.</span>target<span class="token punctuation">.</span>style<span class="token punctuation">.</span>border <span class="token operator">=</span> <span class="token string">"dashed"</span><span class="token punctuation">;</span>
+
+ <span class="token comment">// Find this event in the cache and update its record with this event</span>
+ <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> evCache<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">if</span> <span class="token punctuation">(</span>ev<span class="token punctuation">.</span>pointerId <span class="token operator">==</span> evCache<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>pointerId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      evCache<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> ev<span class="token punctuation">;</span>
+   <span class="token keyword">break</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+
+ <span class="token comment">// If two pointers are down, check for pinch gestures</span>
+ <span class="token keyword">if</span> <span class="token punctuation">(</span>evCache<span class="token punctuation">.</span>length <span class="token operator">==</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token comment">// Calculate the distance between the two pointers</span>
+   <span class="token keyword">var</span> curDiff <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">abs</span><span class="token punctuation">(</span>evCache<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>clientX <span class="token operator">-</span> evCache<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>clientX<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+   <span class="token keyword">if</span> <span class="token punctuation">(</span>prevDiff <span class="token operator">&gt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     <span class="token keyword">if</span> <span class="token punctuation">(</span>curDiff <span class="token operator">&gt;</span> prevDiff<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token comment">// The distance between the two pointers has increased</span>
+       <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Pinch moving OUT -&gt; Zoom in"</span><span class="token punctuation">,</span> ev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+       ev<span class="token punctuation">.</span>target<span class="token punctuation">.</span>style<span class="token punctuation">.</span>background <span class="token operator">=</span> <span class="token string">"pink"</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+     <span class="token keyword">if</span> <span class="token punctuation">(</span>curDiff <span class="token operator">&lt;</span> prevDiff<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token comment">// The distance between the two pointers has decreased</span>
+       <span class="token function">log</span><span class="token punctuation">(</span><span class="token string">"Pinch moving IN -&gt; Zoom out"</span><span class="token punctuation">,</span>ev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+       ev<span class="token punctuation">.</span>target<span class="token punctuation">.</span>style<span class="token punctuation">.</span>background <span class="token operator">=</span> <span class="token string">"lightblue"</span><span class="token punctuation">;</span>
+     <span class="token punctuation">}</span>
+   <span class="token punctuation">}</span>
+
+   <span class="token comment">// Cache the distance for the next move event</span>
+   prevDiff <span class="token operator">=</span> curDiff<span class="token punctuation">;</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h3 id="pointer_up">Pointer up</h3>
+<p>The <code><a href="../htmlelement/pointerup_event">pointerup</a></code> event is fired when a pointer is raised from the <em>contact surface</em>. When this occurs, the event is removed from the event cache and the target element's background color and border are restored to their original values.</p> <p>In this application, this handler is also used for <code><a href="../htmlelement/pointercancel_event">pointercancel</a></code>, <code><a href="../htmlelement/pointerleave_event">pointerleave</a></code> and <code><a href="../htmlelement/pointerout_event">pointerout</a></code> events.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">pointerup_handler</span><span class="token punctuation">(</span><span class="token parameter">ev</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token function">log</span><span class="token punctuation">(</span>ev<span class="token punctuation">.</span>type<span class="token punctuation">,</span> ev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// Remove this pointer from the cache and reset the target's</span>
+  <span class="token comment">// background and border</span>
+  <span class="token function">remove_event</span><span class="token punctuation">(</span>ev<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  ev<span class="token punctuation">.</span>target<span class="token punctuation">.</span>style<span class="token punctuation">.</span>background <span class="token operator">=</span> <span class="token string">"white"</span><span class="token punctuation">;</span>
+  ev<span class="token punctuation">.</span>target<span class="token punctuation">.</span>style<span class="token punctuation">.</span>border <span class="token operator">=</span> <span class="token string">"1px solid black"</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// If the number of pointers down is less than two then reset diff tracker</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>evCache<span class="token punctuation">.</span>length <span class="token operator">&lt;</span> <span class="token number">2</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    prevDiff <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre>
+<h3 id="application_ui">Application UI</h3>
+<p>The application uses a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a> element for the touch area and provides buttons to enable logging and to clear the log.</p> <p class="note">To prevent the browser's default touch behavior from overriding this application's pointer handling, the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/touch-action"><code>touch-action</code></a> property is applied to the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body"><code>&lt;body&gt;</code></a> element.</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span> <span class="token attr-name">onload</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>init();<span class="token punctuation">"</span></span> <span class="token style-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token style language-css"><span class="token property">touch-action</span><span class="token punctuation">:</span>none</span><span class="token punctuation">"</span></span></span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>target<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Touch and Hold with 2 pointers, then pinch in or out.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/&gt;</span></span>
+    The background color will change to pink if the pinch is opening (Zoom In)
+    or changes to lightblue if the pinch is closing (Zoom out).<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+ <span class="token comment">&lt;!-- UI for logging/debugging --&gt;</span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>log<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>enableLog(event);<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Start/Stop event logging<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>clearlog<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>clearLog(event);<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Clear the log<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+ <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>output</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>output</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+</pre>
+<h3 id="miscellaneous_functions">Miscellaneous functions</h3>
+<p>These functions support the application but aren't directly involved in the event flow.</p> <h4 id="cache_management">Cache management</h4> <p>This function helps manage the global event caches <code>evCache</code>.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">remove_event</span><span class="token punctuation">(</span><span class="token parameter">ev</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token comment">// Remove this event from the target's cache</span>
+ <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> evCache<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+   <span class="token keyword">if</span> <span class="token punctuation">(</span>evCache<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>pointerId <span class="token operator">==</span> ev<span class="token punctuation">.</span>pointerId<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+     evCache<span class="token punctuation">.</span><span class="token function">splice</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+     <span class="token keyword">break</span><span class="token punctuation">;</span>
+   <span class="token punctuation">}</span>
+ <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre> <h4 id="event_logging">Event logging</h4> <p>These functions are used to send event activity to the application's window (to support debugging and learning about the event flow).</p> <pre data-language="js"><span class="token comment">// Log events flag</span>
+<span class="token keyword">var</span> logEvents <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Logging/debugging functions</span>
+<span class="token keyword">function</span> <span class="token function">enableLog</span><span class="token punctuation">(</span><span class="token parameter">ev</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  logEvents <span class="token operator">=</span> logEvents <span class="token operator">?</span> <span class="token boolean">false</span> <span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">log</span><span class="token punctuation">(</span><span class="token parameter">prefix<span class="token punctuation">,</span> ev</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>logEvents<span class="token punctuation">)</span> <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> o <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">'output'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> s <span class="token operator">=</span> prefix <span class="token operator">+</span> <span class="token string">": pointerID = "</span> <span class="token operator">+</span> ev<span class="token punctuation">.</span>pointerId <span class="token operator">+</span>
+                <span class="token string">" ; pointerType = "</span> <span class="token operator">+</span> ev<span class="token punctuation">.</span>pointerType <span class="token operator">+</span>
+                <span class="token string">" ; isPrimary = "</span> <span class="token operator">+</span> ev<span class="token punctuation">.</span>isPrimary<span class="token punctuation">;</span>
+  o<span class="token punctuation">.</span>innerHTML <span class="token operator">+=</span> s <span class="token operator">+</span> "
+"<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">clearLog</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+ <span class="token keyword">var</span> o <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">'output'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+ o<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="https://hacks.mozilla.org/2015/08/pointer-events-now-in-firefox-nightly/" rel=" noopener">Pointer Events now in Firefox Nightly</a>; Mozilla Hacks; by Matt Brubeck and Jason Weathersby; 2015-Aug-04</li> <li><a href="https://github.com/jquery/PEP" rel=" noopener">jQuery Pointer Events Polyfill</a></li> <li>
+<a href="https://material.io/design/interaction/gestures.html" rel=" noopener">Gestures</a>; Material Design</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events/Pinch_zoom_gestures" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events/Pinch_zoom_gestures</a>
+  </p>
+</div>

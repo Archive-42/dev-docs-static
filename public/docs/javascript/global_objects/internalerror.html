@@ -1,0 +1,88 @@
+<h1>InternalError</h1> <div class="notecard warning"> <strong id="non-standard">Non-standard</strong> <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p> </div> <p>The <code>InternalError</code> indicates an error that occurred internally in the JavaScript engine.</p> <p>Example cases are mostly when something is too large, e.g.:</p> <ul> <li>"too many switch cases",</li> <li>"too many parentheses in regular expression",</li> <li>"array initializer too large",</li> <li>"too much recursion".</li> </ul>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="internalerror/internalerror"><code>InternalError()</code></a></dt> <dd>Creates a new <code>InternalError</code> object.</dd> </dl>
+<h2 id="instance_properties">Instance properties</h2>
+<dl> <dt><a href="error/message"><code>InternalError.prototype.message</code></a></dt> <dd>Error message. Inherited from <a href="error"><code>Error</code></a>.</dd> <dt><a href="error/name"><code>InternalError.prototype.name</code></a></dt> <dd>Error name. Inherited from <a href="error"><code>Error</code></a>.</dd> <dt><a href="error/filename"><code>InternalError.prototype.fileName</code></a></dt> <dd>Path to file that raised this error. Inherited from <a href="error"><code>Error</code></a>.</dd> <dt><a href="error/linenumber"><code>InternalError.prototype.lineNumber</code></a></dt> <dd>Line number in file that raised this error. Inherited from <a href="error"><code>Error</code></a>.</dd> <dt><a href="error/columnnumber"><code>InternalError.prototype.columnNumber</code></a></dt> <dd>Column number in line that raised this error. Inherited from <a href="error"><code>Error</code></a>.</dd> <dt><a href="error/stack"><code>InternalError.prototype.stack</code></a></dt> <dd>Stack trace. Inherited from <a href="error"><code>Error</code></a>.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="too_much_recursion">Too much recursion</h3>
+<p>This recursive function runs 10 times, as per the exit condition.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">loop</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">&gt;=</span> <span class="token number">10</span><span class="token punctuation">)</span> <span class="token comment">// "x &gt;= 10" is the exit condition</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token comment">// do stuff</span>
+  <span class="token function">loop</span><span class="token punctuation">(</span>x <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// the recursive call</span>
+<span class="token punctuation">}</span>
+<span class="token function">loop</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Setting this condition to an extremely high value, won't work:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">loop</span><span class="token punctuation">(</span><span class="token parameter">x</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>x <span class="token operator">&gt;=</span> <span class="token number">1000000000000</span><span class="token punctuation">)</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token comment">// do stuff</span>
+  <span class="token function">loop</span><span class="token punctuation">(</span>x <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">loop</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// InternalError: too much recursion</span></pre> <p>For more information, see <a href="../errors/too_much_recursion">InternalError: too much recursion.</a></p>
+<h2 id="specifications">Specifications</h2>
+<p>Not part of any standard.</p>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>InternalError</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+<tr>
+<th><code>InternalError</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="error"><code>Error</code></a></li> <li> <p><a href="../errors/too_much_recursion">InternalError: too much recursion</a></p> </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError</a>
+  </p>
+</div>

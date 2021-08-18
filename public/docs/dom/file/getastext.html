@@ -1,0 +1,49 @@
+<h1>File.getAsText()</h1>
+<div class="notecard warning"> <strong id="non-standard">Non-standard</strong> <p>This feature is non-standard and is not on a standards track. Do not use it on production sites facing the Web: it will not work for every user. There may also be large incompatibilities between implementations and the behavior may change in the future.</p> </div>
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div> <div class="note notebox notecard"> <p><strong>Note:</strong>This method was removed from Firefox 7.0 and onward.</p> </div>
+<h2 id="summary">Summary</h2>
+<p>The <code>getAsText</code> method provides the file's data interpreted as text using a given encoding.</p> <div class="note notecard"> <p><strong>Note:</strong> This method is obsolete; you should use the <a href="../filereader"><code>FileReader</code></a> method <a href="../filereader/readastext"><code>readAsText()</code></a> instead.</p> </div>
+<h2 id="syntax">Syntax</h2>
+<pre class="notranslate">var <var>str</var> = <var>instanceOfFile</var>.getAsText(<var>encoding</var>);</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><var>encoding</var></dt> <dd>A string indicating the encoding to use for the returned data. If this string is empty, UTF-8 is assumed.</dd> </dl>
+<h3 id="returns">Returns</h3>
+<p>A string containing the file's data interpreted as text in the specified <code>encoding</code>.</p>
+<h2 id="example">Example</h2>
+<pre data-language="js"><span class="token comment">// fileInput is a HTMLInputElement: &lt;input type="file" id="myfileinput" multiple&gt;</span>
+<span class="token keyword">var</span> fileInput <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"myfileinput"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// files is a FileList object (similar to NodeList)</span>
+<span class="token keyword">var</span> files <span class="token operator">=</span> fileInput<span class="token punctuation">.</span>files<span class="token punctuation">;</span>
+
+<span class="token comment">// object for allowed media types</span>
+<span class="token keyword">var</span> accept <span class="token operator">=</span> <span class="token punctuation">{</span>
+  binary <span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"image/png"</span><span class="token punctuation">,</span> <span class="token string">"image/jpeg"</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+  text   <span class="token operator">:</span> <span class="token punctuation">[</span><span class="token string">"text/plain"</span><span class="token punctuation">,</span> <span class="token string">"text/css"</span><span class="token punctuation">,</span> <span class="token string">"application/xml"</span><span class="token punctuation">,</span> <span class="token string">"text/html"</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword">var</span> file<span class="token punctuation">;</span>
+
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> files<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  file <span class="token operator">=</span> files<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  <span class="token comment">// if file type could be detected</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>file <span class="token operator">!==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>accept<span class="token punctuation">.</span>text<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>file<span class="token punctuation">.</span>mediaType<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// file is of type text, which we accept</span>
+      <span class="token comment">// make sure it's encoded as utf-8</span>
+      <span class="token keyword">var</span> data <span class="token operator">=</span> file<span class="token punctuation">.</span><span class="token function">getAsText</span><span class="token punctuation">(</span><span class="token string">"utf-8"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token comment">// modify data with string methods</span>
+
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>accept<span class="token punctuation">.</span>binary<span class="token punctuation">.</span><span class="token function">indexOf</span><span class="token punctuation">(</span>file<span class="token punctuation">.</span>mediaType<span class="token punctuation">)</span> <span class="token operator">&gt;</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// binary</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<p>Not part of any specification.</p>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../file"><code>File</code></a></li> <li><a href="../filereader"><code>FileReader</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/File/getAsText" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/File/getAsText</a>
+  </p>
+</div>

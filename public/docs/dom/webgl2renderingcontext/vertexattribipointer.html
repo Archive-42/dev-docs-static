@@ -1,0 +1,94 @@
+<h1>WebGL2RenderingContext.vertexAttribIPointer()</h1> <p>The <code>WebGL2RenderingContext.vertexAttribIPointer()</code> method of the <a href="../webgl_api">WebGL 2 API</a> specifies integer data formats and locations of vertex attributes in a vertex attributes array.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">void</span> gl<span class="token punctuation">.</span><span class="token function">vertexAttribIPointer</span><span class="token punctuation">(</span>index<span class="token punctuation">,</span> size<span class="token punctuation">,</span> type<span class="token punctuation">,</span> stride<span class="token punctuation">,</span> offset<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>index</code></dt> <dd>A <a href="../webgl_api/types"><code>GLuint</code></a> specifying the index of the vertex attribute that is to be modified.</dd> <dt><code>size</code></dt> <dd>A <a href="../webgl_api/types"><code>GLint</code></a> specifying the number of components per vertex attribute. Must be 1, 2, 3, or 4.</dd> <dt><code>type</code></dt> <dd>A <a href="../webgl_api/types"><code>GLenum</code></a> specifying the data type of each component in the array. Must be one of: <code>gl.BYTE</code>, <code>gl.UNSIGNED_BYTE</code>, <code>gl.SHORT</code>, <code>gl.UNSIGNED_SHORT</code>, <code>gl.INT</code>, or <code>gl.UNSIGNED_INT</code>.</dd> <dt><code>stride</code></dt> <dd>A <a href="../webgl_api/types"><code>GLsizei</code></a> specifying the offset in bytes between the beginning of consecutive vertex attributes.</dd> <dt><code>offset</code></dt> <dd>A <a href="../webgl_api/types"><code>GLintptr</code></a> specifying an offset in bytes of the first component in the vertex attribute array. Must be a multiple of <code>type</code>.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>None.</p>
+<h2 id="description">Description</h2>
+<p>Very similar to <a href="../webglrenderingcontext/vertexattribpointer"><code>WebGLRenderingContext.vertexAttribPointer()</code></a>. The main difference is that while values specified by <code>vertexAttribPointer</code> are always interpreted as floating-point values in the shader (even if they were originally specified as integers in the buffer), this method allows specifying values which are interpreted as integers in the shader.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="linear_blend_skinning">Linear Blend Skinning</h3>
+<pre data-language="js"><span class="token comment">//Describe the layout of the buffer:</span>
+<span class="token comment">//1. position</span>
+gl<span class="token punctuation">.</span><span class="token function">vertexAttribPointer</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> gl<span class="token punctuation">.</span><span class="token constant">FLOAT</span><span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gl<span class="token punctuation">.</span><span class="token function">enableVertexAttribArray</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//2. bone weights, normalized to [0, 1]</span>
+gl<span class="token punctuation">.</span><span class="token function">vertexAttribPointer</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> gl<span class="token punctuation">.</span><span class="token constant">UNSIGNED_BYTE</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gl<span class="token punctuation">.</span><span class="token function">enableVertexAttribArray</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">//3. bone indices, interpreted as integer</span>
+gl<span class="token punctuation">.</span><span class="token function">vertexAttribIPointer</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> gl<span class="token punctuation">.</span><span class="token constant">UNSIGNED_BYTE</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gl<span class="token punctuation">.</span><span class="token function">enableVertexAttribArray</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">//Connect to attributes from the vertex shader</span>
+gl<span class="token punctuation">.</span><span class="token function">bindAttribLocation</span><span class="token punctuation">(</span>shaderProgram<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token string">"position"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gl<span class="token punctuation">.</span><span class="token function">bindAttribLocation</span><span class="token punctuation">(</span>shaderProgram<span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token string">"boneWeights"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+gl<span class="token punctuation">.</span><span class="token function">bindAttribLocation</span><span class="token punctuation">(</span>shaderProgram<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">"boneIndices"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>shader-vs<span class="token punctuation">"</span></span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>x-shader/x-vertex<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">#version <span class="token number">300</span> es
+
+uniform mat4 mvMatrix<span class="token punctuation">;</span>
+uniform mat4 bones<span class="token punctuation">[</span><span class="token number">120</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">in</span> vec3 position<span class="token punctuation">;</span>
+<span class="token keyword">in</span> vec4 boneWeights<span class="token punctuation">;</span>
+<span class="token keyword">in</span> uvec4 boneIndices<span class="token punctuation">;</span><span class="token comment">//read as 4-component unsigned integer</span>
+
+<span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    vec4 skinnedPosition <span class="token operator">=</span>
+        bones<span class="token punctuation">[</span>boneIndices<span class="token punctuation">.</span>s<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token function">vec4</span><span class="token punctuation">(</span>position<span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">)</span> <span class="token operator">*</span> boneWeights<span class="token punctuation">.</span>s <span class="token operator">+</span>
+        bones<span class="token punctuation">[</span>boneIndices<span class="token punctuation">.</span>t<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token function">vec4</span><span class="token punctuation">(</span>position<span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">)</span> <span class="token operator">*</span> boneWeights<span class="token punctuation">.</span>t <span class="token operator">+</span>
+        bones<span class="token punctuation">[</span>boneIndices<span class="token punctuation">.</span>p<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token function">vec4</span><span class="token punctuation">(</span>position<span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">)</span> <span class="token operator">*</span> boneWeights<span class="token punctuation">.</span>p <span class="token operator">+</span>
+        bones<span class="token punctuation">[</span>boneIndices<span class="token punctuation">.</span>q<span class="token punctuation">]</span> <span class="token operator">*</span> <span class="token function">vec4</span><span class="token punctuation">(</span>position<span class="token punctuation">,</span> <span class="token number">1.0</span><span class="token punctuation">)</span> <span class="token operator">*</span> boneWeights<span class="token punctuation">.</span>q<span class="token punctuation">;</span>
+    gl_Position <span class="token operator">=</span> mvMatrix <span class="token operator">*</span> skinnedPosition<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.khronos.org/registry/webgl/specs/latest/2.0/#3.7.8" hreflang="en" rel=" noopener">WebGL 2.0<br><small>The definition of 'vertexAttribIPointer' in that specification.</small></a></td> <td><span class="spec-ed">Editor's Draft</span></td> <td>Initial definition for WebGL.</td> </tr> <tr> <td><a href="https://www.khronos.org/opengles/sdk/docs/man3/html/glVertexAttribPointer.xhtml" hreflang="en" rel=" noopener">OpenGL ES 3.0<br><small>The definition of 'glVertexAttribPointer' in that specification.</small></a></td> <td><span class="spec-standard">Standard</span></td> <td>Man page of the (similar) OpenGL API.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>vertexAttribIPointer</code></th>
+<td class="bc-supports-yes"><div>56</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>58</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>43</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7.0</div></td>
+</tr></tbody>
+</table> 
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webglrenderingcontext/vertexattribpointer"><code>WebGLRenderingContext.vertexAttribPointer()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/WebGL2RenderingContext/vertexAttribIPointer" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/WebGL2RenderingContext/vertexAttribIPointer</a>
+  </p>
+</div>

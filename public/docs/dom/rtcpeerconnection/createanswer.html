@@ -1,0 +1,107 @@
+<h1>RTCPeerConnection.createAnswer()</h1>
+
+ <p>The <code>createAnswer()</code> method on the <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> interface creates an <a href="https://developer.mozilla.org/en-US/docs/Glossary/SDP">SDP</a> answer to an offer received from a remote peer during the offer/answer negotiation of a WebRTC connection. The answer contains information about any media already attached to the session, codecs and options supported by the browser, and any <a href="https://developer.mozilla.org/en-US/docs/Glossary/ICE">ICE</a> candidates already gathered. The answer is delivered to the returned <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>, and should then be sent to the source of the offer to continue the negotiation process.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">aPromise <span class="token operator">=</span> RTCPeerConnection<span class="token punctuation">.</span><span class="token function">createAnswer</span><span class="token punctuation">(</span><span class="token punctuation">[</span>options<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+RTCPeerConnection<span class="token punctuation">.</span><span class="token function">createAnswer</span><span class="token punctuation">(</span>successCallback<span class="token punctuation">,</span> failureCallback<span class="token punctuation">[</span><span class="token punctuation">,</span> options<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> 
+    This deprecated <span class="token constant">API</span> should no longer be used<span class="token punctuation">,</span> but will probably still work<span class="token punctuation">.</span>
+    
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code>options</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An object which contains options which customize the answer; this is based on the <a href="../rtcansweroptions"><code>RTCAnswerOptions</code></a> dictionary.</dd> </dl>
+<h3 id="deprecated_parameters">Deprecated parameters</h3>
+<p>In older code and documentation, you may see a callback-based version of this function. This has been deprecated and its use is <strong>strongly</strong> discouraged. You should update any existing code to use the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a>-based version of <code>createAnswer()</code> instead. The parameters for this form of <code>createAnswer()</code> are described below, to aid in updating existing code. </p> <dl> <dt>
+<code>successCallback</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>An <a href="../rtcsessiondescriptioncallback"><code>RTCSessionDescriptionCallback</code></a> which will be passed a single <a href="../rtcsessiondescription"><code>RTCSessionDescription</code></a> object describing the newly-created answer.</dd> <dt>
+<code>failureCallback</code> <span class="icon deprecated" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This deprecated API should no longer be used, but will probably still work.  </span>
+</dt> <dd>An <a class="page-not-created"><code>RTCPeerConnectionErrorCallback</code></a> which will be passed a single <a href="../domexception"><code>DOMException</code></a> object explaining why the request to create an answer failed.</dd> <dt>
+<code>options</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An optional <a href="../rtcofferoptions"><code>RTCOfferOptions</code></a> object providing options requested for the answer.</dd> </dl>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>NotReadableError</code></dt> <dd>The identity provider wasn't able to provide an identity assertion.</dd> <dt><code>OperationError</code></dt> <dd>Generation of the SDP failed for some reason; this is a general failure catch-all exception.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> whose fulfillment handler is called with an object conforming to the <a class="page-not-created"><code>RTCSessionDescriptionInit</code></a> dictionary which contains the SDP answer to be delivered to the other peer.</p>
+<h2 id="example">Example</h2>
+<p>Here is a segment of code taken from the code that goes with the article <a href="../webrtc_api/signaling_and_video_calling">Signaling and video calling</a>. This code comes from the handler for the message sent to carry an offer to another peer across the signaling channel.</p> <div class="note notecard"> <p>Keep in mind that this is part of the signaling process, the transport layer for which is an implementation detail that's entirely up to you. In this case, a <a href="../websockets_api">WebSocket</a> connection is used to send a <a href="https://developer.mozilla.org/en-US/docs/Glossary/JSON">JSON</a> message with a <code>type</code> field with the value "video-answer" to the other peer, carrying the answer to the device which sent the offer to connect. The contents of the object being passed to the <code>sendToServer()</code> function, along with everything else in the promise fulfillment handler, depend entirely on your design</p> </div> <pre data-language="js">pc<span class="token punctuation">.</span><span class="token function">createAnswer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">answer</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> pc<span class="token punctuation">.</span><span class="token function">setLocalDescription</span><span class="token punctuation">(</span>answer<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token comment">// Send the answer to the remote peer through the signaling server.</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span>handleGetUserMediaError<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>This asks <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a> to create and return a new answer. In our promise handler, the returned answer is set as the description of the local end of the connection by calling <a href="setlocaldescription"><code>setLocalDescription()</code></a>.</p> <p>Once that succeeds, the answer is sent to the signaling server using whatever protocol you see fit.</p> <p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch"><code>Promise.catch()</code></a> is used to trap and handle errors.</p> <p>See <a href="../webrtc_api/signaling_and_video_calling#handling_the_invitation">Handling the invitation</a> in <a href="../webrtc_api/signaling_and_video_calling">Signaling and video calling</a> to see the complete code, in context, from which this snippet is derived; that will help you understand the signaling process and how answers work.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcpeerconnection-createanswer" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'createAnswer()' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>createAnswer</code></th>
+<td class="bc-supports-yes">
+<div>51</div>
+<div>Promise-based version.</div>
+<div>24</div>
+</td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>51</div>
+<div>Promise-based version.</div>
+<div>Yes</div>
+</td>
+<td class="bc-supports-yes">
+<div>51</div>
+<div>Promise-based version.</div>
+<div>Yes</div>
+</td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes">
+<div>43</div>
+<div>Promise-based version.</div>
+<div>37-43</div>
+</td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes">
+<div>6.0</div>
+<div>Promise-based version and unprefixed.</div>
+<div>5.0-6.0</div>
+<div>Promise-based version.</div>
+</td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/createAnswer" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection/createAnswer</a>
+  </p>
+</div>

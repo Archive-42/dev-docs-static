@@ -1,0 +1,71 @@
+<h1>VRFieldOfView.VRFieldOfView()</h1>
+
+<div class="notecard deprecated"> <strong id="deprecated">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div>
+ 
+<div class="notecard deprecated"> <strong id="deprecated_2">Deprecated</strong> <p>This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes. Avoid using it, and update existing code if possible; see the <a href="#browser_compatibility">compatibility table</a> at the bottom of this page to guide your decision. Be aware that this feature may cease to work at any time.</p> </div>
+ <p>The <code>VRFieldOfView()</code> constructor creates a new <a href="../vrfieldofview"><code>VRFieldOFView</code></a> object.</p>
+<h2 id="syntax">Syntax</h2>
+<p>There are two forms of this constructor, which take their information in slightly different ways. The first one accepts four separate arguments — the <a href="updegrees"><code>VRFieldOfView.upDegrees</code></a>, <a href="rightdegrees"><code>VRFieldOfView.rightDegrees</code></a>, <a href="downdegrees"><code>VRFieldOfView.downDegrees</code></a>, and <a href="leftdegrees"><code>VRFieldOfView.leftDegrees</code></a> values you want the field of view to have</p> <pre data-language="js"><span class="token keyword">var</span> myFOV <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VRFieldOfView</span><span class="token punctuation">(</span>upDegrees<span class="token punctuation">,</span> rightDegrees<span class="token punctuation">,</span> downDegrees<span class="token punctuation">,</span> leftDegrees<span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>The second one takes a <code>VRFieldOfViewInit</code> object as a single argument, which is just a dictionary containing the four degree values mentioned above:</p> <pre data-language="js"><span class="token keyword">var</span> init <span class="token operator">=</span> <span class="token punctuation">{</span>upDegrees<span class="token operator">:</span>up<span class="token punctuation">,</span>rightDegrees<span class="token operator">:</span>right<span class="token punctuation">,</span>downDegrees<span class="token operator">:</span>down<span class="token punctuation">,</span>leftDegrees<span class="token operator">:</span>left<span class="token punctuation">}</span>
+<span class="token keyword">var</span> myFOV <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VRFieldOfView</span><span class="token punctuation">(</span>init<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<ul> <li> <p>Four argument version:</p> <dl> <dt>upDegrees</dt> <dd>The number of degrees upwards that the field of view will extend in.</dd> <dt>rightDegrees</dt> <dd>The number of degrees to the right that the field of view will extend in.</dd> <dt>downDegrees</dt> <dd>The number of degrees downwards that the field of view will extend in.</dd> <dt>leftDegrees</dt> <dd>The number of degrees to the left that the field of view will extend in.</dd> </dl> </li> <li> <p>One argument version:</p> <dl> <dt>init</dt> <dd>A dictionary object containing the four degree values specified above.</dd> </dl> </li> </ul>
+<h2 id="examples">Examples</h2>
+<p>The following simple example shows a function that can be used to set a custom field of view with four specified degree values for up, right, down and left. The <code>VRFieldOfView()</code> constructor is used to create a <a href="../vrfieldofview"><code>VRFieldOfView</code></a> object from the supplied values, which is then fed into the <a href="../hmdvrdevice/setfieldofview"><code>HMDVRDevice.setFieldOfView</code></a> method.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">setCustomFOV</span><span class="token punctuation">(</span><span class="token parameter">up<span class="token punctuation">,</span>right<span class="token punctuation">,</span>down<span class="token punctuation">,</span>left</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> testFOV <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VRFieldOfView</span><span class="token punctuation">(</span>up<span class="token punctuation">,</span>right<span class="token punctuation">,</span>down<span class="token punctuation">,</span>left<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  gHMD<span class="token punctuation">.</span><span class="token function">setFieldOfView</span><span class="token punctuation">(</span>testFOV<span class="token punctuation">,</span>testFOV<span class="token punctuation">,</span><span class="token number">0.01</span><span class="token punctuation">,</span><span class="token number">10000.0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">var</span> lEye <span class="token operator">=</span> gHMD<span class="token punctuation">.</span><span class="token function">getEyeParameters</span><span class="token punctuation">(</span><span class="token string">'left'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> rEye <span class="token operator">=</span> gHMD<span class="token punctuation">.</span><span class="token function">getEyeParameters</span><span class="token punctuation">(</span><span class="token string">'right'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>lEye<span class="token punctuation">.</span>currentFieldOfView<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>rEye<span class="token punctuation">.</span>currentFieldOfView<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <div class="note notecard"> <p><strong>Note</strong>: When testing, setting a weird/tiny field of view can really mess up your view. It is a good idea to grab the current field of view first (using <a href="../vreyeparameters/fieldofview"><code>VREyeParameters.fieldOfView</code></a>) before making any drastic changes, so you can reset it afterwards if needed.</p> </div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>VRFieldOfView</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>?</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="../webvr_api">WebVR API homepage</a>.</li> <li>
+<a href="https://mixedreality.mozilla.org/" rel=" noopener">https://mixedreality.mozilla.org/</a> — demos, downloads, and other resources from the Mozilla VR team.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/VRFieldOfView/VRFieldOfView" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/VRFieldOfView/VRFieldOfView</a>
+  </p>
+</div>

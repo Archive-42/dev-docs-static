@@ -1,0 +1,202 @@
+<h1>JSON.parse()</h1> <p>The <code>JSON.parse()</code> method parses a JSON string, constructing the JavaScript value or object described by the string. An optional <strong>reviver</strong> function can be provided to perform a transformation on the resulting object before it is returned.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/json-parse.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span>
+<span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>text<span class="token punctuation">,</span> reviver<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>text</var></code></dt> <dd>The string to parse as JSON. See the <a href="../json"><code>JSON</code></a> object for a description of JSON syntax.</dd> <dt>
+<code><var>reviver</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd>If a function, this prescribes how the value originally produced by parsing is transformed, before being returned.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The <a href="../object"><code>Object</code></a>, <a href="../array"><code>Array</code></a>, string, number, boolean, or null value corresponding to the given JSON <code><var>text</var></code>.</p>
+<h3 id="exceptions">Exceptions</h3>
+<p>Throws a <a href="../syntaxerror"><code>SyntaxError</code></a> exception if the string to parse is not valid JSON. </p>
+<h2 id="polyfill">Polyfill</h2>
+<pre data-language="js"><span class="token comment">// From https://github.com/douglascrockford/JSON-js/blob/master/json2.js</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> <span class="token constant">JSON</span><span class="token punctuation">.</span>parse <span class="token operator">!==</span> <span class="token string">"function"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> rx_one <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">^[\],:{}\s]*$</span><span class="token regex-delimiter">/</span></span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> rx_two <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> rx_three <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> rx_four <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">(?:^|:|,)(?:\s*\[)+</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> rx_dangerous <span class="token operator">=</span> <span class="token regex"><span class="token regex-delimiter">/</span><span class="token regex-source language-regex">[\u0000\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]</span><span class="token regex-delimiter">/</span><span class="token regex-flags">g</span></span><span class="token punctuation">;</span>
+    <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function-variable function">parse</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">text<span class="token punctuation">,</span> reviver</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+        <span class="token comment">// The parse method takes a text and an optional reviver function, and returns</span>
+        <span class="token comment">// a JavaScript value if the text is a valid JSON text.</span>
+
+        <span class="token keyword">var</span> j<span class="token punctuation">;</span>
+
+        <span class="token keyword">function</span> <span class="token function">walk</span><span class="token punctuation">(</span><span class="token parameter">holder<span class="token punctuation">,</span> key</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+            <span class="token comment">// The walk method is used to recursively walk the resulting structure so</span>
+            <span class="token comment">// that modifications can be made.</span>
+
+            <span class="token keyword">var</span> k<span class="token punctuation">;</span>
+            <span class="token keyword">var</span> v<span class="token punctuation">;</span>
+            <span class="token keyword">var</span> value <span class="token operator">=</span> holder<span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>value <span class="token operator">&amp;&amp;</span> <span class="token keyword">typeof</span> value <span class="token operator">===</span> <span class="token string">"object"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">for</span> <span class="token punctuation">(</span>k <span class="token keyword">in</span> value<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">Object</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">hasOwnProperty</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        v <span class="token operator">=</span> <span class="token function">walk</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> k<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token keyword">if</span> <span class="token punctuation">(</span>v <span class="token operator">!==</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                            value<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">=</span> v<span class="token punctuation">;</span>
+                        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                            <span class="token keyword">delete</span> value<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">;</span>
+                        <span class="token punctuation">}</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> <span class="token function">reviver</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>holder<span class="token punctuation">,</span> key<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// Parsing happens in four stages. In the first stage, we replace certain</span>
+        <span class="token comment">// Unicode characters with escape sequences. JavaScript handles many characters</span>
+        <span class="token comment">// incorrectly, either silently deleting them, or treating them as line endings.</span>
+
+        text <span class="token operator">=</span> <span class="token function">String</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        rx_dangerous<span class="token punctuation">.</span>lastIndex <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>rx_dangerous<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>text<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            text <span class="token operator">=</span> text<span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>rx_dangerous<span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">a</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token punctuation">(</span>
+                    <span class="token string">"\\u"</span> <span class="token operator">+</span>
+                    <span class="token punctuation">(</span><span class="token string">"0000"</span> <span class="token operator">+</span> a<span class="token punctuation">.</span><span class="token function">charCodeAt</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">4</span><span class="token punctuation">)</span>
+                <span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// In the second stage, we run the text against regular expressions that look</span>
+        <span class="token comment">// for non-JSON patterns. We are especially concerned with "()" and "new"</span>
+        <span class="token comment">// because they can cause invocation, and "=" because it can cause mutation.</span>
+        <span class="token comment">// But just to be safe, we want to reject all unexpected forms.</span>
+
+        <span class="token comment">// We split the second stage into 4 regexp operations in order to work around</span>
+        <span class="token comment">// crippling inefficiencies in IE's and Safari's regexp engines. First we</span>
+        <span class="token comment">// replace the JSON backslash pairs with "@" (a non-JSON character). Second, we</span>
+        <span class="token comment">// replace all simple value tokens with "]" characters. Third, we delete all</span>
+        <span class="token comment">// open brackets that follow a colon or comma or that begin the text. Finally,</span>
+        <span class="token comment">// we look to see that the remaining characters are only whitespace or "]" or</span>
+        <span class="token comment">// "," or ":" or "{" or "}". If that is so, then the text is safe for eval.</span>
+
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>
+            rx_one<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>
+                text
+                <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>rx_two<span class="token punctuation">,</span> <span class="token string">"@"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>rx_three<span class="token punctuation">,</span> <span class="token string">"]"</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">replace</span><span class="token punctuation">(</span>rx_four<span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span>
+            <span class="token punctuation">)</span>
+        <span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+            <span class="token comment">// In the third stage we use the eval function to compile the text into a</span>
+            <span class="token comment">// JavaScript structure. The "{" operator is subject to a syntactic ambiguity</span>
+            <span class="token comment">// in JavaScript: it can begin a block or an object literal. We wrap the text</span>
+            <span class="token comment">// in parens to eliminate the ambiguity.</span>
+
+            j <span class="token operator">=</span> <span class="token function">eval</span><span class="token punctuation">(</span><span class="token string">"("</span> <span class="token operator">+</span> text <span class="token operator">+</span> <span class="token string">")"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// In the optional fourth stage, we recursively walk the new structure, passing</span>
+            <span class="token comment">// each name/value pair to a reviver function for possible transformation.</span>
+
+            <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token keyword">typeof</span> reviver <span class="token operator">===</span> <span class="token string">"function"</span><span class="token punctuation">)</span> <span class="token operator">?</span>
+                <span class="token function">walk</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+                    <span class="token string">""</span><span class="token operator">:</span> j
+                <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span> <span class="token operator">:</span>
+                j<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">// If the text is not JSON parsable, then a SyntaxError is thrown.</span>
+
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">SyntaxError</span><span class="token punctuation">(</span><span class="token string">"JSON.parse"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="examples">Examples</h2>
+<h3 id="using_json.parse">Using JSON.parse()</h3>
+<pre data-language="js"><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token string">'{}'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>              <span class="token comment">// {}</span>
+<span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token string">'true'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// true</span>
+<span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token string">'"foo"'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>           <span class="token comment">// "foo"</span>
+<span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token string">'[1, 5, "false"]'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// [1, 5, "false"]</span>
+<span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token string">'null'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>            <span class="token comment">// null</span>
+</pre>
+<h3 id="using_the_reviver_parameter">Using the reviver parameter</h3>
+<p>If a <code><var>reviver</var></code> is specified, the value computed by parsing is <em>transformed</em> before being returned. Specifically, the computed value and all its properties (beginning with the most nested properties and proceeding to the original value itself) are individually run through the <code><var>reviver</var></code>. Then it is called, with the object containing the property being processed as <code>this</code>, and with the property name as a string, and the property value as arguments. If the <code><var>reviver</var></code> function returns <a href="../undefined"><code>undefined</code></a> (or returns no value, for example, if execution falls off the end of the function), the property is deleted from the object. Otherwise, the property is redefined to be the return value. </p> <p>If the <code><var>reviver</var></code> only transforms some values and not others, be certain to return all untransformed values as-is, otherwise, they will be deleted from the resulting object.</p> <pre data-language="js"><span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token string">'{"p": 5}'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span>
+  <span class="token keyword">typeof</span> value <span class="token operator">===</span> <span class="token string">'number'</span>
+    <span class="token operator">?</span> value <span class="token operator">*</span> <span class="token number">2</span> <span class="token comment">// return value * 2 for numbers</span>
+    <span class="token operator">:</span> value     <span class="token comment">// return everything else unchanged</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// { p: 10 }</span>
+
+<span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token string">'{"1": 1, "2": 2, "3": {"4": 4, "5": {"6": 6}}}'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> value</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// log the current property name, the last is "".</span>
+  <span class="token keyword">return</span> value<span class="token punctuation">;</span>     <span class="token comment">// return the unchanged property value.</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// 1</span>
+<span class="token comment">// 2</span>
+<span class="token comment">// 4</span>
+<span class="token comment">// 6</span>
+<span class="token comment">// 5</span>
+<span class="token comment">// 3</span>
+<span class="token comment">// ""</span>
+</pre>
+<h3 id="json.parse_does_not_allow_trailing_commas">JSON.parse() does not allow trailing commas</h3>
+<pre data-language="js"><span class="token comment">// both will throw a SyntaxError</span>
+<span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token string">'[1, 2, 3, 4, ]'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token string">'{"foo" : 1, }'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="json.parse_does_not_allow_single_quotes">JSON.parse() does not allow single quotes </h3>
+<pre data-language="js"><span class="token comment">// will throw a SyntaxError</span>
+<span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span><span class="token string">"{'foo': 1}"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-json.parse">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-json.parse</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>parse</code></th>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>3.5</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>10.5</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="stringify"><code>JSON.stringify()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse</a>
+  </p>
+</div>

@@ -1,0 +1,121 @@
+<h1>Object.preventExtensions()</h1> <p>The <code>Object.preventExtensions()</code> method prevents new properties from ever being added to an object (i.e. prevents future extensions to the object).</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/object-preventextensions.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js">Object<span class="token punctuation">.</span><span class="token function">preventExtensions</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>obj</var></code></dt> <dd>The object which should be made non-extensible.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>The object being made non-extensible.</p>
+<h2 id="description">Description</h2>
+<p>An object is extensible if new properties can be added to it. <code>Object.preventExtensions()</code> marks an object as no longer extensible, so that it will never have properties beyond the ones it had at the time it was marked as non-extensible. Note that the properties of a non-extensible object, in general, may still be <em>deleted</em>. Attempting to add new properties to a non-extensible object will fail, either silently or by throwing a <a href="../typeerror"><code>TypeError</code></a> (most commonly, but not exclusively, when in <a href="../../strict_mode">strict mode</a>).</p> <p><code>Object.preventExtensions()</code> only prevents addition of own properties. Properties can still be added to the object prototype.</p> <p>This method makes the <code>[[prototype]]</code> of the target immutable; any <code>[[prototype]]</code> re-assignment will throw a <code>TypeError</code>. This behavior is specific to the internal <code>[[prototype]]</code> property, other properties of the target object will remain mutable.</p> <p>There is no way to make an object extensible again once it has been made non-extensible.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_object.preventextensions">Using Object.preventExtensions</h3>
+<pre data-language="js"><span class="token comment">// Object.preventExtensions returns the object</span>
+<span class="token comment">// being made non-extensible.</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> obj2 <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">preventExtensions</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+obj <span class="token operator">===</span> obj2<span class="token punctuation">;</span> <span class="token comment">// true</span>
+
+<span class="token comment">// Objects are extensible by default.</span>
+<span class="token keyword">var</span> empty <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">isExtensible</span><span class="token punctuation">(</span>empty<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// === true</span>
+
+<span class="token comment">// ...but that can be changed.</span>
+Object<span class="token punctuation">.</span><span class="token function">preventExtensions</span><span class="token punctuation">(</span>empty<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">isExtensible</span><span class="token punctuation">(</span>empty<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// === false</span>
+
+<span class="token comment">// Object.defineProperty throws when adding</span>
+<span class="token comment">// a new property to a non-extensible object.</span>
+<span class="token keyword">var</span> nonExtensible <span class="token operator">=</span> <span class="token punctuation">{</span> removable<span class="token operator">:</span> <span class="token boolean">true</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">preventExtensions</span><span class="token punctuation">(</span>nonExtensible<span class="token punctuation">)</span><span class="token punctuation">;</span>
+Object<span class="token punctuation">.</span><span class="token function">defineProperty</span><span class="token punctuation">(</span>nonExtensible<span class="token punctuation">,</span> <span class="token string">'new'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  value<span class="token operator">:</span> <span class="token number">8675309</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// throws a TypeError</span>
+
+<span class="token comment">// In strict mode, attempting to add new properties</span>
+<span class="token comment">// to a non-extensible object throws a TypeError.</span>
+<span class="token keyword">function</span> <span class="token function">fail</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token string">'use strict'</span><span class="token punctuation">;</span>
+  <span class="token comment">// throws a TypeError</span>
+  nonExtensible<span class="token punctuation">.</span>newProperty <span class="token operator">=</span> <span class="token string">'FAIL'</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token function">fail</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>A non-extensible object's prototype is immutable:</p> <pre data-language="js"><span class="token keyword">var</span> fixed <span class="token operator">=</span> Object<span class="token punctuation">.</span><span class="token function">preventExtensions</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// throws a 'TypeError'.</span>
+fixed<span class="token punctuation">.</span>__proto__ <span class="token operator">=</span> <span class="token punctuation">{</span> oh<span class="token operator">:</span> <span class="token string">'hai'</span> <span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h3 id="non-object_coercion">Non-object coercion</h3>
+<p>In ES5, if the argument to this method is not an object (a primitive), then it will cause a <a href="../typeerror"><code>TypeError</code></a>. In ES2015, a non-object argument will be treated as if it was a non-extensible ordinary object, return it.</p> <pre data-language="js">Object<span class="token punctuation">.</span><span class="token function">preventExtensions</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// TypeError: 1 is not an object (ES5 code)</span>
+
+Object<span class="token punctuation">.</span><span class="token function">preventExtensions</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// 1                             (ES2015 code)</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-object.preventextensions">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-object.preventextensions</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>preventExtensions</code></th>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>5.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>ES2015_behavior</code></th>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>11</div></td>
+<td class="bc-supports-yes"><div>31</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>35</div></td>
+<td class="bc-supports-yes"><div>32</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="isextensible"><code>Object.isExtensible()</code></a></li> <li><a href="seal"><code>Object.seal()</code></a></li> <li><a href="issealed"><code>Object.isSealed()</code></a></li> <li><a href="freeze"><code>Object.freeze()</code></a></li> <li><a href="isfrozen"><code>Object.isFrozen()</code></a></li> <li><a href="../reflect/preventextensions"><code>Reflect.preventExtensions()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions</a>
+  </p>
+</div>

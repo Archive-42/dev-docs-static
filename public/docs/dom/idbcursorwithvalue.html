@@ -1,0 +1,130 @@
+<h1>IDBCursorWithValue</h1>
+
+ <p>The <code>IDBCursorWithValue</code> interface of the <a href="indexeddb_api">IndexedDB API</a> represents a <a href="indexeddb_api/basic_concepts_behind_indexeddb#gloss_cursor">cursor</a> for traversing or iterating over multiple records in a database. It is the same as the <a href="idbcursor"><code>IDBCursor</code></a>, except that it includes the <code>value</code> property.</p> <p>The cursor has a source that indicates which index or object store it is iterating over. It has a position within the range, and moves in a direction that is increasing or decreasing in the order of record keys. The cursor enables an application to asynchronously process all the records in the cursor's range.</p> <p>You can have an unlimited number of cursors at the same time. You always get the same <code>IDBCursorWithValue</code> object representing a given cursor. Operations are performed on the underlying index or object store.</p> 
+<div class="notecard note"> <p><strong>Note:</strong> This feature is available in <a href="web_workers_api">Web Workers</a>.</p> </div>
+  <iframe class="inheritance-diagram-frame" id="frame_inheritance_diagram" width="600" height="70" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/IDBCursorWithValue/_samples_/inheritance_diagram" loading="lazy"></iframe>
+<h2 id="methods">Methods</h2>
+<p>Inherits methods from its parent interface, <a href="idbcursor"><code>IDBCursor</code></a>.</p>
+<h2 id="properties">Properties</h2>
+<p>Inherits properties from its parent interface, <a href="idbcursor"><code>IDBCursor</code></a>.</p> <dl> <dt>
+<a href="idbcursorwithvalue/value"><code>IDBCursorWithValue.value</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the value of the current cursor.</dd> </dl>
+<h2 id="example">Example</h2>
+<p>In this example we create a transaction, retrieve an object store, then use a cursor to iterate through all the records in the object store. T<span style="line-height: 1.5;">he cursor does not require us to select the data based on a key; we can just grab all of it. Also note that in each iteration of the loop, you can grab data from the current record under the cursor object using </span><code style="font-style: normal; line-height: 1.5;">cursor.value.foo</code><span style="line-height: 1.5;">. For a complete working example, see our <a href="https://github.com/mdn/IDBcursor-example/" rel=" noopener">IDBCursor example</a></span><span style="line-height: 1.5;"> (</span><a href="https://mdn.github.io/IDBcursor-example/" style="line-height: 1.5;" rel=" noopener">view example live</a><span style="line-height: 1.5;">.)</span></p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">displayData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> transaction <span class="token operator">=</span> db<span class="token punctuation">.</span><span class="token function">transaction</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'rushAlbumList'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token string">"readonly"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> objectStore <span class="token operator">=</span> transaction<span class="token punctuation">.</span><span class="token function">objectStore</span><span class="token punctuation">(</span><span class="token string">'rushAlbumList'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  objectStore<span class="token punctuation">.</span><span class="token function">openCursor</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function-variable function">onsuccess</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> cursor <span class="token operator">=</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>result<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>cursor<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> listItem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      listItem<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> cursor<span class="token punctuation">.</span>value<span class="token punctuation">.</span>albumTitle <span class="token operator">+</span> <span class="token string">', '</span> <span class="token operator">+</span> cursor<span class="token punctuation">.</span>value<span class="token punctuation">.</span>year<span class="token punctuation">;</span>
+      list<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>listItem<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+      cursor<span class="token punctuation">.</span><span class="token function">continue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Entries all displayed.'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.w3.org/TR/IndexedDB/#idbcursorwithvalue" hreflang="en" rel=" noopener">Indexed Database API 2.0<br><small>The definition of 'IDBCursorWithValue' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> <tr> <td><a href="https://www.w3.org/TR/IndexedDB/#idbcursorwithvalue" hreflang="en" rel=" noopener">Indexed Database API 2.0<br><small>The definition of 'IDBCursorWithValue' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>IDBCursorWithValue</code></th>
+<td class="bc-supports-yes">
+<div>24</div>
+<div>23-57</div>
+</td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>16</div>
+<div>10-16</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes">
+<div>≤37</div>
+<div>≤37-57</div>
+</td>
+<td class="bc-supports-yes">
+<div>25</div>
+<div>25-57</div>
+</td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes">
+<div>1.5</div>
+<div>1.5-7.0</div>
+</td>
+</tr>
+<tr>
+<th><code>value</code></th>
+<td class="bc-supports-yes"><div>23</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>15</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>22</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+<tr>
+<th><code>worker_support</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>42</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="indexeddb_api/using_indexeddb">Using IndexedDB</a></li> <li>Starting transactions: <a href="idbdatabase"><code>IDBDatabase</code></a>
+</li> <li>Using transactions: <a href="idbtransaction"><code>IDBTransaction</code></a>
+</li> <li>Setting a range of keys: <a href="idbkeyrange"><code>IDBKeyRange</code></a>
+</li> <li>Retrieving and making changes to your data: <a href="idbobjectstore"><code>IDBObjectStore</code></a>
+</li> <li>Using cursors: <a href="idbcursor"><code>IDBCursor</code></a>
+</li> <li>Reference example: <a href="https://github.com/mdn/to-do-notifications/tree/gh-pages" rel=" noopener">To-do Notifications</a> (<a href="https://mdn.github.io/to-do-notifications/" rel=" noopener">view example live</a>.)</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/IDBCursorWithValue" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/IDBCursorWithValue</a>
+  </p>
+</div>

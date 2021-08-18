@@ -1,0 +1,80 @@
+<h1>Element.setAttribute()</h1>
+
+ <p>Sets the value of an attribute on the specified element. If the attribute already exists, the value is updated; otherwise a new attribute is added with the specified name and value.</p> <p>To get the current value of an attribute, use <a href="getattribute"><code>getAttribute()</code></a>; to remove an attribute, call <a href="removeattribute"><code>removeAttribute()</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">Element<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span>name<span class="token punctuation">,</span> value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>name</code></dt> <dd>A <a href="../domstring"><code>DOMString</code></a> specifying the name of the attribute whose value is to be set. The attribute name is automatically converted to all lower-case when <code>setAttribute()</code> is called on an HTML element in an HTML document.</dd> <dt><code>value</code></dt> <dd>A <a href="../domstring"><code>DOMString</code></a> containing the value to assign to the attribute. Any non-string value specified is converted automatically into a string.</dd> </dl> <p>Boolean attributes are considered to be <code>true</code> if they're present on the element at all, regardless of their actual <code>value</code>; as a rule, you should specify the empty string (<code>""</code>) in <code>value</code> (some people use the attribute's name; this works but is non-standard). See the <a href="#example">example</a> below for a practical demonstration.</p> <p>Since the specified <code>value</code> gets converted into a string, specifying <code>null</code> doesn't necessarily do what you expect. Instead of removing the attribute or setting its value to be <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null"><code>null</code></a>, it instead sets the attribute's value to the string <code>"null"</code>. If you wish to remove an attribute, call <a href="removeattribute"><code>removeAttribute()</code></a>.</p>
+<h3 id="return_value">Return value</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined"><code>undefined</code></a>.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>InvalidCharacterError</code></dt> <dd>The specified attribute <code>name</code> contains one or more characters which are not valid in attribute names.</dd> </dl>
+<h2 id="example">Example</h2>
+<p>In the following example, <code>setAttribute()</code> is used to set attributes on a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button"><code>&lt;button&gt;</code></a>.</p>
+<h3 id="html">HTML</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">&gt;</span></span>Hello World<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span></pre>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js"><span class="token keyword">var</span> b <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">"button"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+b<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"name"</span><span class="token punctuation">,</span> <span class="token string">"helloButton"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+b<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">"disabled"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre> <p>This demonstrates two things:</p> <ul> <li>The first call to <code>setAttribute()</code> above shows changing the <code>name</code> attribute's value to "helloButton". You can see this using your browser's page inspector (<a href="https://developers.google.com/web/tools/chrome-devtools/inspect-styles" rel=" noopener">Chrome</a>, <a href="https://docs.microsoft.com/en-us/microsoft-edge/f12-devtools-guide/dom-explorer" rel=" noopener">Edge</a>, <a href="https://developer.mozilla.org/en-US/docs/Tools/Page_Inspector">Firefox</a>, <a href="https://developer.apple.com/library/content/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/Introduction/Introduction.html" rel=" noopener">Safari</a>). </li> <li>To set the value of a Boolean attribute, such as <code>disabled</code>, you can specify any value. An empty string or the name of the attribute are recommended values. All that matters is that if the attribute is present at all, <em>regardless of its actual value</em>, its value is considered to be <code>true</code>. The absence of the attribute means its value is <code>false</code>. By setting the value of the <code>disabled</code> attribute to the empty string (<code>""</code>), we are setting <code>disabled</code> to <code>true</code>, which results in the button being disabled.</li> </ul> <p><iframe class="sample-code-frame" id="frame_Example" width="300" height="60" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Element/setAttribute/_samples_/Example" loading="lazy"></iframe></p> 
+<p>DOM methods dealing with element's attributes:</p> <div class="_table"><table class="standard-table"> <thead> <tr> <th>Not namespace-aware, most commonly used methods</th> <th>Namespace-aware variants (DOM Level 2)</th> <th>DOM Level 1 methods for dealing with <code>Attr</code> nodes directly (seldom used)</th> <th>DOM Level 2 namespace-aware methods for dealing with <code>Attr</code> nodes directly (seldom used)</th> </tr> </thead> <tbody> <tr> <td>
+<a href="setattribute"><code>setAttribute</code></a> (DOM 1)</td> <td><a href="setattributens"><code>setAttributeNS</code></a></td> <td><a href="setattributenode"><code>setAttributeNode</code></a></td> <td><a href="setattributenodens"><code>setAttributeNodeNS</code></a></td> </tr> <tr> <td>
+<a href="getattribute"><code>getAttribute</code></a> (DOM 1)</td> <td><a href="getattributens"><code>getAttributeNS</code></a></td> <td><a href="getattributenode"><code>getAttributeNode</code></a></td> <td><a href="getattributenodens"><code>getAttributeNodeNS</code></a></td> </tr> <tr> <td>
+<a href="hasattribute"><code>hasAttribute</code></a> (DOM 2)</td> <td><a href="hasattributens"><code>hasAttributeNS</code></a></td> <td>-</td> <td>-</td> </tr> <tr> <td>
+<a href="removeattribute"><code>removeAttribute</code></a> (DOM 1)</td> <td><a href="removeattributens"><code>removeAttributeNS</code></a></td> <td><a href="removeattributenode"><code>removeAttributeNode</code></a></td> <td>-</td> </tr> </tbody> </table></div>
+
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://dom.spec.whatwg.org/#dom-element-setattribute" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'setAttribute()' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>setAttribute</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes">
+<div>5</div>
+<div>In Internet Explorer 7 and earlier, <code>setAttribute</code> doesn't set styles and removes events when you try to set them.</div>
+</td>
+<td class="bc-supports-yes"><div>8</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h3 id="notes">Gecko notes</h3>
+<p>Using <code>setAttribute()</code> to modify certain attributes, most notably <code>value</code> in XUL, works inconsistently, as the attribute specifies the default value. To access or modify the current values, you should use the properties. For example, use <code>Element.value</code> instead of <code>Element.setAttribute()</code>. </p>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute</a>
+  </p>
+</div>

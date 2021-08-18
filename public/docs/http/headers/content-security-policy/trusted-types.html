@@ -1,0 +1,98 @@
+<h1>CSP: trusted-types</h1> <p>The HTTP <a href="../content-security-policy"><code>Content-Security-Policy</code></a> (CSP) <code><strong>trusted-types</strong></code>  directive instructs user agents to restrict the creation of Trusted Types policies - functions that build<span> non-spoofable, typed values intended to be passed to DOM XSS sinks in place of strings. </span></p> <p><span>Together with <code><strong><a href="require-trusted-types-for">require-trusted-types-for</a></strong></code> directive, this allows authors to</span><span> define rules guarding writing values to the DOM and thus reducing the DOM XSS attack surface to small, isolated parts of the web application codebase, facilitating their monitoring and code review.</span> This directive declares an allow-list of trusted type policy names created with <code>TrustedTypes.createPolicy</code> from Trusted Types API.</p> <h2 id="Syntax">Syntax</h2> <pre class="notranslate">Content-Security-Policy: trusted-types;
+Content-Security-Policy: trusted-types 'none';
+Content-Security-Policy: trusted-types &lt;policyName&gt;;
+Content-Security-Policy: trusted-types &lt;policyName&gt; &lt;policyName&gt; 'allow-duplicates'; 
+</pre> <dl> <dt>&lt;policyName&gt;</dt> <dd>A valid policy name consists only of alphanumeric characters, or one of "<code>-#=_/@.%</code>". A star (<code>*</code>) as a policy name instructs the user agent to allow any unique policy name ('<code>allow-duplicates</code>' may relax that further).</dd> <dt><code>'none'</code></dt> <dd>Disallows creating any Trusted Type policy (same as not specifying any <em>&lt;policyName&gt;</em>).</dd> <dt><code>'allow-duplicates'</code></dt> <dd>Allows for creating policies with a name that was already used.</dd> </dl> <h2 id="Examples">Examples</h2> <pre data-language="js">// Content-Security-Policy: trusted-types foo bar 'allow-duplicates';
+
+if (typeof trustedTypes !== 'undefined') {
+  const policyFoo = trustedTypes.createPolicy('foo', {});
+  const policyFoo2 = trustedTypes.createPolicy('foo', {});
+  const policyBaz = trustedTypes.createPolicy('baz', {}); // Throws and dispatches a SecurityPolicyViolationEvent.
+}
+</pre> <h2 id="Polyfill">Polyfill</h2> <p>A <a href="https://github.com/w3c/webappsec-trusted-types#polyfill">polyfill for Trusted Types</a> is available on Github.</p> <h2 id="Specifications">Specifications</h2> <div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/webappsec-trusted-types/dist/spec/">Trusted Types</a></td> <td>Draft</td> <td>Initial definition.</td> </tr> </tbody> </table></div> <h2 id="Browser_compatibility">Browser compatibility<a class="bc-github-link" href="https://github.com/mdn/browser-compat-data">Update compatibility data on GitHub</a>
+</h2>  <div class="_table">
+<table class="bc-table bc-table-web">
+<thead>
+<tr class="bc-platforms">
+<th></th>
+<th colspan="6"><span>Desktop</span></th>
+</tr>
+<tr class="bc-browsers">
+<th></th>
+<th><span class="bc-head-txt-label bc-head-icon-chrome">Chrome</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-edge">Edge</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-firefox">Firefox</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-ie">Internet Explorer</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-opera">Opera</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-safari">Safari</span></th>
+</tr>
+</thead>
+<tbody><tr>
+<th scope="row">
+<code>trusted-types</code> 
+</th>
+<td class="bc-supports-yes bc-has-history"> 83
+<section class="bc-history" id="sect1"><dl>
+<dt class="bc-supports-yes bc-supports"> 83
+</dt>
+
+<dt class="bc-supports-no bc-supports">73 — 76<div class="bc-icons">Disabled </div>
+</dt>
+<dd>Disabled From version 73 until version 76 (exclusive): this feature is behind the <code>#enable-experimental-productivity-features</code> preference (needs to be set to <code>Enabled</code>). To change preferences in Chrome, visit chrome://flags.</dd>
+</dl></section>
+</td>
+<td> ? </td>
+<td class="bc-supports-no"> No</td>
+<td class="bc-supports-no"> No</td>
+<td class="bc-supports-no"> No</td>
+<td class="bc-supports-no"> No</td>
+</tr></tbody>
+</table>
+<table class="bc-table bc-table-web">
+<thead>
+<tr class="bc-platforms">
+<th></th>
+<th colspan="6"><span>Mobile</span></th>
+</tr>
+<tr class="bc-browsers">
+<th></th>
+<th><span class="bc-head-txt-label bc-head-icon-webview_android">Android webview</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-chrome_android">Chrome for Android</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-firefox_android">Firefox for Android</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-opera_android">Opera for Android</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-safari_ios">Safari on iOS</span></th>
+<th><span class="bc-head-txt-label bc-head-icon-samsunginternet_android">Samsung Internet</span></th>
+</tr>
+</thead>
+<tbody><tr>
+<th scope="row">
+<code>trusted-types</code> 
+</th>
+<td class="bc-supports-yes"> 83</td>
+<td class="bc-supports-yes bc-has-history"> 83
+<section class="bc-history" id="sect2"><dl>
+<dt class="bc-supports-yes bc-supports"> 83
+</dt>
+
+<dt class="bc-supports-no bc-supports">73 — 76<div class="bc-icons">Disabled </div>
+</dt>
+<dd>Disabled From version 73 until version 76 (exclusive): this feature is behind the <code>#enable-experimental-productivity-features</code> preference (needs to be set to <code>Enabled</code>). To change preferences in Chrome, visit chrome://flags.</dd>
+</dl></section>
+</td>
+<td class="bc-supports-no"> No</td>
+<td class="bc-supports-no"> No</td>
+<td class="bc-supports-no"> No</td>
+<td class="bc-supports-no"> No</td>
+</tr></tbody>
+</table>
+</div> <h2 id="See_also">See also</h2> <ul> <li><a href="../content-security-policy"><code>Content-Security-Policy</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Glossary/Cross-site_scripting">Cross-Site Scripting (XSS)</a></li> <li><a href="https://web.dev/trusted-types">Prevent DOM-based cross-site scripting vulnerabilities with Trusted Types</a></li> <li>Trusted Types with <a href="https://github.com/cure53/DOMPurify#what-about-dompurify-and-trusted-types">DOMPurify</a> XSS sanitizer</li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/trusted-types$edit" class="_attribution-link">Edit this page on MDN</a>
+  </p>
+</div>
+<div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2020 Mozilla and individual contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/trusted-types" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/trusted-types</a>
+  </p>
+</div>

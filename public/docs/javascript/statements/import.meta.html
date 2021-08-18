@@ -1,0 +1,73 @@
+<h1>import.meta</h1> <p>The <code>import.meta</code> object exposes context-specific metadata to a JavaScript module. It contains information about the module, like the module's URL. </p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">import</span><span class="token punctuation">.</span>meta</pre>
+<h2 id="description">Description</h2>
+<p>The syntax consists of the keyword <a href="import"><code>import</code></a>, a dot, and the identifier <code>meta</code>. Normally the left-hand side of the dot is the object on which property access is performed, but here <code>import</code> is not really an object.</p> <p>The <code>import.meta</code> object is created by the ECMAScript implementation, with a <a href="../global_objects/null"><code>null</code></a> prototype. The object is extensible, and its properties are writable, configurable, and enumerable.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="using_import.meta">Using import.meta</h3>
+<p>Given a module <code>my-module.js</code></p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>module<span class="token punctuation">"</span></span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>my-module.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</pre> <p>you can access meta information about the module using the <code>import.meta</code> object.</p> <pre data-language="js">console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token keyword">import</span><span class="token punctuation">.</span>meta<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// { url: "file:///home/user/my-module.js" }</span></pre> <p>It returns an object with a <code>url</code> property indicating the base URL of the module. This will either be the URL from which the script was obtained, for external scripts, or the document base URL of the containing document, for inline scripts.</p> <p>Note that this will include query parameters and/or hash (i.e., following the <code>?</code> or <code>#</code>).</p> <p>For example, with the following HTML:</p> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>module<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+<span class="token keyword">import</span> <span class="token string">'./index.mjs?someURLInfo=5'</span><span class="token punctuation">;</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span></pre> <p>..the following JavaScript file will log the `<code>someURLInfo</code> parameter:</p> <pre data-language="js"><span class="token comment">// index.mjs</span>
+<span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span><span class="token keyword">import</span><span class="token punctuation">.</span>meta<span class="token punctuation">.</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span>searchParams<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'someURLInfo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 5</span></pre> <p>The same applies when a file imports another:</p> <pre data-language="js"><span class="token comment">// index.mjs</span>
+<span class="token keyword">import</span> <span class="token string">'./index2.mjs?someURLInfo=5'</span><span class="token punctuation">;</span>
+
+<span class="token comment">// index2.mjs</span>
+<span class="token keyword">new</span> <span class="token class-name">URL</span><span class="token punctuation">(</span><span class="token keyword">import</span><span class="token punctuation">.</span>meta<span class="token punctuation">.</span>url<span class="token punctuation">)</span><span class="token punctuation">.</span>searchParams<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">'someURLInfo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// 5</span></pre> <p>Note that while Node.js will pass on query parameters (or the hash) as in the latter example, as of Node 14.1.0, a URL with query parameters will err when loading in the form <code>node --experimental-modules index.mjs?someURLInfo=5</code> (it is treated as a file rather than a URL in this context).</p> <p>Such file-specific argument passing may be complementary to that used in the application-wide <code>location.href</code> (with query strings or hash added after the HTML file path) (or on Node.js, through <code>process.argv</code>).</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody>
+<tr><td><a href="https://tc39.es/ecma262/#prod-ImportMeta">ECMAScript Language Specification (ECMAScript)<br> <small>#prod-ImportMeta</small></a></td></tr>
+<tr><td><a href="https://html.spec.whatwg.org/multipage/webappapis.html#hostgetimportmetaproperties">HTML Standard (HTML)<br> <small>#hostgetimportmetaproperties</small></a></td></tr>
+</tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>import.meta</code></th>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>51</div></td>
+<td class="bc-supports-yes"><div>11.1</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>64</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="import"><code>import</code></a></li> <li><a href="export"><code>export</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import.meta" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import.meta</a>
+  </p>
+</div>

@@ -1,0 +1,118 @@
+<h1>Array.prototype.slice()</h1> <p>The <code>slice()</code> method returns a shallow copy of a portion of an array into a new array object selected from <code>start</code> to <code>end</code> (<code>end</code> not included) where <code>start</code> and <code>end</code> represent the index of items in that array. The original array will not be modified.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/array-slice.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">slice</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token function">slice</span><span class="token punctuation">(</span>start<span class="token punctuation">)</span>
+<span class="token function">slice</span><span class="token punctuation">(</span>start<span class="token punctuation">,</span> end<span class="token punctuation">)</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code><var>start</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>Zero-based index at which to start extraction.</p> <p>A negative index can be used, indicating an offset from the end of the sequence. <code>slice(-2)</code> extracts the last two elements in the sequence.</p> <p>If <code><var>start</var></code> is undefined, <code>slice</code> starts from the index <code>0</code>.</p> <p>If <code><var>start</var></code> is greater than the index range of the sequence, an empty array is returned.</p> </dd> <dt>
+<code><var>end</var></code> <span class="badge inline optional">Optional</span>
+</dt> <dd> <p>Zero-based index <em>before</em> which to end extraction. <code>slice</code> extracts up to but not including <code><var>end</var></code>. For example, <code>slice(1,4)</code> extracts the second element through the fourth element (elements indexed 1, 2, and 3).</p> <p>A negative index can be used, indicating an offset from the end of the sequence. <code>slice(2,-1)</code> extracts the third element through the second-to-last element in the sequence.</p> <p>If <code><var>end</var></code> is omitted, <code>slice</code> extracts through the end of the sequence (<code><var>arr</var>.length</code>).</p> <p>If <code><var>end</var></code> is greater than the length of the sequence, <code>slice</code> extracts through to the end of the sequence (<code><var>arr</var>.length</code>).</p> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A new array containing the extracted elements.</p>
+<h2 id="description">Description</h2>
+<p><code>slice</code> does not alter the original array. It returns a shallow copy of elements from the original array. Elements of the original array are copied into the returned array as follows:</p> <ul> <li>For object <code>slice</code> copies object references into the new array. Both the original and new array refer to the same object. If an object changes, the changes are visible to both the new and original arrays.</li> <li>For strings, numbers and booleans (not <a href="../string"><code>String</code></a>, <a href="../number"><code>Number</code></a> and <a href="../boolean"><code>Boolean</code></a> objects), <code>slice</code> copies the values into the new array. Changes to the string, number, or boolean in one array do not affect the other array.</li> </ul> <p>If a new element is added to either array, the other array is not affected.</p>
+<h2 id="examples">Examples</h2>
+<h3 id="return_a_portion_of_an_existing_array">Return a portion of an existing array</h3>
+<pre data-language="js"><span class="token keyword">let</span> fruits <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'Banana'</span><span class="token punctuation">,</span> <span class="token string">'Orange'</span><span class="token punctuation">,</span> <span class="token string">'Lemon'</span><span class="token punctuation">,</span> <span class="token string">'Apple'</span><span class="token punctuation">,</span> <span class="token string">'Mango'</span><span class="token punctuation">]</span>
+<span class="token keyword">let</span> citrus <span class="token operator">=</span> fruits<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span>
+
+<span class="token comment">// fruits contains ['Banana', 'Orange', 'Lemon', 'Apple', 'Mango']</span>
+<span class="token comment">// citrus contains ['Orange','Lemon']</span>
+</pre>
+<h3 id="using_slice">Using slice</h3>
+<p>In the following example, <code>slice</code> creates a new array, <code>newCar</code>, from <code>myCar</code>. Both include a reference to the object <code>myHonda</code>. When the color of <code>myHonda</code> is changed to purple, both arrays reflect the change.</p> <pre data-language="js"><span class="token comment">// Using slice, create newCar from myCar.</span>
+<span class="token keyword">let</span> myHonda <span class="token operator">=</span> <span class="token punctuation">{</span> color<span class="token operator">:</span> <span class="token string">'red'</span><span class="token punctuation">,</span> wheels<span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span> engine<span class="token operator">:</span> <span class="token punctuation">{</span> cylinders<span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span> size<span class="token operator">:</span> <span class="token number">2.2</span> <span class="token punctuation">}</span> <span class="token punctuation">}</span>
+<span class="token keyword">let</span> myCar <span class="token operator">=</span> <span class="token punctuation">[</span>myHonda<span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token string">'cherry condition'</span><span class="token punctuation">,</span> <span class="token string">'purchased 1997'</span><span class="token punctuation">]</span>
+<span class="token keyword">let</span> newCar <span class="token operator">=</span> myCar<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
+
+<span class="token comment">// Display the values of myCar, newCar, and the color of myHonda</span>
+<span class="token comment">//  referenced from both arrays.</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'myCar = '</span> <span class="token operator">+</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>myCar<span class="token punctuation">)</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'newCar = '</span> <span class="token operator">+</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>newCar<span class="token punctuation">)</span><span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'myCar[0].color = '</span> <span class="token operator">+</span> myCar<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>color<span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'newCar[0].color = '</span> <span class="token operator">+</span> newCar<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>color<span class="token punctuation">)</span>
+
+<span class="token comment">// Change the color of myHonda.</span>
+myHonda<span class="token punctuation">.</span>color <span class="token operator">=</span> <span class="token string">'purple'</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'The new color of my Honda is '</span> <span class="token operator">+</span> myHonda<span class="token punctuation">.</span>color<span class="token punctuation">)</span>
+
+<span class="token comment">// Display the color of myHonda referenced from both arrays.</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'myCar[0].color = '</span> <span class="token operator">+</span> myCar<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>color<span class="token punctuation">)</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'newCar[0].color = '</span> <span class="token operator">+</span> newCar<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>color<span class="token punctuation">)</span>
+</pre> <p>This script writes:</p> <pre data-language="js">myCar <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>color<span class="token operator">:</span> <span class="token string">'red'</span><span class="token punctuation">,</span> wheels<span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span> engine<span class="token operator">:</span> <span class="token punctuation">{</span>cylinders<span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span> size<span class="token operator">:</span> <span class="token number">2.2</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span>
+         <span class="token string">'cherry condition'</span><span class="token punctuation">,</span> <span class="token string">'purchased 1997'</span><span class="token punctuation">]</span>
+newCar <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>color<span class="token operator">:</span> <span class="token string">'red'</span><span class="token punctuation">,</span> wheels<span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span> engine<span class="token operator">:</span> <span class="token punctuation">{</span>cylinders<span class="token operator">:</span> <span class="token number">4</span><span class="token punctuation">,</span> size<span class="token operator">:</span> <span class="token number">2.2</span><span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span>
+myCar<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>color <span class="token operator">=</span> red
+newCar<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>color <span class="token operator">=</span> red
+The <span class="token keyword">new</span> <span class="token class-name">color</span> <span class="token keyword">of</span> my Honda is purple
+myCar<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>color <span class="token operator">=</span> purple
+newCar<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>color <span class="token operator">=</span> purple
+</pre>
+<h3 id="array-like_objects">Array-like objects</h3>
+<p><code>slice</code> method can also be called to convert Array-like objects/collections to a new Array. You just <a href="../function/bind"><code>bind</code></a> the method to the object. The <a href="../../functions/arguments"><code>arguments</code></a> inside a function is an example of an 'array-like object'.</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>arguments<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> list1 <span class="token operator">=</span> <span class="token function">list</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token comment">// [1, 2, 3]</span>
+</pre> <p>Binding can be done with the <a href="../function/call"><code>call()</code></a> method of <a href="../function"><code>Function</code></a> and it can also be reduced using <code>[].slice.call(arguments)</code> instead of <code>Array.prototype.slice.call</code>.</p> <p>Anyway, it can be simplified using <a href="../function/bind"><code>bind</code></a>.</p> <pre data-language="js"><span class="token keyword">let</span> unboundSlice <span class="token operator">=</span> <span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>slice
+<span class="token keyword">let</span> slice <span class="token operator">=</span> <span class="token class-name">Function</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">.</span><span class="token function">bind</span><span class="token punctuation">(</span>unboundSlice<span class="token punctuation">)</span>
+
+<span class="token keyword">function</span> <span class="token function">list</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> <span class="token function">slice</span><span class="token punctuation">(</span>arguments<span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> list1 <span class="token operator">=</span> <span class="token function">list</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token comment">// [1, 2, 3]</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-array.prototype.slice">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-array.prototype.slice</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>slice</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>10.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="splice"><code>Array.prototype.splice()</code></a></li> <li><a href="../function/call"><code>Function.prototype.call()</code></a></li> <li><a href="../function/bind"><code>Function.prototype.bind()</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice</a>
+  </p>
+</div>

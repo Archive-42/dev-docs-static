@@ -1,0 +1,123 @@
+<h1>ExtendableCookieChangeEvent</h1>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div> <p class="summary">The <code>ExtendableCookieChangeEvent</code> interface of the <a href="cookie_store_api"><code>Cookie Store API</code></a> is the event type passed to <a class="page-not-created"><code>ServiceWorkerRegistration.oncookiechange()</code></a> when any cookie changes have occured. A cookie change event consists of a cookie and a type (either "changed" or "deleted".)</p> <p>Cookie changes that cause the <code>ExtendableCookieChangeEvent</code> to be dispatched are:</p> <ul> <li>A cookie is newly created and not immediately removed. In this case <code>type</code> is "changed".</li> <li>A cookie is newly created and immediately removed. In this case <code>type</code> is "deleted"</li> <li>A cookie is removed. In this case <code>type</code> is "deleted".</li> </ul> <div class="notecard note"> <strong id="note">Note</strong> <p>A cookie that is replaced due to the insertion of another cookie with the same name, domain, and path, is ignored and does not trigger a change event.</p> </div>
+<h2 id="constructor">Constructor</h2>
+<dl> <dt><a href="extendablecookiechangeevent/extendablecookiechangeevent"><code>ExtendableCookieChangeEvent.ExtendableCookieChangeEvent()</code></a></dt> <dd>Creates a new <code>ExtendableCookieChangeEvent</code>.</dd> </dl>
+<h2 id="properties">Properties</h2>
+<p><em>This interface also inherits properties from <a href="extendableevent"><code>ExtendableEvent</code></a>.</em></p> <dl> <dt>
+<a href="extendablecookiechangeevent/changed"><code>ExtendableCookieChangeEvent.changed</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns an array containing the changed cookies.</dd> <dt>
+<a href="extendablecookiechangeevent/deleted"><code>ExtendableCookieChangeEvent.deleted</code></a><span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns an array containing the deleted cookies.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>In the below example we use <a href="cookiestoremanager/getsubscriptions"><code>CookieStoreManager.getSubscriptions()</code></a> to get a list of existing subscriptions. (In service workers, a subscription is required in order to listen for events.) We unsubscribe from existing subscriptions using <a href="cookiestoremanager/unsubscribe"><code>CookieStoreManager.unsubscribe()</code></a>, then subscribe to the cookie with a name of 'COOKIE_NAME' using <a href="cookiestoremanager/subscribe"><code>CookieStoreManager.subscribe()</code></a>. If that cookie is changed, the event listener logs the event to the console. This will be an <code>ExtendableCookieChangeEvent</code> object, with the <a href="extendablecookiechangeevent/changed"><code>changed</code></a> or <a href="extendablecookiechangeevent/deleted"><code>deleted</code></a> property containing the modified cookie.</p> <pre data-language="js">self<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'activate'</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  event<span class="token punctuation">.</span><span class="token function">waitUntil</span><span class="token punctuation">(</span><span class="token keyword">async</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">const</span> subscriptions <span class="token operator">=</span> <span class="token keyword">await</span> self<span class="token punctuation">.</span>registration<span class="token punctuation">.</span>cookies<span class="token punctuation">.</span><span class="token function">getSubscriptions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">await</span> self<span class="token punctuation">.</span>registration<span class="token punctuation">.</span>cookies<span class="token punctuation">.</span><span class="token function">unsubscribe</span><span class="token punctuation">(</span>subscriptions<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">await</span> self<span class="token punctuation">.</span>registration<span class="token punctuation">.</span>cookies<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        name<span class="token operator">:</span> <span class="token string">'COOKIE_NAME'</span><span class="token punctuation">,</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+self<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'cookiechange'</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://wicg.github.io/cookie-store/#ExtendableCookieChangeEvent" hreflang="en" rel=" noopener">Cookie Store API<br><small>The definition of 'ExtendableCookieChangeEvent' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>ExtendableCookieChangeEvent</code></th>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>ExtendableCookieChangeEvent</code></th>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>changed</code></th>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>deleted</code></th>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>73</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-yes"><div>87</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/ExtendableCookieChangeEvent" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ExtendableCookieChangeEvent</a>
+  </p>
+</div>

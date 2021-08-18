@@ -1,0 +1,188 @@
+<h1>break-inside</h1> <p>The <code>break-inside</code> <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> property sets how page, column, or region breaks should behave inside a generated box. If there is no generated box, the property is ignored.</p> <pre data-language="css"><span class="token comment">/* Keyword values */</span>
+<span class="token property">break-inside</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+<span class="token property">break-inside</span><span class="token punctuation">:</span> avoid<span class="token punctuation">;</span>
+<span class="token property">break-inside</span><span class="token punctuation">:</span> avoid-page<span class="token punctuation">;</span>
+<span class="token property">break-inside</span><span class="token punctuation">:</span> avoid-column<span class="token punctuation">;</span>
+<span class="token property">break-inside</span><span class="token punctuation">:</span> avoid-region<span class="token punctuation">;</span>
+
+<span class="token comment">/* Global values */</span>
+<span class="token property">break-inside</span><span class="token punctuation">:</span> inherit<span class="token punctuation">;</span>
+<span class="token property">break-inside</span><span class="token punctuation">:</span> initial<span class="token punctuation">;</span>
+<span class="token property">break-inside</span><span class="token punctuation">:</span> unset<span class="token punctuation">;</span>
+</pre> <p>Each possible break point (in other words, each element boundary) is affected by three properties: the <a href="break-after"><code>break-after</code></a> value of the previous element, the <a href="break-before"><code>break-before</code></a> value of the next element, and the <code>break-inside</code> value of the containing element.</p> <p>To determine if a break must be done, the following rules are applied:</p> <ol> <li>If any of the three concerned values is a <em>forced break value</em> (<code>always</code>, <code>left</code>, <code>right</code>, <code>page</code>, <code>column</code>, or <code>region</code>), it has precedence. If more than one of them are such a break, the value of the element that appears the latest in the flow is used. Thus, the <code>break-before</code> value has precedence over the <code>break-after</code> value, which in turn has precedence over the <code>break-inside</code> value.</li> <li>If any of the three concerned values is an <em>avoid break value</em> (<code>avoid</code>, <code>avoid-page</code>, <code>avoid-region</code>, or <code>avoid-column</code>), no such break will be applied at that point.</li> </ol> <p>Once forced breaks have been applied, soft breaks may be added if needed, but not on element boundaries that resolve in a corresponding <code>avoid</code> value.</p>
+<h2 id="syntax">Syntax</h2>
+<p>The <code>break-inside</code> property is specified as one of the keyword values from the list below.</p>
+<h3 id="values">Values</h3>
+<dl> <dt><code>auto</code></dt> <dd>Allows, but does not force, any break (page, column, or region) to be inserted within the principal box.</dd> <dt><code>avoid</code></dt> <dd>Avoids any break (page, column, or region) from being inserted within the principal box.</dd> <dt><code>avoid-page</code></dt> <dd>Avoids any page break within the principal box.</dd> <dt><code>avoid-column</code></dt> <dd>Avoids any column break within the principal box.</dd> <dt>
+<code>avoid-region</code> <span class="icon experimental" viewbox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img"> This is an experimental API that should not be used in production code.  </span>
+</dt> <dd>Avoids any region break within the principal box.</dd> </dl>
+<h2 id="page_break_aliases">Page break aliases</h2>
+<p>For compatibility reasons, the legacy <a href="page-break-inside"><code>page-break-inside</code></a> property should be treated by browsers as an alias of <code>break-inside</code>. This ensures that sites using <code>page-break-inside</code> continue to work as designed. A subset of values should be aliased as follows:</p> <div class="_table"><table> <thead> <tr> <th scope="col">page-break-inside</th> <th scope="col">break-inside</th> </tr> </thead> <tbody> <tr> <td><code>auto</code></td> <td><code>auto</code></td> </tr> <tr> <td><code>avoid</code></td> <td><code>avoid</code></td> </tr> </tbody> </table></div>
+<h2 id="formal_definition">Formal definition</h2>
+
+<div class="_table"><table class="properties"><tbody>
+<tr>
+<th scope="row"><a href="initial_value">Initial value</a></th>
+<td><code>auto</code></td>
+</tr>
+<tr>
+<th scope="row">Applies to</th>
+<td>block-level elements</td>
+</tr>
+<tr>
+<th scope="row"><a href="inheritance">Inherited</a></th>
+<td>no</td>
+</tr>
+<tr>
+<th scope="row"><a href="computed_value">Computed value</a></th>
+<td>as specified</td>
+</tr>
+<tr>
+<th scope="row">Animation type</th>
+<td>discrete</td>
+</tr>
+</tbody></table></div>
+
+<h2 id="formal_syntax">Formal syntax</h2>
+<pre class="notranslate">auto <a href="value_definition_syntax#single_bar">|</a> avoid <a href="value_definition_syntax#single_bar">|</a> avoid-page <a href="value_definition_syntax#single_bar">|</a> avoid-column <a href="value_definition_syntax#single_bar">|</a> avoid-region</pre>
+<h2 id="examples">Examples</h2>
+<h3 id="avoiding_breaking_inside_a_figure">Avoiding breaking inside a figure</h3>
+<p>In the following example we have a container that contains an <code>&lt;h1&gt;</code> spanning all columns (achieved using <code>column-span: all</code>) and a series of paragraphs laid out in multiple columns using <code>column-width: 200px</code>. We also have a <code>&lt;figure&gt;</code> containing an image and a caption.</p> <p>By default, it is possible for you to get a break between the image and its caption, which is not what we want. To avoid this, we have set <code>break-inside: avoid</code> on the <code>&lt;figure&gt;</code>, which causes them to always stay together.</p> <h4 id="html">HTML</h4> <pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>article</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span><span class="token punctuation">&gt;</span></span>Main heading<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vitae fringilla mauris. Quisque commodo eget nisi sed pretium. Mauris luctus nec lacus in ultricies. Mauris vitae hendrerit arcu, ac scelerisque lacus. Aliquam lobortis in lacus sit amet posuere. Fusce iaculis urna id neque dapibus, eu lacinia lectus dictum.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figure</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://media.prod.mdn.mozit.cloud/attachments/2020/07/29/17350/3b4892b7e820122ac6dd7678891d4507/firefox.png<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>figcaption</span><span class="token punctuation">&gt;</span></span>The Firefox logo — fox wrapped around the world<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figcaption</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>figure</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Praesent condimentum dui dui, sit amet rutrum diam tincidunt eu. Cras suscipit porta leo sit amet rutrum. Sed vehicula ornare tincidunt. Curabitur a ipsum ac diam mattis volutpat ac ut elit. Nullam luctus justo non vestibulum gravida. Morbi metus libero, pharetra non porttitor a, molestie nec nisi.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>In finibus viverra enim vel suscipit. Quisque consequat velit eu orci malesuada, ut interdum tortor molestie. Proin sed pellentesque augue. Nam risus justo, faucibus non porta a, congue vel massa. Cras luctus lacus nisl, sed tincidunt velit pharetra ac. Duis suscipit faucibus dui sed ultricies.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>article</span><span class="token punctuation">&gt;</span></span></pre> <h4 id="css">CSS</h4> <pre data-language="css"><span class="token selector">html</span> <span class="token punctuation">{</span>
+  <span class="token property">font-family</span><span class="token punctuation">:</span> helvetica<span class="token punctuation">,</span> arial<span class="token punctuation">,</span> sans-serif<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">body</span> <span class="token punctuation">{</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 80%<span class="token punctuation">;</span>
+  <span class="token property">margin</span><span class="token punctuation">:</span> 0 auto<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">h1</span> <span class="token punctuation">{</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 3rem<span class="token punctuation">;</span>
+  <span class="token property">letter-spacing</span><span class="token punctuation">:</span> 2px<span class="token punctuation">;</span>
+  <span class="token property">column-span</span><span class="token punctuation">:</span> all<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">h1 + p</span> <span class="token punctuation">{</span>
+  <span class="token property">margin-top</span><span class="token punctuation">:</span> 0<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">p</span> <span class="token punctuation">{</span>
+  <span class="token property">line-height</span><span class="token punctuation">:</span> 1.5<span class="token punctuation">;</span>
+  <span class="token property">break-after</span><span class="token punctuation">:</span> column<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">figure</span> <span class="token punctuation">{</span>
+  <span class="token property">break-inside</span><span class="token punctuation">:</span> avoid<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">img</span> <span class="token punctuation">{</span>
+  <span class="token property">max-width</span><span class="token punctuation">:</span> 70%<span class="token punctuation">;</span>
+  <span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+  <span class="token property">margin</span><span class="token punctuation">:</span> 0 auto<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">figcaption</span> <span class="token punctuation">{</span>
+  <span class="token property">font-style</span><span class="token punctuation">:</span> italic<span class="token punctuation">;</span>
+  <span class="token property">font-size</span><span class="token punctuation">:</span> 0.8rem<span class="token punctuation">;</span>
+  <span class="token property">width</span><span class="token punctuation">:</span> 70%<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token selector">article</span> <span class="token punctuation">{</span>
+  <span class="token property">column-width</span><span class="token punctuation">:</span> 200px<span class="token punctuation">;</span>
+  <span class="token property">gap</span><span class="token punctuation">:</span> 20px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h3 id="result">Result</h3>
+<p><iframe class="sample-code-frame" id="frame_Avoiding_breaking_inside_a_figure" width="100%" height="600" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/CSS/break-inside/_samples_/Avoiding_breaking_inside_a_figure" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://drafts.csswg.org/css-break-3/#break-within" hreflang="en" rel=" noopener">CSS Fragmentation Module Level 3<br><small>The definition of 'break-inside' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>No change.</td> </tr> <tr> <td><a href="https://drafts.csswg.org/css-regions-1/#region-flow-break" hreflang="en" rel=" noopener">CSS Regions Module Level 1<br><small>The definition of 'break-inside' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Extends the property to handle region breaks.</td> </tr> <tr> <td><a href="https://drafts.csswg.org/css-multicol-1/#break-before-break-after-break-inside" hreflang="en" rel=" noopener">CSS Multi-column Layout Module<br><small>The definition of 'break-inside' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>multicol_context</code></th>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes">
+<div>37</div>
+<div>11.1-12.1</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes">
+<div>37</div>
+<div>11.1-12.1</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+<tr>
+<th><code>paged_context</code></th>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes">
+<div>37</div>
+<div>11.1-12.1</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>50</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes">
+<div>37</div>
+<div>11.1-12.1</div>
+</td>
+<td class="bc-supports-yes"><div>10</div></td>
+<td class="bc-supports-yes"><div>5.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h3 id="notes_on_compatibility">Notes on compatibility</h3>
+<p>Prior to Firefox 65, the older property of <a href="page-break-inside"><code>page-break-inside</code></a> will work in Firefox to prevent breaks in columns, as well as pages. Add both properties for backwards compatibility.</p> <p>For older WebKit-based browsers, the prefixed property <code>-webkit-column-break-inside</code> can be used to control column breaks.</p>
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Multiple-column_Layout">Multiple-column Layout</a></li> <li><a href="https://www.smashingmagazine.com/2019/02/css-fragmentation/" rel=" noopener">Breaking Boxes With CSS Fragmentation</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/break-inside" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/CSS/break-inside</a>
+  </p>
+</div>

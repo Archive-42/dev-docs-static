@@ -1,0 +1,80 @@
+<h1>XRSystem: isSessionSupported()</h1> <p class="summary">The <a href="../xrsystem"><code>XRSystem</code></a> method <code><strong>isSessionSupported()</strong></code> returns a promise which resolves to <code>true</code> if the specified WebXR session mode is supported by the user's WebXR device. Otherwise, the promise resolves with <code>false</code>.</p> <p class="summary">If the no devices are available or the browser doesn't have permission to use the XR device, the promise is rejected with an appropriate <a href="../domexception"><code>DOMException</code></a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> isSupportedPromise <span class="token operator">=</span> xr<span class="token punctuation">.</span><span class="token function">isSessionSupported</span><span class="token punctuation">(</span>xrSessionMode<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>xrSessionMode</code></dt> <dd>A <a href="../domstring"><code>DOMString</code></a> specifying the WebXR session mode for which support is to be checked. This string must be one of <code>inline</code> (to present the WebXR content inline within the context of an HTML document) or <code>immersive-vr</code> for a fully-immersive virtual experience.</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves to <code>true</code> if the specified session mode is supported; otherwise the promise resolves to <code>false</code>.</p>
+<h3 id="exceptions">Exceptions</h3>
+<p>Rather than throwing true exceptions, <code>isSessionSupported()</code> rejects the returned promise, passing to the rejection handler a <a href="../domexception"><code>DOMException</code></a> whose <code>name</code> is one of the following strings.</p> <dl> <dt><code>SecurityError</code></dt> <dd>The document's origin does not have permission to use the <code>xr-spatial-tracking</code> <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Feature_Policy">feature policy</a>.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>In this example, we see <code>isSessionSupported()</code> used to detect whether or not the device supports VR mode by checking to see if an <code>immersive-vr</code> session is supported. If it is, we set up a button to read "Enter XR", to call a method <code>onButtonClicked()</code>, and enable the button.</p> <p>If no session is already underway, we request the VR session and, if successful, set up the session in a method called <code>onSessionStarted()</code>, not shown. If a session <em>is</em> already underway when the button is clicked, we call the <code>xrSession</code> object's <a href="../xrsession/end"><code>end()</code></a> method to shut down the WebXR session.</p> <pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span>navigator<span class="token punctuation">.</span>xr<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  navigator<span class="token punctuation">.</span>xr<span class="token punctuation">.</span><span class="token function">isSessionSupported</span><span class="token punctuation">(</span><span class="token string">'immersive-vr'</span><span class="token punctuation">)</span>
+  <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">isSupported</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>isSupported<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      userButton<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> onButtonClicked<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      userButton<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">'Enter XR'</span><span class="token punctuation">;</span>
+      userButton<span class="token punctuation">.</span>disabled <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> <span class="token function">onButtonClicked</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>xrSession<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    navigator<span class="token punctuation">.</span>xr<span class="token punctuation">.</span><span class="token function">requestSession</span><span class="token punctuation">(</span><span class="token string">'immersive-vr'</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token parameter">session</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+      xrSession <span class="token operator">=</span> session<span class="token punctuation">;</span>
+      <span class="token comment">// onSessionStarted() not shown for reasons of brevity and clarity.</span>
+      <span class="token function">onSessionStarted</span><span class="token punctuation">(</span>xrSession<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Button is a toggle button.</span>
+    xrSession<span class="token punctuation">.</span><span class="token function">end</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td>
+<a href="https://immersive-web.github.io/webxr/#dom-xrsystem-issessionsupported" hreflang="en" rel=" noopener">WebXR Device API<br><small>The definition of 'isSessionSupported()' in that specification.</small></a> </td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>isSessionSupported</code></th>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>11.2</div></td>
+</tr></tbody>
+</table>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/XRSystem/isSessionSupported" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/XRSystem/isSessionSupported</a>
+  </p>
+</div>

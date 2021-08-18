@@ -1,0 +1,138 @@
+<h1>Element.matches()</h1>
+
+ <p>The <code>matches()</code> method checks to see if the <a href="../element"><code>Element</code></a> would be selected by the provided <code><var>selectorString</var></code> -- in other words -- checks if the element "is" the selector.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> result <span class="token operator">=</span> element<span class="token punctuation">.</span><span class="token function">matches</span><span class="token punctuation">(</span>selectorString<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<p><code><var>selectorString</var></code> is a string representing the selector to test. </p>
+<h3 id="return_value">Return value</h3>
+<p><code><var>result</var></code> is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a>.</p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>SYNTAX_ERR</code></dt> <dd>The specified selector string is invalid.</dd> </dl>
+<h2 id="example">Example</h2>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>ul</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>birds<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>Orange-winged parrot<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>endangered<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Philippine eagle<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span><span class="token punctuation">&gt;</span></span>Great white pelican<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>ul</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/javascript<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script"><span class="token language-javascript">
+  <span class="token keyword">var</span> birds <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">'li'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> birds<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>birds<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">matches</span><span class="token punctuation">(</span><span class="token string">'.endangered'</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'The '</span> <span class="token operator">+</span> birds<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>textContent <span class="token operator">+</span> <span class="token string">' is endangered!'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+</pre> <p>This will log "The Philippine eagle is endangered!" to the console, since the element has indeed a <code>class</code> attribute with value <code>endangered</code>.</p>
+<h2 id="polyfill">Polyfill</h2>
+<p>For browsers that do not support <code>Element.matches()</code> or <code>Element.matchesSelector()</code>, but include support for <code>document.querySelectorAll()</code>, a polyfill exists:</p> <pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>matches<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>matches <span class="token operator">=</span>
+      <span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>matchesSelector <span class="token operator">||</span>
+      <span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>mozMatchesSelector <span class="token operator">||</span>
+      <span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>msMatchesSelector <span class="token operator">||</span>
+      <span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>oMatchesSelector <span class="token operator">||</span>
+      <span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>webkitMatchesSelector <span class="token operator">||</span>
+      <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">s</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">var</span> matches <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>document <span class="token operator">||</span> <span class="token keyword">this</span><span class="token punctuation">.</span>ownerDocument<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span>s<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            i <span class="token operator">=</span> matches<span class="token punctuation">.</span>length<span class="token punctuation">;</span>
+        <span class="token keyword">while</span> <span class="token punctuation">(</span><span class="token operator">--</span>i <span class="token operator">&gt;=</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> matches<span class="token punctuation">.</span><span class="token function">item</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span> <span class="token operator">!==</span> <span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token keyword">return</span> i <span class="token operator">&gt;</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>However, given the practicality of supporting older browsers, the following should suffice for most (if not all) practical cases (i.e. IE9+ support).</p> <pre data-language="js"><span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>matches<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>matches <span class="token operator">=</span> <span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>msMatchesSelector <span class="token operator">||</span>
+                              <span class="token class-name">Element</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span>webkitMatchesSelector<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td>
+<a href="https://dom.spec.whatwg.org/#dom-element-matches" hreflang="en" rel=" noopener">DOM<br><small>The definition of 'Element.prototype.matches' in that specification.</small></a> </td> <td><span class="spec-living">Living Standard</span></td> <td>Initial definition</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>matches</code></th>
+<td class="bc-supports-yes">
+<div>33</div>
+<div>4</div>
+</td>
+<td class="bc-supports-yes">
+<div>15</div>
+<div>12</div>
+<div>12</div>
+</td>
+<td class="bc-supports-yes">
+<div>34</div>
+<div>44</div>
+<div>3.6</div>
+<div>["Prior to Firefox 4, invalid selector strings caused false to be returned instead of throwing an exception.", "See <a href="https://bugzil.la/1119718">bug 1119718</a> for removal."]</div>
+</td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes">
+<div>21</div>
+<div>15</div>
+<div>11.5-15</div>
+</td>
+<td class="bc-supports-yes">
+<div>7</div>
+<div>5</div>
+</td>
+<td class="bc-supports-yes">
+<div>4.4</div>
+<div>≤37</div>
+</td>
+<td class="bc-supports-yes">
+<div>33</div>
+<div>18</div>
+</td>
+<td class="bc-supports-yes">
+<div>34</div>
+<div>44</div>
+<div>4</div>
+<div>See <a href="https://bugzil.la/1119718">bug 1119718</a> for removal.</div>
+</td>
+<td class="bc-supports-yes">
+<div>21</div>
+<div>14</div>
+<div>11.5-14</div>
+</td>
+<td class="bc-supports-yes">
+<div>8</div>
+<div>4.2</div>
+</td>
+<td class="bc-supports-yes">
+<div>2.0</div>
+<div>1.0</div>
+</td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li> <a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Selectors">The syntax of Selectors</a> </li> <li> Other methods that take selectors: <a href="queryselector"><code>element.querySelector()</code></a> and <a href="closest"><code>element.closest()</code></a>. </li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/matches" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/matches</a>
+  </p>
+</div>

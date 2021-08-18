@@ -1,0 +1,129 @@
+<h1>SubtleCrypto.decrypt()</h1>
+
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div>
+ <p>The <code><strong>decrypt()</strong></code> method of the <a href="../subtlecrypto"><code>SubtleCrypto</code></a> interface decrypts some encrypted data. It takes as arguments a <a href="https://developer.mozilla.org/en-US/docs/Glossary/Key">key</a> to decrypt with, some optional extra parameters, and the data to decrypt (also known as "ciphertext"). It returns a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> which will be fulfilled with the decrypted data (also known as "plaintext").</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">const</span> result <span class="token operator">=</span> crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">decrypt</span><span class="token punctuation">(</span>algorithm<span class="token punctuation">,</span> key<span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<ul> <li>
+<em><code>algorithm</code></em> is an object specifying the <a href="#supported_algorithms">algorithm</a> to be used, and any extra parameters as required. The values given for the extra parameters must match those passed into the corresponding <a href="encrypt"><code>encrypt()</code></a> call. <ul> <li>To use <a href="#rsa-oaep">RSA-OAEP</a>, pass an <a href="../rsaoaepparams"><code>RsaOaepParams</code></a> object.</li> <li>To use <a href="#aes-ctr">AES-CTR</a>, pass an <a href="../aesctrparams"><code>AesCtrParams</code></a> object.</li> <li>To use <a href="#aes-cbc">AES-CBC</a>, pass an <a href="../aescbcparams"><code>AesCbcParams</code></a> object.</li> <li>To use <a href="#aes-gcm">AES-GCM</a>, pass an <a href="../aesgcmparams"><code>AesGcmParams</code></a> object.</li> </ul> </li> <li>
+<code><em>key</em></code> is a <a href="../cryptokey"><code>CryptoKey</code></a> containing the key to be used for decryption. If using RSA-OAEP, this is the <code>privateKey</code> property of the <a href="../cryptokeypair"><code>CryptoKeyPair</code></a> object.</li> <li>
+<em><code>data</code></em> is a <a href="../buffersource"><code>BufferSource</code></a> containing the data to be decrypted (also known as <a href="https://developer.mozilla.org/en-US/docs/Glossary/Ciphertext">ciphertext</a>).</li> </ul>
+<h3 id="return_value">Return value</h3>
+<ul> <li>
+<code><em>result</em></code> is a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that fulfills with an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer"><code>ArrayBuffer</code></a> containing the plaintext.</li> </ul>
+<h3 id="exceptions">Exceptions</h3>
+<p>The promise is rejected when the following exceptions are encountered:</p> <dl> <dt>InvalidAccessError</dt> <dd>Raised when the requested operation is not valid for the provided key (e.g. invalid encryption algorithm, or invalid key for the specified encryption algorithm<em>)</em>. </dd> <dt>OperationError</dt> <dd>Raised when the operation failed for an operation-specific reason (e.g. algorithm parameters of invalid sizes, or there was an error decrypting the ciphertext).</dd> </dl>
+<h2 id="supported_algorithms">Supported algorithms</h2>
+<p>The <code>decrypt()</code> method supports the same algorithms as the <code><a href="encrypt#supported_algorithms">encrypt()</a></code> method.</p>
+<h2 id="examples">Examples</h2>
+<div class="notecard note"> <p><strong>Note</strong>: You can <a href="https://mdn.github.io/dom-examples/web-crypto/encrypt-decrypt/index.html" rel=" noopener">try the working examples</a> on GitHub.</p> </div>
+<h3 id="rsa-oaep">RSA-OAEP</h3>
+<p>This code decrypts <code>ciphertext</code> using RSA-OAEP. <a href="https://github.com/mdn/dom-examples/blob/master/web-crypto/encrypt-decrypt/rsa-oaep.js" rel="noopener">See the complete code on GitHub.</a></p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">decryptMessage</span><span class="token punctuation">(</span><span class="token parameter">privateKey<span class="token punctuation">,</span> ciphertext</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">decrypt</span><span class="token punctuation">(</span>
+    <span class="token punctuation">{</span>
+      name<span class="token operator">:</span> <span class="token string">"RSA-OAEP"</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    privateKey<span class="token punctuation">,</span>
+    ciphertext
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h3 id="aes-ctr">AES-CTR</h3>
+<p>This code decrypts <code>ciphertext</code> using AES in CTR mode. Note that <code>counter</code> must match the value that was used for encryption. <a href="https://github.com/mdn/dom-examples/blob/master/web-crypto/encrypt-decrypt/aes-ctr.js" rel="noopener">See the complete code on GitHub.</a></p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">decryptMessage</span><span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> ciphertext</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">decrypt</span><span class="token punctuation">(</span>
+    <span class="token punctuation">{</span>
+      name<span class="token operator">:</span> <span class="token string">"AES-CTR"</span><span class="token punctuation">,</span>
+      counter<span class="token punctuation">,</span>
+      length<span class="token operator">:</span> <span class="token number">64</span>
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    key<span class="token punctuation">,</span>
+    ciphertext
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h3 id="aes-cbc">AES-CBC</h3>
+<p>This code decrypts <code>ciphertext</code> using AES in CBC mode. Note that <code>iv</code> must match the value that was used for encryption. <a href="https://github.com/mdn/dom-examples/blob/master/web-crypto/encrypt-decrypt/aes-cbc.js" rel="noopener">See the complete code on GitHub.</a></p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">decryptMessage</span><span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> ciphertext</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">decrypt</span><span class="token punctuation">(</span>
+    <span class="token punctuation">{</span>
+      name<span class="token operator">:</span> <span class="token string">"AES-CBC"</span><span class="token punctuation">,</span>
+      iv<span class="token operator">:</span> iv
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    key<span class="token punctuation">,</span>
+    ciphertext
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h3 id="aes-gcm">AES-GCM</h3>
+<p>This code decrypts <code>ciphertext</code> using AES in GCM mode. Note that <code>iv</code> must match the value that was used for encryption. <a href="https://github.com/mdn/dom-examples/blob/master/web-crypto/encrypt-decrypt/aes-gcm.js" rel="noopener">See the complete code on GitHub.</a></p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">decryptMessage</span><span class="token punctuation">(</span><span class="token parameter">key<span class="token punctuation">,</span> ciphertext</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">return</span> window<span class="token punctuation">.</span>crypto<span class="token punctuation">.</span>subtle<span class="token punctuation">.</span><span class="token function">decrypt</span><span class="token punctuation">(</span>
+    <span class="token punctuation">{</span>
+      name<span class="token operator">:</span> <span class="token string">"AES-GCM"</span><span class="token punctuation">,</span>
+      iv<span class="token operator">:</span> iv
+    <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    key<span class="token punctuation">,</span>
+    ciphertext
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://www.w3.org/TR/WebCryptoAPI/#SubtleCrypto-method-decrypt" hreflang="en" rel=" noopener">Web Cryptography API<br><small>The definition of 'SubtleCrypto.decrypt()' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>decrypt</code></th>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes">
+<div>12</div>
+<div>Not supported: AES-CTR.</div>
+</td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes">
+<div>11</div>
+<div>Returns <code>CryptoOperation</code> instead of <code>Promise</code>
+</div>
+</td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>37</div></td>
+<td class="bc-supports-yes"><div>34</div></td>
+<td class="bc-supports-yes"><div>24</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>6.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li>
+<a href="encrypt"><code>SubtleCrypto.encrypt()</code></a>.</li> <li>
+<a href="https://datatracker.ietf.org/doc/html/rfc3447" rel=" noopener">RFC 3447</a> specifies RSAOAEP.</li> <li>
+<a href="https://csrc.nist.gov/publications/detail/sp/800-38a/final" rel=" noopener">NIST SP800-38A</a> specifies CTR mode.</li> <li>
+<a href="https://csrc.nist.gov/publications/detail/sp/800-38a/final" rel=" noopener">NIST SP800-38A</a> specifies CBC mode.</li> <li>
+<a href="https://csrc.nist.gov/publications/detail/sp/800-38d/final" rel=" noopener">NIST SP800-38D</a> specifies GCM mode.</li> <li>
+<a href="https://csrc.nist.gov/csrc/media/publications/fips/198/1/final/documents/fips-198-1_final.pdf" rel=" noopener">FIPS 198-1</a> specifies HMAC.</li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/decrypt" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/SubtleCrypto/decrypt</a>
+  </p>
+</div>

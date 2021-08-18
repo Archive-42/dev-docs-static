@@ -1,0 +1,79 @@
+<h1>Symbol.for()</h1> <p>The <code>Symbol.for(key)</code> method searches for existing symbols in a runtime-wide symbol registry with the given key and returns it if found. Otherwise a new symbol gets created in the global symbol registry with this key.</p> <iframe class="interactive" width="100%" height="490" src="https://interactive-examples.mdn.mozilla.net/pages/js/symbol-for.html" title="MDN Web Docs Interactive Example" loading="lazy"></iframe><h2 id="syntax">Syntax</h2>
+<pre data-language="js">Symbol<span class="token punctuation">.</span><span class="token function">for</span><span class="token punctuation">(</span>key<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code><var>key</var></code></dt> <dd>String, required. The key for the symbol (and also used for the description of the symbol).</dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>An existing symbol with the given key if found; otherwise, a new symbol is created and returned.</p>
+<h2 id="description">Description</h2>
+<p>In contrast to <code>Symbol()</code>, the <code>Symbol.for()</code> function creates a symbol available in a global symbol registry list. <code>Symbol.for()</code> does also not necessarily create a new symbol on every call, but checks first if a symbol with the given <code>key</code> is already present in the registry. In that case, that symbol is returned. If no symbol with the given key is found, <code>Symbol.for()</code> will create a new global symbol.</p>
+<h3 id="global_symbol_registry">Global symbol registry</h3>
+<p>The global symbol registry is a list with the following record structure and it is initialized empty:</p> <div class="_table"><table class="standard-table"> <caption>A record in the global symbol registry</caption> <tbody> <tr> <th>Field name</th> <th>Value</th> </tr> <tr> <td>[[key]]</td> <td>A string key used to identify a symbol.</td> </tr> <tr> <td>[[symbol]]</td> <td>A symbol that is stored globally.</td> </tr> </tbody> </table></div>
+<h2 id="examples">Examples</h2>
+<h3 id="using_symbol.for">Using Symbol.for()</h3>
+<pre data-language="js">Symbol<span class="token punctuation">.</span><span class="token function">for</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// create a new global symbol</span>
+Symbol<span class="token punctuation">.</span><span class="token function">for</span><span class="token punctuation">(</span><span class="token string">'foo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// retrieve the already created symbol</span>
+
+<span class="token comment">// Same global symbol, but not locally</span>
+Symbol<span class="token punctuation">.</span><span class="token function">for</span><span class="token punctuation">(</span><span class="token string">'bar'</span><span class="token punctuation">)</span> <span class="token operator">===</span> Symbol<span class="token punctuation">.</span><span class="token function">for</span><span class="token punctuation">(</span><span class="token string">'bar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// true</span>
+<span class="token function">Symbol</span><span class="token punctuation">(</span><span class="token string">'bar'</span><span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token function">Symbol</span><span class="token punctuation">(</span><span class="token string">'bar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// false</span>
+
+<span class="token comment">// The key is also used as the description</span>
+<span class="token keyword">var</span> sym <span class="token operator">=</span> Symbol<span class="token punctuation">.</span><span class="token function">for</span><span class="token punctuation">(</span><span class="token string">'mario'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+sym<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// "Symbol(mario)"</span>
+</pre> <p>To avoid name clashes with your global symbol keys and other (library code) global symbols, it might be a good idea to prefix your symbols:</p> <pre data-language="js">Symbol<span class="token punctuation">.</span><span class="token function">for</span><span class="token punctuation">(</span><span class="token string">'mdn.foo'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Symbol<span class="token punctuation">.</span><span class="token function">for</span><span class="token punctuation">(</span><span class="token string">'mdn.bar'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table">
+<thead><tr><th scope="col">Specification</th></tr></thead>
+<tbody><tr><td><a href="https://tc39.es/ecma262/#sec-symbol.for">ECMAScript Language Specification (ECMAScript)<br> <small>#sec-symbol.for</small></a></td></tr></tbody>
+</table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>for</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>27</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>36</div></td>
+<td class="bc-supports-yes"><div>27</div></td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="keyfor"><code>Symbol.keyFor()</code></a></li> </ul><div class="_attribution">
+  <p class="_attribution-p">
+    &copy; 2005&ndash;2021 MDN contributors.<br>Licensed under the Creative Commons Attribution-ShareAlike License v2.5 or later.<br>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol/for</a>
+  </p>
+</div>

@@ -1,0 +1,79 @@
+<h1>Sanitizer()</h1>
+<div class="notecard draft"> <strong id="draft">Draft</strong> <p>This page is not complete.</p> </div>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div> <p class="summary">The <code>Sanitizer()</code> constructor creates a new <a href="../sanitizer"><code>sanitizer</code></a> object which allows developers to take untrusted strings of HTML, and sanitize them for safe insertion into a document’s DOM.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> sanitizer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Sanitizer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt>
+<code>config</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An object in the format of SanitizerConfig. Options are as follows: <ul> <li>
+<code>allowElements</code>: An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>strings</code></a> representing elements the sanitizer should retain in the input.</li> <li>
+<code>blockElements</code>: An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>strings</code></a> representing elements the sanitizer should remove in the input, but retain any of their children elements.</li> <li>
+<code>dropElements</code>: An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>strings</code></a> representing elements the sanitizer should remove in the input along with their children.</li> <li>
+<code>allowAttributes</code>: An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>strings</code></a> representing attributes the sanitizer should retain in the input.</li> <li>
+<code>dropAttributes</code>: An <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>strings</code></a> representing attributes the sanitizer should remove in the input.</li> </ul> </dd> </dl> <div class="note notecard"> <p>At the time of writing the default elements within each configuration property above are still under consideration. Due to this the above config parameter has not been implemented.</p> </div>
+<h2 id="examples">Examples</h2>
+<p>This example shows the result of sanitizing a string with disallowed <code>script</code> elements.</p> <pre data-language="js"><span class="token keyword">new</span> <span class="token class-name">Sanitizer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sanitizeToString</span><span class="token punctuation">(</span><span class="token string">"abc &lt;script&gt;alert(1)&lt;/script&gt; def"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Result: script will be removed: "abc alert(1) def"</span>
+</pre> <p>This example shows how the different configuration options would return the same string.</p> <pre data-language="js"><span class="token keyword">const</span> sample <span class="token operator">=</span> <span class="token string">"Some text &lt;b&gt;&lt;i&gt;with&lt;/i&gt;&lt;/b&gt; &lt;blink&gt;tags&lt;/blink&gt;."</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> allow <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Sanitizer</span><span class="token punctuation">(</span><span class="token punctuation">{</span>allowElements<span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">"b"</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sanitizeToString</span><span class="token punctuation">(</span>sample<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>allow<span class="token punctuation">)</span>
+<span class="token comment">// Logs: "Some text &lt;b&gt;with&lt;/b&gt; text tags."</span>
+
+<span class="token keyword">const</span> block <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Sanitizer</span><span class="token punctuation">(</span><span class="token punctuation">{</span>blockElements<span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">"b"</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sanitizeToString</span><span class="token punctuation">(</span>sample<span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>block<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Logs: "Some text &lt;i&gt;with&lt;/i&gt; &lt;blink&gt;tags&lt;/blink&gt;."</span>
+
+<span class="token keyword">const</span> drop <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Sanitizer</span><span class="token punctuation">(</span><span class="token punctuation">{</span>dropElements<span class="token operator">:</span> <span class="token punctuation">[</span> <span class="token string">"b"</span> <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">sanitizeToString</span><span class="token punctuation">(</span>sample<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Logs: "Some text tags."</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://wicg.github.io/sanitizer-api/#sanitizer-api" hreflang="en" rel=" noopener">HTML Sanitizer API<br><small>The definition of 'sanitizer' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>Sanitizer</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>83</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Sanitizer/Sanitizer" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Sanitizer/Sanitizer</a>
+  </p>
+</div>

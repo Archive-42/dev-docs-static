@@ -1,0 +1,65 @@
+<h1>SharedWorkerGlobalScope.onconnect</h1>
+
+ <p>The <code><strong>onconnect</strong></code> property of the <a href="../sharedworkerglobalscope"><code>SharedWorkerGlobalScope</code></a> interface is an event handler representing the code to be called when the <code><a href="connect_event">connect</a></code> event is raised — that is, when a <a href="../messageport"><code>MessagePort</code></a> connection is opened between the associated <a href="../sharedworker"><code>SharedWorker</code></a> and the main thread.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function-variable function">onconnect</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span> <span class="token operator">...</span> <span class="token punctuation">}</span><span class="token punctuation">;</span></pre>
+<h2 id="examples">Examples</h2>
+<p>This example shows a shared worker file — when a connection to the worker occurs from a main thread via a <a href="../messageport"><code>MessagePort</code></a>, the <code>onconnect</code> event handler fires. The event object is a <a href="../messageevent"><code>MessageEvent</code></a>.</p> <p>The connecting port can be referenced through the event object's <code>ports</code> parameter; this reference can have an <code>onmessage</code> handler attached to it to handle messages coming in through the port, and its <code>postMessage()</code> method can be used to send messages back to the main thread using the worker.</p> <pre data-language="js"><span class="token function-variable function">onconnect</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> port <span class="token operator">=</span> e<span class="token punctuation">.</span>ports<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+    port<span class="token punctuation">.</span><span class="token function-variable function">onmessage</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token keyword">var</span> workerResult <span class="token operator">=</span> <span class="token string">'Result: '</span> <span class="token operator">+</span> <span class="token punctuation">(</span>e<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">*</span> e<span class="token punctuation">.</span>data<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      port<span class="token punctuation">.</span><span class="token function">postMessage</span><span class="token punctuation">(</span>workerResult<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    port<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre> <p>For a complete running example, see our <a href="https://github.com/mdn/simple-shared-worker" rel=" noopener">Basic shared worker example</a> (<a href="https://mdn.github.io/simple-shared-worker/" rel=" noopener">run shared worker</a>.)</p> <div class="notecard note"> <p><strong>Note</strong>: The <code>data</code> property of the event object used to be <code>null</code> in Firefox. As of version 65 it is now initialized to an empty string, as per spec (<a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1508824" rel=" noopener">bug 1508824</a>).</p> </div>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#handler-sharedworkerglobalscope-onconnect" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'onconnect' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>onconnect</code></th>
+<td class="bc-supports-yes"><div>4</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>10.6</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>29</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../sharedworkerglobalscope"><code>SharedWorkerGlobalScope</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/SharedWorkerGlobalScope/onconnect" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/SharedWorkerGlobalScope/onconnect</a>
+  </p>
+</div>

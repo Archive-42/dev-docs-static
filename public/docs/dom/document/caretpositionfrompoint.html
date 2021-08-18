@@ -1,0 +1,99 @@
+<h1>Document.caretPositionFromPoint()</h1>
+ <div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <code>caretPositionFromPoint()</code> property of the <a href="../document"><code>Document</code></a> interface returns a <a href="../caretposition"><code>CaretPosition</code></a> object, containing the DOM node, along with the caret and caret's character offset within that node.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token function">caretPositionFromPoint</span><span class="token punctuation">(</span>x<span class="token punctuation">,</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>x</code></dt> <dd>The horizontal coordinate of a point.</dd> <dt><code>y</code></dt> <dd>The vertical coordinate of a point.</dd> </dl>
+<h3 id="returns">Returns</h3>
+<p>A <a href="../caretposition"><code>CaretPosition</code></a> object.</p>
+<h2 id="example">Example</h2>
+<p>Click anywhere in the <strong>Demo</strong> paragraph below to insert a line break at the point where you click. The code for it is below the demo.</p>
+<h3 id="demo">Demo</h3>
+<p><iframe class="sample-code-frame" id="frame_Example" width="100%" height="100px" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Document/caretPositionFromPoint/_samples_/Example" loading="lazy"></iframe></p> <p>The code below first checks for <a href="caretrangefrompoint"><code>document.caretRangeFromPoint</code></a> support, but if the browser doesn’t support that, the code then checks for <code>document.caretPositionFromPoint</code>, and uses that instead.</p>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js"><span class="token keyword">function</span> <span class="token function">insertBreakAtPoint</span><span class="token punctuation">(</span><span class="token parameter">e</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> range<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> textNode<span class="token punctuation">;</span>
+  <span class="token keyword">let</span> offset<span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>document<span class="token punctuation">.</span>caretRangeFromPoint<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    range <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">caretRangeFromPoint</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>clientX<span class="token punctuation">,</span> e<span class="token punctuation">.</span>clientY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    textNode <span class="token operator">=</span> range<span class="token punctuation">.</span>startContainer<span class="token punctuation">;</span>
+    offset <span class="token operator">=</span> range<span class="token punctuation">.</span>startOffset<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>document<span class="token punctuation">.</span>caretPositionFromPoint<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    range <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">caretPositionFromPoint</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>clientX<span class="token punctuation">,</span> e<span class="token punctuation">.</span>clientY<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    textNode <span class="token operator">=</span> range<span class="token punctuation">.</span>offsetNode<span class="token punctuation">;</span>
+    offset <span class="token operator">=</span> range<span class="token punctuation">.</span>offset<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    document<span class="token punctuation">.</span>body<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token string">"[This browser supports neither"</span>
+      <span class="token operator">+</span> <span class="token string">" document.caretRangeFromPoint"</span>
+      <span class="token operator">+</span> <span class="token string">" nor document.caretPositionFromPoint.]"</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+  <span class="token comment">// Only split TEXT_NODEs</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>textNode <span class="token operator">&amp;&amp;</span> textNode<span class="token punctuation">.</span>nodeType <span class="token operator">==</span> <span class="token number">3</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> replacement <span class="token operator">=</span> textNode<span class="token punctuation">.</span><span class="token function">splitText</span><span class="token punctuation">(</span>offset<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">let</span> br <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'br'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    textNode<span class="token punctuation">.</span>parentNode<span class="token punctuation">.</span><span class="token function">insertBefore</span><span class="token punctuation">(</span>br<span class="token punctuation">,</span> replacement<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">let</span> paragraphs <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementsByTagName</span><span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> paragraphs<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  paragraphs<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> insertBreakAtPoint<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h3 id="html">HTML</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Lorem ipsum dolor sit amet, consetetur sadipscing elitr,
+sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> </tr> <tr> <td><a href="https://drafts.csswg.org/cssom-view/#dom-document-caretpositionfrompoint" hreflang="en" rel=" noopener">CSS Object Model (CSSOM) View Module<br><small>The definition of 'caretPositionFromPoint()' in that specification.</small></a></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>caretPositionFromPoint</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>20</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>20</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../caretposition"><code>CaretPosition</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/caretPositionFromPoint" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Document/caretPositionFromPoint</a>
+  </p>
+</div>

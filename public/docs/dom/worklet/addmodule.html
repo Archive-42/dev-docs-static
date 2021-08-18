@@ -1,0 +1,75 @@
+<h1>Worklet.addModule()</h1>
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div> <p>The <code><strong>addModule()</strong></code> method of the <a href="../worklet"><code>Worklet</code></a> interface loads the module in the given JavaScript file and adds it to the current <code>Worklet</code>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">addPromise <span class="token operator">=</span> worklet<span class="token punctuation">.</span><span class="token function">addModule</span><span class="token punctuation">(</span>moduleURL<span class="token punctuation">)</span><span class="token punctuation">;</span>
+addPromise <span class="token operator">=</span> worklet<span class="token punctuation">.</span><span class="token function">addModule</span><span class="token punctuation">(</span>moduleURL<span class="token punctuation">,</span> options<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>moduleURL</code></dt> <dd>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String"><code>String</code></a> containing the URL of a JavaScript file with the module to add.</dd> <dt>
+<code>options</code> <span class="badge inline optional">Optional</span>
+</dt> <dd>An object with any of the following options: <ul> <li>
+<code>credentials</code>: A <a class="page-not-created"><code>RequestCredentials</code></a> value that indicates whether to send credentials (e.g. cookies and HTTP authentification) when loading the module. Can be one of <code>"omit"</code>, <code>"same-origin"</code>, or <code>"include"</code>. Defaults to <code>"same-origin"</code>. See also <a href="../request/credentials"><code>Request.credentials</code></a>.</li> </ul> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise"><code>Promise</code></a> that resolves once the module from the given URL has been added. The promise doesn't return any value.</p>
+<h3 id="exceptions">Exceptions</h3>
+<p>If <code>addModule()</code> fails, it rejects the promise, delivering one of the following errors to the rejection handler.</p> <dl> <dt><code>AbortError</code></dt> <dd>The specified script is invalid or could not be loaded.</dd> <dt><code>SyntaxError</code></dt> <dd>The specified <code>moduleURL</code> is invalid.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<h3 id="audioworklet_example">AudioWorklet example</h3>
+<pre data-language="js"><span class="token keyword">const</span> audioCtx <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AudioContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> audioWorklet <span class="token operator">=</span> audioCtx<span class="token punctuation">.</span>audioWorklet<span class="token punctuation">;</span>
+<span class="token keyword">await</span> audioWorklet<span class="token punctuation">.</span><span class="token function">addModule</span><span class="token punctuation">(</span><span class="token string">'modules/bypassFilter.js'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+  credentials<span class="token operator">:</span> <span class="token string">'omit'</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</pre>
+<h3 id="paintworklet_example">PaintWorklet example</h3>
+<pre data-language="js"><span class="token constant">CSS</span><span class="token punctuation">.</span>paintWorklet<span class="token punctuation">.</span><span class="token function">addModule</span><span class="token punctuation">(</span><span class="token string">'https://mdn.github.io/houdini-examples/cssPaint/intro/worklets/hilite.js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Once a <a href="../paintworklet"><code>paintWorklet</code></a> is included, the CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/paint()"><code>paint()</code></a> function can be used to include the image created by the worklet:</p> <pre data-language="css"><span class="token atrule"><span class="token rule">@supports</span> <span class="token punctuation">(</span><span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token function">paint</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+  <span class="token selector">h1</span> <span class="token punctuation">{</span>
+      <span class="token property">background-image</span><span class="token punctuation">:</span> <span class="token function">paint</span><span class="token punctuation">(</span>hollowHighlights<span class="token punctuation">,</span> filled<span class="token punctuation">,</span> 3px<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> </tr> <tr> <td><a href="https://html.spec.whatwg.org/multipage/#dom-worklet-addmodule" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'addModule()' in that specification.</small></a></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>addModule</code></th>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>76</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>52</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>65</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>47</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>9.0</div></td>
+</tr></tbody>
+</table> 
+
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Worklet/addModule" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Worklet/addModule</a>
+  </p>
+</div>

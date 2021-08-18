@@ -1,0 +1,88 @@
+<h1>ServiceWorkerRegistration.pushManager</h1> <p>The <code>pushManager</code> property of the <a href="../serviceworkerregistration"><code>ServiceWorkerRegistration</code></a> interface returns a reference to the <a href="../pushmanager"><code>PushManager</code></a> interface for managing push subscriptions; this includes support for subscribing, getting an active subscription, and accessing push permission status.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">var</span> pushManager <span class="token operator">=</span> serviceWorkerRegistration<span class="token punctuation">.</span>pushManager<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>A <a href="../pushmanager"><code>PushManager</code></a> object.</p>
+<h2 id="examples">Examples</h2>
+<pre data-language="js"><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function-variable function">onpush</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token comment">// From here we can write the data to IndexedDB, send it to any open</span>
+  <span class="token comment">// windows, display a notification, etc.</span>
+<span class="token punctuation">}</span>
+
+navigator<span class="token punctuation">.</span>serviceWorker<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span><span class="token string">'serviceworker.js'</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>
+  <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">serviceWorkerRegistration</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    serviceWorkerRegistration<span class="token punctuation">.</span>pushManager<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span>
+      <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">pushSubscription</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>pushSubscription<span class="token punctuation">.</span>subscriptionId<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>pushSubscription<span class="token punctuation">.</span>endpoint<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// The push subscription details needed by the application</span>
+        <span class="token comment">// server are now available, and can be sent to it using,</span>
+        <span class="token comment">// for example, an XMLHttpRequest.</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">error</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// During development it often helps to log errors to the</span>
+        <span class="token comment">// console. In a production environment it might make sense to</span>
+        <span class="token comment">// also report information about errors back to the</span>
+        <span class="token comment">// application server.</span>
+        console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/push-api/#pushmanager-interface" hreflang="en" rel=" noopener">Push API<br><small>The definition of 'PushManager' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>pushManager</code></th>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>17</div></td>
+<td class="bc-supports-yes">
+<div>44</div>
+<div>
+<a href="https://www.mozilla.org/en-US/firefox/organizations/">Extended Support Releases (ESR)</a> before Firefox 78 ESR do not support service workers and the Push API.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>27</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://crbug.com/421921">bug 421921</a>
+</div>
+</td>
+<td class="bc-supports-yes"><div>40</div></td>
+<td class="bc-supports-yes"><div>44</div></td>
+<td class="bc-supports-yes"><div>27</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>4.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../push_api">Push API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/pushManager" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerRegistration/pushManager</a>
+  </p>
+</div>

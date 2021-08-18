@@ -1,0 +1,118 @@
+<h1>Element: click event</h1> <p>An element receives a <code><strong>click</strong></code> event when a pointing device button (such as a mouse's primary mouse button) is both pressed and released while the pointer is located inside the element.</p> <div class="_table"><table class="properties"> <tbody> <tr> <th>Bubbles</th> <td>Yes</td> </tr> <tr> <th>Cancelable</th> <td>Yes</td> </tr> <tr> <th>Interface</th> <td><a href="../mouseevent"><code>MouseEvent</code></a></td> </tr> <tr> <th>Event handler property</th> <td><a href="../globaleventhandlers/onclick"><code>onclick</code></a></td> </tr> </tbody> </table></div> <p>If the button is pressed on one element and the pointer is moved outside the element before the button is released, the event is fired on the most specific ancestor element that contained both elements.</p> <p><code>click</code> fires after both the <code><a href="mousedown_event">mousedown</a></code> and <code><a href="mouseup_event">mouseup</a></code> events have fired, in that order.</p>
+<h2 id="usage_notes">Usage notes</h2>
+<p>The <a href="../mouseevent"><code>MouseEvent</code></a> object passed into the event handler for <code>click</code> has its <a href="../uievent/detail"><code>detail</code></a> property set to the number of times the <a href="../event/target"><code>target</code></a> was clicked. In other words, <code>detail</code> will be 2 for a double-click, 3 for triple-click, and so forth. This counter resets after a short interval without any clicks occurring; the specifics of how long that interval is may vary from browser to browser and across platforms. The interval is also likely to be affected by user preferences; for example, accessibility options may extend this interval to make it easier to perform multiple clicks with adaptive interfaces.</p>
+<h3 id="internet_explorer">Internet Explorer</h3>
+<p>Internet Explorer 8 &amp; 9 suffer from a bug where elements with a computed <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color"><code>background-color</code></a> of <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#transparent_keyword"><code>transparent</code></a> that are overlaid on top of other element(s) won't receive <code>click</code> events. Any <code>click</code> events will be fired at the underlying element(s) instead. See <a href="https://jsfiddle.net/YUKma/show/" rel=" noopener">this live example</a> for a demonstration.</p> <p>Known workarounds for this bug:</p> <ul> <li>For IE9 only: <ul> <li>Set <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color"><code>background-color</code></a><code>: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgba()">rgba</a>(0,0,0,0)</code>
+</li> <li>Set <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/opacity"><code>opacity</code></a><code>: 0</code> and an explicit <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color"><code>background-color</code></a> other than <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#transparent_keyword"><code>transparent</code></a>
+</li> </ul> </li> <li>For IE8 and IE9: Set <code><a href="https://msdn.microsoft.com/en-us/library/ms532847(v=vs.85).aspx" rel=" noopener">filter</a>: alpha(opacity=0);</code> and an explicit <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color"><code>background-color</code></a> other than <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#transparent_keyword"><code>transparent</code></a>
+</li> </ul>
+<h3 id="safari_mobile">Safari Mobile</h3>
+<p>Safari Mobile 7.0+ (and likely earlier versions too) <a href="https://bugs.webkit.org/show_bug.cgi?id=153887" rel=" noopener">suffers from a bug</a> where <code>click</code> events aren't fired on elements that aren't typically interactive (e.g. <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a>) and which also don't have event listeners directly attached to the elements themselves (i.e. <a href="https://davidwalsh.name/event-delegate" rel=" noopener">event delegation</a> is being used). See <a href="https://jsfiddle.net/cvrhulu/k9t0sdnf/show/" rel=" noopener">this live example</a> for a demonstration. See also <a href="https://developer.apple.com/library/safari/documentation/appleapplications/reference/safariwebcontent/HandlingEvents/HandlingEvents.html#//apple_ref/doc/uid/TP40006511-SW6" rel=" noopener">Safari's docs on making elements clickable</a> and the <a href="https://developer.apple.com/library/safari/documentation/appleapplications/reference/safariwebcontent/HandlingEvents/HandlingEvents.html#//apple_ref/doc/uid/TP40006511-SW7" rel=" noopener">definition of "clickable element"</a>.</p> <p>Known workarounds for this bug:</p> <ul> <li>Set <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/cursor"><code>cursor</code></a><code>: pointer;</code> on the element or any of its ancestors.</li> <li>Add a dummy <code>onclick="void(0)"</code> attribute to the element or any of its ancestors up to but not including <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/body"><code>&lt;body&gt;</code></a>.</li> <li>Use a typically interactive element (e.g., <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a"><code>&lt;a&gt;</code></a>) instead of one that isn't typically interactive (e.g., <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div"><code>&lt;div&gt;</code></a>).</li> <li>Stop using <code>click</code> <a href="https://davidwalsh.name/event-delegate" rel=" noopener">event delegation</a>.</li> </ul> <p>Safari Mobile considers the following elements to be typically interactive (and thus they aren't affected by this bug):</p> <ul> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a"><code>&lt;a&gt;</code></a> (but it must have an <code>href</code>)</li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/area"><code>&lt;area&gt;</code></a> (but it must have an <code>href</code>)</li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button"><code>&lt;button&gt;</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img"><code>&lt;img&gt;</code></a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input"><code>&lt;input&gt;</code></a></li> <li>
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label"><code>&lt;label&gt;</code></a> (but it must be associated with a form control)</li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea"><code>&lt;textarea&gt;</code></a></li> <li><em>This list is incomplete; you can help MDN by doing further testing/research and expanding it.</em></li> </ul>
+<h2 id="examples">Examples</h2>
+<p>This example displays the number of consecutive clicks on a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button"><code>&lt;button&gt;</code></a>.</p>
+<h3 id="html">HTML</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span><span class="token punctuation">&gt;</span></span>Click<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span></pre>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js"><span class="token keyword">const</span> button <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'button'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+button<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'click'</span><span class="token punctuation">,</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  button<span class="token punctuation">.</span>textContent <span class="token operator">=</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">Click count: </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>event<span class="token punctuation">.</span>detail<span class="token interpolation-punctuation punctuation">}</span></span><span class="token template-punctuation string">`</span></span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="result">Result</h3>
+<p>Try making rapid, repeated clicks on the button to increase the click count. If you take a break between clicks, the count will reset.</p> <p><iframe class="sample-code-frame" id="frame_Examples" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Element/click_event/_samples_/Examples" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> </tr> <tr> <td><a href="https://w3c.github.io/uievents/#event-type-click" hreflang="en" rel=" noopener">UI Events</a></td> <td><span class="spec-wd">Working Draft</span></td> </tr> <tr> <td><a href="https://www.w3.org/TR/2014/WD-DOM-Level-3-Events-20140925/#event-type-click" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 3 Events Specification<br><small>The definition of 'click' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> </tr> <tr> <td><a href="https://www.w3.org/TR/DOM-Level-2-Events/events.html#Events-eventgroupings-mouseevents-h3" hreflang="en" rel=" noopener">Document Object Model (DOM) Level 2 Events Specification<br><small>The definition of 'click' in that specification.</small></a></td> <td><span class="spec-obsolete">Obsolete</span></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>click_event</code></th>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes">
+<div>6</div>
+<div>Beginning in Firefox 68, Firefox no longer incorrectly sends a <code>click</code> event for buttons other than the primary mouse button; previouly, there were circumstances in which this would occur. One example: middle-clicking a link would send a <code>click</code> to the document's <code>&lt;html&gt;</code> element.</div>
+</td>
+<td class="bc-supports-yes"><div>9</div></td>
+<td class="bc-supports-yes"><div>11.6</div></td>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>6</div></td>
+<td class="bc-supports-yes"><div>12.1</div></td>
+<td class="bc-supports-yes"><div>1</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr>
+<tr>
+<th><code>on_disabled_form_elements</code></th>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Only works for <code>&lt;textarea&gt;</code> elements and some <code>&lt;input&gt;</code> element types.</div>
+</td>
+<td class="bc-supports-yes">
+<div>79</div>
+<div>Only works for <code>&lt;textarea&gt;</code> elements and some <code>&lt;input&gt;</code> element types.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Internet Explorer only triggers the <code>click</code> event on <code>&lt;input&gt;</code> elements of type <code>checkbox</code> or <code>radio</code> when the element is double-clicked.</div>
+</td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Only works for <code>&lt;textarea&gt;</code> elements and some <code>&lt;input&gt;</code> element types.</div>
+</td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Only works for <code>&lt;textarea&gt;</code> elements and some <code>&lt;input&gt;</code> element types.</div>
+</td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Only works for <code>&lt;textarea&gt;</code> elements and some <code>&lt;input&gt;</code> element types.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Only works for <code>&lt;textarea&gt;</code> elements and some <code>&lt;input&gt;</code> element types.</div>
+</td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Only works for <code>&lt;textarea&gt;</code> elements and some <code>&lt;input&gt;</code> element types.</div>
+</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Building_blocks/Events">Introduction to events</a></li> <li><code><a href="auxclick_event">auxclick</a></code></li> <li><code><a href="contextmenu_event">contextmenu</a></code></li> <li><code><a href="dblclick_event">dblclick</a></code></li> <li><code><a href="mousedown_event">mousedown</a></code></li> <li><code><a href="mouseup_event">mouseup</a></code></li> <li><code><a href="../htmlelement/pointerdown_event">pointerdown</a></code></li> <li><code><a href="../htmlelement/pointerup_event">pointerup</a></code></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event</a>
+  </p>
+</div>

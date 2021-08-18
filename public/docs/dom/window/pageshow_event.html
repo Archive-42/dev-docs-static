@@ -1,0 +1,81 @@
+<h1>Window: pageshow event</h1> <p>The <code>pageshow</code> event is sent to a <a href="../window"><code>Window</code></a> when the browser displays the window's document due to navigation. This includes:</p> <ul> <li>Initially loading the page</li> <li>Navigating to the page from another page in the same window or tab</li> <li>Restoring a frozen page on mobile OSes</li> <li>Returning to the page using the browser's forward or back buttons</li> </ul> <div class="notecard note"> <p>During the initial page load, the <code>pageshow</code> event fires <em>after</em> the <a href="load_event"><code>load</code></a> event.</p> </div> <div class="_table"><table class="properties"> <tbody> <tr> <th scope="row">Bubbles</th> <td>No</td> </tr> <tr> <th scope="row">Cancelable</th> <td>No</td> </tr> <tr> <th scope="row">Interface</th> <td><a href="../pagetransitionevent"><code>PageTransitionEvent</code></a></td> </tr> <tr> <th scope="row">Event handler property</th> <td><a class="page-not-created"><code>onpageshow</code></a></td> </tr> </tbody> </table></div>
+<h2 id="examples">Examples</h2>
+<p>This example sets up event handlers for events listed in the array <code>events</code>. The handler, <code>eventLogger()</code>, logs the type of event that occurred to the console, and includes the value of the <a href="../pagetransitionevent/persisted"><code>persisted</code></a> flag on <code>pageshow</code> and <code>pagehide</code> events.</p>
+<h3 id="javascript">JavaScript</h3>
+<pre data-language="js"><span class="token keyword">const</span> events <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token string">"pagehide"</span><span class="token punctuation">,</span> <span class="token string">"pageshow"</span><span class="token punctuation">,</span>
+  <span class="token string">"unload"</span><span class="token punctuation">,</span> <span class="token string">"load"</span>
+<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token keyword">const</span> <span class="token function-variable function">eventLogger</span> <span class="token operator">=</span> <span class="token parameter">event</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">switch</span> <span class="token punctuation">(</span>event<span class="token punctuation">.</span>type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">case</span> <span class="token string">"pagehide"</span><span class="token operator">:</span>
+    <span class="token keyword">case</span> <span class="token string">"pageshow"</span><span class="token operator">:</span>
+      <span class="token keyword">let</span> isPersisted <span class="token operator">=</span> event<span class="token punctuation">.</span>persisted <span class="token operator">?</span> <span class="token string">"persisted"</span> <span class="token operator">:</span> <span class="token string">"not persisted"</span><span class="token punctuation">;</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Event:'</span><span class="token punctuation">,</span> event<span class="token punctuation">.</span>type<span class="token punctuation">,</span> <span class="token string">'-'</span><span class="token punctuation">,</span> isPersisted<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+    <span class="token keyword">default</span><span class="token operator">:</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Event:'</span><span class="token punctuation">,</span> event<span class="token punctuation">.</span>type<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token keyword">break</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+events<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token parameter">eventName</span> <span class="token operator">=&gt;</span>
+  window<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span>eventName<span class="token punctuation">,</span> eventLogger<span class="token punctuation">)</span>
+<span class="token punctuation">)</span><span class="token punctuation">;</span></pre>
+<h3 id="html">HTML</h3>
+<pre data-language="html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Open the console and watch the output as you navigate to and from
+this page. Try loading new pages into this tab, then navigating forward
+and backward through history, noting the events’ output to the log.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+</pre>
+<h3 id="results">Results</h3>
+<p><iframe class="sample-code-frame" id="frame_Examples" width="640" height="250" src="https://yari-demos.prod.mdn.mozit.cloud/en-US/docs/Web/API/Window/pageshow_event/_samples_/Examples" loading="lazy"></iframe></p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://html.spec.whatwg.org/multipage/browsing-the-web.html#event-pageshow" hreflang="en" rel=" noopener">HTML Living Standard<br><small>The definition of 'pageshow' in that specification.</small></a></td> <td><span class="spec-living">Living Standard</span></td> <td>Initial specification.</td> </tr> <tr> <td><a href="https://www.w3.org/TR/html52/browsers.html#event-pageshow" hreflang="en" rel=" noopener">HTML5<br><small>The definition of 'pageshow' in that specification.</small></a></td> <td><span class="spec-rec">Recommendation</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>pageshow_event</code></th>
+<td class="bc-supports-yes"><div>3</div></td>
+<td class="bc-supports-yes"><div>12</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤37</div></td>
+<td class="bc-supports-yes"><div>18</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>1.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="pagehide_event"><code>pagehide</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/pageshow_event" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Window/pageshow_event</a>
+  </p>
+</div>

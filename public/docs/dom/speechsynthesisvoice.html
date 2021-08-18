@@ -1,0 +1,192 @@
+<h1>SpeechSynthesisVoice</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The <code>SpeechSynthesisVoice</code> interface of the <a href="web_speech_api">Web Speech API</a> represents a voice that the system supports. Every <code>SpeechSynthesisVoice</code> has its own relative speech service including information about language, name and URI.</p>
+<h2 id="properties">Properties</h2>
+<dl> <dt>
+<a href="speechsynthesisvoice/default"><code>SpeechSynthesisVoice.default</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> indicating whether the voice is the default voice for the current app language (<code>true</code>), or not (<code>false</code>.)</dd> <dt>
+<a href="speechsynthesisvoice/lang"><code>SpeechSynthesisVoice.lang</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a BCP 47 language tag indicating the language of the voice.</dd> <dt>
+<a href="speechsynthesisvoice/localservice"><code>SpeechSynthesisVoice.localService</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>A <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean"><code>Boolean</code></a> indicating whether the voice is supplied by a local speech synthesizer service (<code>true</code>), or a remote speech synthesizer service (<code>false</code>.)</dd> <dt>
+<a href="speechsynthesisvoice/name"><code>SpeechSynthesisVoice.name</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns a human-readable name that represents the voice.</dd> <dt>
+<a href="speechsynthesisvoice/voiceuri"><code>SpeechSynthesisVoice.voiceURI</code></a> <span class="badge inline readonly">Read only </span>
+</dt> <dd>Returns the type of URI and location of the speech synthesis service for this voice.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>The following snippet is excerpted from our <a href="https://github.com/mdn/web-speech-api/tree/master/speak-easy-synthesis" rel=" noopener">Speech synthesiser demo</a>.</p> <pre data-language="js"><span class="token keyword">var</span> synth <span class="token operator">=</span> window<span class="token punctuation">.</span>speechSynthesis<span class="token punctuation">;</span>
+<span class="token keyword">function</span> <span class="token function">populateVoiceList</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  voices <span class="token operator">=</span> synth<span class="token punctuation">.</span><span class="token function">getVoices</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> voices<span class="token punctuation">.</span>length <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> option <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement</span><span class="token punctuation">(</span><span class="token string">'option'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    option<span class="token punctuation">.</span>textContent <span class="token operator">=</span> voices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">' ('</span> <span class="token operator">+</span> voices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lang <span class="token operator">+</span> <span class="token string">')'</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span><span class="token punctuation">(</span>voices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>default<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      option<span class="token punctuation">.</span>textContent <span class="token operator">+=</span> <span class="token string">' -- DEFAULT'</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    option<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'data-lang'</span><span class="token punctuation">,</span> voices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>lang<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    option<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span><span class="token string">'data-name'</span><span class="token punctuation">,</span> voices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    voiceSelect<span class="token punctuation">.</span><span class="token function">appendChild</span><span class="token punctuation">(</span>option<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">populateVoiceList</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>speechSynthesis<span class="token punctuation">.</span>onvoiceschanged <span class="token operator">!==</span> <span class="token keyword">undefined</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  speechSynthesis<span class="token punctuation">.</span>onvoiceschanged <span class="token operator">=</span> populateVoiceList<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+inputForm<span class="token punctuation">.</span><span class="token function-variable function">onsubmit</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">var</span> utterThis <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">SpeechSynthesisUtterance</span><span class="token punctuation">(</span>inputTxt<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">var</span> selectedOption <span class="token operator">=</span> voiceSelect<span class="token punctuation">.</span>selectedOptions<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">getAttribute</span><span class="token punctuation">(</span><span class="token string">'data-name'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">for</span><span class="token punctuation">(</span>i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> voices<span class="token punctuation">.</span>length <span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>voices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>name <span class="token operator">===</span> selectedOption<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      utterThis<span class="token punctuation">.</span>voice <span class="token operator">=</span> voices<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+  utterThis<span class="token punctuation">.</span>pitch <span class="token operator">=</span> pitch<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+  utterThis<span class="token punctuation">.</span>rate <span class="token operator">=</span> rate<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+  synth<span class="token punctuation">.</span><span class="token function">speak</span><span class="token punctuation">(</span>utterThis<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  utterThis<span class="token punctuation">.</span><span class="token function-variable function">onpause</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">event</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">var</span> char <span class="token operator">=</span> event<span class="token punctuation">.</span>utterance<span class="token punctuation">.</span>text<span class="token punctuation">.</span><span class="token function">charAt</span><span class="token punctuation">(</span>event<span class="token punctuation">.</span>charIndex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Speech paused at character '</span> <span class="token operator">+</span> event<span class="token punctuation">.</span>charIndex <span class="token operator">+</span> <span class="token string">' of "'</span> <span class="token operator">+</span>
+    event<span class="token punctuation">.</span>utterance<span class="token punctuation">.</span>text <span class="token operator">+</span> <span class="token string">'", which is "'</span> <span class="token operator">+</span> char <span class="token operator">+</span> <span class="token string">'".'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  inputTxt<span class="token punctuation">.</span><span class="token function">blur</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://wicg.github.io/speech-api/#speechsynthesisvoice" hreflang="en" rel=" noopener">Web Speech API<br><small>The definition of 'SpeechSynthesisVoice' in that specification.</small></a></td> <td><span class="spec-draft">Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>SpeechSynthesisVoice</code></th>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>21</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-no">
+<div>No</div>
+<div>See <a href="https://crbug.com/487255">bug 487255</a>
+</div>
+</td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>default</code></th>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>21</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>lang</code></th>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>21</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>localService</code></th>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>21</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>name</code></th>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>21</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+<tr>
+<th><code>voiceURI</code></th>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>14</div></td>
+<td class="bc-supports-yes"><div>49</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>21</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>33</div></td>
+<td class="bc-supports-yes"><div>62</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>7</div></td>
+<td class="bc-supports-yes"><div>3.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="web_speech_api">Web Speech API</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisVoice" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesisVoice</a>
+  </p>
+</div>

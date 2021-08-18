@@ -1,0 +1,193 @@
+<h1>FileSystemDirectoryHandle</h1>
+<div class="notecard draft"> <strong id="draft">Draft</strong> <p>This page is not complete.</p> </div>
+<div class="notecard secure">
+<strong id="secure_context">Secure context</strong><p>This feature is available only in <a href="https://developer.mozilla.org/en-US/docs/Web/Security/Secure_Contexts">secure contexts</a> (HTTPS), in some or all <a href="#browser_compatibility">supporting browsers</a>.</p>
+</div> <p class="summary">The <code>FileSystemDirectoryHandle</code> interface of the <a href="file_system_access_api"><code>File System Access API</code></a> provides a handle to a file system directory. The interface is accessed via the <a href="window/showdirectorypicker"><code>window.showDirectoryPicker()</code></a> method.</p>
+<h2 id="properties">Properties</h2>
+<p><em>Inherits properties from its parent, <a href="filesystemhandle"><code>FileSystemHandle</code></a>.</em></p>
+<h2 id="methods">Methods</h2>
+<p><em>Inherits methods from its parent, <a href="filesystemhandle"><code>FileSystemHandle</code></a>.</em></p> <dl> <dt><a href="filesystemdirectoryhandle/entries"><code>FileSystemDirectoryHandle.entries()</code></a></dt> <dd>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of a given object's own enumerable property <code>[key, value]</code> pairs</dd> <dt><a href="filesystemdirectoryhandle/getfilehandle"><code>FileSystemDirectoryHandle.getFileHandle()</code></a></dt> <dd>Returns a <a href="filesystemfilehandle"><code>FileSystemFileHandle</code></a> for a file with the specified name, within the directory the method is called.</dd> <dt><a href="filesystemdirectoryhandle/getdirectoryhandle"><code>FileSystemDirectoryHandle.getDirectoryHandle()</code></a></dt> <dd>Returns a <a href="filesystemdirectoryhandle"><code>FileSystemDirectoryHandle</code></a> for a subdirectory with the specified name within the directory handle on which the method is called.</dd> <dt><a href="filesystemdirectoryhandle/keys"><code>FileSystemDirectoryHandle.keys()</code></a></dt> <dd>Returns a new Array Iterator containing the keys for each item in <code>FileSystemDirectoryHandle</code>.</dd> <dt><a href="filesystemdirectoryhandle/removeentry"><code>FileSystemDirectoryHandle.removeEntry()</code></a></dt> <dd>Attempts to remove an entry if the directory handle contains a file or directory called the name specified.</dd> <dt><a href="filesystemdirectoryhandle/resolve"><code>FileSystemDirectoryHandle.resolve()</code></a></dt> <dd>Returns an <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array"><code>Array</code></a> of directory names from the parent handle to the specified child entry, with the name of the child entry as the last array item.</dd> <dt><a href="filesystemdirectoryhandle/values"><code>FileSystemDirectoryHandle.values()</code></a></dt> <dd>Returns a new Array Iterator containing the values for each index in the <code>FileSystemDirectoryHandle</code> object.</dd> </dl>
+<h2 id="examples">Examples</h2>
+<p>The following example returns a directory handle with the specified name, if the directory does not exist it is created.</p> <pre data-language="js"><span class="token keyword">const</span> dirName <span class="token operator">=</span> <span class="token string">'directoryToGetName'</span><span class="token punctuation">;</span>
+
+<span class="token comment">// assuming we have a directory handle: 'currentDirHandle'</span>
+<span class="token keyword">const</span> subDir <span class="token operator">=</span> currentDirHandle<span class="token punctuation">.</span><span class="token function">getDirectoryHandle</span><span class="token punctuation">(</span>dirName<span class="token punctuation">,</span> <span class="token punctuation">{</span>create<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>The following asynchronous function uses <code>resolve()</code> to find the path to a chosen file, relative to a specified directory handle.</p> <pre data-language="js"><span class="token keyword">async</span> <span class="token keyword">function</span> <span class="token function">returnPathDirectories</span><span class="token punctuation">(</span><span class="token parameter">directoryHandle</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+  <span class="token comment">// Get a file handle by showing a file picker:</span>
+  <span class="token keyword">const</span> handle <span class="token operator">=</span> <span class="token keyword">await</span> self<span class="token punctuation">.</span><span class="token function">showOpenFilePicker</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>handle<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// User cancelled, or otherwise failed to open a file.</span>
+    <span class="token keyword">return</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  <span class="token comment">// Check if handle exists inside directory our directory handle</span>
+  <span class="token keyword">const</span> relativePaths <span class="token operator">=</span> <span class="token keyword">await</span> directoryHandle<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span>handle<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>relativePath <span class="token operator">===</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Not inside directory handle</span>
+  <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token comment">// relativePath is an array of names, giving the relative path</span>
+
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token keyword">const</span> name <span class="token keyword">of</span> relativePaths<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+      <span class="token comment">// log each entry</span>
+      console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://wicg.github.io/file-system-access/#api-filesystemdirectoryhandle" hreflang="en" rel=" noopener">File System Access API<br><small>The definition of 'FileSystemDirectoryHandle' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td>Initial definition.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<th><code>FileSystemDirectoryHandle</code></th>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>entries</code></th>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>getDirectoryHandle</code></th>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>getFileHandle</code></th>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>keys</code></th>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>removeEntry</code></th>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>resolve</code></th>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+<tr>
+<th><code>values</code></th>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>72</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>86</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="file_system_access_api">File System Access API</a></li> <li><a href="https://web.dev/file-system-access/" rel=" noopener">The File System Access API: simplifying access to local files</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryHandle" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/FileSystemDirectoryHandle</a>
+  </p>
+</div>

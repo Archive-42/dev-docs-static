@@ -1,0 +1,80 @@
+<h1>Animation.replaceState</h1>
+
+<div class="notecard experimental"> <strong id="experimental">Experimental</strong> <p><strong>This is an <a href="https://developer.mozilla.org/en-US/docs/MDN/Guidelines/Conventions_definitions#experimental">experimental technology</a></strong><br>Check the <a href="#browser_compatibility">Browser compatibility table</a> carefully before using this in production.</p> </div>
+ <p>The read-only <code>Animation.replaceState</code> property of the <a href="../web_animations_api">Web Animations API</a> returns the <a href="https://drafts.csswg.org/web-animations-1/#animation-replace-state" rel=" noopener">replace state</a> of the animation. This will be <code>active</code> if the animation has been removed, or <code>persisted</code> if <a href="persist"><code>Animation.persist()</code></a> has been invoked on it.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js"><span class="token keyword">let</span> myReplaceState <span class="token operator">=</span> Animation<span class="token punctuation">.</span>replaceState<span class="token punctuation">;</span>
+</pre>
+<h3 id="value">Value</h3>
+<p>A string that represents the replace state of the animation. The value can be one of:</p> <ul> <li>
+<code>active</code>: The initial value of the animation's replace state; when the animation has been removed by the browser's <a href="../animation#automatically_removing_filling_animations">Automatically removing filling animations</a> behavior.</li> <li>
+<code>persisted</code>: The animation has been explicitly persisted by invoking <a href="persist"><code>Animation.persist()</code></a> on it.</li> <li>
+<code>removed</code>: The animation has been explicitly removed.</li> </ul>
+<h2 id="examples">Examples</h2>
+<p>In our simple <a href="https://mdn.github.io/dom-examples/web-animations-api/replace-indefinite-animations.html" rel=" noopener">replace indefinite animations demo</a>, you can see the following code:</p> <pre data-language="js"><span class="token keyword">const</span> divElem <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector</span><span class="token punctuation">(</span><span class="token string">'div'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+document<span class="token punctuation">.</span>body<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">'mousemove'</span><span class="token punctuation">,</span> <span class="token parameter">evt</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+  <span class="token keyword">let</span> anim <span class="token operator">=</span> divElem<span class="token punctuation">.</span><span class="token function">animate</span><span class="token punctuation">(</span>
+    <span class="token punctuation">{</span> transform<span class="token operator">:</span> <span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">translate(</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span> evt<span class="token punctuation">.</span>clientX<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">px, </span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>evt<span class="token punctuation">.</span>clientY<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">px)</span><span class="token template-punctuation string">`</span></span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    <span class="token punctuation">{</span> duration<span class="token operator">:</span> <span class="token number">500</span><span class="token punctuation">,</span> fill<span class="token operator">:</span> <span class="token string">'forwards'</span> <span class="token punctuation">}</span>
+  <span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  anim<span class="token punctuation">.</span><span class="token function">commitStyles</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  <span class="token comment">//anim.persist()</span>
+
+  anim<span class="token punctuation">.</span><span class="token function-variable function">onremove</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token string">'Animation removed'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+
+  console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>anim<span class="token punctuation">.</span>replaceState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></pre> <p>Here we have a <code>&lt;div&gt;</code> element, and an event listener that fires the event handler code whenever the mouse moves. The event handler sets up an animation that animates the &lt;div&gt; element to the position of the mouse pointer. This could result in a huge animations list, which could create a memory leak. For this reason, modern browsers automatically remove overriding forward filling animations.</p> <p>You can see the <code>replaceState</code> of the animation being logged at the end of the handler. This will be <code>active</code> for each animation by default, or <code>persisted</code> if the <code>persist()</code> call is uncommented.</p>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://drafts.csswg.org/web-animations-1/#dom-animation-replacestate" hreflang="en" rel=" noopener">Web Animations<br><small>The definition of 'Animation.replaceState' in that specification.</small></a></td> <td><span class="spec-wd">Working Draft</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>replaceState</code></th>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes"><div>75</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>70</div></td>
+<td class="bc-supports-yes"><div>13.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>84</div></td>
+<td class="bc-supports-yes"><div>79</div></td>
+<td class="bc-supports-yes"><div>60</div></td>
+<td class="bc-supports-yes"><div>13.4</div></td>
+<td class="bc-supports-yes"><div>14.0</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../web_animations_api">Web Animations API</a></li> <li><a href="../animation"><code>Animation</code></a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Animation/replaceState" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/Animation/replaceState</a>
+  </p>
+</div>

@@ -1,0 +1,64 @@
+<h1>RTCRtpTransceiver.setCodecPreferences()</h1> <p>The <a href="../rtcrtptransceiver"><code>RTCRtpTransceiver</code></a> method <code>setCodecPreferences()</code> configures the transceiver's codecs given a list of <a href="../rtcrtpcodeccapability"><code>RTCRtpCodecCapability</code></a> objects specifying the new preferences for each <a href="https://developer.mozilla.org/en-US/docs/Glossary/Codec">codec</a>. The specified set of codecs and configurations will be used for all future connections including this transceiver until this method is called again.</p> <p>When preparing to open an <a href="../rtcpeerconnection"><code>RTCPeerConnection</code></a>, you can change the codec parameters from the <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent's</a> default configuration by calling <code>setCodecParameters()</code> <em>before</em> calling either <a href="../rtcpeerconnection/createoffer"><code>RTCPeerConnection.createOffer()</code></a> or <a href="../rtcpeerconnection/createanswer"><code>createAnswer()</code></a>.</p> <p>A guide to codecs supported by WebRTC—and each codec's positive and negative characteristics—can be found in <a href="https://developer.mozilla.org/en-US/docs/Web/Media/Formats/WebRTC_codecs">Codecs used by WebRTC</a>.</p>
+<h2 id="syntax">Syntax</h2>
+<pre data-language="js">rtcRtpTransceiver<span class="token punctuation">.</span><span class="token function">setCodecPreferences</span><span class="token punctuation">(</span>codecs<span class="token punctuation">)</span></pre>
+<h3 id="parameters">Parameters</h3>
+<dl> <dt><code>codecs</code></dt> <dd> <p>An array of <a href="../rtcrtpcodeccapability"><code>RTCRtpCodecCapability</code></a> objects, in order of preference, each providing the parameters for one of the transceiver's supported codecs. If <code>codecs</code> is empty, the codec configurations are all returned to the user agent's defaults.</p> <div class="note notecard">
+<strong>Note:</strong> Any codecs not included in <code>codecs</code> will not be considered during the process of negotiating a connection. This lets you prevent the use of codecs you don't wish to use.</div> </dd> </dl>
+<h3 id="return_value">Return value</h3>
+<p><code>undefined</code></p>
+<h3 id="exceptions">Exceptions</h3>
+<dl> <dt><code>InvalidAccessError</code></dt> <dd>The <code>codecs</code> list includes one or more codecs which are not supported by the transceiver.</dd> </dl>
+<h2 id="usage_notes">Usage notes</h2>
+<h3 id="getting_a_list_of_supported_codecs">Getting a list of supported codecs</h3>
+<p>You can only include in the <code>codecs</code> list codecs which the transceiver actually supports. That means that either the associated <a href="../rtcrtpsender"><code>RTCRtpSender</code></a> or the <a href="../rtcrtpreceiver"><code>RTCRtpReceiver</code></a> needs to support every codec in the list. If any unsupported codecs are listed, the browser will throw an <code>InvalidAccessError</code> exception when you call this method.</p> <p>A good approach to setting codec preferences is to first get the list of codecs that are actually supported, then modify that list to match what you want. Pass the altered list into <code>setCodecPreferences()</code> to specify your preferences.</p> <p>To determine which codecs are supported by the transceiver, call the sender's <a href="../rtcrtpsender/getcapabilities"><code>getCapabilities()</code></a> and the receiver's <a href="../rtcrtpreceiver/getcapabilities"><code>getCapabilities()</code></a> methods and get the <a class="page-not-created"><code>codecs</code></a> list from the results of each.</p> <p>The following code snippet demonstrates how to get both the list of codecs supported by the transceiver's <a href="../rtcrtpsender"><code>RTCRtpSender</code></a> and <a href="../rtcrtpreceiver"><code>RTCRtpReceiver</code></a>.</p> <pre data-language="js"><span class="token keyword">var</span> availSendCodecs <span class="token operator">=</span> transceiver<span class="token punctuation">.</span>sender<span class="token punctuation">.</span><span class="token function">getCapabilities</span><span class="token punctuation">(</span><span class="token string">"video"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>codecs<span class="token punctuation">;</span>
+<span class="token keyword">var</span> availReceiveCodecs <span class="token operator">=</span> transceiver<span class="token punctuation">.</span>receiver<span class="token punctuation">.</span><span class="token function">getCapabilities</span><span class="token punctuation">(</span><span class="token string">"video"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>codecs<span class="token punctuation">;</span>
+</pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <tbody> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcrtptransceiver-setcodecpreferences" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCRtpTransceiver.setCodecPreferences()' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td></td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>setCodecPreferences</code></th>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.1</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>13.4</div></td>
+<td class="bc-supports-no"><div>No</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webrtc_api">WebRTC API</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/Media/Formats/WebRTC_codecs">Codecs used by WebRTC</a></li> <li><a href="../webrtc_api/intro_to_rtp">Introduction to the Real-time Transport Protocol (RTP)</a></li> <li><a href="https://developer.mozilla.org/en-US/docs/Web/Media">Web media technologies</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpTransceiver/setCodecPreferences" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCRtpTransceiver/setCodecPreferences</a>
+  </p>
+</div>

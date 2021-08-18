@@ -1,0 +1,92 @@
+<h1>RTCIceCandidateInit.candidate</h1> <p>The optional property <code><strong>candidate</strong></code> in the <strong><a href="../rtcicecandidateinit"><code>RTCIceCandidateInit</code></a></strong> dictionary specifies the value of the <a href="../rtcicecandidate"><code>RTCIceCandidate</code></a> object's <a href="../rtcicecandidate/candidate"><code>candidate</code></a> property.</p>
+<h2 id="value">Value</h2>
+
+<p>A <a href="../domstring"><code>DOMString</code></a> describing the properties of the candidate, taken directly from the <a href="https://developer.mozilla.org/en-US/docs/Glossary/SDP">SDP</a> attribute <code>"candidate"</code>. The candidate string specifies the network connectivity information for the candidate. If the <code>candidate</code> is an empty string (<code>""</code>), the end of the candidate list has been reached; this candidate is known as the "end-of-candidates" marker.</p>
+<p>The syntax of the candidate string is described in <a href="https://tools.ietf.org/html/rfc5245#section-15.1" rel=" noopener">RFC 5245, section 15.1</a>. For an a-line (attribute line) that looks like this:</p>
+<pre class="notranslate">a=candidate:4234997325 1 udp 2043278322 192.168.0.56 44323 typ host</pre>
+<p>the corresponding <code>candidate</code> string's value will be <code>"candidate:4234997325 1 udp 2043278322 192.168.0.56 44323 typ host"</code>.</p>
+<p>The <a href="https://developer.mozilla.org/en-US/docs/Glossary/User_agent">user agent</a> always prefers candidates with the highest <a href="../rtcicecandidate/priority"><code>priority</code></a>, all else being equal. In the example above, the priority is <code>2043278322</code>. The attributes are all separated by a single space character, and are in a specific order. The complete list of attributes for this example candidate is:</p>
+<ul> <li>
+<a href="../rtcicecandidate/foundation"><code>foundation</code></a> = 4234997325</li> <li>
+<a href="../rtcicecandidate/component"><code>component</code></a> = <code>"rtp"</code> (the number 1 is encoded to this string; 2 becomes <code>"rtcp"</code>)</li> <li>
+<a href="../rtcicecandidate/protocol"><code>protocol</code></a> = <code>"udp"</code>
+</li> <li>
+<a href="../rtcicecandidate/priority"><code>priority</code></a> = 2043278322</li> <li>
+<a href="../rtcicecandidate/address"><code>ip</code></a> = <code>"192.168.0.56"</code>
+</li> <li>
+<a href="../rtcicecandidate/port"><code>port</code></a> = 44323</li> <li>
+<a href="../rtcicecandidate/type"><code>type</code></a> = <code>"host"</code>
+</li> </ul>
+
+<h2 id="example">Example</h2>
+<p>When a new ICE candidate is received by your signaling code from the remote peer, you need to construct the <code>RTCIceCandidate</code> object that encapsulates it. This is done in the event handler for the <code><a href="../rtcpeerconnection/icecandidate_event">icecandidate</a></code> event. If your client-side signaling layer builds and transmits a JSON string including the candidate to the remote peer, the remote peer might handle receiving that JSON message like this:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">gotICECandidateMessage</span><span class="token punctuation">(</span><span class="token parameter">msg</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> iceCandidate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RTCIceCandidate</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+        candidate<span class="token operator">:</span> msg<span class="token punctuation">.</span>candidate<span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  pc<span class="token punctuation">.</span><span class="token function">addIceCandidate</span><span class="token punctuation">(</span>iceCandidate<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token comment">/* handle error */</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</pre> <p>It's helpful to note that for backward compatibility with older versions of the WebRTC specification, the <a href="../rtcicecandidate/rtcicecandidate"><code>RTCIceCandidate()</code></a> constructor accepts the value of <code>candidate</code> as its only input, in place of the <code>RTCIceCandidateInit</code> dictionary. That usage would change the above sample to look like this:</p> <pre data-language="js"><span class="token keyword">function</span> <span class="token function">gotICECandidateMessage</span><span class="token punctuation">(</span><span class="token parameter">msg</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">var</span> iceCandidate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RTCIceCandidate</span><span class="token punctuation">(</span>msg<span class="token punctuation">.</span>candidate<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+  pc<span class="token punctuation">.</span><span class="token function">addIceCandidate</span><span class="token punctuation">(</span>iceCandidate<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">catch</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    <span class="token comment">/* handle error */</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></pre>
+<h2 id="specifications">Specifications</h2>
+<div class="_table"><table class="standard-table"> <thead> <tr> <th scope="col">Specification</th> <th scope="col">Status</th> <th scope="col">Comment</th> </tr> </thead> <tbody> <tr> <td><a href="https://w3c.github.io/webrtc-pc/#dom-rtcicecandidateinit-candidate" hreflang="en" rel=" noopener">WebRTC 1.0: Real-time Communication Between Browsers<br><small>The definition of 'RTCIceCandidateInit.candidate' in that specification.</small></a></td> <td><span class="spec-cr">Candidate Recommendation</span></td> <td>Initial specification.</td> </tr> </tbody> </table></div>
+<h2 id="browser_compatibility">Browser compatibility</h2>
+<table>
+<thead>
+<tr id="bct-browser-type">
+<th></th>
+<th colspan="6">Desktop</th>
+<th colspan="6">Mobile</th>
+</tr>
+<tr id="bct-browsers">
+<th></th>
+<th>Chrome</th>
+<th>Edge</th>
+<th>Firefox</th>
+<th>Internet Explorer</th>
+<th>Opera</th>
+<th>Safari</th>
+<th>WebView Android</th>
+<th>Chrome Android</th>
+<th>Firefox for Android</th>
+<th>Opera Android</th>
+<th>Safari on IOS</th>
+<th>Samsung Internet</th>
+</tr>
+</thead>
+<tbody><tr>
+<th><code>candidate</code></th>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>≤18</div></td>
+<td class="bc-supports-yes">
+<div>22</div>
+<div>Prior to Firefox 68, the <code>candidate</code> property was required; Firefox 68 and later make it optional per a mid-2017 specification update.</div>
+</td>
+<td class="bc-supports-no"><div>No</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes">
+<div>Yes</div>
+<div>Prior to Firefox 68, the <code>candidate</code> property was required; Firefox 68 and later make it optional per a mid-2017 specification update.</div>
+</td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+<td class="bc-supports-yes"><div>?</div></td>
+<td class="bc-supports-yes"><div>Yes</div></td>
+</tr></tbody>
+</table>
+
+
+<h2 id="see_also">See also</h2>
+<ul> <li><a href="../webrtc_api">WebRTC API</a></li> <li><a href="../rtcicecandidate/candidate"><code>RTCIceCandidate.candidate</code></a></li> <li><a href="../rtcpeerconnection/addicecandidate"><code>RTCPeerConnection.addIceCandidate()</code></a></li> <li><code><a href="../rtcpeerconnection/icecandidate_event">icecandidate</a></code></li> <li><a href="../webrtc_api/session_lifetime">Lifetime of a WebRTC session</a></li> </ul>
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/RTCIceCandidateInit/candidate" class="_attribution-link">https://developer.mozilla.org/en-US/docs/Web/API/RTCIceCandidateInit/candidate</a>
+  </p>
+</div>
